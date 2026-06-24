@@ -69,14 +69,10 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     {
         auto *statusFilterWidget = new StatusFilterWidget(this, transferList);
         auto *item = new TransferListFiltersWidgetItem(tr("Status"), statusFilterWidget, this);
+        item->setChecked(pref->getStatusFilterState());
         connect(item, &TransferListFiltersWidgetItem::toggled, statusFilterWidget, &StatusFilterWidget::toggleFilter);
         connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setStatusFilterState);
-
-        const bool filterEnabled = pref->getStatusFilterState();
-        item->setChecked(filterEnabled);
-        if (!filterEnabled)
-            statusFilterWidget->toggleFilter(false);
-
+        statusFilterWidget->toggleFilter(item->isChecked());
         mainWidgetLayout->addWidget(item);
     }
 
@@ -88,6 +84,8 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
                 , transferList, &TransferListWidget::stopVisibleTorrents);
         connect(categoryFilterWidget, &CategoryFilterWidget::actionStartTorrentsTriggered
                 , transferList, &TransferListWidget::startVisibleTorrents);
+        connect(categoryFilterWidget, &CategoryFilterWidget::actionForceStartTorrentsTriggered
+                , transferList, &TransferListWidget::forceStartVisibleTorrents);
         connect(categoryFilterWidget, &CategoryFilterWidget::categoryChanged
                 , transferList, &TransferListWidget::applyCategoryFilter);
 
@@ -109,6 +107,8 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
                 , transferList, &TransferListWidget::stopVisibleTorrents);
         connect(tagFilterWidget, &TagFilterWidget::actionStartTorrentsTriggered
                 , transferList, &TransferListWidget::startVisibleTorrents);
+        connect(tagFilterWidget, &TagFilterWidget::actionForceStartTorrentsTriggered
+                , transferList, &TransferListWidget::forceStartVisibleTorrents);
         connect(tagFilterWidget, &TagFilterWidget::tagChanged
                 , transferList, &TransferListWidget::applyTagFilter);
 
@@ -128,14 +128,10 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
         m_trackersFilterWidget = new TrackersFilterWidget(this, transferList, downloadFavicon);
 
         auto *item = new TransferListFiltersWidgetItem(tr("Trackers"), m_trackersFilterWidget, this);
+        item->setChecked(pref->getTrackerFilterState());
         connect(item, &TransferListFiltersWidgetItem::toggled, m_trackersFilterWidget, &TrackersFilterWidget::toggleFilter);
         connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setTrackerFilterState);
-
-        const bool filterEnabled = pref->getTrackerFilterState();
-        item->setChecked(filterEnabled);
-        if (!filterEnabled)
-            m_trackersFilterWidget->toggleFilter(false);
-
+        m_trackersFilterWidget->toggleFilter(item->isChecked());
         mainWidgetLayout->addWidget(item);
     }
 
@@ -153,14 +149,10 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     {
         auto *trackerStatusFilterWidget = new TrackerStatusFilterWidget(this, m_transferList);
         auto *item = new TransferListFiltersWidgetItem(tr("Tracker status"), trackerStatusFilterWidget, this);
+        item->setChecked(pref->getTrackerStatusFilterState());
         connect(item, &TransferListFiltersWidgetItem::toggled, trackerStatusFilterWidget, &TrackerStatusFilterWidget::toggleFilter);
         connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setTrackerStatusFilterState);
-
-        const bool filterEnabled = pref->getTrackerStatusFilterState();
-        item->setChecked(filterEnabled);
-        if (!filterEnabled)
-            trackerStatusFilterWidget->toggleFilter(false);
-
+        trackerStatusFilterWidget->toggleFilter(item->isChecked());
         mainWidgetLayout->insertWidget(trackerStatusItemPos, item);
     };
 

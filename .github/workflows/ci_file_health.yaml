@@ -31,7 +31,7 @@ jobs:
       - name: Check doc
         env:
           pandoc_path: "${{ github.workspace }}/../pandoc"
-          pandoc_version: "3.8.3"
+          pandoc_version: "3.9.0.2"
         run: |
           # install pandoc
           curl \

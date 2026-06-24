@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,28 +28,33 @@
 
 #pragma once
 
-#include <QCoreApplication>
+#include <QObject>
 
 #include "base/pathfwd.h"
+#include "headermap.h"
+#include "response.h"
 
-class QString;
-
-namespace BitTorrent
+namespace Http
 {
-    class AbstractFileStorage
+    class ResponseWriter : public QObject
     {
-        Q_DECLARE_TR_FUNCTIONS(AbstractFileStorage)
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(ResponseWriter)
 
     public:
-        virtual ~AbstractFileStorage() = default;
+        using QObject::QObject;
 
-        virtual int filesCount() const = 0;
-        virtual Path filePath(int index) const = 0;
-        virtual qlonglong fileSize(int index) const = 0;
+        // Send entire response at once.
+        // Allow response content to be gzip encoded.
+        virtual void setResponse(const Response &response) = 0;
 
-        virtual void renameFile(int index, const Path &newPath) = 0;
+        // Allow to stream file using separate IO thread for reading.
+        // Support Range requests.
+        virtual void streamFile(const Path &filePath, const HeaderMap &headers) = 0;
 
-        void renameFile(const Path &oldPath, const Path &newPath);
-        void renameFolder(const Path &oldFolderPath, const Path &newFolderPath);
+        virtual bool isFinished() const = 0;
+
+    signals:
+        void finished();
     };
 }

@@ -131,6 +131,7 @@ let setLocationFN = () => {};
 let renameFN = () => {};
 let renameFilesFN = () => {};
 let startVisibleTorrentsFN = () => {};
+let forceStartVisibleTorrentsFN = () => {};
 let stopVisibleTorrentsFN = () => {};
 let deleteVisibleTorrentsFN = () => {};
 let torrentNewCategoryFN = () => {};
@@ -214,7 +215,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 500),
-            height: loadWindowHeight(id, 300),
+            height: loadWindowHeight(id, 350),
             onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
             })
@@ -769,6 +770,28 @@ const initializeWindows = () => {
                 .then((response) => {
                     if (!response.ok) {
                         alert("QBT_TR(Unable to start torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        return;
+                    }
+
+                    updateMainData();
+                    updatePropertiesPanel();
+                });
+        }
+    };
+
+    forceStartVisibleTorrentsFN = () => {
+        const hashes = torrentsTable.getFilteredTorrentsHashes(selectedStatus, selectedCategory, selectedTag, selectedTracker);
+        if (hashes.length > 0) {
+            fetch("api/v2/torrents/setForceStart", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        hashes: hashes.join("|"),
+                        value: "true"
+                    })
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        alert("QBT_TR(Unable to force start torrents.)QBT_TR[CONTEXT=HttpServer]");
                         return;
                     }
 

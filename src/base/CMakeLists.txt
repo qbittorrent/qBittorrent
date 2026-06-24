@@ -5,7 +5,6 @@ add_library(qbt_base STATIC
     algorithm.h
     applicationcomponent.h
     asyncfilestorage.h
-    bittorrent/abstractfilestorage.h
     bittorrent/addtorrenterror.h
     bittorrent/addtorrentparams.h
     bittorrent/announcetimepoint.h
@@ -66,9 +65,10 @@ add_library(qbt_base STATIC
     http/httperror.h
     http/irequesthandler.h
     http/request.h
-    http/response.h
     http/requestparser.h
-    http/responsegenerator.h
+    http/response.h
+    http/responsewriter.h
+    http/responsewriterimpl.h
     http/server.h
     indexrange.h
     interfaces/iapplication.h
@@ -82,7 +82,7 @@ add_library(qbt_base STATIC
     net/proxyconfigurationmanager.h
     net/proxytype.h
     net/reverseresolution.h
-    net/smtp.h
+    net/smtpclient.h
     net/smtpencryptiontype.h
     orderedset.h
     path.h
@@ -134,7 +134,6 @@ add_library(qbt_base STATIC
     addtorrentmanager.cpp
     applicationcomponent.cpp
     asyncfilestorage.cpp
-    bittorrent/abstractfilestorage.cpp
     bittorrent/addtorrentparams.cpp
     bittorrent/bandwidthscheduler.cpp
     bittorrent/bencoderesumedatastorage.cpp
@@ -173,7 +172,7 @@ add_library(qbt_base STATIC
     http/connection.cpp
     http/httperror.cpp
     http/requestparser.cpp
-    http/responsegenerator.cpp
+    http/responsewriterimpl.cpp
     http/server.cpp
     logger.cpp
     net/dnsupdater.cpp
@@ -184,7 +183,7 @@ add_library(qbt_base STATIC
     net/portforwarder.cpp
     net/proxyconfigurationmanager.cpp
     net/reverseresolution.cpp
-    net/smtp.cpp
+    net/smtpclient.cpp
     path.cpp
     preferences.cpp
     profile.cpp
@@ -231,6 +230,9 @@ target_link_libraries(qbt_base
     PRIVATE
         OpenSSL::Crypto
         OpenSSL::SSL
+        # find whatever zlib target that exists while being compatible with both
+        # FindZLIB (from cmake) and zlib own scripts
+        $<IF:$<TARGET_EXISTS:ZLIB::ZLIB>,ZLIB::ZLIB,ZLIB::ZLIBSTATIC>
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
         Qt::Core
@@ -240,12 +242,6 @@ target_link_libraries(qbt_base
         Qt::Xml
         qbt_common_cfg
 )
-
-if (TARGET ZLIB::ZLIB)
-    target_link_libraries(qbt_base PRIVATE ZLIB::ZLIB)
-else()
-    target_link_libraries(qbt_base PRIVATE ZLIB::ZLIBSTATIC)
-endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     find_library(AppKit_LIBRARY AppKit)

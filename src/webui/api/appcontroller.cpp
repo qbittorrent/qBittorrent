@@ -46,7 +46,6 @@
 #include <QRegularExpression>
 #include <QStringList>
 #include <QTimer>
-#include <QTranslator>
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
@@ -463,6 +462,8 @@ void AppController::preferencesAction()
     data[u"send_buffer_watermark_factor"_s] = session->sendBufferWatermarkFactor();
     // Outgoing connections per second
     data[u"connection_speed"_s] = session->connectionSpeed();
+    // Allow outgoing connections when seeding
+    data[u"seeding_outgoing_connections"_s] = session->isSeedingOutgoingConnectionsEnabled();
     // Socket send buffer size
     data[u"socket_send_buffer_size"_s] = session->socketSendBufferSize();
     // Socket receive buffer size
@@ -532,21 +533,10 @@ void AppController::setPreferencesAction()
     // Language
     if (hasKey(u"locale"_s))
     {
-        QString locale = it.value().toString();
-        if (pref->getLocale() != locale)
+        if (const QString locale = it.value().toString(); locale != pref->getLocale())
         {
-            auto *translator = new QTranslator;
-            if (translator->load(u":/lang/qbittorrent_"_s + locale))
-            {
-                qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
-            }
-            else
-            {
-                qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));
-            }
-            qApp->installTranslator(translator);
-
             pref->setLocale(locale);
+            app()->loadTranslation(locale);
         }
     }
     if (hasKey(u"status_bar_external_ip"_s))
@@ -1128,6 +1118,9 @@ void AppController::setPreferencesAction()
     // Outgoing connections per second
     if (hasKey(u"connection_speed"_s))
         session->setConnectionSpeed(it.value().toInt());
+    // Allow outgoing connections when seeding
+    if (hasKey(u"seeding_outgoing_connections"_s))
+        session->setSeedingOutgoingConnections(it.value().toBool());
     // Socket send buffer size
     if (hasKey(u"socket_send_buffer_size"_s))
         session->setSocketSendBufferSize(it.value().toInt());

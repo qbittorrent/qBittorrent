@@ -127,7 +127,7 @@ namespace
 {
     const char PEER_ID[] = "qB";
     const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2);
-    const QString DEFAULT_DHT_BOOTSTRAP_NODES = u"dht.libtorrent.org:25401, dht.transmissionbt.com:6881, router.bittorrent.com:6881"_s;
+    const QString DEFAULT_DHT_BOOTSTRAP_NODES = u"dht.libtorrent.org:25401, dht.transmissionbt.com:6881, router.bt.ouinet.work:6881"_s;
 
     void torrentQueuePositionUp(const lt::torrent_handle &handle)
     {
@@ -475,6 +475,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY(u"SendBufferLowWatermark"_s), 10)
     , m_sendBufferWatermarkFactor(BITTORRENT_SESSION_KEY(u"SendBufferWatermarkFactor"_s), 50)
     , m_connectionSpeed(BITTORRENT_SESSION_KEY(u"ConnectionSpeed"_s), 30)
+    , m_isSeedingOutgoingConnectionsEnabled(BITTORRENT_SESSION_KEY(u"SeedingOutgoingConnectionsEnabled"_s), true)
     , m_socketSendBufferSize(BITTORRENT_SESSION_KEY(u"SocketSendBufferSize"_s), 0)
     , m_socketReceiveBufferSize(BITTORRENT_SESSION_KEY(u"SocketReceiveBufferSize"_s), 0)
     , m_socketBacklogSize(BITTORRENT_SESSION_KEY(u"SocketBacklogSize"_s), 30)
@@ -1322,8 +1323,13 @@ void SessionImpl::applyBandwidthLimits()
 
 void SessionImpl::configure()
 {
+    const bool isListenInterfaceChanged = !m_listenInterfaceConfigured;
+
     m_nativeSession->apply_settings(loadLTSettings());
     configureComponents();
+
+    if (isListenInterfaceChanged && isReannounceWhenAddressChangedEnabled())
+        reannounceToAllTrackers();
 
     m_deferredConfigureScheduled = false;
 }
@@ -1867,6 +1873,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::alert_mask, alertMask);
 
     settingsPack.set_int(lt::settings_pack::connection_speed, connectionSpeed());
+    settingsPack.set_bool(lt::settings_pack::seeding_outgoing_connections, isSeedingOutgoingConnectionsEnabled());
 
     // from libtorrent doc:
     // It will not take affect until the listen_interfaces settings is updated
@@ -2369,6 +2376,14 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
 
     const ShareLimits shareLimits = torrent->effectiveShareLimits();
 
+    // If all share limits are disabled, there is nothing to check
+    if ((shareLimits.ratioLimit < 0)
+            && (shareLimits.seedingTimeLimit < 0)
+            && (shareLimits.inactiveSeedingTimeLimit < 0))
+    {
+        return;
+    }
+
     bool reached = false;
     QString description;
 
@@ -2847,7 +2862,6 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
         const auto nativeIndexes = torrentInfo.nativeIndexes();
 
-        Q_ASSERT(p.file_priorities.empty());
         Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
         QList<DownloadPriority> filePriorities = addTorrentParams.filePriorities;
 
@@ -2867,13 +2881,17 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         const lt::file_storage internalFiles = torrentInfo.nativeInfo()->files();
 #endif
         const int internalFilesCount = internalFiles.num_files(); // including .pad files
-        // Use qBittorrent default priority rather than libtorrent's (4)
-        p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
-
         if (!filePriorities.isEmpty())
         {
+            // Use qBittorrent default priority rather than libtorrent's (4)
+            p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
             for (qsizetype i = 0; i < filePriorities.size(); ++i)
                 p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(filePriorities[i]);
+        }
+        else if (p.file_priorities.empty())
+        {
+            // Use qBittorrent default priority rather than libtorrent's (4)
+            p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
         }
 
         Q_ASSERT(p.ti);
@@ -3716,9 +3734,6 @@ void SessionImpl::setPort(const int port)
     {
         m_port = port;
         configureListeningInterface();
-
-        if (isReannounceWhenAddressChangedEnabled())
-            reannounceToAllTrackers();
     }
 }
 
@@ -3734,9 +3749,6 @@ void SessionImpl::setSSLEnabled(const bool enabled)
 
     m_sslEnabled = enabled;
     configureListeningInterface();
-
-    if (isReannounceWhenAddressChangedEnabled())
-        reannounceToAllTrackers();
 }
 
 int SessionImpl::sslPort() const
@@ -3751,9 +3763,6 @@ void SessionImpl::setSSLPort(const int port)
 
     m_sslPort = port;
     configureListeningInterface();
-
-    if (isReannounceWhenAddressChangedEnabled())
-        reannounceToAllTrackers();
 }
 
 QString SessionImpl::networkInterface() const
@@ -4693,6 +4702,19 @@ void SessionImpl::setConnectionSpeed(const int value)
     configureDeferred();
 }
 
+bool SessionImpl::isSeedingOutgoingConnectionsEnabled() const
+{
+    return m_isSeedingOutgoingConnectionsEnabled;
+}
+
+void SessionImpl::setSeedingOutgoingConnections(const bool enabled)
+{
+    if (enabled == m_isSeedingOutgoingConnectionsEnabled) return;
+
+    m_isSeedingOutgoingConnectionsEnabled = enabled;
+    configureDeferred();
+}
+
 int SessionImpl::socketSendBufferSize() const
 {
     return m_socketSendBufferSize;
@@ -5393,6 +5415,23 @@ void SessionImpl::handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoH
     }
 }
 
+void SessionImpl::handleTorrentContentFileRenamed(TorrentImpl *torrent, const int index, const Path &oldFilePath)
+{
+    emit torrentContentFileRenamed(torrent, index, oldFilePath);
+}
+
+void SessionImpl::handleTorrentContentFolderRenamed(TorrentImpl *torrent, const Path &newFolderPath
+        , const Path &oldFolderPath, const QHash<int, Path> &renamedFiles)
+{
+    emit torrentContentFolderRenamed(torrent, newFolderPath, oldFolderPath, renamedFiles);
+}
+
+void SessionImpl::handleTorrentContentFolderRenamingFailed(TorrentImpl *torrent, const Path &newFolderPath
+        , const Path &oldFolderPath, const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes)
+{
+    emit torrentContentFolderRenamingFailed(torrent, newFolderPath, oldFolderPath, renamedFiles, failedFileIndexes);
+}
+
 void SessionImpl::handleTorrentStorageMovingStateChanged(TorrentImpl *torrent)
 {
     emit torrentsUpdated({torrent});
@@ -6054,7 +6093,7 @@ void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *alert)
         LogMsg(tr("File error alert. Torrent: \"%1\". File: \"%2\". Reason: \"%3\"")
                 .arg(torrent->name(), QString::fromUtf8(alert->filename()), msg)
             , Log::WARNING);
-        emit fullDiskError(torrent, msg);
+        emit torrentIOError(torrent, msg);
     }
 
     m_recentErroredTorrentsTimer->start();
@@ -6224,8 +6263,6 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
         return (((current - previous) * lt::microseconds(1s).count()) / interval);
     };
 
-    m_status.payloadDownloadRate = calcRate(m_status.totalPayloadDownload, totalPayloadDownload);
-    m_status.payloadUploadRate = calcRate(m_status.totalPayloadUpload, totalPayloadUpload);
     m_status.downloadRate = calcRate(m_status.totalDownload, totalDownload);
     m_status.uploadRate = calcRate(m_status.totalUpload, totalUpload);
     m_status.ipOverheadDownloadRate = calcRate(m_status.ipOverheadDownload, ipOverheadDownload);
@@ -6291,6 +6328,21 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
                                    ? (stats[m_metricIndices.disk.diskJobTime] / totalJobs) : 0;
 
     m_cacheStatus.requestLatency = stats[m_metricIndices.disk.requestLatency];
+
+    // Use the sum of per-torrent payload rates instead of session-level
+    // instantaneous rate calculation. Per-torrent rates are smoothed by
+    // libtorrent, producing stable values consistent with the transfer list.
+    {
+        int64_t totalDlRate = 0;
+        int64_t totalUlRate = 0;
+        for (const TorrentImpl *torrent : asConst(m_torrents))
+        {
+            totalDlRate += torrent->downloadPayloadRate();
+            totalUlRate += torrent->uploadPayloadRate();
+        }
+        m_status.payloadDownloadRate = totalDlRate;
+        m_status.payloadUploadRate = totalUlRate;
+    }
 
     emit statsUpdated();
 }

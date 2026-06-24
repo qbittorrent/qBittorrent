@@ -38,14 +38,14 @@
 #endif
 
 #include "base/path.h"
-#include "qtlocalpeer/qtlocalpeer.h"
+#include "localpeer.h"
 
 ApplicationInstanceManager::ApplicationInstanceManager(const Path &instancePath, QObject *parent)
-    : QObject {parent}
-    , m_peer {new QtLocalPeer(instancePath.data(), this)}
+    : QObject(parent)
+    , m_peer {new LocalPeer(instancePath.data(), this)}
     , m_isFirstInstance {!m_peer->isClient()}
 {
-    connect(m_peer, &QtLocalPeer::messageReceived, this, &ApplicationInstanceManager::messageReceived);
+    connect(m_peer, &LocalPeer::messageReceived, this, &ApplicationInstanceManager::messageReceived);
 
 #ifdef Q_OS_WIN
     const QString sharedMemoryKey = instancePath.data() + u"/shared-memory";
@@ -79,7 +79,7 @@ bool ApplicationInstanceManager::isFirstInstance() const
     return m_isFirstInstance;
 }
 
-bool ApplicationInstanceManager::sendMessage(const QString &message, const int timeout)
+bool ApplicationInstanceManager::sendMessage(const QString &message, const std::chrono::milliseconds timeout)
 {
     return m_peer->sendMessage(message, timeout);
 }
