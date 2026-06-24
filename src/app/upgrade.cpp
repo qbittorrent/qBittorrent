@@ -546,13 +546,22 @@ namespace
             settingsStorage->removeValue(oldKey);
         }
     }
+
+    void setResolvePeerCountriesSetting()
+    {
+        // User may not have touched this setting so it will stay at the default and its value is empty.
+        // Set it to the previous default value so existing installations are not affected by the new default
+
+        auto *settingsStorage = SettingsStorage::instance();
+        const QString key = u"Preferences/Connection/ResolvePeerCountries"_s;
+        if (!settingsStorage->hasKey(key))
+            SettingsStorage::instance()->storeValue(key, true);
+    }
 }
 
 bool upgrade()
 {
-    CachedSettingValue<int> version {MIGRATION_VERSION_KEY, 0};
-
-    if (version != MIGRATION_VERSION)
+    if (CachedSettingValue<int> version {MIGRATION_VERSION_KEY, 0}; version != MIGRATION_VERSION)
     {
         if (version < 1)
         {
@@ -597,6 +606,7 @@ bool upgrade()
         {
             upgradeTrayIconStyleSettings2();
             migrateSMTPEncryptionSetting();
+            setResolvePeerCountriesSetting();
         }
 
         version = MIGRATION_VERSION;
