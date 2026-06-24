@@ -34,6 +34,8 @@
 
 #include <QFile>
 #include <QHash>
+#include <QMetaObject>
+#include <QOverload>
 
 #include "global.h"
 #include "logger.h"
@@ -86,7 +88,7 @@ bool SettingsStorage::save()
 
     if (!writeNativeSettings())
     {
-        m_timer.start();
+        QMetaObject::invokeMethod(&m_timer, qOverload<>(&QTimer::start));
         return false;
     }
 
@@ -108,7 +110,7 @@ void SettingsStorage::storeValueImpl(const QString &key, const QVariant &value)
     {
         m_dirty = true;
         currentValue = value;
-        m_timer.start();
+        QMetaObject::invokeMethod(&m_timer, qOverload<>(&QTimer::start));
     }
 }
 
@@ -224,7 +226,7 @@ void SettingsStorage::removeValue(const QString &key)
     if (m_data.remove(key))
     {
         m_dirty = true;
-        m_timer.start();
+        QMetaObject::invokeMethod(&m_timer, qOverload<>(&QTimer::start));
     }
 }
 

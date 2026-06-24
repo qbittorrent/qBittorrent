@@ -100,7 +100,7 @@
     </message>
     <message>
         <source>Add torrent</source>
-        <translation type="unfinished" />
+        <translation>Add torrent</translation>
     </message>
     <message>
         <source>Not available</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation type="unfinished" />
+        <translation>Add Torrent</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -152,7 +152,7 @@
     </message>
     <message>
         <source>Save as .torrent file</source>
-        <translation type="unfinished" />
+        <translation>Save as .torrent file</translation>
     </message>
     <message>
         <source>All</source>
@@ -180,7 +180,7 @@
     </message>
     <message>
         <source>Unable to download torrent file</source>
-        <translation type="unfinished" />
+        <translation>Unable to download torrent file</translation>
     </message>
     <message>
         <source>Info hash v2:</source>
@@ -197,6 +197,14 @@
     <message>
         <source>Limit download rate</source>
         <translation>Limit download rate</translation>
+    </message>
+    <message>
+        <source>%1 (Free space on disk: %2)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -297,7 +305,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Unable to save program preferences, qBittorrent is probably unreachable.</translation>
+        <translation type="vanished">Unable to save program preferences, qBittorrent is probably unreachable.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -460,7 +468,7 @@
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation>Could not contact qBittorrent</translation>
+        <translation type="vanished">Could not contact qBittorrent</translation>
     </message>
     <message>
         <source>Remember choice</source>
@@ -524,46 +532,62 @@
     </message>
     <message>
         <source>Unable to delete API key.</source>
-        <translation type="unfinished" />
+        <translation>Unable to delete API key.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Seeding time limit must not have a negative value.</translation>
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Share ratio limit must not have a negative value.</translation>
     </message>
     <message>
         <source>Peer turnover interval must be greater than or equal to 0.</source>
-        <translation type="unfinished" />
+        <translation>Peer turnover interval must be greater than or equal to 0.</translation>
     </message>
     <message>
         <source>Unable to parse response.</source>
-        <translation type="unfinished" />
+        <translation>Unable to parse response.</translation>
     </message>
     <message>
         <source>Unable to rotate API key.</source>
-        <translation type="unfinished" />
+        <translation>Unable to rotate API key.</translation>
     </message>
     <message>
         <source>Peer turnover must be between 0 and 100.</source>
-        <translation type="unfinished" />
+        <translation>Peer turnover must be between 0 and 100.</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents must be greater than 0 and less than 1024.</source>
-        <translation type="unfinished" />
+        <translation>Outstanding memory when checking torrents must be greater than 0 and less than 1024.</translation>
     </message>
     <message>
         <source>Unable to load program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Unable to load program preferences, qBittorrent is probably unreachable.</translation>
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
-        <translation type="unfinished" />
+        <translation>Peer turnover cutoff must be between 0 and 100.</translation>
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation>Peer DSCP must be between 0 and 255.</translation>
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Could not contact qBittorrent.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -823,6 +847,30 @@
     </message>
     <message>
         <source>Filter feed items...</source>
+        <translation>Filter feed items...</translation>
+    </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Invert Selection</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent and content</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v2</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -850,7 +898,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Language</translation>
+        <translation type="vanished">Language</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -926,7 +974,7 @@
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>This server requires a secure connection (SSL)</translation>
+        <translation type="vanished">This server requires a secure connection (SSL)</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1575,10 +1623,6 @@
         <translation>Don't create subfolder</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Type of service (ToS) for connections to peers</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Outgoing connections per second:</translation>
     </message>
@@ -1819,10 +1863,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>Socket receive buffer size [0: system default]:</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Use Subcategories</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Add to top of queue</translation>
     </message>
@@ -1968,7 +2008,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>It appends the text to the window title to help distinguish qBittorent instances</translation>
+        <translation type="vanished">It appends the text to the window title to help distinguish qBittorent instances</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2080,7 +2120,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation>Attempted to send email. Check your inbox to confirm success</translation>
+        <translation type="vanished">Attempted to send email. Check your inbox to confirm success</translation>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
@@ -2160,66 +2200,154 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Enable optimized table rendering (experimental)</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Enable optimised table rendering (experimental)</translation>
     </message>
     <message>
         <source>Note: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>Note: The password is saved unencrypted</translation>
     </message>
     <message>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation type="unfinished" />
+        <translation>Internal hostname resolver cache expiry interval</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>sec</translation>
     </message>
     <message>
         <source>Rotate API key</source>
-        <translation type="unfinished" />
+        <translation>Rotate API key</translation>
     </message>
     <message>
         <source>Generate a key</source>
-        <translation type="unfinished" />
+        <translation>Generate a key</translation>
     </message>
     <message>
         <source>When adding a duplicate torrent</source>
-        <translation type="unfinished" />
+        <translation>When adding a duplicate torrent</translation>
     </message>
     <message>
         <source>Delete API key</source>
-        <translation type="unfinished" />
+        <translation>Delete API key</translation>
     </message>
     <message>
         <source>%M: Comment</source>
-        <translation type="unfinished" />
+        <translation>%M: Comment</translation>
     </message>
     <message>
         <source>Generate API key</source>
-        <translation type="unfinished" />
+        <translation>Generate API key</translation>
     </message>
     <message>
         <source>Copied</source>
-        <translation type="unfinished" />
+        <translation>Copied</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished" />
+        <translation>User</translation>
     </message>
     <message>
         <source>Reset filter selection</source>
-        <translation type="unfinished" />
+        <translation>Reset filter selection</translation>
     </message>
     <message>
         <source>API Key</source>
-        <translation type="unfinished" />
+        <translation>API Key</translation>
     </message>
     <message>
         <source>Copy API key</source>
-        <translation type="unfinished" />
+        <translation>Copy API key</translation>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>Differentiated Services Code Point (DSCP) for connections to peers</translation>
+    </message>
+    <message>
+        <source>no encryption used when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>SMTPS</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(alternative choice if supported)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>use SMTPS encryption when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>SMTP encryption:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>STARTTLS</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable optimized table rendering</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Select the encryption type used when sending SMTP emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(last choice if no other option)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Pread/pwrite</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>use STARTTLS encryption when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(best choice if supported)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2630,6 +2758,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <source>Private:</source>
         <translation>Private:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2726,6 +2858,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Total queued size:</source>
         <translation>Total queued size:</translation>
+    </message>
+    <message>
+        <source>Tracker statistics</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Queued tracker announces:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2958,12 +3098,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Session Download</translation>
+        <translation type="vanished">Session Download</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Session Upload</translation>
+        <translation type="vanished">Session Upload</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3040,6 +3180,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Status Icon</source>
         <translation>Status Icon</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Created On</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3166,7 +3318,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Tier:</source>
-        <translation type="unfinished" />
+        <translation>Tier:</translation>
     </message>
     <message>
         <source>Tracker error</source>
@@ -3178,7 +3330,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Force reannounce to selected tracker(s)</source>
-        <translation type="unfinished" />
+        <translation>Force reannounce to selected tracker(s)</translation>
     </message>
     <message>
         <source>Min Announce</source>
@@ -3505,7 +3657,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Content Path</source>
-        <translation type="unfinished" />
+        <translation>Content Path</translation>
     </message>
 </context>
 <context>
@@ -3560,7 +3712,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Action when the limit is reached</source>
-        <translation type="unfinished" />
+        <translation>Action when the limit is reached</translation>
     </message>
 </context>
 <context>
@@ -4117,6 +4269,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Refresh tab</source>
+        <translation>Refresh tab</translation>
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open download window</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4247,7 +4411,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Open link</source>
-        <translation type="unfinished" />
+        <translation>Open link</translation>
     </message>
     <message>
         <source>Author: </source>
@@ -4510,6 +4674,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Add Stopped:</source>
         <translation>Add Stopped:</translation>
     </message>
+    <message>
+        <source>Rule cloning</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clear downloaded episodes confirmation</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clone rule...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
@@ -4547,7 +4723,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Other error</source>
-        <translation type="unfinished" />
+        <translation>Other error</translation>
     </message>
 </context>
 <context>
@@ -4757,6 +4933,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Use another path for incomplete torrents:</source>
         <translation>Use another path for incomplete torrents:</translation>
     </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CookiesDialog</name>
@@ -4865,7 +5045,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Source</source>
-        <translation type="unfinished" />
+        <translation>Source</translation>
     </message>
     <message>
         <source>Queued</source>
@@ -4873,12 +5053,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unable to create torrent.</source>
-        <translation type="unfinished" />
+        <translation>Unable to create torrent.</translation>
     </message>
     <message>
         <source>Private
                 torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>Private
+                torrent (Won't distribute on DHT network)</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -4886,7 +5067,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Create New Torrent</source>
-        <translation type="unfinished" />
+        <translation>Create New Torrent</translation>
     </message>
     <message>
         <source>Comments:</source>
@@ -4894,7 +5075,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Download Torrent</source>
-        <translation type="unfinished" />
+        <translation>Download Torrent</translation>
     </message>
     <message>
         <source>Status Icon</source>
@@ -4906,7 +5087,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished" />
+        <translation>Failed</translation>
     </message>
     <message>
         <source>Comment</source>
@@ -4914,7 +5095,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Finished</source>
-        <translation type="unfinished" />
+        <translation>Finished</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4922,7 +5103,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Error Message</source>
-        <translation type="unfinished" />
+        <translation>Error Message</translation>
     </message>
     <message>
         <source>Status</source>
@@ -4931,15 +5112,16 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Align to piece boundary for files larger
                 than:</source>
-        <translation type="unfinished" />
+        <translation>Align to piece boundary for files larger
+                than:</translation>
     </message>
     <message>
         <source>Select file/folder to share:</source>
-        <translation type="unfinished" />
+        <translation>Select file/folder to share:</translation>
     </message>
     <message>
         <source>Piece Size</source>
-        <translation type="unfinished" />
+        <translation>Piece Size</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -4955,12 +5137,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
-        <translation type="unfinished" />
+        <translation>Unable to load torrent creation tasks</translation>
     </message>
     <message>
         <source>Optimize
                     alignment</source>
-        <translation type="unfinished" />
+        <translation>Optimise
+                    alignment</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -4972,7 +5155,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
-        <translation type="unfinished" />
+        <translation>Are you sure you want to delete selected tasks?</translation>
     </message>
     <message>
         <source>Path:</source>
@@ -4988,21 +5171,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Started On</source>
-        <translation type="unfinished" />
+        <translation>Started On</translation>
     </message>
     <message>
         <source>Web Seeds</source>
-        <translation type="unfinished" />
+        <translation>Web Seeds</translation>
     </message>
     <message>
         <source>Start
                 seeding
                 immediately</source>
-        <translation type="unfinished" />
+        <translation>Start
+                seeding
+                immediately</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation type="unfinished" />
+        <translation>Format</translation>
     </message>
     <message>
         <source>Torrent format:</source>
@@ -5010,7 +5195,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Source Path</source>
-        <translation type="unfinished" />
+        <translation>Source Path</translation>
     </message>
     <message>
         <source>Added On</source>
@@ -5018,7 +5203,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished" />
+        <translation>Running</translation>
     </message>
     <message>
         <source>Torrent Creator</source>
@@ -5042,11 +5227,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove Task</source>
-        <translation type="unfinished" />
+        <translation>Remove Task</translation>
     </message>
     <message>
         <source>Export Torrent</source>
-        <translation type="unfinished" />
+        <translation>Export Torrent</translation>
     </message>
 </context>
 <context>
@@ -5069,7 +5254,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>URLs</source>
-        <translation type="unfinished" />
+        <translation>URLs</translation>
     </message>
     <message>
         <source>Add Torrent Links</source>
@@ -5080,11 +5265,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>SpeedLimit</name>
     <message>
         <source>Limit:</source>
-        <translation type="unfinished" />
+        <translation>Limit:</translation>
     </message>
     <message>
         <source>Speed limit</source>
-        <translation type="unfinished" />
+        <translation>Speed limit</translation>
     </message>
     <message>
         <source>Upload limit:</source>
@@ -5103,25 +5288,60 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ListWidget</name>
     <message>
         <source>Resize All</source>
-        <translation type="unfinished" />
+        <translation>Resize All</translation>
     </message>
     <message>
         <source>Resize</source>
-        <translation type="unfinished" />
+        <translation>Resize</translation>
     </message>
 </context>
 <context>
     <name>confirmRotateAPIKeyDialog</name>
     <message>
         <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
-        <translation type="unfinished" />
+        <translation>Generate an API key? This key can be used to interact with qBittorrent's API.</translation>
     </message>
     <message>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation type="unfinished" />
+        <translation>Delete this API key? The current key will immediately stop working.</translation>
     </message>
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
+        <translation>Rotate this API key? The current key will immediately stop working and a new key will be generated.</translation>
+    </message>
+</context>
+<context>
+    <name>RSSCloneRule</name>
+    <message>
+        <source>Clone</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alert</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The cloned rule will be set as disabled and the downloaded episodes history will be cleared.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The rule name is unchanged. You must type a new rule name for the clone.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Please type the name for the clone of the download rule.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The rule name cannot be empty.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to clone the selected rule.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Cancel</source>
         <translation type="unfinished" />
     </message>
 </context>

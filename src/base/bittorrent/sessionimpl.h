@@ -131,7 +131,13 @@ namespace BitTorrent
             int hashJobs = -1;
             int queuedDiskJobs = -1;
             int diskJobTime = -1;
+            int requestLatency = -1;
         } disk;
+
+        struct
+        {
+            int numQueuedTrackerAnnounces = -1;
+        } tracker;
     };
 
     class SessionImpl final : public Session
@@ -154,10 +160,7 @@ namespace BitTorrent
         Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const override;
         Path categoryDownloadPath(const QString &categoryName) const override;
         Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const override;
-        qreal categoryRatioLimit(const QString &categoryName) const override;
-        int categorySeedingTimeLimit(const QString &categoryName) const override;
-        int categoryInactiveSeedingTimeLimit(const QString &categoryName) const override;
-        ShareLimitAction categoryShareLimitAction(const QString &categoryName) const override;
+        ShareLimits categoryShareLimits(const QString &categoryName) const override;
         bool addCategory(const QString &name, const CategoryOptions &options = {}) override;
         bool removeCategory(const QString &name) override;
         bool useCategoryPathsInManualMode() const override;
@@ -180,14 +183,8 @@ namespace BitTorrent
         bool isDisableAutoTMMWhenCategorySavePathChanged() const override;
         void setDisableAutoTMMWhenCategorySavePathChanged(bool value) override;
 
-        qreal globalMaxRatio() const override;
-        void setGlobalMaxRatio(qreal ratio) override;
-        int globalMaxSeedingMinutes() const override;
-        void setGlobalMaxSeedingMinutes(int minutes) override;
-        int globalMaxInactiveSeedingMinutes() const override;
-        void setGlobalMaxInactiveSeedingMinutes(int minutes) override;
-        ShareLimitAction shareLimitAction() const override;
-        void setShareLimitAction(ShareLimitAction act) override;
+        const ShareLimits &shareLimits() const override;
+        void setShareLimits(ShareLimits shareLimits) override;
 
         QString getDHTBootstrapNodes() const override;
         void setDHTBootstrapNodes(const QString &nodes) override;
@@ -337,6 +334,8 @@ namespace BitTorrent
         void setSendBufferWatermarkFactor(int value) override;
         int connectionSpeed() const override;
         void setConnectionSpeed(int value) override;
+        bool isSeedingOutgoingConnectionsEnabled() const override;
+        void setSeedingOutgoingConnections(bool enabled) override;
         int socketSendBufferSize() const override;
         void setSocketSendBufferSize(int value) override;
         int socketReceiveBufferSize() const override;
@@ -483,6 +482,11 @@ namespace BitTorrent
         void handleTorrentUrlSeedsRemoved(TorrentImpl *torrent, const QList<QUrl> &urlSeeds);
         void handleTorrentResumeDataReady(TorrentImpl *torrent, LoadTorrentParams data);
         void handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoHash &prevInfoHash);
+        void handleTorrentContentFileRenamed(TorrentImpl *torrent, int index, const Path &oldFilePath);
+        void handleTorrentContentFolderRenamed(TorrentImpl *torrent, const Path &newFolderPath
+                , const Path &oldFolderPath, const QHash<int, Path> &renamedFiles);
+        void handleTorrentContentFolderRenamingFailed(TorrentImpl *torrent, const Path &newFolderPath, const Path &oldFolderPath
+                , const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes);
         void handleTorrentStorageMovingStateChanged(TorrentImpl *torrent);
 
         bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode, MoveStorageContext context);
@@ -548,10 +552,6 @@ namespace BitTorrent
         explicit SessionImpl(QObject *parent = nullptr);
         ~SessionImpl();
 
-        bool hasPerTorrentRatioLimit() const;
-        bool hasPerTorrentSeedingTimeLimit() const;
-        bool hasPerTorrentInactiveSeedingTimeLimit() const;
-
         // Session configuration
         Q_INVOKABLE void configure();
         void configureComponents();
@@ -579,7 +579,7 @@ namespace BitTorrent
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
         bool addTorrent_impl(const TorrentDescriptor &source, const AddTorrentParams &addTorrentParams);
 
-        void updateSeedingLimitTimer();
+        void updateShareLimitsTimer();
         void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
 
         void handleAlert(lt::alert *alert);
@@ -680,6 +680,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_sendBufferLowWatermark;
         CachedSettingValue<int> m_sendBufferWatermarkFactor;
         CachedSettingValue<int> m_connectionSpeed;
+        CachedSettingValue<bool> m_isSeedingOutgoingConnectionsEnabled;
         CachedSettingValue<int> m_socketSendBufferSize;
         CachedSettingValue<int> m_socketReceiveBufferSize;
         CachedSettingValue<int> m_socketBacklogSize;
@@ -757,6 +758,7 @@ namespace BitTorrent
         CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;
         CachedSettingValue<QStringList> m_storedTags;
         CachedSettingValue<ShareLimitAction> m_shareLimitAction;
+        CachedSettingValue<ShareLimitsMode> m_shareLimitsMode;
         CachedSettingValue<Path> m_savePath;
         CachedSettingValue<Path> m_downloadPath;
         CachedSettingValue<bool> m_isDownloadPathEnabled;
@@ -883,6 +885,8 @@ namespace BitTorrent
         FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
         QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
         qint64 m_freeDiskSpace = -1;
+
+        ShareLimits m_shareLimits;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

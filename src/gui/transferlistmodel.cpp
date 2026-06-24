@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -36,7 +36,6 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
-#include "base/global.h"
 #include "base/preferences.h"
 #include "base/types.h"
 #include "base/unicodestrings.h"
@@ -44,6 +43,8 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "uithememanager.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -141,7 +142,7 @@ TransferListModel::TransferListModel(QObject *parent)
 
 int TransferListModel::rowCount(const QModelIndex &) const
 {
-    return m_torrentList.size();
+    return m_torrents.size();
 }
 
 int TransferListModel::columnCount(const QModelIndex &) const
@@ -393,7 +394,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_RATIO:
         return ratioString(torrent->realRatio());
     case TR_RATIO_LIMIT:
-        return ratioString(torrent->effectiveRatioLimit());
+        return ratioString(torrent->effectiveShareLimits().ratioLimit);
     case TR_POPULARITY:
         return ratioString(torrent->popularity());
     case TR_CATEGORY:
@@ -514,7 +515,7 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
     case TR_COMPLETED:
         return torrent->completedSize();
     case TR_RATIO_LIMIT:
-        return torrent->effectiveRatioLimit();
+        return torrent->effectiveShareLimits().ratioLimit;
     case TR_SEEN_COMPLETE_DATE:
         return torrent->lastSeenComplete();
     case TR_LAST_ACTIVITY:
@@ -541,7 +542,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     if (!index.isValid())
         return {};
 
-    const BitTorrent::Torrent *torrent = m_torrentList.value(index.row());
+    const BitTorrent::Torrent *torrent = torrentHandle(index);
     if (!torrent)
         return {};
 
@@ -616,7 +617,7 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
     if (!index.isValid() || (role != Qt::DisplayRole))
         return false;
 
-    BitTorrent::Torrent *const torrent = m_torrentList.value(index.row());
+    BitTorrent::Torrent *const torrent = torrentHandle(index);
     if (!torrent)
         return false;
 
@@ -638,20 +639,20 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
 
 void TransferListModel::addTorrents(const QList<BitTorrent::Torrent *> &torrents)
 {
-    qsizetype row = m_torrentList.size();
+    if (torrents.isEmpty())
+        return;
+
+    qsizetype row = m_torrents.size();
     const qsizetype total = row + torrents.size();
 
-    beginInsertRows({}, row, total);
-
-    m_torrentList.reserve(total);
+    beginInsertRows({}, row, (total - 1));
+    m_torrents.get<ByIndex>().reserve(total);
+    m_torrents.get<ByHandle>().reserve(total);
     for (BitTorrent::Torrent *torrent : torrents)
     {
-        Q_ASSERT(!m_torrentMap.contains(torrent));
-
-        m_torrentList.append(torrent);
-        m_torrentMap[torrent] = row++;
+        Q_ASSERT(m_torrents.get<ByHandle>().find(torrent) == m_torrents.get<ByHandle>().end());  // TODO: use `contains()` with boost >= 1.84
+        m_torrents.get<ByIndex>().emplace_back(torrent);
     }
-
     endInsertRows();
 }
 
@@ -665,30 +666,26 @@ Qt::ItemFlags TransferListModel::flags(const QModelIndex &index) const
 
 BitTorrent::Torrent *TransferListModel::torrentHandle(const QModelIndex &index) const
 {
-    if (!index.isValid()) return nullptr;
+    if (!index.isValid() || (index.row() >= static_cast<qsizetype>(m_torrents.size())))
+        return nullptr;
 
-    return m_torrentList.value(index.row());
+    return m_torrents.get<ByIndex>().at(index.row());
 }
 
 void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
 {
-    const int row = m_torrentMap.value(torrent, -1);
+    const int row = getTorrentRow(torrent);
     Q_ASSERT(row >= 0);
 
+    const auto iter = m_torrents.get<ByIndex>().begin() + row;
     beginRemoveRows({}, row, row);
-    m_torrentList.removeAt(row);
-    m_torrentMap.remove(torrent);
-    for (int &value : m_torrentMap)
-    {
-        if (value > row)
-            --value;
-    }
+    m_torrents.get<ByIndex>().erase(iter);
     endRemoveRows();
 }
 
 void TransferListModel::handleTorrentStatusUpdated(BitTorrent::Torrent *const torrent)
 {
-    const int row = m_torrentMap.value(torrent, -1);
+    const int row = getTorrentRow(torrent);
     Q_ASSERT(row >= 0);
 
     emit dataChanged(index(row, 0), index(row, columnCount() - 1));
@@ -698,11 +695,11 @@ void TransferListModel::handleTorrentsUpdated(const QList<BitTorrent::Torrent *>
 {
     const int columns = (columnCount() - 1);
 
-    if (torrents.size() <= (m_torrentList.size() * 0.5))
+    if (torrents.size() <= (m_torrents.size() * 0.5))
     {
         for (BitTorrent::Torrent *const torrent : torrents)
         {
-            const int row = m_torrentMap.value(torrent, -1);
+            const int row = getTorrentRow(torrent);
             Q_ASSERT(row >= 0);
 
             emit dataChanged(index(row, 0), index(row, columns));
@@ -713,6 +710,14 @@ void TransferListModel::handleTorrentsUpdated(const QList<BitTorrent::Torrent *>
         // save the overhead when more than half of the torrent list needs update
         emit dataChanged(index(0, 0), index((rowCount() - 1), columns));
     }
+}
+
+int TransferListModel::getTorrentRow(BitTorrent::Torrent *const torrent) const
+{
+    const auto iter = m_torrents.get<ByHandle>().find(torrent);
+    const int row = (iter != m_torrents.get<ByHandle>().end())
+        ? std::distance(m_torrents.get<ByIndex>().begin(), m_torrents.project<ByIndex>(iter)) : -1;
+    return row;
 }
 
 void TransferListModel::configure()

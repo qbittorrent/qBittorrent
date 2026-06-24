@@ -33,6 +33,7 @@
 #include <QtSystemDetection>
 #include <QObject>
 
+#include "base/net/smtpencryptiontype.h"
 #include "base/pathfwd.h"
 #include "base/utils/net.h"
 
@@ -71,19 +72,6 @@ namespace DNS
         None = -1
     };
     Q_ENUM_NS(Service)
-}
-
-namespace TrayIcon
-{
-    Q_NAMESPACE
-
-    enum class Style : int
-    {
-        Normal = 0,
-        MonoDark = 1,
-        MonoLight = 2
-    };
-    Q_ENUM_NS(Style)
 }
 
 class Preferences final : public QObject
@@ -155,8 +143,8 @@ public:
     void setMailNotificationEmail(const QString &mail);
     QString getMailNotificationSMTP() const;
     void setMailNotificationSMTP(const QString &smtpServer);
-    bool getMailNotificationSMTPSSL() const;
-    void setMailNotificationSMTPSSL(bool use);
+    Net::SMTPEncryptionType getMailNotificationSMTPEncryptionType() const;
+    void setMailNotificationSMTPEncryptionType(Net::SMTPEncryptionType mailEncryptionType);
     bool getMailNotificationSMTPAuth() const;
     void setMailNotificationSMTPAuth(bool use);
     QString getMailNotificationSMTPUsername() const;
@@ -326,6 +314,8 @@ public:
 #ifdef Q_OS_MACOS
     bool isSpeedInDockEnabled() const;
     void setSpeedInDockEnabled(bool enabled);
+    bool isMacOSMenuBarIconEnabled() const;
+    void setMacOSMenuBarIconEnabled(bool enabled);
 #endif
     bool confirmTorrentDeletion() const;
     void setConfirmTorrentDeletion(bool enabled);
@@ -348,8 +338,6 @@ public:
     void setCloseToTray(bool b);
     bool closeToTrayNotified() const;
     void setCloseToTrayNotified(bool b);
-    TrayIcon::Style trayIconStyle() const;
-    void setTrayIconStyle(TrayIcon::Style style);
     bool iconsInMenusEnabled() const;
     void setIconsInMenusEnabled(bool enable);
 #endif // Q_OS_MACOS

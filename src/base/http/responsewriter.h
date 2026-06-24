@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,33 +28,33 @@
 
 #pragma once
 
-#include <QDialog>
+#include <QObject>
 
-#include "base/settingvalue.h"
+#include "base/pathfwd.h"
+#include "headermap.h"
+#include "response.h"
 
-namespace Ui
+namespace Http
 {
-    class PluginSourceDialog;
+    class ResponseWriter : public QObject
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(ResponseWriter)
+
+    public:
+        using QObject::QObject;
+
+        // Send entire response at once.
+        // Allow response content to be gzip encoded.
+        virtual void setResponse(const Response &response) = 0;
+
+        // Allow to stream file using separate IO thread for reading.
+        // Support Range requests.
+        virtual void streamFile(const Path &filePath, const HeaderMap &headers) = 0;
+
+        virtual bool isFinished() const = 0;
+
+    signals:
+        void finished();
+    };
 }
-
-class PluginSourceDialog final : public QDialog
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PluginSourceDialog)
-
-public:
-    explicit PluginSourceDialog(QWidget *parent = nullptr);
-    ~PluginSourceDialog() override;
-
-signals:
-    void askForUrl();
-    void askForLocalFile();
-
-private slots:
-    void on_localButton_clicked();
-    void on_urlButton_clicked();
-
-private:
-    Ui::PluginSourceDialog *m_ui = nullptr;
-    SettingValue<QSize> m_storeDialogSize;
-};

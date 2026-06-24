@@ -36,6 +36,9 @@
 #ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/mmap_disk_io.hpp>
 #include <libtorrent/posix_disk_io.hpp>
+#if LIBTORRENT_VERSION_NUM >= 20100
+#include <libtorrent/pread_disk_io.hpp>
+#endif
 #include <libtorrent/session.hpp>
 
 std::unique_ptr<lt::disk_interface> customDiskIOConstructor(
@@ -56,6 +59,14 @@ std::unique_ptr<lt::disk_interface> customMMapDiskIOConstructor(
     return std::make_unique<CustomDiskIOThread>(lt::mmap_disk_io_constructor(ioContext, settings, counters));
 }
 
+#if LIBTORRENT_VERSION_NUM >= 20100
+std::unique_ptr<lt::disk_interface> customPreadDiskIOConstructor(
+        lt::io_context &ioContext, const lt::settings_interface &settings, lt::counters &counters)
+{
+    return std::make_unique<CustomDiskIOThread>(lt::pread_disk_io_constructor(ioContext, settings, counters));
+}
+#endif
+
 CustomDiskIOThread::CustomDiskIOThread(std::unique_ptr<libtorrent::disk_interface> nativeDiskIOThread)
     : m_nativeDiskIO {std::move(nativeDiskIOThread)}
 {
@@ -64,15 +75,17 @@ CustomDiskIOThread::CustomDiskIOThread(std::unique_ptr<libtorrent::disk_interfac
 lt::storage_holder CustomDiskIOThread::new_torrent(const lt::storage_params &storageParams, const std::shared_ptr<void> &torrent)
 {
     lt::storage_holder storageHolder = m_nativeDiskIO->new_torrent(storageParams, torrent);
-
-    const Path savePath {storageParams.path};
     m_storageData[storageHolder] =
     {
-        savePath,
-        storageParams.mapped_files ? *storageParams.mapped_files : storageParams.files,
-        storageParams.priorities
+        .savePath = Path(storageParams.path),
+#if LIBTORRENT_VERSION_NUM >= 20100
+        .files = storageParams.files,
+        .renamedFiles = storageParams.renamed_files,
+#else
+        .files = storageParams.mapped_files ? *storageParams.mapped_files : storageParams.files,
+#endif
+        .filePriorities = storageParams.priorities
     };
-
     return storageHolder;
 }
 
@@ -156,7 +169,11 @@ void CustomDiskIOThread::async_rename_file(lt::storage_index_t storage, lt::file
             , [=, this, handler = std::move(handler)](const std::string &name, lt::file_index_t index, const lt::storage_error &error)
     {
         if (!error)
+#if LIBTORRENT_VERSION_NUM >= 20100
+            m_storageData[storage].renamedFiles.rename_file(m_storageData[storage].files, index, name);
+#else
             m_storageData[storage].files.rename_file(index, name);
+#endif
         handler(name, index, error);
     });
 }
@@ -212,7 +229,12 @@ void CustomDiskIOThread::settings_updated()
 void CustomDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const Path &savePath)
 {
     const StorageData storageData = m_storageData[storage];
+#if LIBTORRENT_VERSION_NUM >= 20100
+    const lt::filenames fileNames {storageData.files, storageData.renamedFiles};
+    const auto &fileStorage = fileNames;
+#else
     const lt::file_storage &fileStorage = storageData.files;
+#endif
     for (const lt::file_index_t fileIndex : fileStorage.file_range())
     {
         // ignore files that have priority 0

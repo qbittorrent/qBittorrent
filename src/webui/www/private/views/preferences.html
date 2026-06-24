@@ -43,7 +43,7 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend>QBT_TR(Transfer list)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <legend>QBT_TR(Transfer List)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow" style="margin-bottom: 3px;" title="QBT_TR(Shows a confirmation dialog upon torrent deletion)QBT_TR[CONTEXT=OptionsDialog]">
             <input type="checkbox" id="confirmTorrentDeletion">
             <label for="confirmTorrentDeletion">QBT_TR(Confirm when deleting torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -93,6 +93,14 @@
     </fieldset>
 
     <fieldset class="settings">
+        <legend>QBT_TR(Status bar)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="statusBarExternalIP">
+            <label for="statusBarExternalIP">QBT_TR(Show external IP)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>
             <input type="checkbox" id="filelog_checkbox" onclick="qBittorrent.Preferences.updateFileLogEnabled();">
             <label for="filelog_checkbox">QBT_TR(Log Files)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -124,11 +132,6 @@
         </table>
     </fieldset>
 
-    <div class="formRow" style="margin-bottom: 3px;">
-        <input type="checkbox" id="statusBarExternalIP">
-        <label for="statusBarExternalIP">QBT_TR(Show external IP in status bar)QBT_TR[CONTEXT=OptionsDialog]</label>
-    </div>
-
     <div class="formRow" style="margin-bottom: 5px;">
         <input type="checkbox" id="performanceWarning">
         <label for="performanceWarning">QBT_TR(Log performance warnings)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -136,6 +139,10 @@
 
     <fieldset class="settings">
         <legend title="QBT_TR(Following settings are WebUI only)QBT_TR[CONTEXT=OptionsDialog]">QBT_TR(Custom WebUI settings)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="addTorrentWindowEnabled">
+            <label for="addTorrentWindowEnabled">QBT_TR(Display torrent content and some options)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
         <div class="formRow" style="margin-bottom: 3px;">
             <input type="checkbox" id="displayFullURLTrackerColumn">
             <label for="displayFullURLTrackerColumn">QBT_TR(Display full announce URL in the Tracker column)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -332,7 +339,7 @@
                         <label for="src_email_txt">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="src_email_txt" placeholder="qBittorrent_notification@example.com">
+                        <input type="text" id="src_email_txt" placeholder="qBittorrent_notification@example.com" style="width: 40em;" title="QBT_TR(Provide the sending email address.)QBT_TR[CONTEXT=OptionsDialog]">
                     </td>
                 </tr>
                 <tr>
@@ -340,7 +347,15 @@
                         <label for="dest_email_txt">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="dest_email_txt">
+                        <input type="text" id="dest_email_txt" style="width: 40em;" title="QBT_TR(Provide the recipient email address or addresses.)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(Separate multiple emails with a semicolon.)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR(Separate multiple email addresses within each email with a comma.)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(Example:)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR(a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(Note: b@y.com & c@z.com will both see each other's email addresses, whereas a@x.com will not see them nor be seen.)QBT_TR[CONTEXT=OptionsDialog]">
                     </td>
                 </tr>
                 <tr>
@@ -348,14 +363,38 @@
                         <label for="smtp_server_txt">QBT_TR(SMTP server:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="smtp_server_txt" placeholder="smtp.example.com:465">
+                        <input type="text" id="smtp_server_txt" placeholder="smtp.example.com:465" style="width: 40em;" title="QBT_TR(Provide the SMTP server address for sending email notifications.)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(The server address can be entered either as a DNS name or an IP address (DNS name recommended).)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR(To manually specify the server port, add a colon and then the port number to the end.)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(Example:)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR(smtp.example.com:465 - connect to server smtp.example.com on port 465)QBT_TR[CONTEXT=OptionsDialog]">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="mailNotificationEncryptionCombobox">QBT_TR(SMTP encryption:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <select id="mailNotificationEncryptionCombobox" title="QBT_TR(Select the encryption type used when sending SMTP emails)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(None)QBT_TR[CONTEXT=OptionsDialog]: QBT_TR(no encryption used when sending emails)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR((last choice if no other option))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default port)QBT_TR[CONTEXT=OptionsDialog] : 25
+
+QBT_TR(STARTTLS)QBT_TR[CONTEXT=OptionsDialog]: QBT_TR(use STARTTLS encryption when sending emails)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR((alternative choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default port)QBT_TR[CONTEXT=OptionsDialog] : 587
+
+QBT_TR(SMTPS)QBT_TR[CONTEXT=OptionsDialog]: QBT_TR(use SMTPS encryption when sending emails)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default port)QBT_TR[CONTEXT=OptionsDialog] : 465">
+                            <option value="None">QBT_TR(None)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="STARTTLS">QBT_TR(STARTTLS)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="SMTPS">QBT_TR(SMTPS)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        </select>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div class="formRow">
-            <input type="checkbox" id="mail_ssl_checkbox"><label for="mail_ssl_checkbox">QBT_TR(This server requires a secure connection (SSL))QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
         <fieldset class="settings">
             <legend>
                 <input type="checkbox" id="mail_auth_checkbox" onclick="qBittorrent.Preferences.updateMailAuthSettings();">
@@ -1469,6 +1508,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             <option value="1">QBT_TR(Memory mapped files)QBT_TR[CONTEXT=OptionsDialog]</option>
                             <option value="2">QBT_TR(POSIX-compliant)QBT_TR[CONTEXT=OptionsDialog]</option>
                             <option value="3">QBT_TR(Simple pread/pwrite)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="4" id="diskIOTypePreadPwrite">QBT_TR(Pread/pwrite)QBT_TR[CONTEXT=OptionsDialog]</option>
                         </select>
                     </td>
                 </tr>
@@ -1549,6 +1589,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     </td>
                     <td>
                         <input type="text" id="connectionSpeed" style="width: 15em;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="seedingOutgoingConnections">QBT_TR(Allow outgoing connections when seeding:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#seeding_outgoing_connections" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="seedingOutgoingConnections">
                     </td>
                 </tr>
                 <tr>
@@ -2002,7 +2050,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("src_email_txt").disabled = !isMailNotificationEnabled;
             document.getElementById("dest_email_txt").disabled = !isMailNotificationEnabled;
             document.getElementById("smtp_server_txt").disabled = !isMailNotificationEnabled;
-            document.getElementById("mail_ssl_checkbox").disabled = !isMailNotificationEnabled;
+            document.getElementById("mailNotificationEncryptionCombobox").disabled = !isMailNotificationEnabled;
             document.getElementById("mail_auth_checkbox").disabled = !isMailNotificationEnabled;
             document.getElementById("mail_test_button").disabled = !isMailNotificationEnabled;
 
@@ -2019,16 +2067,32 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const sendTestEmail = () => {
+            const showNotification = (text, width, height, duration) => {
+                new MochaUI.Window({
+                    id: "testEmailNotificationDialog",
+                    icon: "images/qbittorrent-tray.svg",
+                    title: "QBT_TR(Notification)QBT_TR[CONTEXT=OptionsDialog]",
+                    loadMethod: "html",
+                    closeAfter: duration,
+                    type: "notification",
+                    addClass: "notification",
+                    content: text,
+                    width: width,
+                    height: height,
+                    padding: { top: 10, right: 12, bottom: 10, left: 12 },
+                });
+            };
+
             fetch("api/v2/app/sendTestEmail", {
                     method: "POST"
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alert("QBT_TR(Could not contact qBittorrent)QBT_TR[CONTEXT=HttpServer]");
+                        showNotification("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=OptionsDialog]", 300, 60, 5000);
                         return;
                     }
 
-                    alert("QBT_TR(Attempted to send email. Check your inbox to confirm success)QBT_TR[CONTEXT=OptionsDialog]");
+                    showNotification("QBT_TR(Attempted to send test email.<br>Check your inbox to confirm success.<br>Check the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]", 300, 80, 5000);
                 });
         };
 
@@ -2317,6 +2381,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const dblclickComplete = clientData.get("dblclick_complete") ?? "1";
                     const dblclickFilter = clientData.get("dblclick_filter") ?? "1";
                     const useAltRowColors = clientData.get("use_alt_row_colors");
+                    const addTorrentWindowEnabled = clientData.get("add_new_torrent_dialog_enabled") ?? true;
 
                     // Behavior tab
                     // Localization
@@ -2334,7 +2399,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Interface
                     updateColoSchemeSelect(colorScheme);
                     document.getElementById("displayDensitySelect").value = displayDensity;
-
+                    document.getElementById("addTorrentWindowEnabled").checked = addTorrentWindowEnabled === true;
                     document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
                     document.getElementById("displayFullURLTrackerColumn").checked = fullUrlTrackerColumn === true;
@@ -2444,7 +2509,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("src_email_txt").value = pref.mail_notification_sender;
                     document.getElementById("dest_email_txt").value = pref.mail_notification_email;
                     document.getElementById("smtp_server_txt").value = pref.mail_notification_smtp;
-                    document.getElementById("mail_ssl_checkbox").checked = pref.mail_notification_ssl_enabled;
+                    document.getElementById("mailNotificationEncryptionCombobox").value = pref.mail_notification_encryption_type;
                     document.getElementById("mail_auth_checkbox").checked = pref.mail_notification_auth_enabled;
                     document.getElementById("mail_username_text").value = pref.mail_notification_username;
                     document.getElementById("mail_password_text").value = pref.mail_notification_password;
@@ -2740,6 +2805,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("sendBufferLowWatermark").value = pref.send_buffer_low_watermark;
                     document.getElementById("sendBufferWatermarkFactor").value = pref.send_buffer_watermark_factor;
                     document.getElementById("connectionSpeed").value = pref.connection_speed;
+                    document.getElementById("seedingOutgoingConnections").checked = pref.seeding_outgoing_connections;
                     document.getElementById("socketSendBufferSize").value = (pref.socket_send_buffer_size / 1024);
                     document.getElementById("socketReceiveBufferSize").value = (pref.socket_receive_buffer_size / 1024);
                     document.getElementById("socketBacklogSize").value = pref.socket_backlog_size;
@@ -2799,6 +2865,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
             clientData.full_url_tracker_column = document.getElementById("displayFullURLTrackerColumn").checked;
             clientData.use_virtual_list = document.getElementById("useVirtualList").checked;
+            clientData.add_new_torrent_dialog_enabled = document.getElementById("addTorrentWindowEnabled").checked;
             clientData.hide_zero_status_filters = document.getElementById("hideZeroFiltersCheckbox").checked;
             clientData.dblclick_download = document.getElementById("dblclickDownloadSelect").value;
             clientData.dblclick_complete = document.getElementById("dblclickCompleteSelect").value;
@@ -2856,7 +2923,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["mail_notification_sender"] = document.getElementById("src_email_txt").value;
             settings["mail_notification_email"] = document.getElementById("dest_email_txt").value;
             settings["mail_notification_smtp"] = document.getElementById("smtp_server_txt").value;
-            settings["mail_notification_ssl_enabled"] = document.getElementById("mail_ssl_checkbox").checked;
+            settings["mail_notification_encryption_type"] = document.getElementById("mailNotificationEncryptionCombobox").value;
             settings["mail_notification_auth_enabled"] = document.getElementById("mail_auth_checkbox").checked;
             settings["mail_notification_username"] = document.getElementById("mail_username_text").value;
             settings["mail_notification_password"] = document.getElementById("mail_password_text").value;
@@ -3246,6 +3313,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["send_buffer_low_watermark"] = Number(document.getElementById("sendBufferLowWatermark").value);
             settings["send_buffer_watermark_factor"] = Number(document.getElementById("sendBufferWatermarkFactor").value);
             settings["connection_speed"] = Number(document.getElementById("connectionSpeed").value);
+            settings["seeding_outgoing_connections"] = document.getElementById("seedingOutgoingConnections").checked;
             settings["socket_send_buffer_size"] = (document.getElementById("socketSendBufferSize").value * 1024);
             settings["socket_receive_buffer_size"] = (document.getElementById("socketReceiveBufferSize").value * 1024);
             settings["socket_backlog_size"] = Number(document.getElementById("socketBacklogSize").value);
@@ -3335,26 +3403,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // hide entries
             const libtorrentVersion = window.qBittorrent.Misc.parseVersion(buildInfo.libtorrent);
-            if (libtorrentVersion.valid) {
-                if (libtorrentVersion.major >= 2) {
-                    document.getElementById("rowDiskCache").style.display = "none";
-                    document.getElementById("rowDiskCacheExpiryInterval").style.display = "none";
-                    document.getElementById("rowCoalesceReadsAndWrites").style.display = "none";
-                }
-                else {
-                    document.getElementById("fieldsetI2p").style.display = "none";
-                    document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";
-                    document.getElementById("rowHashingThreads").style.display = "none";
-                    document.getElementById("rowDiskIOType").style.display = "none";
-                    document.getElementById("rowI2pInboundQuantity").style.display = "none";
-                    document.getElementById("rowI2pOutboundQuantity").style.display = "none";
-                    document.getElementById("rowI2pInboundLength").style.display = "none";
-                    document.getElementById("rowI2pOutboundLength").style.display = "none";
-                }
-
-                if (!((libtorrentVersion.major >= 2) && (libtorrentVersion.minor >= 0) && (libtorrentVersion.fix >= 6)))
-                    document.getElementById("diskIOWriteModeWriteThrough").style.display = "none";
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2") >= 0) {
+                document.getElementById("rowDiskCache").style.display = "none";
+                document.getElementById("rowDiskCacheExpiryInterval").style.display = "none";
+                document.getElementById("rowCoalesceReadsAndWrites").style.display = "none";
             }
+            else {
+                document.getElementById("fieldsetI2p").style.display = "none";
+                document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";
+                document.getElementById("rowHashingThreads").style.display = "none";
+                document.getElementById("rowDiskIOType").style.display = "none";
+                document.getElementById("rowI2pInboundQuantity").style.display = "none";
+                document.getElementById("rowI2pOutboundQuantity").style.display = "none";
+                document.getElementById("rowI2pInboundLength").style.display = "none";
+                document.getElementById("rowI2pOutboundLength").style.display = "none";
+            }
+
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.6") < 0)
+                document.getElementById("diskIOWriteModeWriteThrough").hidden = true;
+
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.1") < 0)
+                document.getElementById("diskIOTypePreadPwrite").hidden = true;
 
             if ((buildInfo.platform === "linux") || (buildInfo.platform === "macos"))
                 document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";

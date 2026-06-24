@@ -164,10 +164,17 @@ BitTorrent::TorrentDescriptor::TorrentDescriptor(lt::add_torrent_params ltAddTor
     if (m_ltAddTorrentParams.ti && m_ltAddTorrentParams.ti->is_valid())
     {
         m_info.emplace(*m_ltAddTorrentParams.ti);
+#if LIBTORRENT_VERSION_NUM >= 20100
+        if (m_ltAddTorrentParams.creation_date > 0)
+            m_creationDate = QDateTime::fromSecsSinceEpoch(m_ltAddTorrentParams.creation_date);
+        m_creator = QString::fromStdString(m_ltAddTorrentParams.created_by);
+        m_comment = QString::fromStdString(m_ltAddTorrentParams.comment);
+#else
         if (m_ltAddTorrentParams.ti->creation_date() > 0)
             m_creationDate = QDateTime::fromSecsSinceEpoch(m_ltAddTorrentParams.ti->creation_date());
         m_creator = QString::fromStdString(m_ltAddTorrentParams.ti->creator());
         m_comment = QString::fromStdString(m_ltAddTorrentParams.ti->comment());
+#endif
     }
 }
 
@@ -226,11 +233,22 @@ void BitTorrent::TorrentDescriptor::setTorrentInfo(TorrentInfo torrentInfo)
 
 QList<BitTorrent::TrackerEntry> BitTorrent::TorrentDescriptor::trackers() const
 {
+    // libtorrent does not guarantee `add_torrent_params.trackers.size() == add_torrent_params.tracker_tiers.size()`
+
+    const qsizetype trackerCount = m_ltAddTorrentParams.trackers.size();
+    const qsizetype tierCount = m_ltAddTorrentParams.tracker_tiers.size();
+
     QList<TrackerEntry> ret;
-    ret.reserve(static_cast<decltype(ret)::size_type>(m_ltAddTorrentParams.trackers.size()));
-    std::size_t i = 0;
-    for (const std::string &tracker : m_ltAddTorrentParams.trackers)
-        ret.append({QString::fromStdString(tracker), m_ltAddTorrentParams.tracker_tiers[i++]});
+    ret.reserve(trackerCount);
+
+    int tier = 0;
+    for (qsizetype i = 0; i < trackerCount; ++i)
+    {
+        const auto tracker = QString::fromStdString(m_ltAddTorrentParams.trackers[i]);
+        if (i < tierCount)
+            tier = m_ltAddTorrentParams.tracker_tiers[i];
+        ret.append({.url = tracker, .tier = tier});
+    }
 
     return ret;
 }

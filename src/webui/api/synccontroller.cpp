@@ -77,6 +77,7 @@ namespace
     const QString KEY_PEER_PORT = u"port"_s;
     const QString KEY_PEER_PROGRESS = u"progress"_s;
     const QString KEY_PEER_RELEVANCE = u"relevance"_s;
+    const QString KEY_PEER_CONTRIBUTION = u"contribution"_s;
     const QString KEY_PEER_TOT_DOWN = u"downloaded"_s;
     const QString KEY_PEER_TOT_UP = u"uploaded"_s;
     const QString KEY_PEER_UP_SPEED = u"up_speed"_s;
@@ -100,8 +101,10 @@ namespace
     const QString KEY_TRANSFER_AVERAGE_TIME_QUEUE = u"average_time_queue"_s;
     const QString KEY_TRANSFER_GLOBAL_RATIO = u"global_ratio"_s;
     const QString KEY_TRANSFER_QUEUED_IO_JOBS = u"queued_io_jobs"_s;
+    const QString KEY_TRANSFER_QUEUED_TRACKER_ANNOUNCES = u"queued_tracker_announces"_s;
     const QString KEY_TRANSFER_READ_CACHE_HITS = u"read_cache_hits"_s;
     const QString KEY_TRANSFER_READ_CACHE_OVERLOAD = u"read_cache_overload"_s;
+    const QString KEY_TRANSFER_REQUEST_LATENCY = u"request_latency"_s;
     const QString KEY_TRANSFER_TOTAL_BUFFERS_SIZE = u"total_buffers_size"_s;
     const QString KEY_TRANSFER_TOTAL_PEER_CONNECTIONS = u"total_peer_connections"_s;
     const QString KEY_TRANSFER_TOTAL_QUEUED_SIZE = u"total_queued_size"_s;
@@ -185,6 +188,7 @@ namespace
         map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength;
         map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
         map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
+        map[KEY_TRANSFER_REQUEST_LATENCY] = cacheStatus.requestLatency;
 
         map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4] = session->lastExternalIPv4Address();
         map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6] = session->lastExternalIPv6Address();
@@ -192,6 +196,9 @@ namespace
         map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
             ? (sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s)
             : u"disconnected"_s;
+
+        // Tracker statistics
+        map[KEY_TRANSFER_QUEUED_TRACKER_ANNOUNCES] = sessionStatus.queuedTrackerAnnounces;
 
         return map;
     }
@@ -864,6 +871,18 @@ void SyncController::torrentPeersAction()
             {KEY_PEER_FLAGS_DESCRIPTION, pi.flagsDescription()},
             {KEY_PEER_RELEVANCE, pi.relevance()}
         };
+
+        const qlonglong totalUpload = pi.totalUpload();
+        qreal contribution = 0;
+
+        if (totalUpload > 0)
+        {
+            const qlonglong totalSize = (torrent->totalSize() <= 0) ? totalUpload : torrent->totalSize();
+            const qreal progressBytes = pi.progress() * totalSize;
+            contribution = static_cast<qreal>(totalUpload) / ((progressBytes <= 0) ? totalSize : progressBytes);
+        }
+
+        peer[KEY_PEER_CONTRIBUTION] = contribution;
 
         if (torrent->hasMetadata())
         {

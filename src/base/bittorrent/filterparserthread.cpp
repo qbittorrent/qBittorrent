@@ -193,7 +193,7 @@ int FilterParserThread::parseDATFilterFile()
 
             if ((buffer[start] == '#')
                 || ((buffer[start] == '/') && ((start + 1 < dataSize) && (buffer[start + 1] == '/'))))
-                {
+            {
                 start = endOfLine;
                 continue;
             }
@@ -251,9 +251,17 @@ int FilterParserThread::parseDATFilterFile()
 
             if ((startAddr.is_v4() != endAddr.is_v4())
                 || (startAddr.is_v6() != endAddr.is_v6()))
-                {
+            {
                 ++parseErrorCount;
                 addLog(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine));
+                start = endOfLine;
+                continue;
+            }
+
+            if (startAddr > endAddr)
+            {
+                ++parseErrorCount;
+                addLog(tr("IP filter line %1 is malformed. End IP is lower than Start IP!").arg(nbLine));
                 start = endOfLine;
                 continue;
             }

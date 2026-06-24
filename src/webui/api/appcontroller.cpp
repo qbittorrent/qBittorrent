@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2018-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Jonathan Ketchker
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2006-2012  Ishan Arora <ishan@qbittorrent.org>
  *
@@ -46,7 +46,6 @@
 #include <QRegularExpression>
 #include <QStringList>
 #include <QTimer>
-#include <QTranslator>
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
@@ -54,6 +53,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/net/smtpencryptiontype.h"
 #include "base/path.h"
 #include "base/preferences.h"
 #include "base/rss/rss_autodownloader.h"
@@ -218,7 +218,7 @@ void AppController::preferencesAction()
     data[u"mail_notification_sender"_s] = pref->getMailNotificationSender();
     data[u"mail_notification_email"_s] = pref->getMailNotificationEmail();
     data[u"mail_notification_smtp"_s] = pref->getMailNotificationSMTP();
-    data[u"mail_notification_ssl_enabled"_s] = pref->getMailNotificationSMTPSSL();
+    data[u"mail_notification_encryption_type"_s] = Utils::String::fromEnum(pref->getMailNotificationSMTPEncryptionType());
     data[u"mail_notification_auth_enabled"_s] = pref->getMailNotificationSMTPAuth();
     data[u"mail_notification_username"_s] = pref->getMailNotificationSMTPUsername();
     data[u"mail_notification_password"_s] = pref->getMailNotificationSMTPPassword();
@@ -314,13 +314,15 @@ void AppController::preferencesAction()
     data[u"slow_torrent_ul_rate_threshold"_s] = session->uploadRateForSlowTorrents();
     data[u"slow_torrent_inactive_timer"_s] = session->slowTorrentsInactivityTimer();
     // Share Ratio Limiting
-    data[u"max_ratio_enabled"_s] = (session->globalMaxRatio() >= 0.);
-    data[u"max_ratio"_s] = session->globalMaxRatio();
-    data[u"max_seeding_time_enabled"_s] = (session->globalMaxSeedingMinutes() >= 0.);
-    data[u"max_seeding_time"_s] = session->globalMaxSeedingMinutes();
-    data[u"max_inactive_seeding_time_enabled"_s] = (session->globalMaxInactiveSeedingMinutes() >= 0.);
-    data[u"max_inactive_seeding_time"_s] = session->globalMaxInactiveSeedingMinutes();
-    data[u"max_ratio_act"_s] = static_cast<int>(session->shareLimitAction());
+    const BitTorrent::ShareLimits &shareLimits = session->shareLimits();
+    data[u"max_ratio_enabled"_s] = (shareLimits.ratioLimit >= 0.);
+    data[u"max_ratio"_s] = shareLimits.ratioLimit;
+    data[u"max_seeding_time_enabled"_s] = (shareLimits.seedingTimeLimit >= 0);
+    data[u"max_seeding_time"_s] = shareLimits.seedingTimeLimit;
+    data[u"max_inactive_seeding_time_enabled"_s] = (shareLimits.inactiveSeedingTimeLimit >= 0);
+    data[u"max_inactive_seeding_time"_s] = shareLimits.inactiveSeedingTimeLimit;
+    data[u"share_limits_mode"_s] = Utils::String::fromEnum(shareLimits.mode);
+    data[u"max_ratio_act"_s] = static_cast<int>(shareLimits.action);
     // Add trackers
     data[u"add_trackers_enabled"_s] = session->isAddTrackersEnabled();
     data[u"add_trackers"_s] = session->additionalTrackers();
@@ -461,6 +463,8 @@ void AppController::preferencesAction()
     data[u"send_buffer_watermark_factor"_s] = session->sendBufferWatermarkFactor();
     // Outgoing connections per second
     data[u"connection_speed"_s] = session->connectionSpeed();
+    // Allow outgoing connections when seeding
+    data[u"seeding_outgoing_connections"_s] = session->isSeedingOutgoingConnectionsEnabled();
     // Socket send buffer size
     data[u"socket_send_buffer_size"_s] = session->socketSendBufferSize();
     // Socket receive buffer size
@@ -530,21 +534,10 @@ void AppController::setPreferencesAction()
     // Language
     if (hasKey(u"locale"_s))
     {
-        QString locale = it.value().toString();
-        if (pref->getLocale() != locale)
+        if (const QString locale = it.value().toString(); locale != pref->getLocale())
         {
-            auto *translator = new QTranslator;
-            if (translator->load(u":/lang/qbittorrent_"_s + locale))
-            {
-                qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
-            }
-            else
-            {
-                qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));
-            }
-            qApp->installTranslator(translator);
-
             pref->setLocale(locale);
+            app()->loadTranslation(locale);
         }
     }
     if (hasKey(u"status_bar_external_ip"_s))
@@ -682,8 +675,8 @@ void AppController::setPreferencesAction()
         pref->setMailNotificationEmail(it.value().toString());
     if (hasKey(u"mail_notification_smtp"_s))
         pref->setMailNotificationSMTP(it.value().toString());
-    if (hasKey(u"mail_notification_ssl_enabled"_s))
-        pref->setMailNotificationSMTPSSL(it.value().toBool());
+    if (hasKey(u"mail_notification_encryption_type"_s))
+        pref->setMailNotificationSMTPEncryptionType(Utils::String::toEnum(it.value().toString(), Net::SMTPEncryptionType::SMTPS));
     if (hasKey(u"mail_notification_auth_enabled"_s))
         pref->setMailNotificationSMTPAuth(it.value().toBool());
     if (hasKey(u"mail_notification_username"_s))
@@ -849,37 +842,41 @@ void AppController::setPreferencesAction()
     if (hasKey(u"slow_torrent_inactive_timer"_s))
         session->setSlowTorrentsInactivityTimer(it.value().toInt());
     // Share Ratio Limiting
+    BitTorrent::ShareLimits shareLimits = session->shareLimits();
     if (hasKey(u"max_ratio_enabled"_s) && !it.value().toBool())
-        session->setGlobalMaxRatio(-1);
+        shareLimits.ratioLimit = BitTorrent::NO_RATIO_LIMIT;
     else if (hasKey(u"max_ratio"_s))
-        session->setGlobalMaxRatio(it.value().toReal());
+        shareLimits.ratioLimit = it.value().toReal();
     if (hasKey(u"max_seeding_time_enabled"_s) && !it.value().toBool())
-        session->setGlobalMaxSeedingMinutes(-1);
+        shareLimits.seedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
     else if (hasKey(u"max_seeding_time"_s))
-        session->setGlobalMaxSeedingMinutes(it.value().toInt());
+        shareLimits.seedingTimeLimit = it.value().toInt();
     if (hasKey(u"max_inactive_seeding_time_enabled"_s) && !it.value().toBool())
-        session->setGlobalMaxInactiveSeedingMinutes(-1);
+        shareLimits.inactiveSeedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
     else if (hasKey(u"max_inactive_seeding_time"_s))
-        session->setGlobalMaxInactiveSeedingMinutes(it.value().toInt());
+        shareLimits.inactiveSeedingTimeLimit = it.value().toInt();
+    if (hasKey(u"share_limits_mode"_s))
+        shareLimits.mode = Utils::String::toEnum(it.value().toString(), BitTorrent::ShareLimitsMode::MatchAny);
     if (hasKey(u"max_ratio_act"_s))
     {
         switch (it.value().toInt())
         {
         default:
         case 0:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::Stop);
+            shareLimits.action = BitTorrent::ShareLimitAction::Stop;
             break;
         case 1:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::Remove);
+            shareLimits.action = BitTorrent::ShareLimitAction::Remove;
             break;
         case 2:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::EnableSuperSeeding);
+            shareLimits.action = BitTorrent::ShareLimitAction::EnableSuperSeeding;
             break;
         case 3:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::RemoveWithContent);
+            shareLimits.action = BitTorrent::ShareLimitAction::RemoveWithContent;
             break;
         }
     }
+    session->setShareLimits(std::move(shareLimits));
     // Add trackers
     if (hasKey(u"add_trackers_enabled"_s))
         session->setAddTrackersEnabled(it.value().toBool());
@@ -1124,6 +1121,9 @@ void AppController::setPreferencesAction()
     // Outgoing connections per second
     if (hasKey(u"connection_speed"_s))
         session->setConnectionSpeed(it.value().toInt());
+    // Allow outgoing connections when seeding
+    if (hasKey(u"seeding_outgoing_connections"_s))
+        session->setSeedingOutgoingConnections(it.value().toBool());
     // Socket send buffer size
     if (hasKey(u"socket_send_buffer_size"_s))
         session->setSocketSendBufferSize(it.value().toInt());

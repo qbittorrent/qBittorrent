@@ -28,6 +28,8 @@
 
 #include "raisedmessagebox.h"
 
+#include "utils.h"
+
 RaisedMessageBox::RaisedMessageBox(QMessageBox::Icon icon, const QString &title, const QString &text,
                                    QMessageBox::StandardButtons buttons, QWidget *parent, Qt::WindowFlags f)
   : QMessageBox(icon, title, text, buttons, parent, f)
@@ -64,6 +66,10 @@ QMessageBox::StandardButton RaisedMessageBox::warning(QWidget *parent, const QSt
 void RaisedMessageBox::showEvent(QShowEvent *event)
 {
     QMessageBox::showEvent(event);
+
+    if (parentWidget() && parentWidget()->isMinimized())
+        move(Utils::Gui::screenCenter(this));
+
     activateWindow();
     raise();
 }

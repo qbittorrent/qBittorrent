@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -48,7 +48,9 @@ class FeedListWidget final : public QTreeWidget
 public:
     explicit FeedListWidget(QWidget *parent);
 
-    QTreeWidgetItem *stickyUnreadItem() const;
+    QTreeWidgetItem *stickyItemAllArticles() const;
+    QTreeWidgetItem *stickyItemUnreadArticles() const;
+    bool isStickyItem(QTreeWidgetItem *item) const;
     QList<QTreeWidgetItem *> getAllOpenedFolders(QTreeWidgetItem *parent = nullptr) const;
     RSS::Item *getRSSItem(QTreeWidgetItem *item) const;
     QTreeWidgetItem *mapRSSItem(RSS::Item *rssItem) const;
@@ -71,5 +73,6 @@ private:
     void fill(QTreeWidgetItem *parent, RSS::Folder *rssParent);
 
     QHash<RSS::Item *, QTreeWidgetItem *> m_rssToTreeItemMapping;
-    QTreeWidgetItem *m_unreadStickyItem = nullptr;
+    QTreeWidgetItem *m_stickyItemAllArticles = nullptr;
+    QTreeWidgetItem *m_stickyItemUnreadArticles = nullptr;
 };

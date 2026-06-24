@@ -99,6 +99,8 @@ window.qBittorrent.FileTree ??= (() => {
          * Returns the nodes in DFS in-order
          */
         toArray() {
+            if (this.#root === null)
+                return [];
             const ret = [];
             const stack = this.#root.children.toReversed();
             while (stack.length > 0) {

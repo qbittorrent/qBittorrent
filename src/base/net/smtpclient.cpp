@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,32 +31,22 @@
  * This code is based on QxtSmtp from libqxt (http://libqxt.org)
  */
 
-#include "smtp.h"
+#include "smtpclient.h"
 
 #include <QCryptographicHash>
 #include <QDateTime>
 #include <QDebug>
 #include <QHostInfo>
-#include <QStringList>
-
-#ifndef QT_NO_OPENSSL
 #include <QSslSocket>
-#else
-#include <QTcpSocket>
-#endif
 
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/string.h"
+#include "smtpencryptiontype.h"
 
 namespace
 {
-    const short DEFAULT_PORT = 25;
-#ifndef QT_NO_OPENSSL
-    const short DEFAULT_PORT_SSL = 465;
-#endif
-
     QByteArray hmacMD5(QByteArray key, const QByteArray &msg)
     {
         const int blockSize = 64; // HMAC-MD5 block size
@@ -90,68 +81,119 @@ namespace
         return hostname.toLocal8Bit();
     }
 
-    bool canEncodeAsLatin1(const QStringView string)
+    bool canEncodeAsASCII(const QStringView string)
     {
         return std::ranges::none_of(string, [](const QChar &ch)
         {
-            return ch > QChar(0xff);
+            return ch > QChar(0x7f);
         });
+    }
+
+    QString getCurrentDateTime()
+    {
+        // [rfc2822] 3.3. Date and Time Specification
+        const auto now = QDateTime::currentDateTime();
+        const QLocale eng {QLocale::English};
+        const QString weekday = eng.dayName(now.date().dayOfWeek(), QLocale::ShortFormat);
+        return (weekday + u", " + now.toString(Qt::RFC2822Date));
+    }
+
+    QByteArray encodeMimeHeader(const QString &key, const QString &value, const QByteArray &prefix = {})
+    {
+        QByteArray rv = "";
+        QByteArray line = key.toLatin1() + ": ";
+        if (!prefix.isEmpty()) line += prefix;
+        if (!value.contains(u"=?") && canEncodeAsASCII(value))
+        {
+            bool firstWord = true;
+            for (const QByteArray &word : asConst(value.toLatin1().split(' ')))
+            {
+                if (line.size() > 78)
+                {
+                    rv = rv + line + "\r\n";
+                    line.clear();
+                }
+                if (firstWord)
+                    line += word;
+                else
+                    line += ' ' + word;
+                firstWord = false;
+            }
+        }
+        else
+        {
+            // The text contains non-ASCII characters. Therefore, we
+            // must use base64 encoding.
+            const QByteArray utf8 = value.toUtf8();
+            // Use base64 encoding
+            const QByteArray base64 = utf8.toBase64();
+            const qsizetype ct = base64.length();
+            line += "=?utf-8?b?";
+            for (int i = 0; i < ct; i += 4)
+            {
+                /*if (line.length() > 72)
+                {
+                    rv += line + "?\n\r";
+                    line = " =?utf-8?b?";
+                }*/
+                line = line + base64.mid(i, 4);
+            }
+            line += "?="; // end encoded-word atom
+        }
+        return rv + line + "\r\n";
     }
 } // namespace
 
-using namespace Net;
+const int SOCKETERROR_TYPEID = qRegisterMetaType<QAbstractSocket::SocketError>();
 
-Smtp::Smtp(QObject *parent)
-    : QObject(parent)
+void Net::SMTPClient::sendMail(const QString &from, const QString &to
+        , const QString &subject, const QString &body, QObject *context)
 {
-    static bool needToRegisterMetaType = true;
-
-    if (needToRegisterMetaType)
+    QString normalizedTo = to;
+    const QStringList groupList = normalizedTo.remove(u' ').split(u';', Qt::SkipEmptyParts);
+    for (const QString &group : groupList)
     {
-        qRegisterMetaType<QAbstractSocket::SocketError>();
-        needToRegisterMetaType = false;
+        [[maybe_unused]] auto *obj = new SMTPClient(from
+            , group.split(u',', Qt::SkipEmptyParts)
+            , subject, body, context);
     }
+}
 
-#ifndef QT_NO_OPENSSL
+Net::SMTPClient::SMTPClient(const QString &sender, const QStringList &recipients
+        , const QString &subject, const QString &body, QObject *parent)
+    : QObject(parent)
+    , m_sender {sender}
+    , m_recipients {recipients}
+    , m_recipientsIterator {m_recipients}
+{
     m_socket = new QSslSocket(this);
-#else
-    m_socket = new QTcpSocket(this);
-#endif
 
-    connect(m_socket, &QIODevice::readyRead, this, &Smtp::readyRead);
+    connect(m_socket, &QIODevice::readyRead, this, &SMTPClient::readyRead);
     connect(m_socket, &QAbstractSocket::disconnected, this, &QObject::deleteLater);
-    connect(m_socket, &QAbstractSocket::errorOccurred, this, &Smtp::error);
+    connect(m_socket, &QAbstractSocket::errorOccurred, this, &SMTPClient::error);
 
     // Test hmacMD5 function (http://www.faqs.org/rfcs/rfc2202.html)
     Q_ASSERT(hmacMD5("Jefe", "what do ya want for nothing?").toHex()
-             == "750c783e6ab0b503eaa86e310a5db738");
+            == "750c783e6ab0b503eaa86e310a5db738");
     Q_ASSERT(hmacMD5(QByteArray::fromHex("0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"), "Hi There").toHex()
-             == "9294727a3638bb1c13f48ef8158bfc9d");
-}
+            == "9294727a3638bb1c13f48ef8158bfc9d");
 
-Smtp::~Smtp()
-{
-    qDebug() << Q_FUNC_INFO;
-}
-
-void Smtp::sendMail(const QString &from, const QString &to, const QString &subject, const QString &body)
-{
     const Preferences *const pref = Preferences::instance();
+
     m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
-                + encodeMimeHeader(u"From"_s, u"qBittorrent <%1>"_s.arg(from))
-                + encodeMimeHeader(u"Subject"_s, subject)
-                + encodeMimeHeader(u"To"_s, to)
-                + "MIME-Version: 1.0\r\n"
-                + "Content-Type: text/plain; charset=UTF-8\r\n"
-                + "Content-Transfer-Encoding: base64\r\n"
-                + "\r\n";
+            + encodeMimeHeader(u"From"_s, u"qBittorrent <%1>"_s.arg(m_sender))
+            + encodeMimeHeader(u"Subject"_s, subject)
+            + encodeMimeHeader(u"To"_s, m_recipients.join(u", "_s))
+            + "MIME-Version: 1.0\r\n"
+            + "Content-Type: text/plain; charset=UTF-8\r\n"
+            + "Content-Transfer-Encoding: base64\r\n"
+            + "\r\n";
     // Encode the body in base64
     QString crlfBody = body;
     const QByteArray b = crlfBody.replace(u"\n"_s, u"\r\n"_s).toUtf8().toBase64();
     for (qsizetype i = 0, end = b.length(); i < end; i += 78)
         m_message += b.mid(i, 78);
-    m_from = from;
-    m_rcpt = to;
+
     // Authentication
     if (pref->getMailNotificationSMTPAuth())
     {
@@ -164,25 +206,32 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     const QString &serverAddress = serverEndpoint[0];
     const std::optional<int> serverPort = Utils::String::parseInt(serverEndpoint.value(1));
 
-#ifndef QT_NO_OPENSSL
-    if (pref->getMailNotificationSMTPSSL())
+    // Decide connection method based on requested SMTP encryption type
+    switch (pref->getMailNotificationSMTPEncryptionType())
     {
-        m_socket->connectToHostEncrypted(serverAddress, serverPort.value_or(DEFAULT_PORT_SSL));
-        m_useSsl = true;
+    case SMTPEncryptionType::SMTPS:
+        m_socket->connectToHostEncrypted(serverAddress, serverPort.value_or(SMTP_DEFAULT_PORT_SSL));
+        break;
+
+    case SMTPEncryptionType::STARTTLS:
+        m_socket->connectToHost(serverAddress, serverPort.value_or(SMTP_DEFAULT_PORT_STARTTLS));
+        break;
+
+    case SMTPEncryptionType::None:
+        m_socket->connectToHost(serverAddress, serverPort.value_or(SMTP_DEFAULT_PORT));
+        break;
     }
-    else
-    {
-#endif
-    m_socket->connectToHost(serverAddress, serverPort.value_or(DEFAULT_PORT));
-    m_useSsl = false;
-#ifndef QT_NO_OPENSSL
-    }
-#endif
 }
 
-void Smtp::readyRead()
+Net::SMTPClient::~SMTPClient()
 {
     qDebug() << Q_FUNC_INFO;
+}
+
+void Net::SMTPClient::readyRead()
+{
+    qDebug() << Q_FUNC_INFO;
+    const Preferences *const pref = Preferences::instance();
     // SMTP is line-oriented
     m_buffer += m_socket->readAll();
     while (true)
@@ -219,22 +268,30 @@ void Smtp::readyRead()
             break;
         case EhloSent:
         case HeloSent:
+        case EhloDone:
         case EhloGreetReceived:
             parseEhloResponse(code, (line[3] != ' '), QString::fromUtf8(line.mid(4)));
             break;
-#ifndef QT_NO_OPENSSL
         case StartTLSSent:
             if (code == "220")
             {
                 m_socket->startClientEncryption();
+                // After STARTTLS negotiation, the client should discard all information about the
+                // server's capabilities obtained from the EHLO command and repeat the EHLO command
+                // to obtain the new capabilities of the server in the TLS session. (RFC 3207, section 4)
+                m_extensions.clear();
                 ehlo();
+            }
+            else if (pref->getMailNotificationSMTPEncryptionType() == SMTPEncryptionType::STARTTLS)
+            {
+                logError(tr("STARTTLS is required but was not enabled by the server. Unable to send the email."));
+                m_state = Quit;
             }
             else
             {
                 authenticate();
             }
             break;
-#endif
         case AuthRequestSent:
         case AuthUsernameSent:
             if (m_authType == AuthPlain) authPlain();
@@ -246,7 +303,7 @@ void Smtp::readyRead()
             if (code[0] == '2')
             {
                 qDebug() << "Sending <mail from>...";
-                m_socket->write("mail from:<" + m_from.toLatin1() + ">\r\n");
+                m_socket->write("mail from:<" + m_sender.toLatin1() + ">\r\n");
                 m_socket->flush();
                 m_state = Rcpt;
             }
@@ -260,13 +317,21 @@ void Smtp::readyRead()
         case Rcpt:
             if (code[0] == '2')
             {
-                m_socket->write("rcpt to:<" + m_rcpt.toLatin1() + ">\r\n");
-                m_socket->flush();
-                m_state = Data;
+                if (m_recipientsIterator.hasNext())
+                {
+                    m_socket->write("rcpt to:<" + m_recipientsIterator.next().toLatin1() + ">\r\n");
+                    m_socket->flush();
+                }
+
+                if (!m_recipientsIterator.hasNext())
+                    m_state = Data;
             }
             else
             {
-                logError(tr("<mail from> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
+                if (m_recipientsIterator.hasPrevious())
+                    logError(tr("<rcpt to> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
+                else
+                    logError(tr("<mail from> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
                 m_state = Close;
             }
             break;
@@ -279,7 +344,7 @@ void Smtp::readyRead()
             }
             else
             {
-                logError(tr("<Rcpt to> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
+                logError(tr("<rcpt to> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
                 m_state = Close;
             }
             break;
@@ -310,7 +375,7 @@ void Smtp::readyRead()
                 m_state = Close;
             }
             break;
-        default:
+        case Close:
             qDebug() << "Disconnecting from host";
             m_socket->disconnectFromHost();
             return;
@@ -318,52 +383,7 @@ void Smtp::readyRead()
     }
 }
 
-QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, const QByteArray &prefix)
-{
-    QByteArray rv = "";
-    QByteArray line = key.toLatin1() + ": ";
-    if (!prefix.isEmpty()) line += prefix;
-    if (!value.contains(u"=?") && canEncodeAsLatin1(value))
-    {
-        bool firstWord = true;
-        for (const QByteArray &word : asConst(value.toLatin1().split(' ')))
-        {
-            if (line.size() > 78)
-            {
-                rv = rv + line + "\r\n";
-                line.clear();
-            }
-            if (firstWord)
-                line += word;
-            else
-                line += ' ' + word;
-            firstWord = false;
-        }
-    }
-    else
-    {
-        // The text cannot be losslessly encoded as Latin-1. Therefore, we
-        // must use base64 encoding.
-        const QByteArray utf8 = value.toUtf8();
-        // Use base64 encoding
-        const QByteArray base64 = utf8.toBase64();
-        const qsizetype ct = base64.length();
-        line += "=?utf-8?b?";
-        for (int i = 0; i < ct; i += 4)
-        {
-            /*if (line.length() > 72)
-            {
-               rv += line + "?\n\r";
-               line = " =?utf-8?b?";
-               }*/
-            line = line + base64.mid(i, 4);
-        }
-        line += "?="; // end encoded-word atom
-    }
-    return rv + line + "\r\n";
-}
-
-void Smtp::ehlo()
+void Net::SMTPClient::ehlo()
 {
     const QByteArray address = determineFQDN();
     m_socket->write("ehlo " + address + "\r\n");
@@ -371,7 +391,7 @@ void Smtp::ehlo()
     m_state = EhloSent;
 }
 
-void Smtp::helo()
+void Net::SMTPClient::helo()
 {
     const QByteArray address = determineFQDN();
     m_socket->write("helo " + address + "\r\n");
@@ -379,8 +399,9 @@ void Smtp::helo()
     m_state = HeloSent;
 }
 
-void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const QString &line)
+void Net::SMTPClient::parseEhloResponse(const QByteArray &code, const bool continued, const QString &line)
 {
+    const Preferences *const pref = Preferences::instance();
     if (code != "250")
     {
         // Error
@@ -427,10 +448,16 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
 
     if (m_state != EhloDone) return;
 
-    if (m_extensions.contains(u"STARTTLS"_s) && m_useSsl)
+    const Net::SMTPEncryptionType encryptionType = pref->getMailNotificationSMTPEncryptionType();
+    // Check if STARTTLS is available and should be used
+    if (m_extensions.contains(u"STARTTLS"_s) && (encryptionType == SMTPEncryptionType::STARTTLS))
     {
-        qDebug() << "STARTTLS";
         startTLS();
+    }
+    else if (!m_usingStartTls && (encryptionType == SMTPEncryptionType::STARTTLS))
+    {
+        logError(tr("STARTTLS is required but was not offered by the server. Unable to send the email."));
+        m_state = Quit;
     }
     else
     {
@@ -438,7 +465,7 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
     }
 }
 
-void Smtp::authenticate()
+void Net::SMTPClient::authenticate()
 {
     qDebug() << Q_FUNC_INFO;
     if (!m_extensions.contains(u"AUTH"_s) ||
@@ -486,19 +513,16 @@ void Smtp::authenticate()
     }
 }
 
-void Smtp::startTLS()
+void Net::SMTPClient::startTLS()
 {
     qDebug() << Q_FUNC_INFO;
-#ifndef QT_NO_OPENSSL
     m_socket->write("starttls\r\n");
     m_socket->flush();
     m_state = StartTLSSent;
-#else
-    authenticate();
-#endif
+    m_usingStartTls = true;
 }
 
-void Smtp::authCramMD5(const QByteArray &challenge)
+void Net::SMTPClient::authCramMD5(const QByteArray &challenge)
 {
     if (m_state != AuthRequestSent)
     {
@@ -517,7 +541,7 @@ void Smtp::authCramMD5(const QByteArray &challenge)
     }
 }
 
-void Smtp::authPlain()
+void Net::SMTPClient::authPlain()
 {
     if (m_state != AuthRequestSent)
     {
@@ -537,7 +561,7 @@ void Smtp::authPlain()
     }
 }
 
-void Smtp::authLogin()
+void Net::SMTPClient::authLogin()
 {
     if ((m_state != AuthRequestSent) && (m_state != AuthUsernameSent))
     {
@@ -560,25 +584,21 @@ void Smtp::authLogin()
     }
 }
 
-void Smtp::logError(const QString &msg)
+void Net::SMTPClient::logError(const QString &msg)
 {
     qDebug() << "Email Notification Error:" << msg;
     LogMsg(tr("Email Notification Error: %1").arg(msg), Log::WARNING);
 }
 
-QString Smtp::getCurrentDateTime() const
+void Net::SMTPClient::error(QAbstractSocket::SocketError socketError)
 {
-    // [rfc2822] 3.3. Date and Time Specification
-    const auto now = QDateTime::currentDateTime();
-    const QLocale eng {QLocale::English};
-    const QString weekday = eng.dayName(now.date().dayOfWeek(), QLocale::ShortFormat);
-    return (weekday + u", " + now.toString(Qt::RFC2822Date));
-}
-
-void Smtp::error(QAbstractSocket::SocketError socketError)
-{
+    const Preferences *const pref = Preferences::instance();
     // Getting a remote host closed error is apparently normal, even when successfully sending
     // an email
     if (socketError != QAbstractSocket::RemoteHostClosedError)
+    {
         logError(m_socket->errorString());
+        if ((socketError == QAbstractSocket::SslHandshakeFailedError) && (pref->getMailNotificationSMTPEncryptionType() == Net::SMTPEncryptionType::SMTPS))
+            logError(tr("Check the email server supports SMTPS (SMTP over SSL) and you are using the correct port"));
+    }
 }

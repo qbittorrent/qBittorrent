@@ -164,7 +164,7 @@ nonstd::expected<Feed *, QString> Session::addFeed(const QString &url, const QSt
     addItem(feed, destFolder);
     store();
     if (isProcessingEnabled())
-        refreshFeed(feed, std::chrono::system_clock::now());
+        refresh();
 
     return feed;
 }
@@ -623,6 +623,9 @@ void Session::setMaxArticlesPerFeed(const int n)
 
 void Session::refresh()
 {
+    if (m_refreshTimepoints.isEmpty())
+        return;
+
     const auto currentTimepoint = std::chrono::system_clock::now();
     std::chrono::seconds nextRefreshInterval = 0s;
     for (auto it = m_refreshTimepoints.begin(); it != m_refreshTimepoints.end(); ++it)

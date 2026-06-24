@@ -19,16 +19,20 @@ jobs:
       fail-fast: false
       matrix:
         libtorrent:
-          - version: "2.0.11"
+          - version: "2.1.0-rc2"
             boost_major_version: "1"
-            boost_minor_version: "90"
+            boost_minor_version: "91"
+            boost_patch_version: "0"
+          - version: "2.0.13"
+            boost_major_version: "1"
+            boost_minor_version: "91"
             boost_patch_version: "0"
           - version: "1.2.20"
             boost_major_version: "1"
             boost_minor_version: "86"
             boost_patch_version: "0"
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["6.10.1"]
+        qt_version: ["6.10.3"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -41,13 +45,14 @@ jobs:
           persist-credentials: false
 
       - name: Install dependencies
-        uses: Wandalen/wretry.action@v3
+        uses: nick-fields/retry@v4
         env:
           HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK: 1
           HOMEBREW_NO_INSTALL_CLEANUP: 1
         with:
-          attempt_delay: 20000
-          attempt_limit: 6
+          timeout_seconds: 90
+          retry_wait_seconds: 20
+          max_attempts: 6
           command: |
             brew update > /dev/null
             brew install \

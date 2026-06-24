@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -32,21 +32,22 @@
 #include <QPushButton>
 
 #include "base/bittorrent/session.h"
-#include "base/global.h"
 #include "base/preferences.h"
 #include "uithememanager.h"
 #include "utils.h"
 
-DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const int size, const QString &name, const bool defaultDeleteFiles)
+using namespace Qt::Literals::StringLiterals;
+
+DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const int torrentsCount, const QString &name, const bool defaultDeleteFiles)
     : QDialog(parent)
-    , m_ui(new Ui::DeletionConfirmationDialog)
+    , m_ui {new Ui::DeletionConfirmationDialog}
 {
     m_ui->setupUi(this);
 
-    if (size == 1)
+    if (torrentsCount == 1)
         m_ui->label->setText(tr("Are you sure you want to remove '%1' from the transfer list?", "Are you sure you want to remove 'ubuntu-linux-iso' from the transfer list?").arg(name.toHtmlEscaped()));
     else
-        m_ui->label->setText(tr("Are you sure you want to remove these %1 torrents from the transfer list?", "Are you sure you want to remove these 5 torrents from the transfer list?").arg(QString::number(size)));
+        m_ui->label->setText(tr("Are you sure you want to remove these %1 torrents from the transfer list?", "Are you sure you want to remove these 5 torrents from the transfer list?").arg(QString::number(torrentsCount)));
 
     // Icons
     const QSize iconSize = Utils::Gui::largeIconSize();
@@ -54,10 +55,21 @@ DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const in
     m_ui->labelWarning->setFixedWidth(iconSize.width());
     m_ui->rememberBtn->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_s));
     m_ui->rememberBtn->setIconSize(Utils::Gui::mediumIconSize());
+    connect(m_ui->rememberBtn, &QCheckBox::clicked, this, [this]
+    {
+        Preferences::instance()->setRemoveTorrentContent(m_ui->checkRemoveContent->isChecked());
+        m_ui->rememberBtn->setEnabled(false);
+    });
 
-    m_ui->checkRemoveContent->setChecked(defaultDeleteFiles || Preferences::instance()->removeTorrentContent());
-    connect(m_ui->checkRemoveContent, &QCheckBox::clicked, this, &DeletionConfirmationDialog::updateRememberButtonState);
-    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Remove"));
+    const bool removeTorrentContent = defaultDeleteFiles || Preferences::instance()->removeTorrentContent();
+    m_ui->checkRemoveContent->setChecked(removeTorrentContent);
+    connect(m_ui->checkRemoveContent, &QCheckBox::clicked, this, [this]
+    {
+        const bool removeTorrentContent = m_ui->checkRemoveContent->isChecked();
+        m_ui->rememberBtn->setEnabled(removeTorrentContent != Preferences::instance()->removeTorrentContent());
+        m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(removeTorrentContent ? tr("Remove torrent and content") : tr("Remove torrent"));
+    });
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(removeTorrentContent ? tr("Remove torrent and content") : tr("Remove torrent"));
     m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setFocus();
 
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
@@ -72,15 +84,4 @@ DeletionConfirmationDialog::~DeletionConfirmationDialog()
 bool DeletionConfirmationDialog::isRemoveContentSelected() const
 {
     return m_ui->checkRemoveContent->isChecked();
-}
-
-void DeletionConfirmationDialog::updateRememberButtonState()
-{
-    m_ui->rememberBtn->setEnabled(m_ui->checkRemoveContent->isChecked() != Preferences::instance()->removeTorrentContent());
-}
-
-void DeletionConfirmationDialog::on_rememberBtn_clicked()
-{
-    Preferences::instance()->setRemoveTorrentContent(m_ui->checkRemoveContent->isChecked());
-    m_ui->rememberBtn->setEnabled(false);
 }

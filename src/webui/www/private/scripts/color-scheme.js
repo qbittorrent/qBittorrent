@@ -48,6 +48,9 @@ window.qBittorrent.ColorScheme ??= (() => {
     };
 
     colorSchemeQuery.addEventListener("change", update);
+    // Apply immediately: framed windows already have parent's ClientData loaded;
+    // main window falls back to system preference until client.js calls update() after fetch
+    update();
 
     return exports();
 })();

@@ -198,6 +198,14 @@
         <source>Limit download rate</source>
         <translation>Límite da velocidade de descarga</translation>
     </message>
+    <message>
+        <source>%1 (Free space on disk: %2)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +305,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Non foi posíbel gardar as preferencias do programa, probabelmente o qBittorrent estea inaccesíbel.</translation>
+        <translation type="vanished">Non foi posíbel gardar as preferencias do programa, probabelmente o qBittorrent estea inaccesíbel.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -461,7 +469,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation>Non se puido contactar con qBittorrent</translation>
+        <translation type="vanished">Non se puido contactar con qBittorrent</translation>
     </message>
     <message>
         <source>Remember choice</source>
@@ -532,10 +540,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>O límite de tempo de sementado non pode ter un valor negativo.</translation>
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="vanished">O valor ToS do par debe estar entre 0 e 255.</translation>
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation>O límite da taxa de compartición non pode ter un valor negativo.</translation>
     </message>
@@ -569,6 +573,22 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation>O DSCP do par debe estar entre 0 e 255.</translation>
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Could not contact qBittorrent.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -830,6 +850,30 @@ Non use caracteres especiais no nome da categoría.</translation>
         <source>Filter feed items...</source>
         <translation>Filtrar elementos do feed...</translation>
     </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Invert Selection</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent and content</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v2</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -855,7 +899,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Idioma</translation>
+        <translation type="vanished">Idioma</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -931,7 +975,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Este servidor require unha conexión segura (SSL)</translation>
+        <translation type="vanished">Este servidor require unha conexión segura (SSL)</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1580,10 +1624,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Non crear subcartafol</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Tipo de servizo (ToS) para conexións pares</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Conexións de saída por segundo:</translation>
     </message>
@@ -1824,10 +1864,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Tamaño do búfer de recepción do socket [0: predeterminado do sistema]:</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Usar subcategorías</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Engadir á parte superior da cola</translation>
     </message>
@@ -1973,7 +2009,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>Engade o texto ao título da xanela para axudar a distinguir as instancias de qBittorent</translation>
+        <translation type="vanished">Engade o texto ao título da xanela para axudar a distinguir as instancias de qBittorent</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2085,7 +2121,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation>Tentouse enviar correo electrónico. Comprobe a súa caixa de entrada para confirmar o éxito</translation>
+        <translation type="vanished">Tentouse enviar correo electrónico. Comprobe a súa caixa de entrada para confirmar o éxito</translation>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
@@ -2165,7 +2201,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Enable optimized table rendering (experimental)</source>
-        <translation>Activar renderizado optimizado da táboa (experimental)</translation>
+        <translation type="vanished">Activar renderizado optimizado da táboa (experimental)</translation>
     </message>
     <message>
         <source>Note: The password is saved unencrypted</source>
@@ -2225,6 +2261,94 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>Punto de código de servizos diferenciados (DSCP) para as conexións con pares</translation>
+    </message>
+    <message>
+        <source>no encryption used when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>SMTPS</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(alternative choice if supported)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>use SMTPS encryption when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>SMTP encryption:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>STARTTLS</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable optimized table rendering</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Select the encryption type used when sending SMTP emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(last choice if no other option)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Pread/pwrite</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>use STARTTLS encryption when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(best choice if supported)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2635,6 +2759,10 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <source>Private:</source>
         <translation>Privado:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2731,6 +2859,14 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     <message>
         <source>Total queued size:</source>
         <translation>Tamaño total da cola:</translation>
+    </message>
+    <message>
+        <source>Tracker statistics</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Queued tracker announces:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2963,12 +3099,12 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Desc. na sesión</translation>
+        <translation type="vanished">Desc. na sesión</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Env. na sesión</translation>
+        <translation type="vanished">Env. na sesión</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3045,6 +3181,18 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     <message>
         <source>Status Icon</source>
         <translation>Icona de estado</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Created On</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4124,6 +4272,18 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <source>Refresh tab</source>
         <translation>Actualizar pestana</translation>
     </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4515,6 +4675,18 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
         <source>Add Stopped:</source>
         <translation>Engadir detido:</translation>
     </message>
+    <message>
+        <source>Rule cloning</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clear downloaded episodes confirmation</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clone rule...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
@@ -4761,6 +4933,10 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Usar outra ruta para os torrents incompletos:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5133,6 +5309,41 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
         <translation>Xirar esta clave API? A clave actual deixará de funcionar inmediatamente e xerarase unha nova clave.</translation>
+    </message>
+</context>
+<context>
+    <name>RSSCloneRule</name>
+    <message>
+        <source>Clone</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alert</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The cloned rule will be set as disabled and the downloaded episodes history will be cleared.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The rule name is unchanged. You must type a new rule name for the clone.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Please type the name for the clone of the download rule.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The rule name cannot be empty.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to clone the selected rule.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

@@ -33,10 +33,10 @@
 
 bool InhibitorWindows::requestBusy()
 {
-    return ::SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) != NULL;
+    return ::SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED) != 0;
 }
 
 bool InhibitorWindows::requestIdle()
 {
-    return ::SetThreadExecutionState(ES_CONTINUOUS) != NULL;
+    return ::SetThreadExecutionState(ES_CONTINUOUS) != 0;
 }

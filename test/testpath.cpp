@@ -30,8 +30,9 @@
 #include <QObject>
 #include <QTest>
 
-#include "base/global.h"
 #include "base/path.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 class TestPath final : public QObject
 {
@@ -85,10 +86,60 @@ private slots:
         QCOMPARE(Path(uR"(\a/b)"_s).isValid(), true);
         QCOMPARE(Path(uR"(\a\b)"_s).isValid(), true);
 
+        QCOMPARE(Path(u"."_s).isValid(), true);
+        QCOMPARE(Path(u".."_s).isValid(), true);
+
+        QCOMPARE(Path(u"../"_s).isValid(), true);
+        QCOMPARE(Path(u"./"_s).isValid(), true);
+        QCOMPARE(Path(uR"(..\)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(.\)"_s).isValid(), true);
+
+        QCOMPARE(Path(u"../a"_s).isValid(), true);
+        QCOMPARE(Path(u"./a"_s).isValid(), true);
+        QCOMPARE(Path(uR"(..\a)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(.\a)"_s).isValid(), true);
+
+        QCOMPARE(Path(u"a/../b"_s).isValid(), true);
+        QCOMPARE(Path(u"a/./b"_s).isValid(), true);
+        QCOMPARE(Path(u"a/./../b"_s).isValid(), true);
+        QCOMPARE(Path(u"a/.././b"_s).isValid(), true);
+        QCOMPARE(Path(u"a/.././../b"_s).isValid(), true);
+
+        QCOMPARE(Path(uR"(a\..\b)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\.\b)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\.\..\b)"_s).isValid(), true);
+
+        QCOMPARE(Path(u"a/.."_s).isValid(), true);
+        QCOMPARE(Path(u"a/b/.."_s).isValid(), true);
+        QCOMPARE(Path(u"a/."_s).isValid(), true);
+        QCOMPARE(Path(u"a/b/."_s).isValid(), true);
+
+        QCOMPARE(Path(uR"(a\..)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\b\..)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\.)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\b\.)"_s).isValid(), true);
+
+        QCOMPARE(Path(u"../../a/b"_s).isValid(), true);
+        QCOMPARE(Path(u"../.."_s).isValid(), true);
+        QCOMPARE(Path(u"../../../"_s).isValid(), true);
+        QCOMPARE(Path(u"./../a/../b"_s).isValid(), true);
+        QCOMPARE(Path(uR"(..\..\a\b\..)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\.\..\b\.)"_s).isValid(), true);
+
         QCOMPARE(Path(u"//"_s).isValid(), true);
         QCOMPARE(Path(uR"(\\)"_s).isValid(), true);
         QCOMPARE(Path(u"//a"_s).isValid(), true);
         QCOMPARE(Path(uR"(\\a)"_s).isValid(), true);
+
+        QCOMPARE(Path(u"a//b"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\\b)"_s).isValid(), true);
+        QCOMPARE(Path(u"/a//b"_s).isValid(), true);
+        QCOMPARE(Path(uR"(/a\\b)"_s).isValid(), true);
+
+        for (int i = 0; i <= 31; ++i)
+            QCOMPARE(Path(QChar(i)).isValid(), false);
+
+        QCOMPARE(Path(QChar(127)).isValid(), false);
 
 #if defined Q_OS_MACOS
         QCOMPARE(Path(u"\0"_s).isValid(), false);
@@ -100,8 +151,6 @@ private slots:
         QCOMPARE(Path(uR"(c:\a)"_s).isValid(), true);
         QCOMPARE(Path(uR"(c:\a\b)"_s).isValid(), true);
 
-        for (int i = 0; i <= 31; ++i)
-            QCOMPARE(Path(QChar(i)).isValid(), false);
         QCOMPARE(Path(u":"_s).isValid(), false);
         QCOMPARE(Path(u"?"_s).isValid(), false);
         QCOMPARE(Path(u"\""_s).isValid(), false);
@@ -109,6 +158,27 @@ private slots:
         QCOMPARE(Path(u"<"_s).isValid(), false);
         QCOMPARE(Path(u">"_s).isValid(), false);
         QCOMPARE(Path(u"|"_s).isValid(), false);
+
+        QCOMPARE(Path(u"a."_s).isValid(), false);
+        QCOMPARE(Path(u"a.txt."_s).isValid(), false);
+
+        QCOMPARE(Path(u"a "_s).isValid(), false);
+        QCOMPARE(Path(u"a.txt "_s).isValid(), false);
+
+        QCOMPARE(Path(u"CON"_s).isValid(), false);
+        QCOMPARE(Path(u"con"_s).isValid(), false);
+
+        QCOMPARE(Path(u"CON.txt"_s).isValid(), false);
+        QCOMPARE(Path(u"con.txt"_s).isValid(), false);
+
+        QCOMPARE(Path(u"CONCON"_s).isValid(), true);
+        QCOMPARE(Path(u"CONCON.txt"_s).isValid(), true);
+
+        QCOMPARE(Path(u"a/CON"_s).isValid(), false);
+        QCOMPARE(Path(u"a/CON.txt"_s).isValid(), false);
+
+        QCOMPARE(Path(u"CON."_s).isValid(), false);
+        QCOMPARE(Path(u"con."_s).isValid(), false);
 #else
         QCOMPARE(Path(u"\0"_s).isValid(), false);
 #endif
@@ -339,6 +409,87 @@ private slots:
         QCOMPARE((Path() + u"b"), Path(u"b"_s));
         QCOMPARE((Path(u"a"_s) + u"b"), Path(u"ab"_s));
         QCOMPARE((Path(u"a"_s) + u"/b/"), Path(u"a/b"_s));
+    }
+
+    void testIterator() const
+    {
+        {
+            const Path emptyPath;
+
+            QCOMPARE(emptyPath.begin(), emptyPath.end());
+        }
+
+        {
+            const Path path {u"/usr/bin/qbittorrent"_s};
+
+            QCOMPARE_NE(path.begin(), path.end());
+
+            auto iter = path.begin();
+            QCOMPARE(*iter, Path(u"/usr"_s));
+
+            ++iter;
+            QCOMPARE(*iter, Path(u"/usr/bin"_s));
+
+            ++iter;
+            QCOMPARE(*iter, Path(u"/usr/bin/qbittorrent"_s));
+
+            ++iter;
+            QCOMPARE(iter, path.end());
+        }
+
+        {
+            const Path path {u"some/path/qbittorrent"_s};
+
+            QCOMPARE_NE(path.begin(), path.end());
+
+            auto iter = path.begin();
+            QCOMPARE(*iter, Path(u"some"_s));
+
+            ++iter;
+            QCOMPARE(*iter, Path(u"some/path"_s));
+
+            ++iter;
+            QCOMPARE(*iter, Path(u"some/path/qbittorrent"_s));
+
+            ++iter;
+            QCOMPARE(iter, path.end());
+        }
+
+#ifdef Q_OS_WIN
+        {
+            const Path path {u"C:\\qBittorrent\\qbittorrent.exe"_s};
+
+            QCOMPARE_NE(path.begin(), path.end());
+
+            auto iter = path.begin();
+            QCOMPARE(*iter, Path(u"C:\\"_s));
+
+            ++iter;
+            QCOMPARE(*iter, Path(u"C:\\qBittorrent"_s));
+
+            ++iter;
+            QCOMPARE(*iter, Path(u"C:\\qBittorrent\\qbittorrent.exe"_s));
+
+            ++iter;
+            QCOMPARE(iter, path.end());
+        }
+#endif
+
+        {
+            const Path path {u"some//path"_s};
+
+            QCOMPARE_NE(path.begin(), path.end());
+
+            auto iter = path.begin();
+            QCOMPARE(*iter, Path(u"some"_s));
+
+            ++iter;
+            QCOMPARE(*iter, Path(u"some//path"_s));
+            QCOMPARE(*iter, Path(u"some/path"_s));
+
+            ++iter;
+            QCOMPARE(iter, path.end());
+        }
     }
 
     // TODO: add tests for remaining methods

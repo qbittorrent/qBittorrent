@@ -100,7 +100,7 @@ QPointer<AutoDownloader> AutoDownloader::m_instance = nullptr;
 
 QString computeSmartFilterRegex(const QStringList &filters)
 {
-    return u"(?:_|\\b)(?:%1)(?:_|\\b)"_s.arg(filters.join(u")|(?:"));
+    return u"(?:_|\\b)(?:%1)(?:_|\\b)"_s.arg(filters.join(u"|"));
 }
 
 AutoDownloader::AutoDownloader(IApplication *app)
@@ -210,6 +210,24 @@ void AutoDownloader::setRule(const AutoDownloadRule &rule)
         emit ruleChanged(rule.name());
         resetProcessingQueue();
     }
+}
+
+bool AutoDownloader::cloneRule(const QString &ruleName, const QString &cloneRuleName)
+{
+    if (!hasRule(ruleName) || hasRule(cloneRuleName))
+        return false;
+
+    // Copy the existing rule and change its name to the new one
+    AutoDownloadRule clonedRule = ruleByName(ruleName);
+    clonedRule.setName(cloneRuleName);
+    // Disable the cloned rule by default to prevent accidental downloads
+    clonedRule.setEnabled(false);
+    // Clear previously matched episodes to allow matching all episodes for the new rule
+    clonedRule.setPreviouslyMatchedEpisodes({});
+    // Clear last match time to allow matching old articles for the new rule
+    clonedRule.setLastMatch({});
+    setRule(clonedRule);
+    return true;
 }
 
 bool AutoDownloader::renameRule(const QString &ruleName, const QString &newRuleName)

@@ -14,7 +14,7 @@
     </div>
 </div>
 <div>
-    <input type="button" value="QBT_TR(Remove)QBT_TR[CONTEXT=MainWindow]" id="confirmDeletionButton">
+    <input type="button" value="QBT_TR(Remove torrent)QBT_TR[CONTEXT=MainWindow]" id="confirmDeletionButton">
     <input type="button" value="QBT_TR(Cancel)QBT_TR[CONTEXT=MainWindow]" id="cancelDeletionButton">
 </div>
 
@@ -22,11 +22,6 @@
     "use strict";
 
     (() => {
-        const setRememberBtnEnabled = (enable) => {
-            rememberButton.disabled = !enable;
-            rememberButton.classList.toggle("disabled", !enable);
-        };
-
         const confirmButton = document.getElementById("confirmDeletionButton");
         const cancelButton = document.getElementById("cancelDeletionButton");
         const rememberButton = document.getElementById("rememberBtn");
@@ -52,8 +47,19 @@
 
         deletionText.textContent = deleteMessage;
 
+        confirmButton.value = (deleteCB.checked ? "QBT_TR(Remove torrent and content)QBT_TR[CONTEXT=MainWindow]" : "QBT_TR(Remove torrent)QBT_TR[CONTEXT=MainWindow]");
+
         // Enable "Remember" button if the current choice is different from the saved preference
-        deleteCB.addEventListener("click", (e) => { setRememberBtnEnabled(deleteCB.checked !== prefDeleteContentFiles); });
+        deleteCB.addEventListener("click", (e) => {
+            const removeTorrentContent = deleteCB.checked;
+            const rememberButtonDisabled = (removeTorrentContent === prefDeleteContentFiles);
+            rememberButton.disabled = rememberButtonDisabled;
+            rememberButton.classList.toggle("disabled", rememberButtonDisabled);
+
+            const confirmButtonText = (removeTorrentContent ? "QBT_TR(Remove torrent and content)QBT_TR[CONTEXT=MainWindow]" : "QBT_TR(Remove torrent)QBT_TR[CONTEXT=MainWindow]");
+            confirmButton.value = confirmButtonText;
+            confirmButton.classList.toggle("value", confirmButtonText);
+        });
 
         // Set current "Delete files" choice as the default
         rememberButton.addEventListener("click", (e) => {
@@ -61,7 +67,8 @@
                 delete_torrent_content_files: deleteCB.checked
             }).then(() => {
                 prefDeleteContentFiles = deleteCB.checked;
-                setRememberBtnEnabled(false);
+                rememberButton.disabled = true;
+                rememberButton.classList.toggle("disabled", true);
             });
         });
 
