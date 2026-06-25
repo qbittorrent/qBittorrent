@@ -32,6 +32,7 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QStorageInfo>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
@@ -549,9 +550,18 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     switch (role)
     {
     case Qt::ForegroundRole:
+    {
+        const qint64 remaining = torrent->remainingSize();
+        if (remaining > 0)
+        {
+            const QStorageInfo storage(torrent->savePath().toString());
+            if (storage.isValid() && storage.bytesAvailable() < remaining)
+                return QColor(0xFF, 0xA5, 0x00); // amber warning
+        }
         if (m_useTorrentStatesColors)
             return m_stateThemeColors.value(torrent->state());
         break;
+    }
     case Qt::DisplayRole:
         return displayValue(torrent, index.column());
     case UnderlyingDataRole:
