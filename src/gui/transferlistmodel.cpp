@@ -712,6 +712,12 @@ void TransferListModel::handleTorrentsUpdated(const QList<BitTorrent::Torrent *>
     }
 }
 
+QModelIndex TransferListModel::indexOfTorrent(const BitTorrent::Torrent *torrent) const
+{
+    const int row = getTorrentRow(const_cast<BitTorrent::Torrent *>(torrent));
+    return (row >= 0) ? index(row, TR_NAME) : QModelIndex {};
+}
+
 int TransferListModel::getTorrentRow(BitTorrent::Torrent *const torrent) const
 {
     const auto iter = m_torrents.get<ByHandle>().find(torrent);
