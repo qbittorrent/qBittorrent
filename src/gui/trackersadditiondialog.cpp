@@ -33,6 +33,7 @@
 #include <QMessageBox>
 #include <QSize>
 #include <QStringView>
+#include <QUrl>
 
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
@@ -99,6 +100,7 @@ void TrackersAdditionDialog::onAccepted()
     QString firstInvalidTracker;
 
     QList<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(m_ui->textEditTrackersList->toPlainText());
+    QList<BitTorrent::TrackerEntry> validEntries;
     for (BitTorrent::TrackerEntry &entry : entries)
     {
         if (!isValidEndpoint(entry.url))
@@ -109,6 +111,7 @@ void TrackersAdditionDialog::onAccepted()
             continue;
         }
         entry.tier = Utils::Number::clampingAdd(entry.tier, baseTier);
+        validEntries.append(entry);
     }
 
     if (invalidTrackersCount > 1)
@@ -121,7 +124,7 @@ void TrackersAdditionDialog::onAccepted()
         QMessageBox::warning(this, tr("Invalid tracker URL")
             , tr("The tracker URL \"%1\" is invalid.").arg(firstInvalidTracker));
     }
-    m_torrent->addTrackers(entries);
+    m_torrent->addTrackers(validEntries);
 }
 
 void TrackersAdditionDialog::onDownloadButtonClicked()
@@ -154,7 +157,7 @@ void TrackersAdditionDialog::onTorrentListDownloadFinished(const Net::DownloadRe
         return;
     }
 
-    if (!result.contentType.contains(u"text/plain", Qt::CaseInsensitive))
+    if (result.contentType.section(u';', 0, 0).trimmed().compare(u"text/plain", Qt::CaseInsensitive) != 0)
     {
         QMessageBox::warning(this, tr("Download trackers list error")
             , tr("The content type of the downloaded file is not \"text/plain\". Received Content-Type: \"%1\".").arg(result.contentType));

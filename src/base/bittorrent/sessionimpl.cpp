@@ -4260,11 +4260,11 @@ void SessionImpl::updateTrackersFromURL()
         {
             if (result.status == Net::DownloadStatus::Success)
             {
-                if (!result.contentType.contains(u"text/plain", Qt::CaseInsensitive))
+                if (result.contentType.section(u';', 0, 0).trimmed().compare(u"text/plain", Qt::CaseInsensitive) != 0)
                 {
                     LogMsg(tr("Cannot add trackers from URL due to unexpected Content-Type. Expected: \"text/plain\". Received: \"%1\".")
                         .arg(result.contentType), Log::WARNING);
-                    Utils::Fs::removeFile(path);
+                    std::ignore = Utils::Fs::removeFile(path);
                     return;
                 }
                 setAdditionalTrackersFromURL(QString::fromUtf8(result.data));
