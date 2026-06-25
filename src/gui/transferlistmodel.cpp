@@ -86,6 +86,26 @@ namespace
         }
         return colors;
     }
+
+    QString relativeTimeString(const QDateTime &dt)
+    {
+        if (!dt.isValid())
+            return {};
+        const qint64 secs = dt.secsTo(QDateTime::currentDateTime());
+        if (secs < 0)
+            return {};
+        if (secs < 60)
+            return QObject::tr("Just now");
+        if (secs < 3600)
+            return QObject::tr("%1 minutes ago").arg(secs / 60);
+        if (secs < 86400)
+            return QObject::tr("%1 hours ago").arg(secs / 3600);
+        if (secs < 2592000)
+            return QObject::tr("%1 days ago").arg(secs / 86400);
+        if (secs < 31536000)
+            return QObject::tr("%1 months ago").arg(secs / 2592000);
+        return QObject::tr("%1 years ago").arg(secs / 31536000);
+    }
 }
 
 // TransferListModel
@@ -173,6 +193,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_CATEGORY: return tr("Category");
             case TR_TAGS: return tr("Tags");
             case TR_CREATE_DATE: return tr("Created On", "Torrent was initially created on 01/01/2010 08:00");
+            case TR_ADD_DATE_RELATIVE: return tr("Added", "How long ago the torrent was added, e.g. '2 days ago'");
             case TR_ADD_DATE: return tr("Added On", "Torrent was added to transfer list on 01/01/2010 08:00");
             case TR_SEED_DATE: return tr("Completed On", "Torrent was completed on 01/01/2010 08:00");
             case TR_TRACKER: return tr("Tracker");
@@ -447,6 +468,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return reannounceString(torrent->nextAnnounce());
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
+    case TR_ADD_DATE_RELATIVE:
+        return relativeTimeString(torrent->addedTime());
     }
 
     return {};
@@ -532,6 +555,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_ADD_DATE_RELATIVE:
+        return torrent->addedTime();
     }
 
     return {};
