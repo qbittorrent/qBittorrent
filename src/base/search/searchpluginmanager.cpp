@@ -555,7 +555,7 @@ void SearchPluginManager::update()
     {
         Utils::ForeignApps::PYTHON_ISOLATE_MODE_FLAG,
         Utils::ForeignApps::PYTHON_UTF8_MODE_FLAG,
-        (engineLocation() / Path(u"/nova2.py"_s)).toString(),
+        (engineLocation() / Path(u"nova2.py"_s)).toString(),
         u"--capabilities"_s
     };
     nova.start(Utils::ForeignApps::pythonInfo().executablePath.data(), params, QIODevice::ReadOnly);
