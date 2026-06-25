@@ -175,6 +175,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_CREATE_DATE: return tr("Created On", "Torrent was initially created on 01/01/2010 08:00");
             case TR_ADD_DATE: return tr("Added On", "Torrent was added to transfer list on 01/01/2010 08:00");
             case TR_SEED_DATE: return tr("Completed On", "Torrent was completed on 01/01/2010 08:00");
+            case TR_DOWNLOAD_DURATION: return tr("Download Duration", "Time elapsed between adding and completing the torrent download");
             case TR_TRACKER: return tr("Tracker");
             case TR_DLLIMIT: return tr("Down Limit", "i.e: Download limit");
             case TR_UPLIMIT: return tr("Up Limit", "i.e: Upload limit");
@@ -447,6 +448,17 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return reannounceString(torrent->nextAnnounce());
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
+    case TR_DOWNLOAD_DURATION:
+    {
+        const QDateTime added = torrent->addedTime();
+        const QDateTime completed = torrent->completedTime();
+        if (!added.isValid() || !completed.isValid())
+            return {};
+        const qint64 secs = added.secsTo(completed);
+        if (secs <= 0)
+            return {};
+        return Utils::Misc::userFriendlyDuration(secs);
+    }
     }
 
     return {};
@@ -532,6 +544,15 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_DOWNLOAD_DURATION:
+    {
+        const QDateTime added = torrent->addedTime();
+        const QDateTime completed = torrent->completedTime();
+        if (!added.isValid() || !completed.isValid())
+            return {};
+        const qint64 secs = added.secsTo(completed);
+        return (secs > 0) ? QVariant(secs) : QVariant();
+    }
     }
 
     return {};
