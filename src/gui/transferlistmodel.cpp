@@ -86,6 +86,38 @@ namespace
         }
         return colors;
     }
+
+    QString fileTypesString(const BitTorrent::Torrent *torrent)
+    {
+        if (!torrent->hasMetadata())
+            return {};
+
+        static const QHash<QString, QString> extMap = {
+            {u"mkv"_s, u"Video"_s}, {u"mp4"_s, u"Video"_s}, {u"avi"_s, u"Video"_s},
+            {u"mov"_s, u"Video"_s}, {u"wmv"_s, u"Video"_s}, {u"m4v"_s, u"Video"_s},
+            {u"ts"_s,  u"Video"_s}, {u"flv"_s, u"Video"_s}, {u"webm"_s, u"Video"_s},
+            {u"mp3"_s, u"Audio"_s}, {u"flac"_s, u"Audio"_s}, {u"aac"_s, u"Audio"_s},
+            {u"ogg"_s, u"Audio"_s}, {u"m4a"_s, u"Audio"_s}, {u"wav"_s, u"Audio"_s},
+            {u"zip"_s, u"Archive"_s}, {u"rar"_s, u"Archive"_s}, {u"7z"_s, u"Archive"_s},
+            {u"tar"_s, u"Archive"_s}, {u"gz"_s, u"Archive"_s}, {u"iso"_s, u"Archive"_s},
+            {u"srt"_s, u"Subtitles"_s}, {u"ass"_s, u"Subtitles"_s}, {u"sub"_s, u"Subtitles"_s},
+            {u"pdf"_s, u"Document"_s}, {u"epub"_s, u"Document"_s}, {u"cbz"_s, u"Document"_s},
+            {u"exe"_s, u"Software"_s}, {u"dmg"_s, u"Software"_s}, {u"pkg"_s, u"Software"_s},
+        };
+
+        QSet<QString> seen;
+        for (const Path &p : torrent->filePaths())
+        {
+            const QString ext = p.filename().section(u'.', -1).toLower();
+            seen.insert(extMap.value(ext, u"Other"_s));
+        }
+
+        QStringList ordered;
+        for (const QString &cat : {u"Video"_s, u"Audio"_s, u"Archive"_s, u"Subtitles"_s, u"Document"_s, u"Software"_s, u"Other"_s})
+            if (seen.contains(cat))
+                ordered << cat;
+        return ordered.join(u", "_s);
+    }
 }
 
 // TransferListModel
@@ -173,6 +205,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_CATEGORY: return tr("Category");
             case TR_TAGS: return tr("Tags");
             case TR_CREATE_DATE: return tr("Created On", "Torrent was initially created on 01/01/2010 08:00");
+            case TR_FILE_TYPES: return tr("File Types", "Categories of files inside the torrent, e.g. Video, Audio");
             case TR_ADD_DATE: return tr("Added On", "Torrent was added to transfer list on 01/01/2010 08:00");
             case TR_SEED_DATE: return tr("Completed On", "Torrent was completed on 01/01/2010 08:00");
             case TR_TRACKER: return tr("Tracker");
@@ -447,6 +480,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return reannounceString(torrent->nextAnnounce());
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
+    case TR_FILE_TYPES:
+        return fileTypesString(torrent);
     }
 
     return {};
@@ -532,6 +567,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_FILE_TYPES:
+        return fileTypesString(torrent);
     }
 
     return {};
