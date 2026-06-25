@@ -1208,60 +1208,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["num_seeds"].dataProperties.push("num_complete");
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
             this.columns["time_active"].dataProperties.push("seeding_time");
+            this.columns["progress"].dataProperties.push("state");
 
             this.initColumnsFunctions();
         }
 
         initColumnsFunctions() {
             const getStateIconClasses = (state) => {
-                let stateClass = "stateUnknown";
-                // normalize states
-                switch (state) {
-                    case "forcedDL":
-                    case "metaDL":
-                    case "forcedMetaDL":
-                    case "downloading":
-                        stateClass = "stateDownloading";
-                        break;
-                    case "forcedUP":
-                    case "uploading":
-                        stateClass = "stateUploading";
-                        break;
-                    case "stalledUP":
-                        stateClass = "stateStalledUP";
-                        break;
-                    case "stalledDL":
-                        stateClass = "stateStalledDL";
-                        break;
-                    case "stoppedDL":
-                        stateClass = "stateStoppedDL";
-                        break;
-                    case "stoppedUP":
-                        stateClass = "stateStoppedUP";
-                        break;
-                    case "queuedDL":
-                    case "queuedUP":
-                        stateClass = "stateQueued";
-                        break;
-                    case "checkingDL":
-                    case "checkingUP":
-                    case "queuedForChecking":
-                    case "checkingResumeData":
-                        stateClass = "stateChecking";
-                        break;
-                    case "moving":
-                        stateClass = "stateMoving";
-                        break;
-                    case "error":
-                    case "unknown":
-                    case "missingFiles":
-                        stateClass = "stateError";
-                        break;
-                    default:
-                        break; // do nothing
-                }
-
-                return `stateIcon ${stateClass}`;
+                return `stateIcon ${window.qBittorrent.Misc.getTorrentStateInfo(state).stateIconClass}`;
             };
 
             const displaySize = function(td, row) {
@@ -1367,63 +1321,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (!state)
                     return;
 
-                let status;
-                switch (state) {
-                    case "downloading":
-                        status = "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "stalledDL":
-                        status = "QBT_TR(Stalled)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "metaDL":
-                        status = "QBT_TR(Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "forcedMetaDL":
-                        status = "QBT_TR([F] Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "forcedDL":
-                        status = "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "uploading":
-                    case "stalledUP":
-                        status = "QBT_TR(Seeding)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "forcedUP":
-                        status = "QBT_TR([F] Seeding)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "queuedDL":
-                    case "queuedUP":
-                        status = "QBT_TR(Queued)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "checkingDL":
-                    case "checkingUP":
-                        status = "QBT_TR(Checking)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "queuedForChecking":
-                        status = "QBT_TR(Queued for checking)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "checkingResumeData":
-                        status = "QBT_TR(Checking resume data)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "stoppedDL":
-                        status = "QBT_TR(Stopped)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "stoppedUP":
-                        status = "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "moving":
-                        status = "QBT_TR(Moving)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "missingFiles":
-                        status = "QBT_TR(Missing Files)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "error":
-                        status = "QBT_TR(Errored)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    default:
-                        status = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
-                }
-
+                const status = window.qBittorrent.Misc.getTorrentStateInfo(state).statusText;
                 td.textContent = status;
                 td.title = status;
             };
@@ -1468,16 +1366,19 @@ window.qBittorrent.DynamicTable ??= (() => {
             // progress
             this.columns["progress"].updateTd = function(td, row) {
                 const progress = this.getRowValue(row);
-                const progressFormatted = window.qBittorrent.Misc.toFixedPointString((progress * 100), 1);
+                const progressValue = progress * 100;
 
-                const div = td.firstElementChild;
-                if (div !== null) {
-                    if (div.getValue() !== progressFormatted)
-                        div.setValue(progressFormatted);
+                let progressBar = td.firstElementChild;
+                if (progressBar === null) {
+                    progressBar = new window.qBittorrent.ProgressBar.ProgressBar(progressValue);
+                    td.append(progressBar);
                 }
                 else {
-                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted));
+                    progressBar.setValue(progressValue);
                 }
+
+                const state = row.full_data.state;
+                progressBar.setBarColor(window.qBittorrent.Misc.getTorrentStateInfo(state).progressColor);
             };
             this.columns["progress"].staticWidth = 100;
 
@@ -1826,7 +1727,6 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.selectRow(tr.rowId);
                 const row = this.getRow(tr.rowId);
                 const state = row["full_data"].state;
-
                 const prefKey =
                     (state !== "uploading")
                     && (state !== "stoppedUP")
