@@ -32,6 +32,7 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QRegularExpression>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
@@ -85,6 +86,52 @@ namespace
             colors.insert(colorDescriptor.state, themeColor);
         }
         return colors;
+    }
+
+    QString cleanTorrentName(const QString &rawName)
+    {
+        QString name = rawName;
+
+        // Strip leading [Tag] — anime fansub groups e.g. "[SubsPlease] "
+        static const QRegularExpression leadingBracket(u"^\\s*\\[[^\\]]*\\]\\s*"_s);
+        name.remove(leadingBracket);
+
+        // Replace dots/underscores used as word separators with spaces
+        static const QRegularExpression dotSep(u"(?<=[\\w)])\\."
+                                               "(?=[\\w(])"_s);
+        name.replace(dotSep, u" "_s);
+        name.replace(u'_', u' ');
+
+        // Remove bracket-enclosed technical tags — anime style e.g. "[1080p][Hi10][AAC][CRC32]"
+        static const QRegularExpression bracketTech(
+            u"\\s*\\[[^\\]]*(?:\\d{3,4}[pi]|x26[45]|HEVC|AVC|Hi10|Hi8|"
+            u"AAC|AC3|FLAC|DTS|MP3|Opus|[0-9A-Fa-f]{8})[^\\]]*\\]"_s,
+            QRegularExpression::CaseInsensitiveOption
+        );
+        name.remove(bracketTech);
+
+        // Strip from the first recognised technical token to the end of the string.
+        // Handles scene releases: "Movie Name 2008 1080p BluRay x264-GRP" → "Movie Name 2008"
+        static const QRegularExpression techToken(
+            u"(?:^|\\s)(?:"
+            u"2160[pi]?|1080[pi]?|720[pi]?|480[pi]?|4[Kk](?:[Hh][Dd][Rr])?|8[Kk]|"
+            u"Blu-?Ray|BDRip|BRRip|WEB-?(?:DL|Rip)?|HDTV|PDTV|DVDRip|DVD|"
+            u"CAM(?:Rip)?|HDCAM|R5|SCR|DVDSCR|"
+            u"x26[45]|[Hh]\\.?26[45]|HEVC|AVC|XviD|DivX|VP9|AV1|"
+            u"DD[P+]?(?:\\s*5\\.1)?|DTS(?:-HD|-X|-MA)?|TrueHD|Atmos|AC-?3|AAC|FLAC|MP3|Opus|"
+            u"HDR(?:10\\+?)?|SDR|DV|DoVi|Dolby(?:\\s+Vision)?|"
+            u"REMUX|REPACK|PROPER|EXTENDED|THEATRICAL|UNRATED|DC|COMPLETE|INTERNAL|"
+            u"(?:10|8)[Bb]it"
+            u")(?=\\b|\\s|-|$).*$"_s,
+            QRegularExpression::CaseInsensitiveOption
+        );
+        name.remove(techToken);
+
+        // Strip trailing bare release group suffix: "Some Title -GROUP"
+        static const QRegularExpression trailingGroup(u"\\s+-\\w+\\s*$"_s);
+        name.remove(trailingGroup);
+
+        return name.simplified();
     }
 }
 
@@ -175,6 +222,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_CREATE_DATE: return tr("Created On", "Torrent was initially created on 01/01/2010 08:00");
             case TR_ADD_DATE: return tr("Added On", "Torrent was added to transfer list on 01/01/2010 08:00");
             case TR_SEED_DATE: return tr("Completed On", "Torrent was completed on 01/01/2010 08:00");
+            case TR_DISPLAY_NAME: return tr("Clean Name", "Torrent name with scene/release tags stripped");
             case TR_TRACKER: return tr("Tracker");
             case TR_DLLIMIT: return tr("Down Limit", "i.e: Download limit");
             case TR_UPLIMIT: return tr("Up Limit", "i.e: Upload limit");
@@ -447,6 +495,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return reannounceString(torrent->nextAnnounce());
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
+    case TR_DISPLAY_NAME:
+        return cleanTorrentName(torrent->name());
     }
 
     return {};
@@ -532,6 +582,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_DISPLAY_NAME:
+        return cleanTorrentName(torrent->name());
     }
 
     return {};
@@ -559,7 +611,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     case AdditionalUnderlyingDataRole:
         return internalValue(torrent, index.column(), true);
     case Qt::DecorationRole:
-        if (index.column() == TR_NAME)
+        if (index.column() == TR_NAME || index.column() == TR_DISPLAY_NAME)
             return getIconByState(torrent->state());
         break;
     case Qt::ToolTipRole:
@@ -575,6 +627,8 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_INFOHASH_V1:
         case TR_INFOHASH_V2:
             return displayValue(torrent, index.column());
+        case TR_DISPLAY_NAME:
+            return torrent->name();
         }
         break;
     case Qt::TextAlignmentRole:
