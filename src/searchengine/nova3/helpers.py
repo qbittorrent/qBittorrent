@@ -45,6 +45,18 @@ from typing import Any, Optional, cast
 import socks
 
 
+def _create_ssl_context() -> ssl.SSLContext:
+    ctx = ssl.create_default_context()
+    # Python.org builds ship a bundled OpenSSL that ignores the macOS system
+    # keychain. Load from the system CA bundle directly as a fallback.
+    if sys.platform == 'darwin' and os.path.exists('/etc/ssl/cert.pem'):
+        ctx.load_verify_locations('/etc/ssl/cert.pem')
+    return ctx
+
+
+_ssl_context: ssl.SSLContext = _create_ssl_context()
+
+
 def _getBrowserUserAgent() -> str:
     """
     Disguise as browser to circumvent website blocking
@@ -87,7 +99,7 @@ def enable_socks_proxy(enable: bool) -> None:
 htmlentitydecode = html.unescape
 
 
-def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data: Optional[Any] = None, ssl_context: Optional[ssl.SSLContext] = None, unescape_html_entities: bool = True) -> str:
+def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data: Optional[Any] = None, ssl_context: ssl.SSLContext = _ssl_context, unescape_html_entities: bool = True) -> str:
     """
     Return the content of the url page as a string
     """
@@ -120,7 +132,7 @@ def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data:
     return dataStr
 
 
-def download_file(url: str, referer: Optional[str] = None, ssl_context: Optional[ssl.SSLContext] = None) -> str:
+def download_file(url: str, referer: Optional[str] = None, ssl_context: ssl.SSLContext = _ssl_context) -> str:
     """
     Download file at url and write it to a file, return both the path to the file and the url
     """
