@@ -144,6 +144,18 @@ namespace MacUtils
         }
     }
 
+    void openPath(const Path &path)
+    {
+        @autoreleasepool
+        {
+            NSURL *url = [NSURL fileURLWithPath:path.toString().toNSString()];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
+            {
+                [[NSWorkspace sharedWorkspace] openURL:url];
+            });
+        }
+    }
+
     bool isMagnetLinkAssocSet()
     {
         @autoreleasepool
