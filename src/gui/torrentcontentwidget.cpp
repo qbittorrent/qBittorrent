@@ -252,13 +252,11 @@ void TorrentContentWidget::mousePressEvent(QMouseEvent *event)
 
 void TorrentContentWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (m_ignoreNextCheckIndicatorRelease)
+    if (m_ignoreMouseReleaseOnCheckIndicator)
     {
-        m_ignoreNextCheckIndicatorRelease = false;
+        m_ignoreMouseReleaseOnCheckIndicator = false;
 
-        const QPoint position = event->position().toPoint();
-        const QModelIndex nameIndex = indexAt(position).siblingAtColumn(TorrentContentModelItem::COL_NAME);
-        if (isCheckIndicatorAt(nameIndex, position))
+        if (isCheckIndicatorAt(event->position().toPoint()))
         {
             event->accept();
             return;
@@ -271,13 +269,13 @@ void TorrentContentWidget::mouseReleaseEvent(QMouseEvent *event)
 void TorrentContentWidget::mouseDoubleClickEvent(QMouseEvent *event)
 {
     const QPoint position = event->position().toPoint();
-    const QModelIndex nameIndex = indexAt(position).siblingAtColumn(TorrentContentModelItem::COL_NAME);
-    if (isCheckIndicatorAt(nameIndex, position))
+    if (isCheckIndicatorAt(position))
     {
+        const QModelIndex nameIndex = indexAt(position).siblingAtColumn(TorrentContentModelItem::COL_NAME);
         const Qt::CheckState state = static_cast<Qt::CheckState>(nameIndex.data(Qt::CheckStateRole).toInt());
         model()->setData(nameIndex, ((state == Qt::Checked) ? Qt::Unchecked : Qt::Checked), Qt::CheckStateRole);
 
-        m_ignoreNextCheckIndicatorRelease = true;
+        m_ignoreMouseReleaseOnCheckIndicator = true;
         event->accept();
         return;
     }
@@ -381,13 +379,11 @@ void TorrentContentWidget::applyPrioritiesByOrder()
     }
 }
 
-bool TorrentContentWidget::isCheckIndicatorAt(const QModelIndex &index, const QPoint &position) const
+bool TorrentContentWidget::isCheckIndicatorAt(const QPoint &position) const
 {
-    if (!index.isValid() || (index.column() != TorrentContentModelItem::COL_NAME)
-        || !index.data(Qt::CheckStateRole).isValid())
-    {
+    const QModelIndex index = indexAt(position).siblingAtColumn(TorrentContentModelItem::COL_NAME);
+    if (!index.isValid() || !index.data(Qt::CheckStateRole).isValid())
         return false;
-    }
 
     QStyleOptionViewItem option;
     initViewItemOption(&option);

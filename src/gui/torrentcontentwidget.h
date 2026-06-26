@@ -113,7 +113,7 @@ private:
     void wheelEvent(QWheelEvent *event) override;
     void rowsInserted(const QModelIndex &parent, int start, int end) override;
 
-    bool isCheckIndicatorAt(const QModelIndex &index, const QPoint &position) const;
+    bool isCheckIndicatorAt(const QPoint &position) const;
     QModelIndex currentNameCell() const;
     void displayColumnHeaderMenu();
     void displayContextMenu();
@@ -140,5 +140,5 @@ private:
 
     bool m_contentDragAllowed = false;
     bool m_contentDragEnabled = false;
-    bool m_ignoreNextCheckIndicatorRelease = false;
+    bool m_ignoreMouseReleaseOnCheckIndicator = false;
 };
