@@ -61,8 +61,9 @@ namespace BitTorrent
         QString comment() const;
         QList<TrackerEntry> trackers() const;
         QList<QUrl> urlSeeds() const;
-        const std::optional<TorrentInfo> &info() const;
+        PathList filePaths() const;
 
+        const std::optional<TorrentInfo> &info() const;
         void setTorrentInfo(TorrentInfo torrentInfo);
 
         static nonstd::expected<TorrentDescriptor, QString> load(const QByteArray &data) noexcept;

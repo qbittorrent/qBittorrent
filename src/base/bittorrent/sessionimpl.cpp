@@ -2832,7 +2832,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         filePaths = addTorrentParams.filePaths;
         if (filePaths.isEmpty())
         {
-            filePaths = torrentInfo.filePaths();
+            filePaths = source.filePaths();
             if (loadTorrentParams.contentLayout != TorrentContentLayout::Original)
             {
                 const Path originalRootFolder = Path::findRootFolder(filePaths);
