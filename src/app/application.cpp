@@ -1181,6 +1181,22 @@ bool Application::event(QEvent *ev)
         return true;
     }
 
+    if (ev->type() == QEvent::Quit)
+    {
+        // On macOS a QEvent::Quit is delivered when the user quits via Cmd+Q,
+        // the Dock menu or the application menu. The default handler closes all
+        // top-level windows, but MainWindow::closeEvent only hides the window
+        // (ignoring the close) unless an explicit exit was requested. That would
+        // cancel the termination and leave qBittorrent stuck running with no
+        // visible window. Route the request through the same path as the "Exit"
+        // menu action so the application actually quits.
+        if (m_window)
+        {
+            m_window->forceExit();
+            return true;
+        }
+    }
+
     return BaseApplication::event(ev);
 }
 #endif // Q_OS_MACOS
