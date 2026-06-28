@@ -1,7 +1,6 @@
-qBittorrent WebUI
----
+# qBittorrent WebUI
 
-### Browser compatibility
+## Browser compatibility
 
 The upper bound will always be the latest stable release.
 
@@ -19,7 +18,7 @@ The upper bound will always be the latest stable release.
 [MSEdge-lower-bound-link]: https://browsersl.ist/?results#q=Edge+%3E+0+and+last+1+year
 [Safari-lower-bound-link]: https://browsersl.ist/?results#q=Safari+%3E+0+and+last+1+year
 
-### Notices
+## Notices
 
 * The [MooTools library][mootools-home] has seen [little maintenance][mootools-code-frequency] and therefore
   its usage is [discouraged][mootools-deprecate]. \
