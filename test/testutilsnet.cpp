@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
+ * Copyright (C) 2026  Andy Ye <35905412+TurboTheTurtle@users.noreply.github.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,43 +26,35 @@
  * exception statement from your version.
  */
 
-#include "peerlistsortmodel.h"
-
 #include <QHostAddress>
-#include <QMetaType>
+#include <QObject>
+#include <QTest>
 
+#include "base/global.h"
 #include "base/utils/net.h"
-#include "peerlistwidget.h"
 
-PeerListSortModel::PeerListSortModel(QObject *parent)
-    : QSortFilterProxyModel(parent)
+class TestUtilsNet final : public QObject
 {
-    setSortRole(UnderlyingDataRole);
-}
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TestUtilsNet)
 
-bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
-{
-    switch (sortColumn())
+public:
+    TestUtilsNet() = default;
+
+private slots:
+    void testIsIPAddressLessThan() const
     {
-    case PeerListWidget::IP:
-        {
-            const QVariant leftData = left.data(UnderlyingDataRole);
-            const QVariant rightData = right.data(UnderlyingDataRole);
-            const QMetaType hostAddressType = QMetaType::fromType<QHostAddress>();
-            if ((leftData.metaType() == hostAddressType) && (rightData.metaType() == hostAddressType))
-                return Utils::Net::isIPAddressLessThan(leftData.value<QHostAddress>(), rightData.value<QHostAddress>());
+        QVERIFY(Utils::Net::isIPAddressLessThan(QHostAddress(u"127.0.0.1"_s), QHostAddress(u"127.0.0.2"_s)));
+        QVERIFY(!Utils::Net::isIPAddressLessThan(QHostAddress(u"127.0.0.1"_s), QHostAddress(u"127.0.0.1"_s)));
+        QVERIFY(!Utils::Net::isIPAddressLessThan(QHostAddress(u"127.0.0.2"_s), QHostAddress(u"127.0.0.1"_s)));
 
-            return m_naturalLessThan(leftData.toString(), rightData.toString());
-        }
-        break;
-    case PeerListWidget::CLIENT:
-        {
-            const QString strL = left.data(UnderlyingDataRole).toString();
-            const QString strR = right.data(UnderlyingDataRole).toString();
-            return m_naturalLessThan(strL, strR);
-        }
-        break;
-    default:
-        return QSortFilterProxyModel::lessThan(left, right);
-    };
-}
+        QVERIFY(Utils::Net::isIPAddressLessThan(QHostAddress(u"2001:db8::f"_s), QHostAddress(u"2001:db8::10"_s)));
+        QVERIFY(!Utils::Net::isIPAddressLessThan(QHostAddress(u"2001:db8::10"_s), QHostAddress(u"2001:db8::f"_s)));
+
+        QVERIFY(Utils::Net::isIPAddressLessThan(QHostAddress(u"255.255.255.255"_s), QHostAddress(u"::1"_s)));
+        QVERIFY(!Utils::Net::isIPAddressLessThan(QHostAddress(u"::1"_s), QHostAddress(u"255.255.255.255"_s)));
+    }
+};
+
+QTEST_APPLESS_MAIN(TestUtilsNet)
+#include "testutilsnet.moc"
