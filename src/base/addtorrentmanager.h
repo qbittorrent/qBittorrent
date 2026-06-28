@@ -67,6 +67,7 @@ public:
 
 signals:
     void torrentAdded(const QString &source, BitTorrent::Torrent *torrent);
+    void torrentTrackersMerged(const QString &source, BitTorrent::Torrent *torrent);
     void addTorrentFailed(const QString &source, const BitTorrent::AddTorrentError &reason);
 
 protected:

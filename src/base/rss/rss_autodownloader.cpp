@@ -129,6 +129,8 @@ AutoDownloader::AutoDownloader(IApplication *app)
 
     connect(app->addTorrentManager(), &AddTorrentManager::torrentAdded
             , this, &AutoDownloader::handleTorrentAdded);
+    connect(app->addTorrentManager(), &AddTorrentManager::torrentTrackersMerged
+            , this, &AutoDownloader::handleTorrentAdded);
     connect(app->addTorrentManager(), &AddTorrentManager::addTorrentFailed
             , this, &AutoDownloader::handleAddTorrentFailed);
 

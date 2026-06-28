@@ -170,6 +170,7 @@ void AddTorrentManager::handleDuplicateTorrent(const QString &source
 
     const bool isPrivate = existingTorrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate());
     QString message;
+    bool trackersMerged = false;
     if (!btSession()->isMergeTrackersEnabled())
     {
         message = tr("Merging of trackers is disabled");
@@ -184,11 +185,15 @@ void AddTorrentManager::handleDuplicateTorrent(const QString &source
         existingTorrent->addTrackers(torrentDescr.trackers());
         existingTorrent->addUrlSeeds(torrentDescr.urlSeeds());
         message = tr("Trackers are merged from new source");
+        trackersMerged = true;
     }
 
     LogMsg(tr("Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: \"%2\". Torrent infohash: %3. Result: %4")
             .arg(source, existingTorrent->name(), existingTorrent->infoHash().toString(), message));
-    emit addTorrentFailed(source, {BitTorrent::AddTorrentError::DuplicateTorrent, message});
+    if (trackersMerged)
+        emit torrentTrackersMerged(source, existingTorrent);
+    else
+        emit addTorrentFailed(source, {BitTorrent::AddTorrentError::DuplicateTorrent, message});
 }
 
 void AddTorrentManager::setTorrentFileGuard(const QString &source, std::shared_ptr<TorrentFileGuard> torrentFileGuard)

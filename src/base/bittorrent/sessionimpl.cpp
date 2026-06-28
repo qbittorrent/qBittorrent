@@ -2793,7 +2793,6 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         const QString message = tr("Trackers are merged from new source");
         LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                 .arg(torrent->name(), torrent->infoHash().toString(), message));
-        emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
         return false;
     }
 
