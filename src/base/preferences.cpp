@@ -2176,6 +2176,32 @@ void Preferences::setAddNewTorrentDialogAttached(const bool attached)
     setValue(u"AddNewTorrentDialog/Attached"_s, attached);
 }
 
+bool Preferences::isFixMutatedFilenamesEnabled() const
+{
+    return value(u"Preferences/Advanced/FixMutatedFilenames"_s, true);
+}
+
+void Preferences::setFixMutatedFilenamesEnabled(const bool enabled)
+{
+    if (enabled == isFixMutatedFilenamesEnabled())
+        return;
+
+    setValue(u"Preferences/Advanced/FixMutatedFilenames"_s, enabled);
+}
+
+bool Preferences::isUseDedupedFilenamesEnabled() const
+{
+    return value(u"Preferences/Advanced/UseDedupedFilenames"_s, false);
+}
+
+void Preferences::setUseDedupedFilenamesEnabled(const bool enabled)
+{
+    if (enabled == isUseDedupedFilenamesEnabled())
+        return;
+
+    setValue(u"Preferences/Advanced/UseDedupedFilenames"_s, enabled);
+}
+
 void Preferences::apply()
 {
     if (SettingsStorage::instance()->save())

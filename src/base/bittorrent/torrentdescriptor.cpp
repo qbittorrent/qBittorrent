@@ -42,6 +42,7 @@
 #include "base/preferences.h"
 #include "base/utils/io.h"
 #include "infohash.h"
+#include "managededupedfilenames.h"
 #include "trackerentry.h"
 
 namespace
@@ -175,6 +176,8 @@ BitTorrent::TorrentDescriptor::TorrentDescriptor(lt::add_torrent_params ltAddTor
         m_creator = QString::fromStdString(m_ltAddTorrentParams.ti->creator());
         m_comment = QString::fromStdString(m_ltAddTorrentParams.ti->comment());
 #endif
+        if (Preferences::instance()->isUseDedupedFilenamesEnabled())
+            manageDedupedFilenames(m_ltAddTorrentParams, DedupeAction::Insert);
     }
 }
 
@@ -228,6 +231,8 @@ void BitTorrent::TorrentDescriptor::setTorrentInfo(TorrentInfo torrentInfo)
 #else
         m_ltAddTorrentParams.info_hash = m_ltAddTorrentParams.ti->info_hash();
 #endif
+        if (Preferences::instance()->isUseDedupedFilenamesEnabled())
+            manageDedupedFilenames(m_ltAddTorrentParams, DedupeAction::MagnetInsert);
     }
 }
 
