@@ -118,6 +118,7 @@ add_library(qbt_base STATIC
     utils/foreignapps.h
     utils/fs.h
     utils/gzip.h
+    utils/hashvalue.h
     utils/io.h
     utils/misc.h
     utils/net.h
