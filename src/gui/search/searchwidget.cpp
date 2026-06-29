@@ -432,12 +432,7 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     connect(focusSearchHotkeyAlternative, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
 
     const auto *closeTabHotkey = new QShortcut(QKeySequence::Close, this);
-    connect(closeTabHotkey, &QShortcut::activated, this, [this]()
-    {
-        const int currentIndex = m_ui->tabWidget->currentIndex();
-        if (currentIndex >= 0)
-            closeTab(currentIndex);
-    });
+    connect(closeTabHotkey, &QShortcut::activated, this, &SearchWidget::closeCurrentTab);
 
     m_historyLength = Preferences::instance()->searchHistoryLength();
     m_storeOpenedTabs = Preferences::instance()->storeOpenedSearchTabs();
@@ -945,6 +940,16 @@ void SearchWidget::closeTab(const int index)
 
     QMetaObject::invokeMethod(m_dataStorage, [this, tabID] { m_dataStorage->removeTab(tabID); });
     saveSession();
+}
+
+bool SearchWidget::closeCurrentTab()
+{
+    const int currentIndex = m_ui->tabWidget->currentIndex();
+    if (currentIndex < 0)
+        return false;
+
+    closeTab(currentIndex);
+    return true;
 }
 
 void SearchWidget::closeAllTabs()
