@@ -209,10 +209,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.currentHeaderAction = "";
             this.canResize = false;
 
-            const resetElementBorderStyle = (el, side) => {
-                if ((side === "left") || (side !== "right"))
+            const resetElementBorderStyle = (el, side = "both") => {
+                if ((side === "left") || (side === "both"))
                     el.style.borderLeft = "";
-                if ((side === "right") || (side !== "left"))
+                if ((side === "right") || (side === "both"))
                     el.style.borderRight = "";
             };
 
