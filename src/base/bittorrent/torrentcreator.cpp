@@ -84,6 +84,8 @@ TorrentCreator::TorrentCreator(const TorrentCreatorParams &params, QObject *pare
 
 void TorrentCreator::sendProgressSignal(int currentPieceIdx, int totalPieces)
 {
+    Q_ASSERT(totalPieces > 0);
+
     emit progressUpdated(static_cast<int>((currentPieceIdx * 100.) / totalPieces));
 }
 
