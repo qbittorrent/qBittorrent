@@ -30,7 +30,8 @@
 #include <QTest>
 
 #include "base/bittorrent/peeraddress.h"
-#include "base/global.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -51,9 +52,13 @@ public:
 private slots:
     void testParse() const
     {
-        QCOMPARE(BitTorrent::PeerAddress::parse({}), BitTorrent::PeerAddress());
+        QCOMPARE(BitTorrent::PeerAddress::parse({}), {});
         QCOMPARE(BitTorrent::PeerAddress::parse(ipv4Str), ipv4);
         QCOMPARE(BitTorrent::PeerAddress::parse(ipv6Str), ipv6);
+
+        // malformed inputs
+        QCOMPARE(BitTorrent::PeerAddress::parse(u"1.2.3.4:80:80"), {});
+        QCOMPARE(BitTorrent::PeerAddress::parse(u"[2001::1]:80:80"), {});
     }
 
     void testToString() const

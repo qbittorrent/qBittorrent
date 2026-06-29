@@ -464,7 +464,8 @@ void TrackerListModel::refreshAnnounceTimes()
     for (int i = 0; i < rowCount(); ++i)
     {
         const QModelIndex parentIndex = index(i, 0);
-        emit dataChanged(index(0, COL_NEXT_ANNOUNCE, parentIndex), index((rowCount(parentIndex) - 1), COL_MIN_ANNOUNCE, parentIndex));
+        if (const int parentRowCount = rowCount(parentIndex); parentRowCount > 0)
+            emit dataChanged(index(0, COL_NEXT_ANNOUNCE, parentIndex), index((parentRowCount - 1), COL_MIN_ANNOUNCE, parentIndex));
     }
 
     m_announceRefreshTimer->start(ANNOUNCE_TIME_REFRESH_INTERVAL);
@@ -711,8 +712,10 @@ QModelIndex TrackerListModel::parent(const QModelIndex &index) const
 
 void TrackerListModel::onTrackersAdded(const QList<BitTorrent::TrackerEntry> &newTrackers)
 {
-    const int row = rowCount();
-    beginInsertRows({}, row, (row + newTrackers.size() - 1));
+    Q_ASSERT(!newTrackers.isEmpty());
+
+    const int rCount = rowCount();
+    beginInsertRows({}, rCount, (rCount + newTrackers.size() - 1));
     for (const BitTorrent::TrackerEntry &entry : newTrackers)
         addTrackerItem({entry.url, entry.tier});
     endInsertRows();
