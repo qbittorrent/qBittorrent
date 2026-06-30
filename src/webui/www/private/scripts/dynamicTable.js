@@ -79,7 +79,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDivId = dynamicTableDivId;
             this.dynamicTableFixedHeaderDivId = dynamicTableFixedHeaderDivId;
             this.dynamicTableDiv = document.getElementById(dynamicTableDivId);
-            this.useVirtualList = clientData.get("use_virtual_list") ?? true;
             this.fixedTableHeader = document.querySelector(`#${dynamicTableFixedHeaderDivId} thead tr`);
             this.table = this.dynamicTableDiv.querySelector("table");
             this.colgroup = document.createElement("colgroup");
@@ -106,8 +105,6 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         setupVirtualList() {
-            if (!this.useVirtualList)
-                return;
             this.table.style.position = "relative";
 
             this.renderedOffset = this.dynamicTableDiv.scrollTop;
@@ -129,10 +126,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDiv.addEventListener("scroll", (e) => {
                 tableElement.style.left = `${-this.dynamicTableDiv.scrollLeft}px`;
                 // rerender on scroll
-                if (this.useVirtualList) {
-                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
-                    this.rerender();
-                }
+                this.renderedOffset = this.dynamicTableDiv.scrollTop;
+                this.rerender();
             });
 
             this.dynamicTableDiv.addEventListener("click", (e) => {
@@ -447,8 +442,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.getRowCells(this.fixedTableHeader)[pos].style.cssText = style;
             this.colgroup.children[pos].style.width = `${column.width}px`;
             // rerender on column resize
-            if (this.useVirtualList)
-                this.rerender();
+            this.rerender();
 
             column.onResize?.(column.name);
         }
@@ -922,58 +916,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             const rowIds = new Set(rows.map(row => row.rowId));
             window.qBittorrent.Misc.filterInPlace(this.selectedRows, (selectedRow => rowIds.has(selectedRow)));
 
-            if (this.useVirtualList) {
-                // rerender on table update
-                this.rerender(rows);
-            }
-            else {
-                const trs = [...this.getTrs()];
-                const trMap = new Map(trs.map(tr => [tr.rowId, tr]));
-
-                for (const row of rows) {
-                    const rowId = row.rowId;
-                    const existingTr = trMap.get(rowId);
-                    if (existingTr !== undefined) {
-                        this.updateRow(existingTr, fullUpdate);
-                    }
-                    else {
-                        const tr = this.createRowElement(row);
-
-                        // TODO look into using DocumentFragment or appending all trs at once for add'l performance gains
-                        // add to end of table - we'll move into the proper order later
-                        this.tableBody.appendChild(tr);
-                        trMap.set(rowId, tr);
-
-                        this.updateRow(tr, true);
-                    }
-                }
-
-                // reorder table rows
-                let prevTr = null;
-                for (const [rowPos, { rowId }] of rows.entries()) {
-                    const tr = trMap.get(rowId);
-                    trMap.delete(rowId);
-
-                    const isInCorrectLocation = rowId === trs[rowPos]?.rowId;
-                    if (!isInCorrectLocation) {
-                        // move row into correct location
-                        if (prevTr === null) {
-                            // insert as first row in table
-                            if (trs.length === 0)
-                                this.tableBody.append(tr);
-                            else
-                                trs[0].before(tr);
-                        }
-                        else {
-                            prevTr.after(tr);
-                        }
-                    }
-                    prevTr = tr;
-                }
-
-                for (const tr of trMap.values())
-                    tr.remove();
-            }
+            // rerender on table update
+            this.rerender(rows);
         }
 
         rerender(rows = this.getFilteredAndSortedRows()) {
@@ -1053,11 +997,9 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             tr.className = "";
 
-            if (this.useVirtualList) {
-                tr.style.position = "absolute";
-                tr.style.top = `${top}px`;
-                tr.style.height = `${this.rowHeight}px`;
-            }
+            tr.style.position = "absolute";
+            tr.style.top = `${top}px`;
+            tr.style.height = `${this.rowHeight}px`;
         }
 
         getRowData(row, fullUpdate) {
@@ -1071,10 +1013,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             const tds = this.getRowCells(tr);
             for (let i = 0; i < this.columns.length; ++i) {
                 // required due to position: absolute breaks table layout
-                if (this.useVirtualList) {
-                    tds[i].style.width = `${this.columns[i].width}px`;
-                    tds[i].style.maxWidth = `${this.columns[i].width}px`;
-                }
+                tds[i].style.width = `${this.columns[i].width}px`;
+                tds[i].style.maxWidth = `${this.columns[i].width}px`;
                 if (this.columns[i].dataProperties.some(prop => Object.hasOwn(data, prop)))
                     this.columns[i].updateTd(tds[i], row);
             }
@@ -1084,25 +1024,13 @@ window.qBittorrent.DynamicTable ??= (() => {
         removeRow(rowId) {
             this.selectedRows.erase(rowId);
             this.rows.delete(rowId);
-            if (this.useVirtualList) {
-                this.rerender();
-            }
-            else {
-                const tr = this.getTrByRowId(rowId);
-                tr?.remove();
-            }
+            this.rerender();
         }
 
         clear() {
             this.deselectAll();
             this.rows.clear();
-            if (this.useVirtualList) {
-                this.rerender();
-            }
-            else {
-                for (const tr of this.getTrs())
-                    tr.remove();
-            }
+            this.rerender();
         }
 
         selectedRowsIds() {
@@ -2144,17 +2072,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         #updateTrackerRowState(id, shouldCollapse) {
-            // collapsed rows will be filtered out when using virtual list
-            if (this.useVirtualList)
-                return;
-
-            this.#updateTrackerCollapseIcon(id, shouldCollapse);
-
-            for (const row of this.getRowValues()) {
-                const parentId = row.full_data._tracker;
-                if (parentId === id)
-                    this.#updateEndpointVisibility(row.rowId, shouldCollapse);
-            }
+            // collapsed rows are filtered out in getFilteredAndSortedRows
         }
 
         clearCollapseState() {
@@ -2199,8 +2117,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     collapseIcon.addEventListener("click", (e) => {
                         const id = collapseIcon.dataset.id;
                         this.toggleTrackerCollapsed(id);
-                        if (this.useVirtualList)
-                            this.rerender();
+                        this.rerender();
                     });
                     td.append(collapseIcon);
                 }
@@ -2312,7 +2229,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             for (const row of this.getRowValues()) {
                 const tracker = row.full_data._tracker;
                 if (tracker) {
-                    if (this.useVirtualList && this.isTrackerCollapsed(tracker))
+                    if (this.isTrackerCollapsed(tracker))
                         continue;
                     const endpoints = trakcerEndpoints.get(tracker);
                     if (endpoints === undefined)
@@ -2339,13 +2256,6 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         updateTable(fullUpdate = false) {
             super.updateTable(fullUpdate);
-            if (!this.useVirtualList) {
-                for (const row of this.getRowValues()) {
-                    if (row.full_data._isTracker)
-                        continue;
-                    this.#updateEndpointVisibility(row.rowId, this.isTrackerCollapsed(row.full_data._tracker));
-                }
-            }
         }
 
         setupCommonEvents() {
@@ -2456,8 +2366,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             for (const [key, _] of this.collapseState)
                 this.expandNode(key);
 
-            if (this.useVirtualList)
-                this.rerender();
+            this.rerender();
         }
 
         collapseAllNodes() {
@@ -2470,8 +2379,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     this.collapseNode(key);
             }
 
-            if (this.useVirtualList)
-                this.rerender();
+            this.rerender();
         }
 
         #updateNodeVisibility(node, shouldHide) {
@@ -2496,9 +2404,8 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         #updateNodeState(id, shouldCollapse) {
-            // collapsed rows will be filtered out when using virtual list
-            if (this.useVirtualList)
-                return;
+            // collapsed rows are filtered out in getFilteredAndSortedRows
+            return;
             const node = this.getNode(id);
             if (!node.isFolder)
                 return;
@@ -2531,8 +2438,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const node = this.getNode(id);
             if (node.isFolder) {
                 this.expandNode(node.rowId);
-                if (this.useVirtualList)
-                    this.rerender();
+                this.rerender();
             }
         }
 
@@ -2543,8 +2449,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const node = this.getNode(id);
             if (node.isFolder && !this.isCollapsed(node.rowId)) {
                 this.collapseNode(node.rowId);
-                if (this.useVirtualList)
-                    this.rerender();
+                this.rerender();
                 return;
             }
 
@@ -2687,8 +2592,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                                 that.expandNode(node.rowId);
                             else
                                 that.collapseNode(node.rowId);
-                            if (that.useVirtualList)
-                                that.rerender();
+                            that.rerender();
                         }
                     });
                     td.append(collapseIcon);
@@ -2807,7 +2711,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             while (stack.length > 0) {
                 const node = stack.at(-1);
 
-                if (node.isFolder && (!this.useVirtualList || !this.isCollapsed(node.rowId))) {
+                if (node.isFolder && !this.isCollapsed(node.rowId)) {
                     if (node._visited === undefined) {
                         node._visited = true;
                         stack.push(...node.children);
@@ -2889,12 +2793,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             // sort, then filter
             this.#sortNodesByColumn(root, this.columns[this.sortedColumn]);
             const rows = (() => {
-                if (!this.useVirtualList && (this.filterTerms.length === 0)) {
-                    const nodeArray = this.fileTree.toArray();
-                    const filteredRows = nodeArray.map(node => this.getRow(node));
-                    return filteredRows;
-                }
-
                 return root.children.flatMap(node => this.#filterNodes(node, this.filterTerms));
             })();
 
@@ -3149,10 +3047,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDiv.addEventListener("scroll", (e) => {
                 headerDiv.scrollLeft = this.dynamicTableDiv.scrollLeft;
                 // rerender on scroll
-                if (this.useVirtualList) {
-                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
-                    this.rerender();
-                }
+                this.renderedOffset = this.dynamicTableDiv.scrollTop;
+                this.rerender();
             });
         }
     }
@@ -3242,8 +3138,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
         updateRowElement(tr, rowId, top) {
             super.updateRowElement(tr, rowId, top);
-            if (this.useVirtualList)
-                tr.style.width = "100%";
+            tr.style.width = "100%";
         }
     }
 
@@ -3292,8 +3187,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
         updateRowElement(tr, rowId, top) {
             super.updateRowElement(tr, rowId, top);
-            if (this.useVirtualList)
-                tr.style.width = "100%";
+            tr.style.width = "100%";
         }
     }
 
@@ -3350,8 +3244,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
         updateRowElement(tr, rowId, top) {
             super.updateRowElement(tr, rowId, top);
-            if (this.useVirtualList)
-                tr.style.width = "100%";
+            tr.style.width = "100%";
         }
     }
 
@@ -3390,8 +3283,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         selectRow() {}
         updateRowElement(tr, rowId, top) {
             super.updateRowElement(tr, rowId, top);
-            if (this.useVirtualList)
-                tr.style.width = "100%";
+            tr.style.width = "100%";
         }
     }
 
@@ -3418,8 +3310,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         selectRow() {}
         updateRowElement(tr, rowId, top) {
             super.updateRowElement(tr, rowId, top);
-            if (this.useVirtualList)
-                tr.style.width = "100%";
+            tr.style.width = "100%";
         }
     }
 

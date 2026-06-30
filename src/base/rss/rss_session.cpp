@@ -484,7 +484,9 @@ void Session::addItem(Item *item, Folder *destFolder)
             {
                 const std::chrono::seconds oldEffectiveRefreshInterval = (oldRefreshInterval > 0s)
                         ? oldRefreshInterval : std::chrono::minutes(refreshInterval());
-                if (feed->refreshInterval() < oldEffectiveRefreshInterval)
+                const std::chrono::seconds newEffectiveRefreshInterval = (feed->refreshInterval() > 0s)
+                        ? feed->refreshInterval() : std::chrono::minutes(refreshInterval());
+                if (newEffectiveRefreshInterval < oldEffectiveRefreshInterval)
                     refresh();
             }
         });
@@ -554,7 +556,8 @@ void Session::setRefreshInterval(const int refreshInterval)
     if (m_storeRefreshInterval != refreshInterval)
     {
         m_storeRefreshInterval = refreshInterval;
-        m_refreshTimer.start(std::chrono::minutes(m_storeRefreshInterval));
+        if (isProcessingEnabled())
+            refresh();
     }
 }
 
