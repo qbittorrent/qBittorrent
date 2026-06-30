@@ -58,6 +58,19 @@ using namespace Utils::ForeignApps;
 
 namespace
 {
+    Path unquotePath(const Path &path)
+    {
+        QString pathStr = path.toString().trimmed();
+        if (((pathStr.startsWith(u'"') && pathStr.endsWith(u'"'))
+                || (pathStr.startsWith(u'\'') && pathStr.endsWith(u'\'')))
+                && (pathStr.size() >= 2))
+        {
+            pathStr = pathStr.mid(1, (pathStr.size() - 2)).trimmed();
+        }
+
+        return Path(pathStr);
+    }
+
     bool testPythonInstallation(const Path &exePath, PythonInfo &info)
     {
         info = {};
@@ -191,7 +204,7 @@ PythonInfo Utils::ForeignApps::pythonInfo()
 {
     static PythonInfo pyInfo;
 
-    const Path preferredPythonPath = Preferences::instance()->getPythonExecutablePath();
+    const Path preferredPythonPath = unquotePath(Preferences::instance()->getPythonExecutablePath());
     if (pyInfo.isValid() && (preferredPythonPath == pyInfo.executablePath))
         return pyInfo;
 
