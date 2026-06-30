@@ -50,6 +50,12 @@
 
 namespace
 {
+    QString extractVersionString(const QString &text)
+    {
+        const QRegularExpressionMatch match = QRegularExpression(uR"((\d+(?:\.\d+)+))"_s).match(text);
+        return match.hasMatch() ? match.captured(1) : QString {};
+    }
+
     bool isVersionMoreRecent(const ProgramUpdater::Version &remoteVersion)
     {
         if (!remoteVersion.isValid())
@@ -79,8 +85,15 @@ void ProgramUpdater::checkForUpdates()
     Net::DownloadManager *netManager = Net::DownloadManager::instance();
     const bool useProxy = Preferences::instance()->useProxyForGeneralPurposes();
 
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     m_pendingRequestCount = 3;
+#else
+    m_pendingRequestCount = 1;
+#endif
+
     netManager->download(Net::DownloadRequest(GITHUB_URL).userAgent(USER_AGENT), useProxy, this, &ProgramUpdater::rssDownloadFinished);
+
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     // don't use the custom user agent for the following requests, disguise as a normal browser instead
     netManager->download(Net::DownloadRequest(QBT_MAIN_URL), useProxy, this, [this](const Net::DownloadResult &result)
     {
@@ -90,6 +103,7 @@ void ProgramUpdater::checkForUpdates()
     {
         fallbackDownloadFinished(result, m_qbtBackupVersion);
     });
+#endif
 }
 
 ProgramUpdater::Version ProgramUpdater::getNewVersion() const
@@ -134,7 +148,6 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 
         if (xml.isStartElement())
         {
-            qDebug() << "xml name = "<< xml.name();
             if (xml.name() == u"entry")
                 inEntry = true;
             else if (inEntry && (xml.name() == u"link"))
@@ -149,6 +162,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
                 qDebug("The last update available is %s", qUtf8Printable(version));
                 if (!version.isEmpty())
                 {
+                    version = extractVersionString(version);
                     qDebug("Detected version is %s", qUtf8Printable(version));
                     const Version tmpVer {version};
                     if (isVersionMoreRecent(tmpVer))
@@ -165,6 +179,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
     handleFinishedRequest();
 }
 
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result, Version &version)
 {
     version = {};
@@ -182,9 +197,6 @@ void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result,
     const QString platformKey = u"macos"_s;
 #elif defined(Q_OS_WIN)
     const QString platformKey = u"win"_s;
-#else
-    // as of June 30, 2026, versions.json doesn't have a "linux" entry
-    const QString platformKey = u"linux"_s;
 #endif
 
     if (const QJsonValue verJSON = json[platformKey][u"version"_s]; verJSON.isString())
@@ -196,6 +208,7 @@ void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result,
 
     handleFinishedRequest();
 }
+#endif
 
 bool ProgramUpdater::updateProgram() const
 {
