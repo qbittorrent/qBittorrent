@@ -111,7 +111,6 @@
 #include "macosstatusitem/statusitem.h"
 #include "macutilities.h"
 #endif
-
 #include "programupdater.h"
 
 using namespace std::chrono_literals;
