@@ -77,10 +77,10 @@
                 },
 
                 sequentialDownload: (element, ref) => {
-                    toggleSequentialDownloadFN();
+                    toggleSequentialDownloadFN(ref.getNextItemChecked("sequentialDownload"));
                 },
                 firstLastPiecePrio: (element, ref) => {
-                    toggleFirstLastPiecePrioFN();
+                    toggleFirstLastPiecePrioFN(ref.getNextItemChecked("firstLastPiecePrio"));
                 },
 
                 autoTorrentManagement: (element, ref) => {
