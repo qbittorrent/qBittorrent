@@ -1760,6 +1760,19 @@ void Preferences::setTrackerListState(const QByteArray &state)
     setValue(u"GUI/Qt6/TorrentProperties/TrackerListState"_s, state);
 }
 
+QMap<QString, QString> Preferences::getTrackerCategoryMap() const
+{
+    return value<QMap<QString, QString>>(u"BitTorrent/TrackerCategoryMap"_s);
+}
+
+void Preferences::setTrackerCategoryMap(const QMap<QString, QString> &map)
+{
+    if (map == getTrackerCategoryMap())
+        return;
+    setValue(u"BitTorrent/TrackerCategoryMap"_s, map);
+    emit changed();
+}
+
 QStringList Preferences::getRssOpenFolders() const
 {
     return value<QStringList>(u"GUI/RSSWidget/OpenedFolders"_s);

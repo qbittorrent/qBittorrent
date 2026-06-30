@@ -77,6 +77,7 @@
 #include <QString>
 #include <QThread>
 #include <QTimer>
+#include <QUrl>
 #include <QUuid>
 
 #include "base/algorithm.h"
@@ -2806,6 +2807,28 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         cancelDownloadMetadata(altID);
 
     LoadTorrentParams loadTorrentParams = initLoadTorrentParams(addTorrentParams);
+
+    // Auto-assign category from tracker domain when no category was explicitly set
+    if (loadTorrentParams.category.isEmpty())
+    {
+        const QMap<QString, QString> trackerCatMap = Preferences::instance()->getTrackerCategoryMap();
+        if (!trackerCatMap.isEmpty())
+        {
+            for (const TrackerEntry &entry : source.trackers())
+            {
+                const QString host = QUrl(entry.url).host();
+                if (const auto it = trackerCatMap.constFind(host); it != trackerCatMap.constEnd())
+                {
+                    const QString autoCategory = it.value();
+                    if (!m_categories.contains(autoCategory))
+                        addCategory(autoCategory);
+                    loadTorrentParams.category = autoCategory;
+                    break;
+                }
+            }
+        }
+    }
+
     lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
     p = source.ltAddTorrentParams();
 
