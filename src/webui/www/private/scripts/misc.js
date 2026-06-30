@@ -112,7 +112,7 @@ window.qBittorrent.Misc ??= (() => {
         if ((value === undefined) || (value === null) || Number.isNaN(value) || (value < 0))
             return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
 
-        const units = [
+        const iecByteUnits = [
             "QBT_TR(B)QBT_TR[CONTEXT=misc]",
             "QBT_TR(KiB)QBT_TR[CONTEXT=misc]",
             "QBT_TR(MiB)QBT_TR[CONTEXT=misc]",
@@ -121,6 +121,59 @@ window.qBittorrent.Misc ??= (() => {
             "QBT_TR(PiB)QBT_TR[CONTEXT=misc]",
             "QBT_TR(EiB)QBT_TR[CONTEXT=misc]"
         ];
+        const siByteUnits = [
+            "QBT_TR(B)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(kB)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(MB)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(GB)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(TB)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(PB)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(EB)QBT_TR[CONTEXT=misc]"
+        ];
+        const iecBitUnits = [
+            "QBT_TR(bit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(Kibit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(Mibit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(Gibit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(Tibit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(Pibit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(Eibit)QBT_TR[CONTEXT=misc]"
+        ];
+        const siBitUnits = [
+            "QBT_TR(bit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(kbit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(Mbit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(Gbit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(Tbit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(Pbit)QBT_TR[CONTEXT=misc]",
+            "QBT_TR(Ebit)QBT_TR[CONTEXT=misc]"
+        ];
+
+        let useDecimal = false;
+        let useBits = false;
+        if (isSpeed && window.qBittorrent && window.qBittorrent.Cache && window.qBittorrent.Cache.preferences) {
+            const prefs = window.qBittorrent.Cache.preferences.get();
+            if (prefs) {
+                useBits = (prefs.speed_unit_type === 0);
+                useDecimal = !!prefs.speed_use_decimal_prefixes;
+            }
+        }
+        else if (!isSpeed && window.qBittorrent && window.qBittorrent.Cache && window.qBittorrent.Cache.preferences) {
+            const prefs = window.qBittorrent.Cache.preferences.get();
+            if (prefs) {
+                useDecimal = !!prefs.size_use_decimal_prefixes;
+            }
+        }
+
+        const divisor = useDecimal ? 1000 : 1024;
+        let units;
+        if (useBits && isSpeed)
+            units = useDecimal ? siBitUnits : iecBitUnits;
+        else
+            units = useDecimal ? siByteUnits : iecByteUnits;
+
+        if (useBits && isSpeed)
+            value *= 8;
 
         const friendlyUnitPrecision = (sizeUnit) => {
             if (sizeUnit <= 2) // KiB, MiB
@@ -132,8 +185,8 @@ window.qBittorrent.Misc ??= (() => {
         };
 
         let i = 0;
-        while ((value >= 1024) && (i < 6)) {
-            value /= 1024;
+        while ((value >= divisor) && (i < 6)) {
+            value /= divisor;
             ++i;
         }
 

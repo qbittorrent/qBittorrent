@@ -499,12 +499,16 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
     const QString peerIdClient = peer.peerIdClient().toHtmlEscaped();
     setModelData(m_listModel, row, PeerListColumns::PEERID_CLIENT, peerIdClient, peerIdClient);
 
+    const auto *pref = Preferences::instance();
+    const auto speedType = pref->speedUnitType();
+    const bool speedDecimal = pref->speedUseDecimalPrefixes();
+
     const QString downSpeed = (hideZeroValues && (peer.payloadDownSpeed() <= 0))
-            ? QString() : Utils::Misc::friendlyUnit(peer.payloadDownSpeed(), true);
+            ? QString() : Utils::Misc::friendlyUnit(peer.payloadDownSpeed(), true, speedType, speedDecimal);
     setModelData(m_listModel, row, PeerListColumns::DOWN_SPEED, downSpeed, peer.payloadDownSpeed(), intDataTextAlignment);
 
     const QString upSpeed = (hideZeroValues && (peer.payloadUpSpeed() <= 0))
-            ? QString() : Utils::Misc::friendlyUnit(peer.payloadUpSpeed(), true);
+            ? QString() : Utils::Misc::friendlyUnit(peer.payloadUpSpeed(), true, speedType, speedDecimal);
     setModelData(m_listModel, row, PeerListColumns::UP_SPEED, upSpeed, peer.payloadUpSpeed(), intDataTextAlignment);
 
     const QString totalDown = (hideZeroValues && (peer.totalDownload() <= 0))

@@ -29,6 +29,7 @@
 #import "itemview.h"
 
 #include <QString>
+#include "base/preferences.h"
 #include "base/utils/misc.h"
 
 namespace
@@ -68,8 +69,11 @@ namespace
 
         self.statusMenu = [[NSMenu alloc] init];
 
-        const QString uploadString = Utils::Misc::friendlyUnit(self.fUploadRate, true);
-        const QString downloadString = Utils::Misc::friendlyUnit(self.fDownloadRate, true);
+        const auto *pref = Preferences::instance();
+        const auto speedType = pref->speedUnitType();
+        const bool speedDecimal = pref->speedUseDecimalPrefixes();
+        const QString uploadString = Utils::Misc::friendlyUnit(self.fUploadRate, speedType, speedDecimal, true);
+        const QString downloadString = Utils::Misc::friendlyUnit(self.fDownloadRate, speedType, speedDecimal, true);
 
         NSString *uploadNSString = uploadString.toNSString();
         NSString *downloadNSString = downloadString.toNSString();
@@ -95,8 +99,11 @@ namespace
     self.fDownloadRate = downloadRate;
     self.fUploadRate = uploadRate;
 
-    const QString uploadString = Utils::Misc::friendlyUnit(self.fUploadRate, true);
-    const QString downloadString = Utils::Misc::friendlyUnit(self.fDownloadRate, true);
+    const auto *pref = Preferences::instance();
+    const auto speedType = pref->speedUnitType();
+    const bool speedDecimal = pref->speedUseDecimalPrefixes();
+    const QString uploadString = Utils::Misc::friendlyUnit(self.fUploadRate, speedType, speedDecimal, true);
+    const QString downloadString = Utils::Misc::friendlyUnit(self.fDownloadRate, speedType, speedDecimal, true);
 
     NSString *uploadNSString = uploadString.toNSString();
     NSString *downloadNSString = downloadString.toNSString();
