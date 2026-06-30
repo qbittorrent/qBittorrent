@@ -281,6 +281,10 @@ void WebApplication::translateDocument(QString &data) const
             // 2. The escaped quote/string is wrong for JS. JS use backslash to escape the quote: "\""
             translation.replace(u'"', u"&#34;"_s);
 
+            // replace newline with empty space because Javascript string cannot have a hard break within quotes
+            // some "translation" string in the webui_it has newlines in the text
+            translation.replace(u'\n', u""_s);
+
             data.replace(i, regexMatch.capturedLength(), translation);
             i += translation.length();
         }
