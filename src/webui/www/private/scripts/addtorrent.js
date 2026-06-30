@@ -46,6 +46,8 @@ window.qBittorrent.AddTorrent ??= (() => {
     let windowId = "";
     let source = "";
     let downloader = "";
+    let torrentFiles = [];
+    let renderedRootFolder = "";
     let sharedMode = false;
     let urlEntries = [];
 
@@ -118,6 +120,7 @@ window.qBittorrent.AddTorrent ??= (() => {
             document.getElementById("contentLayout").selectedIndex = 2;
         else
             document.getElementById("contentLayout").selectedIndex = 0;
+        updateTorrentContent({ resetCollapseState: true });
     };
 
     const categorySavePath = (categoryName) => {
@@ -221,6 +224,109 @@ window.qBittorrent.AddTorrent ??= (() => {
             downloadPath.value = enabled ? defaultTempPath : "";
             downloadPath.disabled = !enabled;
         }
+    };
+
+    const findRootFolder = (filePaths) => {
+        let rootFolder = "";
+        for (const filePath of filePaths) {
+            const pathItems = filePath.split(window.qBittorrent.Filesystem.PathSeparator);
+            if (pathItems.length <= 1)
+                return "";
+
+            if (rootFolder === "")
+                rootFolder = pathItems[0];
+            else if (rootFolder !== pathItems[0])
+                return "";
+        }
+
+        return rootFolder;
+    };
+
+    const stripRootFolder = (filePath, rootFolder) => {
+        return filePath.substring(rootFolder.length + window.qBittorrent.Filesystem.PathSeparator.length);
+    };
+
+    const removeExtension = (filePath) => {
+        const filename = window.qBittorrent.Filesystem.fileName(filePath);
+        const dotIndex = filename.lastIndexOf(".");
+        if (dotIndex <= 0)
+            return filePath;
+
+        return filePath.substring(0, (filePath.length - filename.length) + dotIndex);
+    };
+
+    const effectiveContentLayout = (filePaths) => {
+        const originalRootFolder = findRootFolder(filePaths);
+        const originalContentLayout = (originalRootFolder === "") ? "NoSubfolder" : "Subfolder";
+        const selectedContentLayout = document.getElementById("contentLayout").value;
+        return (selectedContentLayout === "Original")
+            ? originalContentLayout
+            : selectedContentLayout;
+    };
+
+    const contentLayoutRootFolder = (filePaths) => {
+        if (effectiveContentLayout(filePaths) !== "Subfolder")
+            return "";
+
+        const originalRootFolder = findRootFolder(filePaths);
+        return (originalRootFolder === "")
+            ? removeExtension(filePaths[0])
+            : originalRootFolder;
+    };
+
+    const applyContentLayout = (filePaths, rootFolder) => {
+        const originalRootFolder = findRootFolder(filePaths);
+        const originalContentLayout = (originalRootFolder === "") ? "NoSubfolder" : "Subfolder";
+        const newContentLayout = effectiveContentLayout(filePaths);
+
+        if (newContentLayout === originalContentLayout)
+            return filePaths;
+
+        if (newContentLayout === "NoSubfolder")
+            return filePaths.map((filePath) => stripRootFolder(filePath, originalRootFolder));
+
+        return filePaths.map((filePath) => `${rootFolder}${window.qBittorrent.Filesystem.PathSeparator}${filePath}`);
+    };
+
+    const currentFilePriorities = () => {
+        const filePriorities = new Map();
+        if ((table === null) || (table.getRoot() === null))
+            return filePriorities;
+
+        for (const node of table.getFileTreeArray()) {
+            if (!node.isFolder)
+                filePriorities.set(node.fileId, node.priority);
+        }
+
+        return filePriorities;
+    };
+
+    const updateTorrentContent = ({ resetCollapseState = false, preserveCollapseState = false } = {}) => {
+        if (torrentFiles.length === 0)
+            return;
+
+        const filePriorities = currentFilePriorities();
+        const folderCollapseState = preserveCollapseState
+            ? table.getFolderCollapseState(renderedRootFolder)
+            : null;
+        const originalFilePaths = torrentFiles.map((file) => file.name);
+        const rootFolder = contentLayoutRootFolder(originalFilePaths);
+        const filePaths = applyContentLayout(originalFilePaths, rootFolder);
+        const files = torrentFiles.map((file, index) => ({
+            index: file.index,
+            name: filePaths[index],
+            size: file.size,
+            priority: filePriorities.get(file.index) ?? file.priority,
+        }));
+
+        if (resetCollapseState || preserveCollapseState)
+            window.qBittorrent.TorrentContent.clearCollapseState();
+
+        window.qBittorrent.TorrentContent.updateData(files);
+        renderedRootFolder = rootFolder;
+
+        if (folderCollapseState !== null)
+            table.restoreFolderCollapseState(folderCollapseState, renderedRootFolder);
     };
 
     const updateDiskInfo = () => {
@@ -336,13 +442,13 @@ window.qBittorrent.AddTorrent ??= (() => {
             document.getElementById("comment").textContent = metadata.comment;
 
         if (metadata.info?.files !== undefined) {
-            const files = metadata.info.files.map((file, index) => ({
+            torrentFiles = metadata.info.files.map((file, index) => ({
                 index: index,
                 name: file.path,
                 size: file.length,
                 priority: file.priority ?? window.qBittorrent.FileTree.FilePriority.Normal,
             }));
-            window.qBittorrent.TorrentContent.updateData(files);
+            updateTorrentContent();
         }
     };
 
@@ -431,6 +537,7 @@ window.qBittorrent.AddTorrent ??= (() => {
     });
 
     window.addEventListener("DOMContentLoaded", (event) => {
+        document.getElementById("contentLayout").addEventListener("change", () => updateTorrentContent({ preserveCollapseState: true }));
         document.getElementById("useDownloadPath").addEventListener("change", (e) => changeUseDownloadPath(e.target.checked));
         document.getElementById("tagsSelect").addEventListener("change", (e) => changeTagsSelect(e.target));
         document.getElementById("savepath").addEventListener("input", (event) => { showFreeSpace(event.target.value); });
