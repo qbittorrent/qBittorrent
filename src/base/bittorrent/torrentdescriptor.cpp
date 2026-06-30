@@ -28,6 +28,9 @@
 
 #include "torrentdescriptor.h"
 
+#include <utility>
+#include <vector>
+
 #include <libtorrent/load_torrent.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/torrent_info.hpp>
@@ -83,6 +86,40 @@ namespace
         limits.max_decode_tokens = pref->getBdecodeTokenLimit();
 
         return limits;
+    }
+
+    bool isSupportedTrackerURL(const QString &url)
+    {
+        const QUrl trackerURL {url};
+        if (!trackerURL.isValid() || trackerURL.host().isEmpty())
+            return false;
+
+        const QString scheme = trackerURL.scheme();
+        return ((scheme == u"http") || (scheme == u"https") || (scheme == u"udp"));
+    }
+
+    void removeUnsupportedTrackers(lt::add_torrent_params &params)
+    {
+        if (params.trackers.empty())
+            return;
+
+        std::vector<std::string> trackers;
+        std::vector<int> trackerTiers;
+        trackers.reserve(params.trackers.size());
+        trackerTiers.reserve(params.trackers.size());
+
+        for (std::size_t i = 0; i < params.trackers.size(); ++i)
+        {
+            const QString tracker = QString::fromStdString(params.trackers[i]);
+            if (!isSupportedTrackerURL(tracker))
+                continue;
+
+            trackers.push_back(params.trackers[i]);
+            trackerTiers.push_back((i < params.tracker_tiers.size()) ? params.tracker_tiers[i] : 0);
+        }
+
+        params.trackers = std::move(trackers);
+        params.tracker_tiers = std::move(trackerTiers);
     }
 }
 
@@ -161,6 +198,8 @@ catch (const lt::system_error &err)
 BitTorrent::TorrentDescriptor::TorrentDescriptor(lt::add_torrent_params ltAddTorrentParams)
     : m_ltAddTorrentParams {std::move(ltAddTorrentParams)}
 {
+    removeUnsupportedTrackers(m_ltAddTorrentParams);
+
     if (m_ltAddTorrentParams.ti && m_ltAddTorrentParams.ti->is_valid())
     {
         m_info.emplace(*m_ltAddTorrentParams.ti);
