@@ -2355,6 +2355,8 @@ void SessionImpl::enableBandwidthScheduler()
         m_bwScheduler = new BandwidthScheduler(this);
         connect(m_bwScheduler.data(), &BandwidthScheduler::bandwidthLimitRequested
                 , this, &SessionImpl::setAltGlobalSpeedLimitEnabled);
+        connect(m_bwScheduler.data(), &BandwidthScheduler::sessionStateChangeRequested
+                , this, &SessionImpl::setAlternativeSessionState);
     }
     m_bwScheduler->start();
 }
@@ -3645,8 +3647,25 @@ void SessionImpl::setAltGlobalSpeedLimitEnabled(const bool enabled)
     // Save new state to remember it on startup
     m_isAltGlobalSpeedLimitEnabled = enabled;
     applyBandwidthLimits();
+
     // Notify
     emit speedLimitModeChanged(m_isAltGlobalSpeedLimitEnabled);
+}
+
+void SessionImpl::setAlternativeSessionState(Scheduler::AlternativeSessionState requestedState)
+{
+    auto *pref = Preferences::instance();
+    pref->setSchedulerSessionState(requestedState);
+
+    // Apply session pause/resume based on state and alt speed limit state
+    // This might be expanded with new states in the future, but for now we only have Paused and Limited
+    if (isAltGlobalSpeedLimitEnabled() && (requestedState == Scheduler::AlternativeSessionState::Paused))
+        pause();
+    else
+        resume();
+
+    // Notify
+    emit sessionStateChanged(requestedState);
 }
 
 bool SessionImpl::isBandwidthSchedulerEnabled() const

@@ -1083,6 +1083,7 @@ void OptionsDialog::loadSpeedTabOptions()
     m_ui->timeEditScheduleFrom->setTime(pref->getSchedulerStartTime());
     m_ui->timeEditScheduleTo->setTime(pref->getSchedulerEndTime());
     m_ui->comboBoxScheduleDays->setCurrentIndex(static_cast<int>(pref->getSchedulerDays()));
+    m_ui->comboBoxScheduleActions->setCurrentIndex(static_cast<int>(pref->getSchedulerSessionState()));
 
     m_ui->checkLimituTPConnections->setChecked(session->isUTPRateLimited());
     m_ui->checkLimitTransportOverhead->setChecked(session->includeOverheadInLimits());
@@ -1106,6 +1107,7 @@ void OptionsDialog::loadSpeedTabOptions()
     connect(m_ui->timeEditScheduleFrom, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->timeEditScheduleTo, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboBoxScheduleDays, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->comboBoxScheduleActions, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkLimituTPConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitTransportOverhead, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1132,6 +1134,7 @@ void OptionsDialog::saveSpeedTabOptions() const
     pref->setSchedulerStartTime(m_ui->timeEditScheduleFrom->time());
     pref->setSchedulerEndTime(m_ui->timeEditScheduleTo->time());
     pref->setSchedulerDays(static_cast<Scheduler::Days>(m_ui->comboBoxScheduleDays->currentIndex()));
+    pref->setSchedulerSessionState(static_cast<Scheduler::AlternativeSessionState>(m_ui->comboBoxScheduleActions->currentIndex()));
 
     session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
     session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
