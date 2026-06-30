@@ -61,7 +61,7 @@ namespace
         if (!remoteVersion.isValid())
             return false;
 
-        const ProgramUpdater::Version currentVersion {QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD};
+        const ProgramUpdater::Version currentVersion {4, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD};
         if (remoteVersion == currentVersion)
         {
             const bool isDevVersion = QStringLiteral(QBT_VERSION_STATUS).contains(
@@ -137,6 +137,11 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
             : QString {};
     };
 
+    const auto getHrefAttribute = [](QXmlStreamReader &xml) -> QString
+    {
+        return xml.attributes().value(u"href"_s).toString();
+    };
+
     bool inEntry = false;
     QString version;
     QString updateLink;
@@ -151,7 +156,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
             if (xml.name() == u"entry")
                 inEntry = true;
             else if (inEntry && (xml.name() == u"link"))
-                updateLink = getStringValue(xml);
+                updateLink = getHrefAttribute(xml);
             else if (inEntry && (xml.name() == u"title"))
                 version = getStringValue(xml);
         }
