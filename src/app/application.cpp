@@ -79,7 +79,6 @@
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/net/reverseresolution.h"
 #include "base/net/smtpclient.h"
-#include "base/plugins/pluginsengine.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
@@ -109,6 +108,10 @@
 #ifdef DISABLE_GUI
 #include "base/utils/password.h"
 #endif
+#endif
+
+#ifdef ENABLE_PLUGINS
+#include "base/plugins/pluginsengine.h"
 #endif
 
 namespace
@@ -947,7 +950,10 @@ int Application::exec()
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
         m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);
+
+#ifdef ENABLE_PLUGINS
         PluginsEngine::initInstance();
+#endif
 
         Net::GeoIPManager::initInstance();
         Net::ReverseResolution::initInstance();
@@ -1467,7 +1473,9 @@ void Application::cleanup()
     delete m_webui;
 #endif
 
+#ifdef ENABLE_PLUGINS
     PluginsEngine::freeInstance();
+#endif
 
     delete RSS::AutoDownloader::instance();
     delete RSS::Session::instance();
