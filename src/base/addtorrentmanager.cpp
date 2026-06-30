@@ -43,6 +43,7 @@ AddTorrentManager::AddTorrentManager(IApplication *app, BitTorrent::Session *btS
 {
     Q_ASSERT(btSession);
     connect(btSession, &BitTorrent::Session::torrentAdded, this, &AddTorrentManager::onSessionTorrentAdded);
+    connect(btSession, &BitTorrent::Session::duplicateTorrentDetected, this, &AddTorrentManager::onSessionDuplicateTorrentDetected);
     connect(btSession, &BitTorrent::Session::addTorrentFailed, this, &AddTorrentManager::onSessionAddTorrentFailed);
 }
 
@@ -141,6 +142,18 @@ void AddTorrentManager::onSessionTorrentAdded(BitTorrent::Torrent *torrent)
     }
 }
 
+void AddTorrentManager::onSessionDuplicateTorrentDetected(const BitTorrent::InfoHash &infoHash
+        , BitTorrent::Torrent *torrent, const QString &message)
+{
+    if (const QString source = m_sourcesByInfoHash.take(infoHash); !source.isEmpty())
+    {
+        auto torrentFileGuard = m_guardedTorrentFiles.take(source);
+        if (torrentFileGuard)
+            torrentFileGuard->setAutoRemove(false);
+        emit duplicateTorrentDetected(source, torrent, message);
+    }
+}
+
 void AddTorrentManager::onSessionAddTorrentFailed(const BitTorrent::InfoHash &infoHash, const BitTorrent::AddTorrentError &reason)
 {
     if (const QString source = m_sourcesByInfoHash.take(infoHash); !source.isEmpty())
@@ -170,7 +183,6 @@ void AddTorrentManager::handleDuplicateTorrent(const QString &source
 
     const bool isPrivate = existingTorrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate());
     QString message;
-    bool trackersMerged = false;
     if (!btSession()->isMergeTrackersEnabled())
     {
         message = tr("Merging of trackers is disabled");
@@ -185,15 +197,11 @@ void AddTorrentManager::handleDuplicateTorrent(const QString &source
         existingTorrent->addTrackers(torrentDescr.trackers());
         existingTorrent->addUrlSeeds(torrentDescr.urlSeeds());
         message = tr("Trackers are merged from new source");
-        trackersMerged = true;
     }
 
     LogMsg(tr("Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: \"%2\". Torrent infohash: %3. Result: %4")
             .arg(source, existingTorrent->name(), existingTorrent->infoHash().toString(), message));
-    if (trackersMerged)
-        emit torrentTrackersMerged(source, existingTorrent);
-    else
-        emit addTorrentFailed(source, {BitTorrent::AddTorrentError::DuplicateTorrent, message});
+    emit duplicateTorrentDetected(source, existingTorrent, message);
 }
 
 void AddTorrentManager::setTorrentFileGuard(const QString &source, std::shared_ptr<TorrentFileGuard> torrentFileGuard)

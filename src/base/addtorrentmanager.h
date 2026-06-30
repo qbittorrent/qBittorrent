@@ -67,7 +67,7 @@ public:
 
 signals:
     void torrentAdded(const QString &source, BitTorrent::Torrent *torrent);
-    void torrentTrackersMerged(const QString &source, BitTorrent::Torrent *torrent);
+    void duplicateTorrentDetected(const QString &source, BitTorrent::Torrent *torrent, const QString &message);
     void addTorrentFailed(const QString &source, const BitTorrent::AddTorrentError &reason);
 
 protected:
@@ -81,6 +81,7 @@ protected:
 private:
     void onDownloadFinished(const Net::DownloadResult &result);
     void onSessionTorrentAdded(BitTorrent::Torrent *torrent);
+    void onSessionDuplicateTorrentDetected(const BitTorrent::InfoHash &infoHash, BitTorrent::Torrent *torrent, const QString &message);
     void onSessionAddTorrentFailed(const BitTorrent::InfoHash &infoHash, const BitTorrent::AddTorrentError &reason);
     bool processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
             , const BitTorrent::AddTorrentParams &addTorrentParams);

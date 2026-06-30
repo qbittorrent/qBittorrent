@@ -507,6 +507,7 @@ namespace BitTorrent
 
         void torrentAboutToBeRemoved(Torrent *torrent);
         void torrentAdded(Torrent *torrent);
+        void duplicateTorrentDetected(const InfoHash &infoHash, Torrent *torrent, const QString &message);
         void torrentCategoryChanged(Torrent *torrent, const QString &oldCategory);
         void torrentFinished(Torrent *torrent);
         void torrentFinishedChecking(Torrent *torrent);
