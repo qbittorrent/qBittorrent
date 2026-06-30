@@ -111,9 +111,7 @@
 #include "macosstatusitem/statusitem.h"
 #include "macutilities.h"
 #endif
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include "programupdater.h"
-#endif
 
 using namespace std::chrono_literals;
 
@@ -334,16 +332,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(m_ui->actionBottomQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::bottomQueuePosSelectedTorrents);
     connect(m_ui->actionMinimize, &QAction::triggered, this, &MainWindow::minimizeWindow);
     connect(m_ui->actionUseAlternativeSpeedLimits, &QAction::triggered, this, &MainWindow::toggleAlternativeSpeeds);
-
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     connect(m_ui->actionCheckForUpdates, &QAction::triggered, this, [this]() { checkProgramUpdate(true); });
 
     // trigger an early check on startup
     if (pref->isUpdateCheckEnabled())
         checkProgramUpdate(false);
-#else
-    m_ui->actionCheckForUpdates->setVisible(false);
-#endif
 
     // Certain menu items should reside at specific places on macOS.
     // Qt partially does it on its own, but updates and different languages require tuning.
@@ -879,10 +872,8 @@ void MainWindow::cleanup()
     m_preventTimer->stop();
     delete m_pwr;
 
-#if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     if (m_programUpdateTimer)
         m_programUpdateTimer->stop();
-#endif
 
     // remove all child widgets
     while (auto *w = findChild<QWidget *>())
@@ -1463,7 +1454,6 @@ void MainWindow::loadPreferences()
     // Torrent properties
     m_propertiesWidget->reloadPreferences();
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     if (pref->isUpdateCheckEnabled())
     {
         if (!m_programUpdateTimer)
@@ -1480,7 +1470,6 @@ void MainWindow::loadPreferences()
         delete m_programUpdateTimer;
         m_programUpdateTimer = nullptr;
     }
-#endif
 
 #ifdef Q_OS_MACOS
     // Clear dock badge immediately if speed display is disabled
@@ -1688,7 +1677,6 @@ void MainWindow::on_actionDownloadFromURL_triggered()
     }
 }
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool invokedByUser)
 {
     m_ui->actionCheckForUpdates->setEnabled(true);
@@ -1742,7 +1730,6 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
         }
     }
 }
-#endif
 
 void MainWindow::toggleAlternativeSpeeds()
 {
@@ -1918,7 +1905,6 @@ void MainWindow::refreshTrayIconTooltip()
     }
 }
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 void MainWindow::checkProgramUpdate(const bool invokedByUser)
 {
     if (m_programUpdateTimer)
@@ -1936,7 +1922,6 @@ void MainWindow::checkProgramUpdate(const bool invokedByUser)
     });
     updater->checkForUpdates();
 }
-#endif
 
 #ifdef Q_OS_WIN
 void MainWindow::installPython()

@@ -256,6 +256,8 @@ add_library(qbt_gui STATIC
     utils/keysequence.cpp
     watchedfolderoptionsdialog.cpp
     watchedfoldersmodel.cpp
+    programupdater.cpp
+    programupdater.h
 
     # generated .ui headers
     ${UI_HEADERS}
@@ -310,8 +312,6 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         macutilities.mm
         powermanagement/inhibitormacos.cpp
         powermanagement/inhibitormacos.h
-        programupdater.cpp
-        programupdater.h
     )
     target_link_libraries(qbt_gui PRIVATE
         objc
@@ -323,7 +323,5 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     target_sources(qbt_gui PRIVATE
         powermanagement/inhibitorwindows.h
         powermanagement/inhibitorwindows.cpp
-        programupdater.h
-        programupdater.cpp
     )
 endif()
