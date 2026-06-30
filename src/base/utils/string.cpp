@@ -46,7 +46,7 @@ QString Utils::String::fromDouble(const double n, const int precision)
     ** precision we add an extra 0 behind 1 in the below algorithm. */
 
     const double prec = std::pow(10.0, precision);
-    return QLocale::system().toString(std::floor(n * prec) / prec, 'f', precision);
+    return QLocale::c().toString(std::floor(n * prec) / prec, 'f', precision);
 }
 
 QString Utils::String::fromLatin1(const std::string_view string)

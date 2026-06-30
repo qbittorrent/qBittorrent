@@ -31,7 +31,6 @@
 
 #include <cmath>
 
-#include <QLocale>
 #include <QPainter>
 #include <QPen>
 
@@ -39,6 +38,7 @@
 #include "base/global.h"
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
+#include "base/utils/string.h"
 
 namespace
 {
@@ -93,7 +93,7 @@ namespace
     {
         // check is there need for digits after decimal separator
         const int precision = (argValue < 10) ? friendlyUnitPrecision(unit) : 0;
-        return QLocale::system().toString(argValue, 'f', precision)
+        return Utils::String::fromDouble(argValue, precision)
                + QChar::Nbsp + unitString(unit, true);
     }
 }

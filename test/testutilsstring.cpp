@@ -62,6 +62,14 @@ public:
     TestUtilsString() = default;
 
 private slots:
+    void testFromDouble() const
+    {
+        QCOMPARE(Utils::String::fromDouble(0, 0), u"0"_s);
+        QCOMPARE(Utils::String::fromDouble(0.999, 1), u"0.9"_s);
+        QCOMPARE(Utils::String::fromDouble(150.49, 1), u"150.4"_s);
+        QCOMPARE(Utils::String::fromDouble(2.879, 2), u"2.87"_s);
+    }
+
     void testJoinIntoString() const
     {
         const QList<QString> list1;
