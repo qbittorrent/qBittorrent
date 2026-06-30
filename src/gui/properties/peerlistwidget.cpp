@@ -444,7 +444,7 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
                 const bool useI2PSocket = peer.useI2PSocket();
 
                 const QString peerIPString = useI2PSocket ? peer.I2PAddress() : peerEndpoint.address.ip.toString();
-                const QVariant peerIPSortData = useI2PSocket ? QVariant {peerIPString} : QVariant::fromValue(peerEndpoint.address.ip);
+                const QVariant peerIPSortData = useI2PSocket ? QVariant(peerIPString) : QVariant::fromValue(peerEndpoint.address.ip);
                 setModelData(m_listModel, row, PeerListColumns::IP, peerIPString, peerIPSortData, {}, peerIPString);
 
                 const QString peerIPHiddenString = useI2PSocket ? QString() : peerEndpoint.address.ip.toString();

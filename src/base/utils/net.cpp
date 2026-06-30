@@ -70,6 +70,9 @@ namespace
 
     bool isIPv6LessThan(const QHostAddress &left, const QHostAddress &right)
     {
+        Q_ASSERT(left.protocol() == QAbstractSocket::IPv6Protocol);
+        Q_ASSERT(right.protocol() == QAbstractSocket::IPv6Protocol);
+
         return std::ranges::lexicographical_compare(left.toIPv6Address().c, right.toIPv6Address().c);
     }
 
