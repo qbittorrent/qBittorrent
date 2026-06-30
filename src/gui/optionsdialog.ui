@@ -721,6 +721,13 @@
                        </property>
                       </widget>
                      </item>
+                     <item>
+                      <widget class="QPushButton" name="buttonRestoreMagnetProtocolRegistration">
+                       <property name="text">
+                        <string>Restore magnet protocol registration</string>
+                       </property>
+                      </widget>
+                     </item>
                     </layout>
                    </widget>
                   </item>
