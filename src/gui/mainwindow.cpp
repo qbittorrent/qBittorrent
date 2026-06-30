@@ -872,10 +872,8 @@ void MainWindow::cleanup()
     m_preventTimer->stop();
     delete m_pwr;
 
-#if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     if (m_programUpdateTimer)
         m_programUpdateTimer->stop();
-#endif
 
     // remove all child widgets
     while (auto *w = findChild<QWidget *>())
