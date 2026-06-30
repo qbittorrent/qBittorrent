@@ -63,7 +63,7 @@ private slots:
 private:
     enum class RemoteSource
     {
-        Fosshub,
+        Github,
         QbtMain,
         QbtBackup
     };
@@ -72,7 +72,7 @@ private:
     RemoteSource getLatestRemoteSource() const;
 
     int m_pendingRequestCount = 0;
-    Version m_fosshubVersion;
+    Version m_githubVersion;
     Version m_qbtMainVersion;
     Version m_qbtBackupVersion;
     QUrl m_updateURL;

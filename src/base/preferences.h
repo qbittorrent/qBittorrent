@@ -307,10 +307,8 @@ public:
     void setIgnoreSSLErrors(bool enabled);
     Path getPythonExecutablePath() const;
     void setPythonExecutablePath(const Path &path);
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     bool isUpdateCheckEnabled() const;
     void setUpdateCheckEnabled(bool enabled);
-#endif
 #ifdef Q_OS_MACOS
     bool isSpeedInDockEnabled() const;
     void setSpeedInDockEnabled(bool enabled);

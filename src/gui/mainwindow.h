@@ -262,12 +262,11 @@ private:
     SettingValue<bool> m_storeDownloadTrackerFavicon;
     CachedSettingValue<Log::MsgTypes> m_storeExecutionLogTypes;
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     void checkProgramUpdate(bool invokedByUser);
     void handleUpdateCheckFinished(ProgramUpdater *updater, bool invokedByUser);
 
     QTimer *m_programUpdateTimer = nullptr;
-#endif
+
 #ifdef Q_OS_MACOS
     std::unique_ptr<MacUtils::Badger> m_badger;
     std::unique_ptr<MacUtils::StatusItem> m_statusItem;
