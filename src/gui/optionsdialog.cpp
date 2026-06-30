@@ -318,7 +318,6 @@ void OptionsDialog::loadBehaviorTabOptions()
 
 #if !(defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     m_ui->groupFileAssociation->setVisible(false);
-    m_ui->checkProgramUpdates->setVisible(false);
 #endif
 
 #ifndef Q_OS_MACOS
@@ -425,13 +424,11 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->checkPreventFromSuspendWhenDownloading, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPreventFromSuspendWhenSeeding, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
+    connect(m_ui->checkProgramUpdates, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+
 #if defined(Q_OS_MACOS)
     connect(m_ui->checkAssociateTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAssociateMagnetLinks, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-#endif
-
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    connect(m_ui->checkProgramUpdates, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
 
 #ifdef Q_OS_WIN
@@ -532,10 +529,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     }
 #endif
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     pref->setUpdateCheckEnabled(m_ui->checkProgramUpdates->isChecked());
-#endif
-
     pref->setPreventFromSuspendWhenDownloading(m_ui->checkPreventFromSuspendWhenDownloading->isChecked());
     pref->setPreventFromSuspendWhenSeeding(m_ui->checkPreventFromSuspendWhenSeeding->isChecked());
 
