@@ -61,7 +61,7 @@ namespace
         if (!remoteVersion.isValid())
             return false;
 
-        const ProgramUpdater::Version currentVersion {4, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD};
+        const ProgramUpdater::Version currentVersion {QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD};
         if (remoteVersion == currentVersion)
         {
             const bool isDevVersion = QStringLiteral(QBT_VERSION_STATUS).contains(
