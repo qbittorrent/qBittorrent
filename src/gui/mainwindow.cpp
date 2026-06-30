@@ -60,6 +60,8 @@
 #ifdef Q_OS_WIN
 #include <QCryptographicHash>
 #include <QScopeGuard>
+#include <QStyle>
+#include <QToolButton>
 #endif
 
 #include "base/bittorrent/session.h"
@@ -218,6 +220,14 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     lockMenu->addAction(tr("&Set Password"), this, &MainWindow::defineUILockPassword);
     lockMenu->addAction(tr("&Clear Password"), this, &MainWindow::clearUILockPassword);
     m_ui->actionLock->setMenu(lockMenu);
+#ifdef Q_OS_WIN
+    if (auto *lockButton = qobject_cast<QToolButton *>(m_ui->toolBar->widgetForAction(m_ui->actionLock)))
+    {
+        const int menuButtonWidth = lockButton->style()->pixelMetric(QStyle::PM_MenuButtonIndicator, nullptr, lockButton);
+        lockButton->setStyleSheet(u"QToolButton::menu-button { width: %1px; "
+            "subcontrol-origin: padding; subcontrol-position: center right; }"_s.arg(menuButtonWidth));
+    }
+#endif
 
     updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
 
