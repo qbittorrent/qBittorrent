@@ -29,6 +29,9 @@
 
 #include "guiaddtorrentmanager.h"
 
+#include <QAbstractButton>
+#include <QMessageBox>
+#include <QPushButton>
 #include <QScreen>
 
 #include "base/bittorrent/session.h"
@@ -40,6 +43,7 @@
 #include "interfaces/iguiapplication.h"
 #include "mainwindow.h"
 #include "raisedmessagebox.h"
+#include "transferlistwidget.h"
 
 namespace
 {
@@ -215,13 +219,27 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
             else
             {
                 const bool mergeTrackers = btSession()->isMergeTrackersEnabled();
-                const QMessageBox::StandardButton btn = RaisedMessageBox::question(app()->mainWindow(), dialogCaption
-                        , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
-                        , (QMessageBox::Yes | QMessageBox::No), (mergeTrackers ? QMessageBox::Yes : QMessageBox::No));
-                if (btn == QMessageBox::Yes)
+                QMessageBox msgBox(app()->mainWindow());
+                msgBox.setWindowTitle(dialogCaption);
+                msgBox.setText(tr("Torrent <b>%1</b> is already in the transfer list.").arg(torrent->name()));
+                msgBox.setInformativeText(tr("Do you want to merge trackers from the new source?"));
+                msgBox.setIcon(QMessageBox::Question);
+                QPushButton *mergeBtn = msgBox.addButton(tr("Merge trackers"), QMessageBox::YesRole);
+                msgBox.addButton(tr("Skip"), QMessageBox::NoRole);
+                QPushButton *locateBtn = msgBox.addButton(tr("Show in list"), QMessageBox::ActionRole);
+                msgBox.setDefaultButton(mergeTrackers ? mergeBtn : locateBtn);
+                msgBox.exec();
+                QAbstractButton *const clicked = msgBox.clickedButton();
+                if (clicked == mergeBtn)
                 {
                     torrent->addTrackers(torrentDescr.trackers());
                     torrent->addUrlSeeds(torrentDescr.urlSeeds());
+                }
+                if (clicked == mergeBtn || clicked == locateBtn)
+                {
+                    app()->mainWindow()->transferListWidget()->scrollToAndSelect(torrent);
+                    app()->mainWindow()->raise();
+                    app()->mainWindow()->activateWindow();
                 }
             }
         }
