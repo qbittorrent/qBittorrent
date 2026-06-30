@@ -1015,6 +1015,11 @@ void MainWindow::on_actionSetGlobalSpeedLimits_triggered()
 // in one time if "close to systray" is enabled
 void MainWindow::on_actionExit_triggered()
 {
+    forceExit();
+}
+
+void MainWindow::forceExit()
+{
     // UI locking enforcement.
     if (isHidden() && m_uiLocked)
         // Ask for UI lock password
