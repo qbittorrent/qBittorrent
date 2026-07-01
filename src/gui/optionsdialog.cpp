@@ -1236,6 +1236,8 @@ void OptionsDialog::loadBittorrentTabOptions()
     m_ui->textTrackersURL->setText(session->additionalTrackersURL());
     m_ui->textTrackersFromURL->setPlainText(session->additionalTrackersFromURL());
 
+    m_ui->checkAddWebSocketTrackers->setChecked(session->isAddWebSocketTrackersEnabled());
+
     connect(m_ui->checkDHT, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPeX, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLSD, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1273,6 +1275,8 @@ void OptionsDialog::loadBittorrentTabOptions()
 
     connect(m_ui->checkAddTrackersFromURL, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textTrackersURL, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+
+    connect(m_ui->checkAddWebSocketTrackers, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 }
 
 void OptionsDialog::saveBittorrentTabOptions() const
@@ -1316,6 +1320,8 @@ void OptionsDialog::saveBittorrentTabOptions() const
 
     session->setAddTrackersFromURLEnabled(m_ui->checkAddTrackersFromURL->isChecked());
     session->setAdditionalTrackersURL(m_ui->textTrackersURL->text());
+
+    session->setAddWebSocketTrackersEnabled(m_ui->checkAddWebSocketTrackers->isChecked());
 }
 
 void OptionsDialog::loadRSSTabOptions()
