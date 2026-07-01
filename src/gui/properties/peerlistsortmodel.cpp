@@ -48,13 +48,12 @@ bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &rig
         {
             const QVariant leftData = left.data(UnderlyingDataRole);
             const QVariant rightData = right.data(UnderlyingDataRole);
-            const QMetaType hostAddressType = QMetaType::fromType<QHostAddress>();
+            static const QMetaType hostAddressType = QMetaType::fromType<QHostAddress>();
             if ((leftData.metaType() == hostAddressType) && (rightData.metaType() == hostAddressType))
                 return Utils::Net::isIPAddressLessThan(leftData.value<QHostAddress>(), rightData.value<QHostAddress>());
 
             return m_naturalLessThan(leftData.toString(), rightData.toString());
         }
-        break;
     case PeerListWidget::CLIENT:
         {
             const QString strL = left.data(UnderlyingDataRole).toString();
