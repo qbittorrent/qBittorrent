@@ -119,6 +119,7 @@ using namespace std::chrono_literals;
 using namespace BitTorrent;
 
 const Path CATEGORIES_FILE_NAME {u"categories.json"_s};
+const Path AUTO_CATEGORY_RULES_FILE_NAME {u"auto_category_rules.json"_s};
 const Path ADDITIONAL_TRACKERS_FROM_URL_FILE_NAME {u"additional_trackers_from_url.txt"_s};
 const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
 const std::chrono::seconds FREEDISKSPACE_CHECK_TIMEOUT = 30s;
@@ -641,6 +642,7 @@ SessionImpl::SessionImpl(QObject *parent)
         enableBandwidthScheduler();
 
     loadCategories();
+    loadAutoCategoryRules();
 
     const QStringList storedTags = m_storedTags.get();
     for (const QString &tagStr : storedTags)
@@ -2805,7 +2807,10 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     if (infoHash.isHybrid())
         cancelDownloadMetadata(altID);
 
-    LoadTorrentParams loadTorrentParams = initLoadTorrentParams(addTorrentParams);
+    AddTorrentParams effectiveAddTorrentParams = addTorrentParams;
+    applyAutoCategory(source, &effectiveAddTorrentParams);
+
+    LoadTorrentParams loadTorrentParams = initLoadTorrentParams(effectiveAddTorrentParams);
     lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
     p = source.ltAddTorrentParams();
 
@@ -2827,9 +2832,10 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
         const TorrentInfo &torrentInfo = *source.info();
 
-        Q_ASSERT(addTorrentParams.filePaths.isEmpty() || (addTorrentParams.filePaths.size() == torrentInfo.filesCount()));
+        Q_ASSERT(effectiveAddTorrentParams.filePaths.isEmpty()
+                || (effectiveAddTorrentParams.filePaths.size() == torrentInfo.filesCount()));
 
-        filePaths = addTorrentParams.filePaths;
+        filePaths = effectiveAddTorrentParams.filePaths;
         if (filePaths.isEmpty())
         {
             filePaths = torrentInfo.filePaths();
@@ -2862,8 +2868,9 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
         const auto nativeIndexes = torrentInfo.nativeIndexes();
 
-        Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
-        QList<DownloadPriority> filePriorities = addTorrentParams.filePriorities;
+        Q_ASSERT(effectiveAddTorrentParams.filePriorities.isEmpty()
+                || (effectiveAddTorrentParams.filePriorities.size() == nativeIndexes.size()));
+        QList<DownloadPriority> filePriorities = effectiveAddTorrentParams.filePriorities;
 
         // Filename filter should be applied before `findIncompleteFiles()` is called.
         if (filePriorities.isEmpty() && isExcludedFileNamesEnabled())
@@ -2932,20 +2939,20 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         }
     }
 
-    p.upload_limit = addTorrentParams.uploadLimit;
-    p.download_limit = addTorrentParams.downloadLimit;
+    p.upload_limit = effectiveAddTorrentParams.uploadLimit;
+    p.download_limit = effectiveAddTorrentParams.downloadLimit;
 
     // Preallocation mode
     p.storage_mode = isPreallocationEnabled() ? lt::storage_mode_allocate : lt::storage_mode_sparse;
 
-    if (addTorrentParams.sequential)
+    if (effectiveAddTorrentParams.sequential)
         p.flags |= lt::torrent_flags::sequential_download;
     else
         p.flags &= ~lt::torrent_flags::sequential_download;
 
     // Seeding mode
     // Skip checking and directly start seeding
-    if (addTorrentParams.skipChecking)
+    if (effectiveAddTorrentParams.skipChecking)
         p.flags |= lt::torrent_flags::seed_mode;
     else
         p.flags &= ~lt::torrent_flags::seed_mode;
@@ -5351,6 +5358,8 @@ void SessionImpl::handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const
 
 void SessionImpl::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 {
+    applyAutoCategory(torrent);
+
     if (!torrentExportDirectory().isEmpty())
         exportTorrentFile(torrent, torrentExportDirectory());
 
@@ -5656,6 +5665,145 @@ void SessionImpl::loadCategories()
     }
 
     m_categories = expandCategories(m_categories);
+}
+
+void SessionImpl::loadAutoCategoryRules()
+{
+    m_autoCategoryRules.clear();
+
+    const Path path = specialFolderLocation(SpecialFolder::Config) / AUTO_CATEGORY_RULES_FILE_NAME;
+    if (!path.exists())
+        return;
+
+    constexpr int fileMaxSize = 1024 * 1024;
+    const auto readResult = Utils::IO::readFile(path, fileMaxSize);
+    if (!readResult)
+    {
+        LogMsg(tr("Failed to load automatic category rules. File: \"%1\". Error: \"%2\"")
+                .arg(path.toString(), readResult.error().message), Log::WARNING);
+        return;
+    }
+
+    QJsonParseError jsonError;
+    const QJsonDocument jsonDoc = QJsonDocument::fromJson(readResult.value(), &jsonError);
+    if (jsonError.error != QJsonParseError::NoError)
+    {
+        LogMsg(tr("Failed to parse automatic category rules. File: \"%1\". Error: \"%2\"")
+                .arg(path.toString(), jsonError.errorString()), Log::WARNING);
+        return;
+    }
+    if (!jsonDoc.isObject())
+    {
+        LogMsg(tr("Failed to load automatic category rules. File: \"%1\". Error: \"Invalid data format\"")
+                .arg(path.toString()), Log::WARNING);
+        return;
+    }
+
+    const QJsonValue rulesValue = jsonDoc.object().value(u"rules"_s);
+    if (!rulesValue.isArray())
+    {
+        LogMsg(tr("Failed to load automatic category rules. File: \"%1\". Error: \"Invalid data format\"")
+                .arg(path.toString()), Log::WARNING);
+        return;
+    }
+
+    const QJsonArray rules = rulesValue.toArray();
+    for (const QJsonValue &ruleValue : rules)
+    {
+        if (!ruleValue.isObject())
+        {
+            LogMsg(tr("Ignoring invalid automatic category rule. File: \"%1\"")
+                    .arg(path.toString()), Log::WARNING);
+            continue;
+        }
+
+        const QJsonObject ruleObject = ruleValue.toObject();
+        AutoCategoryRule rule;
+        rule.category = ruleObject.value(u"category"_s).toString().trimmed();
+        if (rule.category.isEmpty())
+            continue;
+        if (!isValidCategoryName(rule.category))
+        {
+            LogMsg(tr("Ignoring automatic category rule with invalid category \"%1\". File: \"%2\"")
+                    .arg(rule.category, path.toString()), Log::WARNING);
+            continue;
+        }
+
+        QStringList patterns;
+        const QString pattern = ruleObject.value(u"pattern"_s).toString();
+        if (!pattern.isEmpty())
+            patterns = pattern.split(u'|', Qt::SkipEmptyParts);
+
+        for (const QJsonValue &patternValue : ruleObject.value(u"patterns"_s).toArray())
+        {
+            if (patternValue.isString())
+                patterns.append(patternValue.toString());
+        }
+
+        for (const QString &patternText : asConst(patterns))
+        {
+            const QString trimmedPattern = patternText.trimmed();
+            if (trimmedPattern.isEmpty())
+                continue;
+
+            const QRegularExpression patternRegExp {Utils::String::wildcardToRegexPattern(trimmedPattern)
+                    , QRegularExpression::CaseInsensitiveOption};
+            if (patternRegExp.isValid())
+            {
+                rule.patterns.append(patternRegExp);
+            }
+            else
+            {
+                LogMsg(tr("Ignoring invalid automatic category pattern \"%1\" for category \"%2\". Error: \"%3\"")
+                        .arg(patternText, rule.category, patternRegExp.errorString()), Log::WARNING);
+            }
+        }
+
+        if (!rule.patterns.empty())
+            m_autoCategoryRules.append(rule);
+    }
+
+    LogMsg(tr("Loaded %1 automatic category rules. File: \"%2\"")
+            .arg(m_autoCategoryRules.size()).arg(path.toString()));
+}
+
+void SessionImpl::applyAutoCategory(const TorrentDescriptor &torrentDescr, AddTorrentParams *addTorrentParams) const
+{
+    if (!addTorrentParams->category.isEmpty())
+        return;
+
+    const PathList filePaths = (torrentDescr.info() ? torrentDescr.info()->filePaths() : PathList {});
+    addTorrentParams->category = findAutoCategory(torrentDescr.name(), filePaths);
+}
+
+void SessionImpl::applyAutoCategory(TorrentImpl *torrent)
+{
+    if (!torrent->category().isEmpty())
+        return;
+
+    const QString category = findAutoCategory(torrent->name(), torrent->filePaths());
+    if (!category.isEmpty() && (m_categories.contains(category) || addCategory(category)))
+        torrent->setCategory(category);
+}
+
+QString SessionImpl::findAutoCategory(const QString &torrentName, const PathList &filePaths) const
+{
+    for (const AutoCategoryRule &rule : m_autoCategoryRules)
+    {
+        for (const QRegularExpression &pattern : rule.patterns)
+        {
+            if (pattern.match(torrentName).hasMatch())
+                return rule.category;
+
+            for (const Path &filePath : filePaths)
+            {
+                if (pattern.match(filePath.toString()).hasMatch())
+                    return rule.category;
+            }
+        }
+    }
+
+    return {};
 }
 
 void SessionImpl::configureDeferred()

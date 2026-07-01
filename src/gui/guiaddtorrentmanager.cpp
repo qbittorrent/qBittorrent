@@ -236,6 +236,10 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
     if (!hasMetadata)
         btSession()->downloadMetadata(torrentDescr);
 
+    BitTorrent::AddTorrentParams effectiveParams = params;
+    if (hasMetadata)
+        btSession()->applyAutoCategory(torrentDescr, &effectiveParams);
+
 #ifdef Q_OS_MACOS
     const bool attached = false;
 #else
@@ -244,7 +248,7 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
 
     // By not setting a parent to the "AddNewTorrentDialog", all those dialogs
     // will be displayed on top and will not overlap with the main window.
-    auto *dlg = new AddNewTorrentDialog(torrentDescr, params, (attached ? app()->mainWindow() : nullptr));
+    auto *dlg = new AddNewTorrentDialog(torrentDescr, effectiveParams, (attached ? app()->mainWindow() : nullptr));
     // Qt::Window is required to avoid showing only two dialog on top (see #12852).
     // Also improves the general convenience of adding multiple torrents.
     if (!attached)

@@ -45,6 +45,7 @@
 #include <QMap>
 #include <QMutex>
 #include <QPointer>
+#include <QRegularExpression>
 #include <QSet>
 #include <QThreadPool>
 
@@ -444,6 +445,7 @@ namespace BitTorrent
         void banIP(const QString &ip) override;
 
         bool isKnownTorrent(const InfoHash &infoHash) const override;
+        void applyAutoCategory(const TorrentDescriptor &torrentDescr, AddTorrentParams *addTorrentParams) const override;
         bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) override;
         bool removeTorrent(const TorrentID &id, TorrentRemoveOption deleteOption = TorrentRemoveOption::KeepContent) override;
         bool downloadMetadata(const TorrentDescriptor &torrentDescr) override;
@@ -530,6 +532,12 @@ namespace BitTorrent
 
     private:
         struct ResumeSessionContext;
+
+        struct AutoCategoryRule
+        {
+            QString category;
+            QList<QRegularExpression> patterns;
+        };
 
         struct MoveStorageJob
         {
@@ -637,9 +645,12 @@ namespace BitTorrent
         void processPendingFinishedTorrents();
 
         void loadCategories();
+        void loadAutoCategoryRules();
         void storeCategories() const;
         void upgradeCategories();
         DownloadPathOption resolveCategoryDownloadPathOption(const QString &categoryName, const std::optional<DownloadPathOption> &option) const;
+        void applyAutoCategory(TorrentImpl *torrent);
+        QString findAutoCategory(const QString &torrentName, const PathList &filePaths) const;
 
         void saveStatistics() const;
         void loadStatistics();
@@ -816,6 +827,7 @@ namespace BitTorrent
 
         bool m_torrentsQueueChanged = false;
         bool m_needSaveTorrentsQueue = false;
+        QList<AutoCategoryRule> m_autoCategoryRules;
         bool m_refreshEnqueued = false;
         QTimer *m_seedingLimitTimer = nullptr;
         QTimer *m_resumeDataTimer = nullptr;
