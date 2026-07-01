@@ -47,6 +47,7 @@ namespace Utils::Net
     bool isValidIP(const QString &ip);
     std::optional<Subnet> parseSubnet(const QString &subnetStr);
     bool isIPInSubnets(const QHostAddress &addr, const QList<Subnet> &subnets);
+    bool isIPAddressLessThan(const QHostAddress &left, const QHostAddress &right);
     QString subnetToString(const Subnet &subnet);
     IPRange subnetToIPRange(const Subnet &subnet);
     QHostAddress canonicalIPv6Addr(const QHostAddress &addr);

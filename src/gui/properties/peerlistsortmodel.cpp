@@ -28,6 +28,10 @@
 
 #include "peerlistsortmodel.h"
 
+#include <QHostAddress>
+#include <QMetaType>
+
+#include "base/utils/net.h"
 #include "peerlistwidget.h"
 
 PeerListSortModel::PeerListSortModel(QObject *parent)
@@ -41,6 +45,15 @@ bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &rig
     switch (sortColumn())
     {
     case PeerListWidget::IP:
+        {
+            const QVariant leftData = left.data(UnderlyingDataRole);
+            const QVariant rightData = right.data(UnderlyingDataRole);
+            static const QMetaType hostAddressType = QMetaType::fromType<QHostAddress>();
+            if ((leftData.metaType() == hostAddressType) && (rightData.metaType() == hostAddressType))
+                return Utils::Net::isIPAddressLessThan(leftData.value<QHostAddress>(), rightData.value<QHostAddress>());
+
+            return m_naturalLessThan(leftData.toString(), rightData.toString());
+        }
     case PeerListWidget::CLIENT:
         {
             const QString strL = left.data(UnderlyingDataRole).toString();
