@@ -29,7 +29,6 @@
 
 #include "addtorrentmanager.h"
 
-#include "base/bittorrent/addtorrenterror.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentdescriptor.h"
@@ -154,7 +153,7 @@ void AddTorrentManager::onSessionDuplicateTorrentDetected(const BitTorrent::Info
     }
 }
 
-void AddTorrentManager::onSessionAddTorrentFailed(const BitTorrent::InfoHash &infoHash, const BitTorrent::AddTorrentError &reason)
+void AddTorrentManager::onSessionAddTorrentFailed(const BitTorrent::InfoHash &infoHash, const QString &reason)
 {
     if (const QString source = m_sourcesByInfoHash.take(infoHash); !source.isEmpty())
     {
@@ -168,7 +167,7 @@ void AddTorrentManager::onSessionAddTorrentFailed(const BitTorrent::InfoHash &in
 void AddTorrentManager::handleAddTorrentFailed(const QString &source, const QString &reason)
 {
     LogMsg(tr("Failed to add torrent. Source: \"%1\". Reason: \"%2\"").arg(source, reason), Log::WARNING);
-    emit addTorrentFailed(source, {BitTorrent::AddTorrentError::Other, reason});
+    emit addTorrentFailed(source, reason);
 }
 
 void AddTorrentManager::handleDuplicateTorrent(const QString &source

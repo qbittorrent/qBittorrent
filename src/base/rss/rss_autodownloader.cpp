@@ -43,7 +43,6 @@
 
 #include "base/addtorrentmanager.h"
 #include "base/asyncfilestorage.h"
-#include "base/bittorrent/addtorrenterror.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/global.h"
@@ -396,7 +395,7 @@ void AutoDownloader::handleTorrentAdded(const QString &source)
     }
 }
 
-void AutoDownloader::handleAddTorrentFailed(const QString &source, [[maybe_unused]] const BitTorrent::AddTorrentError &error)
+void AutoDownloader::handleAddTorrentFailed(const QString &source, [[maybe_unused]] const QString &error)
 {
     const auto job = m_waitingJobs.take(source);
     if (!job)
