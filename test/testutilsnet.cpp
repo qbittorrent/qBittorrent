@@ -54,6 +54,13 @@ private slots:
         QVERIFY(Utils::Net::isIPAddressLessThan(QHostAddress(u"255.255.255.255"_s), QHostAddress(u"::1"_s)));
         QVERIFY(!Utils::Net::isIPAddressLessThan(QHostAddress(u"::1"_s), QHostAddress(u"255.255.255.255"_s)));
     }
+
+    void testParseIPv6Range() const
+    {
+        QVERIFY(Utils::Net::parseIPRange(u"2001:db8::1"_s));
+        QVERIFY(Utils::Net::parseIPRange(u"2001:db8::1 - 2001:db8::2"_s));
+        QVERIFY(!Utils::Net::parseIPRange(u"2001:db8::2 - 2001:db8::1"_s));
+    }
 };
 
 QTEST_APPLESS_MAIN(TestUtilsNet)

@@ -85,7 +85,7 @@ namespace
         if (first.protocol() == QAbstractSocket::IPv4Protocol)
             return first.toIPv4Address() <= last.toIPv4Address();
         if (first.protocol() == QAbstractSocket::IPv6Protocol)
-            return !isIPv6LessThan(last, first);
+            return (first == last) || isIPv6LessThan(first, last);
         return false;
     }
 }
