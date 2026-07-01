@@ -309,6 +309,8 @@ namespace BitTorrent
         virtual void setAddTrackersEnabled(bool enabled) = 0;
         virtual QString additionalTrackers() const = 0;
         virtual void setAdditionalTrackers(const QString &trackers) = 0;
+        virtual bool isAddWebSocketTrackersEnabled() const = 0;
+        virtual void setAddWebSocketTrackersEnabled(bool enabled) = 0;
         virtual bool isIPFilteringEnabled() const = 0;
         virtual void setIPFilteringEnabled(bool enabled) = 0;
         virtual Path IPFilterFile() const = 0;

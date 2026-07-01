@@ -3354,6 +3354,16 @@ Disable encryption: Only connect to peers without protocol encryption</string>
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkAddWebSocketTrackers">
+              <property name="text">
+               <string>Announce torrents to a WebTorrent tracker for browser peer discovery</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_8">
               <property name="orientation">
                <enum>Qt::Orientation::Vertical</enum>

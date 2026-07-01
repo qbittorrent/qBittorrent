@@ -129,6 +129,16 @@ namespace
     const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2);
     const QString DEFAULT_DHT_BOOTSTRAP_NODES = u"dht.libtorrent.org:25401, dht.transmissionbt.com:6881, router.bt.ouinet.work:6881"_s;
 
+    // Default WebSocket (WebTorrent/WebRTC) trackers used to make torrents reachable from
+    // browser-based WebTorrent peers. Torrents rarely carry a wss:// tracker themselves since
+    // ordinary scrapers only ever emit udp:// or http(s):// trackers.
+    const QList<TrackerEntry> DEFAULT_WEBSOCKET_TRACKERS =
+    {
+        {u"wss://tracker.btorrent.xyz"_s, 0},
+        {u"wss://tracker.openwebtorrent.com"_s, 0},
+        {u"wss://tracker.webtorrent.dev"_s, 0},
+    };
+
     void torrentQueuePositionUp(const lt::torrent_handle &handle)
     {
         try
@@ -518,6 +528,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY(u"AdditionalTrackers"_s))
     , m_isAddTrackersFromURLEnabled(BITTORRENT_SESSION_KEY(u"AddTrackersFromURLEnabled"_s), false)
     , m_additionalTrackersURL(BITTORRENT_SESSION_KEY(u"AdditionalTrackersURL"_s))
+    , m_isAddWebSocketTrackersEnabled(BITTORRENT_SESSION_KEY(u"AddWebSocketTrackersEnabled"_s), true)
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY(u"GlobalMaxRatio"_s), -1, [](qreal r) { return r < 0 ? -1. : r; })
     , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_s)
         , NO_SEEDING_TIME_LIMIT, lowerLimited(NO_SEEDING_TIME_LIMIT))
@@ -2932,6 +2943,26 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         }
     }
 
+    if (isAddWebSocketTrackersEnabled() && !(hasMetadata && p.ti->priv()))
+    {
+        const std::vector<std::string> existingTrackers = p.trackers;
+        const auto maxTierIter = std::ranges::max_element(asConst(p.tracker_tiers));
+        const int baseTier = (maxTierIter != p.tracker_tiers.cend()) ? (*maxTierIter + 1) : 0;
+
+        p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(DEFAULT_WEBSOCKET_TRACKERS.size()));
+        p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(DEFAULT_WEBSOCKET_TRACKERS.size()));
+        p.tracker_tiers.resize(p.trackers.size(), 0);
+        for (const TrackerEntry &trackerEntry : DEFAULT_WEBSOCKET_TRACKERS)
+        {
+            const std::string url = trackerEntry.url.toStdString();
+            if (std::ranges::find(existingTrackers, url) != existingTrackers.cend())
+                continue;
+
+            p.trackers.emplace_back(url);
+            p.tracker_tiers.emplace_back(Utils::Number::clampingAdd(trackerEntry.tier, baseTier));
+        }
+    }
+
     p.upload_limit = addTorrentParams.uploadLimit;
     p.download_limit = addTorrentParams.downloadLimit;
 
@@ -4008,6 +4039,16 @@ void SessionImpl::setAdditionalTrackers(const QString &trackers)
 
     m_additionalTrackers = trackers;
     populateAdditionalTrackers();
+}
+
+bool SessionImpl::isAddWebSocketTrackersEnabled() const
+{
+    return m_isAddWebSocketTrackersEnabled;
+}
+
+void SessionImpl::setAddWebSocketTrackersEnabled(const bool enabled)
+{
+    m_isAddWebSocketTrackersEnabled = enabled;
 }
 
 bool SessionImpl::isAddTrackersFromURLEnabled() const
