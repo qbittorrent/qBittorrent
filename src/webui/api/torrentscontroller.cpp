@@ -82,6 +82,7 @@ const QString KEY_TRACKER_PEERS_COUNT = u"num_peers"_s;
 const QString KEY_TRACKER_SEEDS_COUNT = u"num_seeds"_s;
 const QString KEY_TRACKER_LEECHES_COUNT = u"num_leeches"_s;
 const QString KEY_TRACKER_DOWNLOADED_COUNT = u"num_downloaded"_s;
+const QString KEY_TRACKER_FAIL_COUNT = u"num_fails"_s;
 const QString KEY_TRACKER_NEXT_ANNOUNCE = u"next_announce"_s;
 const QString KEY_TRACKER_MIN_ANNOUNCE = u"min_announce"_s;
 const QString KEY_TRACKER_ENDPOINTS = u"endpoints"_s;
@@ -306,6 +307,7 @@ namespace
                     {KEY_TRACKER_SEEDS_COUNT, endpoint.numSeeds},
                     {KEY_TRACKER_LEECHES_COUNT, endpoint.numLeeches},
                     {KEY_TRACKER_DOWNLOADED_COUNT, endpoint.numDownloaded},
+                    {KEY_TRACKER_FAIL_COUNT, endpoint.numFails},
                     {KEY_TRACKER_NEXT_ANNOUNCE, toSecondsSinceEpoch(endpoint.nextAnnounceTime)},
                     {KEY_TRACKER_MIN_ANNOUNCE, toSecondsSinceEpoch(endpoint.minAnnounceTime)}
                 };
@@ -322,6 +324,7 @@ namespace
                 {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds},
                 {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches},
                 {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded},
+                {KEY_TRACKER_FAIL_COUNT, tracker.numFails},
                 {KEY_TRACKER_NEXT_ANNOUNCE, toSecondsSinceEpoch(tracker.nextAnnounceTime)},
                 {KEY_TRACKER_MIN_ANNOUNCE, toSecondsSinceEpoch(tracker.minAnnounceTime)},
                 {KEY_TRACKER_ENDPOINTS, endpointsList}
