@@ -54,6 +54,7 @@
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "categoryoptions.h"
+#include "filterparserthread.h"
 #include "session.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
@@ -560,6 +561,10 @@ namespace BitTorrent
         void initMetrics();
         void applyBandwidthLimits();
         void processBannedIPs(lt::ip_filter &filter);
+        const ParsedIPFilterRule *findUserIPFilterRule(const lt::address &address) const;
+        bool isManuallyBannedIP(const lt::address &address) const;
+
+        static bool isAddressInRange(const lt::address &address, const lt::address &first, const lt::address &last);
         QStringList getListeningIPs() const;
         void configureListeningInterface();
         void enableTracker(bool enable);
@@ -770,6 +775,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isExcludedFileNamesEnabled;
         CachedSettingValue<QStringList> m_excludedFileNames;
         CachedSettingValue<QStringList> m_bannedIPs;
+        QVector<ParsedIPFilterRule> m_currentIPFilterRules;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
         CachedSettingValue<bool> m_isMergeTrackersEnabled;
         CachedSettingValue<bool> m_isI2PEnabled;
