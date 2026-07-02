@@ -86,7 +86,13 @@ add_library(qbt_base STATIC
     orderedset.h
     path.h
     pathfwd.h
-    pluginsengine.h
+    plugins/luaclasses.h
+    plugins/luafunctions.h
+    plugins/luanamespace.h
+    plugins/luastack.h
+    plugins/plugin.h
+    plugins/pluginsengine.h
+    plugins/pluginversion.h
     preferences.h
     profile.h
     profile_p.h
@@ -117,6 +123,7 @@ add_library(qbt_base STATIC
     utils/foreignapps.h
     utils/fs.h
     utils/gzip.h
+    utils/hashvalue.h
     utils/io.h
     utils/misc.h
     utils/net.h
@@ -185,7 +192,10 @@ add_library(qbt_base STATIC
     net/reverseresolution.cpp
     net/smtpclient.cpp
     path.cpp
-    pluginsengine.cpp
+    plugins/luaclasses.cpp
+    plugins/luafunctions.cpp
+    plugins/plugin.cpp
+    plugins/pluginsengine.cpp
     preferences.cpp
     profile.cpp
     profile_p.cpp

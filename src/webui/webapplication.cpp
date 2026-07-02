@@ -171,6 +171,7 @@ namespace
 WebApplication::WebApplication(IApplication *app, QObject *parent)
     : ApplicationComponent(app, parent)
     , m_cacheID {QString::number(Utils::Random::rand(), 36)}
+    , m_trRegex {u"QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s}
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
     , m_clientDataStorage {new ClientDataStorage(this)}
@@ -253,14 +254,15 @@ void WebApplication::sendWebUIFile(const Http::HeaderMap &commonHeaders, Http::R
 
 void WebApplication::translateDocument(QString &data) const
 {
-    const QRegularExpression regex(u"QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s);
+    data.replace(u"${LANG}"_s, m_currentLocale.left(2));
+    data.replace(u"${CACHEID}"_s, m_cacheID);
 
     qsizetype i = 0;
     bool found = true;
     while ((i < data.size()) && found)
     {
         QRegularExpressionMatch regexMatch;
-        i = data.indexOf(regex, i, &regexMatch);
+        i = data.indexOf(m_trRegex, i, &regexMatch);
         if (i >= 0)
         {
             const QStringView sourceText = regexMatch.capturedView(1);
@@ -286,9 +288,6 @@ void WebApplication::translateDocument(QString &data) const
         {
             found = false; // no more translatable strings
         }
-
-        data.replace(u"${LANG}"_s, m_currentLocale.left(2));
-        data.replace(u"${CACHEID}"_s, m_cacheID);
     }
 }
 

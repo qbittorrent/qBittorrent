@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,14 +26,36 @@
  * exception statement from your version.
  */
 
-#include "pluginsengine.h"
+#include <boost/unordered_set.hpp>
 
-#include <lua/lua.hpp>
+#include <QObject>
+#include <QString>
+#include <QTest>
 
-PluginsEngine::PluginsEngine(QObject *parent)
-    : QObject(parent)
+#include "base/utils/hashvalue.h"
+
+using namespace Qt::Literals::StringLiterals;
+
+class TestUtilsHashValue final : public QObject
 {
-    lua_State *luaState = luaL_newstate();
-    Q_ASSERT(luaState);
-    lua_close(luaState);
-}
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TestUtilsHashValue)
+
+public:
+    TestUtilsHashValue() = default;
+
+private slots:
+    void testHashValue() const
+    {
+        QCOMPARE_NE(hash_value(u"a"_s), hash_value(u"b"_s));
+
+        // test whether boost hash-based containers is able to store/hash Qt types
+        boost::unordered_set<QString> set;
+        set.insert(QString());
+        QCOMPARE(set.size(), 1);
+        QCOMPARE(*set.begin(), QString());
+    }
+};
+
+QTEST_APPLESS_MAIN(TestUtilsHashValue)
+#include "testutilshashvalue.moc"
