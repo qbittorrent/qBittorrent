@@ -35,7 +35,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuEdit">
@@ -125,10 +125,18 @@
     <addaction name="separator"/>
     <addaction name="actionLock"/>
    </widget>
+   <widget class="QMenu" name="menuPlugins">
+    <property name="title">
+     <string>Plugins</string>
+    </property>
+    <addaction name="actionManagePlugins"/>
+    <addaction name="separator"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
    <addaction name="menuOptions"/>
+   <addaction name="menuPlugins"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="CustomizableToolBar" name="toolBar">
@@ -492,11 +500,19 @@
    </property>
   </action>
   <action name="actionOpenDestinationFolder">
+   <property name="text">
+    <string>Open Destination Folder</string>
+   </property>
    <property name="iconText">
     <string>Open Folder</string>
    </property>
+  </action>
+  <action name="actionManagePlugins">
    <property name="text">
-    <string>Open Destination Folder</string>
+    <string>Manage Plugins...</string>
+   </property>
+   <property name="toolTip">
+    <string>Manage installed plugins</string>
    </property>
   </action>
  </widget>

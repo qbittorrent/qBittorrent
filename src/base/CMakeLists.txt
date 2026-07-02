@@ -5,7 +5,6 @@ add_library(qbt_base STATIC
     algorithm.h
     applicationcomponent.h
     asyncfilestorage.h
-    bittorrent/abstractfilestorage.h
     bittorrent/addtorrenterror.h
     bittorrent/addtorrentparams.h
     bittorrent/announcetimepoint.h
@@ -66,9 +65,10 @@ add_library(qbt_base STATIC
     http/httperror.h
     http/irequesthandler.h
     http/request.h
-    http/response.h
     http/requestparser.h
-    http/responsegenerator.h
+    http/response.h
+    http/responsewriter.h
+    http/responsewriterimpl.h
     http/server.h
     indexrange.h
     interfaces/iapplication.h
@@ -82,11 +82,18 @@ add_library(qbt_base STATIC
     net/proxyconfigurationmanager.h
     net/proxytype.h
     net/reverseresolution.h
-    net/smtp.h
+    net/smtpclient.h
     net/smtpencryptiontype.h
     orderedset.h
     path.h
     pathfwd.h
+    plugins/luaclasses.h
+    plugins/luafunctions.h
+    plugins/luanamespace.h
+    plugins/luastack.h
+    plugins/plugin.h
+    plugins/pluginsengine.h
+    plugins/pluginversion.h
     preferences.h
     profile.h
     profile_p.h
@@ -117,6 +124,7 @@ add_library(qbt_base STATIC
     utils/foreignapps.h
     utils/fs.h
     utils/gzip.h
+    utils/hashvalue.h
     utils/io.h
     utils/misc.h
     utils/net.h
@@ -134,7 +142,6 @@ add_library(qbt_base STATIC
     addtorrentmanager.cpp
     applicationcomponent.cpp
     asyncfilestorage.cpp
-    bittorrent/abstractfilestorage.cpp
     bittorrent/addtorrentparams.cpp
     bittorrent/bandwidthscheduler.cpp
     bittorrent/bencoderesumedatastorage.cpp
@@ -173,7 +180,7 @@ add_library(qbt_base STATIC
     http/connection.cpp
     http/httperror.cpp
     http/requestparser.cpp
-    http/responsegenerator.cpp
+    http/responsewriterimpl.cpp
     http/server.cpp
     logger.cpp
     net/dnsupdater.cpp
@@ -184,8 +191,12 @@ add_library(qbt_base STATIC
     net/portforwarder.cpp
     net/proxyconfigurationmanager.cpp
     net/reverseresolution.cpp
-    net/smtp.cpp
+    net/smtpclient.cpp
     path.cpp
+    plugins/luaclasses.cpp
+    plugins/luafunctions.cpp
+    plugins/plugin.cpp
+    plugins/pluginsengine.cpp
     preferences.cpp
     profile.cpp
     profile_p.cpp
@@ -227,6 +238,12 @@ add_library(qbt_base STATIC
     utils/version.cpp
 )
 
+add_subdirectory(3rdparty/lua)
+set_target_properties(qbt_lua PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_lua,INTERFACE_INCLUDE_DIRECTORIES>)
+
+add_subdirectory(3rdparty/luabridge)
+set_target_properties(qbt_luabridge PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_luabridge,INTERFACE_INCLUDE_DIRECTORIES>)
+
 target_link_libraries(qbt_base
     PRIVATE
         OpenSSL::Crypto
@@ -242,6 +259,8 @@ target_link_libraries(qbt_base
         Qt::Sql
         Qt::Xml
         qbt_common_cfg
+        qbt_lua
+        qbt_luabridge
 )
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")

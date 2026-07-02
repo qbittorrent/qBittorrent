@@ -1376,7 +1376,7 @@ void Preferences::recheckTorrentsOnCompletion(const bool recheck)
 
 bool Preferences::resolvePeerCountries() const
 {
-    return value(u"Preferences/Connection/ResolvePeerCountries"_s, true);
+    return value(u"Preferences/Connection/ResolvePeerCountries"_s, false);
 }
 
 void Preferences::resolvePeerCountries(const bool resolve)

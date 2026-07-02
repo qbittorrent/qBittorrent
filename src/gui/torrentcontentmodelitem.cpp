@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,16 +31,11 @@
 
 #include <QVariant>
 
-#include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "torrentcontentmodelfolder.h"
 
-TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *parent)
-    : m_parentItem(parent)
-{
-}
-
+TorrentContentModelItem::TorrentContentModelItem() = default;
 TorrentContentModelItem::~TorrentContentModelItem() = default;
 
 bool TorrentContentModelItem::isRootItem() const
@@ -135,8 +131,8 @@ QString TorrentContentModelItem::displayData(const int column) const
                 return tr("N/A");
 
             const QString value = (avail >= 1)
-                                  ? u"100"_s
-                                  : Utils::String::fromDouble((avail * 100), 1);
+                    ? u"100"_s
+                    : Utils::String::fromDouble((avail * 100), 1);
             return (value + u'%');
         }
     default:

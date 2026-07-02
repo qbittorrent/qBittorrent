@@ -53,21 +53,23 @@
             </select>
         </div>
         <div>
+            <input type="hidden" id="ignoreDotfilesHidden" name="ignoreDotfiles" value="0">
+            <input type="checkbox" id="ignoreDotfiles"><label for="ignoreDotfiles" title="QBT_TR(If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.)QBT_TR[CONTEXT=TorrentCreator]">QBT_TR(Ignore dotfiles)QBT_TR[CONTEXT=TorrentCreator]</label>
+        </div>
+        <div>
             <input type="hidden" id="privateTorrentHidden" name="private" value="0">
-            <input type="checkbox" id="privateTorrent"><label for="privateTorrent">QBT_TR(Private
-                torrent (Won't distribute on DHT network))QBT_TR[CONTEXT=TorrentCreator]</label>
+            <input type="checkbox" id="privateTorrent"><label for="privateTorrent">QBT_TR(Private torrent (Won't distribute on DHT network))QBT_TR[CONTEXT=TorrentCreator]</label>
         </div>
         <div>
             <input type="hidden" id="startSeedingHidden" name="startSeeding" value="0">
-            <input type="checkbox" id="startSeeding"><label for="startSeeding">QBT_TR(Start
-                seeding
-                immediately)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <input type="checkbox" id="startSeeding"><label for="startSeeding">QBT_TR(Start seeding immediately)QBT_TR[CONTEXT=TorrentCreator]</label>
         </div>
         <fieldset id="optimizeAlignmentBox">
-            <legend><input type="hidden" id="optimizeAlignmentHidden" name="optimizeAlignment" value="0"><input type="checkbox" id="optimizeAlignment"><label for="optimizeAlignment">QBT_TR(Optimize
-                    alignment)QBT_TR[CONTEXT=TorrentCreator]</label></legend>
-            <label for="paddedFileSizeLimit">QBT_TR(Align to piece boundary for files larger
-                than:)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <legend>
+                <input type="hidden" id="optimizeAlignmentHidden" name="optimizeAlignment" value="0">
+                <input type="checkbox" id="optimizeAlignment"><label for="optimizeAlignment">QBT_TR(Optimize alignment)QBT_TR[CONTEXT=TorrentCreator]</label>
+            </legend>
+            <label for="paddedFileSizeLimit">QBT_TR(Align to piece boundary for files larger than:)QBT_TR[CONTEXT=TorrentCreator]</label>
             <input type="number" id="paddedFileSizeLimit" name="paddedFileSizeLimit" disabled value="0">QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]
         </fieldset>
     </fieldset>
@@ -165,6 +167,7 @@
         };
 
         const submit = () => {
+            document.getElementById("ignoreDotfilesHidden").value = document.getElementById("ignoreDotfiles").checked ? "true" : "false";
             document.getElementById("privateTorrentHidden").value = document.getElementById("privateTorrent").checked ? "true" : "false";
             document.getElementById("startSeedingHidden").value = document.getElementById("startSeeding").checked ? "true" : "false";
             document.getElementById("optimizeAlignmentHidden").value = document.getElementById("optimizeAlignment").checked ? "true" : "false";
@@ -195,6 +198,7 @@
                 sourcePath: document.getElementById("sourcePath").value,
                 torrentFormat: document.getElementById("torrentFormat").value,
                 pieceSize: document.getElementById("pieceSize").value,
+                ignoreDotfiles: document.getElementById("ignoreDotfiles").checked,
                 privateTorrent: document.getElementById("privateTorrent").checked,
                 startSeeding: document.getElementById("startSeeding").checked,
                 optimizeAlignment: document.getElementById("optimizeAlignment").checked,
@@ -213,6 +217,7 @@
             document.getElementById("sourcePath").value = preference.sourcePath ?? "";
             document.getElementById("torrentFormat").value = preference.torrentFormat ?? "hybrid";
             document.getElementById("pieceSize").value = preference.pieceSize ?? 0;
+            document.getElementById("ignoreDotfiles").checked = preference.ignoreDotfiles ?? true;
             document.getElementById("privateTorrent").checked = preference.privateTorrent ?? false;
             document.getElementById("startSeeding").checked = preference.startSeeding ?? false;
             document.getElementById("optimizeAlignment").checked = preference.optimizeAlignment ?? false;

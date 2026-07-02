@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2022  Mike Tzou (Chocobo1)
- * Copyright (C) 2015, 2019  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -42,7 +42,6 @@
 #include <QApplication>
 #endif
 
-#include "base/bittorrent/addtorrentparams.h"
 #include "base/interfaces/iapplication.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
@@ -108,6 +107,8 @@ public:
     QString instanceName() const override;
     void setInstanceName(const QString &name) override;
 
+    bool loadTranslation(const QString &locale) override;
+
     qint64 launchTimeSecsSinceEpoch() const override;
 
     // FileLogger properties
@@ -129,7 +130,7 @@ public:
     int memoryWorkingSetLimit() const override;
     void setMemoryWorkingSetLimit(int size) override;
 
-    void sendTestEmail() const override;
+    void sendTestEmail() override;
 
 #ifdef Q_OS_WIN
     MemoryPriority processMemoryPriority() const override;
@@ -189,18 +190,20 @@ private:
 
     ApplicationInstanceManager *m_instanceManager = nullptr;
     std::atomic_bool m_isCleanupRun;
-    bool m_isProcessingParamsAllowed = false;
-    ShutdownDialogAction m_shutdownAct = ShutdownDialogAction::Exit;
-    QBtCommandLineParameters m_commandLineArgs;
-    qint64 m_launchTimeSecsSinceEpoch = -1;
 
-    // FileLog
-    QPointer<FileLogger> m_fileLogger;
+    bool m_isProcessingParamsAllowed = false;
+    QBtCommandLineParameters m_commandLineArgs;
+    QList<QBtCommandLineParameters> m_paramsQueue;
+
+    ShutdownDialogAction m_shutdownAct = ShutdownDialogAction::Exit;
 
     QTranslator m_qtTranslator;
     QTranslator m_translator;
 
-    QList<QBtCommandLineParameters> m_paramsQueue;
+    qint64 m_launchTimeSecsSinceEpoch = -1;
+
+    // FileLog
+    QPointer<FileLogger> m_fileLogger;
 
     SettingValue<QString> m_storeInstanceName;
     SettingValue<bool> m_storeFileLoggerEnabled;

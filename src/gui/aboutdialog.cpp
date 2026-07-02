@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -32,6 +33,7 @@
 
 #include "base/global.h"
 #include "base/path.h"
+#include "base/plugins/pluginsengine.h"
 #include "base/unicodestrings.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
@@ -44,8 +46,8 @@
 
 AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent)
-    , m_ui(new Ui::AboutDialog)
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
+    , m_ui {new Ui::AboutDialog}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
 {
     m_ui->setupUi(this);
 
@@ -99,6 +101,8 @@ AboutDialog::AboutDialog(QWidget *parent)
     m_ui->labelBoostVer->setText(Utils::Misc::boostVersionString());
     m_ui->labelOpensslVer->setText(Utils::Misc::opensslVersionString());
     m_ui->labelZlibVer->setText(Utils::Misc::zlibVersionString());
+    m_ui->labelLuaVer->setText(PluginsEngine::luaVersion().toString());
+    m_ui->labelLuaBridgeVer->setText(PluginsEngine::luaBridgeVersion().toString());
 
     connect(m_ui->btnCopyToClipboard, &QAbstractButton::clicked, this, &AboutDialog::copyVersionsToClipboard);
 

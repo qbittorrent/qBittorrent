@@ -32,8 +32,6 @@ LangString inst_requires_64bit ${LANG_HINDI} "यह इंस्टॉलर �
 LangString inst_requires_win10 ${LANG_HINDI}  "इस इंस्टॉलर को कम से कम विंडोज 10 (1809) / विंडोज सर्वर 2019 की आवश्यकता है।"
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_HINDI} "qBittorrent को अनइंस्टॉल करें"
-;LangString inst_arch_mismatch_x64_on_arm64 ${LANG_ENGLISH} "This x64 version of qBittorrent cannot run on ARM64 systems. Please download the ARM64 installer."
-LangString inst_arch_mismatch_x64_on_arm64 ${LANG_HINDI} "This x64 version of qBittorrent cannot run on ARM64 systems. Please download the ARM64 installer."
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 LangString inst_arch_mismatch_arm64_on_x64 ${LANG_HINDI} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 

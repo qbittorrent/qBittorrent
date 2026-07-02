@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,23 +28,17 @@
 
 #include "apicontroller.h"
 
-#include <algorithm>
+#include <utility>
 
 #include <QHash>
 #include <QJsonDocument>
 #include <QList>
 #include <QMetaObject>
+#include <QScopeGuard>
 
-#include "base/global.h"
 #include "apierror.h"
 
-void APIResult::clear()
-{
-    data.clear();
-    mimeType.clear();
-    filename.clear();
-    status = APIStatus::Ok;
-}
+using namespace Qt::Literals::StringLiterals;
 
 APIController::APIController(IApplication *app, QObject *parent)
     : ApplicationComponent(app, parent)
@@ -53,15 +47,19 @@ APIController::APIController(IApplication *app, QObject *parent)
 
 APIResult APIController::run(const QString &action, const StringMap &params, const DataMap &data)
 {
-    m_result.clear(); // clear result
     m_params = params;
     m_data = data;
+    [[maybe_unused]] const auto inputsGuard = qScopeGuard([this]
+    {
+        m_params = {};
+        m_data = {};
+    });
 
     const QByteArray methodName = action.toLatin1() + "Action";
     if (!QMetaObject::invokeMethod(this, methodName.constData()))
         throw APIError(APIErrorType::NotFound, tr("Endpoint does not exist"));
 
-    return m_result;
+    return std::exchange(m_result, {});
 }
 
 const StringMap &APIController::params() const
@@ -91,27 +89,32 @@ void APIController::requireParams(const QList<QString> &requiredParams) const
 
 void APIController::setResult(const QString &result)
 {
-    m_result.data = result;
+    m_result = RegularAPIResult {.data = result};
 }
 
 void APIController::setResult(const QJsonArray &result)
 {
-    m_result.data = QJsonDocument(result);
+    m_result = RegularAPIResult {.data = QJsonDocument(result)};
 }
 
 void APIController::setResult(const QJsonObject &result)
 {
-    m_result.data = QJsonDocument(result);
+    m_result = RegularAPIResult {.data = QJsonDocument(result)};
 }
 
 void APIController::setResult(const QByteArray &result, const QString &mimeType, const QString &filename)
 {
-    m_result.data = result;
-    m_result.mimeType = mimeType;
-    m_result.filename = filename;
+    m_result = RegularAPIResult {.data = result, .mimeType = mimeType, .filename = filename};
+}
+
+void APIController::setResult(const Path &filePath)
+{
+    m_result = StreamFileAPIResult {.filePath = filePath};
 }
 
 void APIController::setStatus(const APIStatus status)
 {
-    m_result.status = status;
+    Q_ASSERT(std::holds_alternative<RegularAPIResult>(m_result));
+
+    std::get<RegularAPIResult>(m_result).status = status;
 }
