@@ -25,6 +25,10 @@
         "use strict";
 
         window.addEventListener("DOMContentLoaded", (event) => {
+            const searchParams = new URLSearchParams(window.location.search);
+
+            let submitted = false;
+
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
                     case "Escape":
@@ -34,7 +38,37 @@
                 }
             });
 
-            const searchParams = new URLSearchParams(window.location.search);
+            const getClipboardText = (clipboardData) => {
+                for (const type of ["text/plain", "text/uri-list", "text"]) {
+                    const text = clipboardData?.getData(type);
+                    if ((typeof text === "string") && (text.length > 0))
+                        return text;
+                }
+                return "";
+            };
+
+            const pasteTorrentLinks = (event) => {
+                const text = getClipboardText(event.clipboardData);
+                if (typeof text !== "string")
+                    return false;
+
+                const urls = window.qBittorrent.Misc.torrentLinksFromText(text);
+                if (urls.length === 0)
+                    return false;
+
+                event.preventDefault();
+                event.stopImmediatePropagation();
+
+                document.getElementById("urls").value = urls.join("\n");
+                submitted = true;
+                window.qBittorrent.AddTorrent.submitForm();
+                document.getElementById("uploadForm").submit();
+                return true;
+            };
+
+            document.addEventListener("paste", (event) => {
+                pasteTorrentLinks(event);
+            }, true);
 
             const source = searchParams.get("source");
             if ((source === null) || (source.length === 0))
