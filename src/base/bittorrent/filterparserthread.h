@@ -36,6 +36,13 @@
 
 class QDataStream;
 
+struct ParsedIPFilterRule
+{
+    lt::address first;
+    lt::address last;
+    QString comment;
+};
+
 class FilterParserThread final : public QThread
 {
     Q_OBJECT
@@ -46,6 +53,7 @@ public:
     ~FilterParserThread();
     void processFilterFile(const Path &filePath);
     lt::ip_filter IPfilter();
+    QVector<ParsedIPFilterRule> IPFilterRules() const;
 
 signals:
     void IPFilterParsed(int ruleCount);
@@ -53,6 +61,8 @@ signals:
 
 protected:
     void run() override;
+
+    void recordBlockedRule(const lt::address &first, const lt::address &last, const QString &comment);
 
 private:
     int findAndNullDelimiter(char *data, char delimiter, int start, int end, bool reverse = false);
@@ -65,4 +75,5 @@ private:
     bool m_abort = false;
     Path m_filePath;
     lt::ip_filter m_filter;
+    QVector<ParsedIPFilterRule> m_blockedRules;
 };
