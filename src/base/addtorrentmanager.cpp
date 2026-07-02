@@ -29,7 +29,6 @@
 
 #include "addtorrentmanager.h"
 
-#include "base/bittorrent/addtorrenterror.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentdescriptor.h"
@@ -43,6 +42,7 @@ AddTorrentManager::AddTorrentManager(IApplication *app, BitTorrent::Session *btS
 {
     Q_ASSERT(btSession);
     connect(btSession, &BitTorrent::Session::torrentAdded, this, &AddTorrentManager::onSessionTorrentAdded);
+    connect(btSession, &BitTorrent::Session::duplicateTorrentDetected, this, &AddTorrentManager::onSessionDuplicateTorrentDetected);
     connect(btSession, &BitTorrent::Session::addTorrentFailed, this, &AddTorrentManager::onSessionAddTorrentFailed);
 }
 
@@ -141,7 +141,19 @@ void AddTorrentManager::onSessionTorrentAdded(BitTorrent::Torrent *torrent)
     }
 }
 
-void AddTorrentManager::onSessionAddTorrentFailed(const BitTorrent::InfoHash &infoHash, const BitTorrent::AddTorrentError &reason)
+void AddTorrentManager::onSessionDuplicateTorrentDetected(const BitTorrent::InfoHash &infoHash
+        , BitTorrent::Torrent *torrent, const QString &message)
+{
+    if (const QString source = m_sourcesByInfoHash.take(infoHash); !source.isEmpty())
+    {
+        auto torrentFileGuard = m_guardedTorrentFiles.take(source);
+        if (torrentFileGuard)
+            torrentFileGuard->setAutoRemove(false);
+        emit duplicateTorrentDetected(source, torrent, message);
+    }
+}
+
+void AddTorrentManager::onSessionAddTorrentFailed(const BitTorrent::InfoHash &infoHash, const QString &reason)
 {
     if (const QString source = m_sourcesByInfoHash.take(infoHash); !source.isEmpty())
     {
@@ -155,7 +167,7 @@ void AddTorrentManager::onSessionAddTorrentFailed(const BitTorrent::InfoHash &in
 void AddTorrentManager::handleAddTorrentFailed(const QString &source, const QString &reason)
 {
     LogMsg(tr("Failed to add torrent. Source: \"%1\". Reason: \"%2\"").arg(source, reason), Log::WARNING);
-    emit addTorrentFailed(source, {BitTorrent::AddTorrentError::Other, reason});
+    emit addTorrentFailed(source, reason);
 }
 
 void AddTorrentManager::handleDuplicateTorrent(const QString &source
@@ -188,7 +200,7 @@ void AddTorrentManager::handleDuplicateTorrent(const QString &source
 
     LogMsg(tr("Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: \"%2\". Torrent infohash: %3. Result: %4")
             .arg(source, existingTorrent->name(), existingTorrent->infoHash().toString(), message));
-    emit addTorrentFailed(source, {BitTorrent::AddTorrentError::DuplicateTorrent, message});
+    emit duplicateTorrentDetected(source, existingTorrent, message);
 }
 
 void AddTorrentManager::setTorrentFileGuard(const QString &source, std::shared_ptr<TorrentFileGuard> torrentFileGuard)
