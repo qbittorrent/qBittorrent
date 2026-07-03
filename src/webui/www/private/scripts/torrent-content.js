@@ -212,7 +212,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
     const getComboboxPriority = (id) => {
         const node = torrentFilesTable.getNode(id.toString());
-        return normalizePriority(node.priority, 10);
+        return normalizePriority(node.priority);
     };
 
     const switchGlobalCheckboxState = (e) => {

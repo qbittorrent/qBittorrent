@@ -133,12 +133,28 @@ window.qBittorrent.Search ??= (() => {
             menu: "searchResultsTableMenu",
             actions: {
                 OpenDownloadWindow: openDownloadWindow,
+                OpenSharedDownloadWindow: openSharedDownloadWindow,
                 Download: downloadSearchTorrent,
                 OpenDescriptionUrl: openSearchTorrentDescriptionUrl
             },
             offsets: {
                 x: 0,
                 y: -60
+            },
+            onShow: function() {
+                const multiSelect = searchResultsTable.selectedRowsIds().length > 1;
+
+                const openDownloadAnchor = this.menu.querySelector("a[href=\"#OpenDownloadWindow\"]");
+                const label = multiSelect
+                    ? "QBT_TR(Open separate download windows)QBT_TR[CONTEXT=SearchJobWidget]"
+                    : "QBT_TR(Open download window)QBT_TR[CONTEXT=SearchJobWidget]";
+                openDownloadAnchor.querySelector("img").alt = label;
+                openDownloadAnchor.lastChild.nodeValue = ` ${label}`;
+
+                if (multiSelect)
+                    this.showItem("OpenSharedDownloadWindow");
+                else
+                    this.hideItem("OpenSharedDownloadWindow");
             }
         });
         searchResultsTable = new window.qBittorrent.DynamicTable.SearchResultsTable();
@@ -315,9 +331,11 @@ window.qBittorrent.Search ??= (() => {
         if (!tab)
             return;
 
-        const searchId = getSearchIdFromTab(tab);
         const isTabSelected = tab.classList.contains("selected");
         const newTabToSelect = isTabSelected ? (tab.nextSibling || tab.previousSibling) : null;
+
+        const searchId = getSearchIdFromTab(tab);
+        resetSearchState(searchId);
 
         const state = searchState.get(searchId);
         // don't bother sending a stop request if already stopped
@@ -343,7 +361,6 @@ window.qBittorrent.Search ??= (() => {
         searchState.delete(searchId);
 
         if (numSearchTabs() === 0) {
-            resetSearchState();
             resetFilters();
 
             document.getElementById("numSearchResultsVisible").textContent = 0;
@@ -608,8 +625,23 @@ window.qBittorrent.Search ??= (() => {
     const openDownloadWindow = () => {
         for (const rowID of searchResultsTable.selectedRowsIds()) {
             const { engineName, fileName, fileUrl } = searchResultsTable.getRow(rowID).full_data;
-            qBittorrent.Client.createAddTorrentWindow(fileName, fileUrl, undefined, engineName);
+            qBittorrent.Client.createAddTorrentWindow(fileName, fileUrl, undefined, { engines: [engineName] });
         }
+    };
+
+    const openSharedDownloadWindow = () => {
+        const rowIds = searchResultsTable.selectedRowsIds();
+        if (rowIds.length === 0)
+            return;
+        const urls = [];
+        const engines = [];
+        for (const rowID of rowIds) {
+            const row = searchResultsTable.getRow(rowID).full_data;
+            urls.push(row.fileUrl);
+            engines.push(row.engineName);
+        }
+        const title = "QBT_TR(Add %1 torrents)QBT_TR[CONTEXT=SearchJobWidget]".replace("%1", urls.length);
+        qBittorrent.Client.createAddTorrentWindow(title, urls.join("\n"), undefined, { shared: true, engines: engines });
     };
 
     const downloadSearchTorrent = () => {

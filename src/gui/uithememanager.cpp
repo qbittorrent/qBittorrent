@@ -39,6 +39,7 @@
 
 #include "base/logger.h"
 #include "base/path.h"
+#include "base/profile.h"
 #include "base/preferences.h"
 #include "uithemecommon.h"
 
@@ -55,6 +56,11 @@ namespace
         const QPalette palette = qApp->palette();
         const QColor &color = palette.color(QPalette::Active, QPalette::Base);
         return (color.lightness() < 127);
+    }
+
+    Path resolveThemePath(const Path &themePath)
+    {
+        return (themePath.isAbsolute() ? themePath : (Profile::instance()->rootPath() / themePath));
     }
 }
 
@@ -100,7 +106,7 @@ UIThemeManager::UIThemeManager()
 
     if (m_useCustomTheme)
     {
-        const Path themePath = Preferences::instance()->customUIThemePath();
+        const Path themePath = resolveThemePath(Preferences::instance()->customUIThemePath());
 
         if (themePath.hasExtension(u".qbtheme"_s))
         {

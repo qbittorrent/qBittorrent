@@ -42,28 +42,24 @@
 
             document.getElementById("urls").value = source;
 
+            const sharedMode = searchParams.get("shared") === "true";
+            // preserve positional alignment with urls
+            const enginesParam = searchParams.get("engines");
+            const engines = enginesParam ? enginesParam.split("\n") : [];
+            if (sharedMode) {
+                for (const elementId of ["renameRow", "torrentInfoSection", "filesColumn", "saveTorrent", "metadataStatus", "loadingSpinner"])
+                    document.getElementById(elementId).style.display = "none";
+            }
+
             // fetch unless explicitly told not to
             const fetchMetadata = searchParams.get("fetch") !== "false";
-            let submitted = false;
 
             const windowId = searchParams.get("windowId");
             window.qBittorrent.AddTorrent.setWindowId(windowId);
 
-            const downloader = searchParams.get("downloader");
-            if (downloader?.length > 0) {
-                const downloaderInput = document.getElementById("downloader");
-                downloaderInput.value = downloader;
-                downloaderInput.disabled = false;
-            }
-
             document.getElementById("uploadForm").addEventListener("submit", (event) => {
-                submitted = true;
+                event.preventDefault();
                 window.qBittorrent.AddTorrent.submitForm();
-            });
-
-            document.getElementById("upload_frame").addEventListener("load", (event) => {
-                if (submitted)
-                    window.parent.qBittorrent.Client.closeFrameWindow(window);
             });
 
             document.getElementById("saveTorrent").addEventListener("click", (event) => {
@@ -90,7 +86,7 @@
             });
 
             window.qBittorrent.pathAutofill.attachPathAutofill();
-            window.qBittorrent.AddTorrent.init(source, downloader, fetchMetadata);
+            window.qBittorrent.AddTorrent.init(source, fetchMetadata, sharedMode, engines, searchParams.get("size"));
         });
     </script>
 
@@ -158,11 +154,9 @@
         </li>
     </ul>
 
-    <iframe id="upload_frame" name="upload_frame" class="invisible" title="" src="about:blank"></iframe>
-    <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center; padding: 10px 12px;" target="upload_frame" autocorrect="off" autocapitalize="none">
+    <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center; padding: 10px 12px;" autocorrect="off" autocapitalize="none">
         <input type="hidden" id="urls" name="urls">
         <input type="hidden" id="filePriorities" name="filePriorities">
-        <input type="hidden" id="downloader" name="downloader" disabled>
         <div class="container">
             <div class="column">
                 <fieldset class="settings" style="text-align: left;">
@@ -186,6 +180,7 @@
                                 </td>
                                 <td class="fullWidth">
                                     <input type="text" id="savepath" name="savepath" class="pathDirectory" style="width: 100%;">
+                                    <div id="diskInfo" style="margin-top: 4px; margin-left: 3px;"></div>
                                 </td>
                             </tr>
                         </tbody>
@@ -206,7 +201,7 @@
                     <legend>QBT_TR(Torrent settings)QBT_TR[CONTEXT=AddNewTorrentDialog]</legend>
                     <table style="width: 100%">
                         <tbody>
-                            <tr>
+                            <tr id="renameRow">
                                 <td class="noWrap">
                                     <label for="rename">QBT_TR(Rename torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                                 </td>
@@ -332,18 +327,10 @@
                     </table>
                 </fieldset>
 
-                <fieldset class="settings" style="text-align: left;">
+                <fieldset id="torrentInfoSection" class="settings" style="text-align: left;">
                     <legend>QBT_TR(Torrent information)QBT_TR[CONTEXT=AddNewTorrentDialog]</legend>
                     <table style="width: 100%">
                         <tbody>
-                            <tr>
-                                <td class="noWrap">
-                                    <label>QBT_TR(Size:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
-                                </td>
-                                <td class="fullWidth">
-                                    <span id="size">QBT_TR(Not available)QBT_TR[CONTEXT=AddNewTorrentDialog]</span>
-                                </td>
-                            </tr>
                             <tr>
                                 <td class="noWrap">
                                     <label>QBT_TR(Date:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
@@ -380,7 +367,7 @@
                     </table>
                 </fieldset>
             </div>
-            <div class="column" style="max-height: 750px; overflow-y: auto;">
+            <div id="filesColumn" class="column" style="max-height: 750px; overflow-y: auto;">
                 <fieldset class="settings" style="text-align: left; display: flex; flex-direction: column; height: 100%; box-sizing: border-box;">
                     <legend style="width: fit-content;">QBT_TR(Files)QBT_TR[CONTEXT=AddNewTorrentDialog]</legend>
                     <div style="text-align: right; padding-bottom: 10px;">
@@ -411,7 +398,7 @@
             <!-- maintains button's relative position after metadataStatus element is deleted -->
             <span>&nbsp;</span>
             <div style="position: absolute; left: 50%; transform: translateX(-50%);">
-                <button type="submit" style="font-size: 1em;">QBT_TR(Add Torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</button>
+                <button type="submit" style="font-size: 1em;">QBT_TR(Download)QBT_TR[CONTEXT=AddNewTorrentDialog]</button>
             </div>
         </div>
     </form>
