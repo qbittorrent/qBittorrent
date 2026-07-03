@@ -30,7 +30,6 @@
 #pragma once
 
 #include <QHash>
-#include <QMetaType>
 #include <QObject>
 #include <QProcessEnvironment>
 
@@ -38,7 +37,6 @@
 #include "base/utils/version.h"
 
 using SearchPluginVersion = Utils::Version<2>;
-Q_DECLARE_METATYPE(SearchPluginVersion)
 
 namespace Net
 {
@@ -112,7 +110,7 @@ private:
     void update();
     void updateNova();
     void parseVersionInfo(const QByteArray &info);
-    void installPlugin_impl(const QString &name, const Path &path);
+    void installPlugin_impl(const QString &name, const Path &srcPath);
     bool isUpdateNeeded(const QString &pluginName, const SearchPluginVersion &newVersion) const;
 
     void versionInfoDownloadFinished(const Net::DownloadResult &result);

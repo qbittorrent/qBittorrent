@@ -126,7 +126,8 @@ void BaseLogModel::addNewMessage(const BaseLogModel::Message &message)
 void BaseLogModel::onUIThemeChanged()
 {
     loadColors();
-    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)), {TimeForegroundRole, MessageForegroundRole});
+    if (const int rCount = rowCount(); rCount > 0)
+        emit dataChanged(index(0, 0), index((rCount - 1), (columnCount() - 1)), {TimeForegroundRole, MessageForegroundRole});
 }
 
 void BaseLogModel::loadColors()

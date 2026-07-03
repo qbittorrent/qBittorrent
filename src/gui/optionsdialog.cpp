@@ -670,9 +670,9 @@ void OptionsDialog::loadDownloadsTabOptions()
         + u"\n\n"
         + tr("Example:")
         + u"\n"
-        + tr("a@a.com;b@b.com,c@c.com - send two emails: the first to just a@a.com, the second to both b@b.com and c@c.com")
+        + tr("a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com")
         + u"\n\n"
-        + tr("Note: b&b.com & c@c.com will both see each other's email addresses, whereas a&a.com will not see them nor be seen."));
+        + tr("Note: b@y.com & c@z.com will both see each other's email addresses, whereas a@x.com will not see them nor be seen."));
     m_ui->lineEditSMTPServer->setText(pref->getMailNotificationSMTP());
     m_ui->lineEditSMTPServer->setToolTip(tr("Provide the SMTP server address for sending email notifications.")
         + u"\n\n"
