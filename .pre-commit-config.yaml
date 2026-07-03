@@ -31,6 +31,7 @@ repos:
       name: Check trailing newlines
       exclude: |
         (?x)^(
+          src/base/3rdparty/.* |
           src/webui/www/private/css/lib/.* |
           src/webui/www/private/scripts/lib/.* |
           test/testdata/crlf.txt

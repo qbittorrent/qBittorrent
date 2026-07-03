@@ -475,7 +475,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             const contextTagList = document.getElementById("contextTagList");
             for (const tag of window.qBittorrent.Client.tagMap.keys()) {
-                const checkbox = contextTagList.querySelector(`a[href="#Tag/${tag}"] input[type="checkbox"]`);
+                const checkbox = contextTagList.querySelector(`a[href="#Tag/${CSS.escape(tag)}"] input[type="checkbox"]`);
                 const count = tagCount.get(tag);
                 const hasCount = (count !== undefined);
                 const isLesser = (count < selectedRows.length);
@@ -485,7 +485,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             const contextCategoryList = document.getElementById("contextCategoryList");
             for (const category of window.qBittorrent.Client.categoryMap.keys()) {
-                const categoryIcon = contextCategoryList.querySelector(`a[href$="#Category/${category}"] img`);
+                const categoryIcon = contextCategoryList.querySelector(`a[href$="#Category/${CSS.escape(category)}"] img`);
                 const count = categoryCount.get(category);
                 const isEqual = ((count !== undefined) && (count === selectedRows.length));
                 categoryIcon.classList.toggle("highlightedCategoryIcon", isEqual);
@@ -652,7 +652,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
     class SearchPluginsTableContextMenu extends ContextMenu {
         updateMenuItems() {
-            const enabledColumnIndex = (text) => {
+            const enabledColumnIndex = () => {
                 const columns = document.querySelectorAll("#searchPluginsTableFixedHeaderRow th");
                 return Array.prototype.findIndex.call(columns, (column => column.textContent === "Enabled"));
             };

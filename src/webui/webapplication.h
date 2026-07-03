@@ -243,6 +243,7 @@ private:
         QDateTime lastModified;
     };
     QHash<Path, TranslatedFile> m_translatedFiles;
+    const QRegularExpression m_trRegex;
     QString m_currentLocale;
     QTranslator m_translator;
     bool m_translationFileLoaded = false;
