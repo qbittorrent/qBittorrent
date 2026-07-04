@@ -120,6 +120,9 @@ jobs:
             --stagedir=.\ `
             --with-headers
 
+      - name: Setup Qt environment
+        run: |
+          Add-Content $env:GITHUB_PATH "${{ env.Qt_ROOT_DIR }}\bin"
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
