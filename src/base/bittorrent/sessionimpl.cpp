@@ -2424,6 +2424,11 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
             }
         }
     }
+    else
+    {
+        reached = true;
+        description = tr("Torrent reached the share limit(s).");
+
         if (const qreal ratio = torrent->realRatio();
             (shareLimits.ratioLimit >= 0) && (ratio < shareLimits.ratioLimit))
         {
