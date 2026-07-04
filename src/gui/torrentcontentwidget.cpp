@@ -381,17 +381,19 @@ void TorrentContentWidget::applyPrioritiesByOrder()
 
 bool TorrentContentWidget::isCheckIndicatorAt(const QPoint &position) const
 {
+    if (position.isNull())
+        return false;
+
     const QModelIndex index = indexAt(position).siblingAtColumn(TorrentContentModelItem::COL_NAME);
     if (!index.isValid() || !index.data(Qt::CheckStateRole).isValid())
         return false;
 
-    QStyleOptionViewItem option;
-    initViewItemOption(&option);
-    option.rect = visualRect(index);
-    option.features |= QStyleOptionViewItem::HasCheckIndicator;
-    option.checkState = static_cast<Qt::CheckState>(index.data(Qt::CheckStateRole).toInt());
+    initViewItemOption(&m_viewItemOption);
+    m_viewItemOption.rect = visualRect(index);
+    m_viewItemOption.features |= QStyleOptionViewItem::HasCheckIndicator;
+    m_viewItemOption.checkState = static_cast<Qt::CheckState>(index.data(Qt::CheckStateRole).toInt());
 
-    return style()->subElementRect(QStyle::SE_ItemViewItemCheckIndicator, &option, this).contains(position);
+    return style()->subElementRect(QStyle::SE_ItemViewItemCheckIndicator, &m_viewItemOption, this).contains(position);
 }
 
 void TorrentContentWidget::openSelectedFile()

@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <QStyleOptionViewItem>
 #include <QTreeView>
 
 #include "base/bittorrent/downloadpriority.h"
@@ -137,6 +138,7 @@ private:
     ColumnsVisibilityMode m_columnsVisibilityMode = ColumnsVisibilityMode::Editable;
     QShortcut *m_openFileHotkeyEnter = nullptr;
     QShortcut *m_openFileHotkeyReturn = nullptr;
+    mutable QStyleOptionViewItem m_viewItemOption;
 
     bool m_contentDragAllowed = false;
     bool m_contentDragEnabled = false;
