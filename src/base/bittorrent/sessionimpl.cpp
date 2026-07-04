@@ -2389,30 +2389,41 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
 
     if (shareLimits.mode == ShareLimitsMode::MatchAny)
     {
-        if (const qreal ratio = torrent->realRatio();
-            (shareLimits.ratioLimit >= 0) && (ratio >= shareLimits.ratioLimit))
+        const qreal ratio = torrent->realRatio();
+        const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
+
+        // 1. Check if primary limits are active and if they have been met
+        const bool isRatioActive = (shareLimits.ratioLimit >= 0);
+        const bool isRatioMet = isRatioActive && (ratio >= shareLimits.ratioLimit);
+
+        const bool isSeedingTimeActive = (shareLimits.seedingTimeLimit >= 0);
+        const bool isSeedingTimeMet = isSeedingTimeActive && (seedingTimeInMinutes >= shareLimits.seedingTimeLimit);
+
+        // 2. Track if a primary hurdle was cleared (or if no primary limits exist)
+        const bool hasPrimaryLimits = (isRatioActive || isSeedingTimeActive);
+        const bool primaryGoalSatisfied = (!hasPrimaryLimits) || isRatioMet || isSeedingTimeMet;
+
+        // 3. Process the outcomes sequentially
+        if (isRatioMet)
         {
             reached = true;
             description = tr("Torrent reached the share ratio limit.");
         }
-        else if (const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
-            (shareLimits.seedingTimeLimit >= 0) && (seedingTimeInMinutes >= shareLimits.seedingTimeLimit))
+        else if (isSeedingTimeMet)
         {
             reached = true;
             description = tr("Torrent reached the seeding time limit.");
         }
-        else if (const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
-            (shareLimits.inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes >= shareLimits.inactiveSeedingTimeLimit))
+        else if (primaryGoalSatisfied && (shareLimits.inactiveSeedingTimeLimit >= 0))
         {
-            reached = true;
-            description = tr("Torrent reached the inactive seeding time limit.");
+            const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
+            if (inactiveSeedingTimeInMinutes >= shareLimits.inactiveSeedingTimeLimit)
+            {
+                reached = true;
+                description = tr("Torrent reached the inactive seeding time limit.");
+            }
         }
     }
-    else
-    {
-        reached = true;
-        description = tr("Torrent reached the share limit(s).");
-
         if (const qreal ratio = torrent->realRatio();
             (shareLimits.ratioLimit >= 0) && (ratio < shareLimits.ratioLimit))
         {
