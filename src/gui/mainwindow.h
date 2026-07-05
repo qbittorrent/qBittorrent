@@ -138,7 +138,9 @@ private slots:
 
     void addToolbarContextMenu();
     void manageCookies();
+#ifdef ENABLE_PLUGINS
     void managePlugins();
+#endif
 
     void downloadFromURLList(const QStringList &urlList);
     void updateAltSpeedsBtn(bool alternative);
@@ -211,9 +213,11 @@ private:
     bool verifyPythonInstaller(const Path &installerPath) const;
 #endif
 
+#ifdef ENABLE_PLUGINS
     void populatePluginsMenu();
     void addPluginsMenuItem(const PluginInfo &pluginInfo);
     void removePluginsMenuItem(const QString &pluginID);
+#endif
 
     Ui::MainWindow *m_ui = nullptr;
 

@@ -86,7 +86,6 @@
 #include "interfaces/iguiapplication.h"
 #include "lineedit.h"
 #include "optionsdialog.h"
-#include "plugins/pluginsdialog.h"
 #include "powermanagement/powermanagement.h"
 #include "properties/peerlistwidget.h"
 #include "properties/propertieswidget.h"
@@ -105,6 +104,10 @@
 #include "uithememanager.h"
 #include "utils.h"
 #include "utils/keysequence.h"
+
+#ifdef ENABLE_PLUGINS
+#include "plugins/pluginsdialog.h"
+#endif
 
 #ifdef Q_OS_MACOS
 #include "macosdockbadge/badger.h"
@@ -360,7 +363,12 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 #endif
 
     connect(m_ui->actionManageCookies, &QAction::triggered, this, &MainWindow::manageCookies);
+
+#ifdef ENABLE_PLUGINS
     connect(m_ui->actionManagePlugins, &QAction::triggered, this, &MainWindow::managePlugins);
+#else
+    m_ui->menuPlugins->hide();
+#endif
 
     // Initialise system sleep inhibition timer
     m_preventTimer->setSingleShot(true);
@@ -531,7 +539,9 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     connect(pref, &Preferences::changed, this, &MainWindow::optionsSaved);
 
+#ifdef ENABLE_PLUGINS
     populatePluginsMenu();
+#endif
 
     qDebug("GUI Built");
 }
@@ -637,13 +647,6 @@ void MainWindow::manageCookies()
     auto *cookieDialog = new CookiesDialog(this);
     cookieDialog->setAttribute(Qt::WA_DeleteOnClose);
     cookieDialog->open();
-}
-
-void MainWindow::managePlugins()
-{
-    auto *pluginsDialog = new PluginsDialog(PluginsEngine::instance(), this);
-    pluginsDialog->setAttribute(Qt::WA_DeleteOnClose);
-    pluginsDialog->open();
 }
 
 void MainWindow::toolbarMenuRequested()
@@ -2038,6 +2041,7 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
 }
 #endif // Q_OS_WIN
 
+#ifdef ENABLE_PLUGINS
 void MainWindow::populatePluginsMenu()
 {
     auto *pluginsEngine = PluginsEngine::instance();
@@ -2114,3 +2118,11 @@ void MainWindow::removePluginsMenuItem(const QString &pluginID)
         delete action;
     }
 }
+
+void MainWindow::managePlugins()
+{
+    auto *pluginsDialog = new PluginsDialog(PluginsEngine::instance(), this);
+    pluginsDialog->setAttribute(Qt::WA_DeleteOnClose);
+    pluginsDialog->open();
+}
+#endif
