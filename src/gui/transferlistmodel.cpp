@@ -197,6 +197,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
             case TR_REANNOUNCE: return tr("Reannounce In", "Indicates the time until next trackers reannounce");
             case TR_PRIVATE: return tr("Private", "Flags private torrents");
+            case TR_DOWNLOAD_DURATION: return tr("Download Duration", "Time taken to complete the download");
             default: return {};
             }
         }
@@ -234,6 +235,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_LAST_ACTIVITY:
             case TR_AVAILABILITY:
             case TR_REANNOUNCE:
+            case TR_DOWNLOAD_DURATION:
                 return QVariant(Qt::AlignRight | Qt::AlignVCenter);
             default:
                 return QAbstractListModel::headerData(section, orientation, role);
@@ -370,6 +372,24 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return tr("N/A");
     };
 
+    const auto downloadDurationString = [hideValues](const BitTorrent::Torrent *torrent) -> QString
+    {
+        const auto completed = torrent->completedTime();
+
+        if (!completed.isValid())
+            return {};
+
+        const qint64 secs = torrent->addedTime().secsTo(completed);
+
+        if (hideValues && (secs == 0))
+            return {};
+
+        if (secs < 0)
+            return {};
+
+        return Utils::Misc::userFriendlyDuration(secs);
+    };
+
     switch (column)
     {
     case TR_NAME:
@@ -448,6 +468,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return reannounceString(torrent->nextAnnounce());
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
+    case TR_DOWNLOAD_DURATION:
+        return downloadDurationString(torrent);
     }
 
     return {};
@@ -533,6 +555,9 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_DOWNLOAD_DURATION:
+        return (torrent->completedTime().isValid()
+                ? torrent->addedTime().secsTo(torrent->completedTime()) : QVariant());
     }
 
     return {};
