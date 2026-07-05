@@ -2131,7 +2131,7 @@ void TorrentsController::exportAction()
     if (!result)
         throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(result.error()));
 
-    QString filename = Utils::Fs::toValidFileName(torrent->name());
+    QString filename = Utils::Fs::toValidFileName(torrent->name(), {});
     if (filename.isEmpty())
         filename = id.toString();
     filename += u".torrent";
