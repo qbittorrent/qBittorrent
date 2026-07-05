@@ -178,6 +178,7 @@ add_library(qbt_base STATIC
     exceptions.cpp
     freediskspacechecker.cpp
     http/connection.cpp
+    http/header.cpp
     http/httperror.cpp
     http/requestparser.cpp
     http/responsewriterimpl.cpp
