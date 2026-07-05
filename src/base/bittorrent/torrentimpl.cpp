@@ -1392,10 +1392,13 @@ qlonglong TorrentImpl::eta() const
     if (isFinished())
     {
         const qint64 ZERO_ETA = 0;
-
         const ShareLimits shareLimits = effectiveShareLimits();
-        QList<qint64> etaList;
 
+        qint64 ratioEta = -1;
+        qint64 seedingTimeEta = -1;
+        qint64 inactiveSeedingTimeEta = -1;
+
+        // 1. Calculate individual ETAs if active
         if (shareLimits.ratioLimit >= 0)
         {
             qint64 realDL = totalDownload();
@@ -1404,36 +1407,79 @@ qlonglong TorrentImpl::eta() const
 
             const qreal uploadLimit = realDL * shareLimits.ratioLimit;
             const qint64 uploaded = totalUpload();
-            qint64 ratioEta = ZERO_ETA;
+            ratioEta = ZERO_ETA;
             if (uploadLimit > uploaded)
             {
                 ratioEta = (speedAverage.upload > 0)
                         ? (uploadLimit - uploaded) / speedAverage.upload
                         : MAX_ETA;
             }
-            etaList.append(ratioEta);
         }
 
         if (shareLimits.seedingTimeLimit >= 0)
         {
-            const qint64 seedingTimeEta = std::max(
+            seedingTimeEta = std::max(
                     ((shareLimits.seedingTimeLimit * 60) - finishedTime()), ZERO_ETA);
-            etaList.append(seedingTimeEta);
         }
 
         if (shareLimits.inactiveSeedingTimeLimit >= 0)
         {
-            const qint64 inactiveSeedingTimeEta = std::max(
+            inactiveSeedingTimeEta = std::max(
                     ((shareLimits.inactiveSeedingTimeLimit * 60) - timeSinceActivity()), ZERO_ETA);
-            etaList.append(inactiveSeedingTimeEta);
         }
 
-        if (etaList.isEmpty())
-            return MAX_ETA;
+        // 2. Resolve final UI ETA based on configuration mode
+        if (shareLimits.mode == ShareLimitsMode::MatchAny)
+        {
+            // Track active primary ETAs
+            QList<qint64> activePrimaryEtas;
+            if (ratioEta >= 0) activePrimaryEtas.append(ratioEta);
+            if (seedingTimeEta >= 0) activePrimaryEtas.append(seedingTimeEta);
 
-        return (shareLimits.mode == ShareLimitsMode::MatchAny)
-                ? std::ranges::min(etaList)
-                : std::ranges::max(etaList);
+            const bool hasPrimaryLimits = !activePrimaryEtas.isEmpty();
+            
+            // Primary goals are satisfied if none are set, or if at least one has reached 0
+            const bool primaryGoalSatisfied = !hasPrimaryLimits 
+                || (ratioEta == ZERO_ETA) 
+                || (seedingTimeEta == ZERO_ETA);
+
+            // Collect valid candidates for MatchAny
+            QList<qint64> validCandidates;
+            
+            // Add primary ETAs that haven't finished yet
+            for (qint64 etaVal : activePrimaryEtas)
+            {
+                if (etaVal > ZERO_ETA)
+                    validCandidates.append(etaVal);
+            }
+
+            // Inactive ETA is only a valid candidate if the primary gate is clear
+            if (primaryGoalSatisfied && (inactiveSeedingTimeEta >= 0))
+                validCandidates.append(inactiveSeedingTimeEta);
+
+            // Fallback options if things are already achieved or empty
+            if (validCandidates.isEmpty())
+            {
+                if (primaryGoalSatisfied && (inactiveSeedingTimeEta >= 0))
+                    return ZERO_ETA;
+                return (!activePrimaryEtas.isEmpty()) ? ZERO_ETA : MAX_ETA;
+            }
+
+            return std::ranges::min(validCandidates);
+        }
+        else
+        {
+            // MatchAll standard behavior
+            QList<qint64> allEtas;
+            if (ratioEta >= 0) allEtas.append(ratioEta);
+            if (seedingTimeEta >= 0) allEtas.append(seedingTimeEta);
+            if (inactiveSeedingTimeEta >= 0) allEtas.append(inactiveSeedingTimeEta);
+
+            if (allEtas.isEmpty())
+                return MAX_ETA;
+
+            return std::ranges::max(allEtas);
+        }
     }
 
     if (!speedAverage.download)
