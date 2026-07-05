@@ -1437,15 +1437,15 @@ qlonglong TorrentImpl::eta() const
             if (seedingTimeEta >= 0) activePrimaryEtas.append(seedingTimeEta);
 
             const bool hasPrimaryLimits = !activePrimaryEtas.isEmpty();
-            
+
             // Primary goals are satisfied if none are set, or if at least one has reached 0
-            const bool primaryGoalSatisfied = !hasPrimaryLimits 
-                || (ratioEta == ZERO_ETA) 
+            const bool primaryGoalSatisfied = !hasPrimaryLimits
+                || (ratioEta == ZERO_ETA)
                 || (seedingTimeEta == ZERO_ETA);
 
             // Collect valid candidates for MatchAny
             QList<qint64> validCandidates;
-            
+
             // Add primary ETAs that haven't finished yet
             for (qint64 etaVal : activePrimaryEtas)
             {
