@@ -2305,7 +2305,8 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
 #ifdef Q_OS_WIN
                 const std::wstring winPath = (actualStorageLocation() / newActualParentPath).toString().toStdWString();
                 const DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
-                ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
+                if (dwAttrs != INVALID_FILE_ATTRIBUTES)
+                    ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
 #endif
             }
         }
@@ -2789,7 +2790,7 @@ QString TorrentImpl::createMagnetURI() const
         ret += u"&tr=" + QString::fromLatin1(QUrl::toPercentEncoding(tracker.url));
 
     for (const QUrl &urlSeed : asConst(urlSeeds()))
-        ret += u"&ws=" + urlSeed.toString(QUrl::FullyEncoded);
+        ret += u"&ws=" + QString::fromLatin1(QUrl::toPercentEncoding(urlSeed.toString(QUrl::FullyEncoded)));
 
     return ret;
 }

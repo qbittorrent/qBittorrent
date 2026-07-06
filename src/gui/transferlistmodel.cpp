@@ -118,7 +118,8 @@ TransferListModel::TransferListModel(QObject *parent)
     connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this]
     {
         loadUIThemeResources();
-        emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)), {Qt::DecorationRole, Qt::ForegroundRole});
+        if (const int rCount = rowCount(); rCount > 0)
+            emit dataChanged(index(0, 0), index((rCount - 1), (columnCount() - 1)), {Qt::DecorationRole, Qt::ForegroundRole});
     });
 
     // Load the torrents
@@ -746,7 +747,10 @@ void TransferListModel::configure()
     }
 
     if (isDataChanged)
-        emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+    {
+        if (const int rCount = rowCount(); rCount > 0)
+            emit dataChanged(index(0, 0), index((rCount - 1), (columnCount() - 1)));
+    }
 }
 
 void TransferListModel::loadUIThemeResources()

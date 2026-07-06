@@ -629,23 +629,35 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
 {
     QHash<QString, PluginVersion> updateInfo;
     int numCorrectData = 0;
+    int numInvalidData = 0;
 
     const QList<QByteArrayView> lines = Utils::ByteArray::splitToViews(info, "\n");
     for (QByteArrayView line : lines)
     {
         line = line.trimmed();
-        if (line.isEmpty()) continue;
-        if (line.startsWith('#')) continue;
+
+        if (line.isEmpty())
+            continue;
+        if (line.startsWith('#'))
+            continue;
 
         const QList<QByteArrayView> list = Utils::ByteArray::splitToViews(line, ":");
-        if (list.size() != 2) continue;
+        if (list.size() != 2)
+        {
+            ++numInvalidData;
+            continue;
+        }
 
-        const auto pluginName = QString::fromUtf8(list.first().trimmed());
         const auto version = PluginVersion::fromString(QString::fromLatin1(list.last().trimmed()));
-
-        if (!version.isValid()) continue;
+        if (!version.isValid())
+        {
+            ++numInvalidData;
+            continue;
+        }
 
         ++numCorrectData;
+
+        const auto pluginName = QString::fromUtf8(list.first().trimmed());
         if (isUpdateNeeded(pluginName, version))
         {
             LogMsg(tr("Plugin \"%1\" is outdated, updating to version %2").arg(pluginName, version.toString()), Log::INFO);
@@ -653,10 +665,10 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
         }
     }
 
-    if (numCorrectData < lines.size())
+    if (numInvalidData > 0)
     {
         emit checkForUpdatesFailed(tr("Incorrect update info received for %1 out of %2 plugins.")
-            .arg(QString::number(lines.size() - numCorrectData), QString::number(lines.size())));
+            .arg(QString::number(numInvalidData), QString::number(numCorrectData + numInvalidData)));
     }
     else
     {

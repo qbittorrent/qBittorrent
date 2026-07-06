@@ -1,3 +1,19 @@
+Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.3
+    - BUGFIX: Fix MIME header encoding in email to require ASCII (quinot) #24382
+    - BUGFIX: Fix potential invalid migration procedure (Chocobo1) #24502
+    - BUGFIX: Resolve relative UI theme paths (TurboTheTurtle) #24514
+    - BUGFIX: Clear transfer filters when sections collapse (TurboTheTurtle) #24517
+    - BUGFIX: Fix potential deadlock when database transaction failed (Chocobo1) #24542
+    - BUGFIX: Fix wrong counting method (Chocobo1) #24544
+    - BUGFIX: Fix wrong torrent tracker conversion (Chocobo1) #24546
+    - BUGFIX: Fix wrong encoding for Web Seeds (Chocobo1) #24593
+    - BUGFIX: Avoid emitting signals with negative index (Chocobo1) #24594
+    - BUGFIX: Use stricter parsing for Peer Address inputs (Chocobo1) #24595
+    - BUGFIX: Revise regex expression (Chocobo1) #24597
+    - WEBUI: Use CSS.escape when generating CSS query selector (vafada) #24539
+    - RSS: Fix RSS feed doesn't follow the specified interval (vafada) #24553
+    - WINDOWS: Avoid using invalid file attributes when renaming files (Chocobo1) #24543
+
 Mon Jun 15th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.2
     - FEATURE: Use D-Bus to show file in file managers (Chocobo1) #24340
     - BUGFIX: Fix friendlyUnitCompact precision calculation (vafada) #24323
@@ -10,11 +26,11 @@ Mon Jun 15th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.2
     - WEBUI: Fix performance of global checkbox toggling (tehcneko) #24316
     - WEBUI: Fix Safari transfer list header misalignment (Piccirello) #24377
     - WEBUI: Fix error when submitting magnet before metadata loads (Piccirello) #24378
-    - WEBUI: Use correct row id when updating Rss Downloader feed selection (Chocobo1) #24402
+    - WEBUI: Use correct row id when updating Rss Downloader feed selection (pepozen) #24402
     - WEBUI: Use SameSite=Lax for session cookie to fix cross-site login (Piccirello) #24422
     - WEBUI: Bring back properties panel expand/collapse button (vafada) #24430
     - WEBAPI: Only use X-Forwarded-Host header when reverse proxy support is enabled (Chocobo1) #24457
-    - RSSS: Fix "RSS Smart Episode Filter" RegEx (nathanon-akk, glassez) #24398
+    - RSS: Fix "RSS Smart Episode Filter" RegEx (nathanon-akk, glassez) #24398
     - RSS: Fix previously matched episode format (glassez) #24452
     - WINDOWS: Fix Python fallback search path (TurboTheTurtle) #24325
     - WINDOWS: NSIS: Allow to install x64 binary on ARM64 (Chocobo1) #24358
