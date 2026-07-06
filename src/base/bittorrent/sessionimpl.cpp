@@ -2770,8 +2770,8 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         if (!isMergeTrackersEnabled())
         {
             const QString message = tr("Merging of trackers is disabled");
-            LogMsg(tr("Detected an attempt to add a duplicate torrent. Source infohash: %1. Existing torrent: \"%2\". Result: %3")
-                    .arg(infoHash.toString(), torrent->name(), message));
+            LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
+                    .arg(torrent->name(), torrent->infoHash().toString(), message));
             emit duplicateTorrentDetected(infoHash, torrent, message);
             return false;
         }
@@ -2780,8 +2780,8 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         if (isPrivate)
         {
             const QString message = tr("Trackers cannot be merged because it is a private torrent");
-            LogMsg(tr("Detected an attempt to add a duplicate torrent. Source infohash: %1. Existing torrent: \"%2\". Result: %3")
-                    .arg(infoHash.toString(), torrent->name(), message));
+            LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
+                    .arg(torrent->name(), torrent->infoHash().toString(), message));
             emit duplicateTorrentDetected(infoHash, torrent, message);
             return false;
         }
@@ -2791,8 +2791,8 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         torrent->addUrlSeeds(source.urlSeeds());
 
         const QString message = tr("Trackers are merged from new source");
-        LogMsg(tr("Detected an attempt to add a duplicate torrent. Source infohash: %1. Existing torrent: \"%2\". Result: %3")
-                .arg(infoHash.toString(), torrent->name(), message));
+        LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
+                .arg(torrent->name(), torrent->infoHash().toString(), message));
         emit duplicateTorrentDetected(infoHash, torrent, message);
         return false;
     }
@@ -3004,8 +3004,8 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
                 const InfoHash infoHash = getInfoHash(alert->params);
                 if (Torrent *torrent = findTorrent(infoHash); (alert->error == lt::errors::duplicate_torrent) && torrent)
                 {
-                    LogMsg(tr("Detected an attempt to add a duplicate torrent. Source infohash: %1. Existing torrent: \"%2\". Result: %3")
-                            .arg(infoHash.toString(), torrent->name(), msg));
+                    LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
+                            .arg(torrent->name(), torrent->infoHash().toString(), msg));
                     emit duplicateTorrentDetected(infoHash, torrent, msg);
                 }
                 else
