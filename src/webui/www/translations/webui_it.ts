@@ -4988,8 +4988,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation>Vuoi abilitare la gestione automatica torrent per i torrent selezionati? 
-I torrent potranno essere spostati.</translation>
+        <translation>Vuoi abilitare la gestione automatica torrent per i torrent selezionati? I torrent potranno essere spostati.</translation>
     </message>
 </context>
 <context>
@@ -5308,18 +5307,15 @@ Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
     <name>confirmRotateAPIKeyDialog</name>
     <message>
         <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
-        <translation>Vuoi generare una chiave API? 
-Questa chiave può essere usata per interagire con l'API di qBittorrent.</translation>
+        <translation>Vuoi generare una chiave API? Questa chiave può essere usata per interagire con l'API di qBittorrent.</translation>
     </message>
     <message>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation>Vuoi eliminare questa chiave API? 
-La chiave attuale smetterà immediatamente di funzionare.</translation>
+        <translation>Vuoi eliminare questa chiave API? La chiave attuale smetterà immediatamente di funzionare.</translation>
     </message>
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation>Vuoi ruotare questa chiave API? 
-La chiave attuale smetterà immediatamente di funzionare e verrà generata una nuova chiave.</translation>
+        <translation>Vuoi ruotare questa chiave API? La chiave attuale smetterà immediatamente di funzionare e verrà generata una nuova chiave.</translation>
     </message>
 </context>
 <context>
