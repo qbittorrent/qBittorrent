@@ -30,7 +30,8 @@
 
 #include "reg.h"
 
-#include <QScopeGuard>
+#include <memory>
+
 #include <QStringList>
 
 QStringList Utils::Reg::getSubkeys(const HKEY handle)
@@ -44,17 +45,15 @@ QStringList Utils::Reg::getSubkeys(const HKEY handle)
     if (result == ERROR_SUCCESS)
     {
         ++cMaxSubKeyLen; // For null character
-        LPWSTR lpName = new WCHAR[cMaxSubKeyLen] {0};
-        [[maybe_unused]] const auto lpNameGuard = qScopeGuard([&lpName] { delete[] lpName; });
-
+        const auto lpName = std::make_unique<WCHAR[]>(cMaxSubKeyLen);
         keys.reserve(cSubKeys);
 
         for (DWORD i = 0; i < cSubKeys; ++i)
         {
             DWORD cName = cMaxSubKeyLen;
-            const LSTATUS res = ::RegEnumKeyExW(handle, i, lpName, &cName, NULL, NULL, NULL, NULL);
+            const LSTATUS res = ::RegEnumKeyExW(handle, i, lpName.get(), &cName, NULL, NULL, NULL, NULL);
             if (res == ERROR_SUCCESS)
-                keys.append(QString::fromWCharArray(lpName));
+                keys.append(QString::fromWCharArray(lpName.get()));
         }
     }
 
@@ -66,19 +65,18 @@ QString Utils::Reg::getStringValue(const HKEY handle, const QString &name)
     const std::wstring nameWStr = name.toStdWString();
     DWORD type = 0;
     DWORD cbData = 0;
+
     // Discover the size of the value
     ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, NULL, &cbData);
-
-    const DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
-    LPWSTR lpData = new WCHAR[cBuffer] {};
-    [[maybe_unused]] const auto lpDataGuard = qScopeGuard([&lpData] { delete[] lpData; });
-
     if (!((type == REG_SZ) || (type == REG_EXPAND_SZ)))
         return {};
 
-    const LSTATUS res = ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, reinterpret_cast<LPBYTE>(lpData), &cbData);
+    const int cBuffer = (cbData / sizeof(WCHAR)) + 1;
+    const auto lpData = std::make_unique<WCHAR[]>(cBuffer);
+
+    const LSTATUS res = ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, reinterpret_cast<LPBYTE>(lpData.get()), &cbData);
     if (res == ERROR_SUCCESS)
-        return QString::fromWCharArray(lpData);
+        return QString::fromWCharArray(lpData.get());
 
     return {};
 }
