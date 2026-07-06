@@ -100,7 +100,7 @@
     </message>
     <message>
         <source>Add torrent</source>
-        <translation type="unfinished" />
+        <translation>Дадаць торэнт</translation>
     </message>
     <message>
         <source>Not available</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation type="unfinished" />
+        <translation>Дадаць Торэнт</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -576,7 +576,7 @@
     </message>
     <message>
         <source>Error:</source>
-        <translation type="unfinished" />
+        <translation>Памылка:</translation>
     </message>
 </context>
 <context>
@@ -2197,7 +2197,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copied</source>
-        <translation type="unfinished" />
+        <translation>Скапіявана</translation>
     </message>
     <message>
         <source>User</source>
@@ -3201,7 +3201,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Tier:</source>
-        <translation type="unfinished" />
+        <translation>Ровень</translation>
     </message>
     <message>
         <source>Tracker error</source>

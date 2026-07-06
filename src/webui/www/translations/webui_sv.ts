@@ -2000,7 +2000,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Dark</source>
-        <translation>Mörkt</translation>
+        <translation>Mörk</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
@@ -2032,7 +2032,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Light</source>
-        <translation>Ljust</translation>
+        <translation>Ljus</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
@@ -3279,7 +3279,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Missing Files</source>
-        <translation>Saknade filer</translation>
+        <translation>Filer saknas</translation>
     </message>
     <message>
         <source>Queued for checking</source>

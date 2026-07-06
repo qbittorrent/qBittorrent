@@ -16,7 +16,7 @@
     </message>
     <message>
         <source>Start torrent</source>
-        <translation>टाॅरेंट चालू करें</translation>
+        <translation>टॉरेंट चालू करें</translation>
     </message>
     <message>
         <source>Skip hash check</source>
@@ -24,7 +24,7 @@
     </message>
     <message>
         <source>Torrent Management Mode:</source>
-        <translation>टोरेंट प्रबंधन मोड :</translation>
+        <translation>टॉरेंट प्रबंधन मोड :</translation>
     </message>
     <message>
         <source>Content layout:</source>
@@ -84,7 +84,7 @@
     </message>
     <message>
         <source>Torrent information</source>
-        <translation>टौरेंट सूचना</translation>
+        <translation>टॉरेंट सूचना</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -96,11 +96,11 @@
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation>टौरेंट का नाम बदलें</translation>
+        <translation>टॉरेंट का नाम बदलें</translation>
     </message>
     <message>
         <source>Add torrent</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट जोड़ें</translation>
     </message>
     <message>
         <source>Not available</source>
@@ -116,7 +116,7 @@
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation>टाॅरेंट सेटिंग्स</translation>
+        <translation>टॉरेंट सेटिंग्स</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट जोड़ें</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -152,7 +152,7 @@
     </message>
     <message>
         <source>Save as .torrent file</source>
-        <translation type="unfinished" />
+        <translation>.torrent फाइल की तरह संचित करें</translation>
     </message>
     <message>
         <source>All</source>
@@ -180,7 +180,7 @@
     </message>
     <message>
         <source>Unable to download torrent file</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट फाइल डाउनलोड असफल</translation>
     </message>
     <message>
         <source>Info hash v2:</source>
@@ -238,7 +238,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation>टौरेंटो को हटायें</translation>
+        <translation>टॉरेंटों को हटायें</translation>
     </message>
     <message>
         <source>Add subcategory...</source>
@@ -246,18 +246,18 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट शुरु करें</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट रोकें</translation>
     </message>
 </context>
 <context>
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation>क्यूबिटटोरेंट बंद करें</translation>
+        <translation>क्यूबिटटॉरेंट बंद करें</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -285,7 +285,7 @@
     </message>
     <message>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation>अधिकतम सक्रिय टौरेंट -1 से अधिक होने चाहिए।</translation>
+        <translation>अधिकतम सक्रिय टॉरेंट -1 से अधिक होने चाहिए।</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
@@ -2884,11 +2884,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट शुरु करें</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट रोकें</translation>
     </message>
 </context>
 <context>
@@ -3975,11 +3975,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट शुरु करें</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट रोकें</translation>
     </message>
 </context>
 <context>
@@ -4573,7 +4573,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट शुरु करें</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -4581,7 +4581,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट रोकें</translation>
     </message>
     <message>
         <source>Tracker error</source>

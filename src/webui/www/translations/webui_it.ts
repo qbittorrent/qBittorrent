@@ -448,8 +448,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation>È richiesto JavaScript! 
-Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
+        <translation>È richiesto JavaScript! Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
     </message>
     <message>
         <source>External IP: N/A</source>
@@ -1709,8 +1708,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 Per difendersi da attacchi DSN rebinding, dovresti inserire
 i nomi dominio usati dal server dell'interfaccia web.
 
-Usa ';' per dividere voci multiple. Si può usare il carattere
-jolly '*'.</translation>
+Per dividere voci multiple usa ';'. Si può usare il carattere jolly '*'.</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
@@ -1718,8 +1716,7 @@ jolly '*'.</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Per usare l'indirizzo client inoltrato (intestazione X-Forwarded-For) specifica gli IP del proxy inverso (o le sottoreti, ad esempio 0.0.0.0/24).
-Usa ';' per dividere più voci.</translation>
+        <translation>Per usare l'indirizzo client inoltrato (intestazione X-Forwarded-For) specifica gli IP del proxy inverso (o le sottoreti, ad esempio 0.0.0.0/24). Per dividere più voci usa ';'.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1871,8 +1868,7 @@ Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation>Se la &amp;quot;modalità mista&amp;quot; è abilitata, i torrent I2P possono ottenere peer anche da sorgenti diverse dal tracker e connettersi a IP regolari, senza fornire alcuna anonimizzazione. 
-Ciò può essere utile se l'utente non è interessato all'anonimizzazione di I2P, ma vuole comunque potersi connettere ai peer I2P.</translation>
+        <translation>Se la &amp;quot;modalità mista&amp;quot; è abilitata, i torrent I2P possono ottenere peer anche da sorgenti diverse dal tracker e connettersi a IP regolari, senza fornire alcuna anonimizzazione. Ciò può essere utile se l'utente non è interessato all'anonimizzazione di I2P, ma vuole comunque potersi connettere ai peer I2P.</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -4862,8 +4858,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation>Vuoi abilitare la gestione automatica torrent per i torrent selezionati? 
-I torrent potranno essere spostati.</translation>
+        <translation>Vuoi abilitare la gestione automatica torrent per i torrent selezionati? I torrent potranno essere spostati.</translation>
     </message>
 </context>
 <context>
@@ -4896,8 +4891,7 @@ I torrent potranno essere spostati.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation>È richiesto JavaScript! 
-Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
+        <translation>È richiesto JavaScript! Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
     </message>
     <message>
         <source>Login</source>

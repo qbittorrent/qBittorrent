@@ -128,7 +128,7 @@
     </message>
     <message>
         <source>Set as default category</source>
-        <translation>Uzstādīt kā noklusēto kategoriju</translation>
+        <translation>Iestatīt kā noklusējuma kategoriju</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -611,7 +611,7 @@
     </message>
     <message>
         <source>Status Bar</source>
-        <translation>Statusa josla</translation>
+        <translation>Stāvokļa josla</translation>
     </message>
     <message>
         <source>Speed in Title Bar</source>
@@ -723,11 +723,11 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation>Savienojuma statuss: Aiz ugunsmūra</translation>
+        <translation>Savienojuma stāvoklis: aiz ugunsmūra</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation>Savienojuma statuss: Savienots</translation>
+        <translation>Savienojuma stāvoklis: savienots</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
@@ -747,7 +747,7 @@
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation>Savienojuma statuss: Nav savienots</translation>
+        <translation>Savienojuma stāvoklis: atvienots</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1232,7 +1232,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation>Noklusētā saglabāšanas vieta:</translation>
+        <translation>Noklusējuma saglabāšanas ceļš:</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1300,7 +1300,7 @@
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
-        <translation>Noklusētais torrentu pārvaldības režīms:</translation>
+        <translation>Noklusējuma gāzmu datņu pārvaldīšanas veids:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
@@ -1648,7 +1648,7 @@
     </message>
     <message>
         <source>Default</source>
-        <translation>Noklusētais</translation>
+        <translation>Noklusējums</translation>
     </message>
     <message>
         <source>POSIX-compliant</source>
@@ -1760,7 +1760,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation>Atsākšanas datu krātuves veids (nepieciešams restarts):</translation>
+        <translation>Atsākšanas datu krātuves veids (nepieciešama atkārtota palaišana):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
@@ -1860,7 +1860,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation>Atiestata uz noklusēto, ja atstāts tukšs</translation>
+        <translation>Atiestata uz noklusējumu, ja tukšs</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
@@ -1984,7 +1984,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Show external IP in status bar</source>
-        <translation>Rādīt publisko IP adresi statusa joslā</translation>
+        <translation>Rādīt ārējo IP adresi stāvokļa joslā</translation>
     </message>
     <message>
         <source>Fetched trackers</source>
@@ -2136,7 +2136,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation>Noklusētās saglabāšanas vietas vietā izmantot attiecīgās Kategorijas saglabāšanas vietu</translation>
+        <translation>Noklusējuma attiecīgais saglabāšanas ceļš pret atbilstošu kategorijas ceļu noklusējuma vietā</translation>
     </message>
     <message>
         <source>No action</source>
@@ -2144,7 +2144,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Auto hide zero status filters</source>
-        <translation>Automātiski slēpt nulles statusa filtrus</translation>
+        <translation>Automātiski paslēpt nulles stāvokļa atsijātājus</translation>
     </message>
     <message>
         <source>Interface</source>
@@ -2913,7 +2913,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation>Statuss</translation>
+        <translation>Stāvoklis</translation>
     </message>
     <message>
         <source>Seeds</source>
@@ -3080,7 +3080,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     <name>TrackerListWidget</name>
     <message>
         <source>Status</source>
-        <translation>Statuss</translation>
+        <translation>Stāvoklis</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -3318,7 +3318,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     <name>TransferListFiltersWidget</name>
     <message>
         <source>Status</source>
-        <translation>Statuss</translation>
+        <translation>Stāvoklis</translation>
     </message>
     <message>
         <source>Categories</source>
@@ -3574,7 +3574,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Default</source>
-        <translation>Noklusētais</translation>
+        <translation>Noklusējums</translation>
     </message>
     <message>
         <source>Remove torrent</source>
@@ -4777,7 +4777,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Default</source>
-        <translation>Noklusētais</translation>
+        <translation>Noklusējums</translation>
     </message>
     <message>
         <source>New Category</source>
