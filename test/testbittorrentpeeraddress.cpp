@@ -68,6 +68,36 @@ private slots:
         QCOMPARE(ipv6.toString(), ipv6Str);
     }
 
+    void testOperatorLessThan() const
+    {
+        QCOMPARE_EQ((BitTorrent::PeerAddress() < BitTorrent::PeerAddress()), false);
+        QCOMPARE_EQ((BitTorrent::PeerAddress() < ipv4), true);
+        QCOMPARE_EQ((ipv4 < BitTorrent::PeerAddress()), false);
+
+        QCOMPARE_EQ((ipv4 < ipv4), false);
+
+        {
+            const BitTorrent::PeerAddress left {.ip = QHostAddress(u"127.0.0.1"_s), .port = 80};
+            const BitTorrent::PeerAddress right {.ip = QHostAddress(u"127.0.0.2"_s), .port = 80};
+            QCOMPARE_EQ((left < right), true);
+        }
+        {
+            const BitTorrent::PeerAddress left {.ip = QHostAddress(u"127.0.0.1"_s), .port = 79};
+            const BitTorrent::PeerAddress right {.ip = QHostAddress(u"127.0.0.1"_s), .port = 80};
+            QCOMPARE_EQ((left < right), true);
+        }
+        {
+            const BitTorrent::PeerAddress left {.ip = QHostAddress(u"127.0.0.2"_s), .port = 80};
+            const BitTorrent::PeerAddress right {.ip = QHostAddress(u"127.0.0.1"_s), .port = 80};
+            QCOMPARE_EQ((left < right), false);
+        }
+        {
+            const BitTorrent::PeerAddress left {.ip = QHostAddress(u"127.0.0.1"_s), .port = 80};
+            const BitTorrent::PeerAddress right {.ip = QHostAddress(u"127.0.0.1"_s), .port = 79};
+            QCOMPARE_EQ((left < right), false);
+        }
+    }
+
     void testOperatorEquality() const
     {
         QCOMPARE_EQ(ipv4, ipv4);

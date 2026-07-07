@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
+ * Copyright (C) 2026  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,42 +26,46 @@
  * exception statement from your version.
  */
 
-#include "peerlistsortmodel.h"
+#include <QObject>
+#include <QTest>
 
-#include <QMetaType>
+#include "base/utils/net.h"
 
-#include "base/bittorrent/peeraddress.h"
-#include "peerlistwidget.h"
+using namespace Qt::Literals::StringLiterals;
 
-PeerListSortModel::PeerListSortModel(QObject *parent)
-    : QSortFilterProxyModel(parent)
+class TestUtilsNet final : public QObject
 {
-    setSortRole(UnderlyingDataRole);
-}
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TestUtilsNet)
 
-bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
-{
-    switch (sortColumn())
+public:
+    TestUtilsNet() = default;
+
+private slots:
+    void testQHostAddressLessThan() const
     {
-    case PeerListWidget::IP:
-        {
-            const QMetaType peerAddressType = QMetaType::fromType<BitTorrent::PeerAddress>();
-            const QVariant leftData = left.data(UnderlyingDataRole);
-            const QVariant rightData = right.data(UnderlyingDataRole);
+        const auto ip1 = QHostAddress(u"127.0.0.1"_s);
+        const auto ip2 = QHostAddress(u"127.0.0.2"_s);
+        const auto ip3 = QHostAddress(u"2001::1"_s);
+        const auto ip4 = QHostAddress(u"2001::2"_s);
 
-            if ((leftData.metaType() == peerAddressType) && (rightData.metaType() == peerAddressType))
-                return leftData.value<BitTorrent::PeerAddress>() < rightData.value<BitTorrent::PeerAddress>();
-            return m_naturalLessThan(leftData.toString(), rightData.toString());
-        }
+        QCOMPARE(Utils::Net::lessThan({}, {}), false);
+        QCOMPARE(Utils::Net::lessThan({}, ip1), true);
+        QCOMPARE(Utils::Net::lessThan(ip1, {}), false);
 
-    case PeerListWidget::CLIENT:
-        {
-            const QString strL = left.data(UnderlyingDataRole).toString();
-            const QString strR = right.data(UnderlyingDataRole).toString();
-            return m_naturalLessThan(strL, strR);
-        }
+        QCOMPARE(Utils::Net::lessThan(ip1, ip1), false);
+        QCOMPARE(Utils::Net::lessThan(ip3, ip3), false);
 
-    default:
-        return QSortFilterProxyModel::lessThan(left, right);
-    };
-}
+        QCOMPARE(Utils::Net::lessThan(ip1, ip2), true);
+        QCOMPARE(Utils::Net::lessThan(ip2, ip1), false);
+
+        QCOMPARE(Utils::Net::lessThan(ip2, ip3), true);
+        QCOMPARE(Utils::Net::lessThan(ip3, ip2), false);
+
+        QCOMPARE(Utils::Net::lessThan(ip3, ip4), true);
+        QCOMPARE(Utils::Net::lessThan(ip4, ip3), false);
+    }
+};
+
+QTEST_APPLESS_MAIN(TestUtilsNet)
+#include "testutilsnet.moc"
