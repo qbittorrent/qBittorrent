@@ -261,13 +261,13 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         // hide an item
         hideItem(item) {
-            this.menu.querySelector(`a[href$="${item}"]`).parentNode.classList.add("invisible");
+            this.menu.querySelector(`a[href$="${item}"]`).parentElement.classList.add("invisible");
             return this;
         }
 
         // show an item
         showItem(item) {
-            this.menu.querySelector(`a[href$="${item}"]`).parentNode.classList.remove("invisible");
+            this.menu.querySelector(`a[href$="${item}"]`).parentElement.classList.remove("invisible");
             return this;
         }
 
@@ -293,6 +293,15 @@ window.qBittorrent.ContextMenu ??= (() => {
         execute(action, element) {
             if (this.options.actions[action])
                 this.options.actions[action](element, this, action);
+            return this;
+        }
+
+        setTooltip(item, text) {
+            const element = this.menu.querySelector(`a[href$="${item}"]`).parentElement;
+            if (text.length > 0)
+                element.title = text;
+            else
+                element.removeAttribute("title");
             return this;
         }
     }
