@@ -28,9 +28,18 @@
 
 #pragma once
 
+#include <QHostAddress>
+#include <QMetaType>
 #include <QSortFilterProxyModel>
+#include <QtTypes>
 
 #include "base/utils/compare.h"
+
+struct PeerListIPSortData
+{
+    QHostAddress ip;
+    ushort port = 0;
+};
 
 class PeerListSortModel final : public QSortFilterProxyModel
 {
@@ -50,3 +59,5 @@ private:
 
     Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> m_naturalLessThan;
 };
+
+Q_DECLARE_METATYPE(PeerListIPSortData)
