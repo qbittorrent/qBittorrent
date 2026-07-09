@@ -158,11 +158,20 @@ AboutDialog::~AboutDialog()
 
 void AboutDialog::copyVersionsToClipboard() const
 {
+#ifdef ENABLE_PLUGINS
+    const QString versions = u"%1 %2\n%3 %4\n%5 %6\n%7 %8\n%9 %10\n%11 %12\n%13 %14\n"_s
+#else
     const QString versions = u"%1 %2\n%3 %4\n%5 %6\n%7 %8\n%9 %10\n"_s
+#endif
         .arg(m_ui->labelQt->text(), m_ui->labelQtVer->text()
             , m_ui->labelLibt->text(), m_ui->labelLibtVer->text()
             , m_ui->labelBoost->text(), m_ui->labelBoostVer->text()
             , m_ui->labelOpenssl->text(), m_ui->labelOpensslVer->text()
-            , m_ui->labelZlib->text(), m_ui->labelZlibVer->text());
+            , m_ui->labelZlib->text(), m_ui->labelZlibVer->text()
+#ifdef ENABLE_PLUGINS
+            , tr("Lua:"), PluginsEngine::luaVersion().toString()
+            , tr("LuaBridge:"), PluginsEngine::luaBridgeVersion().toString()
+#endif
+        );
     qApp->clipboard()->setText(versions);
 }
