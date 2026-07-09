@@ -1107,7 +1107,9 @@ Path TorrentImpl::actualFilePath(const int index) const
 
 #if LIBTORRENT_VERSION_NUM >= 20100
     const lt::file_storage &fs = nativeTorrentInfo()->layout();
-    const lt::filenames files {fs, m_nativeStatus.renamed_files};
+    const lt::renamed_files &renamedFiles = m_nativeStatus.torrent_file.expired()
+            ? m_ltAddTorrentParams.renamed_files : m_nativeStatus.renamed_files;
+    const lt::filenames files {fs, renamedFiles};
 #else
     const lt::file_storage &files = nativeTorrentInfo()->files();
 #endif
@@ -1134,7 +1136,9 @@ PathList TorrentImpl::actualFilePaths() const
 
 #if LIBTORRENT_VERSION_NUM >= 20100
     const lt::file_storage &fs = nativeTorrentInfo()->layout();
-    const lt::filenames files {fs, m_nativeStatus.renamed_files};
+    const lt::renamed_files &renamedFiles = m_nativeStatus.torrent_file.expired()
+            ? m_ltAddTorrentParams.renamed_files : m_nativeStatus.renamed_files;
+    const lt::filenames files {fs, renamedFiles};
 #else
     const lt::file_storage &files = nativeTorrentInfo()->files();
 #endif
@@ -1865,9 +1869,11 @@ void TorrentImpl::doRenameFolder(const Path &oldFolderPath, const Path &newFolde
 
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const
 {
-    Q_ASSERT(!m_nativeStatus.torrent_file.expired());
+    if (const auto torrentFile = m_nativeStatus.torrent_file.lock())
+        return torrentFile;
 
-    return m_nativeStatus.torrent_file.lock();
+    Q_ASSERT(m_ltAddTorrentParams.ti);
+    return m_ltAddTorrentParams.ti;
 }
 
 void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames)
