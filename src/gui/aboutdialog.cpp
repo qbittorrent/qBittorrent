@@ -114,6 +114,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     auto *labelLua = new QLabel(m_ui->SoftwareUsedTab);
     labelLua->setObjectName("labelLua");
     labelLua->setAlignment(alignment);
+    labelLua->setText(tr("Lua:"));
     m_ui->gridLayout->addWidget(labelLua, luaRow, 1);
     auto *labelLuaVer = new QLabel(m_ui->SoftwareUsedTab);
     labelLuaVer->setObjectName("labelLuaVer");
@@ -125,6 +126,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     auto *labelLuaBridge = new QLabel(m_ui->SoftwareUsedTab);
     labelLuaBridge->setObjectName("labelLuaBridge");
     labelLuaBridge->setAlignment(alignment);
+    labelLuaBridge->setText(tr("LuaBridge:"));
     m_ui->gridLayout->addWidget(labelLuaBridge, luaBridgeRow, 1);
     auto *labelLuaBridgeVer = new QLabel(m_ui->SoftwareUsedTab);
     labelLuaBridgeVer->setObjectName("labelLuaBridgeVer");
