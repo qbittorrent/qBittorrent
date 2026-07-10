@@ -13375,37 +13375,37 @@ Please choose a different name and try again.</source>
         <location filename="../base/utils/misc.cpp" line="60"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation>กิบิไบต์</translation>
+        <translation>กิโลไบต์</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="61"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation>เมบิไบต์</translation>
+        <translation>เมกะไบต์</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="62"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation>จิบิไบต์</translation>
+        <translation>กิกะไบต์</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="63"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation>เทบิไบต์</translation>
+        <translation>เทราไบต์</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="64"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
-        <translation>เพบิไบต์</translation>
+        <translation>เพตาไบต์</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="65"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
-        <translation>เอกซ์บิไบต์</translation>
+        <translation>เอกซาไบต์</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="101"/>
