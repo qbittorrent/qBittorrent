@@ -462,6 +462,7 @@ class ExampleWidget : public QWidget
   1. The lambda is defined inline as an input parameter for another function, which already restricts the lambda's return type.
 
   Examples:
+
   ```c++
   // Cannot omit return type
   const auto findMetricIndex = [](const char *name) -> int
