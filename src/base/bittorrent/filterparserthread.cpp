@@ -371,10 +371,11 @@ int FilterParserThread::parseP2PFilterFile()
             }
 
             // Each line should follow this format:
-            // Some organization:1.0.0.0-1.255.255.255
-            // The "Some organization" part might contain a ':' char itself so we find the last occurrence
-            const int partsDelimiter = findAndNullDelimiter(buffer.data(), ':', start, endOfLine, true);
-            if (partsDelimiter == -1)
+            // for IPv4: Some:Org:Label:1.0.0.0-1.255.255.255
+            // for IPv6: My:Company:Label:2001:db8::1-2001:db8::ff
+
+            const int delimIP = findAndNullDelimiter(buffer.data(), '-', start, endOfLine, true);
+            if (delimIP == -1)
             {
                 ++parseErrorCount;
                 addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
@@ -382,9 +383,31 @@ int FilterParserThread::parseP2PFilterFile()
                 continue;
             }
 
-            // IP Range should be split by a dash
-            const int delimIP = findAndNullDelimiter(buffer.data(), '-', partsDelimiter + 1, endOfLine);
-            if (delimIP == -1)
+            int partsDelimiter = -1;
+            int searchStart = start;
+
+            while (searchStart < delimIP)
+            {
+                const int nextColon = findAndNullDelimiter(buffer.data(), ':', searchStart, delimIP, false);
+                if (nextColon == -1)
+                    break;
+
+                lt::address testAddr;
+                const int testStart = trim(buffer.data(), (nextColon + 1), (delimIP - 1));
+
+                if (parseIPAddress((buffer.data() + testStart), testAddr))
+                {
+                    // We found valid IP
+                    partsDelimiter = nextColon;
+                    break;
+                }
+
+                // Cleanup for next iteration
+                buffer[nextColon] = ':';
+                searchStart = nextColon + 1;
+            }
+
+            if (partsDelimiter == -1)
             {
                 ++parseErrorCount;
                 addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
@@ -414,7 +437,7 @@ int FilterParserThread::parseP2PFilterFile()
 
             if ((startAddr.is_v4() != endAddr.is_v4())
                 || (startAddr.is_v6() != endAddr.is_v6()))
-                {
+            {
                 ++parseErrorCount;
                 addLog(tr("IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!").arg(nbLine));
                 start = endOfLine;
