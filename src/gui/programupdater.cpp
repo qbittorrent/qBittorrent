@@ -78,7 +78,7 @@ void ProgramUpdater::checkForUpdates()
     // Don't change this User-Agent. In case our updater goes haywire,
     // the filehost can identify it and contact us.
     const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)");
-    const auto GITHUB_URL = u"https://github.com/qbittorrent/qBittorrent/releases.atom"_s;
+    const auto QBT_FEED_URL = u"https://www.qbittorrent.org/news_feed.atom"_s;
     const auto QBT_MAIN_URL = u"https://www.qbittorrent.org/versions.json"_s;
     const auto QBT_BACKUP_URL = u"https://qbittorrent.github.io/qBittorrent-website/versions.json"_s;
 
@@ -91,7 +91,7 @@ void ProgramUpdater::checkForUpdates()
     m_pendingRequestCount = 1;
 #endif
 
-    netManager->download(Net::DownloadRequest(GITHUB_URL).userAgent(USER_AGENT), useProxy, this, &ProgramUpdater::rssDownloadFinished);
+    netManager->download(Net::DownloadRequest(QBT_FEED_URL).userAgent(USER_AGENT), useProxy, this, &ProgramUpdater::rssDownloadFinished);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     // don't use the custom user agent for the following requests, disguise as a normal browser instead
@@ -110,8 +110,8 @@ ProgramUpdater::Version ProgramUpdater::getNewVersion() const
 {
     switch (getLatestRemoteSource())
     {
-    case RemoteSource::Github:
-        return m_githubVersion;
+    case RemoteSource::QbtFeed:
+        return m_qbtFeedVersion;
     case RemoteSource::QbtMain:
         return m_qbtMainVersion;
     case RemoteSource::QbtBackup:
@@ -172,7 +172,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
                     const Version tmpVer {version};
                     if (isVersionMoreRecent(tmpVer))
                     {
-                        m_githubVersion = tmpVer;
+                        m_qbtFeedVersion = tmpVer;
                         m_updateURL = updateLink;
                     }
                 }
@@ -219,7 +219,7 @@ bool ProgramUpdater::updateProgram() const
 {
     switch (getLatestRemoteSource())
     {
-    case RemoteSource::Github:
+    case RemoteSource::QbtFeed:
         return QDesktopServices::openUrl(m_updateURL);
     case RemoteSource::QbtMain:
         return QDesktopServices::openUrl(u"https://www.qbittorrent.org/download"_s);
@@ -238,9 +238,9 @@ void ProgramUpdater::handleFinishedRequest()
 
 ProgramUpdater::RemoteSource ProgramUpdater::getLatestRemoteSource() const
 {
-    const Version max = std::max({m_githubVersion, m_qbtMainVersion, m_qbtBackupVersion});
-    if (max == m_githubVersion)
-        return RemoteSource::Github;
+    const Version max = std::max({m_qbtFeedVersion, m_qbtMainVersion, m_qbtBackupVersion});
+    if (max == m_qbtFeedVersion)
+        return RemoteSource::QbtFeed;
     if (max == m_qbtMainVersion)
         return RemoteSource::QbtMain;
     if (max == m_qbtBackupVersion)
