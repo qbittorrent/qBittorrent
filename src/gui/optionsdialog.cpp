@@ -54,6 +54,7 @@
 #include "base/net/smtpclient.h"
 #include "base/path.h"
 #include "base/preferences.h"
+#include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
@@ -357,6 +358,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->textFileLogPath->setDialogCaption(tr("Choose a save directory"));
     m_ui->textFileLogPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->textFileLogPath->setSelectedPath(app()->fileLoggerPath());
+    m_ui->textFileLogPath->setBasePath(specialFolderLocation(SpecialFolder::Data));
     const bool fileLogBackup = app()->isFileLoggerBackup();
     m_ui->checkFileLogBackup->setChecked(fileLogBackup);
     m_ui->spinFileLogSize->setEnabled(fileLogBackup);
