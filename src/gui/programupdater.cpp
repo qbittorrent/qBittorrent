@@ -85,15 +85,8 @@ void ProgramUpdater::checkForUpdates()
     Net::DownloadManager *netManager = Net::DownloadManager::instance();
     const bool useProxy = Preferences::instance()->useProxyForGeneralPurposes();
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     m_pendingRequestCount = 3;
-#else
-    m_pendingRequestCount = 1;
-#endif
-
     netManager->download(Net::DownloadRequest(QBT_FEED_URL).userAgent(USER_AGENT), useProxy, this, &ProgramUpdater::rssDownloadFinished);
-
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     // don't use the custom user agent for the following requests, disguise as a normal browser instead
     netManager->download(Net::DownloadRequest(QBT_MAIN_URL), useProxy, this, [this](const Net::DownloadResult &result)
     {
@@ -103,7 +96,6 @@ void ProgramUpdater::checkForUpdates()
     {
         fallbackDownloadFinished(result, m_qbtBackupVersion);
     });
-#endif
 }
 
 ProgramUpdater::Version ProgramUpdater::getNewVersion() const
@@ -176,7 +168,6 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
     handleFinishedRequest();
 }
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result, Version &version)
 {
     version = {};
@@ -205,7 +196,6 @@ void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result,
 
     handleFinishedRequest();
 }
-#endif
 
 bool ProgramUpdater::updateProgram() const
 {

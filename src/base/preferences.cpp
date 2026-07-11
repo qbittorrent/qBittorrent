@@ -1493,6 +1493,7 @@ void Preferences::setPythonExecutablePath(const Path &path)
     setValue(u"Preferences/Search/pythonExecutablePath"_s, path);
 }
 
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 bool Preferences::isUpdateCheckEnabled() const
 {
     return value(u"Preferences/Advanced/updateCheck"_s, true);
@@ -1505,6 +1506,7 @@ void Preferences::setUpdateCheckEnabled(const bool enabled)
 
     setValue(u"Preferences/Advanced/updateCheck"_s, enabled);
 }
+#endif
 
 #ifdef Q_OS_MACOS
 bool Preferences::isSpeedInDockEnabled() const

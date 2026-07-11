@@ -58,10 +58,7 @@ signals:
 
 private slots:
     void rssDownloadFinished(const Net::DownloadResult &result);
-
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     void fallbackDownloadFinished(const Net::DownloadResult &result, Version &version);
-#endif
 
 private:
     enum class RemoteSource
