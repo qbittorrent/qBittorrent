@@ -383,6 +383,16 @@ int FilterParserThread::parseP2PFilterFile()
                 continue;
             }
 
+            lt::address wholeAddr;
+            const int wholeStart = trim(buffer.data(), start, (delimIP - 1));
+            if (parseIPAddress((buffer.data() + wholeStart), wholeAddr))
+            {
+                 ++parseErrorCount;
+                 addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
+                 start = endOfLine;
+                 continue;
+            }
+
             int partsDelimiter = -1;
             int searchStart = start;
 
