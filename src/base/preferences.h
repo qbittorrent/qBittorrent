@@ -374,6 +374,8 @@ public:
     void setTrackerListState(const QByteArray &state);
     QStringList getRssOpenFolders() const;
     void setRssOpenFolders(const QStringList &folders);
+    QByteArray getRssFeedListState() const;
+    void setRssFeedListState(const QByteArray &state);
     QByteArray getRssSideSplitterState() const;
     void setRssSideSplitterState(const QByteArray &state);
     QByteArray getRssMainSplitterState() const;

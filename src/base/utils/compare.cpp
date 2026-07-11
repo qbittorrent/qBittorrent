@@ -41,8 +41,16 @@ int Utils::Compare::naturalCompare(const QString &left, const QString &right, co
     int posR = 0;
     while (true)
     {
-        if ((posL == left.size()) || (posR == right.size()))
-            return (left.size() - right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
+        if (const qsizetype lSize = left.size(), rSize = right.size()
+            ; (posL == lSize) || (posR == rSize))
+        {
+            // when a shorter string is another string's prefix, place shorter string before longer string
+            if (lSize < rSize)
+                return -1;
+            if (lSize == rSize)
+                return 0;
+            return 1;
+        }
 
         const QChar leftChar = (caseSensitivity == Qt::CaseSensitive) ? left[posL] : left[posL].toCaseFolded();
         const QChar rightChar = (caseSensitivity == Qt::CaseSensitive) ? right[posR] : right[posR].toCaseFolded();
