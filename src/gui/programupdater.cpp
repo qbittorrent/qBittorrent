@@ -137,11 +137,6 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
             : QString {};
     };
 
-    const auto getHrefAttribute = [](QXmlStreamReader &xml) -> QString
-    {
-        return xml.attributes().value(u"href"_s).toString();
-    };
-
     bool inEntry = false;
     QString version;
     QString updateLink;
@@ -155,8 +150,6 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
         {
             if (xml.name() == u"entry")
                 inEntry = true;
-            else if (inEntry && (xml.name() == u"link"))
-                updateLink = getHrefAttribute(xml);
             else if (inEntry && (xml.name() == u"title"))
                 version = getStringValue(xml);
         }
@@ -173,7 +166,6 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
                     if (isVersionMoreRecent(tmpVer))
                     {
                         m_qbtFeedVersion = tmpVer;
-                        m_updateURL = updateLink;
                     }
                 }
                 break;
@@ -220,7 +212,6 @@ bool ProgramUpdater::updateProgram() const
     switch (getLatestRemoteSource())
     {
     case RemoteSource::QbtFeed:
-        return QDesktopServices::openUrl(m_updateURL);
     case RemoteSource::QbtMain:
         return QDesktopServices::openUrl(u"https://www.qbittorrent.org/download"_s);
     case RemoteSource::QbtBackup:

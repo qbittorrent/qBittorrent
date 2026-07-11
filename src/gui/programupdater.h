@@ -78,5 +78,4 @@ private:
     Version m_qbtFeedVersion;
     Version m_qbtMainVersion;
     Version m_qbtBackupVersion;
-    QUrl m_updateURL;
 };
