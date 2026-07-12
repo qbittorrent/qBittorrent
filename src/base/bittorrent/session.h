@@ -428,6 +428,8 @@ namespace BitTorrent
         virtual void setIDNSupportEnabled(bool enabled) = 0;
         virtual bool multiConnectionsPerIpEnabled() const = 0;
         virtual void setMultiConnectionsPerIpEnabled(bool enabled) = 0;
+        virtual bool multiConnectionsPerPidEnabled() const = 0;
+        virtual void setMultiConnectionsPerPidEnabled(bool enabled) = 0;
         virtual bool validateHTTPSTrackerCertificate() const = 0;
         virtual void setValidateHTTPSTrackerCertificate(bool enabled) = 0;
         virtual bool isSSRFMitigationEnabled() const = 0;
