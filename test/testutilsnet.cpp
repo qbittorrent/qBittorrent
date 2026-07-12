@@ -26,7 +26,6 @@
  * exception statement from your version.
  */
 
-#include <QHostAddress>
 #include <QObject>
 #include <QTest>
 
@@ -42,19 +41,6 @@ public:
     TestUtilsNet() = default;
 
 private slots:
-    void testIsIPAddressLessThan() const
-    {
-        QVERIFY(Utils::Net::isIPAddressLessThan(QHostAddress(u"127.0.0.1"_s), QHostAddress(u"127.0.0.2"_s)));
-        QVERIFY(!Utils::Net::isIPAddressLessThan(QHostAddress(u"127.0.0.1"_s), QHostAddress(u"127.0.0.1"_s)));
-        QVERIFY(!Utils::Net::isIPAddressLessThan(QHostAddress(u"127.0.0.2"_s), QHostAddress(u"127.0.0.1"_s)));
-
-        QVERIFY(Utils::Net::isIPAddressLessThan(QHostAddress(u"2001:db8::f"_s), QHostAddress(u"2001:db8::10"_s)));
-        QVERIFY(!Utils::Net::isIPAddressLessThan(QHostAddress(u"2001:db8::10"_s), QHostAddress(u"2001:db8::f"_s)));
-
-        QVERIFY(Utils::Net::isIPAddressLessThan(QHostAddress(u"255.255.255.255"_s), QHostAddress(u"::1"_s)));
-        QVERIFY(!Utils::Net::isIPAddressLessThan(QHostAddress(u"::1"_s), QHostAddress(u"255.255.255.255"_s)));
-    }
-
     void testParseIPv6Range() const
     {
         QVERIFY(Utils::Net::parseIPRange(u"2001:db8::1"_s));

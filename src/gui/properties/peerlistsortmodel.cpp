@@ -30,8 +30,34 @@
 
 #include <QMetaType>
 
-#include "base/utils/net.h"
 #include "peerlistwidget.h"
+
+namespace
+{
+    bool isIPAddressLessThan(const QHostAddress &left, const QHostAddress &right)
+    {
+        const auto leftProtocol = left.protocol();
+        const auto rightProtocol = right.protocol();
+
+        if (leftProtocol == QAbstractSocket::IPv4Protocol)
+        {
+            if (rightProtocol == QAbstractSocket::IPv4Protocol)
+                return (left.toIPv4Address() < right.toIPv4Address());
+            if (rightProtocol == QAbstractSocket::IPv6Protocol)
+                return true;
+        }
+
+        if (leftProtocol == QAbstractSocket::IPv6Protocol)
+        {
+            if (rightProtocol == QAbstractSocket::IPv4Protocol)
+                return false;
+            if (rightProtocol == QAbstractSocket::IPv6Protocol)
+                return std::ranges::lexicographical_compare(left.toIPv6Address().c, right.toIPv6Address().c);
+        }
+
+        return (left.toString() < right.toString());
+    }
+}
 
 PeerListSortModel::PeerListSortModel(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -45,25 +71,25 @@ bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &rig
     {
     case PeerListWidget::IP:
         {
+            const QMetaType peerIPSortDataType = QMetaType::fromType<PeerListIPSortData>();
+            const QMetaType hostAddressType = QMetaType::fromType<QHostAddress>();
             const QVariant leftData = left.data(UnderlyingDataRole);
             const QVariant rightData = right.data(UnderlyingDataRole);
-            static const QMetaType peerIPSortDataType = QMetaType::fromType<PeerListIPSortData>();
             if ((leftData.metaType() == peerIPSortDataType) && (rightData.metaType() == peerIPSortDataType))
             {
                 const PeerListIPSortData leftPeer = leftData.value<PeerListIPSortData>();
                 const PeerListIPSortData rightPeer = rightData.value<PeerListIPSortData>();
 
-                if (Utils::Net::isIPAddressLessThan(leftPeer.ip, rightPeer.ip))
+                if (isIPAddressLessThan(leftPeer.ip, rightPeer.ip))
                     return true;
-                if (Utils::Net::isIPAddressLessThan(rightPeer.ip, leftPeer.ip))
+                if (isIPAddressLessThan(rightPeer.ip, leftPeer.ip))
                     return false;
 
                 return (leftPeer.port < rightPeer.port);
             }
 
-            static const QMetaType hostAddressType = QMetaType::fromType<QHostAddress>();
             if ((leftData.metaType() == hostAddressType) && (rightData.metaType() == hostAddressType))
-                return Utils::Net::isIPAddressLessThan(leftData.value<QHostAddress>(), rightData.value<QHostAddress>());
+                return isIPAddressLessThan(leftData.value<QHostAddress>(), rightData.value<QHostAddress>());
 
             return m_naturalLessThan(leftData.toString(), rightData.toString());
         }

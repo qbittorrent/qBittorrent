@@ -68,12 +68,28 @@ namespace
         return true;
     }
 
-    bool isIPv6LessThan(const QHostAddress &left, const QHostAddress &right)
+    bool operator<(const QHostAddress &left, const QHostAddress &right)
     {
-        Q_ASSERT(left.protocol() == QAbstractSocket::IPv6Protocol);
-        Q_ASSERT(right.protocol() == QAbstractSocket::IPv6Protocol);
+        const auto leftProtocol = left.protocol();
+        const auto rightProtocol = right.protocol();
 
-        return std::ranges::lexicographical_compare(left.toIPv6Address().c, right.toIPv6Address().c);
+        if (leftProtocol == QAbstractSocket::IPv4Protocol)
+        {
+            if (rightProtocol == QAbstractSocket::IPv4Protocol)
+                return (left.toIPv4Address() < right.toIPv4Address());
+            if (rightProtocol == QAbstractSocket::IPv6Protocol)
+                return true;
+        }
+
+        if (leftProtocol == QAbstractSocket::IPv6Protocol)
+        {
+            if (rightProtocol == QAbstractSocket::IPv4Protocol)
+                return false;
+            if (rightProtocol == QAbstractSocket::IPv6Protocol)
+                return std::ranges::lexicographical_compare(left.toIPv6Address().c, right.toIPv6Address().c);
+        }
+
+        return (left.toString() < right.toString());
     }
 
     bool isValidIPRange(const QHostAddress &first, const QHostAddress &last)
@@ -85,7 +101,7 @@ namespace
         if (first.protocol() == QAbstractSocket::IPv4Protocol)
             return first.toIPv4Address() <= last.toIPv4Address();
         if (first.protocol() == QAbstractSocket::IPv6Protocol)
-            return (first == last) || isIPv6LessThan(first, last);
+            return !(last < first);
         return false;
     }
 }
@@ -130,30 +146,6 @@ namespace Utils
                 return addr.isInSubnet(subnet)
                     || (addrConversionOk && protocolEquivalentAddress.isInSubnet(subnet));
             });
-        }
-
-        bool isIPAddressLessThan(const QHostAddress &left, const QHostAddress &right)
-        {
-            const auto leftProtocol = left.protocol();
-            const auto rightProtocol = right.protocol();
-
-            if (leftProtocol == QAbstractSocket::IPv4Protocol)
-            {
-                if (rightProtocol == QAbstractSocket::IPv4Protocol)
-                    return (left.toIPv4Address() < right.toIPv4Address());
-                if (rightProtocol == QAbstractSocket::IPv6Protocol)
-                    return true;
-            }
-
-            if (leftProtocol == QAbstractSocket::IPv6Protocol)
-            {
-                if (rightProtocol == QAbstractSocket::IPv4Protocol)
-                    return false;
-                if (rightProtocol == QAbstractSocket::IPv6Protocol)
-                    return isIPv6LessThan(left, right);
-            }
-
-            return (left.toString() < right.toString());
         }
 
         QString subnetToString(const Subnet &subnet)
