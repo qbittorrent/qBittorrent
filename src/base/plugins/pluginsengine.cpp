@@ -411,7 +411,8 @@ void PluginsEngine::loadPlugins()
         }
     }
 
-    loadConfig();
+    if (!m_plugins.isEmpty())
+        loadConfig();
 }
 
 void PluginsEngine::connectEventHandlers()
