@@ -222,7 +222,8 @@
                 addRSSFeed: addRSSFeed,
                 markSelectedAsRead: markSelectedAsRead,
                 openRssDownloader: openRssDownloader,
-                rssFeedTable: rssFeedTable
+                rssFeedTable: rssFeedTable,
+                resetInterval: resetInterval,
             };
         };
 
@@ -829,7 +830,15 @@
                     continue;
                 refreshFeed(feedEntry);
             }
+
+            resetInterval();
         };
+
+        const resetInterval = () => {
+            clearTimeout(feedRefreshTimer);
+            currentServerSyncRssDataInterval = serverSyncRssDataInterval;
+            load();
+        }
 
         const moveItem = (oldPath) => {
             new MochaUI.Window({
