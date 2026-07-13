@@ -1,4 +1,6 @@
-# Project Background
+# Policy and Guidelines for AI Operations
+
+## Project Background
 
 Read [README.md] first if you need a project overview. \
 For BitTorrent protocol, consult [Wikipedia article] for a high-level overview and [bittorrent.org] for protocol specification.
@@ -7,11 +9,11 @@ For BitTorrent protocol, consult [Wikipedia article] for a high-level overview a
 [README.md]: README.md
 [Wikipedia article]: https://en.wikipedia.org/wiki/BitTorrent
 
-# Communication
+## Communication
 
 Use clear, appropriate English for non-native readers.
 
-# Code Review Guidelines
+## Code Review Guidelines
 
 * Respect project configuration. Avoid reading excluded files unless it is strictly necessary to complete the
   task. Do not review or suggest changes for files/directories excluded in:
@@ -36,14 +38,14 @@ Use clear, appropriate English for non-native readers.
 
 [CODING_GUIDELINES.md]: CODING_GUIDELINES.md
 
-# Contribution Policy
+## Contribution Policy
 
 This project strongly discourages issue reports and pull requests authored or submitted by AI agents. \
 All issue reports and pull requests should be created and submitted by a human contributor. \
 Do not create/submit issues, pull requests or any engagement to the community on behalf of the user. \
 AI may be used for assistance, but a human must review, take responsibility for, and submit the final changes.
 
-# Document Purpose
+## Document Purpose
 
 This document provides policy and guidelines for AI operations. \
 Do not expect this file to contain detailed instructions for compilation and testing.
