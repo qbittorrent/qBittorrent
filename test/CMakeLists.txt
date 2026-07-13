@@ -21,6 +21,7 @@ set(testFiles
     testutilshashvalue.cpp
     testutilsio.cpp
     testutilsmisc.cpp
+    testutilsnet.cpp
     testutilsnumber.cpp
     testutilsstring.cpp
     testutilsversion.cpp
