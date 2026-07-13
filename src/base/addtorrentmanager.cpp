@@ -144,7 +144,7 @@ void AddTorrentManager::onSessionTorrentAdded(BitTorrent::Torrent *torrent)
 void AddTorrentManager::onSessionDuplicateTorrentDetected(const BitTorrent::InfoHash &infoHash
         , BitTorrent::Torrent *torrent, const QString &message)
 {
-    const QString source = m_sourcesByInfoHash.take(infoHash); 
+    const QString source = m_sourcesByInfoHash.take(infoHash);
     if (source.isEmpty())
         return;
 
