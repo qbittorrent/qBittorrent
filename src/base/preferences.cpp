@@ -1389,7 +1389,7 @@ void Preferences::recheckTorrentsOnCompletion(const bool recheck)
 
 bool Preferences::resolvePeerCountries() const
 {
-    return value(u"Preferences/Connection/ResolvePeerCountries"_s, true);
+    return value(u"Preferences/Connection/ResolvePeerCountries"_s, false);
 }
 
 void Preferences::resolvePeerCountries(const bool resolve)
@@ -1784,6 +1784,19 @@ void Preferences::setRssOpenFolders(const QStringList &folders)
         return;
 
     setValue(u"GUI/RSSWidget/OpenedFolders"_s, folders);
+}
+
+QByteArray Preferences::getRssFeedListState() const
+{
+    return value<QByteArray>(u"GUI/Qt6/RSSWidget/FeedListState"_s);
+}
+
+void Preferences::setRssFeedListState(const QByteArray &state)
+{
+    if (state == getRssFeedListState())
+        return;
+
+    setValue(u"GUI/Qt6/RSSWidget/FeedListState"_s, state);
 }
 
 QByteArray Preferences::getRssSideSplitterState() const

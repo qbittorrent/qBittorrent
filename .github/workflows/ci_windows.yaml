@@ -19,18 +19,21 @@ jobs:
       fail-fast: false
       matrix:
         libtorrent:
-          - version: "2.1.0-rc1"
+          - version: "2.1.0"
             boost_major_version: "1"
             boost_minor_version: "91"
             boost_patch_version: "0"
-          - version: "2.0.12"
+            libt_build_flags: "-Dwebtorrent=ON"
+          - version: "2.0.13"
             boost_major_version: "1"
             boost_minor_version: "91"
             boost_patch_version: "0"
+            libt_build_flags: ""
           - version: "1.2.20"
             boost_major_version: "1"
             boost_minor_version: "86"
             boost_patch_version: "0"
+            libt_build_flags: ""
         config:
         - os: windows-latest
           arch: x64
@@ -43,7 +46,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
 
@@ -135,6 +138,7 @@ jobs:
             https://github.com/arvidn/libtorrent.git `
             ${{ env.libtorrent_path }}
           cd ${{ env.libtorrent_path }}
+          $env:CFLAGS+=" /guard:cf"
           $env:CXXFLAGS+=" /guard:cf"
           $env:LDFLAGS+=" /GUARD:CF"
           cmake `
@@ -149,7 +153,8 @@ jobs:
             -DBUILD_SHARED_LIBS=OFF `
             -Ddeprecated-functions=OFF `
             -Dstatic_runtime=OFF `
-            -DVCPKG_TARGET_TRIPLET=${{ matrix.config.arch }}-windows-static-md-release
+            -DVCPKG_TARGET_TRIPLET=${{ matrix.config.arch }}-windows-static-md-release `
+            ${{ matrix.libtorrent.libt_build_flags }}
           cmake --build build
           cmake --install build
 

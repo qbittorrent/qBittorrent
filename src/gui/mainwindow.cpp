@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -67,6 +67,7 @@
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/path.h"
+#include "base/plugins/pluginsengine.h"
 #include "base/preferences.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
@@ -103,6 +104,10 @@
 #include "uithememanager.h"
 #include "utils.h"
 #include "utils/keysequence.h"
+
+#ifdef ENABLE_PLUGINS
+#include "plugins/pluginsdialog.h"
+#endif
 
 #ifdef Q_OS_MACOS
 #include "macosdockbadge/badger.h"
@@ -190,6 +195,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_ui->actionResumeSession->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_s, u"application-exit"_s));
     m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s, u"preferences-web-browser-cookies"_s));
+    m_ui->actionManagePlugins->setIcon(UIThemeManager::instance()->getIcon(u"plugins"_s));
     m_ui->menuLog->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_s));
     m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
     m_ui->actionOpenDestinationFolder->setIcon(UIThemeManager::instance()->getIcon(u"directory"_s));
@@ -357,6 +363,12 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 #endif
 
     connect(m_ui->actionManageCookies, &QAction::triggered, this, &MainWindow::manageCookies);
+
+#ifdef ENABLE_PLUGINS
+    connect(m_ui->actionManagePlugins, &QAction::triggered, this, &MainWindow::managePlugins);
+#else
+    m_ui->menuPlugins->hide();
+#endif
 
     // Initialise system sleep inhibition timer
     m_preventTimer->setSingleShot(true);
@@ -526,6 +538,10 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(m_transferListWidget->getSourceModel(), &QAbstractItemModel::rowsRemoved, this, &MainWindow::updateNbTorrents);
 
     connect(pref, &Preferences::changed, this, &MainWindow::optionsSaved);
+
+#ifdef ENABLE_PLUGINS
+    populatePluginsMenu();
+#endif
 
     qDebug("GUI Built");
 }
@@ -2024,3 +2040,89 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     installer->start(exePath.toString(), {u"/passive"_s});
 }
 #endif // Q_OS_WIN
+
+#ifdef ENABLE_PLUGINS
+void MainWindow::populatePluginsMenu()
+{
+    auto *pluginsEngine = PluginsEngine::instance();
+
+    for (const PluginInfo &pluginInfo : asConst(pluginsEngine->allPlugins()))
+    {
+        if (pluginInfo.invocable && pluginInfo.enabled)
+            addPluginsMenuItem(pluginInfo);
+    }
+
+    connect(pluginsEngine, &PluginsEngine::pluginInstalled, this
+            , [this](const Path &, const PluginInfo &pluginInfo)
+    {
+        if (pluginInfo.invocable && pluginInfo.enabled)
+            addPluginsMenuItem(pluginInfo);
+    });
+
+    connect(pluginsEngine, &PluginsEngine::pluginUninstalled, this
+            , [this](const QString &pluginID)
+    {
+        removePluginsMenuItem(pluginID);
+    });
+
+    connect(pluginsEngine, &PluginsEngine::pluginUpdated, this
+            , [this](const Path &, const PluginInfo &oldPluginInfo, const PluginInfo &newPluginInfo)
+    {
+        if (newPluginInfo.enabled && newPluginInfo.invocable)
+        {
+            if (QAction *action = m_pluginActions.value(oldPluginInfo.id))
+                action->setText(newPluginInfo.name);
+            else
+                addPluginsMenuItem(newPluginInfo);
+        }
+        else
+        {
+            removePluginsMenuItem(oldPluginInfo.id);
+        }
+    });
+
+    connect(pluginsEngine, &PluginsEngine::pluginEnabledChanged, this
+            , [this, pluginsEngine](const QString &pluginID, bool isEnabled)
+    {
+        if (isEnabled)
+        {
+            if (const auto pluginInfo = pluginsEngine->pluginInfo(pluginID);
+                    pluginInfo && pluginInfo->invocable)
+            {
+                addPluginsMenuItem(*pluginInfo);
+            }
+        }
+        else
+        {
+            removePluginsMenuItem(pluginID);
+        }
+    });
+}
+
+void MainWindow::addPluginsMenuItem(const PluginInfo &pluginInfo)
+{
+    auto *pluginsEngine = PluginsEngine::instance();
+    auto *action = m_ui->menuPlugins->addAction(pluginInfo.name, this
+            , [pluginsEngine, pluginID = pluginInfo.id]
+    {
+        pluginsEngine->invokePlugin(pluginID);
+    });
+    m_pluginActions.insert(pluginInfo.id, action);
+}
+
+void MainWindow::removePluginsMenuItem(const QString &pluginID)
+{
+    if (QAction *action = m_pluginActions.take(pluginID))
+    {
+        m_ui->menuPlugins->removeAction(action);
+        delete action;
+    }
+}
+
+void MainWindow::managePlugins()
+{
+    auto *pluginsDialog = new PluginsDialog(PluginsEngine::instance(), this);
+    pluginsDialog->setAttribute(Qt::WA_DeleteOnClose);
+    pluginsDialog->open();
+}
+#endif

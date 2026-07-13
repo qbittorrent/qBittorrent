@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -67,6 +67,7 @@
 #endif
 
 #include "base/addtorrentmanager.h"
+#include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
@@ -107,6 +108,10 @@
 #ifdef DISABLE_GUI
 #include "base/utils/password.h"
 #endif
+#endif
+
+#ifdef ENABLE_PLUGINS
+#include "base/plugins/pluginsengine.h"
 #endif
 
 namespace
@@ -938,13 +943,17 @@ int Application::exec()
         connect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
     }
 #endif
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]()
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]
     {
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded, this, &Application::torrentAdded);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
         m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);
+
+#ifdef ENABLE_PLUGINS
+        PluginsEngine::initInstance();
+#endif
 
         Net::GeoIPManager::initInstance();
         Net::ReverseResolution::initInstance();
@@ -1462,6 +1471,10 @@ void Application::cleanup()
 
 #ifndef DISABLE_WEBUI
     delete m_webui;
+#endif
+
+#ifdef ENABLE_PLUGINS
+    PluginsEngine::freeInstance();
 #endif
 
     delete RSS::AutoDownloader::instance();

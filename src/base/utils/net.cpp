@@ -286,5 +286,27 @@ namespace Utils
         {
             return !loadSSLCertificate(data).isEmpty();
         }
+
+        bool lessThan(const QHostAddress &left, const QHostAddress &right)
+        {
+            const QAbstractSocket::NetworkLayerProtocol leftProtocol = left.protocol();
+            const QAbstractSocket::NetworkLayerProtocol rightProtocol = right.protocol();
+
+            if (leftProtocol != rightProtocol)
+                return leftProtocol < rightProtocol;
+
+            switch (leftProtocol)
+            {
+            case QAbstractSocket::IPv4Protocol:
+                return left.toIPv4Address() < right.toIPv4Address();
+            case QAbstractSocket::IPv6Protocol:
+                return std::ranges::lexicographical_compare(left.toIPv6Address().c, right.toIPv6Address().c);
+            case QAbstractSocket::AnyIPProtocol:
+            case QAbstractSocket::UnknownNetworkLayerProtocol:
+                return left.toString() < left.toString();
+            }
+
+            Q_UNREACHABLE_RETURN(false);
+        }
     }
 }
