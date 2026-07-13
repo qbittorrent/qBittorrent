@@ -1683,7 +1683,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <input type="checkbox" id="allowMultipleConnectionsFromTheSameIPAddress">
                     </td>
                 </tr>
-                <tr>
+                <tr id="rowMultiConnectionsPerPid">
                     <td>
                         <label for="allowMultipleConnectionsFromTheSamePeerID">QBT_TR(Allow multiple connections from the same Peer ID:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#allow_multiple_connections_per_pid" target="_blank">(?)</a></label>
                     </td>
@@ -3400,6 +3400,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.1") < 0)
                 document.getElementById("diskIOTypePreadPwrite").hidden = true;
+
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.13") < 0)
+                document.getElementById("rowMultiConnectionsPerPid").style.display = "none";
 
             if ((buildInfo.platform === "linux") || (buildInfo.platform === "macos"))
                 document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";
