@@ -50,12 +50,6 @@
 
 namespace
 {
-    QString extractVersionString(const QString &text)
-    {
-        const QRegularExpressionMatch match = QRegularExpression(uR"((\d+(?:\.\d+)+))"_s).match(text);
-        return match.hasMatch() ? match.captured(1) : QString {};
-    }
-
     bool isVersionMoreRecent(const ProgramUpdater::Version &remoteVersion)
     {
         if (!remoteVersion.isValid())
@@ -78,15 +72,13 @@ void ProgramUpdater::checkForUpdates()
     // Don't change this User-Agent. In case our updater goes haywire,
     // the filehost can identify it and contact us.
     const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)");
-    const auto QBT_FEED_URL = u"https://www.qbittorrent.org/news_feed.atom"_s;
     const auto QBT_MAIN_URL = u"https://www.qbittorrent.org/versions.json"_s;
     const auto QBT_BACKUP_URL = u"https://qbittorrent.github.io/qBittorrent-website/versions.json"_s;
 
     Net::DownloadManager *netManager = Net::DownloadManager::instance();
     const bool useProxy = Preferences::instance()->useProxyForGeneralPurposes();
 
-    m_pendingRequestCount = 3;
-    netManager->download(Net::DownloadRequest(QBT_FEED_URL).userAgent(USER_AGENT), useProxy, this, &ProgramUpdater::rssDownloadFinished);
+    m_pendingRequestCount = 2;
     // don't use the custom user agent for the following requests, disguise as a normal browser instead
     netManager->download(Net::DownloadRequest(QBT_MAIN_URL), useProxy, this, [this](const Net::DownloadResult &result)
     {
@@ -102,70 +94,12 @@ ProgramUpdater::Version ProgramUpdater::getNewVersion() const
 {
     switch (getLatestRemoteSource())
     {
-    case RemoteSource::QbtFeed:
-        return m_qbtFeedVersion;
     case RemoteSource::QbtMain:
         return m_qbtMainVersion;
     case RemoteSource::QbtBackup:
         return m_qbtBackupVersion;
     }
     Q_UNREACHABLE();
-}
-
-void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
-{
-    if (result.status != Net::DownloadStatus::Success)
-    {
-        LogMsg(tr("Failed to download the program update info. URL: \"%1\". Error: \"%2\"").arg(result.url, result.errorString) , Log::WARNING);
-        handleFinishedRequest();
-        return;
-    }
-
-    const auto getStringValue = [](QXmlStreamReader &xml) -> QString
-    {
-        xml.readNext();
-        return (xml.isCharacters() && !xml.isWhitespace())
-            ? xml.text().toString()
-            : QString {};
-    };
-
-    bool inEntry = false;
-    QString version;
-    QString updateLink;
-    QXmlStreamReader xml(result.data);
-
-    while (!xml.atEnd())
-    {
-        xml.readNext();
-
-        if (xml.isStartElement())
-        {
-            if (xml.name() == u"entry")
-                inEntry = true;
-            else if (inEntry && (xml.name() == u"title"))
-                version = getStringValue(xml);
-        }
-        else if (xml.isEndElement())
-        {
-            if (inEntry && (xml.name() == u"entry"))
-            {
-                qDebug("The last update available is %s", qUtf8Printable(version));
-                if (!version.isEmpty())
-                {
-                    version = extractVersionString(version);
-                    qDebug("Detected version is %s", qUtf8Printable(version));
-                    const Version tmpVer {version};
-                    if (isVersionMoreRecent(tmpVer))
-                    {
-                        m_qbtFeedVersion = tmpVer;
-                    }
-                }
-                break;
-            }
-        }
-    }
-
-    handleFinishedRequest();
 }
 
 void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result, Version &version)
@@ -201,7 +135,6 @@ bool ProgramUpdater::updateProgram() const
 {
     switch (getLatestRemoteSource())
     {
-    case RemoteSource::QbtFeed:
     case RemoteSource::QbtMain:
         return QDesktopServices::openUrl(u"https://www.qbittorrent.org/download"_s);
     case RemoteSource::QbtBackup:
@@ -219,9 +152,7 @@ void ProgramUpdater::handleFinishedRequest()
 
 ProgramUpdater::RemoteSource ProgramUpdater::getLatestRemoteSource() const
 {
-    const Version max = std::max({m_qbtFeedVersion, m_qbtMainVersion, m_qbtBackupVersion});
-    if (max == m_qbtFeedVersion)
-        return RemoteSource::QbtFeed;
+    const Version max = std::max({m_qbtMainVersion, m_qbtBackupVersion});
     if (max == m_qbtMainVersion)
         return RemoteSource::QbtMain;
     if (max == m_qbtBackupVersion)
