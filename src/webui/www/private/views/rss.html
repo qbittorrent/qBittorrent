@@ -359,12 +359,11 @@
             feedRefreshTimer = setTimeout(async () => {
                 const hasChanges = await updateRssFeedList();
 
-                if (hasChanges) {
+                if (hasChanges)
                     currentServerSyncRssDataInterval = serverSyncRssDataInterval;
-                }
-                else {
+                else
                     currentServerSyncRssDataInterval = Math.min(currentServerSyncRssDataInterval * 2, serverSyncRssDataMaxInterval);
-                }
+
                 load();
             }, currentServerSyncRssDataInterval);
         };
@@ -838,7 +837,7 @@
             clearTimeout(feedRefreshTimer);
             currentServerSyncRssDataInterval = serverSyncRssDataInterval;
             load();
-        }
+        };
 
         const moveItem = (oldPath) => {
             new MochaUI.Window({
