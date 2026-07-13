@@ -144,13 +144,14 @@ void AddTorrentManager::onSessionTorrentAdded(BitTorrent::Torrent *torrent)
 void AddTorrentManager::onSessionDuplicateTorrentDetected(const BitTorrent::InfoHash &infoHash
         , BitTorrent::Torrent *torrent, const QString &message)
 {
-    if (const QString source = m_sourcesByInfoHash.take(infoHash); !source.isEmpty())
-    {
-        auto torrentFileGuard = m_guardedTorrentFiles.take(source);
-        if (torrentFileGuard)
-            torrentFileGuard->setAutoRemove(false);
-        emit duplicateTorrentDetected(source, torrent, message);
-    }
+    const QString source = m_sourcesByInfoHash.take(infoHash); 
+    if (source.isEmpty())
+        return;
+
+    std::shared_ptr<TorrentFileGuard> torrentFileGuard = m_guardedTorrentFiles.take(source);
+    if (torrentFileGuard)
+        torrentFileGuard->setAutoRemove(false);
+    emit duplicateTorrentDetected(source, torrent, message);
 }
 
 void AddTorrentManager::onSessionAddTorrentFailed(const BitTorrent::InfoHash &infoHash, const QString &reason)
