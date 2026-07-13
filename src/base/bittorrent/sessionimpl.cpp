@@ -246,6 +246,18 @@ namespace
         return {};
     }
 
+    QString toString(const lt::portmap_transport &protocol)
+    {
+        switch (protocol)
+        {
+        case lt::portmap_transport::natpmp:
+            return u"NAT-PMP/PCP"_s;
+        case lt::portmap_transport::upnp:
+            return u"UPnP"_s;
+        };
+        return {};
+    }
+
     template <typename T>
     struct LowerLimited
     {
@@ -6101,13 +6113,28 @@ void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *alert)
 
 void SessionImpl::handlePortmapWarningAlert(const lt::portmap_error_alert *alert)
 {
-    LogMsg(tr("UPnP/NAT-PMP port mapping failed. Message: \"%1\"").arg(QString::fromStdString(alert->message())), Log::WARNING);
+#ifdef QBT_USES_LIBTORRENT2
+    LogMsg(tr("Port forwarding failed. Protocol: %1. Local address: \"%2\". Message: \"%3\"")
+        .arg(toString(alert->map_transport), toString(alert->local_address), QString::fromStdString(alert->message()))
+        , Log::WARNING);
+#else
+    LogMsg(tr("Port forwarding failed. Protocol: %1. Message: \"%2\"")
+        .arg(toString(alert->map_transport), QString::fromStdString(alert->message()))
+        , Log::WARNING);
+#endif
 }
 
 void SessionImpl::handlePortmapAlert(const lt::portmap_alert *alert)
 {
-    qDebug("UPnP Success, msg: %s", alert->message().c_str());
-    LogMsg(tr("UPnP/NAT-PMP port mapping succeeded. Message: \"%1\"").arg(QString::fromStdString(alert->message())), Log::INFO);
+#ifdef QBT_USES_LIBTORRENT2
+    LogMsg(tr("Port forwarding succeeded. Protocol: %1. Local address: \"%2\". External port: %3. Message: \"%4\"")
+        .arg(toString(alert->map_transport), toString(alert->local_address), QString::number(alert->external_port)
+            , QString::fromStdString(alert->message())), Log::INFO);
+#else
+    LogMsg(tr("Port forwarding succeeded. Protocol: %1. External port: %2. Message: \"%3\"")
+        .arg(toString(alert->map_transport), QString::number(alert->external_port)
+            , QString::fromStdString(alert->message())), Log::INFO);
+#endif
 }
 
 void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *alert)
@@ -6421,7 +6448,7 @@ void SessionImpl::handleSocks5Alert(const lt::socks5_alert *alert) const
     {
         const auto addr = alert->ip.address();
         const QString endpoint = (addr.is_v6() ? u"[%1]:%2"_s : u"%1:%2"_s)
-                .arg(QString::fromStdString(addr.to_string()), QString::number(alert->ip.port()));
+                .arg(toString(addr), QString::number(alert->ip.port()));
         LogMsg(tr("SOCKS5 proxy error. Address: %1. Message: \"%2\".")
                 .arg(endpoint, Utils::String::fromLocal8Bit(alert->error.message()))
                 , Log::WARNING);
