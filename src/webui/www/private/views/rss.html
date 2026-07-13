@@ -226,7 +226,11 @@
             };
         };
 
+        // 1.5 seconds
         const serverSyncRssDataInterval = 1500;
+        // 5 minutes
+        const serverSyncRssDataMaxInterval = 300000;
+        let currentServerSyncRssDataInterval = serverSyncRssDataInterval;
         let feedData = {};
         let pathByFeedId = new Map();
         let feedRefreshTimer = -1;
@@ -351,10 +355,16 @@
         };
 
         const load = () => {
-            feedRefreshTimer = setTimeout(() => {
-                updateRssFeedList();
+            feedRefreshTimer = setTimeout(async () => {
+                const hasChanges = await updateRssFeedList();
+
+                if (hasChanges) {
+                    currentServerSyncRssDataInterval = serverSyncRssDataInterval;
+                } else {
+                    currentServerSyncRssDataInterval = Math.min(currentServerSyncRssDataInterval * 2, serverSyncRssDataMaxInterval);
+                }
                 load();
-            }, serverSyncRssDataInterval);
+            }, currentServerSyncRssDataInterval);
         };
 
         const addRSSFeed = () => {
@@ -545,247 +555,248 @@
             }
         };
 
-        const updateRssFeedList = () => {
+        const updateRssFeedList = async () => {
             const url = new URL("api/v2/rss/items", window.location);
             url.search = new URLSearchParams({
                 withData: true
             });
-            fetch(url, {
-                    method: "GET",
-                    cache: "no-store"
-                })
-                .then(async (response) => {
-                    if (!response.ok)
-                        return;
+            const response =  await fetch(url, {
+                method: "GET",
+                cache: "no-store"
+            });
 
-                    const responseJSON = await response.json();
+            if (!response.ok)
+                return false;
 
-                    // flatten folder structure
-                    const flattenedResp = [];
-                    const recFlatten = (current, name = "", depth = 0, fullName = "") => {
-                        for (const child in current) {
-                            if (!Object.hasOwn(current, child))
-                                continue;
+            const responseJSON = await response.json();
 
-                            const currentFullName = fullName ? `${fullName}\\${child}` : child;
-                            if (current[child].uid !== undefined) {
-                                current[child].name = child;
-                                current[child].isFolder = false;
-                                current[child].depth = depth;
-                                current[child].fullName = currentFullName;
-                                flattenedResp.push(current[child]);
-                            }
-                            else {
-                                flattenedResp.push({
-                                    name: child,
-                                    isFolder: true,
-                                    depth: depth,
-                                    fullName: currentFullName
-                                });
-                                recFlatten(current[child], child, depth + 1, currentFullName);
-                            }
-                        }
-                    };
-                    recFlatten(responseJSON);
+            // flatten folder structure
+            const flattenedResp = [];
+            const recFlatten = (current, name = "", depth = 0, fullName = "") => {
+                for (const child in current) {
+                    if (!Object.hasOwn(current, child))
+                        continue;
 
-                    // check if rows matches flattened response
-                    const rssFeedRows = [...rssFeedTable.getRowValues()];
-                    let match = false;
-                    // subtract 'unread' row
-                    if ((rssFeedRows.length - 1) === flattenedResp.length) {
-                        match = true;
-                        for (const [i, newData] of flattenedResp.entries()) {
-                            const existingData = rssFeedRows[i + 1].full_data;
+                    const currentFullName = fullName ? `${fullName}\\${child}` : child;
+                    if (current[child].uid !== undefined) {
+                        current[child].name = child;
+                        current[child].isFolder = false;
+                        current[child].depth = depth;
+                        current[child].fullName = currentFullName;
+                        flattenedResp.push(current[child]);
+                    }
+                    else {
+                        flattenedResp.push({
+                            name: child,
+                            isFolder: true,
+                            depth: depth,
+                            fullName: currentFullName
+                        });
+                        recFlatten(current[child], child, depth + 1, currentFullName);
+                    }
+                }
+            };
+            recFlatten(responseJSON);
 
-                            if (newData.fullName !== existingData.dataPath) {
-                                match = false;
-                                break;
-                            }
-                            // only non-folders have these properties
-                            if (!newData.isFolder && ((newData.uid !== existingData.dataUid) || (newData.url !== existingData.dataUrl))) {
-                                match = false;
-                                break;
-                            }
+            // check if rows matches flattened response
+            const rssFeedRows = [...rssFeedTable.getRowValues()];
+            let match = false;
+            // subtract 'unread' row
+            if ((rssFeedRows.length - 1) === flattenedResp.length) {
+                match = true;
+                for (const [i, newData] of flattenedResp.entries()) {
+                    const existingData = rssFeedRows[i + 1].full_data;
+
+                    if (newData.fullName !== existingData.dataPath) {
+                        match = false;
+                        break;
+                    }
+                    // only non-folders have these properties
+                    if (!newData.isFolder && ((newData.uid !== existingData.dataUid) || (newData.url !== existingData.dataUrl))) {
+                        match = false;
+                        break;
+                    }
+                }
+            }
+
+            if (match) {
+                // partial refresh
+                // update status
+                let statusDiffers = false;
+                for (const [i, item] of flattenedResp.entries()) {
+                    const oldStatus = rssFeedRows[i + 1].full_data.status;
+                    let status = "default";
+                    if (item.hasError)
+                        status = "hasError";
+                    if (item.isLoading)
+                        status = "isLoading";
+                    if (item.isFolder)
+                        status = "isFolder";
+
+                    if (oldStatus !== status) {
+                        statusDiffers = true;
+                        rssFeedTable.updateRowData({
+                            rowId: i + 1,
+                            status: status
+                        });
+                    }
+                }
+
+                // get currently opened feed
+                let openedFeedPath = undefined;
+                if (rssFeedTable.selectedRows.length !== 0) {
+                    const lastSelectedRow = rssFeedTable.selectedRows.at(-1);
+                    openedFeedPath = rssFeedTable.getRow(lastSelectedRow).full_data.dataPath;
+                }
+
+                // check if list of articles differs
+                let needsUpdate = false;
+                for (const r of flattenedResp) {
+                    if (r.isFolder)
+                        continue;
+
+                    let articlesDiffer = true;
+                    if (r.articles.length === feedData[r.uid].length) {
+                        articlesDiffer = false;
+                        for (let i = 0; i < r.articles.length; ++i) {
+                            if (feedData[r.uid][i].id !== r.articles[i].id)
+                                articlesDiffer = true;
                         }
                     }
 
-                    if (match) {
-                        // partial refresh
-                        // update status
-                        let statusDiffers = false;
-                        for (const [i, item] of flattenedResp.entries()) {
-                            const oldStatus = rssFeedRows[i + 1].full_data.status;
-                            let status = "default";
-                            if (item.hasError)
-                                status = "hasError";
-                            if (item.isLoading)
-                                status = "isLoading";
-                            if (item.isFolder)
-                                status = "isFolder";
+                    if (articlesDiffer) {
+                        // update unread count
+                        const oldUnread = feedData[r.uid].reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
+                        const newUnread = r.articles.reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
+                        const unreadDifference = newUnread - oldUnread;
 
-                            if (oldStatus !== status) {
-                                statusDiffers = true;
-                                rssFeedTable.updateRowData({
-                                    rowId: i + 1,
-                                    status: status
-                                });
-                            }
+                        // find all parents (and self) and add unread difference
+                        for (const row of rssFeedTable.getRowValues()) {
+                            if (r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                                row.full_data.unread += unreadDifference;
                         }
 
-                        // get currently opened feed
-                        let openedFeedPath = undefined;
-                        if (rssFeedTable.selectedRows.length !== 0) {
-                            const lastSelectedRow = rssFeedTable.selectedRows.at(-1);
-                            openedFeedPath = rssFeedTable.getRow(lastSelectedRow).full_data.dataPath;
+                        needsUpdate = true;
+
+                        // update data
+                        feedData[r.uid] = r.articles;
+
+                        // if feed that is open changed, reload
+                        if ((openedFeedPath !== undefined) && (r.fullName.slice(0, openedFeedPath.length) === openedFeedPath))
+                            showRssFeed(r.fullName);
+                    }
+                    else {
+                        // calculate read difference and update feed data
+                        let readDifference = 0;
+                        let readChanged = false;
+                        for (let i = 0; i < r.articles.length; ++i) {
+                            const oldRead = feedData[r.uid][i].isRead ? 1 : 0;
+                            const newRead = r.articles[i].isRead ? 1 : 0;
+                            feedData[r.uid][i].isRead = r.articles[i].isRead;
+                            readDifference += oldRead - newRead;
+                            if (readDifference !== 0)
+                                readChanged = true;
                         }
 
-                        // check if list of articles differs
-                        let needsUpdate = false;
-                        for (const r of flattenedResp) {
-                            if (r.isFolder)
-                                continue;
-
-                            let articlesDiffer = true;
-                            if (r.articles.length === feedData[r.uid].length) {
-                                articlesDiffer = false;
-                                for (let i = 0; i < r.articles.length; ++i) {
-                                    if (feedData[r.uid][i].id !== r.articles[i].id)
-                                        articlesDiffer = true;
-                                }
+                        // if read on article changed
+                        if (readChanged) {
+                            needsUpdate = true;
+                            // find all items that contain this rss feed and add read difference
+                            for (const row of rssFeedTable.getRowValues()) {
+                                if (r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                                    row.full_data.unread += readDifference;
                             }
 
-                            if (articlesDiffer) {
-                                // update unread count
-                                const oldUnread = feedData[r.uid].reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
-                                const newUnread = r.articles.reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
-                                const unreadDifference = newUnread - oldUnread;
-
-                                // find all parents (and self) and add unread difference
-                                for (const row of rssFeedTable.getRowValues()) {
-                                    if (r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                                        row.full_data.unread += unreadDifference;
-                                }
-
-                                needsUpdate = true;
-
-                                // update data
-                                feedData[r.uid] = r.articles;
-
-                                // if feed that is open changed, reload
-                                if ((openedFeedPath !== undefined) && (r.fullName.slice(0, openedFeedPath.length) === openedFeedPath))
-                                    showRssFeed(r.fullName);
-                            }
-                            else {
-                                // calculate read difference and update feed data
-                                let readDifference = 0;
-                                let readChanged = false;
+                            // if feed that is opened changed update dynamically
+                            if ((openedFeedPath !== undefined) && (r.fullName.slice(0, openedFeedPath.length) === openedFeedPath)) {
                                 for (let i = 0; i < r.articles.length; ++i) {
-                                    const oldRead = feedData[r.uid][i].isRead ? 1 : 0;
-                                    const newRead = r.articles[i].isRead ? 1 : 0;
-                                    feedData[r.uid][i].isRead = r.articles[i].isRead;
-                                    readDifference += oldRead - newRead;
-                                    if (readDifference !== 0)
-                                        readChanged = true;
-                                }
-
-                                // if read on article changed
-                                if (readChanged) {
-                                    needsUpdate = true;
-                                    // find all items that contain this rss feed and add read difference
-                                    for (const row of rssFeedTable.getRowValues()) {
-                                        if (r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                                            row.full_data.unread += readDifference;
-                                    }
-
-                                    // if feed that is opened changed update dynamically
-                                    if ((openedFeedPath !== undefined) && (r.fullName.slice(0, openedFeedPath.length) === openedFeedPath)) {
-                                        for (let i = 0; i < r.articles.length; ++i) {
-                                            for (const row of rssArticleTable.getRowValues()) {
-                                                if ((row.full_data.feedUid === r.uid) && (row.full_data.dataId === r.articles[i].id)) {
-                                                    row.full_data.isRead = r.articles[i].isRead;
-                                                    break;
-                                                }
-                                            }
+                                    for (const row of rssArticleTable.getRowValues()) {
+                                        if ((row.full_data.feedUid === r.uid) && (row.full_data.dataId === r.articles[i].id)) {
+                                            row.full_data.isRead = r.articles[i].isRead;
+                                            break;
                                         }
                                     }
                                 }
                             }
                         }
-                        if (statusDiffers)
-                            rssFeedTable.updateTable(true);
-                        if (needsUpdate) {
-                            rssFeedTable.updateTable(true);
-                            rssArticleTable.updateTable(true);
-                        }
-
                     }
-                    else {
-                        // full refresh
-                        rssFeedTable.clear();
-                        rssArticleTable.clear();
-                        feedData = {};
-                        pathByFeedId = new Map();
+                }
+                if (statusDiffers)
+                    rssFeedTable.updateTable(true);
+                if (needsUpdate) {
+                    rssFeedTable.updateTable(true);
+                    rssArticleTable.updateTable(true);
+                }
 
-                        // Unread entry at top
+                return statusDiffers || needsUpdate;
+            }
+            else {
+                // full refresh
+                rssFeedTable.clear();
+                rssArticleTable.clear();
+                feedData = {};
+                pathByFeedId = new Map();
+
+                // Unread entry at top
+                rssFeedTable.updateRowData({
+                    rowId: 0,
+                    name: "QBT_TR(Unread)QBT_TR[CONTEXT=FeedListWidget]",
+                    unread: 0,
+                    status: "unread",
+                    indentation: 0,
+                    dataUid: "",
+                    dataUrl: "",
+                    dataPath: ""
+                });
+
+                let rowCount = 1;
+                for (const dataEntry of flattenedResp) {
+                    if (dataEntry.isFolder) {
                         rssFeedTable.updateRowData({
-                            rowId: 0,
-                            name: "QBT_TR(Unread)QBT_TR[CONTEXT=FeedListWidget]",
+                            rowId: rowCount,
+                            name: dataEntry.name,
                             unread: 0,
-                            status: "unread",
-                            indentation: 0,
+                            status: "isFolder",
+                            indentation: dataEntry.depth,
                             dataUid: "",
                             dataUrl: "",
-                            dataPath: ""
+                            dataPath: dataEntry.fullName
+                        });
+                    }
+                    else {
+                        let status = "default";
+                        if (dataEntry.hasError)
+                            status = "hasError";
+                        if (dataEntry.isLoading)
+                            status = "isLoading";
+
+                        rssFeedTable.updateRowData({
+                            rowId: rowCount,
+                            name: dataEntry.name,
+                            unread: 0,
+                            status: status,
+                            indentation: dataEntry.depth,
+                            dataUid: dataEntry.uid,
+                            dataUrl: dataEntry.url,
+                            dataPath: dataEntry.fullName
                         });
 
-                        let rowCount = 1;
-                        for (const dataEntry of flattenedResp) {
-                            if (dataEntry.isFolder) {
-                                rssFeedTable.updateRowData({
-                                    rowId: rowCount,
-                                    name: dataEntry.name,
-                                    unread: 0,
-                                    status: "isFolder",
-                                    indentation: dataEntry.depth,
-                                    dataUid: "",
-                                    dataUrl: "",
-                                    dataPath: dataEntry.fullName
-                                });
-                            }
-                            else {
-                                let status = "default";
-                                if (dataEntry.hasError)
-                                    status = "hasError";
-                                if (dataEntry.isLoading)
-                                    status = "isLoading";
-
-                                rssFeedTable.updateRowData({
-                                    rowId: rowCount,
-                                    name: dataEntry.name,
-                                    unread: 0,
-                                    status: status,
-                                    indentation: dataEntry.depth,
-                                    dataUid: dataEntry.uid,
-                                    dataUrl: dataEntry.url,
-                                    dataPath: dataEntry.fullName
-                                });
-
-                                // calculate number of unread
-                                const numberOfUnread = dataEntry.articles.reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
-                                // find all items that contain this rss feed and add unread count
-                                for (const row of rssFeedTable.getRowValues()) {
-                                    if (dataEntry.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                                        row.full_data.unread += numberOfUnread;
-                                }
-
-                                pathByFeedId.set(dataEntry.uid, dataEntry.fullName);
-                                feedData[dataEntry.uid] = dataEntry.articles;
-                            }
-                            ++rowCount;
+                        // calculate number of unread
+                        const numberOfUnread = dataEntry.articles.reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
+                        // find all items that contain this rss feed and add unread count
+                        for (const row of rssFeedTable.getRowValues()) {
+                            if (dataEntry.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                                row.full_data.unread += numberOfUnread;
                         }
-                        rssFeedTable.updateTable(false);
+
+                        pathByFeedId.set(dataEntry.uid, dataEntry.fullName);
+                        feedData[dataEntry.uid] = dataEntry.articles;
                     }
-                });
+                    ++rowCount;
+                }
+                rssFeedTable.updateTable(false);
+                return true;
+            }
         };
 
         const refreshFeed = (feedUid) => {
