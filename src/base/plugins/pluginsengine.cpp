@@ -420,6 +420,7 @@ void PluginsEngine::connectEventHandlers()
     namespace BT = BitTorrent;
 
     connectEventHandler(&BT::Session::addTorrentFailed, "onAddTorrentFailed");
+    connectEventHandler(&BT::Session::duplicateTorrentDetected, "onDuplicateTorrentDetected");
     connectEventHandler(&BT::Session::torrentsUpdated, "onTorrentsUpdated");
 
     connect(BT::Session::instance(), &BT::Session::torrentAdded, this, [this](BT::Torrent *torrent)
