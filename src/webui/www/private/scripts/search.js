@@ -42,6 +42,7 @@ window.qBittorrent.Search ??= (() => {
             searchSeedsFilterChanged: searchSeedsFilterChanged,
             searchSizeFilterChanged: searchSizeFilterChanged,
             searchSizeFilterPrefixChanged: searchSizeFilterPrefixChanged,
+            searchRememberFiltersChanged: searchRememberFiltersChanged,
             closeSearchTab: closeSearchTab,
         };
     };
@@ -128,6 +129,7 @@ window.qBittorrent.Search ??= (() => {
 
     const init = () => {
         document.getElementById("searchInTorrentName").value = (window.qBittorrent.ClientData.get("search_in_filter") === "names") ? "names" : "everywhere";
+        document.getElementById("searchRememberFilters").checked = (window.qBittorrent.ClientData.get("search_remember_filters") === true);
         const searchResultsTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
             targets: "#searchResultsTableDiv tbody tr",
             menu: "searchResultsTableMenu",
@@ -875,19 +877,49 @@ window.qBittorrent.Search ??= (() => {
         searchText.filterPattern = "";
         document.getElementById("searchInNameFilter").value = "";
 
-        searchSeedsFilter.min = 0;
-        searchSeedsFilter.max = 0;
+        // When the user opted to remember filters, new search tabs start from the
+        // previously stored values instead of the hardcoded defaults.
+        const remember = isRememberFiltersEnabled();
+        const clientData = window.qBittorrent.ClientData;
+
+        searchSeedsFilter.min = remember ? Number(clientData.get("search_min_seeds") ?? 0) : 0;
+        searchSeedsFilter.max = remember ? Number(clientData.get("search_max_seeds") ?? 0) : 0;
         document.getElementById("searchMinSeedsFilter").value = searchSeedsFilter.min;
         document.getElementById("searchMaxSeedsFilter").value = searchSeedsFilter.max;
 
-        searchSizeFilter.min = 0;
-        searchSizeFilter.minUnit = 2; // B = 0, KiB = 1, MiB = 2, GiB = 3, TiB = 4, PiB = 5, EiB = 6
-        searchSizeFilter.max = 0;
-        searchSizeFilter.maxUnit = 3;
+        // B = 0, KiB = 1, MiB = 2, GiB = 3, TiB = 4, PiB = 5, EiB = 6
+        searchSizeFilter.min = remember ? Number(clientData.get("search_min_size") ?? 0) : 0;
+        searchSizeFilter.minUnit = remember ? Number(clientData.get("search_min_size_unit") ?? 2) : 2;
+        searchSizeFilter.max = remember ? Number(clientData.get("search_max_size") ?? 0) : 0;
+        searchSizeFilter.maxUnit = remember ? Number(clientData.get("search_max_size_unit") ?? 3) : 3;
         document.getElementById("searchMinSizeFilter").value = searchSizeFilter.min;
         document.getElementById("searchMinSizePrefix").value = searchSizeFilter.minUnit;
         document.getElementById("searchMaxSizeFilter").value = searchSizeFilter.max;
         document.getElementById("searchMaxSizePrefix").value = searchSizeFilter.maxUnit;
+    };
+
+    const isRememberFiltersEnabled = () => document.getElementById("searchRememberFilters").checked;
+
+    const getCurrentFilterData = () => ({
+        search_min_seeds: Number(document.getElementById("searchMinSeedsFilter").value),
+        search_max_seeds: Number(document.getElementById("searchMaxSeedsFilter").value),
+        search_min_size: Number(document.getElementById("searchMinSizeFilter").value),
+        search_min_size_unit: Number(document.getElementById("searchMinSizePrefix").value),
+        search_max_size: Number(document.getElementById("searchMaxSizeFilter").value),
+        search_max_size_unit: Number(document.getElementById("searchMaxSizePrefix").value),
+    });
+
+    const saveFiltersIfRemembered = () => {
+        if (isRememberFiltersEnabled())
+            window.qBittorrent.ClientData.set(getCurrentFilterData()).catch(console.error);
+    };
+
+    const searchRememberFiltersChanged = () => {
+        const enabled = isRememberFiltersEnabled();
+        const data = { search_remember_filters: enabled };
+        if (enabled)
+            Object.assign(data, getCurrentFilterData());
+        window.qBittorrent.ClientData.set(data).catch(console.error);
     };
 
     const getSearchInTorrentName = () => {
@@ -904,6 +936,7 @@ window.qBittorrent.Search ??= (() => {
         searchSeedsFilter.min = document.getElementById("searchMinSeedsFilter").value;
         searchSeedsFilter.max = document.getElementById("searchMaxSeedsFilter").value;
 
+        saveFiltersIfRemembered();
         searchFilterChanged();
     };
 
@@ -913,6 +946,7 @@ window.qBittorrent.Search ??= (() => {
         searchSizeFilter.max = document.getElementById("searchMaxSizeFilter").value;
         searchSizeFilter.maxUnit = document.getElementById("searchMaxSizePrefix").value;
 
+        saveFiltersIfRemembered();
         searchFilterChanged();
     };
 
