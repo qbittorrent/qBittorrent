@@ -57,7 +57,6 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0alpha1
     - WEBUI: Reuse category and plugin when refreshing search (Piccirello) #24427
     - WEBUI: Make 'server domain' matching anchored (Chocobo1) #24458
     - WEBUI: Add secondary sort column (Piccirello) #24376
-    - WEBUI: Add lint rule to check function arguments (Chocobo1) #24545
     - WEBUI: Add 'Copy path' action to torrent content menu (Chocobo1) #24678
     - RSS: Fix the added RSS rule item doesn't follow "enabled" state (glassez) #24082
     - RSS: Add "All" sticky RSS item (glassez) #23963
