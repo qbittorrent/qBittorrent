@@ -2787,7 +2787,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
             const QString message = tr("Merging of trackers is disabled");
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                     .arg(torrent->name(), torrent->infoHash().toString(), message));
-            emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
+            emit duplicateTorrentDetected(infoHash, torrent, message);
             return false;
         }
 
@@ -2797,7 +2797,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
             const QString message = tr("Trackers cannot be merged because it is a private torrent");
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                     .arg(torrent->name(), torrent->infoHash().toString(), message));
-            emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
+            emit duplicateTorrentDetected(infoHash, torrent, message);
             return false;
         }
 
@@ -2808,7 +2808,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         const QString message = tr("Trackers are merged from new source");
         LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                 .arg(torrent->name(), torrent->infoHash().toString(), message));
-        emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
+        emit duplicateTorrentDetected(infoHash, torrent, message);
         return false;
     }
 
@@ -3016,12 +3016,18 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
             if (alert->error)
             {
                 const QString msg = QString::fromStdString(alert->message());
-                LogMsg(tr("Failed to add torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
-
                 const InfoHash infoHash = getInfoHash(alert->params);
-                const AddTorrentError::Kind errorKind = (alert->error == lt::errors::duplicate_torrent)
-                        ? AddTorrentError::DuplicateTorrent : AddTorrentError::Other;
-                emit addTorrentFailed(infoHash, {errorKind, msg});
+                if (Torrent *torrent = findTorrent(infoHash); (alert->error == lt::errors::duplicate_torrent) && torrent)
+                {
+                    LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
+                            .arg(torrent->name(), torrent->infoHash().toString(), msg));
+                    emit duplicateTorrentDetected(infoHash, torrent, msg);
+                }
+                else
+                {
+                    LogMsg(tr("Failed to add torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
+                    emit addTorrentFailed(infoHash, msg);
+                }
             }
             else
             {
