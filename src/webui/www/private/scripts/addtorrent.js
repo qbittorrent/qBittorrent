@@ -278,6 +278,9 @@ window.qBittorrent.AddTorrent ??= (() => {
             .then(async (response) => {
                 if (!response.ok) {
                     metadataFailed();
+                    if (response.status === 415) {
+                        alert(await response.text());
+                    }
                     return;
                 }
 
