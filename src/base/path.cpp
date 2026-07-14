@@ -30,6 +30,7 @@
 #include "path.h"
 
 #include <algorithm>
+#include <ranges>
 
 #include <QDataStream>
 #include <QDir>
@@ -310,6 +311,22 @@ Path Path::commonPath(const Path &left, const Path &right)
         commonPathSize += (commonItemsCount - 1); // size of intermediate separators
 
     return Path::createUnchecked(left.m_pathStr.first(commonPathSize));
+}
+
+Path Path::commonPath(const PathList &filePaths)
+{
+    if (filePaths.isEmpty())
+        return {};
+
+    Path commonPath = filePaths.at(0);
+    for (const Path &filePath : std::views::drop(filePaths, 1))
+    {
+        commonPath = Path::commonPath(commonPath, filePath);
+        if (commonPath.isEmpty())
+            return commonPath;
+    }
+
+    return commonPath;
 }
 
 Path Path::findRootFolder(const PathList &filePaths)
