@@ -477,13 +477,13 @@ void Application::setFileLoggerEnabled(const bool value)
 
 Path Application::fileLoggerPath() const
 {
-    return m_storeFileLoggerPath.get(specialFolderLocation(SpecialFolder::Data) / Path(LOG_FOLDER));
+    return m_storeFileLoggerPath.get(Path(LOG_FOLDER));
 }
 
 void Application::setFileLoggerPath(const Path &path)
 {
     if (m_fileLogger)
-        m_fileLogger->changePath(path);
+        m_fileLogger->setPath(path);
     m_storeFileLoggerPath = path;
 }
 
