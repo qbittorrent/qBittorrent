@@ -35,7 +35,7 @@ window.qBittorrent.Filesystem ??= (() => {
     const exports = () => {
         return {
             PathSeparator: PathSeparator,
-            ServerPathSeparator: ServerPathSeparator,
+            getServerPathSeparator: getServerPathSeparator,
             fileExtension: fileExtension,
             fileName: fileName,
             folderName: folderName
@@ -43,12 +43,6 @@ window.qBittorrent.Filesystem ??= (() => {
     };
 
     const PathSeparator = "/";
-
-    /**
-     * The native path separator used on the server
-     */
-    const ServerPathSeparator = (window.qBittorrent?.Cache.buildInfo.get().platform === "windows")
-        ? "\\" : PathSeparator;
 
     /**
      * Returns the file extension part of a file name.
@@ -73,6 +67,11 @@ window.qBittorrent.Filesystem ??= (() => {
             return "";
         return filepath.substring(0, slashIndex);
     };
+
+    const getServerPathSeparator = () => {
+        return (window.qBittorrent?.Cache?.buildInfo.get().platform === "windows")
+            ? "\\" : PathSeparator;
+    }
 
     return exports();
 })();

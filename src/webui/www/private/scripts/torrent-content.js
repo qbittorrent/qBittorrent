@@ -485,7 +485,7 @@ window.qBittorrent.TorrentContent ??= (() => {
                         names.push(savePath);
                         names.reverse();
 
-                        files.push(names.join(window.qBittorrent.Filesystem.ServerPathSeparator));
+                        files.push(names.join(window.qBittorrent.Filesystem.getServerPathSeparator()));
                     }
 
                     await clipboardCopy(files.join("\n"));
