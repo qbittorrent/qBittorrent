@@ -262,7 +262,11 @@ namespace
             trackerEntryStatus.numLeeches = std::max(trackerEntryStatus.numLeeches, endpointStatus.numLeeches);
             trackerEntryStatus.numDownloaded = std::max(trackerEntryStatus.numDownloaded, endpointStatus.numDownloaded);
             if (endpointStatus.numFails >= 0)
-                trackerEntryStatus.numFails = (trackerEntryStatus.numFails < 0) ? endpointStatus.numFails : std::min(trackerEntryStatus.numFails, endpointStatus.numFails);
+            {
+                trackerEntryStatus.numFails = (trackerEntryStatus.numFails < 0)
+                    ? endpointStatus.numFails
+                    : std::min(trackerEntryStatus.numFails, endpointStatus.numFails);
+            }
 
             if (endpointStatus.state == trackerEntryStatus.state)
             {
