@@ -71,7 +71,7 @@ window.qBittorrent.Filesystem ??= (() => {
     const getServerPathSeparator = () => {
         return (window.qBittorrent?.Cache?.buildInfo.get().platform === "windows")
             ? "\\" : PathSeparator;
-    }
+    };
 
     return exports();
 })();
