@@ -58,13 +58,14 @@
 using namespace std::chrono_literals;
 using namespace Qt::Literals::StringLiterals;
 
-inline const Utils::Version<3, 2> API_VERSION {2, 16, 0};
+inline const Utils::Version<3, 2> API_VERSION {2, 16, 1};
 
 class QNetworkCookie;
 
 class APIController;
 class AuthController;
 class ClientDataStorage;
+class SearchJobManager;
 class WebSession;
 
 enum class WebSessionType : qint8;
@@ -273,6 +274,7 @@ private:
     Http::HeaderMap m_prebuiltHeaders;
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
+    SearchJobManager *m_searchJobManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;
 
     struct FailedLogin

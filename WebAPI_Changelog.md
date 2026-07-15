@@ -1,5 +1,10 @@
 # WebAPI Changelog
 
+## 2.16.1
+* [#23784](https://github.com/qbittorrent/qBittorrent/pull/23784)
+  * `search/status` endpoint now includes `pattern`, `category`, and `plugins` fields for each search job
+  * `app/preferences` endpoint now supports `store_search_jobs` and `store_search_job_results` preference keys
+
 ## 2.16.0
 
 * [#23989](https://github.com/qbittorrent/qBittorrent/pull/23989)
