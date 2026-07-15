@@ -278,6 +278,12 @@ namespace BitTorrent
         virtual void setNetworkInterfaceName(const QString &name) = 0;
         virtual QString networkInterfaceAddress() const = 0;
         virtual void setNetworkInterfaceAddress(const QString &address) = 0;
+        virtual bool isCGNATEnabled() const = 0;
+        virtual void setCGNATEnabled(bool enabled) = 0;
+        virtual QString cgnatStunServer() const = 0;
+        virtual void setCGNATStunServer(const QString &server) = 0;
+        virtual int cgnatInterval() const = 0;
+        virtual void setCGNATInterval(int msecs) = 0;
         virtual int encryption() const = 0;
         virtual void setEncryption(int state) = 0;
         virtual int maxActiveCheckingTorrents() const = 0;

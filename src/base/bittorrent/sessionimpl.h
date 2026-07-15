@@ -53,6 +53,7 @@
 #include "base/utils/thread.h"
 #include "addtorrentparams.h"
 #include "cachestatus.h"
+#include "cgnatmanager.h"
 #include "categoryoptions.h"
 #include "session.h"
 #include "sessionstatus.h"
@@ -498,6 +499,14 @@ namespace BitTorrent
         void addMappedPorts(const QSet<quint16> &ports);
         void removeMappedPorts(const QSet<quint16> &ports);
 
+        // CGNAT STUN-based port discovery
+        bool isCGNATEnabled() const;
+        void setCGNATEnabled(bool enabled);
+        QString cgnatStunServer() const;
+        void setCGNATStunServer(const QString &server);
+        int cgnatInterval() const;
+        void setCGNATInterval(int msecs);
+
         template <typename Func>
         void invoke(Func &&func)
         {
@@ -699,6 +708,9 @@ namespace BitTorrent
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;
         CachedSettingValue<int> m_announcePort;
+        CachedSettingValue<QString> m_cgnatStunServer;
+        CachedSettingValue<bool> m_cgnatEnabled;
+        CachedSettingValue<int> m_cgnatInterval;
         CachedSettingValue<int> m_maxConcurrentHTTPAnnounces;
         CachedSettingValue<bool> m_isReannounceWhenAddressChangedEnabled;
         CachedSettingValue<int> m_stopTrackerTimeout;
@@ -855,6 +867,8 @@ namespace BitTorrent
         // I/O errored torrents
         QSet<TorrentID> m_recentErroredTorrents;
         QTimer *m_recentErroredTorrentsTimer = nullptr;
+
+        CGNATManager *m_cgnatManager = nullptr;
 
         SessionMetricIndices m_metricIndices;
         lt::time_point m_statsLastTimestamp = lt::clock_type::now();
