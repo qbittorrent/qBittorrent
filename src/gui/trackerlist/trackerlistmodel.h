@@ -35,7 +35,6 @@
 #include <QAbstractItemModel>
 
 #include "base/bittorrent/announcetimepoint.h"
-#include "base/bittorrent/trackerentrystatus.h"
 
 class QTimer;
 
@@ -44,6 +43,7 @@ namespace BitTorrent
     class Session;
     class Torrent;
     struct TrackerEntry;
+    struct TrackerEntryStatus;
 }
 
 class TrackerListModel final : public QAbstractItemModel

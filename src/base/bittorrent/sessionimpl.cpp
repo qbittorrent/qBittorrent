@@ -246,6 +246,18 @@ namespace
         return {};
     }
 
+    QString toString(const lt::portmap_transport &protocol)
+    {
+        switch (protocol)
+        {
+        case lt::portmap_transport::natpmp:
+            return u"NAT-PMP/PCP"_s;
+        case lt::portmap_transport::upnp:
+            return u"UPnP"_s;
+        };
+        return {};
+    }
+
     template <typename T>
     struct LowerLimited
     {
@@ -1323,8 +1335,13 @@ void SessionImpl::applyBandwidthLimits()
 
 void SessionImpl::configure()
 {
+    const bool isListenInterfaceChanged = !m_listenInterfaceConfigured;
+
     m_nativeSession->apply_settings(loadLTSettings());
     configureComponents();
+
+    if (isListenInterfaceChanged && isReannounceWhenAddressChangedEnabled())
+        reannounceToAllTrackers();
 
     m_deferredConfigureScheduled = false;
 }
@@ -2371,6 +2388,14 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
 
     const ShareLimits shareLimits = torrent->effectiveShareLimits();
 
+    // If all share limits are disabled, there is nothing to check
+    if ((shareLimits.ratioLimit < 0)
+            && (shareLimits.seedingTimeLimit < 0)
+            && (shareLimits.inactiveSeedingTimeLimit < 0))
+    {
+        return;
+    }
+
     bool reached = false;
     QString description;
 
@@ -2759,7 +2784,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
             const QString message = tr("Merging of trackers is disabled");
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                     .arg(torrent->name(), torrent->infoHash().toString(), message));
-            emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
+            emit duplicateTorrentDetected(infoHash, torrent, message);
             return false;
         }
 
@@ -2769,7 +2794,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
             const QString message = tr("Trackers cannot be merged because it is a private torrent");
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                     .arg(torrent->name(), torrent->infoHash().toString(), message));
-            emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
+            emit duplicateTorrentDetected(infoHash, torrent, message);
             return false;
         }
 
@@ -2780,7 +2805,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         const QString message = tr("Trackers are merged from new source");
         LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                 .arg(torrent->name(), torrent->infoHash().toString(), message));
-        emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
+        emit duplicateTorrentDetected(infoHash, torrent, message);
         return false;
     }
 
@@ -2868,13 +2893,17 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         const lt::file_storage internalFiles = torrentInfo.nativeInfo()->files();
 #endif
         const int internalFilesCount = internalFiles.num_files(); // including .pad files
-        // Use qBittorrent default priority rather than libtorrent's (4)
-        p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
-
         if (!filePriorities.isEmpty())
         {
+            // Use qBittorrent default priority rather than libtorrent's (4)
+            p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
             for (qsizetype i = 0; i < filePriorities.size(); ++i)
                 p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(filePriorities[i]);
+        }
+        else if (p.file_priorities.empty())
+        {
+            // Use qBittorrent default priority rather than libtorrent's (4)
+            p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
         }
 
         Q_ASSERT(p.ti);
@@ -2984,12 +3013,18 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
             if (alert->error)
             {
                 const QString msg = QString::fromStdString(alert->message());
-                LogMsg(tr("Failed to add torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
-
                 const InfoHash infoHash = getInfoHash(alert->params);
-                const AddTorrentError::Kind errorKind = (alert->error == lt::errors::duplicate_torrent)
-                        ? AddTorrentError::DuplicateTorrent : AddTorrentError::Other;
-                emit addTorrentFailed(infoHash, {errorKind, msg});
+                if (Torrent *torrent = findTorrent(infoHash); (alert->error == lt::errors::duplicate_torrent) && torrent)
+                {
+                    LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
+                            .arg(torrent->name(), torrent->infoHash().toString(), msg));
+                    emit duplicateTorrentDetected(infoHash, torrent, msg);
+                }
+                else
+                {
+                    LogMsg(tr("Failed to add torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
+                    emit addTorrentFailed(infoHash, msg);
+                }
             }
             else
             {
@@ -3717,9 +3752,6 @@ void SessionImpl::setPort(const int port)
     {
         m_port = port;
         configureListeningInterface();
-
-        if (isReannounceWhenAddressChangedEnabled())
-            reannounceToAllTrackers();
     }
 }
 
@@ -3735,9 +3767,6 @@ void SessionImpl::setSSLEnabled(const bool enabled)
 
     m_sslEnabled = enabled;
     configureListeningInterface();
-
-    if (isReannounceWhenAddressChangedEnabled())
-        reannounceToAllTrackers();
 }
 
 int SessionImpl::sslPort() const
@@ -3752,9 +3781,6 @@ void SessionImpl::setSSLPort(const int port)
 
     m_sslPort = port;
     configureListeningInterface();
-
-    if (isReannounceWhenAddressChangedEnabled())
-        reannounceToAllTrackers();
 }
 
 QString SessionImpl::networkInterface() const
@@ -5407,6 +5433,23 @@ void SessionImpl::handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoH
     }
 }
 
+void SessionImpl::handleTorrentContentFileRenamed(TorrentImpl *torrent, const int index, const Path &oldFilePath)
+{
+    emit torrentContentFileRenamed(torrent, index, oldFilePath);
+}
+
+void SessionImpl::handleTorrentContentFolderRenamed(TorrentImpl *torrent, const Path &newFolderPath
+        , const Path &oldFolderPath, const QHash<int, Path> &renamedFiles)
+{
+    emit torrentContentFolderRenamed(torrent, newFolderPath, oldFolderPath, renamedFiles);
+}
+
+void SessionImpl::handleTorrentContentFolderRenamingFailed(TorrentImpl *torrent, const Path &newFolderPath
+        , const Path &oldFolderPath, const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes)
+{
+    emit torrentContentFolderRenamingFailed(torrent, newFolderPath, oldFolderPath, renamedFiles, failedFileIndexes);
+}
+
 void SessionImpl::handleTorrentStorageMovingStateChanged(TorrentImpl *torrent)
 {
     emit torrentsUpdated({torrent});
@@ -6068,7 +6111,7 @@ void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *alert)
         LogMsg(tr("File error alert. Torrent: \"%1\". File: \"%2\". Reason: \"%3\"")
                 .arg(torrent->name(), QString::fromUtf8(alert->filename()), msg)
             , Log::WARNING);
-        emit fullDiskError(torrent, msg);
+        emit torrentIOError(torrent, msg);
     }
 
     m_recentErroredTorrentsTimer->start();
@@ -6076,13 +6119,28 @@ void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *alert)
 
 void SessionImpl::handlePortmapWarningAlert(const lt::portmap_error_alert *alert)
 {
-    LogMsg(tr("UPnP/NAT-PMP port mapping failed. Message: \"%1\"").arg(QString::fromStdString(alert->message())), Log::WARNING);
+#ifdef QBT_USES_LIBTORRENT2
+    LogMsg(tr("Port forwarding failed. Protocol: %1. Local address: \"%2\". Message: \"%3\"")
+        .arg(toString(alert->map_transport), toString(alert->local_address), QString::fromStdString(alert->message()))
+        , Log::WARNING);
+#else
+    LogMsg(tr("Port forwarding failed. Protocol: %1. Message: \"%2\"")
+        .arg(toString(alert->map_transport), QString::fromStdString(alert->message()))
+        , Log::WARNING);
+#endif
 }
 
 void SessionImpl::handlePortmapAlert(const lt::portmap_alert *alert)
 {
-    qDebug("UPnP Success, msg: %s", alert->message().c_str());
-    LogMsg(tr("UPnP/NAT-PMP port mapping succeeded. Message: \"%1\"").arg(QString::fromStdString(alert->message())), Log::INFO);
+#ifdef QBT_USES_LIBTORRENT2
+    LogMsg(tr("Port forwarding succeeded. Protocol: %1. Local address: \"%2\". External port: %3. Message: \"%4\"")
+        .arg(toString(alert->map_transport), toString(alert->local_address), QString::number(alert->external_port)
+            , QString::fromStdString(alert->message())), Log::INFO);
+#else
+    LogMsg(tr("Port forwarding succeeded. Protocol: %1. External port: %2. Message: \"%3\"")
+        .arg(toString(alert->map_transport), QString::number(alert->external_port)
+            , QString::fromStdString(alert->message())), Log::INFO);
+#endif
 }
 
 void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *alert)
@@ -6396,7 +6454,7 @@ void SessionImpl::handleSocks5Alert(const lt::socks5_alert *alert) const
     {
         const auto addr = alert->ip.address();
         const QString endpoint = (addr.is_v6() ? u"[%1]:%2"_s : u"%1:%2"_s)
-                .arg(QString::fromStdString(addr.to_string()), QString::number(alert->ip.port()));
+                .arg(toString(addr), QString::number(alert->ip.port()));
         LogMsg(tr("SOCKS5 proxy error. Address: %1. Message: \"%2\".")
                 .arg(endpoint, Utils::String::fromLocal8Bit(alert->error.message()))
                 , Log::WARNING);

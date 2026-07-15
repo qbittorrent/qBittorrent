@@ -171,6 +171,7 @@ namespace
 WebApplication::WebApplication(IApplication *app, QObject *parent)
     : ApplicationComponent(app, parent)
     , m_cacheID {QString::number(Utils::Random::rand(), 36)}
+    , m_trRegex {u"QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s}
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
     , m_clientDataStorage {new ClientDataStorage(this)}
@@ -253,14 +254,15 @@ void WebApplication::sendWebUIFile(const Http::HeaderMap &commonHeaders, Http::R
 
 void WebApplication::translateDocument(QString &data) const
 {
-    const QRegularExpression regex(u"QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s);
+    data.replace(u"${LANG}"_s, m_currentLocale.left(2));
+    data.replace(u"${CACHEID}"_s, m_cacheID);
 
     qsizetype i = 0;
     bool found = true;
     while ((i < data.size()) && found)
     {
         QRegularExpressionMatch regexMatch;
-        i = data.indexOf(regex, i, &regexMatch);
+        i = data.indexOf(m_trRegex, i, &regexMatch);
         if (i >= 0)
         {
             const QStringView sourceText = regexMatch.capturedView(1);
@@ -286,9 +288,6 @@ void WebApplication::translateDocument(QString &data) const
         {
             found = false; // no more translatable strings
         }
-
-        data.replace(u"${LANG}"_s, m_currentLocale.left(2));
-        data.replace(u"${CACHEID}"_s, m_cacheID);
     }
 }
 
@@ -513,9 +512,15 @@ void WebApplication::configure()
             static_cast<CookieBasedWebSession *>(session)->setCookieRefreshTime(0s);
     }
 
-    m_domainList = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
-    for (QString &entry : m_domainList)
-        entry = entry.trimmed();
+    m_serverDomains.clear();
+    const QStringList domains = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
+    m_serverDomains.reserve(domains.size());
+    for (const QString &domain : domains)
+    {
+        // regex must be anchored
+        const QString expr = QRegularExpression::wildcardToRegularExpression(domain.trimmed(), QRegularExpression::NonPathWildcardConversion);
+        m_serverDomains.emplace_back(expr, QRegularExpression::CaseInsensitiveOption);
+    }
 
     m_isCSRFProtectionEnabled = pref->isWebUICSRFProtectionEnabled();
     m_isSecureCookieEnabled = pref->isWebUISecureCookieEnabled();
@@ -690,8 +695,11 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
     try
     {
         // block suspicious requests
-        if ((!isUsingApiKey && m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
-            || (m_isHostHeaderValidationEnabled && !validateHostHeader(m_domainList)))
+        // CSRF check is skipped for the webroot so that cross-origin hyperlinks to
+        // the WebUI succeed; the root document is static and has no side effects.
+        const bool isWebRoot = (request.path == u"/") || (request.path == INDEX_HTML);
+        if ((!isUsingApiKey && m_isCSRFProtectionEnabled && !isWebRoot && isCrossSiteRequest(m_request))
+            || (m_isHostHeaderValidationEnabled && !validateHostHeader()))
         {
             throw UnauthorizedHTTPError();
         }
@@ -752,7 +760,7 @@ void WebApplication::setSessionCookie(Http::HeaderMap &headers)
         cookie.setSecure(m_isSecureCookieEnabled && isOriginTrustworthy());  // [rfc6265] 4.1.2.5. The Secure Attribute
         cookie.setPath(u"/"_s);
         if (m_isCSRFProtectionEnabled)
-            cookie.setSameSitePolicy(QNetworkCookie::SameSite::Strict);
+            cookie.setSameSitePolicy(QNetworkCookie::SameSite::Lax);
         else if (cookie.isSecure())
             cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
         headers.insert(Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm()));
@@ -935,7 +943,9 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
                 && (left.host() == right.host()));
     };
 
-    const QString targetOrigin = request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST));
+    const QString targetOrigin = m_isReverseProxySupportEnabled
+        ? request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST))
+        : request.headers.value(Http::HEADER_HOST);
     const QString originValue = request.headers.value(Http::HEADER_ORIGIN);
     const QString refererValue = request.headers.value(Http::HEADER_REFERER);
 
@@ -974,7 +984,7 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
     return true;
 }
 
-bool WebApplication::validateHostHeader(const QStringList &domains) const
+bool WebApplication::validateHostHeader() const
 {
     const QUrl hostHeader = urlFromHostHeader(m_request.headers[Http::HEADER_HOST]);
     const QString requestHost = hostHeader.host();
@@ -992,17 +1002,16 @@ bool WebApplication::validateHostHeader(const QStringList &domains) const
 
     // try matching host header with local address
     const bool sameAddr = m_env.localAddress.isEqual(QHostAddress(requestHost));
-
     if (sameAddr)
         return true;
 
     // try matching host header with domain list
-    for (const auto &domain : domains)
+    const bool hasMatch = std::ranges::any_of(asConst(m_serverDomains), [&requestHost](const QRegularExpression &expr)
     {
-        const QRegularExpression domainRegex {Utils::String::wildcardToRegexPattern(domain), QRegularExpression::CaseInsensitiveOption};
-        if (requestHost.contains(domainRegex))
-            return true;
-    }
+        return requestHost.contains(expr);
+    });
+    if (hasMatch)
+        return true;
 
     LogMsg(tr("WebUI: Invalid Host header. Request source IP: '%1'. Received Host header: '%2'")
            .arg(m_env.clientAddress.toString(), m_request.headers[Http::HEADER_HOST])

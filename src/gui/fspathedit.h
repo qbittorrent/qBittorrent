@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2016 Eugene Shalygin
  *
  * This program is free software; you can redistribute it and/or
@@ -72,7 +73,10 @@ public:
     void setMode(Mode mode);
 
     Path selectedPath() const;
-    void setSelectedPath(const Path &val);
+    void setSelectedPath(const Path &path);
+
+    Path basePath() const;
+    void setBasePath(const Path &basePath);
 
     QString fileNameFilter() const;
     void setFileNameFilter(const QString &val);
@@ -111,8 +115,12 @@ private:
     virtual void setEditWidgetText(const QString &text) = 0;
 
     QWidget *editWidgetImpl() const;
+    Path getResolvedPath() const;
 
     FileSystemPathEditPrivate *d_ptr = nullptr;
+
+    Path m_path;
+    Path m_basePath;
 };
 
 /// Widget which uses QLineEdit for path editing

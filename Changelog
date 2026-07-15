@@ -14,6 +14,15 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0alpha1
     - FEATURE: Decide system tray icon color based on Windows color scheme (glassez) #24127
     - FEATURE: Create a group for status bar related settings (Chocobo1) #24150
     - FEATURE: Add 'request latency' metric to Statistics dialog (Chocobo1) #24152
+    - FEATURE: Add "Contribution" column to Peers list (aaron-kruse) #23989
+    - FEATURE: Add tooltips to email notification Options fields (LewpyUK) #24061
+    - FEATURE: Add 'Open Destination Folder' button to toolbar (FTA7700) #24090
+    - FEATURE: Implement `seeding_outgoing_connections` libtorrent setting (HanabishiRecca) #24158
+    - FEATURE: Add "Force start torrents" to filter context menus (aaron-kruse) #24260
+    - FEATURE: Improve management of torrent content (glassez) #24266
+    - FEATURE: Support multiple recipients for email notifications (LewpyUK) #24304
+    - FEATURE: Add support for magnet link 'so' parameter (glassez) #24336
+    - FEATURE: Add 'Ignore dotfiles' option in Torrent Creator (Chocobo1) #24346
     - BUGFIX: Fix Comment area background mismatch in Add New Torrent dialog (M-Hassan-Raza) #23916
     - BUGFIX: Rename FYR Macedonia to North Macedonia (alphanumericcharter) #23825
     - BUGFIX: Fix LineEdit dark corner artifacts on macOS (M-Hassan-Raza) #23909
@@ -21,21 +30,95 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0alpha1
     - BUGFIX: Replace invisible toolbar spacers with visible separators on macOS (M-Hassan-Raza) #23905
     - BUGFIX: Fix STARTTLS implementation (LewpyUK) #23838
     - BUGFIX: Don't try to load zero size GeoIP database (orbisai0security) #24087
+    - BUGFIX: Use sum of per-torrent payload rates for session speed display (eshishki) #24000
+    - BUGFIX: Make "Force reannounce" actually do it (HanabishiRecca) #24159
+    - BUGFIX: Filter out dotfiles on all platforms in Torrent Creator (Chocobo1) #24173
+    - BUGFIX: Handle IPv6 range with prefix length 128 as single IP (piopodg) #24195
+    - BUGFIX: Fix Windows ARM build (talynone) #24334
+    - BUGFIX: Fix "Torrent is already present" dialog position when main window is minimized (LWWZH) #24403
+    - BUGFIX: Avoid memory leak on translation changed (Chocobo1) #24456
+    - BUGFIX: Avoid failed add result after tracker merge (TurboTheTurtle) #24605
+    - BUGFIX: Properly handle relative path of logs folder (glassez) #24671
+    - BUGFIX: Fix wrong comparison between IP addresses (Chocobo1) #24675
     - WEBUI: Add "Select All" and "Invert Selection" (aaron-kruse) #23975
     - WEBUI: Enable virtual list by default (tehcneko) #23887
     - WEBUI: Improve folder collapse behavior (Piccirello) #23878
     - WEBUI: Show free disk space in add torrent window (Ryu481) #23856
-    - WEBUI: filter array elements in-place (Chocobo1) #23837
-    - WEBUI: improve 'set rows' operation performance (Chocobo1) #23818
-    - WEBUI: WebUI: add "Pread/pwrite"  disk IO type option (HanabishiRecca) #24109
+    - WEBUI: Filter array elements in-place (Chocobo1) #23837
+    - WEBUI: Improve 'set rows' operation performance (Chocobo1) #23818
+    - WEBUI: Add "Pread/pwrite"  disk IO type option (HanabishiRecca) #24109
+    - WEBUI: Unify global speed limit window (tehcneko) #24134
+    - WEBUI: Allow to download completed files (glassez) #24135
+    - WEBUI: Serialize torrent creator dates as epoch seconds (TurboTheTurtle) #24210
+    - WEBUI: Respect excluded file names in Add torrent dialog (TurboTheTurtle) #24246
+    - WEBUI: Replace alerts for test email with custom notification (LewpyUK) #24283
+    - WEBUI: Allow cross-origin links to webroot (Piccirello) #24379
+    - WEBUI: Implement skip "Add new torrent" dialog (vafada) #24404
+    - WEBUI: Reuse category and plugin when refreshing search (Piccirello) #24427
+    - WEBUI: Make 'server domain' matching anchored (Chocobo1) #24458
+    - WEBUI: Add secondary sort column (Piccirello) #24376
+    - WEBUI: Add 'Copy path' action to torrent content menu (Chocobo1) #24678
     - RSS: Fix the added RSS rule item doesn't follow "enabled" state (glassez) #24082
     - RSS: Add "All" sticky RSS item (glassez) #23963
     - RSS: Add "Clone Rule" feature to RSS AutoDownloader (LewpyUK) #24056
     - RSS: Allow adding torrents from links in RSS content viewer (glassez) #24120
+    - RSS: Persist feed list sort order (TurboTheTurtle) #24519
     - SEARCH: Clean up documentation format (Chocobo1) #23911
     - OTHER: Support build against latest version of libtorrent (arvidn) #23953
     - OTHER: Don't use deprecated libtorrent features (glassez) #24007
     - OTHER: Remove outdated setting keys (Chocobo1) #23952
+    - OTHER: Bump Python version minimum requirement (Chocobo1) #24279
+    - OTHER: Support installing Python on ARM64 Windows properly (Chocobo1) #24280
+    - OTHER: Disable "Resolve peer countries" by default in new installations (Chocobo1) #24505
+
+Tue Jul 07th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.3
+    - BUGFIX: Fix MIME header encoding in email to require ASCII (quinot) #24382
+    - BUGFIX: Fix potential invalid migration procedure (Chocobo1) #24502
+    - BUGFIX: Resolve relative UI theme paths (TurboTheTurtle) #24514
+    - BUGFIX: Clear transfer filters when sections collapse (TurboTheTurtle) #24517
+    - BUGFIX: Fix potential deadlock when database transaction failed (Chocobo1) #24542
+    - BUGFIX: Fix wrong torrent tracker conversion (Chocobo1) #24546
+    - BUGFIX: Fix wrong encoding for Web Seeds (Chocobo1) #24593
+    - BUGFIX: Use stricter parsing for Peer Address inputs (Chocobo1) #24595
+    - BUGFIX: Revise regex expression for parsing HTML links (Chocobo1) #24597
+    - WEBUI: Correctly escape CSS query selector so the UI won't break (vafada) #24539
+    - RSS: Fix feeds not following the specified interval (vafada) #24553
+    - SEARCH: Fix plugin counting when updating (Chocobo1) #24544
+    - WINDOWS: Avoid using invalid file attributes when renaming files (Chocobo1) #24543
+
+Mon Jun 15th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.2
+    - FEATURE: Use D-Bus to show file in file managers (Chocobo1) #24340
+    - BUGFIX: Fix friendlyUnitCompact precision calculation (vafada) #24323
+    - BUGFIX: Remove all top-level folders (glassez) #24333
+    - BUGFIX: Use proper API for checking exit status (Chocobo1) #24349
+    - BUGFIX: Delete stale lockfile when hostname mismatch (TurboTheTurtle, glassez) #24363
+    - BUGFIX: Fix wrong removal procedure of watched folder paths (Chocobo1) #24413
+    - BUGFIX: Don't reannounce before interface changes are applied (glassez) #24447
+    - BUGFIX: Use Latin script for Bosnian locale name (Andy Ye) #24342
+    - WEBUI: Fix performance of global checkbox toggling (tehcneko) #24316
+    - WEBUI: Fix Safari transfer list header misalignment (Piccirello) #24377
+    - WEBUI: Fix error when submitting magnet before metadata loads (Piccirello) #24378
+    - WEBUI: Use correct row id when updating Rss Downloader feed selection (pepozen) #24402
+    - WEBUI: Use SameSite=Lax for session cookie to fix cross-site login (Piccirello) #24422
+    - WEBUI: Bring back properties panel expand/collapse button (vafada) #24430
+    - WEBAPI: Only use X-Forwarded-Host header when reverse proxy support is enabled (Chocobo1) #24457
+    - RSS: Fix "RSS Smart Episode Filter" RegEx (nathanon-akk, glassez) #24398
+    - RSS: Fix previously matched episode format (glassez) #24452
+    - WINDOWS: Fix Python fallback search path (TurboTheTurtle) #24325
+    - WINDOWS: NSIS: Allow to install x64 binary on ARM64 (Chocobo1) #24358
+
+Mon May 25th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.1
+    - BUGFIX: Fix building with latest zlib (glassez) #24200
+    - BUGFIX: Remove old-format lockfile when starting (glassez) #24218
+    - BUGFIX: Prevent SSRF via HTTP redirection (AlexandrBlishun) #24270
+    - BUGFIX: Delete stale lockfile when machine-id mismatch (glassez) #24285
+    - BUGFIX: Fix handling of 'Accept-Encoding' header (glassez) #24286
+    - WEBUI: Avoid search downloader for magnet links (TurboTheTurtle) #24211
+    - WEBUI: Work around browser extension interfering with Add Torrent Dialog (vafada) #24240
+    - WEBUI: Filter all children of content root (vafada) #24243
+    - WEBAPI: Don't store API result between calls (beryxz) #24262
+    - RSS: Fix refresh is indefinitely called when there are no feeds (glassez) #24199
+    - SEARCH: Avoid proxy interfering with multiprocessing pool (Chocobo1) #24234
 
 Sun May 03rd 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0
     - FEATURE: Show free disk space in status bar (glassez)
