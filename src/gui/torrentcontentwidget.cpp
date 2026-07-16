@@ -38,7 +38,10 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QModelIndexList>
+#include <QMouseEvent>
 #include <QShortcut>
+#include <QStyle>
+#include <QStyleOptionViewItem>
 #include <QWheelEvent>
 
 #include "base/bittorrent/torrentcontenthandler.h"
@@ -247,6 +250,41 @@ void TorrentContentWidget::mousePressEvent(QMouseEvent *event)
     QTreeView::mousePressEvent(event);
 }
 
+void TorrentContentWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (m_ignoreNextCheckIndicatorRelease)
+    {
+        m_ignoreNextCheckIndicatorRelease = false;
+
+        const QPoint position = event->position().toPoint();
+        const QModelIndex nameIndex = indexAt(position).siblingAtColumn(TorrentContentModelItem::COL_NAME);
+        if (isCheckIndicatorAt(nameIndex, position))
+        {
+            event->accept();
+            return;
+        }
+    }
+
+    QTreeView::mouseReleaseEvent(event);
+}
+
+void TorrentContentWidget::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    const QPoint position = event->position().toPoint();
+    const QModelIndex nameIndex = indexAt(position).siblingAtColumn(TorrentContentModelItem::COL_NAME);
+    if (isCheckIndicatorAt(nameIndex, position))
+    {
+        const Qt::CheckState state = static_cast<Qt::CheckState>(nameIndex.data(Qt::CheckStateRole).toInt());
+        model()->setData(nameIndex, ((state == Qt::Checked) ? Qt::Unchecked : Qt::Checked), Qt::CheckStateRole);
+
+        m_ignoreNextCheckIndicatorRelease = true;
+        event->accept();
+        return;
+    }
+
+    QTreeView::mouseDoubleClickEvent(event);
+}
+
 void TorrentContentWidget::keyPressEvent(QKeyEvent *event)
 {
     if ((event->key() != Qt::Key_Space) && (event->key() != Qt::Key_Select))
@@ -341,6 +379,23 @@ void TorrentContentWidget::applyPrioritiesByOrder()
         const QPersistentModelIndex &index = selectedRows[i];
         model()->setData(index, static_cast<int>(priority));
     }
+}
+
+bool TorrentContentWidget::isCheckIndicatorAt(const QModelIndex &index, const QPoint &position) const
+{
+    if (!index.isValid() || (index.column() != TorrentContentModelItem::COL_NAME)
+        || !index.data(Qt::CheckStateRole).isValid())
+    {
+        return false;
+    }
+
+    QStyleOptionViewItem option;
+    initViewItemOption(&option);
+    option.rect = visualRect(index);
+    option.features |= QStyleOptionViewItem::HasCheckIndicator;
+    option.checkState = static_cast<Qt::CheckState>(index.data(Qt::CheckStateRole).toInt());
+
+    return style()->subElementRect(QStyle::SE_ItemViewItemCheckIndicator, &option, this).contains(position);
 }
 
 void TorrentContentWidget::openSelectedFile()
