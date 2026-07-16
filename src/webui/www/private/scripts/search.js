@@ -41,7 +41,6 @@ window.qBittorrent.Search ??= (() => {
             pluginSelected: pluginSelected,
             searchSeedsFilterChanged: searchSeedsFilterChanged,
             searchSizeFilterChanged: searchSizeFilterChanged,
-            searchSizeFilterPrefixChanged: searchSizeFilterPrefixChanged,
             searchRememberFiltersChanged: searchRememberFiltersChanged,
             closeSearchTab: closeSearchTab,
         };
@@ -948,11 +947,6 @@ window.qBittorrent.Search ??= (() => {
 
         saveFiltersIfRemembered();
         searchFilterChanged();
-    };
-
-    const searchSizeFilterPrefixChanged = () => {
-        if ((Number(document.getElementById("searchMinSizeFilter").value) !== 0) || (Number(document.getElementById("searchMaxSizeFilter").value) !== 0))
-            searchSizeFilterChanged();
     };
 
     const searchFilterChanged = () => {
