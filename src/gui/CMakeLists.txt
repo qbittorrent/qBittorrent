@@ -281,6 +281,16 @@ if (DBUS)
     )
 endif()
 
+if (PLUGINS)
+    qt_wrap_ui(PLUGINS_UI_HEADERS plugins/pluginsdialog.ui)
+
+    target_sources(qbt_gui PRIVATE
+        plugins/pluginsdialog.h
+        plugins/pluginsdialog.cpp
+        ${PLUGINS_UI_HEADERS}
+    )
+endif()
+
 if (STACKTRACE)
     qt_wrap_ui(STACKTRACE_UI_HEADERS stacktracedialog.ui)
 

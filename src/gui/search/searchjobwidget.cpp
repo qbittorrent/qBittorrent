@@ -169,7 +169,7 @@ SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidge
     m_lineEditSearchResultsFilter->setPlaceholderText(tr("Filter search results..."));
     m_lineEditSearchResultsFilter->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_lineEditSearchResultsFilter, &QWidget::customContextMenuRequested, this, &SearchJobWidget::showFilterContextMenu);
-    connect(m_lineEditSearchResultsFilter, &LineEdit::textChanged, this, &SearchJobWidget::filterSearchResults);
+    connect(m_lineEditSearchResultsFilter, &LineEdit::textUpdated, this, &SearchJobWidget::filterSearchResults);
     m_ui->horizontalLayout->insertWidget(0, m_lineEditSearchResultsFilter);
 
     connect(m_ui->filterMode, qOverload<int>(&QComboBox::currentIndexChanged), this, &SearchJobWidget::updateNameFilter);

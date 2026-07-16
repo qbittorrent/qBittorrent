@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -67,6 +67,7 @@
 #endif
 
 #include "base/addtorrentmanager.h"
+#include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
@@ -107,6 +108,10 @@
 #ifdef DISABLE_GUI
 #include "base/utils/password.h"
 #endif
+#endif
+
+#ifdef ENABLE_PLUGINS
+#include "base/plugins/pluginsengine.h"
 #endif
 
 namespace
@@ -472,13 +477,13 @@ void Application::setFileLoggerEnabled(const bool value)
 
 Path Application::fileLoggerPath() const
 {
-    return m_storeFileLoggerPath.get(specialFolderLocation(SpecialFolder::Data) / Path(LOG_FOLDER));
+    return m_storeFileLoggerPath.get(Path(LOG_FOLDER));
 }
 
 void Application::setFileLoggerPath(const Path &path)
 {
     if (m_fileLogger)
-        m_fileLogger->changePath(path);
+        m_fileLogger->setPath(path);
     m_storeFileLoggerPath = path;
 }
 
@@ -938,13 +943,17 @@ int Application::exec()
         connect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
     }
 #endif
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]()
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]
     {
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded, this, &Application::torrentAdded);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
         m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);
+
+#ifdef ENABLE_PLUGINS
+        PluginsEngine::initInstance();
+#endif
 
         Net::GeoIPManager::initInstance();
         Net::ReverseResolution::initInstance();
@@ -974,10 +983,10 @@ int Application::exec()
                 m_desktopIntegration->showNotification(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
         });
         connect(m_addTorrentManager, &AddTorrentManager::addTorrentFailed, this
-                , [this](const QString &source, const BitTorrent::AddTorrentError &reason)
+                , [this](const QString &source, const QString &reason)
         {
             m_desktopIntegration->showNotification(tr("Add torrent failed")
-                    , tr("Couldn't add torrent '%1', reason: %2.").arg(source, reason.message));
+                    , tr("Couldn't add torrent '%1', reason: %2.").arg(source, reason));
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
@@ -1462,6 +1471,10 @@ void Application::cleanup()
 
 #ifndef DISABLE_WEBUI
     delete m_webui;
+#endif
+
+#ifdef ENABLE_PLUGINS
+    PluginsEngine::freeInstance();
 #endif
 
     delete RSS::AutoDownloader::instance();
