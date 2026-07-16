@@ -2838,7 +2838,7 @@ QString TorrentImpl::createMagnetURI() const
         ret += u"&tr=" + QString::fromLatin1(QUrl::toPercentEncoding(tracker.url));
 
     for (const QUrl &urlSeed : asConst(urlSeeds()))
-        ret += u"&ws=" + urlSeed.toString(QUrl::FullyEncoded);
+        ret += u"&ws=" + QString::fromLatin1(QUrl::toPercentEncoding(urlSeed.toString(QUrl::FullyEncoded)));
 
     return ret;
 }

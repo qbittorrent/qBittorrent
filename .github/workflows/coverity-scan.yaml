@@ -19,6 +19,7 @@ jobs:
             boost_major_version: "1"
             boost_minor_version: "91"
             boost_patch_version: "0"
+            libt_build_flags: ""
         qbt_gui: ["GUI=ON"]
         qt_version: ["6.10.3"]
 
@@ -29,7 +30,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
 
@@ -78,7 +79,8 @@ jobs:
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_CXX_STANDARD=20 \
             -DBOOST_ROOT="${{ env.boost_path }}/lib/cmake" \
-            -Ddeprecated-functions=OFF
+            -Ddeprecated-functions=OFF \
+            ${{ matrix.libtorrent.libt_build_flags }}
           cmake --build build
           sudo cmake --install build
 

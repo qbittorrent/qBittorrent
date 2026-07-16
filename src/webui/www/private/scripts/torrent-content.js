@@ -212,7 +212,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
     const getComboboxPriority = (id) => {
         const node = torrentFilesTable.getNode(id.toString());
-        return normalizePriority(node.priority, 10);
+        return normalizePriority(node.priority);
     };
 
     const switchGlobalCheckboxState = (e) => {
@@ -468,6 +468,27 @@ window.qBittorrent.TorrentContent ??= (() => {
                 Download: async (element, ref) => {
                     const url = getSelectedFileUrl();
                     await window.qBittorrent.Misc.downloadFileStream(url);
+                },
+                CopyPath: async (element, ref) => {
+                    const torrentID = torrentsTable.getCurrentTorrentID();
+                    const torrentRow = torrentsTable.getRow(torrentID);
+                    const savePath = torrentsTable.getRowData(torrentRow, true).save_path;
+
+                    const files = [];
+                    for (const rowID of torrentFilesTable.selectedRowsIds()) {
+                        const names = [];
+                        for (let node = torrentFilesTable.getNode(rowID);; node = node.parent) {
+                            names.push(node.name);
+                            if (node.depth <= 0)
+                                break;
+                        }
+                        names.push(savePath);
+                        names.reverse();
+
+                        files.push(names.join(window.qBittorrent.Filesystem.ServerPathSeparator));
+                    }
+
+                    await clipboardCopy(files.join("\n"));
                 },
                 CopyURL: async (element, ref) => {
                     const url = getSelectedFileUrl();

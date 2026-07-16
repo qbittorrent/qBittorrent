@@ -57,4 +57,6 @@ namespace Utils::Net
     inline const int MAX_SSL_FILE_SIZE = 1024 * 1024;
     QList<QSslCertificate> loadSSLCertificate(const QByteArray &data);
     bool isSSLCertificatesValid(const QByteArray &data);
+
+    bool lessThan(const QHostAddress &left, const QHostAddress &right);
 }
