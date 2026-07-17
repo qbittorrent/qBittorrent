@@ -30,6 +30,7 @@
 #pragma once
 
 #include <chrono>
+#include <functional>
 
 #include <QDeadlineTimer>
 #include <QElapsedTimer>
@@ -42,6 +43,7 @@
 using namespace std::chrono_literals;
 
 class APIController;
+using CreateAPIControllerFunc = std::function<APIController *()>;
 
 enum class WebSessionType : qint8
 {
@@ -67,13 +69,19 @@ public:
     QElapsedTimer timestamp() const;
     void updateTimestamp();
 
-    void registerAPIController(const QString &scope, APIController *controller);
+    void registerAPIController(const QString &scope, CreateAPIControllerFunc createAPIController);
     APIController *getAPIController(const QString &scope) const;
 
 private:
+    struct APIControllerEntry
+    {
+        CreateAPIControllerFunc create;
+        APIController *instance;
+    };
+
     const QString m_sid;
     QElapsedTimer m_timestamp;
-    QMap<QString, APIController *> m_apiControllers;
+    mutable QMap<QString, APIControllerEntry> m_apiControllers;
 };
 
 class CookieBasedWebSession final : public WebSession
