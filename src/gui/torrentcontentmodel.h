@@ -71,8 +71,6 @@ public:
     TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;
     int getFileIndex(const QModelIndex &index) const;
     Path getItemPath(const QModelIndex &index) const;
-    bool wrapItemInFolder(const QModelIndex &index, const QString &folderPath);
-    bool unwrapFolder(const QModelIndex &index);
 
     int columnCount(const QModelIndex &parent = {}) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
@@ -88,8 +86,6 @@ public:
 
 signals:
     void renameFailed(const QString &errorMessage);
-    void wrapFailed(const QString &errorMessage);
-    void unwrapFailed(const QString &errorMessage);
 
 private:
     using ColumnInterval = IndexInterval<int>;

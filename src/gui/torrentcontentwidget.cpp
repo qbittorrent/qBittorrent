@@ -42,7 +42,9 @@
 #include <QWheelEvent>
 
 #include "base/bittorrent/torrentcontenthandler.h"
+#include "base/exceptions.h"
 #include "base/path.h"
+#include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "raisedmessagebox.h"
@@ -69,6 +71,37 @@ namespace
 
         return persistentIndexes;
     }
+
+    struct ItemToMove
+    {
+        Path path;
+        bool isFile = false;
+    };
+
+    bool hasChildNamed(const TorrentContentModel *model, const QModelIndex &parent, const QString &name)
+    {
+        for (int row = 0; row < model->rowCount(parent); ++row)
+        {
+            const QModelIndex child = model->index(row, 0, parent);
+            if (Path(child.data().toString()) == Path(name))
+                return true;
+        }
+
+        return false;
+    }
+
+    void moveItems(BitTorrent::TorrentContentHandler *contentHandler, const QList<ItemToMove> &items
+            , const Path &destinationFolder)
+    {
+        for (const ItemToMove &item : items)
+        {
+            const Path newPath = destinationFolder / Path(item.path.filename());
+            if (item.isFile)
+                contentHandler->renameFile(item.path, newPath);
+            else
+                contentHandler->renameFolder(item.path, newPath);
+        }
+    }
 }
 
 TorrentContentWidget::TorrentContentWidget(QWidget *parent)
@@ -88,14 +121,6 @@ TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     connect(m_model, &TorrentContentModel::renameFailed, this, [this](const QString &errorMessage)
     {
         RaisedMessageBox::warning(this, tr("Rename error"), errorMessage, QMessageBox::Ok);
-    });
-    connect(m_model, &TorrentContentModel::wrapFailed, this, [this](const QString &errorMessage)
-    {
-        RaisedMessageBox::warning(this, tr("Wrap in folder error"), errorMessage, QMessageBox::Ok);
-    });
-    connect(m_model, &TorrentContentModel::unwrapFailed, this, [this](const QString &errorMessage)
-    {
-        RaisedMessageBox::warning(this, tr("Unwrap folder error"), errorMessage, QMessageBox::Ok);
     });
 
     m_filterModel = new TorrentContentFilterModel(this);
@@ -309,23 +334,62 @@ void TorrentContentWidget::batchRenameFiles()
     dialog->open();
 }
 
-void TorrentContentWidget::wrapSelectedItemInFolder()
+void TorrentContentWidget::wrapSelectedItemsInFolder()
 {
-    const QModelIndexList selectedIndexes = selectionModel()->selectedRows(0);
-    if (selectedIndexes.size() != 1)
+    const QList<QPersistentModelIndex> selectedIndexes = toPersistentIndexes(selectionModel()->selectedRows(0));
+    if (selectedIndexes.empty())
         return;
 
-    const QPersistentModelIndex modelIndex = selectedIndexes.first();
-    if (!modelIndex.isValid())
-        return;
+    const QPersistentModelIndex parentIndex = selectedIndexes.first().parent();
+    for (const QPersistentModelIndex &index : selectedIndexes)
+    {
+        if (index.parent() != parentIndex)
+            return;
+    }
 
     bool ok = false;
-    const QString folderPath = AutoExpandableDialog::getText(this, tr("Wrap in folder"), tr("Folder path:")
+    const QString folderName = AutoExpandableDialog::getText(this, tr("Wrap in folder"), tr("Folder name:")
             , QLineEdit::Normal, {}, &ok).trimmed();
-    if (!ok || !modelIndex.isValid())
+    if (!ok)
         return;
 
-    m_model->wrapItemInFolder(m_filterModel->mapToSource(modelIndex), folderPath);
+    for (const QPersistentModelIndex &index : selectedIndexes)
+    {
+        if (!index.isValid() || (index.parent() != parentIndex))
+            return;
+    }
+
+    if (!Utils::Fs::isValidFileName(folderName))
+    {
+        RaisedMessageBox::warning(this, tr("Wrap in folder error")
+                , tr("The folder name is invalid: '%1'").arg(folderName), QMessageBox::Ok);
+        return;
+    }
+
+    const QModelIndex sourceParentIndex = m_filterModel->mapToSource(parentIndex);
+    const Path parentPath = m_model->getItemPath(sourceParentIndex);
+    const Path folderPath = parentPath / Path(folderName);
+
+    QList<ItemToMove> items;
+    items.reserve(selectedIndexes.size());
+    for (const QModelIndex &index : selectedIndexes)
+    {
+        const QModelIndex sourceIndex = m_filterModel->mapToSource(index);
+        items.append({m_model->getItemPath(sourceIndex)
+                , m_model->itemType(sourceIndex) == TorrentContentModelItem::FileType});
+    }
+
+    try
+    {
+        if (hasChildNamed(m_model, sourceParentIndex, folderName))
+            throw RuntimeError(tr("An item with the same name already exists: '%1'.").arg(folderPath.toString()));
+
+        moveItems(contentHandler(), items, folderPath);
+    }
+    catch (const RuntimeError &error)
+    {
+        RaisedMessageBox::warning(this, tr("Wrap in folder error"), error.message(), QMessageBox::Ok);
+    }
 }
 
 void TorrentContentWidget::unwrapSelectedFolder()
@@ -334,11 +398,37 @@ void TorrentContentWidget::unwrapSelectedFolder()
     if (selectedIndexes.size() != 1)
         return;
 
-    const QPersistentModelIndex modelIndex = selectedIndexes.first();
-    if (!modelIndex.isValid())
+    const QModelIndex sourceIndex = m_filterModel->mapToSource(selectedIndexes.first());
+    if (!sourceIndex.isValid() || (m_model->itemType(sourceIndex) != TorrentContentModelItem::FolderType))
         return;
 
-    m_model->unwrapFolder(m_filterModel->mapToSource(modelIndex));
+    const Path folderPath = m_model->getItemPath(sourceIndex);
+    const Path parentPath = folderPath.parentPath();
+
+    QList<ItemToMove> items;
+    items.reserve(m_model->rowCount(sourceIndex));
+    for (int row = 0; row < m_model->rowCount(sourceIndex); ++row)
+    {
+        const QModelIndex childIndex = m_model->index(row, 0, sourceIndex);
+        items.append({m_model->getItemPath(childIndex)
+                , m_model->itemType(childIndex) == TorrentContentModelItem::FileType});
+    }
+
+    try
+    {
+        for (const ItemToMove &item : items)
+        {
+            const Path targetPath = parentPath / Path(item.path.filename());
+            if (hasChildNamed(m_model, sourceIndex.parent(), item.path.filename()))
+                throw RuntimeError(tr("An item with the same name already exists: '%1'.").arg(targetPath.toString()));
+        }
+
+        moveItems(contentHandler(), items, parentPath);
+    }
+    catch (const RuntimeError &error)
+    {
+        RaisedMessageBox::warning(this, tr("Unwrap folder error"), error.message(), QMessageBox::Ok);
+    }
 }
 
 void TorrentContentWidget::applyPriorities(const BitTorrent::DownloadPriority priority)
@@ -479,7 +569,7 @@ void TorrentContentWidget::displayContextMenu()
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Rename...")
                 , this, &TorrentContentWidget::renameSelectedFile);
         menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s), tr("Wrap in folder...")
-                , this, &TorrentContentWidget::wrapSelectedItemInFolder);
+                , this, &TorrentContentWidget::wrapSelectedItemsInFolder);
         if (m_filterModel->itemType(index) == TorrentContentModelItem::FolderType)
         {
             menu->addAction(UIThemeManager::instance()->getIcon(u"folder-documents"_s), tr("Unwrap folder")
@@ -512,6 +602,19 @@ void TorrentContentWidget::displayContextMenu()
     }
     else
     {
+        QAction *wrapAction = menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s)
+                , tr("Wrap in folder..."), this, &TorrentContentWidget::wrapSelectedItemsInFolder);
+        const QModelIndex parentIndex = selectedRows.first().parent();
+        for (const QModelIndex &index : selectedRows)
+        {
+            if (index.parent() != parentIndex)
+            {
+                wrapAction->setEnabled(false);
+                break;
+            }
+        }
+        menu->addSeparator();
+
         menu->addAction(tr("Do not download"), this, [this]
         {
             applyPriorities(BitTorrent::DownloadPriority::Ignored);
