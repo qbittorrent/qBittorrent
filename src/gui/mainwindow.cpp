@@ -663,13 +663,6 @@ void MainWindow::manageCookies()
     cookieDialog->open();
 }
 
-void MainWindow::managePlugins()
-{
-    auto *pluginsDialog = new PluginsDialog(PluginsEngine::instance(), this);
-    pluginsDialog->setAttribute(Qt::WA_DeleteOnClose);
-    pluginsDialog->open();
-}
-
 void MainWindow::toolbarMenuRequested(const QPoint &pos)
 {
     QAction *action = m_ui->toolBar->actionAt(pos);
