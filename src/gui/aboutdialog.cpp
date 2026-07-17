@@ -31,9 +31,7 @@
 
 #include <QClipboard>
 
-#include "base/global.h"
 #include "base/path.h"
-#include "base/plugins/pluginsengine.h"
 #include "base/unicodestrings.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
@@ -41,6 +39,12 @@
 #include "ui_aboutdialog.h"
 #include "uithememanager.h"
 #include "utils.h"
+
+#ifdef ENABLE_PLUGINS
+#include "base/plugins/pluginsengine.h"
+#endif
+
+using namespace Qt::Literals::StringLiterals;
 
 #define SETTINGS_KEY(name) u"AboutDialog/" name
 
@@ -101,8 +105,35 @@ AboutDialog::AboutDialog(QWidget *parent)
     m_ui->labelBoostVer->setText(Utils::Misc::boostVersionString());
     m_ui->labelOpensslVer->setText(Utils::Misc::opensslVersionString());
     m_ui->labelZlibVer->setText(Utils::Misc::zlibVersionString());
-    m_ui->labelLuaVer->setText(PluginsEngine::luaVersion().toString());
-    m_ui->labelLuaBridgeVer->setText(PluginsEngine::luaBridgeVersion().toString());
+
+#ifdef ENABLE_PLUGINS
+    const Qt::Alignment alignment = m_ui->labelZlib->alignment();
+    const Qt::TextInteractionFlags interactionFlags = m_ui->labelZlibVer->textInteractionFlags();
+
+    const int luaRow = m_ui->gridLayout->rowCount();
+    auto *labelLua = new QLabel(m_ui->SoftwareUsedTab);
+    labelLua->setObjectName("labelLua");
+    labelLua->setAlignment(alignment);
+    labelLua->setText(tr("Lua:"));
+    m_ui->gridLayout->addWidget(labelLua, luaRow, 1);
+    auto *labelLuaVer = new QLabel(m_ui->SoftwareUsedTab);
+    labelLuaVer->setObjectName("labelLuaVer");
+    labelLuaVer->setTextInteractionFlags(interactionFlags);
+    labelLuaVer->setText(PluginsEngine::luaVersion().toString());
+    m_ui->gridLayout->addWidget(labelLuaVer, luaRow, 2);
+
+    const int luaBridgeRow = m_ui->gridLayout->rowCount();
+    auto *labelLuaBridge = new QLabel(m_ui->SoftwareUsedTab);
+    labelLuaBridge->setObjectName("labelLuaBridge");
+    labelLuaBridge->setAlignment(alignment);
+    labelLuaBridge->setText(tr("LuaBridge:"));
+    m_ui->gridLayout->addWidget(labelLuaBridge, luaBridgeRow, 1);
+    auto *labelLuaBridgeVer = new QLabel(m_ui->SoftwareUsedTab);
+    labelLuaBridgeVer->setObjectName("labelLuaBridgeVer");
+    labelLuaBridgeVer->setTextInteractionFlags(interactionFlags);
+    labelLuaBridgeVer->setText(PluginsEngine::luaBridgeVersion().toString());
+    m_ui->gridLayout->addWidget(labelLuaBridgeVer, luaBridgeRow, 2);
+#endif
 
     connect(m_ui->btnCopyToClipboard, &QAbstractButton::clicked, this, &AboutDialog::copyVersionsToClipboard);
 
@@ -127,11 +158,20 @@ AboutDialog::~AboutDialog()
 
 void AboutDialog::copyVersionsToClipboard() const
 {
+#ifdef ENABLE_PLUGINS
+    const QString versions = u"%1 %2\n%3 %4\n%5 %6\n%7 %8\n%9 %10\n%11 %12\n%13 %14\n"_s
+#else
     const QString versions = u"%1 %2\n%3 %4\n%5 %6\n%7 %8\n%9 %10\n"_s
+#endif
         .arg(m_ui->labelQt->text(), m_ui->labelQtVer->text()
             , m_ui->labelLibt->text(), m_ui->labelLibtVer->text()
             , m_ui->labelBoost->text(), m_ui->labelBoostVer->text()
             , m_ui->labelOpenssl->text(), m_ui->labelOpensslVer->text()
-            , m_ui->labelZlib->text(), m_ui->labelZlibVer->text());
+            , m_ui->labelZlib->text(), m_ui->labelZlibVer->text()
+#ifdef ENABLE_PLUGINS
+            , tr("Lua:"), PluginsEngine::luaVersion().toString()
+            , tr("LuaBridge:"), PluginsEngine::luaBridgeVersion().toString()
+#endif
+        );
     qApp->clipboard()->setText(versions);
 }

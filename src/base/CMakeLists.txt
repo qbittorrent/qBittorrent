@@ -5,7 +5,6 @@ add_library(qbt_base STATIC
     algorithm.h
     applicationcomponent.h
     asyncfilestorage.h
-    bittorrent/addtorrenterror.h
     bittorrent/addtorrentparams.h
     bittorrent/announcetimepoint.h
     bittorrent/bandwidthscheduler.h
@@ -87,13 +86,6 @@ add_library(qbt_base STATIC
     orderedset.h
     path.h
     pathfwd.h
-    plugins/luaclasses.h
-    plugins/luafunctions.h
-    plugins/luanamespace.h
-    plugins/luastack.h
-    plugins/plugin.h
-    plugins/pluginsengine.h
-    plugins/pluginversion.h
     preferences.h
     profile.h
     profile_p.h
@@ -193,10 +185,6 @@ add_library(qbt_base STATIC
     net/reverseresolution.cpp
     net/smtpclient.cpp
     path.cpp
-    plugins/luaclasses.cpp
-    plugins/luafunctions.cpp
-    plugins/plugin.cpp
-    plugins/pluginsengine.cpp
     preferences.cpp
     profile.cpp
     profile_p.cpp
@@ -238,12 +226,6 @@ add_library(qbt_base STATIC
     utils/version.cpp
 )
 
-add_subdirectory(3rdparty/lua)
-set_target_properties(qbt_lua PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_lua,INTERFACE_INCLUDE_DIRECTORIES>)
-
-add_subdirectory(3rdparty/luabridge)
-set_target_properties(qbt_luabridge PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_luabridge,INTERFACE_INCLUDE_DIRECTORIES>)
-
 target_link_libraries(qbt_base
     PRIVATE
         OpenSSL::Crypto
@@ -259,8 +241,6 @@ target_link_libraries(qbt_base
         Qt::Sql
         Qt::Xml
         qbt_common_cfg
-        qbt_lua
-        qbt_luabridge
 )
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
@@ -298,4 +278,29 @@ endif()
 
 if (DBUS)
     target_link_libraries(qbt_base PUBLIC Qt::DBus)
+endif()
+
+if (PLUGINS)
+    add_subdirectory(3rdparty/lua)
+    set_target_properties(qbt_lua PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_lua,INTERFACE_INCLUDE_DIRECTORIES>)
+
+    add_subdirectory(3rdparty/luabridge)
+    set_target_properties(qbt_luabridge PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_luabridge,INTERFACE_INCLUDE_DIRECTORIES>)
+
+    target_compile_definitions(qbt_base PUBLIC ENABLE_PLUGINS)
+    target_link_libraries(qbt_base PUBLIC qbt_lua qbt_luabridge)
+
+    target_sources(qbt_base PRIVATE
+            plugins/luaclasses.h
+            plugins/luaclasses.cpp
+            plugins/luafunctions.h
+            plugins/luafunctions.cpp
+            plugins/luanamespace.h
+            plugins/luastack.h
+            plugins/plugin.h
+            plugins/plugin.cpp
+            plugins/pluginsengine.h
+            plugins/pluginsengine.cpp
+            plugins/pluginversion.h
+    )
 endif()

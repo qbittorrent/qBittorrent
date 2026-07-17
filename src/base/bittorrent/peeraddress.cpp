@@ -29,6 +29,24 @@
 #include "peeraddress.h"
 
 #include <QString>
+#include <QStringView>
+
+#include "base/utils/net.h"
+
+namespace BitTorrent
+{
+    bool operator<(const BitTorrent::PeerAddress &left, const BitTorrent::PeerAddress &right)
+    {
+        return (left.ip != right.ip)
+            ? Utils::Net::lessThan(left.ip, right.ip)
+            : (left.port < right.port);
+    }
+
+    std::size_t qHash(const BitTorrent::PeerAddress &addr, const std::size_t seed)
+    {
+        return qHashMulti(seed, addr.ip, addr.port);
+    }
+}
 
 using namespace BitTorrent;
 
@@ -80,14 +98,4 @@ QString PeerAddress::toString() const
         ? (u'[' + ip.toString() + u']')
         : ip.toString();
     return (ipStr + u':' + QString::number(port));
-}
-
-bool BitTorrent::operator==(const BitTorrent::PeerAddress &left, const BitTorrent::PeerAddress &right)
-{
-    return (left.ip == right.ip) && (left.port == right.port);
-}
-
-std::size_t BitTorrent::qHash(const BitTorrent::PeerAddress &addr, const std::size_t seed)
-{
-    return qHashMulti(seed, addr.ip, addr.port);
 }

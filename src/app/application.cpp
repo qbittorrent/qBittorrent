@@ -79,7 +79,6 @@
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/net/reverseresolution.h"
 #include "base/net/smtpclient.h"
-#include "base/plugins/pluginsengine.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
@@ -109,6 +108,10 @@
 #ifdef DISABLE_GUI
 #include "base/utils/password.h"
 #endif
+#endif
+
+#ifdef ENABLE_PLUGINS
+#include "base/plugins/pluginsengine.h"
 #endif
 
 namespace
@@ -474,13 +477,13 @@ void Application::setFileLoggerEnabled(const bool value)
 
 Path Application::fileLoggerPath() const
 {
-    return m_storeFileLoggerPath.get(specialFolderLocation(SpecialFolder::Data) / Path(LOG_FOLDER));
+    return m_storeFileLoggerPath.get(Path(LOG_FOLDER));
 }
 
 void Application::setFileLoggerPath(const Path &path)
 {
     if (m_fileLogger)
-        m_fileLogger->changePath(path);
+        m_fileLogger->setPath(path);
     m_storeFileLoggerPath = path;
 }
 
@@ -947,7 +950,10 @@ int Application::exec()
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
         m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);
+
+#ifdef ENABLE_PLUGINS
         PluginsEngine::initInstance();
+#endif
 
         Net::GeoIPManager::initInstance();
         Net::ReverseResolution::initInstance();
@@ -977,10 +983,10 @@ int Application::exec()
                 m_desktopIntegration->showNotification(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
         });
         connect(m_addTorrentManager, &AddTorrentManager::addTorrentFailed, this
-                , [this](const QString &source, const BitTorrent::AddTorrentError &reason)
+                , [this](const QString &source, const QString &reason)
         {
             m_desktopIntegration->showNotification(tr("Add torrent failed")
-                    , tr("Couldn't add torrent '%1', reason: %2.").arg(source, reason.message));
+                    , tr("Couldn't add torrent '%1', reason: %2.").arg(source, reason));
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
@@ -1467,7 +1473,9 @@ void Application::cleanup()
     delete m_webui;
 #endif
 
+#ifdef ENABLE_PLUGINS
     PluginsEngine::freeInstance();
+#endif
 
     delete RSS::AutoDownloader::instance();
     delete RSS::Session::instance();

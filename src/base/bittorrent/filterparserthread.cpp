@@ -72,7 +72,7 @@ namespace
             {
                 const long int extractedNum = strtol(octetStart, &endptr, 10);
                 if ((extractedNum >= 0L) && (extractedNum <= 255L))
-                    m_buf[octetIndex] = static_cast<unsigned char>(strtol(octetStart, &endptr, 10));
+                    m_buf[octetIndex] = static_cast<unsigned char>(extractedNum);
                 else
                     return false;
 

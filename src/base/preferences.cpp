@@ -1797,6 +1797,19 @@ void Preferences::setRssOpenFolders(const QStringList &folders)
     setValue(u"GUI/RSSWidget/OpenedFolders"_s, folders);
 }
 
+QByteArray Preferences::getRssFeedListState() const
+{
+    return value<QByteArray>(u"GUI/Qt6/RSSWidget/FeedListState"_s);
+}
+
+void Preferences::setRssFeedListState(const QByteArray &state)
+{
+    if (state == getRssFeedListState())
+        return;
+
+    setValue(u"GUI/Qt6/RSSWidget/FeedListState"_s, state);
+}
+
 QByteArray Preferences::getRssSideSplitterState() const
 {
     return value<QByteArray>(u"GUI/Qt6/RSSWidget/SideSplitterState"_s);
