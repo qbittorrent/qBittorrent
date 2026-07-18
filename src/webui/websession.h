@@ -76,7 +76,7 @@ private:
     struct APIControllerEntry
     {
         CreateAPIControllerFunc create;
-        APIController *instance;
+        APIController *instance = nullptr;
     };
 
     const QString m_sid;
