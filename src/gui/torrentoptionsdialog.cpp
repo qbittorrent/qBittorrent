@@ -409,7 +409,7 @@ QSize TorrentOptionsDialog::sizeHint() const
     const QSize widgetHint = m_ui->scrollArea->widget()->sizeHint();
     const int fw = m_ui->scrollArea->frameWidth();
 
-    return dialogHint + (widgetHint - scrollHint) + QSize(2 * fw, 2 * fw);
+    return dialogHint + (widgetHint - scrollHint) + QSize((2 * fw), (2 * fw));
 }
 
 void TorrentOptionsDialog::accept()
