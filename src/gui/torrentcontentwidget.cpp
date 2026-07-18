@@ -372,7 +372,7 @@ void TorrentContentWidget::wrapSelectedItemsInFolder()
 
     QList<ItemToMove> items;
     items.reserve(selectedIndexes.size());
-    for (const QModelIndex &index : selectedIndexes)
+    for (const QPersistentModelIndex &index : selectedIndexes)
     {
         const QModelIndex sourceIndex = m_filterModel->mapToSource(index);
         items.append({m_model->getItemPath(sourceIndex)
