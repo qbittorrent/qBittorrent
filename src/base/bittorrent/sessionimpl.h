@@ -403,8 +403,8 @@ namespace BitTorrent
         void setIDNSupportEnabled(bool enabled) override;
         bool multiConnectionsPerIpEnabled() const override;
         void setMultiConnectionsPerIpEnabled(bool enabled) override;
-        bool multiConnectionsPerPidEnabled() const override;
-        void setMultiConnectionsPerPidEnabled(bool enabled) override;
+        bool multiConnectionsPerPeerIDEnabled() const override;
+        void setMultiConnectionsPerPeerIDEnabled(bool enabled) override;
         bool validateHTTPSTrackerCertificate() const override;
         void setValidateHTTPSTrackerCertificate(bool enabled) override;
         bool isSSRFMitigationEnabled() const override;
@@ -714,7 +714,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_hostnameCacheTTL;
         CachedSettingValue<bool> m_IDNSupportEnabled;
         CachedSettingValue<bool> m_multiConnectionsPerIpEnabled;
-        CachedSettingValue<bool> m_multiConnectionsPerPidEnabled;
+        CachedSettingValue<bool> m_multiConnectionsPerPeerIDEnabled;
         CachedSettingValue<bool> m_validateHTTPSTrackerCertificate;
         CachedSettingValue<bool> m_SSRFMitigationEnabled;
         CachedSettingValue<bool> m_blockPeersOnPrivilegedPorts;

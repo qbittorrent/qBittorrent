@@ -3,8 +3,8 @@
 ## 2.16.0
 
 * [#24684](https://github.com/qbittorrent/qBittorrent/pull/24684)
-  * `app/preferences` endpoint includes `enable_multi_connections_from_same_pid` option
-  * `app/setPreferences` endpoint allows to set `enable_multi_connections_from_same_pid` option
+  * `app/preferences` endpoint includes `enable_multi_connections_from_same_peer_id` option
+  * `app/setPreferences` endpoint allows to set `enable_multi_connections_from_same_peer_id` option
 * [#23989](https://github.com/qbittorrent/qBittorrent/pull/23989)
   * `sync/torrentPeers` endpoint now includes calculated `contribution` to a peer's progress
 * [#24346](https://github.com/qbittorrent/qBittorrent/pull/24346)

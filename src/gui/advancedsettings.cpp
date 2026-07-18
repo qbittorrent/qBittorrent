@@ -158,7 +158,7 @@ namespace
         IDN_SUPPORT,
         MULTI_CONNECTIONS_PER_IP,
 #if LIBTORRENT_VERSION_NUM >= 20013
-        MULTI_CONNECTIONS_PER_PID,
+        MULTI_CONNECTIONS_PER_PEER_ID,
 #endif
         VALIDATE_HTTPS_TRACKER_CERTIFICATE,
         SSRF_MITIGATION,
@@ -295,7 +295,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setMultiConnectionsPerIpEnabled(m_checkBoxMultiConnectionsPerIp.isChecked());
 #if LIBTORRENT_VERSION_NUM >= 20013
     // multiple connections per Peer ID
-    session->setMultiConnectionsPerPidEnabled(m_checkBoxMultiConnectionsPerPid.isChecked());
+    session->setMultiConnectionsPerPeerIDEnabled(m_checkBoxMultiConnectionsPerPeerID.isChecked());
 #endif
     // Validate HTTPS tracker certificate
     session->setValidateHTTPSTrackerCertificate(m_checkBoxValidateHTTPSTrackerCertificate.isChecked());
@@ -774,10 +774,10 @@ void AdvancedSettings::loadAdvancedSettings()
             , &m_checkBoxMultiConnectionsPerIp);
 #if LIBTORRENT_VERSION_NUM >= 20013
     // multiple connections per Peer ID
-    m_checkBoxMultiConnectionsPerPid.setChecked(session->multiConnectionsPerPidEnabled());
-    addRow(MULTI_CONNECTIONS_PER_PID, (tr("Allow multiple connections from the same Peer ID")
+    m_checkBoxMultiConnectionsPerPeerID.setChecked(session->multiConnectionsPerPeerIDEnabled());
+    addRow(MULTI_CONNECTIONS_PER_PEER_ID, (tr("Allow multiple connections from the same Peer ID")
             + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#allow_multiple_connections_per_pid", u"(?)"))
-            , &m_checkBoxMultiConnectionsPerPid);
+            , &m_checkBoxMultiConnectionsPerPeerID);
 #endif
     // Validate HTTPS tracker certificate
     m_checkBoxValidateHTTPSTrackerCertificate.setChecked(session->validateHTTPSTrackerCertificate());

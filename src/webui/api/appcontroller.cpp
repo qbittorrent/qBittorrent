@@ -486,7 +486,7 @@ void AppController::preferencesAction()
     // Multiple connections per IP
     data[u"enable_multi_connections_from_same_ip"_s] = session->multiConnectionsPerIpEnabled();
     // Multiple connections per Peer ID
-    data[u"enable_multi_connections_from_same_pid"_s] = session->multiConnectionsPerPidEnabled();
+    data[u"enable_multi_connections_from_same_peer_id"_s] = session->multiConnectionsPerPeerIDEnabled();
     // Validate HTTPS tracker certificate
     data[u"validate_https_tracker_certificate"_s] = session->validateHTTPSTrackerCertificate();
     // SSRF mitigation
@@ -1156,8 +1156,8 @@ void AppController::setPreferencesAction()
     if (hasKey(u"enable_multi_connections_from_same_ip"_s))
         session->setMultiConnectionsPerIpEnabled(it.value().toBool());
     // Multiple connections per Peer ID
-    if (hasKey(u"enable_multi_connections_from_same_pid"_s))
-        session->setMultiConnectionsPerPidEnabled(it.value().toBool());
+    if (hasKey(u"enable_multi_connections_from_same_peer_id"_s))
+        session->setMultiConnectionsPerPeerIDEnabled(it.value().toBool());
     // Validate HTTPS tracker certificate
     if (hasKey(u"validate_https_tracker_certificate"_s))
         session->setValidateHTTPSTrackerCertificate(it.value().toBool());

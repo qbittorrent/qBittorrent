@@ -1683,7 +1683,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <input type="checkbox" id="allowMultipleConnectionsFromTheSameIPAddress">
                     </td>
                 </tr>
-                <tr id="rowMultiConnectionsPerPid">
+                <tr id="rowMultiConnectionsPerPeerID">
                     <td>
                         <label for="allowMultipleConnectionsFromTheSamePeerID">QBT_TR(Allow multiple connections from the same Peer ID:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#allow_multiple_connections_per_pid" target="_blank">(?)</a></label>
                     </td>
@@ -2801,7 +2801,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("hostnameCacheTTL").value = pref.hostname_cache_ttl;
                     document.getElementById("IDNSupportCheckbox").checked = pref.idn_support_enabled;
                     document.getElementById("allowMultipleConnectionsFromTheSameIPAddress").checked = pref.enable_multi_connections_from_same_ip;
-                    document.getElementById("allowMultipleConnectionsFromTheSamePeerID").checked = pref.enable_multi_connections_from_same_pid;
+                    document.getElementById("allowMultipleConnectionsFromTheSamePeerID").checked = pref.enable_multi_connections_from_same_peer_id;
                     document.getElementById("validateHTTPSTrackerCertificate").checked = pref.validate_https_tracker_certificate;
                     document.getElementById("mitigateSSRF").checked = pref.ssrf_mitigation;
                     document.getElementById("blockPeersOnPrivilegedPorts").checked = pref.block_peers_on_privileged_ports;
@@ -3307,7 +3307,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["hostname_cache_ttl"] = Number(document.getElementById("hostnameCacheTTL").value);
             settings["idn_support_enabled"] = document.getElementById("IDNSupportCheckbox").checked;
             settings["enable_multi_connections_from_same_ip"] = document.getElementById("allowMultipleConnectionsFromTheSameIPAddress").checked;
-            settings["enable_multi_connections_from_same_pid"] = document.getElementById("allowMultipleConnectionsFromTheSamePeerID").checked;
+            settings["enable_multi_connections_from_same_peer_id"] = document.getElementById("allowMultipleConnectionsFromTheSamePeerID").checked;
             settings["validate_https_tracker_certificate"] = document.getElementById("validateHTTPSTrackerCertificate").checked;
             settings["ssrf_mitigation"] = document.getElementById("mitigateSSRF").checked;
             settings["block_peers_on_privileged_ports"] = document.getElementById("blockPeersOnPrivilegedPorts").checked;
@@ -3398,11 +3398,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.6") < 0)
                 document.getElementById("diskIOWriteModeWriteThrough").hidden = true;
 
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.13") < 0)
+                document.getElementById("rowMultiConnectionsPerPeerID").style.display = "none";
+
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.1") < 0)
                 document.getElementById("diskIOTypePreadPwrite").hidden = true;
-
-            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.13") < 0)
-                document.getElementById("rowMultiConnectionsPerPid").style.display = "none";
 
             if ((buildInfo.platform === "linux") || (buildInfo.platform === "macos"))
                 document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";
