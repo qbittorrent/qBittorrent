@@ -62,10 +62,10 @@ public:
         COL_SEEDS,
         COL_LEECHES,
         COL_TIMES_DOWNLOADED,
-        COL_RETRIES,
         COL_MSG,
         COL_NEXT_ANNOUNCE,
         COL_MIN_ANNOUNCE,
+        COL_RETRIES,
 
         COL_COUNT
     };

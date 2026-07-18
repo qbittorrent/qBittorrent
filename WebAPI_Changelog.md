@@ -3,7 +3,7 @@
 ## 2.16.0
 
 * [#24388](https://github.com/qbittorrent/qBittorrent/pull/24388)
-  * `torrents/trackers` endpoint now includes `num_fails` field for tracker entries, reporting the number of consecutive failed announce attempts
+  * `torrents/trackers` endpoint now includes `num_fails` field for tracker entries and their endpoints, reporting the number of consecutive failed announce attempts
 * [#23989](https://github.com/qbittorrent/qBittorrent/pull/23989)
   * `sync/torrentPeers` endpoint now includes calculated `contribution` to a peer's progress
 * [#24346](https://github.com/qbittorrent/qBittorrent/pull/24346)

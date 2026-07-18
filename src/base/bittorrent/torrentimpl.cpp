@@ -265,7 +265,7 @@ namespace
             {
                 trackerEntryStatus.numFails = (trackerEntryStatus.numFails < 0)
                     ? endpointStatus.numFails
-                    : std::min(trackerEntryStatus.numFails, endpointStatus.numFails);
+                    : std::max(trackerEntryStatus.numFails, endpointStatus.numFails);
             }
 
             if (endpointStatus.state == trackerEntryStatus.state)
