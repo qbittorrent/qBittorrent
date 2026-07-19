@@ -237,6 +237,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_AMOUNT_LEFT:
     case TransferListModel::TR_AMOUNT_UPLOADED:
     case TransferListModel::TR_AMOUNT_UPLOADED_SESSION:
+    case TransferListModel::TR_AVERAGE_MONTHLY_UPLOAD:
     case TransferListModel::TR_COMPLETED:
     case TransferListModel::TR_ETA:
     case TransferListModel::TR_LAST_ACTIVITY:

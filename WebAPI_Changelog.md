@@ -1,7 +1,8 @@
 # WebAPI Changelog
 
 ## 2.16.0
-
+* [#24065](https://github.com/qbittorrent/qBittorrent/pull/24065)
+  * `sync/maindata` endpoint now includes the number (in bytes) of average data uploaded per month (defined as ~30.437 days) for an individual torrent via `average_monthly_upload` metric
 * [#23989](https://github.com/qbittorrent/qBittorrent/pull/23989)
   * `sync/torrentPeers` endpoint now includes calculated `contribution` to a peer's progress
 * [#24346](https://github.com/qbittorrent/qBittorrent/pull/24346)
