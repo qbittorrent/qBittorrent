@@ -82,6 +82,7 @@ public:
     Iterator end() const;
 
     static Path commonPath(const Path &left, const Path &right);
+    static Path commonPath(const PathList &filePaths);
 
     static Path findRootFolder(const PathList &filePaths);
     static void stripRootFolder(PathList &filePaths);
