@@ -2188,6 +2188,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("message", "", "QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]", 250, true);
             this.newColumn("nextAnnounce", "", "QBT_TR(Next Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
             this.newColumn("minAnnounce", "", "QBT_TR(Min Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
+            this.newColumn("fails", "", "QBT_TR(Retries)QBT_TR[CONTEXT=TrackerListWidget]", 50, true);
 
             this.initColumnsFunctions();
         }
@@ -2275,6 +2276,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["seeds"].compareRows = sortMixed;
             this.columns["leeches"].compareRows = sortMixed;
             this.columns["downloaded"].compareRows = sortMixed;
+            this.columns["fails"].compareRows = sortMixed;
+            this.columns["nextAnnounce"].compareRows = sortNumbers;
+            this.columns["minAnnounce"].compareRows = sortNumbers;
 
             this.columns["status"].updateTd = function(td, row) {
                 let statusClass = "trackerUnknown";

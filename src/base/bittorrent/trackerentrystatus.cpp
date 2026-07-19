@@ -38,6 +38,7 @@ void BitTorrent::TrackerEntryStatus::clear()
     numSeeds = -1;
     numLeeches = -1;
     numDownloaded = -1;
+    numFails = -1;
     nextAnnounceTime = {};
     minAnnounceTime = {};
     endpoints.clear();
