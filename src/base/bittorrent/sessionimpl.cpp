@@ -523,6 +523,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_hostnameCacheTTL(BITTORRENT_SESSION_KEY(u"HostnameCacheTTL"_s), 1200)
     , m_IDNSupportEnabled(BITTORRENT_SESSION_KEY(u"IDNSupportEnabled"_s), false)
     , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY(u"MultiConnectionsPerIp"_s), false)
+    , m_multiConnectionsPerPeerIDEnabled(BITTORRENT_SESSION_KEY(u"MultiConnectionsPerPeerID"_s), false)
     , m_validateHTTPSTrackerCertificate(BITTORRENT_SESSION_KEY(u"ValidateHTTPSTrackerCertificate"_s), true)
     , m_SSRFMitigationEnabled(BITTORRENT_SESSION_KEY(u"SSRFMitigation"_s), true)
     , m_blockPeersOnPrivilegedPorts(BITTORRENT_SESSION_KEY(u"BlockPeersOnPrivilegedPorts"_s), false)
@@ -2146,7 +2147,9 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_bool(lt::settings_pack::allow_idna, isIDNSupportEnabled());
 
     settingsPack.set_bool(lt::settings_pack::allow_multiple_connections_per_ip, multiConnectionsPerIpEnabled());
-
+#if LIBTORRENT_VERSION_NUM >= 20013
+    settingsPack.set_bool(lt::settings_pack::allow_multiple_connections_per_pid, multiConnectionsPerPeerIDEnabled());
+#endif
     settingsPack.set_bool(lt::settings_pack::validate_https_trackers, validateHTTPSTrackerCertificate());
 
     settingsPack.set_bool(lt::settings_pack::ssrf_mitigation, isSSRFMitigationEnabled());
@@ -5188,6 +5191,20 @@ void SessionImpl::setMultiConnectionsPerIpEnabled(const bool enabled)
     if (enabled == m_multiConnectionsPerIpEnabled) return;
 
     m_multiConnectionsPerIpEnabled = enabled;
+    configureDeferred();
+}
+
+bool SessionImpl::multiConnectionsPerPeerIDEnabled() const
+{
+    return m_multiConnectionsPerPeerIDEnabled;
+}
+
+void SessionImpl::setMultiConnectionsPerPeerIDEnabled(const bool enabled)
+{
+    if (enabled == m_multiConnectionsPerPeerIDEnabled)
+        return;
+
+    m_multiConnectionsPerPeerIDEnabled = enabled;
     configureDeferred();
 }
 
