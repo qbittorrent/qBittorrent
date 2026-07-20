@@ -481,6 +481,21 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
             <input type="checkbox" id="upnpCheckbox">
             <label for="upnpCheckbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+        <div class="formRow">
+            <input type="checkbox" id="cgnatCheckbox">
+            <label for="cgnatCheckbox">QBT_TR(Use CGNAT STUN-based port discovery)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <label for="cgnatStunServer">QBT_TR(STUN server (host:port):)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="cgnatStunServer" style="width: 18em;" placeholder="stun.l.google.com:19302">
+        </div>
+        <div class="formRow">
+            <label for="cgnatInterval">QBT_TR(STUN probe interval (ms):)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="cgnatInterval" style="width: 6em;">
+        </div>
+        <div class="formRow" style="color: #888; font-size: 0.9em;">
+            QBT_TR(Note: The announced port affects all trackers (IPv4+IPv6). DHT uses the real listen port per address family. This feature is primarily for IPv4-only CGNAT users.)QBT_TR[CONTEXT=OptionsDialog]
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -2524,6 +2539,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Listening Port
                     document.getElementById("portValue").value = Number(pref.listen_port);
                     document.getElementById("upnpCheckbox").checked = pref.upnp;
+                    document.getElementById("cgnatCheckbox").checked = pref.cgnat_enabled;
+                    document.getElementById("cgnatStunServer").value = pref.cgnat_stun_server;
+                    document.getElementById("cgnatInterval").value = Number(pref.cgnat_interval);
 
                     // Connections Limits
                     const maxConnec = Number(pref.max_connec);
@@ -2929,6 +2947,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }
             settings["listen_port"] = listenPort;
             settings["upnp"] = document.getElementById("upnpCheckbox").checked;
+            settings["cgnat_enabled"] = document.getElementById("cgnatCheckbox").checked;
+            settings["cgnat_stun_server"] = document.getElementById("cgnatStunServer").value;
+            const cgnatInterval = Number(document.getElementById("cgnatInterval").value);
+            settings["cgnat_interval"] = (Number.isNaN(cgnatInterval) || cgnatInterval < 5000) ? 45000 : cgnatInterval;
 
             // Connections Limits
             let maxConnec = -1;

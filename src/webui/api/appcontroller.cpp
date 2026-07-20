@@ -236,6 +236,10 @@ void AppController::preferencesAction()
     data[u"ssl_listen_port"_s] = session->sslPort();
     data[u"random_port"_s] = (session->port() == 0);  // deprecated
     data[u"upnp"_s] = Net::PortForwarder::instance()->isEnabled();
+    // CGNAT STUN-based port discovery
+    data[u"cgnat_enabled"_s] = session->isCGNATEnabled();
+    data[u"cgnat_stun_server"_s] = session->cgnatStunServer();
+    data[u"cgnat_interval"_s] = session->cgnatInterval();
     // Connections Limits
     data[u"max_connec"_s] = session->maxConnections();
     data[u"max_connec_per_torrent"_s] = session->maxConnectionsPerTorrent();
@@ -712,6 +716,13 @@ void AppController::setPreferencesAction()
         session->setSSLPort(it.value().toInt());
     if (hasKey(u"upnp"_s))
         Net::PortForwarder::instance()->setEnabled(it.value().toBool());
+    // CGNAT STUN-based port discovery
+    if (hasKey(u"cgnat_enabled"_s))
+        session->setCGNATEnabled(it.value().toBool());
+    if (hasKey(u"cgnat_stun_server"_s))
+        session->setCGNATStunServer(it.value().toString());
+    if (hasKey(u"cgnat_interval"_s))
+        session->setCGNATInterval(it.value().toInt());
     // Connections Limits
     if (hasKey(u"max_connec"_s))
         session->setMaxConnections(it.value().toInt());

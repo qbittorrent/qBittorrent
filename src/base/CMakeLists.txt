@@ -10,6 +10,7 @@ add_library(qbt_base STATIC
     bittorrent/bandwidthscheduler.h
     bittorrent/bencoderesumedatastorage.h
     bittorrent/cachestatus.h
+    bittorrent/cgnatmanager.h
     bittorrent/categoryoptions.h
     bittorrent/common.h
     bittorrent/customstorage.h
@@ -138,6 +139,7 @@ add_library(qbt_base STATIC
     bittorrent/bandwidthscheduler.cpp
     bittorrent/bencoderesumedatastorage.cpp
     bittorrent/categoryoptions.cpp
+    bittorrent/cgnatmanager.cpp
     bittorrent/customstorage.cpp
     bittorrent/dbresumedatastorage.cpp
     bittorrent/downloadpathoption.cpp
@@ -304,3 +306,8 @@ if (PLUGINS)
             plugins/pluginversion.h
     )
 endif()
+
+# CGNAT TCP proxy helper (pure C, standalone)
+add_executable(cgnat_proxy bittorrent/cgnat_proxy.cpp)
+
+set_target_properties(cgnat_proxy PROPERTIES AUTOMOC OFF)

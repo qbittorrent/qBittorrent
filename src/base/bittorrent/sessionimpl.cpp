@@ -508,6 +508,9 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_includeOverheadInLimits(BITTORRENT_SESSION_KEY(u"IncludeOverheadInLimits"_s), false)
     , m_announceIP(BITTORRENT_SESSION_KEY(u"AnnounceIP"_s))
     , m_announcePort(BITTORRENT_SESSION_KEY(u"AnnouncePort"_s), 0)
+    , m_cgnatEnabled(BITTORRENT_SESSION_KEY(u"CGNATEnabled"_s), false)
+    , m_cgnatStunServer(BITTORRENT_SESSION_KEY(u"CGNATStunServer"_s), QString())
+    , m_cgnatInterval(BITTORRENT_SESSION_KEY(u"CGNATInterval"_s), 45000)
     , m_maxConcurrentHTTPAnnounces(BITTORRENT_SESSION_KEY(u"MaxConcurrentHTTPAnnounces"_s), 50)
     , m_isReannounceWhenAddressChangedEnabled(BITTORRENT_SESSION_KEY(u"ReannounceWhenAddressChanged"_s), false)
     , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY(u"StopTrackerTimeout"_s), 2)
@@ -607,6 +610,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_ioThread {new QThread}
     , m_asyncWorker {new QThreadPool(this)}
     , m_recentErroredTorrentsTimer {new QTimer(this)}
+    , m_cgnatManager {new CGNATManager(this)}
     , m_freeDiskSpaceChecker {new FreeDiskSpaceChecker(savePath())}
     , m_freeDiskSpaceCheckingTimer {new QTimer(this)}
 {
@@ -647,8 +651,33 @@ SessionImpl::SessionImpl(QObject *parent)
             processTorrentShareLimits(torrent);
     });
 
+    // CGNAT: auto-update announce_port when STUN discovers the mapped port
+    connect(m_cgnatManager, &CGNATManager::mappedPortDiscovered, this, [this](int port)
+    {
+        LogMsg(tr("CGNAT: mapped port discovered: %1").arg(port));
+        setAnnouncePort(port);
+    });
+
+    // CGNAT: auto-update announce_port when TCP proxy discovers external port
+    connect(m_cgnatManager, &CGNATManager::tcpPortDiscovered, this, [this](int port)
+    {
+        LogMsg(tr("CGNAT: TCP external port discovered: %1").arg(port));
+        setAnnouncePort(port);
+    });
+
     initializeNativeSession();
     configureComponents();
+
+    // Configure CGNAT STUN client after session initialized
+    m_cgnatManager->setListenAddress(QHostAddress::AnyIPv4, port());
+    m_cgnatManager->setStunServer(m_cgnatStunServer);
+    m_cgnatManager->setInterval(m_cgnatInterval);
+    if (m_cgnatEnabled)
+    {
+        LogMsg(tr("CGNAT: enabling STUN port discovery..."), Log::INFO);
+        m_cgnatManager->setBackendPort(port() + 1);
+        m_cgnatManager->setEnabled(true);
+    }
 
     if (isBandwidthSchedulerEnabled())
         enableBandwidthScheduler();
@@ -3140,6 +3169,24 @@ void SessionImpl::removeMappedPorts(const QSet<quint16> &ports)
         });
     });
 }
+
+// CGNAT STUN-based port discovery
+bool SessionImpl::isCGNATEnabled() const { return m_cgnatEnabled; }
+void SessionImpl::setCGNATEnabled(bool enabled) {
+    if (m_cgnatEnabled == enabled) return;
+    m_cgnatEnabled = enabled;
+    LogMsg(tr(enabled ? "CGNAT STUN port discovery: ON" : "CGNAT STUN port discovery: OFF"), Log::INFO);
+    m_cgnatManager->setEnabled(enabled);
+}
+QString SessionImpl::cgnatStunServer() const { return m_cgnatStunServer; }
+void SessionImpl::setCGNATStunServer(const QString &server) {
+    if (m_cgnatStunServer == server) return;
+    m_cgnatStunServer = server;
+    m_cgnatManager->setStunServer(server);
+    if (m_cgnatEnabled) { m_cgnatManager->setEnabled(false); m_cgnatManager->setEnabled(true); }
+}
+int SessionImpl::cgnatInterval() const { return m_cgnatInterval; }
+void SessionImpl::setCGNATInterval(int msecs) { m_cgnatInterval = msecs; m_cgnatManager->setInterval(msecs); }
 
 // Add a torrent to libtorrent session in hidden mode
 // and force it to download its metadata
