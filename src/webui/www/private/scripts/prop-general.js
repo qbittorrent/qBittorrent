@@ -91,8 +91,8 @@ window.qBittorrent.PropGeneral ??= (() => {
             // Tab changed, don't do anything
             return;
         }
-        const current_id = torrentsTable.getCurrentTorrentID();
-        if (current_id === "") {
+        const currentID = torrentsTable.getCurrentTorrentID();
+        if (currentID === "") {
             clearData();
             clearTimeout(loadTorrentDataTimer);
             return;
@@ -100,7 +100,7 @@ window.qBittorrent.PropGeneral ??= (() => {
 
         const propertiesURL = new URL("api/v2/torrents/properties", window.location);
         propertiesURL.search = new URLSearchParams({
-            hash: current_id
+            hash: currentID
         });
         fetch(propertiesURL, {
                 method: "GET",
@@ -240,7 +240,7 @@ window.qBittorrent.PropGeneral ??= (() => {
                             : "QBT_TR(No)QBT_TR[CONTEXT=PropertiesWidget]")
                         : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]");
 
-                    const row = torrentsTable.getRow(current_id);
+                    const row = torrentsTable.getRow(currentID);
                     const state = row?.full_data?.state || "";
                     const shouldShowAvailability = data.has_metadata
                         && (data.progress < 1)
@@ -266,7 +266,7 @@ window.qBittorrent.PropGeneral ??= (() => {
 
         const pieceStatesURL = new URL("api/v2/torrents/pieceStates", window.location);
         pieceStatesURL.search = new URLSearchParams({
-            hash: current_id
+            hash: currentID
         });
         fetch(pieceStatesURL, {
                 method: "GET",
@@ -300,7 +300,7 @@ window.qBittorrent.PropGeneral ??= (() => {
 
         const pieceAvailabilityURL = new URL("api/v2/torrents/pieceAvailability", window.location);
         pieceAvailabilityURL.search = new URLSearchParams({
-            hash: current_id
+            hash: currentID
         });
         fetch(pieceAvailabilityURL, {
                 method: "GET",

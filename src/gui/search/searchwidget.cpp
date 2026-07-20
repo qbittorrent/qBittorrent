@@ -1038,7 +1038,7 @@ void SearchWidget::DataStorage::storeSession(const SessionData &sessionData)
 
 void SearchWidget::DataStorage::removeSession()
 {
-    Utils::Fs::removeFile(makeDataFilePath(SESSION_FILE_NAME));
+    std::ignore = Utils::Fs::removeFile(makeDataFilePath(SESSION_FILE_NAME));
 }
 
 void SearchWidget::DataStorage::storeTab(const QString &tabID, const QList<SearchResult> &searchResults)
@@ -1070,7 +1070,7 @@ void SearchWidget::DataStorage::storeTab(const QString &tabID, const QList<Searc
 
 void SearchWidget::DataStorage::removeTab(const QString &tabID)
 {
-    Utils::Fs::removeFile(makeDataFilePath(tabID + u".json"));
+    std::ignore = Utils::Fs::removeFile(makeDataFilePath(tabID + u".json"));
 }
 
 void SearchWidget::DataStorage::loadHistory()
@@ -1100,7 +1100,7 @@ void SearchWidget::DataStorage::storeHistory(const QStringList &history)
 
 void SearchWidget::DataStorage::removeHistory()
 {
-    Utils::Fs::removeFile(makeDataFilePath(HISTORY_FILE_NAME));
+    std::ignore = Utils::Fs::removeFile(makeDataFilePath(HISTORY_FILE_NAME));
 }
 
 #include "searchwidget.moc"

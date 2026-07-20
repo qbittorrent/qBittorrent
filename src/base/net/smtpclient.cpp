@@ -81,11 +81,11 @@ namespace
         return hostname.toLocal8Bit();
     }
 
-    bool canEncodeAsLatin1(const QStringView string)
+    bool canEncodeAsASCII(const QStringView string)
     {
         return std::ranges::none_of(string, [](const QChar &ch)
         {
-            return ch > QChar(0xff);
+            return ch > QChar(0x7f);
         });
     }
 
@@ -103,7 +103,7 @@ namespace
         QByteArray rv = "";
         QByteArray line = key.toLatin1() + ": ";
         if (!prefix.isEmpty()) line += prefix;
-        if (!value.contains(u"=?") && canEncodeAsLatin1(value))
+        if (!value.contains(u"=?") && canEncodeAsASCII(value))
         {
             bool firstWord = true;
             for (const QByteArray &word : asConst(value.toLatin1().split(' ')))
@@ -122,7 +122,7 @@ namespace
         }
         else
         {
-            // The text cannot be losslessly encoded as Latin-1. Therefore, we
+            // The text contains non-ASCII characters. Therefore, we
             // must use base64 encoding.
             const QByteArray utf8 = value.toUtf8();
             // Use base64 encoding

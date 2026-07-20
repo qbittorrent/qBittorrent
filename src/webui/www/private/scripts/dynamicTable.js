@@ -81,10 +81,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDiv = document.getElementById(dynamicTableDivId);
             this.useVirtualList = clientData.get("use_virtual_list") ?? true;
             this.fixedTableHeader = document.querySelector(`#${dynamicTableFixedHeaderDivId} thead tr`);
-            this.table = this.dynamicTableDiv.querySelector("table");
+            // the body table is the direct child; the fixed header table is nested in a child div
+            this.table = this.dynamicTableDiv.querySelector(":scope > table");
             this.colgroup = document.createElement("colgroup");
             this.table.prepend(this.colgroup);
-            this.tableBody = this.dynamicTableDiv.querySelector("tbody");
+            // the fixed header table needs its own colgroup so its columns size identically to the body
+            this.fixedTableHeaderColgroup = document.createElement("colgroup");
+            this.fixedTableHeader.closest("table").prepend(this.fixedTableHeaderColgroup);
+            this.tableBody = this.table.querySelector("tbody");
             this.rowHeight = (clientData.get("display_density") === "compact") ? 22 : 26;
             this.rows = new Map();
             this.cachedElements = [];
@@ -123,21 +127,20 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         setupCommonEvents() {
-            const tableFixedHeaderDiv = document.getElementById(this.dynamicTableFixedHeaderDivId);
-
-            const tableElement = tableFixedHeaderDiv.querySelector("table");
             this.dynamicTableDiv.addEventListener("scroll", (e) => {
-                tableElement.style.left = `${-this.dynamicTableDiv.scrollLeft}px`;
-                // rerender on scroll
+                // rerender on vertical scroll
                 if (this.useVirtualList) {
-                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
-                    this.rerender();
+                    const scrollTop = this.dynamicTableDiv.scrollTop;
+                    if (scrollTop !== this.renderedOffset) {
+                        this.renderedOffset = scrollTop;
+                        this.rerender();
+                    }
                 }
             });
 
             this.dynamicTableDiv.addEventListener("click", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr) {
+                if ((tr === null) || (tr.rowId === undefined)) {
                     // clicking on the table body deselects all rows
                     this.deselectAll();
                     this.setRowClass();
@@ -209,10 +212,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.currentHeaderAction = "";
             this.canResize = false;
 
-            const resetElementBorderStyle = (el, side) => {
-                if ((side === "left") || (side !== "right"))
+            const resetElementBorderStyle = (el, side = "both") => {
+                if ((side === "left") || (side === "both"))
                     el.style.borderLeft = "";
-                if ((side === "right") || (side !== "left"))
+                if ((side === "right") || (side === "both"))
                     el.style.borderRight = "";
             };
 
@@ -446,6 +449,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const style = `width: ${column.width}px; ${column.style}`;
             this.getRowCells(this.fixedTableHeader)[pos].style.cssText = style;
             this.colgroup.children[pos].style.width = `${column.width}px`;
+            this.fixedTableHeaderColgroup.children[pos].style.width = `${column.width}px`;
             // rerender on column resize
             if (this.useVirtualList)
                 this.rerender();
@@ -614,6 +618,11 @@ window.qBittorrent.DynamicTable ??= (() => {
             const col = document.createElement("col");
             col.style.width = `${column.width}px`;
             this.colgroup.append(col);
+
+            const headerCol = document.createElement("col");
+            headerCol.style.width = `${column.width}px`;
+            this.fixedTableHeaderColgroup.append(headerCol);
+
             this.fixedTableHeader.append(document.createElement("th"));
         }
 
@@ -649,9 +658,14 @@ window.qBittorrent.DynamicTable ??= (() => {
         updateTableHeaders() {
             this.updateHeader(this.fixedTableHeader);
             const cols = this.colgroup.children;
+            const headerCols = this.fixedTableHeaderColgroup.children;
             for (let i = 0; i < this.columns.length; ++i) {
-                cols[i].style.width = `${this.columns[i].width}px`;
-                cols[i].classList.toggle("invisible", !this.columns[i].isVisible());
+                const width = `${this.columns[i].width}px`;
+                const visible = this.columns[i].isVisible();
+                cols[i].style.width = width;
+                cols[i].classList.toggle("invisible", !visible);
+                headerCols[i].style.width = width;
+                headerCols[i].classList.toggle("invisible", !visible);
             }
             this.setSortedColumnIcon(this.sortedColumn, null, (this.reverseSort === "1"));
         }
@@ -685,6 +699,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const action = column.isVisible() ? "remove" : "add";
             fths[pos].classList[action]("invisible");
             this.colgroup.children[pos].classList[action]("invisible");
+            this.fixedTableHeaderColgroup.children[pos].classList[action]("invisible");
 
             for (const tr of this.getTrs()) {
                 const td = this.getRowCells(tr)[pos];
@@ -1819,7 +1834,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             super.setupCommonEvents();
             this.dynamicTableDiv.addEventListener("dblclick", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr)
+                if ((tr === null) || (tr.rowId === undefined))
                     return;
 
                 this.deselectAll();
@@ -3145,13 +3160,14 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         setupCommonEvents() {
-            const headerDiv = document.getElementById("bulkRenameFilesTableFixedHeaderDiv");
             this.dynamicTableDiv.addEventListener("scroll", (e) => {
-                headerDiv.scrollLeft = this.dynamicTableDiv.scrollLeft;
-                // rerender on scroll
+                // rerender on vertical scroll
                 if (this.useVirtualList) {
-                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
-                    this.rerender();
+                    const scrollTop = this.dynamicTableDiv.scrollTop;
+                    if (scrollTop !== this.renderedOffset) {
+                        this.renderedOffset = scrollTop;
+                        this.rerender();
+                    }
                 }
             });
         }

@@ -261,13 +261,13 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         // hide an item
         hideItem(item) {
-            this.menu.querySelector(`a[href$="${item}"]`).parentNode.classList.add("invisible");
+            this.menu.querySelector(`a[href$="${item}"]`).parentElement.classList.add("invisible");
             return this;
         }
 
         // show an item
         showItem(item) {
-            this.menu.querySelector(`a[href$="${item}"]`).parentNode.classList.remove("invisible");
+            this.menu.querySelector(`a[href$="${item}"]`).parentElement.classList.remove("invisible");
             return this;
         }
 
@@ -293,6 +293,15 @@ window.qBittorrent.ContextMenu ??= (() => {
         execute(action, element) {
             if (this.options.actions[action])
                 this.options.actions[action](element, this, action);
+            return this;
+        }
+
+        setTooltip(item, text) {
+            const element = this.menu.querySelector(`a[href$="${item}"]`).parentElement;
+            if (text.length > 0)
+                element.title = text;
+            else
+                element.removeAttribute("title");
             return this;
         }
     }
@@ -454,7 +463,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             const contextTagList = document.getElementById("contextTagList");
             for (const tag of window.qBittorrent.Client.tagMap.keys()) {
-                const checkbox = contextTagList.querySelector(`a[href="#Tag/${tag}"] input[type="checkbox"]`);
+                const checkbox = contextTagList.querySelector(`a[href="#Tag/${CSS.escape(tag)}"] input[type="checkbox"]`);
                 const count = tagCount.get(tag);
                 const hasCount = (count !== undefined);
                 const isLesser = (count < selectedRows.length);
@@ -464,7 +473,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             const contextCategoryList = document.getElementById("contextCategoryList");
             for (const category of window.qBittorrent.Client.categoryMap.keys()) {
-                const categoryIcon = contextCategoryList.querySelector(`a[href$="#Category/${category}"] img`);
+                const categoryIcon = contextCategoryList.querySelector(`a[href$="#Category/${CSS.escape(category)}"] img`);
                 const count = categoryCount.get(category);
                 const isEqual = ((count !== undefined) && (count === selectedRows.length));
                 categoryIcon.classList.toggle("highlightedCategoryIcon", isEqual);
@@ -631,7 +640,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
     class SearchPluginsTableContextMenu extends ContextMenu {
         updateMenuItems() {
-            const enabledColumnIndex = (text) => {
+            const enabledColumnIndex = () => {
                 const columns = document.querySelectorAll("#searchPluginsTableFixedHeaderRow th");
                 return Array.prototype.findIndex.call(columns, (column => column.textContent === "Enabled"));
             };

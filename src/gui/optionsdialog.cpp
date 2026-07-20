@@ -45,6 +45,10 @@
 #include <QStyleFactory>
 #include <QSystemTrayIcon>
 
+#ifdef Q_OS_WIN
+#include <QProcess>
+#endif
+
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sharelimits.h"
 #include "base/exceptions.h"
@@ -54,6 +58,7 @@
 #include "base/net/smtpclient.h"
 #include "base/path.h"
 #include "base/preferences.h"
+#include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
@@ -85,6 +90,10 @@
 
 #ifdef Q_OS_MACOS
 #include "macutilities.h"
+#endif
+
+#ifdef Q_OS_WIN
+#include "base/utils/os.h"
 #endif
 
 #define SETTINGS_KEY(name) u"OptionsDialog/" name
@@ -302,12 +311,13 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     m_ui->checkTorrentContentDrag->setChecked(pref->isTorrentContentDragEnabled());
 
-#ifndef Q_OS_WIN
+#ifdef Q_OS_WIN
+    m_ui->checkStartup->setChecked(pref->WinStartup());
+#else
     m_ui->checkStartup->setVisible(false);
 #endif
+
     m_ui->checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
-    m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
-    m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
     m_ui->windowStateComboBox->addItem(tr("Normal"), QVariant::fromValue(WindowState::Normal));
     m_ui->windowStateComboBox->addItem(tr("Minimized"), QVariant::fromValue(WindowState::Minimized));
@@ -316,12 +326,12 @@ void OptionsDialog::loadBehaviorTabOptions()
 #endif
     m_ui->windowStateComboBox->setCurrentIndex(m_ui->windowStateComboBox->findData(QVariant::fromValue(app()->startUpWindowState())));
 
-#if !(defined(Q_OS_WIN) || defined(Q_OS_MACOS))
-    m_ui->groupFileAssociation->setVisible(false);
-    m_ui->checkProgramUpdates->setVisible(false);
-#endif
+    m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
+    m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
-#ifndef Q_OS_MACOS
+#ifdef Q_OS_MACOS
+    m_ui->checkShowSystray->setVisible(false);
+#else
     // Disable systray integration if it is not supported by the system
     if (!QSystemTrayIcon::isSystemTrayAvailable())
     {
@@ -335,20 +345,26 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(UIThemeManager::instance()->trayIconStyle()));
 #endif
 
-#ifdef Q_OS_WIN
-    m_ui->checkStartup->setChecked(pref->WinStartup());
-#endif
-
-#ifdef Q_OS_MACOS
-    m_ui->checkShowSystray->setVisible(false);
+#if defined(Q_OS_WIN)
+    connect(m_ui->buttonOpenDefaultApps, &QPushButton::clicked, this, [](bool)
+    {
+        const Path explorer = Utils::OS::windowsSystemPath().parentPath() / Path(u"explorer.exe"_s);
+        QProcess::startDetached(explorer.data(), {u"ms-settings:defaultapps"_s});
+    });
+#elif defined(Q_OS_MACOS)
     m_ui->checkAssociateTorrents->setChecked(MacUtils::isTorrentFileAssocSet());
     m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
     m_ui->checkAssociateMagnetLinks->setChecked(MacUtils::isMagnetLinkAssocSet());
     m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
+    m_ui->defaultProgramPanel->hide();
+#else
+    m_ui->groupFileAssociation->setVisible(false);
 #endif
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     m_ui->checkProgramUpdates->setChecked(pref->isUpdateCheckEnabled());
+#else
+    m_ui->checkProgramUpdates->setVisible(false);
 #endif
 
     m_ui->checkPreventFromSuspendWhenDownloading->setChecked(pref->preventFromSuspendWhenDownloading());
@@ -357,6 +373,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->textFileLogPath->setDialogCaption(tr("Choose a save directory"));
     m_ui->textFileLogPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->textFileLogPath->setSelectedPath(app()->fileLoggerPath());
+    m_ui->textFileLogPath->setBasePath(specialFolderLocation(SpecialFolder::Data));
     const bool fileLogBackup = app()->isFileLoggerBackup();
     m_ui->checkFileLogBackup->setChecked(fileLogBackup);
     m_ui->spinFileLogSize->setEnabled(fileLogBackup);
@@ -439,10 +456,6 @@ void OptionsDialog::loadBehaviorTabOptions()
 
 #ifdef Q_OS_WIN
     m_ui->assocPanel->hide();
-#endif
-
-#ifdef Q_OS_MACOS
-    m_ui->defaultProgramPanel->hide();
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && !defined(QBT_USES_DBUS)

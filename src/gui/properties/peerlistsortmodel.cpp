@@ -28,6 +28,9 @@
 
 #include "peerlistsortmodel.h"
 
+#include <QMetaType>
+
+#include "base/bittorrent/peeraddress.h"
 #include "peerlistwidget.h"
 
 PeerListSortModel::PeerListSortModel(QObject *parent)
@@ -41,13 +44,23 @@ bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &rig
     switch (sortColumn())
     {
     case PeerListWidget::IP:
+        {
+            const QMetaType peerAddressType = QMetaType::fromType<BitTorrent::PeerAddress>();
+            const QVariant leftData = left.data(UnderlyingDataRole);
+            const QVariant rightData = right.data(UnderlyingDataRole);
+
+            if ((leftData.metaType() == peerAddressType) && (rightData.metaType() == peerAddressType))
+                return leftData.value<BitTorrent::PeerAddress>() < rightData.value<BitTorrent::PeerAddress>();
+            return m_naturalLessThan(leftData.toString(), rightData.toString());
+        }
+
     case PeerListWidget::CLIENT:
         {
             const QString strL = left.data(UnderlyingDataRole).toString();
             const QString strR = right.data(UnderlyingDataRole).toString();
             return m_naturalLessThan(strL, strR);
         }
-        break;
+
     default:
         return QSortFilterProxyModel::lessThan(left, right);
     };

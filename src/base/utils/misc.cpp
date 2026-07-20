@@ -360,7 +360,7 @@ QString Utils::Misc::languageToLocalizedString(const QStringView localeStr)
 QString Utils::Misc::parseHtmlLinks(const QString &rawText)
 {
     QString result = rawText;
-    static const QRegularExpression reURL(
+    static const QRegularExpression reURL {
         u"(\\s|^)"                                             // start with whitespace or beginning of line
         u"("
         u"("                                              // case 1 -- URL with scheme
@@ -405,13 +405,13 @@ QString Utils::Misc::parseHtmlLinks(const QString &rawText)
         u"([a-zA-Z0-9\\?%=&/_\\.:#;-]*)"             // everything to 1st non-URI char, maybe nothing  in case of del.icio.us/path
         u")"
         u")"_s
-        );
+    };
 
     // Capture links
     result.replace(reURL, u"\\1<a href=\"\\2\">\\2</a>"_s);
 
     // Capture links without scheme
-    const QRegularExpression reNoScheme(u"<a\\s+href=\"(?!https?)([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">"_s);
+    static const QRegularExpression reNoScheme {uR"(<a\s+href="(?!https?)([a-zA-Z0-9\?%=&\/_\.\-:#]+)\s*">)"_s};
     result.replace(reNoScheme, u"<a href=\"http://\\1\">"_s);
 
     // to preserve plain text formatting

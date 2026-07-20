@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2016  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -37,24 +38,23 @@
 
 #include "base/global.h"
 #include "base/logger.h"
+#include "base/profile.h"
 #include "base/utils/fs.h"
 
-namespace
-{
-    const std::chrono::seconds FLUSH_INTERVAL {2};
-}
+const QString LOG_FILENAME = u"qbittorrent.log"_s;
+const std::chrono::seconds FLUSH_INTERVAL {2};
 
 FileLogger::FileLogger(const Path &path, const bool backup
-                       , const int maxSize, const bool deleteOld, const int age
-                       , const FileLogAgeType ageType)
-    : m_backup(backup)
-    , m_maxSize(maxSize)
+        , const int maxSize, const bool deleteOld, const int age
+        , const FileLogAgeType ageType)
+    : m_backup {backup}
+    , m_maxSize {maxSize}
 {
     m_flusher.setInterval(FLUSH_INTERVAL);
     m_flusher.setSingleShot(true);
     connect(&m_flusher, &QTimer::timeout, this, &FileLogger::flushLog);
 
-    changePath(path);
+    setPath(path);
     if (deleteOld)
         this->deleteOld(age, ageType);
 
@@ -70,26 +70,27 @@ FileLogger::~FileLogger()
     closeLogFile();
 }
 
-void FileLogger::changePath(const Path &newPath)
+void FileLogger::setPath(const Path &newPath)
 {
+    const Path newPathAbs = newPath.isAbsolute() ? newPath : (specialFolderLocation(SpecialFolder::Data) / newPath);
     // compare paths as strings to perform case sensitive comparison on all the platforms
-    if (newPath.data() == m_path.parentPath().data())
+    if (newPathAbs.data() == m_logsFolderPath.data())
         return;
 
     closeLogFile();
 
-    m_path = newPath / Path(u"qbittorrent.log"_s);
-    m_logFile.setFileName(m_path.data());
+    m_logsFolderPath = newPathAbs;
+    m_logFile.setFileName((m_logsFolderPath / Path(LOG_FILENAME)).data());
 
-    Utils::Fs::mkpath(newPath);
+    Utils::Fs::mkpath(m_logsFolderPath);
     openLogFile();
 }
 
 void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
 {
     const QDateTime date = QDateTime::currentDateTime();
-    const QDir dir {m_path.parentPath().data()};
-    const QFileInfoList fileList = dir.entryInfoList(QStringList(u"qbittorrent.log.bak*"_s)
+    const QDir dir {m_logsFolderPath.data()};
+    const QFileInfoList fileList = dir.entryInfoList(QStringList(LOG_FILENAME + u".bak*")
         , (QDir::Files | QDir::Writable), (QDir::Time | QDir::Reversed));
 
     for (const QFileInfo &file : fileList)
@@ -108,7 +109,7 @@ void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
         }
         if (modificationDate > date)
             break;
-        Utils::Fs::removeFile(Path(file.absoluteFilePath()));
+        std::ignore = Utils::Fs::removeFile(Path(file.absoluteFilePath()));
     }
 }
 
@@ -149,15 +150,16 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
     {
         closeLogFile();
         int counter = 0;
-        Path backupLogFilename = m_path + u".bak";
+        const Path logFilename = m_logsFolderPath / Path(LOG_FILENAME);
+        Path backupLogFilename = logFilename + u".bak";
 
         while (backupLogFilename.exists())
         {
             ++counter;
-            backupLogFilename = m_path + u".bak" + QString::number(counter);
+            backupLogFilename = logFilename + u".bak" + QString::number(counter);
         }
 
-        Utils::Fs::renameFile(m_path, backupLogFilename);
+        Utils::Fs::renameFile(logFilename, backupLogFilename);
         openLogFile();
     }
     else

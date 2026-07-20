@@ -80,6 +80,7 @@ private slots:
     void downloadSelectedTorrents();
     void saveSlidersPosition();
     void restoreSlidersPosition();
+    void saveFeedListState();
     void askNewFolder();
     void saveFoldersOpenState();
     void loadFoldersOpenState();

@@ -73,6 +73,12 @@ export default [
             "Stylistic/spaced-comment": ["error", "always", { exceptions: ["*"] }],
             "Unicorn/no-for-each": "error",
             "Unicorn/no-for-loop": "error",
+            "Unicorn/no-invalid-argument-count": [
+                "error",
+                {
+                    "location.reload": [0, 1],
+                }
+            ],
             "Unicorn/no-zero-fractions": "error",
             "Unicorn/prefer-classlist-toggle": "error",
             "Unicorn/prefer-native-coercion-functions": "error",

@@ -33,6 +33,7 @@
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QDragMoveEvent>
+#include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
 #include <QRegularExpression>
@@ -146,6 +147,10 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     connect(m_ui->feedListWidget, &QAbstractItemView::doubleClicked, this, &RSSWidget::renameSelectedRSSItem);
     connect(m_ui->feedListWidget, &QTreeWidget::currentItemChanged, this, &RSSWidget::handleCurrentFeedItemChanged);
     connect(m_ui->feedListWidget, &QWidget::customContextMenuRequested, this, &RSSWidget::displayRSSListMenu);
+    const QByteArray feedListState = Preferences::instance()->getRssFeedListState();
+    if (!feedListState.isEmpty())
+        m_ui->feedListWidget->header()->restoreState(feedListState);
+    connect(m_ui->feedListWidget->header(), &QHeaderView::sortIndicatorChanged, this, &RSSWidget::saveFeedListState);
     loadFoldersOpenState();
     m_ui->feedListWidget->setCurrentItem(m_ui->feedListWidget->stickyItemUnreadArticles());
 
@@ -208,6 +213,7 @@ RSSWidget::~RSSWidget()
     m_ui->articleListWidget->clear();
 
     saveFoldersOpenState();
+    saveFeedListState();
 
     delete m_ui;
 }
@@ -403,7 +409,7 @@ void RSSWidget::deleteSelectedItems()
     for (QTreeWidgetItem *item : selectedItems)
     {
         if (!m_ui->feedListWidget->isStickyItem(item))
-            RSS::Session::instance()->removeItem(m_ui->feedListWidget->itemPath(item));
+            std::ignore = RSS::Session::instance()->removeItem(m_ui->feedListWidget->itemPath(item));
     }
 }
 
@@ -648,6 +654,11 @@ void RSSWidget::restoreSlidersPosition()
     const QByteArray stateMain = pref->getRssMainSplitterState();
     if (!stateMain.isEmpty())
         m_ui->splitterMain->restoreState(stateMain);
+}
+
+void RSSWidget::saveFeedListState()
+{
+    Preferences::instance()->setRssFeedListState(m_ui->feedListWidget->header()->saveState());
 }
 
 void RSSWidget::updateRefreshInterval(int val) const
