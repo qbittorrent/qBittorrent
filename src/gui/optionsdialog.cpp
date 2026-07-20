@@ -568,6 +568,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setStatusbarFreeDiskSpaceDisplayed(m_ui->checkBoxFreeDiskSpaceStatusBar->isChecked());
     pref->setStatusbarExternalIPDisplayed(m_ui->checkBoxExternalIPStatusBar->isChecked());
     session->setPerformanceWarningEnabled(m_ui->checkBoxPerformanceWarning->isChecked());
+    pref->setMinimizeOnEscEnabled(m_ui->checkMinimizeOnEsc->isChecked());
 }
 
 void OptionsDialog::loadDownloadsTabOptions()
@@ -1109,6 +1110,8 @@ void OptionsDialog::loadSpeedTabOptions()
     m_ui->checkShowMenuBarIcon->hide();
 #endif
 
+    m_ui->checkMinimizeOnEsc->setChecked(pref->isMinimizeOnEscEnabled());
+
     connect(m_ui->spinUploadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinDownloadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
@@ -1128,6 +1131,8 @@ void OptionsDialog::loadSpeedTabOptions()
     connect(m_ui->checkShowSpeedInDock, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkShowMenuBarIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
+
+    connect(m_ui->checkMinimizeOnEsc, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 }
 
 void OptionsDialog::saveSpeedTabOptions() const
