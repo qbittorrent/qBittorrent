@@ -56,6 +56,9 @@ public:
     TorrentContentLayoutDialog(BitTorrent::TorrentContentHandler *contentHandler, const QSet<int> &selectedIndexes, QWidget *parent = nullptr);
     ~TorrentContentLayoutDialog() override;
 
+private slots:
+    void showColumnHeaderMenu();
+
 private:
     PathList selectedPaths() const;
     void populateCommonPath();
