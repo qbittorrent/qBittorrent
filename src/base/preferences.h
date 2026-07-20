@@ -307,6 +307,8 @@ public:
     void setIgnoreSSLErrors(bool enabled);
     Path getPythonExecutablePath() const;
     void setPythonExecutablePath(const Path &path);
+    int getSessionShutdownTimeout() const;
+    void setSessionShutdownTimeout(int timeout);
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     bool isUpdateCheckEnabled() const;
     void setUpdateCheckEnabled(bool enabled);
