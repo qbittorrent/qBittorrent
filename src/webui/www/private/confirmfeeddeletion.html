@@ -46,6 +46,7 @@
                             ++completionCount;
                             if (completionCount === paths.length) {
                                 window.parent.qBittorrent.Rss.updateRssFeedList();
+                                window.parent.qBittorrent.Rss.resetInterval();
                                 window.parent.qBittorrent.Client.closeFrameWindow(window);
                             }
                         });
