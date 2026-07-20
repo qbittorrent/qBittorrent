@@ -140,7 +140,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.dynamicTableDiv.addEventListener("click", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr) {
+                if ((tr === null) || (tr.rowId === undefined)) {
                     // clicking on the table body deselects all rows
                     this.deselectAll();
                     this.setRowClass();
@@ -1834,7 +1834,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             super.setupCommonEvents();
             this.dynamicTableDiv.addEventListener("dblclick", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr)
+                if ((tr === null) || (tr.rowId === undefined))
                     return;
 
                 this.deselectAll();
