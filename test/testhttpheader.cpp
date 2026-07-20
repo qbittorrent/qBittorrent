@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Mike Tzou (Chocobo1)
+ * Copyright (C) 2026  Andy Ye
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,18 +26,35 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include <QObject>
+#include <QTest>
 
-#include <QString>
-#include <QStringView>
+#include "base/global.h"
+#include "base/http/header.h"
 
-namespace Http
+class TestHttpHeader final : public QObject
 {
-    struct Header
-    {
-        QString name;
-        QString value;
-    };
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TestHttpHeader)
 
-    QString attachmentContentDisposition(QStringView filename);
-}
+public:
+    TestHttpHeader() = default;
+
+private slots:
+    void testAttachmentContentDisposition() const
+    {
+        QCOMPARE(Http::attachmentContentDisposition(u"file.torrent"_s), u"attachment; filename=\"file.torrent\""_s);
+        QCOMPARE(Http::attachmentContentDisposition(u"a\"b\\c.torrent"_s), u"attachment; filename=\"a\\\"b\\\\c.torrent\""_s);
+
+        const QString header = Http::attachmentContentDisposition(u"evil\r\nset-cookie: value.torrent"_s);
+        QVERIFY(!header.contains(u'\r'));
+        QVERIFY(!header.contains(u'\n'));
+        QCOMPARE(header, u"attachment; filename=\"evilset-cookie: value.torrent\""_s);
+
+        QCOMPARE(Http::attachmentContentDisposition(u"тест.torrent"_s)
+            , u"attachment; filename=\"____.torrent\"; filename*=UTF-8''%D1%82%D0%B5%D1%81%D1%82.torrent"_s);
+    }
+};
+
+QTEST_APPLESS_MAIN(TestHttpHeader)
+#include "testhttpheader.moc"
