@@ -402,7 +402,7 @@ window.qBittorrent.Misc ??= (() => {
      * @param {string} format
      * @returns {string}
      */
-    const formatDate = (date, format = window.parent.qBittorrent.ClientData.get("date_format")) => {
+    const formatDate = (date, format = (window.qBittorrent.ClientData ?? window.parent.qBittorrent.ClientData).get("date_format")) => {
         if ((format === "default") || !Object.hasOwn(DateFormatOptions, format))
             return date.toLocaleString();
 
