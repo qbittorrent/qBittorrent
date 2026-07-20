@@ -1204,8 +1204,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #ifdef Q_OS_MACOS
     if (!m_forceExit)
     {
-        hide();
-        e->ignore();
+        e->accept();
         return;
     }
 #else
