@@ -105,6 +105,21 @@ namespace
         return false;
     }
 
+    PathList previewableFilePaths(const BitTorrent::Torrent *const torrent)
+    {
+        if (!torrent->hasMetadata())
+            return {};
+
+        PathList paths;
+        for (int i = 0; i < torrent->filesCount(); ++i)
+        {
+            if (Utils::Misc::isPreviewable(torrent->filePath(i)))
+                paths.append(torrent->actualStorageLocation() / torrent->actualFilePath(i));
+        }
+
+        return paths;
+    }
+
     void removeTorrents(const QList<BitTorrent::Torrent *> &torrents, const bool isDeleteFileSelected)
     {
         auto *session = BitTorrent::Session::instance();
@@ -242,9 +257,9 @@ TransferListModel *TransferListWidget::getSourceModel() const
     return m_listModel;
 }
 
-void TransferListWidget::previewFile(const Path &filePath)
+void TransferListWidget::previewFiles(const PathList &filePaths)
 {
-    Utils::Gui::openPath(filePath);
+    Utils::Gui::openPaths(filePaths);
 }
 
 QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const
@@ -631,18 +646,39 @@ void TransferListWidget::openDestinationFolder(const BitTorrent::Torrent *const 
 
 void TransferListWidget::previewSelectedTorrents()
 {
-    for (const BitTorrent::Torrent *torrent : asConst(getSelectedTorrents()))
+    const QList<BitTorrent::Torrent *> selectedTorrents = getSelectedTorrents();
+    PathList pathsToPreview;
+
+    for (const BitTorrent::Torrent *torrent : asConst(selectedTorrents))
     {
-        if (torrentContainsPreviewableFiles(torrent))
-        {
-            openPreviewSelectDialog(torrent);
-        }
-        else
+        torrent->flushCache();
+
+        const PathList paths = previewableFilePaths(torrent);
+        if (paths.empty())
         {
             QMessageBox::critical(this, tr("Unable to preview"), tr("The selected torrent \"%1\" does not contain previewable files")
                 .arg(torrent->name()));
+            continue;
         }
+
+        if ((selectedTorrents.size() > 1) && (paths.size() == 1))
+        {
+            const Path &path = paths.first();
+            if (!path.exists())
+            {
+                QMessageBox::critical(this, tr("Preview impossible")
+                    , tr("Sorry, we can't preview this file: \"%1\".").arg(path.toString()));
+                continue;
+            }
+
+            pathsToPreview.append(path);
+            continue;
+        }
+
+        openPreviewSelectDialog(torrent);
     }
+
+    previewFiles(pathsToPreview);
 }
 
 void TransferListWidget::setTorrentOptions()
@@ -1506,7 +1542,7 @@ void TransferListWidget::openPreviewSelectDialog(const BitTorrent::Torrent *torr
     auto *dialog = new PreviewSelectDialog(this, torrent);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     // Qt::QueuedConnection is required to prevent a bug on wayland compositors where the preview won't open.
-    // It occurs when the window focus shifts immediately after TransferListWidget::previewFile has been called.
-    connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile, Qt::QueuedConnection);
+    // It occurs when the window focus shifts immediately after TransferListWidget::previewFiles has been called.
+    connect(dialog, &PreviewSelectDialog::readyToPreviewFiles, this, &TransferListWidget::previewFiles, Qt::QueuedConnection);
     dialog->show();
 }
