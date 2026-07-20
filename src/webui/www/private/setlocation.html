@@ -27,10 +27,32 @@
 
             const searchParams = new URLSearchParams(window.location.search);
             const path = searchParams.get("path");
+            const downloadPath = searchParams.get("downloadPath");
+            const originalLocation = (path === null) ? "" : decodeURIComponent(path);
 
             // set text field to current value
             if (path !== null)
-                document.getElementById("setLocation").value = decodeURIComponent(path);
+                document.getElementById("setLocation").value = originalLocation;
+
+            const downloadPathInput = document.getElementById("downloadPath");
+            const useDownloadPathInput = document.getElementById("useDownloadPath");
+            if (downloadPath !== null)
+                downloadPathInput.value = decodeURIComponent(downloadPath);
+            if (downloadPathInput.value === originalLocation)
+                downloadPathInput.value = "";
+            useDownloadPathInput.checked = (downloadPathInput.value !== "");
+            downloadPathInput.disabled = !useDownloadPathInput.checked;
+
+            let shouldSetDownloadPath = false;
+            downloadPathInput.addEventListener("input", () => {
+                shouldSetDownloadPath = true;
+            });
+            useDownloadPathInput.addEventListener("change", () => {
+                shouldSetDownloadPath = true;
+                downloadPathInput.disabled = !useDownloadPathInput.checked;
+                if (useDownloadPathInput.checked && (downloadPathInput.value === ""))
+                    downloadPathInput.value = window.parent.qBittorrent.Cache.preferences.get().temp_path;
+            });
 
             document.getElementById("setLocation").focus();
             document.getElementById("setLocationButton").addEventListener("click", (e) => {
@@ -44,17 +66,43 @@
                     return;
                 }
 
-                fetch("api/v2/torrents/setLocation", {
+                const newDownloadPath = useDownloadPathInput.checked ? downloadPathInput.value.trim() : "";
+                if (useDownloadPathInput.checked && (newDownloadPath === "")) {
+                    document.getElementById("error_div").textContent = "QBT_TR(Download path is empty)QBT_TR[CONTEXT=TorrentsController]";
+                    return;
+                }
+
+                const locationChanged = (location !== originalLocation);
+                const shouldSetLocation = locationChanged || !shouldSetDownloadPath;
+                const setLocation = shouldSetLocation
+                    ? fetch("api/v2/torrents/setLocation", {
                         method: "POST",
                         body: new URLSearchParams({
                             hashes: searchParams.get("hashes"),
                             location: location
                         })
                     })
+                    : Promise.resolve({ ok: true });
+
+                setLocation
                     .then(async (response) => {
                         if (!response.ok) {
                             document.getElementById("error_div").textContent = await response.text();
                             return;
+                        }
+
+                        if (shouldSetDownloadPath) {
+                            const downloadPathResponse = await fetch("api/v2/torrents/setDownloadPath", {
+                                method: "POST",
+                                body: new URLSearchParams({
+                                    id: searchParams.get("hashes"),
+                                    path: newDownloadPath
+                                })
+                            });
+                            if (!downloadPathResponse.ok) {
+                                document.getElementById("error_div").textContent = await downloadPathResponse.text();
+                                return;
+                            }
                         }
 
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
@@ -70,6 +118,15 @@
     <div style="padding: 10px 10px 0px 10px;">
         <label for="setLocation" style="font-weight: bold;">QBT_TR(Location:)QBT_TR[CONTEXT=TransferListWidget]</label>
         <input type="text" id="setLocation" class="pathDirectory" autocorrect="off" autocapitalize="none" style="width: 99%;">
+        <fieldset class="settings" style="text-align: left;">
+            <legend>QBT_TR(Save path for incomplete torrents:)QBT_TR[CONTEXT=Category]</legend>
+            <div>
+                <input type="checkbox" id="useDownloadPath">
+                <label for="useDownloadPath">QBT_TR(Use another path for incomplete torrents:)QBT_TR[CONTEXT=Category]</label>
+            </div>
+            <label for="downloadPath">QBT_TR(Path:)QBT_TR[CONTEXT=Category]</label>
+            <input type="text" id="downloadPath" class="pathDirectory" autocorrect="off" autocapitalize="none" style="width: 99%;">
+        </fieldset>
         <div style="float: none; width: 99%;" id="error_div">&nbsp;</div>
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="setLocationButton">
