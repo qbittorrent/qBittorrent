@@ -2030,13 +2030,20 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         if (document.hidden)
             return;
 
+        const refreshTransfersTab = () => {
+            syncData(100);
+            updatePropertiesPanel();
+        };
+
         switch (localPreferences.get("selected_window_tab")) {
             case "log":
-                window.qBittorrent.Log.load();
+                if (window.qBittorrent.Log !== undefined)
+                    window.qBittorrent.Log.load();
+                else
+                    refreshTransfersTab();
                 break;
             case "transfers":
-                syncData(100);
-                updatePropertiesPanel();
+                refreshTransfersTab();
                 break;
         }
     });
