@@ -97,7 +97,9 @@
 #include "base/version.h"
 #include "bandwidthscheduler.h"
 #include "bencoderesumedatastorage.h"
+#include "common.h"
 #include "customstorage.h"
+#include "toplevelpayload.h"
 #include "dbresumedatastorage.h"
 #include "downloadpriority.h"
 #include "extensiondata.h"
@@ -2539,6 +2541,12 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
 
     const TorrentID torrentID = torrent->id();
     const QString torrentName = torrent->name();
+    // Absolute top-level payload keys stay occupied until handleRemovedTorrent.
+    // Current location + final save path (+ incomplete path when set) so future move targets stay reserved.
+    const QSet<Path> physicalPayloadPaths = torrent->hasMetadata()
+            ? payloadClaimPaths(uniqueStorageRoots({
+                    torrent->actualStorageLocation(), torrent->savePath(), torrent->downloadPath()}), torrent->filePaths())
+            : QSet<Path> {};
 
     qDebug("Deleting torrent with ID: %s", qUtf8Printable(torrentID.toString()));
     emit torrentAboutToBeRemoved(torrent);
@@ -2549,7 +2557,7 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
     // Remove it from session
     if (deleteOption == TorrentRemoveOption::KeepContent)
     {
-        m_removingTorrents[torrentID] = {torrentName, torrent->actualStorageLocation(), {}, deleteOption};
+        m_removingTorrents[torrentID] = {torrentName, torrent->actualStorageLocation(), {}, physicalPayloadPaths, deleteOption};
 
         const lt::torrent_handle nativeHandle {torrent->nativeHandle()};
         const auto iter = std::ranges::find_if(asConst(m_moveStorageQueue)
@@ -2571,7 +2579,8 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
     }
     else
     {
-        m_removingTorrents[torrentID] = {torrentName, torrent->actualStorageLocation(), torrent->actualFilePaths(), deleteOption};
+        m_removingTorrents[torrentID] = {torrentName, torrent->actualStorageLocation(), torrent->actualFilePaths()
+                , physicalPayloadPaths, deleteOption};
 
         if (m_moveStorageQueue.size() > 1)
         {
@@ -2826,6 +2835,8 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
     const bool useAutoTMM = loadTorrentParams.useAutoTMM;
     const Path actualSavePath = useAutoTMM ? categorySavePath(loadTorrentParams.category) : loadTorrentParams.savePath;
+    const Path actualDownloadPath = useAutoTMM
+            ? categoryDownloadPath(loadTorrentParams.category) : loadTorrentParams.downloadPath;
 
     bool needFindIncompleteFiles = false;
     PathList filePaths;
@@ -2992,29 +3003,84 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         if (!needFindIncompleteFiles)
             return QtFuture::makeReadyValueFuture(FileSearchResult {.savePath = actualSavePath, .fileNames = filePaths});
 
-        const Path actualDownloadPath = loadTorrentParams.useAutoTMM
-                ? categoryDownloadPath(loadTorrentParams.category) : loadTorrentParams.downloadPath;
         return findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths);
     };
 
-    resolveFileNames().then(this, [this, id, loadTorrentParams = std::move(loadTorrentParams)](const FileSearchResult &result) mutable
+    const bool allowPayloadRename = !addTorrentParams.skipChecking;
+    const InfoHash addInfoHash = infoHash;
+    // Per-torrent final and incomplete roots (not only the path FileSearcher ends up using).
+    const Path finalSaveRoot = actualSavePath;
+    const Path incompleteRoot = actualDownloadPath;
+
+    resolveFileNames().then(this, [this, id, addInfoHash, allowPayloadRename, finalSaveRoot, incompleteRoot
+            , loadTorrentParams = std::move(loadTorrentParams)](const FileSearchResult &result) mutable
     {
         lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
+
+        PathList resolvedFilePaths;
+        if (p.ti)
+        {
+            // Strip incomplete-extension before uniqueness so claims use user payload names.
+            PathList userFilePaths;
+            userFilePaths.reserve(result.fileNames.size());
+            QList<bool> hadIncompleteExt;
+            hadIncompleteExt.reserve(result.fileNames.size());
+            for (const Path &fileName : asConst(result.fileNames))
+            {
+                const bool incomplete = fileName.hasExtension(QB_EXT);
+                hadIncompleteExt.append(incomplete);
+                userFilePaths.append(incomplete ? fileName.removedExtension(QB_EXT) : fileName);
+            }
+
+            // Name must be free under the chosen root, the final save path, and incomplete path.
+            const PathList storageRoots = uniqueStorageRoots(
+                    {result.savePath, finalSaveRoot, incompleteRoot});
+
+            const auto isTaken = [this, &id](const Path &physicalPath) -> bool
+            {
+                return isPhysicalPayloadPathTaken(physicalPath, id);
+            };
+            const auto resolveResult = uniquifyPayloadPaths(
+                    storageRoots, std::move(userFilePaths), allowPayloadRename, isTaken);
+            if (!resolveResult)
+            {
+                LogMsg(tr("Failed to add torrent. Reason: \"%1\"").arg(resolveResult.error()), Log::WARNING);
+                emit addTorrentFailed(addInfoHash, resolveResult.error());
+                return;
+            }
+
+            resolvedFilePaths = resolveResult.value();
+            // Reserve under every root this torrent may write to (current + final + incomplete).
+            reservePendingAddPayload(id, storageRoots, resolvedFilePaths);
+
+            // Restore incomplete extension when FileSearcher requested it.
+            for (qsizetype i = 0; i < resolvedFilePaths.size(); ++i)
+            {
+                if (hadIncompleteExt.at(i))
+                    resolvedFilePaths[i] += QB_EXT;
+            }
+        }
+        else
+        {
+            resolvedFilePaths = result.fileNames;
+        }
 
         p.save_path = result.savePath.toString().toStdString();
         if (p.ti)
         {
             const TorrentInfo torrentInfo {*p.ti};
             const auto nativeIndexes = torrentInfo.nativeIndexes();
-            for (qsizetype i = 0; i < result.fileNames.size(); ++i)
-                p.renamed_files[nativeIndexes[i]] = result.fileNames[i].toString().toStdString();
+            for (qsizetype i = 0; i < resolvedFilePaths.size(); ++i)
+                p.renamed_files[nativeIndexes[i]] = resolvedFilePaths[i].toString().toStdString();
         }
 
         m_nativeSession->async_add_torrent(p);
-        m_addTorrentAlertHandlers.append([this, loadTorrentParams = std::move(loadTorrentParams)](const lt::add_torrent_alert *alert) mutable
+        m_addTorrentAlertHandlers.append([this, id, loadTorrentParams = std::move(loadTorrentParams)](const lt::add_torrent_alert *alert) mutable
         {
             if (alert->error)
             {
+                clearPendingAddPayload(id);
+
                 const QString msg = QString::fromStdString(alert->message());
                 const InfoHash infoHash = getInfoHash(alert->params);
                 if (Torrent *torrent = findTorrent(infoHash); (alert->error == lt::errors::duplicate_torrent) && torrent)
@@ -3035,6 +3101,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
                     alert->handle.queue_position_top();
 
                 TorrentImpl *torrent = createTorrent(alert->handle, std::move(loadTorrentParams));
+                clearPendingAddPayload(id);
                 m_loadedTorrents.append(torrent);
 
                 torrent->requestResumeData(lt::torrent_handle::save_info_dict);
@@ -5447,6 +5514,15 @@ void SessionImpl::handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoH
     {
         m_torrents[torrent->id()] = m_torrents.take(prevID);
         m_changedTorrentIDs[torrent->id()] = prevID;
+
+        if (const auto pending = m_pendingAddPayloadReservations.take(prevID); !pending.isEmpty())
+            m_pendingAddPayloadReservations.insert(currentID, pending);
+
+        for (PendingPayloadReservation &reservation : m_pendingRenamePayloadReservations)
+        {
+            if (reservation.torrentID == prevID)
+                reservation.torrentID = currentID;
+        }
     }
 }
 
@@ -5999,6 +6075,9 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
     if (const InfoHash infoHash = torrent->infoHash(); infoHash.isHybrid())
         m_hybridTorrentsByAltID.insert(TorrentID::fromSHA1Hash(infoHash.v1()), torrent);
 
+    // Occupied top-level names are derived from m_torrents (and removing/pending sets).
+    // No permanent ownership map is kept for loaded torrents.
+
     const ShareLimits torrentShareLimits = torrent->effectiveShareLimits();
     if (!m_seedingLimitTimer->isActive()
         && ((torrentShareLimits.ratioLimit >= 0)
@@ -6013,6 +6092,83 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
         LogMsg(tr("Torrent errored. Torrent: \"%1\". Error: \"%2\"").arg(torrent->name(), torrent->error()), Log::WARNING);
 
     return torrent;
+}
+
+bool SessionImpl::isPhysicalPayloadPathTaken(const Path &physicalPath, const TorrentID &exceptID) const
+{
+    for (const TorrentImpl *torrent : asConst(m_torrents))
+    {
+        if ((torrent->id() == exceptID) || !torrent->hasMetadata())
+            continue;
+        // Claim both current location and configured final/incomplete roots.
+        const QSet<Path> claims = payloadClaimPaths(
+                uniqueStorageRoots({torrent->actualStorageLocation(), torrent->savePath(), torrent->downloadPath()})
+                , torrent->filePaths());
+        if (isPayloadPathTaken(physicalPath, claims))
+            return true;
+    }
+
+    for (auto it = m_removingTorrents.cbegin(); it != m_removingTorrents.cend(); ++it)
+    {
+        if (it.key() == exceptID)
+            continue;
+        if (isPayloadPathTaken(physicalPath, it.value().physicalPayloadPaths))
+            return true;
+    }
+
+    for (auto it = m_pendingAddPayloadReservations.cbegin(); it != m_pendingAddPayloadReservations.cend(); ++it)
+    {
+        if (it.key() == exceptID)
+            continue;
+        if (isPayloadPathTaken(physicalPath, it.value()))
+            return true;
+    }
+
+    // Pending renames from *any* torrent, including exceptID, stay visible so two renames
+    // on the same torrent cannot both reserve the same destination path.
+    for (const PendingPayloadReservation &reservation : asConst(m_pendingRenamePayloadReservations))
+    {
+        if (isPayloadPathTaken(physicalPath, reservation.physicalPaths))
+            return true;
+    }
+
+    return false;
+}
+
+void SessionImpl::reservePendingAddPayload(const TorrentID &id, const PathList &storageRoots, const PathList &filePaths)
+{
+    m_pendingAddPayloadReservations.insert(id, payloadClaimPaths(storageRoots, filePaths));
+}
+
+void SessionImpl::clearPendingAddPayload(const TorrentID &id)
+{
+    m_pendingAddPayloadReservations.remove(id);
+}
+
+std::optional<qint64> SessionImpl::beginPayloadRenameReservation(const TorrentID &id, const PathList &storageRoots
+        , const PathList &currentFilePaths, const PathList &proposedFilePaths)
+{
+    const PathList roots = uniqueStorageRoots(storageRoots);
+    const QSet<Path> currentPaths = payloadClaimPaths(roots, currentFilePaths);
+    const QSet<Path> proposedPaths = payloadClaimPaths(roots, proposedFilePaths);
+
+    for (const Path &path : asConst(proposedPaths))
+    {
+        if (isPayloadPathTaken(path, currentPaths))
+            continue; // still owned by this torrent's current layout
+        if (isPhysicalPayloadPathTaken(path, id))
+            return std::nullopt;
+    }
+
+    const qint64 token = m_nextPayloadReservationToken++;
+    m_pendingRenamePayloadReservations.insert(token
+            , PendingPayloadReservation {.torrentID = id, .physicalPaths = proposedPaths});
+    return token;
+}
+
+void SessionImpl::endPayloadRenameReservation(const qint64 token)
+{
+    m_pendingRenamePayloadReservations.remove(token);
 }
 
 TorrentImpl *SessionImpl::getTorrent(const lt::torrent_handle &nativeHandle) const
@@ -6747,6 +6903,7 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
         });
     }
 
+    // Dropping this entry also frees its topLevelPayloadKeys for new adds.
     m_removingTorrents.erase(removingTorrentDataIter);
 }
 

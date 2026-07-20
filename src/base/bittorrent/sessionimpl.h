@@ -31,6 +31,7 @@
 
 #include <chrono>
 #include <functional>
+#include <optional>
 #include <utility>
 #include <vector>
 
@@ -54,9 +55,11 @@
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "categoryoptions.h"
+#include "infohash.h"
 #include "session.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
+#include "toplevelpayload.h"
 
 class QString;
 class QTimer;
@@ -489,6 +492,16 @@ namespace BitTorrent
                 , const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes);
         void handleTorrentStorageMovingStateChanged(TorrentImpl *torrent);
 
+        // Physical top-level payload uniqueness (session-known torrents only; not unowned disk files).
+        // Occupied absolute paths: active torrents + removing + pending adds + pending renames.
+        bool isPhysicalPayloadPathTaken(const Path &physicalPath, const TorrentID &exceptID) const;
+        void reservePendingAddPayload(const TorrentID &id, const PathList &storageRoots, const PathList &filePaths);
+        void clearPendingAddPayload(const TorrentID &id);
+        // Returns reservation token; empty optional if the rename would collide.
+        std::optional<qint64> beginPayloadRenameReservation(const TorrentID &id, const PathList &storageRoots
+                , const PathList &currentFilePaths, const PathList &proposedFilePaths);
+        void endPayloadRenameReservation(qint64 token);
+
         bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode, MoveStorageContext context);
 
         lt::torrent_handle reloadTorrent(const lt::torrent_handle &currentHandle, lt::add_torrent_params params);
@@ -546,7 +559,15 @@ namespace BitTorrent
             QString name;
             Path contentStoragePath;
             PathList fileNames;
+            // Absolute top-level payload paths; occupied until handleRemovedTorrent finishes.
+            QSet<Path> physicalPayloadPaths;
             TorrentRemoveOption removeOption {};
+        };
+
+        struct PendingPayloadReservation
+        {
+            TorrentID torrentID;
+            QSet<Path> physicalPaths;
         };
 
         explicit SessionImpl(QObject *parent = nullptr);
@@ -843,6 +864,11 @@ namespace BitTorrent
         QHash<TorrentID, TorrentImpl *> m_hybridTorrentsByAltID;
         QHash<TorrentID, RemovingTorrentData> m_removingTorrents;
         QHash<TorrentID, TorrentID> m_changedTorrentIDs;
+        // Temporary absolute payload reservations for in-flight adds (including seed/skip-check).
+        QHash<TorrentID, QSet<Path>> m_pendingAddPayloadReservations;
+        // Temporary absolute payload reservations for in-flight content renames.
+        QHash<qint64, PendingPayloadReservation> m_pendingRenamePayloadReservations;
+        qint64 m_nextPayloadReservationToken = 1;
         QMap<QString, CategoryOptions> m_categories;
         TagSet m_tags;
 

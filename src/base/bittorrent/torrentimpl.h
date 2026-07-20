@@ -310,6 +310,7 @@ namespace BitTorrent
 
         void doRenameFile(int index, const Path &path, int folderRenameJobID = -1);
         void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath) override;
+        void prepareContentRename(const Path &oldPath, const Path &newPath) override;
 
         Path makeActualPath(int index, const Path &path) const;
         Path makeUserPath(const Path &path) const;
@@ -356,6 +357,8 @@ namespace BitTorrent
         QQueue<FileRenameInfo> m_renamingFiles;
         QQueue<FolderRenameInfo> m_renamingFolders;
         int m_nextFolderRenameJobID = 0;
+        // Pending physical payload reservations for in-flight renames (session tokens).
+        QQueue<qint64> m_payloadRenameReservationTokens;
 
         QQueue<EventTrigger> m_statusUpdatedTriggers;
 

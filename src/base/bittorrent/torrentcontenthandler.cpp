@@ -58,6 +58,9 @@ void BitTorrent::TorrentContentHandler::renameFile(const Path &oldPath, const Pa
     if (renamingFileIndex < 0)
         throw RuntimeError(tr("No such file: '%1'.").arg(oldPath.toString()));
 
+    // Any rename can change the torrent's set of physical top-level payload claims.
+    prepareContentRename(oldPath, newPath);
+
     renameFile(renamingFileIndex, newPath);
 }
 
@@ -84,5 +87,13 @@ void BitTorrent::TorrentContentHandler::renameFolder(const Path &oldFolderPath, 
     if (!oldFolderExists)
         throw RuntimeError(tr("No such folder: '%1'.").arg(oldFolderPath.toString()));
 
+    // Any folder rename can change the torrent's set of physical top-level payload claims.
+    prepareContentRename(oldFolderPath, newFolderPath);
+
     doRenameFolder(oldFolderPath, newFolderPath);
+}
+
+void BitTorrent::TorrentContentHandler::prepareContentRename(
+        [[maybe_unused]] const Path &oldPath, [[maybe_unused]] const Path &newPath)
+{
 }

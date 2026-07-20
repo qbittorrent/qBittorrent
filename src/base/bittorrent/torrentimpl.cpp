@@ -76,6 +76,7 @@
 #include "peeraddress.h"
 #include "peerinfo.h"
 #include "sessionimpl.h"
+#include "toplevelpayload.h"
 #include "trackerentry.h"
 
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
@@ -1863,6 +1864,23 @@ void TorrentImpl::doRenameFolder(const Path &oldFolderPath, const Path &newFolde
     }
 }
 
+void TorrentImpl::prepareContentRename(const Path &oldPath, const Path &newPath)
+{
+    const PathList currentPaths = filePaths();
+    const PathList proposedPaths = applyContentRename(currentPaths, oldPath, newPath);
+    const Path currentRoot = actualStorageLocation().isEmpty() ? savePath() : actualStorageLocation();
+    const PathList storageRoots = uniqueStorageRoots({currentRoot, savePath(), downloadPath()});
+
+    const std::optional<qint64> token = m_session->beginPayloadRenameReservation(
+            id(), storageRoots, currentPaths, proposedPaths);
+    if (!token)
+    {
+        throw RuntimeError(tr("The resulting top-level payload path is already used by another torrent."));
+    }
+
+    m_payloadRenameReservationTokens.enqueue(*token);
+}
+
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const
 {
     Q_ASSERT(!m_nativeStatus.torrent_file.expired());
@@ -1913,6 +1931,9 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
 
     p.save_path = savePath.toString().toStdString();
     p.ti = metadata;
+
+    // Paths are now on this torrent object; pending add reservation is no longer needed.
+    m_session->clearPendingAddPayload(id());
 
     if (stopCondition() == StopCondition::MetadataReceived)
     {
@@ -2251,6 +2272,28 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
                 filePaths[i] = Path(it->second);
         }
 
+        // Uniquify under current + final + incomplete roots (including existing renames).
+        // Match add-path policy: skip-checking / seed-mode must not silently rename.
+        const bool allowPayloadRename = !static_cast<bool>(m_ltAddTorrentParams.flags & lt::torrent_flags::seed_mode);
+        const Path currentRoot = actualStorageLocation().isEmpty()
+                ? ((downloadPath().isEmpty() || isFinished() || m_hasFinishedStatus) ? savePath() : downloadPath())
+                : actualStorageLocation();
+        const PathList storageRoots = uniqueStorageRoots({currentRoot, savePath(), downloadPath()});
+        const auto isTaken = [this](const Path &physicalPath) -> bool
+        {
+            return m_session->isPhysicalPayloadPathTaken(physicalPath, id());
+        };
+        const auto resolveResult = uniquifyPayloadPaths(storageRoots, std::move(filePaths), allowPayloadRename, isTaken);
+        if (!resolveResult)
+        {
+            LogMsg(tr("Failed to apply torrent metadata. Torrent: \"%1\". Reason: \"%2\".")
+                    .arg(name(), resolveResult.error()), Log::WARNING);
+            m_maintenanceJob = MaintenanceJob::None;
+            return;
+        }
+        filePaths = resolveResult.value();
+        m_session->reservePendingAddPayload(id(), storageRoots, filePaths);
+
         m_session->findIncompleteFiles(savePath(), downloadPath(), filePaths).then(this
                 , [this](const FileSearchResult &result)
         {
@@ -2415,6 +2458,9 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
                     m_session->handleTorrentContentFolderRenamingFailed(this, folderRenameInfo.newFolderPath
                             , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
                 }
+
+                if (!m_payloadRenameReservationTokens.isEmpty())
+                    m_session->endPayloadRenameReservation(m_payloadRenameReservationTokens.dequeue());
             }
         }
         else
@@ -2422,6 +2468,9 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
             emit fileRenamed(fileIndex, oldFilePath);
 
             m_session->handleTorrentContentFileRenamed(this, fileIndex, oldFilePath);
+
+            if (!m_payloadRenameReservationTokens.isEmpty())
+                m_session->endPayloadRenameReservation(m_payloadRenameReservationTokens.dequeue());
         }
     }
 
@@ -2452,7 +2501,14 @@ void TorrentImpl::handleFileRenameFailed(const lt::file_index_t nativeFileIndex)
 
             m_session->handleTorrentContentFolderRenamingFailed(this, folderRenameInfo.newFolderPath
                     , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+
+            if (!m_payloadRenameReservationTokens.isEmpty())
+                m_session->endPayloadRenameReservation(m_payloadRenameReservationTokens.dequeue());
         }
+    }
+    else if (!m_payloadRenameReservationTokens.isEmpty())
+    {
+        m_session->endPayloadRenameReservation(m_payloadRenameReservationTokens.dequeue());
     }
 
     while (!isMoveInProgress() && m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())

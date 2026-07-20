@@ -77,5 +77,7 @@ namespace BitTorrent
 
     protected:
         virtual void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath) = 0;
+        // Called before any content rename. May throw RuntimeError if payload paths collide.
+        virtual void prepareContentRename(const Path &oldPath, const Path &newPath);
     };
 }

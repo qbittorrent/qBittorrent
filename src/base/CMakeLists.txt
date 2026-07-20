@@ -47,6 +47,7 @@ add_library(qbt_base STATIC
     bittorrent/torrentdescriptor.h
     bittorrent/torrentimpl.h
     bittorrent/torrentinfo.h
+    bittorrent/toplevelpayload.h
     bittorrent/tracker.h
     bittorrent/trackerentry.h
     bittorrent/trackerentrystatus.h
@@ -164,6 +165,7 @@ add_library(qbt_base STATIC
     bittorrent/torrentdescriptor.cpp
     bittorrent/torrentimpl.cpp
     bittorrent/torrentinfo.cpp
+    bittorrent/toplevelpayload.cpp
     bittorrent/tracker.cpp
     bittorrent/trackerentry.cpp
     bittorrent/trackerentrystatus.cpp
