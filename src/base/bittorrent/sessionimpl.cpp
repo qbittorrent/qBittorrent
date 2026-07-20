@@ -1791,6 +1791,46 @@ void SessionImpl::initializeNativeSession()
     m_nativeSessionExtension = nativeSessionExtension.get();
 }
 
+const ParsedIPFilterRule *SessionImpl::findUserIPFilterRule(const lt::address &address) const
+{
+    for (const ParsedIPFilterRule &rule : asConst(m_currentIPFilterRules))
+    {
+        if (isAddressInRange(address, rule.first, rule.last))
+            return &rule;
+    }
+
+    return nullptr;
+}
+
+bool SessionImpl::isManuallyBannedIP(const lt::address &address) const
+{
+    return m_bannedIPs.get().contains(toString(address));
+}
+
+bool SessionImpl::isAddressInRange(const lt::address &address, const lt::address &first, const lt::address &last)
+{
+    if (address.is_v4() != first.is_v4())
+        return false;
+
+    if (address.is_v4() != last.is_v4())
+        return false;
+
+    if (address.is_v4())
+    {
+        const auto addressBytes = address.to_v4().to_bytes();
+        const auto firstBytes = first.to_v4().to_bytes();
+        const auto lastBytes = last.to_v4().to_bytes();
+
+        return ((addressBytes >= firstBytes) && (addressBytes <= lastBytes));
+    }
+
+    const auto addressBytes = address.to_v6().to_bytes();
+    const auto firstBytes = first.to_v6().to_bytes();
+    const auto lastBytes = last.to_v6().to_bytes();
+
+    return ((addressBytes >= firstBytes) && (addressBytes <= lastBytes));
+}
+
 void SessionImpl::processBannedIPs(lt::ip_filter &filter)
 {
     // First, import current filter
@@ -5734,6 +5774,7 @@ void SessionImpl::disableIPFilter()
     // which creates an empty filter and overrides all previously
     // applied bans.
     lt::ip_filter filter;
+    m_currentIPFilterRules.clear();
     processBannedIPs(filter);
     m_nativeSession->set_ip_filter(filter);
 }
@@ -5772,7 +5813,10 @@ void SessionImpl::handleIPFilterParsed(const int ruleCount)
     if (m_filterParser)
     {
         lt::ip_filter filter = m_filterParser->IPfilter();
+        QVector<ParsedIPFilterRule> parsedRules = m_filterParser->IPFilterRules();
+
         processBannedIPs(filter);
+        m_currentIPFilterRules = std::move(parsedRules);
         m_nativeSession->set_ip_filter(filter);
     }
     LogMsg(tr("Successfully parsed the IP filter file. Number of rules applied: %1").arg(ruleCount));
@@ -5782,6 +5826,7 @@ void SessionImpl::handleIPFilterParsed(const int ruleCount)
 void SessionImpl::handleIPFilterError()
 {
     lt::ip_filter filter;
+    m_currentIPFilterRules.clear();
     processBannedIPs(filter);
     m_nativeSession->set_ip_filter(filter);
 
@@ -6175,8 +6220,24 @@ void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *alert)
     switch (alert->reason)
     {
     case lt::peer_blocked_alert::ip_filter:
-        reason = tr("IP filter", "this peer was blocked. Reason: IP filter.");
+    {
+        const lt::address peerAddress = ipEndpoint.address();
+        if (const ParsedIPFilterRule *rule = findUserIPFilterRule(peerAddress))
+        {
+            reason = rule->comment.isEmpty()
+                ? tr("user IP filter", "this peer was blocked. Reason: user IP filter.")
+                : tr("user IP filter - %1", "this peer was blocked. Reason: user IP filter - <comment>.").arg(rule->comment);
+        }
+        else if (isManuallyBannedIP(peerAddress))
+        {
+            reason = tr("manually banned IP address", "this peer was blocked. Reason: manually banned IP address.");
+        }
+        else
+        {
+            reason = tr("libtorrent IP filter", "this peer was blocked. Reason: libtorrent IP filter.");
+        }
         break;
+    }
     case lt::peer_blocked_alert::port_filter:
         reason = tr("filtered port (%1)", "this peer was blocked. Reason: filtered port (8899).").arg(QString::number(ipEndpoint.port()));
         break;

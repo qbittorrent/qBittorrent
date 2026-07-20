@@ -29,6 +29,7 @@
 #include "filterparserthread.h"
 
 #include <cctype>
+#include <vector>
 
 #include <libtorrent/error_code.hpp>
 
@@ -202,8 +203,9 @@ int FilterParserThread::parseDATFilterFile()
             // 001.009.096.105 - 001.009.096.105 , 000 , Some organization
             // The 3rd entry is access level and if above 127 the IP range isn't blocked.
             const int firstComma = findAndNullDelimiter(buffer.data(), ',', start, endOfLine);
+            int secondComma = -1;
             if (firstComma != -1)
-                findAndNullDelimiter(buffer.data(), ',', firstComma + 1, endOfLine);
+                secondComma = findAndNullDelimiter(buffer.data(), ',', firstComma + 1, endOfLine);
 
             // Check if there is an access value (apparently not mandatory)
             if (firstComma != -1)
@@ -266,12 +268,28 @@ int FilterParserThread::parseDATFilterFile()
                 continue;
             }
 
+            QString ruleComment;
+            if (secondComma != -1)
+            {
+                int commentStart = secondComma + 1;
+                while ((commentStart < endOfLine) && std::isspace(static_cast<unsigned char>(buffer.data()[commentStart])))
+                    ++commentStart;
+
+                int commentEnd = endOfLine - 1;
+                while ((commentEnd >= commentStart) && std::isspace(static_cast<unsigned char>(buffer.data()[commentEnd])))
+                    --commentEnd;
+
+                if (commentStart <= commentEnd)
+                    ruleComment = QString::fromUtf8(buffer.data() + commentStart, commentEnd - commentStart + 1);
+            }
+
             start = endOfLine;
 
             // Now Add to the filter
             try
             {
                 m_filter.add_rule(startAddr, endAddr, lt::ip_filter::blocked);
+                recordBlockedRule(startAddr, endAddr, ruleComment);
                 ++ruleCount;
             }
             catch (const std::exception &e)
@@ -454,11 +472,14 @@ int FilterParserThread::parseP2PFilterFile()
                 continue;
             }
 
+            const QString ruleComment = QString::fromUtf8(buffer.data() + start, partsDelimiter - start).trimmed();
+
             start = endOfLine;
 
             try
             {
                 m_filter.add_rule(startAddr, endAddr, lt::ip_filter::blocked);
+                recordBlockedRule(startAddr, endAddr, ruleComment);
                 ++ruleCount;
             }
             catch (const std::exception &e)
@@ -536,9 +557,12 @@ int FilterParserThread::parseP2BFilterFile()
         qDebug ("p2b version 1 or 2");
         unsigned int start, end;
 
-        std::string name;
-        while (getlineInStream(stream, name, '\0') && !m_abort)
+        while (!m_abort)
         {
+            std::string name;
+            if (!getlineInStream(stream, name, '\0'))
+                break;
+
             if (!stream.readRawData(reinterpret_cast<char*>(&start), sizeof(start))
                 || !stream.readRawData(reinterpret_cast<char*>(&end), sizeof(end)))
                 {
@@ -555,6 +579,7 @@ int FilterParserThread::parseP2BFilterFile()
             try
             {
                 m_filter.add_rule(first, last, lt::ip_filter::blocked);
+                recordBlockedRule(first, last, QString::fromStdString(name));
                 ++ruleCount;
             }
             catch (const std::exception &) {}
@@ -571,7 +596,8 @@ int FilterParserThread::parseP2BFilterFile()
         }
 
         namecount = ntohl(namecount);
-        // Reading names although, we don't really care about them
+        std::vector<std::string> names;
+        names.reserve(namecount);
         for (unsigned int i = 0; i < namecount; ++i)
         {
             std::string name;
@@ -580,6 +606,8 @@ int FilterParserThread::parseP2BFilterFile()
                 LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
                 return ruleCount;
             }
+
+            names.push_back(name);
 
             if (m_abort) return ruleCount;
         }
@@ -607,12 +635,17 @@ int FilterParserThread::parseP2BFilterFile()
             // Network byte order to Host byte order
             // asio address_v4 constructor expects it
             // that way
+            const unsigned int nameIndex = ntohl(name);
             const lt::address_v4 first(ntohl(start));
             const lt::address_v4 last(ntohl(end));
             // Apply to bittorrent session
             try
             {
                 m_filter.add_rule(first, last, lt::ip_filter::blocked);
+                const QString ruleName = (nameIndex < names.size())
+                    ? QString::fromStdString(names[nameIndex])
+                    : QString();
+                recordBlockedRule(first, last, ruleName);
                 ++ruleCount;
             }
             catch (const std::exception &) {}
@@ -654,8 +687,19 @@ lt::ip_filter FilterParserThread::IPfilter()
     return m_filter;
 }
 
+QVector<ParsedIPFilterRule> FilterParserThread::IPFilterRules() const
+{
+    return m_blockedRules;
+}
+
+void FilterParserThread::recordBlockedRule(const lt::address &first, const lt::address &last, const QString &comment)
+{
+    m_blockedRules.append({first, last, comment.trimmed()});
+}
+
 void FilterParserThread::run()
 {
+    m_blockedRules.clear();
     qDebug("Processing filter file");
     int ruleCount = 0;
     if (m_filePath.hasExtension(u".p2p"_s))
