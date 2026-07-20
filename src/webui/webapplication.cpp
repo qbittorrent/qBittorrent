@@ -252,10 +252,14 @@ void WebApplication::sendWebUIFile(const Http::HeaderMap &commonHeaders, Http::R
     sendFile(localPath, commonHeaders, responseWriter);
 }
 
-void WebApplication::translateDocument(QString &data) const
+void WebApplication::translateDocument(QString &data, const bool isJavaScript) const
 {
     data.replace(u"${LANG}"_s, m_currentLocale.left(2));
     data.replace(u"${CACHEID}"_s, m_cacheID);
+
+    // translations inside a <script> block (or a .js file) are JS-escaped below. See issue #23488
+    bool inScript = isJavaScript;
+    qsizetype scannedPos = 0;
 
     qsizetype i = 0;
     bool found = true;
@@ -265,6 +269,22 @@ void WebApplication::translateDocument(QString &data) const
         i = data.indexOf(m_trRegex, i, &regexMatch);
         if (i >= 0)
         {
+            // advance the <script> scan up to this match (scannedPos only moves forward: O(n) total)
+            if (!isJavaScript)
+            {
+                for (; scannedPos < i; ++scannedPos)
+                {
+                    if (data[scannedPos] != u'<')
+                        continue;
+
+                    const QStringView rest = QStringView(data).sliced(scannedPos);
+                    if (rest.startsWith(u"<script", Qt::CaseInsensitive))
+                        inScript = true;
+                    else if (rest.startsWith(u"</script", Qt::CaseInsensitive))
+                        inScript = false;
+                }
+            }
+
             const QStringView sourceText = regexMatch.capturedView(1);
             const QStringView context = regexMatch.capturedView(3);
 
@@ -281,8 +301,12 @@ void WebApplication::translateDocument(QString &data) const
             // 2. The escaped quote/string is wrong for JS. JS use backslash to escape the quote: "\""
             translation.replace(u'"', u"&#34;"_s);
 
+            if (inScript)
+                translation = Utils::String::escapeJSStringHazards(translation);
+
             data.replace(i, regexMatch.capturedLength(), translation);
             i += translation.length();
+            scannedPos = i; // don't rescan the substituted translation
         }
         else
         {
@@ -663,7 +687,7 @@ void WebApplication::sendFile(const Path &path, const Http::HeaderMap &commonHea
     {
         auto dataStr = QString::fromUtf8(data);
         // Translate the file
-        translateDocument(dataStr);
+        translateDocument(dataStr, path.hasExtension(u".js"_s));
 
         // Add the language options
         if (path == (m_rootFolder / Path(PRIVATE_FOLDER) / Path(u"views/preferences.html"_s)))
