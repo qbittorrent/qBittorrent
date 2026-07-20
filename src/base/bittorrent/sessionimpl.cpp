@@ -1660,7 +1660,7 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
         {
             connect(context->startupStorage, &QObject::destroyed, this, [dbPath]
             {
-                Utils::Fs::removeFile(dbPath);
+                std::ignore = Utils::Fs::removeFile(dbPath);
             });
         }
     }
@@ -4051,7 +4051,7 @@ void SessionImpl::setAddTrackersFromURLEnabled(const bool enabled)
             m_updateTrackersFromURLTimer->stop();
             setAdditionalTrackersFromURL({});
             const Path path = specialFolderLocation(SpecialFolder::Data) / Path(ADDITIONAL_TRACKERS_FROM_URL_FILE_NAME);
-            Utils::Fs::removeFile(path);
+            std::ignore = Utils::Fs::removeFile(path);
         }
     }
 }

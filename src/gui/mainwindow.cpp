@@ -2019,7 +2019,7 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
             LogMsg(tr("Python installation success."), Log::INFO);
 
             // Delete installer
-            Utils::Fs::removeFile(exePath);
+            std::ignore = Utils::Fs::removeFile(exePath);
 
             // Reload search engine
             if (Utils::ForeignApps::pythonInfo().isSupportedVersion())

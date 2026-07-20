@@ -162,7 +162,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
             continue;
 
         for (const QString &f : tmpFileList)
-            removeFile(Path(p + f));
+            std::ignore = removeFile(Path(p + f));
 
         // remove directory if empty
         dir.rmdir(p);

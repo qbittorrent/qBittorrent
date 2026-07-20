@@ -409,7 +409,7 @@ void RSSWidget::deleteSelectedItems()
     for (QTreeWidgetItem *item : selectedItems)
     {
         if (!m_ui->feedListWidget->isStickyItem(item))
-            RSS::Session::instance()->removeItem(m_ui->feedListWidget->itemPath(item));
+            std::ignore = RSS::Session::instance()->removeItem(m_ui->feedListWidget->itemPath(item));
     }
 }
 

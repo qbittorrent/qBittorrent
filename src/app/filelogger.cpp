@@ -109,7 +109,7 @@ void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
         }
         if (modificationDate > date)
             break;
-        Utils::Fs::removeFile(Path(file.absoluteFilePath()));
+        std::ignore = Utils::Fs::removeFile(Path(file.absoluteFilePath()));
     }
 }
 
