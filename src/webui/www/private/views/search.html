@@ -176,7 +176,7 @@
 
                 <label for="searchMinSizeFilter" style="margin-left: 15px;">QBT_TR(Size:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
                 <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMinSizeFilter" onchange="qBittorrent.Search.searchSizeFilterChanged()">
-                <select id="searchMinSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()" aria-label="QBT_TR(Min size prefix)QBT_TR[CONTEXT=SearchEngineWidget]">
+                <select id="searchMinSizePrefix" onchange="qBittorrent.Search.searchSizeFilterChanged()" aria-label="QBT_TR(Min size prefix)QBT_TR[CONTEXT=SearchEngineWidget]">
                     <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
                     <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
                     <option value="2" selected>QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
@@ -187,7 +187,7 @@
                 </select>
                 <label for="searchMaxSizeFilter">QBT_TR(to)QBT_TR[CONTEXT=SearchEngineWidget]</label>
                 <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMaxSizeFilter" onchange="qBittorrent.Search.searchSizeFilterChanged()">
-                <select id="searchMaxSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()" aria-label="QBT_TR(Max size prefix)QBT_TR[CONTEXT=SearchEngineWidget]">
+                <select id="searchMaxSizePrefix" onchange="qBittorrent.Search.searchSizeFilterChanged()" aria-label="QBT_TR(Max size prefix)QBT_TR[CONTEXT=SearchEngineWidget]">
                     <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
                     <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
                     <option value="2">QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
@@ -196,6 +196,10 @@
                     <option value="5">QBT_TR(PiB)QBT_TR[CONTEXT=misc]</option>
                     <option value="6">QBT_TR(EiB)QBT_TR[CONTEXT=misc]</option>
                 </select>
+
+                <label for="searchRememberFilters" style="margin-left: 15px;" title="QBT_TR(Save these filter values and reuse them for new searches)QBT_TR[CONTEXT=SearchEngineWidget]">
+                    <input type="checkbox" id="searchRememberFilters" onchange="qBittorrent.Search.searchRememberFiltersChanged()">QBT_TR(Remember filters)QBT_TR[CONTEXT=SearchEngineWidget]
+                </label>
             </div>
         </div>
     </div>

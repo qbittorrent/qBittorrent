@@ -30,6 +30,7 @@
 #include "searchjobwidget.h"
 
 #include <QApplication>
+#include <QCheckBox>
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QHeaderView>
@@ -90,6 +91,13 @@ using Utils::Misc::SizeUnit;
 SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidget *parent)
     : GUIApplicationComponent(app, parent)
     , m_nameFilteringMode {u"Search/FilteringMode"_s}
+    , m_storeRememberFilters {u"Search/RememberFilters"_s}
+    , m_storeMinSeeds {u"Search/MinSeeds"_s}
+    , m_storeMaxSeeds {u"Search/MaxSeeds"_s}
+    , m_storeMinSize {u"Search/MinSize"_s}
+    , m_storeMinSizeUnit {u"Search/MinSizeUnit"_s}
+    , m_storeMaxSize {u"Search/MaxSize"_s}
+    , m_storeMaxSizeUnit {u"Search/MaxSizeUnit"_s}
     , m_id {id}
     , m_ui {new Ui::SearchJobWidget}
 {
@@ -102,6 +110,20 @@ SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidge
     header()->setTextElideMode(Qt::ElideRight);
 
     fillFilterComboBoxes();
+
+    // Restore previously remembered filter values (if the user opted in).
+    // This runs before the filter signals are connected below, so it doesn't
+    // trigger a spurious save of the default values back over the stored ones.
+    m_ui->rememberFilters->setChecked(m_storeRememberFilters.get(false));
+    if (m_ui->rememberFilters->isChecked())
+    {
+        m_ui->minSeeds->setValue(m_storeMinSeeds.get(m_ui->minSeeds->value()));
+        m_ui->maxSeeds->setValue(m_storeMaxSeeds.get(m_ui->maxSeeds->value()));
+        m_ui->minSize->setValue(m_storeMinSize.get(m_ui->minSize->value()));
+        m_ui->minSizeUnit->setCurrentIndex(m_storeMinSizeUnit.get(m_ui->minSizeUnit->currentIndex()));
+        m_ui->maxSize->setValue(m_storeMaxSize.get(m_ui->maxSize->value()));
+        m_ui->maxSizeUnit->setCurrentIndex(m_storeMaxSizeUnit.get(m_ui->maxSizeUnit->currentIndex()));
+    }
 
     // Set Search results list model
     m_searchListModel = new QStandardItemModel(0, SearchSortModel::NB_SEARCH_COLUMNS, this);
@@ -183,6 +205,13 @@ SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidge
     connect(m_ui->maxSize, qOverload<double>(&QDoubleSpinBox::valueChanged), this, &SearchJobWidget::updateSizeFilter);
     connect(m_ui->minSizeUnit, qOverload<int>(&QComboBox::currentIndexChanged), this, &SearchJobWidget::updateSizeFilter);
     connect(m_ui->maxSizeUnit, qOverload<int>(&QComboBox::currentIndexChanged), this, &SearchJobWidget::updateSizeFilter);
+
+    connect(m_ui->rememberFilters, &QCheckBox::toggled, this, [this](const bool checked)
+    {
+        m_storeRememberFilters = checked;
+        if (checked)
+            saveFilters();
+    });
 
     connect(m_ui->resultsBrowser, &QAbstractItemView::doubleClicked, this, &SearchJobWidget::onItemDoubleClicked);
 
@@ -469,6 +498,9 @@ void SearchJobWidget::updateSeedsFilter()
     // we update size and seeds filter parameters in the model even if they are disabled
     m_proxyModel->setSeedsFilter(m_ui->minSeeds->value(), m_ui->maxSeeds->value());
 
+    if (m_ui->rememberFilters->isChecked())
+        saveFilters();
+
     updateResultsCount();
 }
 
@@ -478,7 +510,20 @@ void SearchJobWidget::updateSizeFilter()
     m_proxyModel->setSizeFilter(sizeInBytes(m_ui->minSize->value(), static_cast<SizeUnit>(m_ui->minSizeUnit->currentIndex()))
         , sizeInBytes(m_ui->maxSize->value(), static_cast<SizeUnit>(m_ui->maxSizeUnit->currentIndex())));
 
+    if (m_ui->rememberFilters->isChecked())
+        saveFilters();
+
     updateResultsCount();
+}
+
+void SearchJobWidget::saveFilters()
+{
+    m_storeMinSeeds = m_ui->minSeeds->value();
+    m_storeMaxSeeds = m_ui->maxSeeds->value();
+    m_storeMinSize = m_ui->minSize->value();
+    m_storeMinSizeUnit = m_ui->minSizeUnit->currentIndex();
+    m_storeMaxSize = m_ui->maxSize->value();
+    m_storeMaxSizeUnit = m_ui->maxSizeUnit->currentIndex();
 }
 
 void SearchJobWidget::fillFilterComboBoxes()
