@@ -130,7 +130,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
         m_ui->comboPieceSize->addItem(displaySize, size);
     }
 
-    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Create Torrent"));
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Create torrent"));
     m_ui->textInputPath->setMode(FileSystemPathEdit::Mode::ReadOnly);
 
     connect(m_ui->addFileButton, &QPushButton::clicked, this, &TorrentCreatorDialog::onAddFileButtonClicked);

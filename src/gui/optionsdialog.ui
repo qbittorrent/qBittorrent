@@ -261,7 +261,7 @@
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>Customize UI Theme...</string>
+                  <string>Customize UI theme...</string>
                  </property>
                 </widget>
                </item>
@@ -355,7 +355,7 @@
                <item>
                 <widget class="QGroupBox" name="groupBox_7">
                  <property name="title">
-                  <string>Action on double-click</string>
+                  <string>Action on Double-Click</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_14">
                   <item row="0" column="0">
@@ -985,7 +985,7 @@
             <item>
              <widget class="QGroupBox" name="torrentAdditionBox">
               <property name="title">
-               <string>When adding a torrent</string>
+               <string>When Adding a Torrent</string>
               </property>
               <layout class="QVBoxLayout" name="torrentAdditionBoxLayout">
                <item>
@@ -1125,7 +1125,7 @@
                <item>
                 <widget class="QGroupBox" name="duplicateTorrentGroup">
                  <property name="title">
-                  <string>When adding a duplicate torrent</string>
+                  <string>When Adding a Duplicate Torrent</string>
                  </property>
                  <layout class="QVBoxLayout" name="duplicateTorrentBoxLayout">
                   <item>
@@ -1491,7 +1491,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
             <item>
              <widget class="QGroupBox" name="groupBox_2">
               <property name="title">
-               <string>Automatically add torrents from:</string>
+               <string>Automatically Add Torrents From:</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_38">
                <item>
@@ -1585,7 +1585,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
             <item>
              <widget class="QGroupBox" name="groupExcludedFileNames">
               <property name="title">
-               <string>Excluded file names</string>
+               <string>Excluded File Names</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -1625,7 +1625,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <item>
              <widget class="QGroupBox" name="groupMailNotification">
               <property name="title">
-               <string>Email notification &amp;upon download completion</string>
+               <string>Email Notification &amp;Upon Download Completion</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -1774,7 +1774,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <item>
              <widget class="QGroupBox" name="autoRunBox">
               <property name="title">
-               <string>Run external program</string>
+               <string>Run External Program</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_19">
                <item>
@@ -2079,7 +2079,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <item>
              <widget class="QGroupBox" name="groupI2P">
               <property name="title">
-               <string>I2P (experimental)</string>
+               <string>I2P (Experimental)</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -3323,7 +3323,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <item>
              <widget class="QGroupBox" name="checkEnableAddTrackers">
               <property name="title">
-               <string>A&amp;utomatically append these trackers to new downloads:</string>
+               <string>A&amp;utomatically Append These Trackers to New Downloads:</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -3345,7 +3345,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <item>
              <widget class="QGroupBox" name="checkAddTrackersFromURL">
               <property name="title">
-               <string>Automatically append trackers from URL to new downloads:</string>
+               <string>Automatically Append Trackers from URL to New Downloads:</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -3740,7 +3740,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <item>
              <widget class="QGroupBox" name="checkWebUI">
               <property name="title">
-               <string>Web User Interface (Remote control)</string>
+               <string>Web User Interface (Remote Control)</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -3910,7 +3910,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                   <item>
                    <widget class="QGroupBox" name="groupWebUIAPIKey">
                     <property name="title">
-                     <string>API Key</string>
+                     <string>API key</string>
                     </property>
                     <layout class="QGridLayout" name="gridLayoutAPIKey">
                      <item row="0" column="0">

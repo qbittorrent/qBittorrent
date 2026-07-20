@@ -48,7 +48,7 @@
    <item>
     <widget class="QGroupBox" name="groupBoxSavePath">
      <property name="title">
-      <string>Save at</string>
+      <string>Save At</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -351,7 +351,7 @@
    <item>
     <widget class="QGroupBox" name="torrentShareLimitsBox">
      <property name="title">
-      <string>Torrent share limits</string>
+      <string>Torrent Share Limits</string>
      </property>
      <layout class="QVBoxLayout" name="torrentShareLimitsBoxLayout">
       <item>

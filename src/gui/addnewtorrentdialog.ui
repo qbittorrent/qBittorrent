@@ -110,7 +110,7 @@
            <item>
             <widget class="QGroupBox" name="groupBoxSavePath">
              <property name="title">
-              <string>Save at</string>
+              <string>Save At</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout">
               <item>
@@ -164,7 +164,7 @@
            <item>
             <widget class="QGroupBox" name="groupBoxSettings">
              <property name="title">
-              <string>Torrent options</string>
+              <string>Torrent Options</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_3">
               <item>
@@ -375,7 +375,7 @@
               </sizepolicy>
              </property>
              <property name="title">
-              <string>Torrent information</string>
+              <string>Torrent Information</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_2">
               <item row="0" column="0">
@@ -504,14 +504,14 @@
              <item>
               <widget class="QPushButton" name="buttonSelectAll">
                <property name="text">
-                <string>Select All</string>
+                <string>Select all</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="buttonSelectNone">
                <property name="text">
-                <string>Select None</string>
+                <string>Select none</string>
                </property>
               </widget>
              </item>

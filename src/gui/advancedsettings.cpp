@@ -745,7 +745,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxPeerDSCP.setMinimum(0);
     m_spinBoxPeerDSCP.setMaximum(255);
     m_spinBoxPeerDSCP.setValue(session->peerDSCP());
-    addRow(PEER_DSCP, (tr("Differentiated Services Code Point (DSCP) for connections to peers") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_dscp", u"(?)"))
+    addRow(PEER_DSCP, (tr("Differentiated services code point (DSCP) for connections to peers") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_dscp", u"(?)"))
         , &m_spinBoxPeerDSCP);
     // uTP-TCP mixed mode
     m_comboBoxUtpMixedMode.addItem(tr("Prefer TCP"), QVariant::fromValue(BitTorrent::MixedModeAlgorithm::TCP));

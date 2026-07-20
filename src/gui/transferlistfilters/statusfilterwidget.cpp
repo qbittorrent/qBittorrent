@@ -71,10 +71,10 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     stalled->setData(Qt::DisplayRole, tr("Stalled (0)"));
     stalled->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filter-stalled"_s, u"filterstalled"_s));
     auto *stalledUploading = new QListWidgetItem(this);
-    stalledUploading->setData(Qt::DisplayRole, tr("Stalled Uploading (0)"));
+    stalledUploading->setData(Qt::DisplayRole, tr("Stalled uploading (0)"));
     stalledUploading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"stalledUP"_s));
     auto *stalledDownloading = new QListWidgetItem(this);
-    stalledDownloading->setData(Qt::DisplayRole, tr("Stalled Downloading (0)"));
+    stalledDownloading->setData(Qt::DisplayRole, tr("Stalled downloading (0)"));
     stalledDownloading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"stalledDL"_s));
     auto *checking = new QListWidgetItem(this);
     checking->setData(Qt::DisplayRole, tr("Checking (0)"));
@@ -170,8 +170,8 @@ void StatusFilterWidget::updateTexts()
     item(TorrentFilter::Active)->setData(Qt::DisplayRole, tr("Active (%1)").arg(m_nbActive));
     item(TorrentFilter::Inactive)->setData(Qt::DisplayRole, tr("Inactive (%1)").arg(m_nbInactive));
     item(TorrentFilter::Stalled)->setData(Qt::DisplayRole, tr("Stalled (%1)").arg(m_nbStalled));
-    item(TorrentFilter::StalledUploading)->setData(Qt::DisplayRole, tr("Stalled Uploading (%1)").arg(m_nbStalledUploading));
-    item(TorrentFilter::StalledDownloading)->setData(Qt::DisplayRole, tr("Stalled Downloading (%1)").arg(m_nbStalledDownloading));
+    item(TorrentFilter::StalledUploading)->setData(Qt::DisplayRole, tr("Stalled uploading (%1)").arg(m_nbStalledUploading));
+    item(TorrentFilter::StalledDownloading)->setData(Qt::DisplayRole, tr("Stalled downloading (%1)").arg(m_nbStalledDownloading));
     item(TorrentFilter::Checking)->setData(Qt::DisplayRole, tr("Checking (%1)").arg(m_nbChecking));
     item(TorrentFilter::Moving)->setData(Qt::DisplayRole, tr("Moving (%1)").arg(m_nbMoving));
     item(TorrentFilter::Errored)->setData(Qt::DisplayRole, tr("Errored (%1)").arg(m_nbErrored));

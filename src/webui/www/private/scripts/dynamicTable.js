@@ -1206,7 +1206,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("uploaded_session", "", "QBT_TR(Session Uploaded)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("amount_left", "", "QBT_TR(Remaining)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("time_active", "", "QBT_TR(Time Active)QBT_TR[CONTEXT=TransferListModel]", 100, false);
-            this.newColumn("save_path", "", "QBT_TR(Save path)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("save_path", "", "QBT_TR(Save Path)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("completed", "", "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("max_ratio", "", "QBT_TR(Ratio Limit)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("seen_complete", "", "QBT_TR(Last Seen Complete)QBT_TR[CONTEXT=TransferListModel]", 100, false);
