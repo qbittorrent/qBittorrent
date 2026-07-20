@@ -686,9 +686,11 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
     m_env = env;
     m_sessionStateChange = SessionStateChange::None;
 
-    const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
+    const bool hasApiKeyHeader = m_request.headers.contains(Http::HEADER_X_API_KEY);
+    const QString apiKeyHeader = m_request.headers.value(Http::HEADER_X_API_KEY);
+    const QString authHeader = hasApiKeyHeader ? QString {} : m_request.headers.value(Http::HEADER_AUTHORIZATION);
     const auto [authScheme, authData] = parseAuthorizationHeader(authHeader);
-    const bool isUsingApiKey = (authScheme.compare(BEARER_AUTH, Qt::CaseInsensitive) == 0);
+    const bool isUsingApiKey = hasApiKeyHeader || (authScheme.compare(BEARER_AUTH, Qt::CaseInsensitive) == 0);
 
     Http::HeaderMap commonHeaders = m_prebuiltHeaders;
 
@@ -708,7 +710,7 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
         m_clientAddress = resolveClientAddress();
 
         if (isUsingApiKey)
-            apiKeySessionInitialize(authData);
+            apiKeySessionInitialize(hasApiKeyHeader ? apiKeyHeader : authData);
         else
             cookieSessionInitialize(authScheme, authData);
 
