@@ -493,6 +493,9 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
             <label for="cgnatInterval">QBT_TR(STUN probe interval (ms):)QBT_TR[CONTEXT=OptionsDialog]</label>
             <input type="text" id="cgnatInterval" style="width: 6em;">
         </div>
+        <div class="formRow" style="color: #888; font-size: 0.9em;">
+            QBT_TR(Note: The announced port affects all trackers (IPv4+IPv6). DHT uses the real listen port per address family. This feature is primarily for IPv4-only CGNAT users.)QBT_TR[CONTEXT=OptionsDialog]
+        </div>
     </fieldset>
 
     <fieldset class="settings">
