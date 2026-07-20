@@ -36,7 +36,6 @@
 
 #include "base/pathfwd.h"
 #include "base/tagset.h"
-#include "addtorrenterror.h"
 #include "addtorrentparams.h"
 #include "categoryoptions.h"
 #include "sharelimits.h"
@@ -428,6 +427,8 @@ namespace BitTorrent
         virtual void setIDNSupportEnabled(bool enabled) = 0;
         virtual bool multiConnectionsPerIpEnabled() const = 0;
         virtual void setMultiConnectionsPerIpEnabled(bool enabled) = 0;
+        virtual bool multiConnectionsPerPeerIDEnabled() const = 0;
+        virtual void setMultiConnectionsPerPeerIDEnabled(bool enabled) = 0;
         virtual bool validateHTTPSTrackerCertificate() const = 0;
         virtual void setValidateHTTPSTrackerCertificate(bool enabled) = 0;
         virtual bool isSSRFMitigationEnabled() const = 0;
@@ -486,7 +487,7 @@ namespace BitTorrent
 
     signals:
         void startupProgressUpdated(int progress);
-        void addTorrentFailed(const InfoHash &infoHash, const AddTorrentError &reason);
+        void addTorrentFailed(const InfoHash &infoHash, const QString &reason);
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
@@ -507,6 +508,7 @@ namespace BitTorrent
 
         void torrentAboutToBeRemoved(Torrent *torrent);
         void torrentAdded(Torrent *torrent);
+        void duplicateTorrentDetected(const InfoHash &infoHash, Torrent *torrent, const QString &message);
         void torrentCategoryChanged(Torrent *torrent, const QString &oldCategory);
         void torrentFinished(Torrent *torrent);
         void torrentFinishedChecking(Torrent *torrent);

@@ -32,7 +32,7 @@ jobs:
 
       - name: Install tools
         run: |
-          npm install
+          npm install --allow-remote=root
           npm ls
           echo "::group::npm ls --all"
           npm ls --all
