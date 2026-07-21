@@ -76,6 +76,8 @@ namespace
         NETWORK_IFACE,
         //Optional network address
         NETWORK_IFACE_ADDRESS,
+        // additional interfaces (Multi-WAN)
+        NETWORK_ADDITIONAL_IFACES,
         // behavior
         SAVE_RESUME_DATA_INTERVAL,
         SAVE_STATISTICS_INTERVAL,
@@ -321,6 +323,15 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Construct a QHostAddress to filter malformed strings
     const QHostAddress ifaceAddr {m_comboBoxInterfaceAddress.currentData().toString()};
     session->setNetworkInterfaceAddress(ifaceAddr.toString());
+    // Additional network interfaces (Multi-WAN)
+    QStringList additionalIfaces;
+    for (int i = 0; i < m_listWidgetAdditionalInterfaces.count(); ++i)
+    {
+        const QListWidgetItem *item = m_listWidgetAdditionalInterfaces.item(i);
+        if (item->checkState() == Qt::Checked)
+            additionalIfaces.append(item->data(Qt::UserRole).toString());
+    }
+    session->setAdditionalNetworkInterfaces(additionalIfaces);
     // Announce IP
     // Construct a QHostAddress to filter malformed strings
     const QHostAddress addr(m_lineEditAnnounceIP.text().trimmed());
@@ -836,6 +847,36 @@ void AdvancedSettings::loadAdvancedSettings()
     // Network interface address
     updateInterfaceAddressCombo();
     addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP address to bind to"), &m_comboBoxInterfaceAddress);
+    // Additional network interfaces (Multi-WAN) — peer connections are also bound to these,
+    // letting a single torrent session use more than one active link simultaneously.
+    const QStringList additionalIfaces = session->additionalNetworkInterfaces();
+    const QString primaryIface = session->networkInterface();
+    for (const QNetworkInterface &iface : asConst(QNetworkInterface::allInterfaces()))
+    {
+        const QNetworkInterface::InterfaceFlags flags = iface.flags();
+        const bool alreadySelected = additionalIfaces.contains(iface.name());
+        // Only offer usable WAN links: hide loopback, the interface already chosen as the
+        // primary above (binding it twice would collide), and down interfaces — but keep a
+        // down interface visible if it is already in the saved set, so opening this dialog
+        // does not silently drop a temporarily-disconnected link.
+        if (flags.testFlag(QNetworkInterface::IsLoopBack)
+            || (iface.name() == primaryIface)
+            || (!flags.testFlag(QNetworkInterface::IsUp) && !alreadySelected))
+            continue;
+
+        auto *item = new QListWidgetItem(iface.humanReadableName(), &m_listWidgetAdditionalInterfaces);
+        item->setData(Qt::UserRole, iface.name());
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+        item->setCheckState(alreadySelected ? Qt::Checked : Qt::Unchecked);
+    }
+    m_listWidgetAdditionalInterfaces.setMaximumHeight(120);
+    m_listWidgetAdditionalInterfaces.setToolTip(tr("Bind peer connections to these interfaces in addition to the one above,"
+        " so a single session can use multiple links at once."
+        " For best results leave \"Network interface\" set to \"Any interface\" and select every link you want to use here."
+        " On Linux, using a non-default link for outgoing connections may require the CAP_NET_RAW capability."));
+    connect(&m_listWidgetAdditionalInterfaces, &QListWidget::itemChanged, this, &AdvancedSettings::settingsChanged);
+    addRow(NETWORK_ADDITIONAL_IFACES, tr("Additional interfaces (Multi-WAN)"), &m_listWidgetAdditionalInterfaces);
+    setRowHeight(NETWORK_ADDITIONAL_IFACES, 120);
     // Announce IP
     m_lineEditAnnounceIP.setText(session->announceIP());
     addRow(ANNOUNCE_IP, (tr("IP address reported to trackers (requires restart)")
