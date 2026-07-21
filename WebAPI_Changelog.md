@@ -29,6 +29,9 @@
 * [#24134](https://github.com/qbittorrent/qBittorrent/pull/24134)
   * `transfer/getSpeedLimits` endpoint was added to retrieve global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
   * `transfer/setSpeedLimits` endpoint was added to set global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
+* [#24253](https://github.com/qbittorrent/qBittorrent/pull/24253)
+  * `app/preferences` endpoint includes `max_outstanding_block_requests` option
+  * `app/setPreferences` endpoint allows to set `max_outstanding_block_requests` option
 * [#24135](https://github.com/qbittorrent/qBittorrent/pull/24135)
   * Add `torrents/downloadFile` endpoint with `hash` and `file` as parameters allowing to download a completed file from torrent content
     * `file` accepts either file index or path relative to content root
