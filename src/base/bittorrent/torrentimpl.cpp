@@ -2251,11 +2251,16 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
                 filePaths[i] = Path(it->second);
         }
 
-        m_session->findIncompleteFiles(savePath(), downloadPath(), filePaths).then(this
-                , [this](const FileSearchResult &result)
+        const Path finalSavePath = savePath();
+        m_session->findIncompleteFiles(finalSavePath, downloadPath(), filePaths).then(this
+                , [this, finalSavePath](FileSearchResult result)
         {
             if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
+            {
+                const QSet<Path> pendingRootPaths = m_session->reservePendingTorrentRootPaths(result, finalSavePath);
                 endReceivedMetadataHandling(result.savePath, result.fileNames);
+                m_session->releasePendingTorrentRootPaths(pendingRootPaths);
+            }
         });
     }
     else

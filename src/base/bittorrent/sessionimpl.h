@@ -493,6 +493,9 @@ namespace BitTorrent
 
         lt::torrent_handle reloadTorrent(const lt::torrent_handle &currentHandle, lt::add_torrent_params params);
 
+        QSet<Path> occupiedTorrentRootPaths() const;
+        QSet<Path> reservePendingTorrentRootPaths(FileSearchResult &result, const Path &savePath);
+        void releasePendingTorrentRootPaths(const QSet<Path> &rootPaths);
         QFuture<FileSearchResult> findIncompleteFiles(const Path &savePath, const Path &downloadPath, const PathList &filePaths = {}) const;
 
         void enablePortMapping();
@@ -843,6 +846,7 @@ namespace BitTorrent
         QHash<TorrentID, TorrentImpl *> m_hybridTorrentsByAltID;
         QHash<TorrentID, RemovingTorrentData> m_removingTorrents;
         QHash<TorrentID, TorrentID> m_changedTorrentIDs;
+        QSet<Path> m_pendingTorrentRootPaths;
         QMap<QString, CategoryOptions> m_categories;
         TagSet m_tags;
 
