@@ -2776,6 +2776,13 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     {
         // a duplicate torrent is being added
 
+        if (addTorrentParams.initialStats)
+        {
+            LogMsg(tr("Initial stats supplied for an already-existing torrent were ignored."
+                      " Existing torrent: \"%1\". Torrent infohash: %2")
+                    .arg(torrent->name(), torrent->infoHash().toString()), Log::WARNING);
+        }
+
         if (hasMetadata)
         {
             // Trying to set metadata to existing torrent in case if it has none
@@ -2977,6 +2984,22 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     p.flags |= lt::torrent_flags::duplicate_is_error;
 
     p.added_time = std::time(nullptr);
+
+    // Seed optional lifetime stats
+    if (addTorrentParams.initialStats)
+    {
+        const InitialTorrentStats &s = *addTorrentParams.initialStats;
+        p.total_uploaded = s.totalUploaded;
+        p.total_downloaded = s.totalDownloaded;
+        p.added_time = static_cast<std::time_t>(s.addedTime);
+        p.completed_time = static_cast<std::time_t>(s.completedTime);
+        p.last_seen_complete = static_cast<std::time_t>(s.lastSeenComplete);
+        p.last_upload = static_cast<std::time_t>(s.lastUpload);
+        p.last_download = static_cast<std::time_t>(s.lastDownload);
+        p.active_time = s.activeTime;
+        p.finished_time = s.finishedTime;
+        p.seeding_time = s.seedingTime;
+    }
 
     // Limits
     p.max_connections = maxConnectionsPerTorrent();
