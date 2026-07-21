@@ -44,7 +44,7 @@ ts_folder = os.path.join(www_folder, "translations")
 
 def parseSource(filename, sources):
     print("Parsing %s..." % (os.path.normpath(filename)))
-    with open(filename, encoding='utf-8', mode='r') as file:
+    with open(filename, mode='r', encoding='utf-8') as file:
         regex = re.compile(
             r"QBT_TR\((([^\)]|\)(?!QBT_TR))+)\)QBT_TR\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\]")
         for match in regex.finditer(file.read()):
@@ -112,33 +112,15 @@ def processTranslation(filename, sources):
             ET.SubElement(message, 'translation', {'type': 'unfinished'})
 
     # prettify output xml
-    indent = ' ' * 4
-    root.text = '\n'
+    ET.indent(root, '')
     for context in root.findall('./context'):
-        context.text = '\n' + indent
-        context.tail = '\n'
-        context.find('./name').tail = '\n' + indent
-        messages = context.findall('./message')
-        if len(messages) == 0:
-            continue
-
-        for message in messages:
-            message.text = '\n' + (indent * 2)
-            message.tail = '\n' + indent
-            elems = message.findall('./')
-            if len(elems) == 0:
-                continue
-
-            for elem in elems:
-                elem.tail = '\n' + (indent * 2)
-            elems[-1:][0].tail = '\n' + indent
-        messages[-1:][0].tail = '\n'
+        ET.indent(context, '    ')
 
     try:
-        with open(filename, mode='wb') as file:
-            file.write(b'<?xml version="1.0" encoding="utf-8"?>\n'
-                       b'<!DOCTYPE TS>\n')
-            tree.write(file, encoding='utf-8')
+        with open(filename, mode='w', encoding='utf-8') as file:
+            file.write('<?xml version="1.0" encoding="utf-8"?>\n'
+                       '<!DOCTYPE TS>\n')
+            tree.write(file, encoding='unicode')
     except Exception:
         print('\tFailed to write %s!' % (os.path.normpath(filename)))
 
