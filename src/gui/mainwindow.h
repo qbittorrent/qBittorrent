@@ -113,6 +113,7 @@ public:
 private slots:
     void showFilterContextMenu();
     void desktopNotificationClicked();
+    void resetToolbarToDefault();
     void saveToolbarState() const;
     void saveSettings() const;
     void saveSplitterSettings() const;

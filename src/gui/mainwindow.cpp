@@ -616,6 +616,8 @@ void MainWindow::addToolbarContextMenu()
 
     m_ui->toolBar->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_ui->toolBar, &QWidget::customContextMenuRequested, this, &MainWindow::toolbarMenuRequested);
+    m_toolbarMenu->addAction(tr("Reset Toolbar Buttons"), this, &MainWindow::resetToolbarToDefault);
+    m_toolbarMenu->addSeparator();
     QAction *iconsOnly = m_toolbarMenu->addAction(tr("Icons Only"), this, &MainWindow::toolbarIconsOnly);
     QAction *textOnly = m_toolbarMenu->addAction(tr("Text Only"), this, &MainWindow::toolbarTextOnly);
     QAction *textBesideIcons = m_toolbarMenu->addAction(tr("Text Alongside Icons"), this, &MainWindow::toolbarTextBeside);
@@ -654,6 +656,65 @@ void MainWindow::addToolbarContextMenu()
     default:
         followSystemStyle->setChecked(true);
     }
+}
+
+void MainWindow::resetToolbarToDefault()
+{
+    // Build action map from master list so hidden actions are included
+    QHash<QString, QAction *> actionMap;
+    for (QAction *a : asConst(m_allToolbarActions))
+        actionMap[a->objectName()] = a;
+    m_hiddenToolbarActions.clear();
+    // Remove all non-locked actions and separators
+    const QList<QAction *> current = m_ui->toolBar->actions();
+    for (QAction *a : current)
+    {
+        if ((a == m_spacerAction) || (a == m_columnFilterAction)
+            || (a->objectName() == u"actionLock"_s))
+            break;
+        m_ui->toolBar->removeAction(a);
+    }
+    // Reinsert in default order, each action before spacer in sequence
+    struct DefaultEntry { QString name; bool sepAfter; };
+    const QList<DefaultEntry> defaultOrder = {
+        {u"actionBottomQueuePos"_s, false},
+        {u"actionDecreaseQueuePos"_s, false},
+        {u"actionIncreaseQueuePos"_s, false},
+        {u"actionTopQueuePos"_s, false},
+        {u"actionOpen"_s, false},
+        {u"actionDownloadFromURL"_s, false},
+        {u"actionDelete"_s, true},
+        {u"actionStart"_s, false},
+        {u"actionStop"_s, true},
+        {u"actionOpenDestinationFolder"_s, true},
+        {u"actionCreateTorrent"_s, false},
+        {u"actionOptions"_s, false},
+    };
+    QAction *insertAnchor = m_spacerAction;
+    for (auto it = defaultOrder.rbegin(); it != defaultOrder.rend(); ++it)
+    {
+        if (QAction *a = actionMap.value(it->name))
+        {
+            a->setVisible(true);
+            m_ui->toolBar->insertAction(insertAnchor, a);
+            if (it->sepAfter)
+                m_ui->toolBar->insertSeparator(insertAnchor);
+            insertAnchor = a;
+        }
+    }
+    // Hide queue actions and reset shown flag so loadPreferences re-evaluates
+    const QStringList queueActions = {
+        u"actionTopQueuePos"_s, u"actionIncreaseQueuePos"_s,
+        u"actionDecreaseQueuePos"_s, u"actionBottomQueuePos"_s
+    };
+    for (const QString &name : queueActions)
+    {
+        if (QAction *a = actionMap.value(name))
+            a->setVisible(false);
+    }
+    m_queueActionsShown = false;
+    loadPreferences();
+    saveToolbarState();
 }
 
 void MainWindow::manageCookies()
@@ -728,64 +789,7 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
 
         // Show/Hide submenu
         QMenu *visibilityMenu = buttonMenu.addMenu(tr("Show/Hide Buttons"));
-        visibilityMenu->addAction(tr("Reset to Default"), this, [this]()
-        {
-            // Build action map from master list so hidden actions are included
-            QHash<QString, QAction *> actionMap;
-            for (QAction *a : asConst(m_allToolbarActions))
-                actionMap[a->objectName()] = a;
-            m_hiddenToolbarActions.clear();
-            // Remove all non-locked actions and separators
-            const QList<QAction *> current = m_ui->toolBar->actions();
-            for (QAction *a : current)
-            {
-                if ((a == m_spacerAction) || (a == m_columnFilterAction)
-                    || (a->objectName() == u"actionLock"_s))
-                    break;
-                m_ui->toolBar->removeAction(a);
-            }
-            // Reinsert in default order, each action before spacer in sequence
-            struct DefaultEntry { QString name; bool sepAfter; };
-            const QList<DefaultEntry> defaultOrder = {
-                {u"actionBottomQueuePos"_s, false},
-                {u"actionDecreaseQueuePos"_s, false},
-                {u"actionIncreaseQueuePos"_s, false},
-                {u"actionTopQueuePos"_s, false},
-                {u"actionOpen"_s, false},
-                {u"actionDownloadFromURL"_s, false},
-                {u"actionDelete"_s, true},
-                {u"actionStart"_s, false},
-                {u"actionStop"_s, true},
-                {u"actionOpenDestinationFolder"_s, true},
-                {u"actionCreateTorrent"_s, false},
-                {u"actionOptions"_s, false},
-            };
-            QAction *insertAnchor = m_spacerAction;
-            for (auto it = defaultOrder.rbegin(); it != defaultOrder.rend(); ++it)
-            {
-                if (QAction *a = actionMap.value(it->name))
-                {
-                    a->setVisible(true);
-                    m_ui->toolBar->insertAction(insertAnchor, a);
-                    if (it->sepAfter)
-                        m_ui->toolBar->insertSeparator(insertAnchor);
-                    insertAnchor = a;
-                }
-            }
-            // Hide queue actions and reset shown flag so loadPreferences re-evaluates
-            const QStringList queueActions = {
-                u"actionTopQueuePos"_s, u"actionIncreaseQueuePos"_s,
-                u"actionDecreaseQueuePos"_s, u"actionBottomQueuePos"_s
-            };
-            for (const QString &name : queueActions)
-            {
-                if (QAction *a = actionMap.value(name))
-                    a->setVisible(false);
-            }
-            m_queueActionsShown = false;
-            loadPreferences();
-            saveToolbarState();
-        });
+        visibilityMenu->addAction(tr("Reset to Default"), this, &MainWindow::resetToolbarToDefault);
         visibilityMenu->addSeparator();
         const QStringList queueActionNames = {u"actionTopQueuePos"_s, u"actionIncreaseQueuePos"_s,
             u"actionDecreaseQueuePos"_s, u"actionBottomQueuePos"_s};
