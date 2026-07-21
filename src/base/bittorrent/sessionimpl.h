@@ -284,6 +284,8 @@ namespace BitTorrent
         void setAddTrackersEnabled(bool enabled) override;
         QString additionalTrackers() const override;
         void setAdditionalTrackers(const QString &trackers) override;
+        bool isAddWebSocketTrackersEnabled() const override;
+        void setAddWebSocketTrackersEnabled(bool enabled) override;
         bool isIPFilteringEnabled() const override;
         void setIPFilteringEnabled(bool enabled) override;
         Path IPFilterFile() const override;
@@ -722,6 +724,7 @@ namespace BitTorrent
         CachedSettingValue<QString> m_additionalTrackers;
         CachedSettingValue<bool> m_isAddTrackersFromURLEnabled;
         CachedSettingValue<QString> m_additionalTrackersURL;
+        CachedSettingValue<bool> m_isAddWebSocketTrackersEnabled;
         CachedSettingValue<qreal> m_globalMaxRatio;
         CachedSettingValue<int> m_globalMaxSeedingMinutes;
         CachedSettingValue<int> m_globalMaxInactiveSeedingMinutes;
