@@ -1100,6 +1100,7 @@ bool SessionImpl::setCategoryOptions(const QString &categoryName, const Category
 
     currentOptions = options;
     storeCategories();
+    updateShareLimitsTimer();
 
     for (TorrentImpl *const torrent : asConst(m_torrents))
     {
@@ -1278,6 +1279,8 @@ void SessionImpl::setShareLimits(ShareLimits shareLimits)
         m_globalMaxInactiveSeedingMinutes = shareLimits.inactiveSeedingTimeLimit;
         m_shareLimitAction = shareLimits.action;
         m_shareLimitsMode = shareLimits.mode;
+
+        updateShareLimitsTimer();
     }
 }
 
@@ -5335,6 +5338,7 @@ void SessionImpl::handleTorrentSavePathChanged(TorrentImpl *const torrent)
 
 void SessionImpl::handleTorrentCategoryChanged(TorrentImpl *const torrent, const QString &oldCategory)
 {
+    updateShareLimitsTimer();
     emit torrentCategoryChanged(torrent, oldCategory);
 }
 
