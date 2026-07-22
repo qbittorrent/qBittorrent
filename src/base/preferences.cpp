@@ -760,7 +760,7 @@ bool Preferences::isWebUIEnabled() const
 #else
     const bool defaultValue = false;
 #endif
-    return value(u"Preferences/WebUI/Enabled"_s, defaultValue);
+    return value(u"WebUI/Enabled"_s, defaultValue);
 }
 
 void Preferences::setWebUIEnabled(const bool enabled)
@@ -768,12 +768,12 @@ void Preferences::setWebUIEnabled(const bool enabled)
     if (enabled == isWebUIEnabled())
         return;
 
-    setValue(u"Preferences/WebUI/Enabled"_s, enabled);
+    setValue(u"WebUI/Enabled"_s, enabled);
 }
 
 bool Preferences::isWebUILocalAuthEnabled() const
 {
-    return value(u"Preferences/WebUI/LocalHostAuth"_s, true);
+    return value(u"WebUI/LocalHostAuth"_s, true);
 }
 
 void Preferences::setWebUILocalAuthEnabled(const bool enabled)
@@ -781,12 +781,12 @@ void Preferences::setWebUILocalAuthEnabled(const bool enabled)
     if (enabled == isWebUILocalAuthEnabled())
         return;
 
-    setValue(u"Preferences/WebUI/LocalHostAuth"_s, enabled);
+    setValue(u"WebUI/LocalHostAuth"_s, enabled);
 }
 
 bool Preferences::isWebUIAuthSubnetWhitelistEnabled() const
 {
-    return value(u"Preferences/WebUI/AuthSubnetWhitelistEnabled"_s, false);
+    return value(u"WebUI/AuthSubnetWhitelistEnabled"_s, false);
 }
 
 void Preferences::setWebUIAuthSubnetWhitelistEnabled(const bool enabled)
@@ -794,12 +794,12 @@ void Preferences::setWebUIAuthSubnetWhitelistEnabled(const bool enabled)
     if (enabled == isWebUIAuthSubnetWhitelistEnabled())
         return;
 
-    setValue(u"Preferences/WebUI/AuthSubnetWhitelistEnabled"_s, enabled);
+    setValue(u"WebUI/AuthSubnetWhitelistEnabled"_s, enabled);
 }
 
 QList<Utils::Net::Subnet> Preferences::getWebUIAuthSubnetWhitelist() const
 {
-    const auto subnets = value<QStringList>(u"Preferences/WebUI/AuthSubnetWhitelist"_s);
+    const auto subnets = value<QStringList>(u"WebUI/AuthSubnetWhitelist"_s);
 
     QList<Utils::Net::Subnet> ret;
     ret.reserve(subnets.size());
@@ -821,12 +821,12 @@ void Preferences::setWebUIAuthSubnetWhitelist(QStringList subnets)
         return !Utils::Net::parseSubnet(subnet.trimmed()).has_value();
     });
 
-    setValue(u"Preferences/WebUI/AuthSubnetWhitelist"_s, subnets);
+    setValue(u"WebUI/AuthSubnetWhitelist"_s, subnets);
 }
 
 QString Preferences::getServerDomains() const
 {
-    return value<QString>(u"Preferences/WebUI/ServerDomains"_s, u"*"_s);
+    return value<QString>(u"WebUI/ServerDomains"_s, u"*"_s);
 }
 
 void Preferences::setServerDomains(const QString &str)
@@ -834,12 +834,12 @@ void Preferences::setServerDomains(const QString &str)
     if (str == getServerDomains())
         return;
 
-    setValue(u"Preferences/WebUI/ServerDomains"_s, str);
+    setValue(u"WebUI/ServerDomains"_s, str);
 }
 
 QString Preferences::getWebUIAddress() const
 {
-    return value<QString>(u"Preferences/WebUI/Address"_s, u"*"_s).trimmed();
+    return value<QString>(u"WebUI/Address"_s, u"*"_s).trimmed();
 }
 
 void Preferences::setWebUIAddress(const QString &addr)
@@ -847,12 +847,12 @@ void Preferences::setWebUIAddress(const QString &addr)
     if (addr == getWebUIAddress())
         return;
 
-    setValue(u"Preferences/WebUI/Address"_s, addr.trimmed());
+    setValue(u"WebUI/Address"_s, addr.trimmed());
 }
 
 quint16 Preferences::getWebUIPort() const
 {
-    return value<quint16>(u"Preferences/WebUI/Port"_s, 8080);
+    return value<quint16>(u"WebUI/Port"_s, 8080);
 }
 
 void Preferences::setWebUIPort(const quint16 port)
@@ -861,12 +861,12 @@ void Preferences::setWebUIPort(const quint16 port)
         return;
 
     // cast to `int` type so it will show human readable unit in configuration file
-    setValue(u"Preferences/WebUI/Port"_s, static_cast<int>(port));
+    setValue(u"WebUI/Port"_s, static_cast<int>(port));
 }
 
 bool Preferences::useUPnPForWebUIPort() const
 {
-    return value(u"Preferences/WebUI/UseUPnP"_s, false);
+    return value(u"WebUI/UseUPnP"_s, false);
 }
 
 void Preferences::setUPnPForWebUIPort(const bool enabled)
@@ -874,12 +874,12 @@ void Preferences::setUPnPForWebUIPort(const bool enabled)
     if (enabled == useUPnPForWebUIPort())
         return;
 
-    setValue(u"Preferences/WebUI/UseUPnP"_s, enabled);
+    setValue(u"WebUI/UseUPnP"_s, enabled);
 }
 
 QString Preferences::getWebUIUsername() const
 {
-    return value<QString>(u"Preferences/WebUI/Username"_s, u"admin"_s);
+    return value<QString>(u"WebUI/Username"_s, u"admin"_s);
 }
 
 void Preferences::setWebUIUsername(const QString &username)
@@ -887,12 +887,12 @@ void Preferences::setWebUIUsername(const QString &username)
     if (username == getWebUIUsername())
         return;
 
-    setValue(u"Preferences/WebUI/Username"_s, username);
+    setValue(u"WebUI/Username"_s, username);
 }
 
 QByteArray Preferences::getWebUIPassword() const
 {
-    return value<QByteArray>(u"Preferences/WebUI/Password_PBKDF2"_s);
+    return value<QByteArray>(u"WebUI/Password_PBKDF2"_s);
 }
 
 void Preferences::setWebUIPassword(const QByteArray &password)
@@ -900,12 +900,12 @@ void Preferences::setWebUIPassword(const QByteArray &password)
     if (password == getWebUIPassword())
         return;
 
-    setValue(u"Preferences/WebUI/Password_PBKDF2"_s, password);
+    setValue(u"WebUI/Password_PBKDF2"_s, password);
 }
 
 QString Preferences::getWebUIApiKey() const
 {
-    return value<QString>(u"Preferences/WebUI/APIKey"_s);
+    return value<QString>(u"WebUI/APIKey"_s);
 }
 
 void Preferences::setWebUIApiKey(const QString &apiKey)
@@ -913,12 +913,12 @@ void Preferences::setWebUIApiKey(const QString &apiKey)
     if (apiKey == getWebUIApiKey())
         return;
 
-    setValue(u"Preferences/WebUI/APIKey"_s, apiKey);
+    setValue(u"WebUI/APIKey"_s, apiKey);
 }
 
 int Preferences::getWebUIMaxAuthFailCount() const
 {
-    return value<int>(u"Preferences/WebUI/MaxAuthenticationFailCount"_s, 5);
+    return value<int>(u"WebUI/MaxAuthenticationFailCount"_s, 5);
 }
 
 void Preferences::setWebUIMaxAuthFailCount(const int count)
@@ -926,12 +926,12 @@ void Preferences::setWebUIMaxAuthFailCount(const int count)
     if (count == getWebUIMaxAuthFailCount())
         return;
 
-    setValue(u"Preferences/WebUI/MaxAuthenticationFailCount"_s, count);
+    setValue(u"WebUI/MaxAuthenticationFailCount"_s, count);
 }
 
 std::chrono::seconds Preferences::getWebUIBanDuration() const
 {
-    return std::chrono::seconds(value<int>(u"Preferences/WebUI/BanDuration"_s, 3600));
+    return std::chrono::seconds(value<int>(u"WebUI/BanDuration"_s, 3600));
 }
 
 void Preferences::setWebUIBanDuration(const std::chrono::seconds duration)
@@ -939,12 +939,12 @@ void Preferences::setWebUIBanDuration(const std::chrono::seconds duration)
     if (duration == getWebUIBanDuration())
         return;
 
-    setValue(u"Preferences/WebUI/BanDuration"_s, static_cast<int>(duration.count()));
+    setValue(u"WebUI/BanDuration"_s, static_cast<int>(duration.count()));
 }
 
 int Preferences::getWebUISessionTimeout() const
 {
-    return value<int>(u"Preferences/WebUI/SessionTimeout"_s, 3600);
+    return value<int>(u"WebUI/SessionTimeout"_s, 3600);
 }
 
 void Preferences::setWebUISessionTimeout(const int timeout)
@@ -952,12 +952,12 @@ void Preferences::setWebUISessionTimeout(const int timeout)
     if (timeout == getWebUISessionTimeout())
         return;
 
-    setValue(u"Preferences/WebUI/SessionTimeout"_s, timeout);
+    setValue(u"WebUI/SessionTimeout"_s, timeout);
 }
 
 bool Preferences::isWebUIClickjackingProtectionEnabled() const
 {
-    return value(u"Preferences/WebUI/ClickjackingProtection"_s, true);
+    return value(u"WebUI/ClickjackingProtection"_s, true);
 }
 
 void Preferences::setWebUIClickjackingProtectionEnabled(const bool enabled)
@@ -965,12 +965,12 @@ void Preferences::setWebUIClickjackingProtectionEnabled(const bool enabled)
     if (enabled == isWebUIClickjackingProtectionEnabled())
         return;
 
-    setValue(u"Preferences/WebUI/ClickjackingProtection"_s, enabled);
+    setValue(u"WebUI/ClickjackingProtection"_s, enabled);
 }
 
 bool Preferences::isWebUICSRFProtectionEnabled() const
 {
-    return value(u"Preferences/WebUI/CSRFProtection"_s, true);
+    return value(u"WebUI/CSRFProtection"_s, true);
 }
 
 void Preferences::setWebUICSRFProtectionEnabled(const bool enabled)
@@ -978,12 +978,12 @@ void Preferences::setWebUICSRFProtectionEnabled(const bool enabled)
     if (enabled == isWebUICSRFProtectionEnabled())
         return;
 
-    setValue(u"Preferences/WebUI/CSRFProtection"_s, enabled);
+    setValue(u"WebUI/CSRFProtection"_s, enabled);
 }
 
 bool Preferences::isWebUISecureCookieEnabled() const
 {
-    return value(u"Preferences/WebUI/SecureCookie"_s, true);
+    return value(u"WebUI/SecureCookie"_s, true);
 }
 
 void Preferences::setWebUISecureCookieEnabled(const bool enabled)
@@ -991,12 +991,12 @@ void Preferences::setWebUISecureCookieEnabled(const bool enabled)
     if (enabled == isWebUISecureCookieEnabled())
         return;
 
-    setValue(u"Preferences/WebUI/SecureCookie"_s, enabled);
+    setValue(u"WebUI/SecureCookie"_s, enabled);
 }
 
 bool Preferences::isWebUIHostHeaderValidationEnabled() const
 {
-    return value(u"Preferences/WebUI/HostHeaderValidation"_s, true);
+    return value(u"WebUI/HostHeaderValidation"_s, true);
 }
 
 void Preferences::setWebUIHostHeaderValidationEnabled(const bool enabled)
@@ -1004,12 +1004,12 @@ void Preferences::setWebUIHostHeaderValidationEnabled(const bool enabled)
     if (enabled == isWebUIHostHeaderValidationEnabled())
         return;
 
-    setValue(u"Preferences/WebUI/HostHeaderValidation"_s, enabled);
+    setValue(u"WebUI/HostHeaderValidation"_s, enabled);
 }
 
 bool Preferences::isWebUIHttpsEnabled() const
 {
-    return value(u"Preferences/WebUI/HTTPS/Enabled"_s, false);
+    return value(u"WebUI/HTTPS/Enabled"_s, false);
 }
 
 void Preferences::setWebUIHttpsEnabled(const bool enabled)
@@ -1017,12 +1017,12 @@ void Preferences::setWebUIHttpsEnabled(const bool enabled)
     if (enabled == isWebUIHttpsEnabled())
         return;
 
-    setValue(u"Preferences/WebUI/HTTPS/Enabled"_s, enabled);
+    setValue(u"WebUI/HTTPS/Enabled"_s, enabled);
 }
 
 Path Preferences::getWebUIHttpsCertificatePath() const
 {
-    return value<Path>(u"Preferences/WebUI/HTTPS/CertificatePath"_s);
+    return value<Path>(u"WebUI/HTTPS/CertificatePath"_s);
 }
 
 void Preferences::setWebUIHttpsCertificatePath(const Path &path)
@@ -1030,12 +1030,12 @@ void Preferences::setWebUIHttpsCertificatePath(const Path &path)
     if (path == getWebUIHttpsCertificatePath())
         return;
 
-    setValue(u"Preferences/WebUI/HTTPS/CertificatePath"_s, path);
+    setValue(u"WebUI/HTTPS/CertificatePath"_s, path);
 }
 
 Path Preferences::getWebUIHttpsKeyPath() const
 {
-    return value<Path>(u"Preferences/WebUI/HTTPS/KeyPath"_s);
+    return value<Path>(u"WebUI/HTTPS/KeyPath"_s);
 }
 
 void Preferences::setWebUIHttpsKeyPath(const Path &path)
@@ -1043,12 +1043,12 @@ void Preferences::setWebUIHttpsKeyPath(const Path &path)
     if (path == getWebUIHttpsKeyPath())
         return;
 
-    setValue(u"Preferences/WebUI/HTTPS/KeyPath"_s, path);
+    setValue(u"WebUI/HTTPS/KeyPath"_s, path);
 }
 
 bool Preferences::isAltWebUIEnabled() const
 {
-    return value(u"Preferences/WebUI/AlternativeUIEnabled"_s, false);
+    return value(u"WebUI/AlternativeUIEnabled"_s, false);
 }
 
 void Preferences::setAltWebUIEnabled(const bool enabled)
@@ -1056,12 +1056,12 @@ void Preferences::setAltWebUIEnabled(const bool enabled)
     if (enabled == isAltWebUIEnabled())
         return;
 
-    setValue(u"Preferences/WebUI/AlternativeUIEnabled"_s, enabled);
+    setValue(u"WebUI/AlternativeUIEnabled"_s, enabled);
 }
 
 Path Preferences::getWebUIRootFolder() const
 {
-    return value<Path>(u"Preferences/WebUI/RootFolder"_s);
+    return value<Path>(u"WebUI/RootFolder"_s);
 }
 
 void Preferences::setWebUIRootFolder(const Path &path)
@@ -1069,12 +1069,12 @@ void Preferences::setWebUIRootFolder(const Path &path)
     if (path == getWebUIRootFolder())
         return;
 
-    setValue(u"Preferences/WebUI/RootFolder"_s, path);
+    setValue(u"WebUI/RootFolder"_s, path);
 }
 
 bool Preferences::isWebUICustomHTTPHeadersEnabled() const
 {
-    return value(u"Preferences/WebUI/CustomHTTPHeadersEnabled"_s, false);
+    return value(u"WebUI/CustomHTTPHeadersEnabled"_s, false);
 }
 
 void Preferences::setWebUICustomHTTPHeadersEnabled(const bool enabled)
@@ -1082,12 +1082,12 @@ void Preferences::setWebUICustomHTTPHeadersEnabled(const bool enabled)
     if (enabled == isWebUICustomHTTPHeadersEnabled())
         return;
 
-    setValue(u"Preferences/WebUI/CustomHTTPHeadersEnabled"_s, enabled);
+    setValue(u"WebUI/CustomHTTPHeadersEnabled"_s, enabled);
 }
 
 QString Preferences::getWebUICustomHTTPHeaders() const
 {
-    return value<QString>(u"Preferences/WebUI/CustomHTTPHeaders"_s);
+    return value<QString>(u"WebUI/CustomHTTPHeaders"_s);
 }
 
 void Preferences::setWebUICustomHTTPHeaders(const QString &headers)
@@ -1095,12 +1095,12 @@ void Preferences::setWebUICustomHTTPHeaders(const QString &headers)
     if (headers == getWebUICustomHTTPHeaders())
         return;
 
-    setValue(u"Preferences/WebUI/CustomHTTPHeaders"_s, headers);
+    setValue(u"WebUI/CustomHTTPHeaders"_s, headers);
 }
 
 bool Preferences::isWebUIReverseProxySupportEnabled() const
 {
-    return value(u"Preferences/WebUI/ReverseProxySupportEnabled"_s, false);
+    return value(u"WebUI/ReverseProxySupportEnabled"_s, false);
 }
 
 void Preferences::setWebUIReverseProxySupportEnabled(const bool enabled)
@@ -1108,12 +1108,12 @@ void Preferences::setWebUIReverseProxySupportEnabled(const bool enabled)
     if (enabled == isWebUIReverseProxySupportEnabled())
         return;
 
-    setValue(u"Preferences/WebUI/ReverseProxySupportEnabled"_s, enabled);
+    setValue(u"WebUI/ReverseProxySupportEnabled"_s, enabled);
 }
 
 QString Preferences::getWebUITrustedReverseProxiesList() const
 {
-    return value<QString>(u"Preferences/WebUI/TrustedReverseProxiesList"_s);
+    return value<QString>(u"WebUI/TrustedReverseProxiesList"_s);
 }
 
 void Preferences::setWebUITrustedReverseProxiesList(const QString &addr)
@@ -1121,7 +1121,7 @@ void Preferences::setWebUITrustedReverseProxiesList(const QString &addr)
     if (addr == getWebUITrustedReverseProxiesList())
         return;
 
-    setValue(u"Preferences/WebUI/TrustedReverseProxiesList"_s, addr);
+    setValue(u"WebUI/TrustedReverseProxiesList"_s, addr);
 }
 
 bool Preferences::isDynDNSEnabled() const
