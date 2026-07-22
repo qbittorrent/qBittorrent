@@ -837,6 +837,14 @@ namespace BitTorrent
         using AddTorrentAlertHandler = std::function<void (const lt::add_torrent_alert *alert)>;
         QList<AddTorrentAlertHandler> m_addTorrentAlertHandlers;
 
+        // Diagnostic counters for detecting alert handler queue desynchronization
+        qint64 m_addTorrentCallCount = 0;
+        qint64 m_addTorrentAlertReceivedCount = 0;
+        bool m_desyncWarningLogged = false;
+        // Raw pointers are safe here: timers are parented to `this` and all access
+        // is on the session thread. The set is tracking-only, not owning.
+        QSet<QTimer *> m_addTorrentWatchdogTimers;
+
         QHash<TorrentID, lt::torrent_handle> m_downloadedMetadata;
 
         QHash<TorrentID, TorrentImpl *> m_torrents;
@@ -847,7 +855,6 @@ namespace BitTorrent
         TagSet m_tags;
 
         std::vector<lt::alert *> m_alerts;  // make it a class variable so it can preserve its allocated `capacity`
-        qsizetype m_receivedAddTorrentAlertsCount = 0;
         QList<Torrent *> m_loadedTorrents;
 
         // This field holds amounts of peers reported by trackers in their responses to announces
