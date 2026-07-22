@@ -862,7 +862,27 @@ void Application::allTorrentsFinished()
 
 bool Application::callMainInstance()
 {
-    return m_instanceManager->sendMessage(serializeParams(commandLineArgs()));
+    QStringList messages;
+
+    const auto appendMessage = [&messages](const QBtCommandLineParameters &params)
+    {
+        const QString message = serializeParams(params);
+        if (!message.isEmpty() && !messages.contains(message))
+            messages.append(message);
+    };
+
+    appendMessage(commandLineArgs());
+    for (const QBtCommandLineParameters &params : asConst(m_paramsQueue))
+        appendMessage(params);
+
+    if (messages.isEmpty())
+        messages.append(QString());
+
+    bool result = true;
+    for (const QString &message : asConst(messages))
+        result = m_instanceManager->sendMessage(message) && result;
+
+    return result;
 }
 
 void Application::processParams(const QBtCommandLineParameters &params)
