@@ -71,6 +71,7 @@ add_library(qbt_base STATIC
     http/server.h
     indexrange.h
     interfaces/iapplication.h
+    keyvaluedatastorage.h
     logger.h
     net/dnsupdater.h
     net/downloadhandlerimpl.h
@@ -174,6 +175,7 @@ add_library(qbt_base STATIC
     http/requestparser.cpp
     http/responsewriterimpl.cpp
     http/server.cpp
+    keyvaluedatastorage.cpp
     logger.cpp
     net/dnsupdater.cpp
     net/downloadhandlerimpl.cpp
