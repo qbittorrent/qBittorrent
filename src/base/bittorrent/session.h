@@ -470,6 +470,7 @@ namespace BitTorrent
         virtual void banIP(const QString &ip) = 0;
 
         virtual bool isKnownTorrent(const InfoHash &infoHash) const = 0;
+        virtual void applyAutoCategory(const TorrentDescriptor &torrentDescr, AddTorrentParams *addTorrentParams) const = 0;
         virtual bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) = 0;
         virtual bool removeTorrent(const TorrentID &id, TorrentRemoveOption deleteOption = TorrentRemoveOption::KeepContent) = 0;
         virtual bool downloadMetadata(const TorrentDescriptor &torrentDescr) = 0;
