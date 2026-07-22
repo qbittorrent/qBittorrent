@@ -253,6 +253,7 @@ private:
     bool m_isAuthSubnetWhitelistEnabled = false;
     QList<Utils::Net::Subnet> m_authSubnetWhitelist;
     std::chrono::seconds m_sessionTimeout = 0s;
+    int m_sessionsCountLimit = 0;
     QString m_sessionCookieName;
     QString m_apiKey;
     QString m_username;

@@ -2,6 +2,9 @@
 
 ## 2.16.0
 
+* [#24720](https://github.com/qbittorrent/qBittorrent/pull/24720)
+  * `app/preferences` endpoint includes `web_ui_sessions_count_limit` option
+  * `app/setPreferences` endpoint allows to set `web_ui_sessions_count_limit` option
 * [#24684](https://github.com/qbittorrent/qBittorrent/pull/24684)
   * `app/preferences` endpoint includes `enable_multi_connections_from_same_peer_id` option
   * `app/setPreferences` endpoint allows to set `enable_multi_connections_from_same_peer_id` option

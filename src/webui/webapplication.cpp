@@ -503,6 +503,7 @@ void WebApplication::configure()
     m_isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
     m_authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
     m_sessionTimeout = std::chrono::seconds(pref->getWebUISessionTimeout());
+    m_sessionsCountLimit = std::max(0, pref->getWebUISessionsCountLimit());
     m_sessionCookieName = SESSION_COOKIE_NAME_PREFIX + QString::number(pref->getWebUIPort());
 
     // all sessions need to update the cookie expiration date
@@ -884,6 +885,20 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
 
         return false;
     });
+
+    if (m_sessionsCountLimit > 0)
+    {
+        while (m_sessions.size() >= m_sessionsCountLimit)
+        {
+            const auto coldSessionIter = std::ranges::min_element(m_sessions
+                    , [](const WebSession *lhs, const WebSession *rhs)
+            {
+                return lhs->timestamp() < rhs->timestamp();
+            });
+            delete *coldSessionIter;
+            m_sessions.erase(coldSessionIter);
+        }
+    }
 
     m_currentSession = WebSession::create(sessionType, sessionId);
     m_sessions[m_currentSession->id()] = m_currentSession;
