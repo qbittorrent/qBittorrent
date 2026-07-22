@@ -264,6 +264,33 @@ QList<QUrl> BitTorrent::TorrentDescriptor::urlSeeds() const
     return urlSeeds;
 }
 
+PathList BitTorrent::TorrentDescriptor::filePaths() const
+{
+    if (!m_info)
+        return {};
+
+    const int filesCount = m_info->filesCount();
+    PathList paths;
+    paths.reserve(filesCount);
+#if LIBTORRENT_VERSION_NUM >= 20100
+    const lt::file_storage &ltFileStorage = m_ltAddTorrentParams.ti->layout();
+#else
+    const lt::file_storage &ltFileStorage = m_ltAddTorrentParams.ti->files();
+#endif
+    const QList<lt::file_index_t> nativeIndexes = m_info->nativeIndexes();
+    for (int i = 0; i < filesCount; ++i)
+    {
+        const lt::file_index_t nativeIndex = nativeIndexes[i];
+        const auto &renamedFiles = m_ltAddTorrentParams.renamed_files;
+        if (const auto it = renamedFiles.find(nativeIndex); it != renamedFiles.cend())
+            paths.emplaceBack(Path(it->second));
+        else
+            paths.emplaceBack(Path(ltFileStorage.file_path(nativeIndex)));
+    }
+
+    return paths;
+}
+
 const libtorrent::add_torrent_params &BitTorrent::TorrentDescriptor::ltAddTorrentParams() const
 {
     return m_ltAddTorrentParams;

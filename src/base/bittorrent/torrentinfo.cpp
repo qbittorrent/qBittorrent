@@ -162,8 +162,9 @@ PathList TorrentInfo::filePaths() const
 {
     PathList list;
     list.reserve(filesCount());
+    const lt::file_storage &ltFileStorage = getFileStorage(*m_nativeInfo);
     for (int i = 0; i < filesCount(); ++i)
-        list << filePath(i);
+        list.append(Path(ltFileStorage.file_path(m_nativeIndexes[i])));
 
     return list;
 }

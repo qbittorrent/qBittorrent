@@ -820,7 +820,7 @@ void AddNewTorrentDialog::setupTreeview()
 
     BitTorrent::AddTorrentParams &addTorrentParams = m_currentContext->torrentParams;
     if (addTorrentParams.filePaths.isEmpty())
-        addTorrentParams.filePaths = torrentInfo.filePaths();
+        addTorrentParams.filePaths = torrentDescr.filePaths();
 
     if (addTorrentParams.filePriorities.isEmpty())
     {
