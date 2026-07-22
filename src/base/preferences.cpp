@@ -955,6 +955,19 @@ void Preferences::setWebUISessionTimeout(const int timeout)
     setValue(u"Preferences/WebUI/SessionTimeout"_s, timeout);
 }
 
+int Preferences::getWebUISessionsCountLimit() const
+{
+    return value<int>(u"WebUI/SessionsCountLimit"_s, 15);
+}
+
+void Preferences::setWebUISessionsCountLimit(const int limit)
+{
+    if (limit == getWebUISessionsCountLimit())
+        return;
+
+    setValue(u"WebUI/SessionsCountLimit"_s, limit);
+}
+
 bool Preferences::isWebUIClickjackingProtectionEnabled() const
 {
     return value(u"Preferences/WebUI/ClickjackingProtection"_s, true);

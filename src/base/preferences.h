@@ -207,6 +207,8 @@ public:
     void setWebUIBanDuration(std::chrono::seconds duration);
     int getWebUISessionTimeout() const;
     void setWebUISessionTimeout(int timeout);
+    int getWebUISessionsCountLimit() const;
+    void setWebUISessionsCountLimit(int limit);
 
     // WebUI security
     bool isWebUIClickjackingProtectionEnabled() const;
