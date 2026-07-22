@@ -1030,6 +1030,9 @@ void MainWindow::on_actionExit_triggered()
 #ifdef Q_OS_MACOS
 void MainWindow::on_actionCloseWindow_triggered()
 {
+    if ((currentTabWidget() == m_searchWidget) && m_searchWidget->closeCurrentTab())
+        return;
+
     // On macOS window close is basically equivalent to window hide.
     // If you decide to implement this functionality for other OS,
     // then you will also need ui lock checks like in actionExit.
