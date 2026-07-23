@@ -28,6 +28,7 @@
 
 #include "proptabbar.h"
 
+#include <QAbstractButton>
 #include <QButtonGroup>
 #include <QKeySequence>
 #include <QPushButton>
@@ -98,9 +99,30 @@ PropTabBar::PropTabBar(QWidget *parent)
     speedButton->setShortcut(Qt::ALT | Qt::Key_D);
     addWidget(speedButton);
     m_btnGroup->addButton(speedButton, SpeedTab);
+
+    for (QAbstractButton *button : m_btnGroup->buttons())
+    {
+        button->setCheckable(true);
+        button->setAutoExclusive(true);
+        connect(button, &QAbstractButton::pressed, this, [this, button]()
+        {
+            if (button->isChecked())
+                m_btnGroup->setExclusive(false);
+        });
+        connect(button, &QAbstractButton::released, this, [this]()
+        {
+            m_btnGroup->setExclusive(true);
+        });
+    }
+
     // SIGNAL/SLOT
-    connect(m_btnGroup, &QButtonGroup::idClicked
-            , this, &PropTabBar::setCurrentIndex);
+    connect(m_btnGroup, &QButtonGroup::idToggled, this, [this](const int index, const bool checked)
+    {
+        if (checked && (m_currentIndex != index))
+            setCurrentIndex(index);
+        else if (!checked && !m_btnGroup->exclusive() && (m_currentIndex == index))
+            setCurrentIndex(-1);
+    });
 }
 
 int PropTabBar::currentIndex() const
@@ -117,25 +139,26 @@ void PropTabBar::setCurrentIndex(int index)
     {
         if (m_currentIndex >= 0)
         {
-          m_btnGroup->button(m_currentIndex)->setDown(false);
-          m_currentIndex = -1;
-          emit visibilityToggled(false);
+            QAbstractButton *button = m_btnGroup->button(m_currentIndex);
+            m_currentIndex = -1;
+            m_btnGroup->setExclusive(false);
+            button->setChecked(false);
+            m_btnGroup->setExclusive(true);
+            emit visibilityToggled(false);
         }
         return;
     }
-    // Unselect previous tab
-    if (m_currentIndex >= 0)
-    {
-        m_btnGroup->button(m_currentIndex)->setDown(false);
-    }
-    else
+
+    const bool wasHidden = (m_currentIndex < 0);
+    m_currentIndex = index;
+    m_btnGroup->button(index)->setChecked(true);
+
+    if (wasHidden)
     {
         // Nothing was selected, show!
         emit visibilityToggled(true);
     }
-    // Select the new button
-    m_btnGroup->button(index)->setDown(true);
-    m_currentIndex = index;
+
     // Emit the signal
     emit tabChanged(index);
 }
