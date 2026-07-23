@@ -29,12 +29,18 @@
 #include <algorithm>
 
 #include <QAccessible>
+#include <QGuiApplication>
+#include <QImage>
+#include <QPalette>
 #include <QPushButton>
 #include <QSignalSpy>
 #include <QTest>
 #include <QWidget>
 
 #include "gui/properties/proptabbar.h"
+#ifdef Q_OS_MACOS
+#include "testproptabbar_macos.h"
+#endif
 
 namespace
 {
@@ -55,6 +61,46 @@ namespace
                 , [](const QPushButton *button) { return button->isChecked(); });
     }
 
+#ifdef Q_OS_MACOS
+    QImage buttonImage(QPushButton &button)
+    {
+        return button.grab().toImage();
+    }
+
+    QColor buttonFaceColor(const QImage &image)
+    {
+        return image.pixelColor(image.width() / 6, image.height() / 2);
+    }
+
+    qreal colorDistance(const QColor &lhs, const QColor &rhs)
+    {
+        return std::max({qAbs(lhs.redF() - rhs.redF()), qAbs(lhs.greenF() - rhs.greenF())
+                , qAbs(lhs.blueF() - rhs.blueF()), qAbs(lhs.alphaF() - rhs.alphaF())});
+    }
+
+    QColor compositeOver(const QColor &foreground, const QColor &background)
+    {
+        const qreal foregroundAlpha = foreground.alphaF();
+        return QColor::fromRgbF(
+                (foreground.redF() * foregroundAlpha) + (background.redF() * (1 - foregroundAlpha)),
+                (foreground.greenF() * foregroundAlpha) + (background.greenF() * (1 - foregroundAlpha)),
+                (foreground.blueF() * foregroundAlpha) + (background.blueF() * (1 - foregroundAlpha)));
+    }
+
+    bool containsColor(const QImage &image, const QColor &color, const qreal tolerance)
+    {
+        for (int y = 0; y < image.height(); ++y)
+        {
+            for (int x = 0; x < image.width(); ++x)
+            {
+                if (colorDistance(image.pixelColor(x, y), color) <= tolerance)
+                    return true;
+            }
+        }
+        return false;
+    }
+#endif
+
     void show(QWidget &widget)
     {
         widget.show();
@@ -71,6 +117,67 @@ public:
     TestPropTabBar() = default;
 
 private slots:
+#ifdef Q_OS_MACOS
+    void testSelectedVisualUsesSystemColors_data() const
+    {
+        QTest::addColumn<bool>("darkAppearance");
+        QTest::newRow("light") << false;
+        QTest::newRow("dark") << true;
+    }
+
+    void testSelectedVisualUsesSystemColors() const
+    {
+        if (QGuiApplication::platformName() != QStringLiteral("cocoa"))
+            QSKIP("The macOS accent regression requires the Cocoa platform plugin");
+
+        QFETCH(const bool, darkAppearance);
+        TestMacOS::setApplicationAppearance(darkAppearance);
+        QCOMPARE(TestMacOS::isDarkAppearance(), darkAppearance);
+
+        QWidget parent;
+        PropTabBar tabBar(&parent);
+        show(parent);
+        parent.activateWindow();
+        QTRY_VERIFY(parent.isActiveWindow());
+
+        const QList<QPushButton *> tabButtons = buttons(tabBar);
+        tabBar.setCurrentIndex(PropTabBar::MainTab);
+
+        QPushButton *selectedButton = tabButtons[PropTabBar::MainTab];
+        QPushButton *unselectedButton = tabButtons[PropTabBar::TrackersTab];
+        const QImage selectedImage = buttonImage(*selectedButton);
+        const QColor selectedFace = buttonFaceColor(selectedImage);
+        const QColor unselectedFace = buttonFaceColor(buttonImage(*unselectedButton));
+        const QColor controlAccentColor = TestMacOS::controlAccentColor();
+
+        QVERIFY(selectedFace != unselectedFace);
+        QVERIFY(colorDistance(selectedFace, controlAccentColor) < 0.03);
+        QVERIFY(containsColor(selectedImage, TestMacOS::alternateSelectedControlTextColor(), 0.03));
+
+        QWidget otherWindow;
+        show(otherWindow);
+        otherWindow.activateWindow();
+        QTRY_VERIFY(otherWindow.isActiveWindow());
+        QTRY_VERIFY(!parent.isActiveWindow());
+
+        const QImage inactiveSelectedImage = buttonImage(*selectedButton);
+        const QColor inactiveSelectedFace = buttonFaceColor(inactiveSelectedImage);
+        const QColor inactiveUnselectedFace = buttonFaceColor(buttonImage(*unselectedButton));
+        const QColor inactiveHighlight = selectedButton->palette().color(QPalette::Inactive, QPalette::Highlight);
+        const QColor inactiveHighlightedText = selectedButton->palette()
+                .color(QPalette::Inactive, QPalette::HighlightedText);
+        QVERIFY(inactiveSelectedFace != inactiveUnselectedFace);
+        QVERIFY(colorDistance(inactiveSelectedFace, inactiveHighlight) < 0.01);
+        QVERIFY(containsColor(inactiveSelectedImage
+                , compositeOver(inactiveHighlightedText, inactiveHighlight), 0.03));
+    }
+
+    void cleanup() const
+    {
+        TestMacOS::resetApplicationAppearance();
+    }
+#endif
+
     void testAccessibleSelectionState() const
     {
         QWidget parent;
@@ -151,6 +258,34 @@ private slots:
         QCOMPARE(tabBar.currentIndex(), PropTabBar::TrackersTab);
         QCOMPARE(checkedButtonCount(tabButtons), 1);
         QVERIFY(tabButtons[PropTabBar::TrackersTab]->isChecked());
+    }
+
+    void testKeyboardInteraction() const
+    {
+        QWidget parent;
+        PropTabBar tabBar(&parent);
+        show(parent);
+
+        const QList<QPushButton *> tabButtons = buttons(tabBar);
+        QPushButton *mainButton = tabButtons[PropTabBar::MainTab];
+        QSignalSpy tabChangedSpy(&tabBar, &PropTabBar::tabChanged);
+        QSignalSpy visibilitySpy(&tabBar, &PropTabBar::visibilityToggled);
+
+        mainButton->setFocus();
+        QTest::keyClick(mainButton, Qt::Key_Space);
+        QCOMPARE(tabBar.currentIndex(), PropTabBar::MainTab);
+        QCOMPARE(checkedButtonCount(tabButtons), 1);
+
+        QTest::keyClick(mainButton, Qt::Key_Space);
+        QCOMPARE(tabBar.currentIndex(), -1);
+        QCOMPARE(checkedButtonCount(tabButtons), 0);
+
+        QTest::keyClick(mainButton, Qt::Key_Space);
+        QCOMPARE(tabBar.currentIndex(), PropTabBar::MainTab);
+        QCOMPARE(checkedButtonCount(tabButtons), 1);
+
+        QCOMPARE(tabChangedSpy.count(), 2);
+        QCOMPARE(visibilitySpy.count(), 3);
     }
 
     void testAccessibleToggle() const
