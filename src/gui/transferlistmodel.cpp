@@ -174,6 +174,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_CATEGORY: return tr("Category");
             case TR_TAGS: return tr("Tags");
             case TR_CREATE_DATE: return tr("Created On", "Torrent was initially created on 01/01/2010 08:00");
+            case TR_STALLED_FOR: return tr("Stalled For", "How long the torrent has been stuck with no transfer activity");
             case TR_ADD_DATE: return tr("Added On", "Torrent was added to transfer list on 01/01/2010 08:00");
             case TR_SEED_DATE: return tr("Completed On", "Torrent was completed on 01/01/2010 08:00");
             case TR_TRACKER: return tr("Tracker");
@@ -448,6 +449,15 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return reannounceString(torrent->nextAnnounce());
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
+    case TR_STALLED_FOR:
+    {
+        const auto state = torrent->state();
+        if (state != BitTorrent::TorrentState::StalledDownloading
+                && state != BitTorrent::TorrentState::StalledUploading)
+            return {};
+        const qint64 secs = torrent->timeSinceActivity();
+        return (secs > 0) ? Utils::Misc::userFriendlyDuration(secs) : QString {};
+    }
     }
 
     return {};
@@ -533,6 +543,15 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_STALLED_FOR:
+    {
+        const auto state = torrent->state();
+        if (state != BitTorrent::TorrentState::StalledDownloading
+                && state != BitTorrent::TorrentState::StalledUploading)
+            return {};
+        const qint64 secs = torrent->timeSinceActivity();
+        return (secs > 0) ? QVariant(secs) : QVariant();
+    }
     }
 
     return {};
