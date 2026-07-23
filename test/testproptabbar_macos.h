@@ -33,6 +33,7 @@
 
 namespace TestMacOS
 {
+    void activateApplication();
     void setApplicationAppearance(bool dark);
     void resetApplicationAppearance();
     bool isDarkAppearance();

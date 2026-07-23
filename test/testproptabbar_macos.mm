@@ -49,6 +49,22 @@ namespace
     }
 }
 
+void TestMacOS::activateApplication()
+{
+#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 140000
+    if (@available(macOS 14.0, *))
+    {
+        [NSApp activate];
+        return;
+    }
+#endif
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [NSApp activateIgnoringOtherApps:YES];
+#pragma clang diagnostic pop
+}
+
 void TestMacOS::setApplicationAppearance(const bool dark)
 {
     NSApp.appearance = [NSAppearance appearanceNamed:(dark ? NSAppearanceNameDarkAqua : NSAppearanceNameAqua)];

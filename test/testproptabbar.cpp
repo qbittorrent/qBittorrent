@@ -62,6 +62,18 @@ namespace
     }
 
 #ifdef Q_OS_MACOS
+    bool activateWindow(QWidget &widget)
+    {
+        TestMacOS::activateApplication();
+        widget.raise();
+        widget.activateWindow();
+
+        for (int i = 0; (i < 100) && !widget.isActiveWindow(); ++i)
+            QTest::qWait(10);
+
+        return widget.isActiveWindow();
+    }
+
     QImage buttonImage(QPushButton &button)
     {
         return button.grab().toImage();
@@ -137,8 +149,8 @@ private slots:
         QWidget parent;
         PropTabBar tabBar(&parent);
         show(parent);
-        parent.activateWindow();
-        QTRY_VERIFY(parent.isActiveWindow());
+        if (!activateWindow(parent))
+            QSKIP("The Cocoa platform could not activate the test window");
 
         const QList<QPushButton *> tabButtons = buttons(tabBar);
         tabBar.setCurrentIndex(PropTabBar::MainTab);
