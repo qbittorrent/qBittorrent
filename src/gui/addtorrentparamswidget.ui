@@ -345,6 +345,9 @@
       <property name="text">
        <string>Seed mode</string>
       </property>
+      <property name="toolTip">
+       <string>&lt;p&gt;If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.&lt;/p&gt;&lt;p&gt;The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.&lt;/p&gt;</string>
+      </property>
      </widget>
     </widget>
    </item>
