@@ -829,9 +829,13 @@ window.qBittorrent.DynamicTable ??= (() => {
                     this.selectedRows.push(row.rowId);
                 }
                 else if (select) {
-                    const tr = this.getTrByRowId(row.rowId);
-                    if (tr && !tr.classList.contains("invisible"))
+                    if (this.useVirtualList)
                         this.selectedRows.push(row.rowId);
+                    else {
+                        const tr = this.getTrByRowId(row.rowId);
+                        if (tr && !tr.classList.contains("invisible"))
+                            this.selectedRows.push(row.rowId);
+                    }
                 }
             }
             this.setRowClass();
