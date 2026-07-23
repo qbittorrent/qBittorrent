@@ -116,6 +116,38 @@ test("Test compareVersions()", () => {
     cmp("1.2.3.4", "1.2.3.4", 0);
 });
 
+test("Test getTorrentStateInfo()", () => {
+    const getTorrentStateInfo = window.qBittorrent.Misc.getTorrentStateInfo;
+    expect(getTorrentStateInfo("downloading")).toStrictEqual({
+        sortOrder: 1,
+        stateIconClass: "stateDownloading",
+        progressColor: "var(--color-progress-downloading)",
+        statusText: "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]"
+    });
+    expect(Object.isFrozen(getTorrentStateInfo("downloading"))).toBe(true);
+
+    expect(getTorrentStateInfo("stoppedUP")).toStrictEqual({
+        sortOrder: 14,
+        stateIconClass: "stateStoppedUP",
+        progressColor: "var(--color-progress-stopped)",
+        statusText: "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListDelegate]"
+    });
+
+    expect(getTorrentStateInfo("unknown")).toStrictEqual({
+        sortOrder: -1,
+        stateIconClass: "stateError",
+        progressColor: "var(--color-progress-error)",
+        statusText: "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]"
+    });
+
+    expect(getTorrentStateInfo("notARealState")).toStrictEqual({
+        sortOrder: -1,
+        stateIconClass: "stateUnknown",
+        progressColor: "var(--color-progress-default)",
+        statusText: "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]"
+    });
+});
+
 test("Test toFixedPointString()", () => {
     const toFixedPointString = window.qBittorrent.Misc.toFixedPointString;
 
