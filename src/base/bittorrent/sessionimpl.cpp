@@ -574,8 +574,10 @@ SessionImpl::SessionImpl(QObject *parent)
         , [](const ShareLimitAction action) { return (action == ShareLimitAction::Default) ? ShareLimitAction::Stop : action; })
     , m_shareLimitsMode(BITTORRENT_SESSION_KEY(u"ShareLimitsMode"_s), ShareLimitsMode::MatchAny
         , [](const ShareLimitsMode mode) { return (mode == ShareLimitsMode::Default) ? ShareLimitsMode::MatchAny : mode; })
-    , m_savePath(BITTORRENT_SESSION_KEY(u"DefaultSavePath"_s), specialFolderLocation(SpecialFolder::Downloads))
-    , m_downloadPath(BITTORRENT_SESSION_KEY(u"TempPath"_s), (savePath() / Path(u"temp"_s)))
+    , m_savePath(BITTORRENT_SESSION_KEY(u"DefaultSavePath"_s), specialFolderLocation(SpecialFolder::Downloads)
+        , Utils::Fs::expandTilde)
+    , m_downloadPath(BITTORRENT_SESSION_KEY(u"TempPath"_s), (savePath() / Path(u"temp"_s))
+        , Utils::Fs::expandTilde)
     , m_isDownloadPathEnabled(BITTORRENT_SESSION_KEY(u"TempPathEnabled"_s), false)
     , m_useCategoryPathsInManualMode(BITTORRENT_SESSION_KEY(u"UseCategoryPathsInManualMode"_s), false)
     , m_isAutoTMMDisabledByDefault(BITTORRENT_SESSION_KEY(u"DisableAutoTMMByDefault"_s), true)
@@ -959,7 +961,7 @@ Path SessionImpl::categorySavePath(const QString &categoryName, const CategoryOp
     if (categoryName.isEmpty())
         return basePath;
 
-    Path path = options.savePath;
+    Path path = Utils::Fs::expandTilde(options.savePath);
     if (path.isEmpty())
     {
         // use implicit save path
@@ -987,7 +989,7 @@ Path SessionImpl::categoryDownloadPath(const QString &categoryName, const Catego
     if (categoryName.isEmpty())
         return downloadPath();
 
-    Path path = downloadPathOption.path;
+    Path path = Utils::Fs::expandTilde(downloadPathOption.path);
     if (path.isEmpty())
     {
         // use implicit download path
@@ -3349,7 +3351,9 @@ void SessionImpl::removeTorrentsQueue()
 
 void SessionImpl::setSavePath(const Path &path)
 {
-    const auto newPath = (path.isAbsolute() ? path : (specialFolderLocation(SpecialFolder::Downloads) / path));
+    const Path expandedPath = Utils::Fs::expandTilde(path);
+    const Path newPath = (expandedPath.isAbsolute()
+            ? expandedPath : (specialFolderLocation(SpecialFolder::Downloads) / expandedPath));
     if (newPath == m_savePath)
         return;
 
@@ -3363,7 +3367,7 @@ void SessionImpl::setSavePath(const Path &path)
         {
             const QString &categoryName = it.key();
             const CategoryOptions &categoryOptions = it.value();
-            if (categoryOptions.savePath.isRelative())
+            if (Utils::Fs::expandTilde(categoryOptions.savePath).isRelative())
                 affectedCatogories.insert(categoryName);
         }
 
@@ -3389,7 +3393,9 @@ void SessionImpl::setSavePath(const Path &path)
 
 void SessionImpl::setDownloadPath(const Path &path)
 {
-    const Path newPath = (path.isAbsolute() ? path : (savePath() / Path(u"temp"_s) / path));
+    const Path expandedPath = Utils::Fs::expandTilde(path);
+    const Path newPath = (expandedPath.isAbsolute()
+            ? expandedPath : (savePath() / Path(u"temp"_s) / expandedPath));
     if (newPath == m_downloadPath)
         return;
 
@@ -3405,7 +3411,7 @@ void SessionImpl::setDownloadPath(const Path &path)
             const CategoryOptions &categoryOptions = it.value();
             const DownloadPathOption downloadPathOption =
                     categoryOptions.downloadPath.value_or(DownloadPathOption {isDownloadPathEnabled(), downloadPath()});
-            if (downloadPathOption.enabled && downloadPathOption.path.isRelative())
+            if (downloadPathOption.enabled && Utils::Fs::expandTilde(downloadPathOption.path).isRelative())
                 affectedCatogories.insert(categoryName);
         }
 

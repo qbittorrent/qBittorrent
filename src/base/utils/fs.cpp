@@ -477,6 +477,16 @@ Path Utils::Fs::toCanonicalPath(const Path &path)
     return Path(QFileInfo(path.data()).canonicalFilePath());
 }
 
+Path Utils::Fs::expandTilde(const Path &path)
+{
+    const QString pathStr = path.data();
+    if (pathStr == u"~")
+        return homePath();
+    if (pathStr.startsWith(u"~/"))
+        return (homePath() / Path(pathStr.sliced(2)));
+    return path;
+}
+
 Path Utils::Fs::homePath()
 {
     return Path(QDir::homePath());
