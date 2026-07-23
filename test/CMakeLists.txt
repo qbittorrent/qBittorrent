@@ -36,3 +36,24 @@ foreach(testFile ${testFiles})
 
     add_dependencies(check "${testFilename}")
 endforeach()
+
+if (GUI)
+    add_executable(testproptabbar testproptabbar.cpp)
+    if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+        target_sources(testproptabbar PRIVATE testproptabbar_macos.mm)
+    endif()
+    target_link_libraries(testproptabbar PRIVATE Qt::Test qbt_gui)
+    if (WEBUI)
+        target_link_libraries(testproptabbar PRIVATE qbt_webui)
+    endif()
+    add_test(NAME testproptabbar COMMAND testproptabbar)
+    set_tests_properties(testproptabbar PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen")
+    if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+        add_test(NAME testproptabbar_cocoa COMMAND testproptabbar)
+        set_tests_properties(testproptabbar_cocoa PROPERTIES
+            ENVIRONMENT "QT_QPA_PLATFORM=cocoa"
+            RUN_SERIAL TRUE
+        )
+    endif()
+    add_dependencies(check testproptabbar)
+endif()
