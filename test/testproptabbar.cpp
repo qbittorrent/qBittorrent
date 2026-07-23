@@ -133,6 +133,26 @@ private slots:
         QCOMPARE(visibilitySpy.at(2).at(0).toBool(), true);
     }
 
+    void testReleaseOutsideKeepsSelectionExclusive() const
+    {
+        QWidget parent;
+        PropTabBar tabBar(&parent);
+        show(parent);
+
+        const QList<QPushButton *> tabButtons = buttons(tabBar);
+        QTest::mouseClick(tabButtons[PropTabBar::MainTab], Qt::LeftButton);
+
+        QTest::mousePress(tabButtons[PropTabBar::MainTab], Qt::LeftButton);
+        tabButtons[PropTabBar::MainTab]->releaseMouse();
+        QTest::mouseMove(&parent, parent.rect().bottomRight());
+        QTest::mouseRelease(&parent, Qt::LeftButton, Qt::NoModifier, parent.rect().bottomRight());
+
+        QTest::mouseClick(tabButtons[PropTabBar::TrackersTab], Qt::LeftButton);
+        QCOMPARE(tabBar.currentIndex(), PropTabBar::TrackersTab);
+        QCOMPARE(checkedButtonCount(tabButtons), 1);
+        QVERIFY(tabButtons[PropTabBar::TrackersTab]->isChecked());
+    }
+
     void testAccessibleToggle() const
     {
         QWidget parent;
@@ -158,8 +178,17 @@ private slots:
             QVERIFY(tabButtons[index]->isChecked());
         }
 
+        QAccessibleInterface *interface = QAccessible::queryAccessibleInterface(tabButtons[PropTabBar::PeersTab]);
+        QVERIFY(interface);
+        QAccessibleActionInterface *actionInterface = interface->actionInterface();
+        QVERIFY(actionInterface);
+        actionInterface->doAction(QAccessibleActionInterface::toggleAction());
+
+        QCOMPARE(tabBar.currentIndex(), -1);
+        QCOMPARE(checkedButtonCount(tabButtons), 0);
         QCOMPARE(tabChangedSpy.count(), 2);
-        QCOMPARE(visibilitySpy.count(), 0);
+        QCOMPARE(visibilitySpy.count(), 1);
+        QCOMPARE(visibilitySpy.at(0).at(0).toBool(), false);
     }
 };
 

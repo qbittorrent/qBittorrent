@@ -32,6 +32,7 @@
 #include <QButtonGroup>
 #include <QKeySequence>
 #include <QPushButton>
+#include <QSignalBlocker>
 #include <QSpacerItem>
 
 #include "base/global.h"
@@ -43,6 +44,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     setAlignment(Qt::AlignLeft | Qt::AlignCenter);
     setSpacing(3);
     m_btnGroup = new QButtonGroup(this);
+    m_btnGroup->setExclusive(false);
     // General tab
     QPushButton *mainInfosButton = new QPushButton(
 #ifndef Q_OS_MACOS
@@ -104,23 +106,14 @@ PropTabBar::PropTabBar(QWidget *parent)
     {
         button->setCheckable(true);
         button->setAutoExclusive(true);
-        connect(button, &QAbstractButton::pressed, this, [this, button]()
-        {
-            if (button->isChecked())
-                m_btnGroup->setExclusive(false);
-        });
-        connect(button, &QAbstractButton::released, this, [this]()
-        {
-            m_btnGroup->setExclusive(true);
-        });
     }
 
     // SIGNAL/SLOT
     connect(m_btnGroup, &QButtonGroup::idToggled, this, [this](const int index, const bool checked)
     {
-        if (checked && (m_currentIndex != index))
+        if (checked)
             setCurrentIndex(index);
-        else if (!checked && !m_btnGroup->exclusive() && (m_currentIndex == index))
+        else if (m_currentIndex == index)
             setCurrentIndex(-1);
     });
 }
@@ -139,19 +132,23 @@ void PropTabBar::setCurrentIndex(int index)
     {
         if (m_currentIndex >= 0)
         {
-            QAbstractButton *button = m_btnGroup->button(m_currentIndex);
+            const QSignalBlocker blocker {m_btnGroup};
+            m_btnGroup->button(m_currentIndex)->setChecked(false);
             m_currentIndex = -1;
-            m_btnGroup->setExclusive(false);
-            button->setChecked(false);
-            m_btnGroup->setExclusive(true);
             emit visibilityToggled(false);
         }
         return;
     }
 
     const bool wasHidden = (m_currentIndex < 0);
-    m_currentIndex = index;
+    const QSignalBlocker blocker {m_btnGroup};
+    for (QAbstractButton *button : m_btnGroup->buttons())
+    {
+        if (m_btnGroup->id(button) != index)
+            button->setChecked(false);
+    }
     m_btnGroup->button(index)->setChecked(true);
+    m_currentIndex = index;
 
     if (wasHidden)
     {
