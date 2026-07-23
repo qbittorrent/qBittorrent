@@ -16,6 +16,7 @@ add_library(qbt_webui STATIC
     api/transfercontroller.h
     api/serialize/serialize_torrent.h
     clientdatastorage.h
+    pch.h
     webapplication.h
     websession.h
     webui.h
@@ -43,3 +44,9 @@ add_library(qbt_webui STATIC
 target_sources(qbt_webui INTERFACE www/webui.qrc)
 
 target_link_libraries(qbt_webui PRIVATE qbt_base)
+
+if (ENABLE_PCH)
+    target_precompile_headers(qbt_webui PRIVATE
+        "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/pch.h>"
+    )
+endif()
