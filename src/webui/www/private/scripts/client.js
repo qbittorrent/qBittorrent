@@ -201,7 +201,7 @@ window.qBittorrent.Client ??= (() => {
         new MochaUI.Window({
             id: id,
             icon: "images/qbittorrent-tray.svg",
-            title: title,
+            title: window.qBittorrent.Misc.escapeHtml(title),
             loadMethod: "iframe",
             contentURL: contentURL.toString(),
             scrollbars: true,
