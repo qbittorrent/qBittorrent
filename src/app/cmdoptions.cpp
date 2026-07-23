@@ -322,7 +322,7 @@ namespace
     constexpr const BoolOption RELATIVE_FASTRESUME {u"relative-fastresume"};
     constexpr const StringOption SAVE_PATH_OPTION {u"save-path"};
     constexpr const TriStateBoolOption STOPPED_OPTION {u"add-stopped", true};
-    constexpr const BoolOption SKIP_HASH_CHECK_OPTION {u"skip-hash-check"};
+    constexpr const BoolOption SEED_MODE_OPTION {u"seed-mode"};
     constexpr const StringOption CATEGORY_OPTION {u"category"};
     constexpr const BoolOption SEQUENTIAL_OPTION {u"sequential"};
     constexpr const BoolOption FIRST_AND_LAST_OPTION {u"first-and-last"};
@@ -398,7 +398,7 @@ namespace
             + wrapText(QCoreApplication::translate("CMD Options", "Options when adding new torrents:"), 0) + u'\n'
             + SAVE_PATH_OPTION.usage(QCoreApplication::translate("CMD Options", "path")) + wrapText(QCoreApplication::translate("CMD Options", "Torrent save path")) + u'\n'
                              + STOPPED_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Add torrents as running or stopped")) + u'\n'
-            + SKIP_HASH_CHECK_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Skip hash check")) + u'\n'
+            + SEED_MODE_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Seed mode")) + u'\n'
             + CATEGORY_OPTION.usage(QCoreApplication::translate("CMD Options", "name"))
             + wrapText(QCoreApplication::translate("CMD Options", "Assign torrents to category. If the category doesn't exist, it will be "
                                     "created.")) + u'\n'
@@ -437,7 +437,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
 {
     addTorrentParams.savePath = Path(SAVE_PATH_OPTION.value(env));
     addTorrentParams.category = CATEGORY_OPTION.value(env);
-    addTorrentParams.skipChecking = SKIP_HASH_CHECK_OPTION.value(env);
+    addTorrentParams.seedMode = SEED_MODE_OPTION.value(env);
     addTorrentParams.sequential = SEQUENTIAL_OPTION.value(env);
     addTorrentParams.firstLastPiecePriority = FIRST_AND_LAST_OPTION.value(env);
     addTorrentParams.addStopped = STOPPED_OPTION.value(env);
@@ -514,9 +514,9 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             {
                 result.addTorrentParams.addStopped = STOPPED_OPTION.value(arg);
             }
-            else if (arg == SKIP_HASH_CHECK_OPTION)
+            else if (arg == SEED_MODE_OPTION)
             {
-                result.addTorrentParams.skipChecking = true;
+                result.addTorrentParams.seedMode = true;
             }
             else if (arg == CATEGORY_OPTION)
             {

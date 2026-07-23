@@ -285,9 +285,9 @@
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QCheckBox" name="skipCheckingCheckBox">
+                 <widget class="QCheckBox" name="seedModeCheckBox">
                   <property name="text">
-                   <string>Skip hash check</string>
+                   <string>Seed mode</string>
                   </property>
                  </widget>
                 </item>

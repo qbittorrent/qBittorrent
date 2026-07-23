@@ -1082,7 +1082,7 @@ void TorrentsController::addAction()
 {
     const QStringList urls = params()[u"urls"_s].split(u'\n', Qt::SkipEmptyParts);
 
-    const bool skipChecking = parseBool(params()[u"skip_checking"_s]).value_or(false);
+    const bool seedMode = parseBool(params()[u"seedMode"_s]).value_or(false);
     const bool seqDownload = parseBool(params()[u"sequentialDownload"_s]).value_or(false);
     const bool firstLastPiece = parseBool(params()[u"firstLastPiecePrio"_s]).value_or(false);
     const bool addForced = parseBool(params()[u"forced"_s]).value_or(false);
@@ -1154,7 +1154,7 @@ void TorrentsController::addAction()
         .stopCondition = stopCondition,
         .filePaths = {},
         .filePriorities = {},
-        .skipChecking = skipChecking,
+        .seedMode = seedMode,
         .contentLayout = contentLayout,
         .useAutoTMM = autoTMM,
         .uploadLimit = upLimit,

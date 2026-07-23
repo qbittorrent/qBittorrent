@@ -333,7 +333,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QCheckBox" name="skipCheckingCheckBox">
+     <widget class="QCheckBox" name="seedModeCheckBox">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -343,7 +343,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Skip hash check</string>
+       <string>Seed mode</string>
       </property>
      </widget>
     </widget>
