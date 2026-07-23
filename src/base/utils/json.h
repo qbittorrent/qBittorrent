@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Mike Tzou (Chocobo1)
+ * Copyright (C) 2026  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,33 +28,10 @@
 
 #pragma once
 
-#include <QByteArray>
-#include <QHash>
-#include <QJsonObject>
-#include <QList>
+#include <QJsonValue>
 #include <QString>
 
-#include "headermap.h"
-
-namespace Http
+namespace Utils::Json
 {
-    struct UploadedFile
-    {
-        QString filename;
-        QString type;  // MIME type
-        QByteArray data;
-    };
-
-    struct Request
-    {
-        QString version;
-        QString method;
-        QString path;
-        HeaderMap headers;
-        QHash<QString, QByteArray> query;
-        QHash<QString, QString> posts;
-        QList<UploadedFile> files;
-        bool isJson = false;  // whether content type was application/json
-        QJsonObject jsonBody;  // the parsed JSON body
-    };
+    QString flattenValue(const QJsonValue &value);
 }

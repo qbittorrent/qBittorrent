@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Mike Tzou (Chocobo1)
+ * Copyright (C) 2026  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,35 +26,36 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "json.h"
 
-#include <QByteArray>
-#include <QHash>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QJsonObject>
-#include <QList>
-#include <QString>
+#include <QVariant>
 
-#include "headermap.h"
+#include "base/global.h"
 
-namespace Http
+QString Utils::Json::flattenValue(const QJsonValue &value)
 {
-    struct UploadedFile
+    switch (value.type())
     {
-        QString filename;
-        QString type;  // MIME type
-        QByteArray data;
-    };
-
-    struct Request
-    {
-        QString version;
-        QString method;
-        QString path;
-        HeaderMap headers;
-        QHash<QString, QByteArray> query;
-        QHash<QString, QString> posts;
-        QList<UploadedFile> files;
-        bool isJson = false;  // whether content type was application/json
-        QJsonObject jsonBody;  // the parsed JSON body
-    };
+    case QJsonValue::String:
+        return value.toString();
+    case QJsonValue::Bool:
+        return value.toBool() ? u"true"_s : u"false"_s;
+    case QJsonValue::Double:
+        {
+            // use `toInteger()` because `toVariant()` can emit scientific notation
+            const double number = value.toDouble();
+            if (const qint64 integer = value.toInteger(); static_cast<double>(integer) == number)
+                return QString::number(integer);
+            return value.toVariant().toString();
+        }
+    case QJsonValue::Array:
+        return QString::fromUtf8(QJsonDocument(value.toArray()).toJson(QJsonDocument::Compact));
+    case QJsonValue::Object:
+        return QString::fromUtf8(QJsonDocument(value.toObject()).toJson(QJsonDocument::Compact));
+    default:
+        return {};
+    }
 }
