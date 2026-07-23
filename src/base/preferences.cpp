@@ -877,6 +877,53 @@ void Preferences::setUPnPForWebUIPort(const bool enabled)
     setValue(u"Preferences/WebUI/UseUPnP"_s, enabled);
 }
 
+bool Preferences::isWebUIUnixSocketEnabled() const
+{
+#if defined(Q_OS_UNIX)
+    return value(u"Preferences/WebUI/UnixSocket/Enabled"_s, false);
+#else
+    return false;
+#endif
+}
+
+void Preferences::setWebUIUnixSocketEnabled(const bool enabled)
+{
+#if defined(Q_OS_UNIX)
+    if (enabled == isWebUIUnixSocketEnabled())
+        return;
+
+    setValue(u"Preferences/WebUI/UnixSocket/Enabled"_s, enabled);
+#else
+    Q_UNUSED(enabled)
+#endif
+}
+
+QString Preferences::getWebUIUnixSocketPath() const
+{
+    return value<QString>(u"Preferences/WebUI/UnixSocket/Path"_s);
+}
+
+void Preferences::setWebUIUnixSocketPath(const QString &path)
+{
+    if (path == getWebUIUnixSocketPath())
+        return;
+
+    setValue(u"Preferences/WebUI/UnixSocket/Path"_s, path);
+}
+
+int Preferences::getWebUIUnixSocketPermissions() const
+{
+    return value<int>(u"Preferences/WebUI/UnixSocket/Permissions"_s, 0666);
+}
+
+void Preferences::setWebUIUnixSocketPermissions(const int permissions)
+{
+    if (permissions == getWebUIUnixSocketPermissions())
+        return;
+
+    setValue(u"Preferences/WebUI/UnixSocket/Permissions"_s, permissions);
+}
+
 QString Preferences::getWebUIUsername() const
 {
     return value<QString>(u"Preferences/WebUI/Username"_s, u"admin"_s);

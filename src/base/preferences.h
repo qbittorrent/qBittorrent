@@ -242,6 +242,14 @@ public:
     QString getWebUITrustedReverseProxiesList() const;
     void setWebUITrustedReverseProxiesList(const QString &addr);
 
+    // Unix socket
+    bool isWebUIUnixSocketEnabled() const;
+    void setWebUIUnixSocketEnabled(bool enabled);
+    QString getWebUIUnixSocketPath() const;
+    void setWebUIUnixSocketPath(const QString &path);
+    int getWebUIUnixSocketPermissions() const;
+    void setWebUIUnixSocketPermissions(int permissions);
+
     // Dynamic DNS
     bool isDynDNSEnabled() const;
     void setDynDNSEnabled(bool enabled);

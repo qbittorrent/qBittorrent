@@ -1418,6 +1418,14 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->textWebUIAddress->setText(pref->getWebUIAddress());
     m_ui->spinWebUIPort->setValue(pref->getWebUIPort());
     m_ui->checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
+#if defined(Q_OS_UNIX)
+    m_ui->groupWebUIUnixSocket->setChecked(pref->isWebUIUnixSocketEnabled());
+    m_ui->textUnixSocketPath->setText(pref->getWebUIUnixSocketPath());
+    m_ui->spinUnixSocketPermissions->setDisplayIntegerBase(8);
+    m_ui->spinUnixSocketPermissions->setValue(pref->getWebUIUnixSocketPermissions());
+#else
+    m_ui->groupWebUIUnixSocket->hide();
+#endif
     m_ui->checkWebUIHttps->setChecked(pref->isWebUIHttpsEnabled());
     webUIHttpsCertChanged(pref->getWebUIHttpsCertificatePath());
     webUIHttpsKeyChanged(pref->getWebUIHttpsKeyPath());
@@ -1462,6 +1470,9 @@ void OptionsDialog::loadWebUITabOptions()
     connect(m_ui->textWebUIAddress, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinWebUIPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUIUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupWebUIUnixSocket, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textUnixSocketPath, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinUnixSocketPermissions, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUIHttps, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::webUIHttpsCertChanged);
@@ -1513,6 +1524,9 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setWebUIAddress(m_ui->textWebUIAddress->text());
     pref->setWebUIPort(m_ui->spinWebUIPort->value());
     pref->setUPnPForWebUIPort(m_ui->checkWebUIUPnP->isChecked());
+    pref->setWebUIUnixSocketEnabled(m_ui->groupWebUIUnixSocket->isChecked());
+    pref->setWebUIUnixSocketPath(m_ui->textUnixSocketPath->text());
+    pref->setWebUIUnixSocketPermissions(m_ui->spinUnixSocketPermissions->value());
     pref->setWebUIHttpsEnabled(m_ui->checkWebUIHttps->isChecked());
     pref->setWebUIHttpsCertificatePath(m_ui->textWebUIHttpsCert->selectedPath());
     pref->setWebUIHttpsKeyPath(m_ui->textWebUIHttpsKey->selectedPath());
