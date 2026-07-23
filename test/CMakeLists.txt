@@ -39,14 +39,16 @@ foreach(testFile ${testFiles})
 endforeach()
 
 if (GUI AND (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
-    find_package(Python3 REQUIRED COMPONENTS Interpreter)
+    if (WEBUI)
+        find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
-    add_test(NAME testsessionpaths
-        COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/testsessionpaths.py"
-            "$<TARGET_FILE:qbt_app>")
-    set_tests_properties(testsessionpaths PROPERTIES
-        RUN_SERIAL TRUE
-        TIMEOUT 120
-    )
-    add_dependencies(check qbt_app)
+        add_test(NAME testsessionpaths
+            COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/testsessionpaths.py"
+                "$<TARGET_FILE:qbt_app>")
+        set_tests_properties(testsessionpaths PROPERTIES
+            RUN_SERIAL TRUE
+            TIMEOUT 120
+        )
+        add_dependencies(check qbt_app)
+    endif()
 endif()
