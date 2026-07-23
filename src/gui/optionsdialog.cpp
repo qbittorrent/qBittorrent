@@ -2240,6 +2240,11 @@ void OptionsDialog::showConnectionTab()
     m_ui->tabSelection->setCurrentRow(TAB_CONNECTION);
 }
 
+void OptionsDialog::showRSSTab()
+{
+    m_ui->tabSelection->setCurrentRow(TAB_RSS);
+}
+
 #ifndef DISABLE_WEBUI
 void OptionsDialog::on_registerDNSBtn_clicked()
 {
