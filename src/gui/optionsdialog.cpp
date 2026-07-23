@@ -1436,6 +1436,7 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->spinBanCounter->setValue(pref->getWebUIMaxAuthFailCount());
     m_ui->spinBanDuration->setValue(pref->getWebUIBanDuration().count());
     m_ui->spinSessionTimeout->setValue(pref->getWebUISessionTimeout());
+    m_ui->spinBoxWebUISessionsCountLimit->setValue(pref->getWebUISessionsCountLimit());
     // Alternative UI
     m_ui->groupAltWebUI->setChecked(pref->isAltWebUIEnabled());
     m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUIRootFolder());
@@ -1480,6 +1481,7 @@ void OptionsDialog::loadWebUITabOptions()
     connect(m_ui->spinBanCounter, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinBanDuration, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinSessionTimeout, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinBoxWebUISessionsCountLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->groupAltWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -1519,6 +1521,7 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setWebUIMaxAuthFailCount(m_ui->spinBanCounter->value());
     pref->setWebUIBanDuration(std::chrono::seconds {m_ui->spinBanDuration->value()});
     pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
+    pref->setWebUISessionsCountLimit(m_ui->spinBoxWebUISessionsCountLimit->value());
     // Authentication
     if (const QString username = webUIUsername(); isValidWebUIUsernameLength(username) && isValidWebUIUsernameCharacterSet(username))
         pref->setWebUIUsername(username);

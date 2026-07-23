@@ -4078,6 +4078,40 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     </item>
                    </layout>
                   </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="layoutWebUISessionsCountLimit">
+                    <item>
+                     <widget class="QLabel" name="labelWebUISessionsCountLimit">
+                      <property name="text">
+                       <string>Sessions count limit:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="spinBoxWebUISessionsCountLimit">
+                      <property name="specialValueText">
+                       <string>Unlimited</string>
+                      </property>
+                      <property name="maximum">
+                       <number>2147483647</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="spacerWebUISessionsCountLimit">
+                      <property name="orientation">
+                       <enum>Qt::Orientation::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </item>
                  </layout>
                 </widget>
                </item>

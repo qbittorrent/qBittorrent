@@ -1110,6 +1110,10 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
                         <td><label for="webUISessionTimeoutInput">QBT_TR(Session timeout:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                         <td><input type="number" id="webUISessionTimeoutInput" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]</td>
                     </tr>
+                    <tr>
+                        <td><label for="webUISessionsCountLimitInput">QBT_TR(Sessions count limit:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td><input type="number" id="webUISessionsCountLimitInput" style="width: 7em;" min="0">&nbsp;&nbsp;<i>QBT_TR(0 means unlimited)QBT_TR[CONTEXT=OptionsDialog]</i></td>
+                    </tr>
                 </tbody>
             </table>
         </fieldset>
@@ -2705,6 +2709,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("webUIMaxAuthFailCountInput").value = Number(pref.web_ui_max_auth_fail_count);
                     document.getElementById("webUIBanDurationInput").value = Number(pref.web_ui_ban_duration);
                     document.getElementById("webUISessionTimeoutInput").value = Number(pref.web_ui_session_timeout);
+                    document.getElementById("webUISessionsCountLimitInput").value = Number(pref.web_ui_sessions_count_limit);
 
                     // API key
                     if (pref.web_ui_api_key.length > 0) {
@@ -3205,6 +3210,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["web_ui_max_auth_fail_count"] = Number(document.getElementById("webUIMaxAuthFailCountInput").value);
             settings["web_ui_ban_duration"] = Number(document.getElementById("webUIBanDurationInput").value);
             settings["web_ui_session_timeout"] = Number(document.getElementById("webUISessionTimeoutInput").value);
+            settings["web_ui_sessions_count_limit"] = Number(document.getElementById("webUISessionsCountLimitInput").value);
 
             // Use alternative WebUI
             const alternative_webui_enabled = document.getElementById("use_alt_webui_checkbox").checked;
