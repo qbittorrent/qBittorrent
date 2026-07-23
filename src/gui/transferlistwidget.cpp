@@ -242,6 +242,19 @@ TransferListModel *TransferListWidget::getSourceModel() const
     return m_listModel;
 }
 
+void TransferListWidget::scrollToAndSelect(const BitTorrent::Torrent *torrent)
+{
+    const QModelIndex sourceIdx = m_listModel->indexOfTorrent(torrent);
+    if (!sourceIdx.isValid())
+        return;
+    const QModelIndex proxyIdx = m_sortFilterModel->mapFromSource(sourceIdx);
+    if (!proxyIdx.isValid())
+        return;
+    selectionModel()->select(proxyIdx, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+    scrollTo(proxyIdx, QAbstractItemView::EnsureVisible);
+    setFocus();
+}
+
 void TransferListWidget::previewFile(const Path &filePath)
 {
     Utils::Gui::openPath(filePath);
