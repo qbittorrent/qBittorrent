@@ -1030,6 +1030,12 @@ void MainWindow::on_actionExit_triggered()
 #ifdef Q_OS_MACOS
 void MainWindow::on_actionCloseWindow_triggered()
 {
+    if (m_aboutDlg && (QApplication::activeWindow() == m_aboutDlg))
+    {
+        m_aboutDlg->close();
+        return;
+    }
+
     // On macOS window close is basically equivalent to window hide.
     // If you decide to implement this functionality for other OS,
     // then you will also need ui lock checks like in actionExit.
@@ -1117,6 +1123,8 @@ void MainWindow::on_actionAbout_triggered()
     // About dialog
     if (m_aboutDlg)
     {
+        m_aboutDlg->show();
+        m_aboutDlg->raise();
         m_aboutDlg->activateWindow();
     }
     else
