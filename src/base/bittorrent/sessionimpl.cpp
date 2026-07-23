@@ -4096,10 +4096,17 @@ void SessionImpl::updateTrackersFromURL()
     {
         const Path path = specialFolderLocation(SpecialFolder::Data) / ADDITIONAL_TRACKERS_FROM_URL_FILE_NAME;
         Net::DownloadManager::instance()->download(Net::DownloadRequest(url).saveToFile(true).destFileName(path)
-                , Preferences::instance()->useProxyForGeneralPurposes(), this, [this](const Net::DownloadResult &result)
+                , Preferences::instance()->useProxyForGeneralPurposes(), this, [this, path](const Net::DownloadResult &result)
         {
             if (result.status == Net::DownloadStatus::Success)
             {
+                if (!result.contentType.contains(u"text/plain", Qt::CaseInsensitive))
+                {
+                    LogMsg(tr("Cannot add trackers from URL due to unexpected Content-Type. Expected: \"text/plain\". Received: \"%1\".")
+                        .arg(result.contentType), Log::WARNING);
+                    Utils::Fs::removeFile(path);
+                    return;
+                }
                 setAdditionalTrackersFromURL(QString::fromUtf8(result.data));
                 LogMsg(tr("Tracker list updated"), Log::INFO);
                 return;
