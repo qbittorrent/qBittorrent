@@ -829,11 +829,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                     this.selectedRows.push(row.rowId);
                 }
                 else if (select) {
-                    if (this.useVirtualList)
+                    if (this.useVirtualList) {
                         this.selectedRows.push(row.rowId);
-                    else {
+                    } else {
                         const tr = this.getTrByRowId(row.rowId);
-                        if (tr && !tr.classList.contains("invisible"))
+                        if (tr !== null && !tr.classList.contains("invisible"))
                             this.selectedRows.push(row.rowId);
                     }
                 }
