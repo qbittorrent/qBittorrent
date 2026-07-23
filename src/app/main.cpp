@@ -29,9 +29,16 @@
 
 #include <QtSystemDetection>
 
+#include <cerrno>
 #include <chrono>
 #include <cstdlib>
 #include <memory>
+
+#if defined(Q_OS_MACOS) && defined(DISABLE_GUI)
+#include <crt_externs.h>
+#include <fcntl.h>
+#include <spawn.h>
+#endif
 
 #ifdef Q_OS_UNIX
 #include <sys/resource.h>
@@ -89,6 +96,10 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
+#if defined(Q_OS_MACOS) && defined(DISABLE_GUI)
+    constexpr char DAEMONIZED_ENV_NAME[] = "QBT_DAEMONIZED";
+#endif
+
     void displayBadArgMessage(const QString &message)
     {
         const QString help = QCoreApplication::translate("Main", "Run application with -h option to read about command line parameters.");
@@ -178,6 +189,11 @@ namespace
 // Main
 int main(int argc, char *argv[])
 {
+#if defined(Q_OS_MACOS) && defined(DISABLE_GUI)
+    const bool isDaemonized = (qgetenv(DAEMONIZED_ENV_NAME) == "1");
+    qunsetenv(DAEMONIZED_ENV_NAME);
+#endif
+
 #ifdef DISABLE_GUI
     setvbuf(stdout, nullptr, _IONBF, 0);
 #endif
@@ -272,6 +288,61 @@ int main(int argc, char *argv[])
                 legalNoticeShown = true;
         }
 
+#if defined(Q_OS_MACOS) && defined(DISABLE_GUI)
+        if (params.shouldDaemonize && !isDaemonized)
+        {
+            const QByteArray executablePath = QCoreApplication::applicationFilePath().toLocal8Bit();
+            app.reset(); // Release the instance lock before starting the daemon
+
+            posix_spawn_file_actions_t fileActions {};
+            int result = posix_spawn_file_actions_init(&fileActions);
+            const bool fileActionsInitialized = (result == 0);
+            if (result == 0)
+                result = posix_spawn_file_actions_addopen(&fileActions, STDIN_FILENO, "/dev/null", O_RDWR, 0);
+            if (result == 0)
+                result = posix_spawn_file_actions_addopen(&fileActions, STDOUT_FILENO, "/dev/null", O_RDWR, 0);
+            if (result == 0)
+                result = posix_spawn_file_actions_addopen(&fileActions, STDERR_FILENO, "/dev/null", O_RDWR, 0);
+
+            posix_spawnattr_t attributes {};
+            bool attributesInitialized = false;
+            if (result == 0)
+            {
+                result = posix_spawnattr_init(&attributes);
+                attributesInitialized = (result == 0);
+            }
+            if (result == 0)
+            {
+                constexpr short flags = static_cast<short>(POSIX_SPAWN_SETSID | POSIX_SPAWN_CLOEXEC_DEFAULT);
+                result = posix_spawnattr_setflags(&attributes, flags);
+            }
+            if ((result == 0) && !qputenv(DAEMONIZED_ENV_NAME, "1"))
+            {
+                qCritical("Failed to set daemon child marker");
+                result = ENOMEM;
+            }
+
+            pid_t childPID = 0;
+            if (result == 0)
+                result = posix_spawn(&childPID, executablePath.constData(), &fileActions, &attributes, argv, *_NSGetEnviron());
+
+            if (attributesInitialized)
+                posix_spawnattr_destroy(&attributes);
+            if (fileActionsInitialized)
+                posix_spawn_file_actions_destroy(&fileActions);
+
+            if (result != 0)
+            {
+                const QString errorMessage = QCoreApplication::translate("Main", "Error when daemonizing. Reason: \"%1\". Error code: %2.")
+                    .arg(QString::fromLocal8Bit(strerror(result)), QString::number(result));
+                qCritical("%s", qUtf8Printable(errorMessage));
+                return EXIT_FAILURE;
+            }
+
+            return EXIT_SUCCESS;
+        }
+#endif
+
 #ifdef Q_OS_MACOS
         // Since Apple made difficult for users to set PATH, we set here for convenience.
         // Users are supposed to install Homebrew Python for search function.
@@ -286,7 +357,7 @@ int main(int argc, char *argv[])
             app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
-#if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
+#if defined(DISABLE_GUI) && !defined(Q_OS_WIN) && !defined(Q_OS_MACOS)
         if (params.shouldDaemonize)
         {
             app.reset(); // Destroy current application instance
