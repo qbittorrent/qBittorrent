@@ -113,6 +113,9 @@ namespace
         PYTHON_EXECUTABLE_PATH,
         START_SESSION_PAUSED,
         SESSION_SHUTDOWN_TIMEOUT,
+        // libtorrent filename deduplication
+        FIX_MUTATED_FILENAMES,
+        USE_DEDUPED_FILENAMES,
 
         // libtorrent section
         LIBTORRENT_HEADER,
@@ -393,6 +396,10 @@ void AdvancedSettings::saveAdvancedSettings() const
 #endif
 
     session->setTorrentContentRemoveOption(m_comboBoxTorrentContentRemoveOption.currentData().value<BitTorrent::TorrentContentRemoveOption>());
+
+    // libtorrent filename deduplication
+    pref->setFixMutatedFilenamesEnabled(m_checkBoxFixMutatedFilenames.isChecked());
+    pref->setUseDedupedFilenamesEnabled(m_checkBoxUseDedupedFilenames.isChecked());
 }
 
 #ifndef QBT_USES_LIBTORRENT2
@@ -1027,6 +1034,13 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(I2P_OUTBOUND_LENGTH, (tr("I2P outbound length") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_outbound_length", u"(?)"))
         , &m_spinBoxI2POutboundLength);
 #endif
+    // libtorrent filename deduplication
+    m_checkBoxFixMutatedFilenames.setChecked(pref->isFixMutatedFilenamesEnabled());
+    addRow(FIX_MUTATED_FILENAMES, (tr("Fix libtorrent filename mutations on startup."))
+        , &m_checkBoxFixMutatedFilenames);
+    m_checkBoxUseDedupedFilenames.setChecked(pref->isUseDedupedFilenamesEnabled());
+    addRow(USE_DEDUPED_FILENAMES, (tr("Use libtorrent filename deduplication."))
+        , &m_checkBoxUseDedupedFilenames);
 }
 
 template <typename T>
