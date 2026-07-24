@@ -1,3 +1,31 @@
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  FTA7700
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
 #include "customizabletoolbar.h"
 
 #include <QAction>
@@ -40,9 +68,8 @@ void CustomizableToolBar::actionEvent(QActionEvent *event)
     QToolBar::actionEvent(event);
     if (event->type() == QEvent::ActionAdded)
     {
-        QWidget *w = widgetForAction(event->action());
-        if (w)
-            w->installEventFilter(this);
+        if (QWidget *widget = widgetForAction(event->action()))
+            widget->installEventFilter(this);
     }
 }
 
@@ -55,79 +82,91 @@ bool CustomizableToolBar::eventFilter(QObject *watched, QEvent *event)
     if (!widget)
         return QToolBar::eventFilter(watched, event);
 
+    auto *mouseEvent = static_cast<QMouseEvent *>(event);
+
     switch (event->type())
     {
     case QEvent::MouseButtonPress:
-    {
-        m_dragJustFinished = false;
-
-        auto *me = static_cast<QMouseEvent *>(event);
-        if (me->button() != Qt::LeftButton)
-            break;
-
-        QAction *action = nullptr;
-        for (QAction *a : asConst(actions()))
-        {
-            if (widgetForAction(a) == widget)
-            {
-                action = a;
-                break;
-            }
-        }
-
-        if (!action || m_lockedActions.contains(action) || action->isSeparator())
-            break;
-
-        m_dragAction = action;
-        m_dragWidget = widget;
-        m_dragStartPos = me->globalPosition().toPoint();
-        m_dragOffsetX = me->position().toPoint().x();
+        if (handleMousePress(widget, mouseEvent))
+            return true;
         break;
-    }
 
     case QEvent::MouseMove:
-    {
-        if (!m_dragAction)
-            break;
-
-        auto *me = static_cast<QMouseEvent *>(event);
-        const QPoint globalPos = me->globalPosition().toPoint();
-
-        if (!m_dragging)
-        {
-            if ((globalPos - m_dragStartPos).manhattanLength() < QApplication::startDragDistance())
-                break;
-            startDrag(m_dragWidget, globalPos);
-        }
-
-        if (m_dragging)
+        if (handleMouseMove(mouseEvent))
             return true;
         break;
-    }
 
     case QEvent::MouseButtonRelease:
-    {
-        if (m_dragJustFinished)
-        {
-            m_dragJustFinished = false;
+        if (handleMouseRelease(mouseEvent))
             return true;
-        }
-        if (m_dragging)
-        {
-            auto *me = static_cast<QMouseEvent *>(event);
-            endDrag(me->globalPosition().toPoint());
-            return true;
-        }
-        if (m_dragAction)
-            m_dragAction = nullptr;
         break;
-    }
 
     default:
         break;
     }
 
     return QToolBar::eventFilter(watched, event);
+}
+
+bool CustomizableToolBar::handleMousePress(QWidget *widget, QMouseEvent *mouseEvent)
+{
+    m_dragJustFinished = false;
+
+    if (mouseEvent->button() != Qt::LeftButton)
+        return false;
+
+    QAction *action = nullptr;
+    for (QAction *a : asConst(actions()))
+    {
+        if (widgetForAction(a) == widget)
+        {
+            action = a;
+            break;
+        }
+    }
+
+    if (!action || m_lockedActions.contains(action) || action->isSeparator())
+        return false;
+
+    m_dragAction = action;
+    m_dragWidget = widget;
+    m_dragStartPos = mouseEvent->globalPosition().toPoint();
+    m_dragOffsetX = mouseEvent->position().toPoint().x();
+    return false;
+}
+
+bool CustomizableToolBar::handleMouseMove(QMouseEvent *mouseEvent)
+{
+    if (!m_dragAction)
+        return false;
+
+    const QPoint globalPos = mouseEvent->globalPosition().toPoint();
+
+    if (!m_dragging)
+    {
+        if ((globalPos - m_dragStartPos).manhattanLength() < QApplication::startDragDistance())
+            return false;
+        startDrag(m_dragWidget, globalPos);
+    }
+
+    return m_dragging;
+}
+
+bool CustomizableToolBar::handleMouseRelease(QMouseEvent *mouseEvent)
+{
+    if (m_dragJustFinished)
+    {
+        m_dragJustFinished = false;
+        return true;
+    }
+    if (m_dragging)
+    {
+        endDrag(mouseEvent->globalPosition().toPoint());
+        return true;
+    }
+    if (m_dragAction)
+        m_dragAction = nullptr;
+    return false;
 }
 
 void CustomizableToolBar::onDragTimer()
@@ -194,8 +233,11 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
     const int bi = findBoundaryIndex();
     const QList<QAction *> acts = actions();
 
-    if (!acts.isEmpty() && (acts.first() == m_dragAction) && !movingLeft && (m_lastSwapX >= 0) && (qAbs(dragFloatLeft - m_lastSwapX) < 20))
+    if (!acts.isEmpty() && (acts.first() == m_dragAction) && !movingLeft
+            && (m_lastSwapX >= 0) && (qAbs(dragFloatLeft - m_lastSwapX) < 20))
+    {
         return;
+    }
     QAction *newInsertBefore = (bi >= 0) ? acts[bi] : nullptr;
     for (int i = 0; i < bi; ++i)
     {
@@ -243,9 +285,8 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
     }
 }
 
-void CustomizableToolBar::endDrag(const QPoint &globalPos)
+void CustomizableToolBar::endDrag(const QPoint &)
 {
-    Q_UNUSED(globalPos)
 
     if (m_dragTimer)
     {
