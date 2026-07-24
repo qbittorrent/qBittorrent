@@ -139,7 +139,7 @@
    <addaction name="menuPlugins"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QToolBar" name="toolBar">
+  <widget class="CustomizableToolBar" name="toolBar">
    <property name="movable">
     <bool>false</bool>
    </property>
@@ -516,6 +516,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CustomizableToolBar</class>
+   <extends>QToolBar</extends>
+   <header>customizabletoolbar.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -113,9 +113,11 @@ public:
 private slots:
     void showFilterContextMenu();
     void desktopNotificationClicked();
+    void resetToolbarToDefault();
+    void saveToolbarState() const;
     void saveSettings() const;
-    void loadSettings();
     void saveSplitterSettings() const;
+    void loadSettings();
     void tabChanged(int newTab);
     bool defineUILockPassword();
     void clearUILockPassword();
@@ -177,7 +179,7 @@ private slots:
     // Check for non-stopped downloading or seeding torrents and prevent system suspend/sleep according to preferences
     void updatePowerManagementState() const;
 
-    void toolbarMenuRequested();
+    void toolbarMenuRequested(const QPoint &pos);
     void toolbarIconsOnly();
     void toolbarTextOnly();
     void toolbarTextBeside();
@@ -249,10 +251,14 @@ private:
     QWidget *m_columnFilterWidget = nullptr;
     LineEdit *m_columnFilterEdit = nullptr;
     QAction *m_columnFilterAction = nullptr;
+    QAction *m_spacerAction = nullptr;
     QComboBox *m_columnFilterComboBox = nullptr;
     // Widgets
     QAction *m_queueSeparator = nullptr;
     QAction *m_queueSeparatorMenu = nullptr;
+    bool m_queueActionsShown = false;
+    QHash<QString, int> m_hiddenToolbarActions;
+    QList<QAction *> m_allToolbarActions;
     QSplitter *m_splitter = nullptr;
     QPointer<SearchWidget> m_searchWidget;
     QPointer<RSSWidget> m_rssWidget;
