@@ -2705,7 +2705,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
 
     loadTorrentParams.name = addTorrentParams.name;
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
-    loadTorrentParams.hasFinishedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
+    loadTorrentParams.hasFinishedStatus = addTorrentParams.seedMode; // do not react on 'torrent_finished_alert' when skipping
     loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
     loadTorrentParams.operatingMode = (addTorrentParams.addForced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
     loadTorrentParams.stopped = addTorrentParams.addStopped.value_or(isAddTorrentStopped());
@@ -2960,7 +2960,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
     // Seeding mode
     // Skip checking and directly start seeding
-    if (addTorrentParams.skipChecking)
+    if (addTorrentParams.seedMode)
         p.flags |= lt::torrent_flags::seed_mode;
     else
         p.flags &= ~lt::torrent_flags::seed_mode;

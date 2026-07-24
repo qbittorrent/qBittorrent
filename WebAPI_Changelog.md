@@ -2,6 +2,9 @@
 
 ## 2.16.0
 
+* [#24724](https://github.com/qbittorrent/qBittorrent/pull/24724)
+  * `torrents/add` endpoint accepts `seedMode` parameter
+  * `torrents/add` endpoint no longer accepts `skip_checking` parameter
 * [#24684](https://github.com/qbittorrent/qBittorrent/pull/24684)
   * `app/preferences` endpoint includes `enable_multi_connections_from_same_peer_id` option
   * `app/setPreferences` endpoint allows to set `enable_multi_connections_from_same_peer_id` option

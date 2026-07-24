@@ -138,7 +138,7 @@ namespace
     const QString PARAM_FIRSTLASTPIECEPRIORITY = u"@firstLastPiecePriority"_s;
     const QString PARAM_SAVEPATH = u"@savePath"_s;
     const QString PARAM_SEQUENTIAL = u"@sequential"_s;
-    const QString PARAM_SKIPCHECKING = u"@skipChecking"_s;
+    const QString PARAM_SEEDMODE = u"@seedMode"_s;
     const QString PARAM_SKIPDIALOG = u"@skipDialog"_s;
 
 #if !defined(DISABLE_GUI) && defined(Q_OS_WIN)
@@ -209,8 +209,8 @@ namespace
         if (addTorrentParams.addStopped.has_value())
             result.append(bindParamValue(PARAM_ADDSTOPPED, (*addTorrentParams.addStopped ? u"1" : u"0")));
 
-        if (addTorrentParams.skipChecking)
-            result.append(PARAM_SKIPCHECKING);
+        if (addTorrentParams.seedMode)
+            result.append(PARAM_SEEDMODE);
 
         if (!addTorrentParams.category.isEmpty())
             result.append(bindParamValue(PARAM_CATEGORY, addTorrentParams.category));
@@ -253,9 +253,9 @@ namespace
                 continue;
             }
 
-            if (paramName == PARAM_SKIPCHECKING)
+            if (paramName == PARAM_SEEDMODE)
             {
-                addTorrentParams.skipChecking = true;
+                addTorrentParams.seedMode = true;
                 continue;
             }
 
