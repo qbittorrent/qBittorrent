@@ -48,7 +48,7 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
-    const int MIGRATION_VERSION = 10;
+    const int MIGRATION_VERSION = 11;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()
@@ -557,6 +557,24 @@ namespace
         if (!settingsStorage->hasKey(key))
             SettingsStorage::instance()->storeValue(key, true);
     }
+
+    void migrateTorrentExportFolderSettings()
+    {
+        const auto doMigrate = [](const QString &oldKey, const QString &newKey, const QString &newEnabledKey)
+        {
+            auto *settingsStorage = SettingsStorage::instance();
+            if (settingsStorage->hasKey(oldKey))
+            {
+                const auto oldPath = settingsStorage->loadValue<Path>(oldKey);
+                settingsStorage->storeValue(newKey, oldPath);
+                settingsStorage->storeValue(newEnabledKey, !oldPath.isEmpty());
+                settingsStorage->removeValue(oldKey);
+            }
+        };
+
+        doMigrate(u"BitTorrent/Session/TorrentExportDirectory"_s, u"BitTorrent/Session/TorrentBackupDirectory"_s, u"BitTorrent/Session/TorrentBackupEnabled"_s);
+        doMigrate(u"BitTorrent/Session/FinishedTorrentExportDirectory"_s, u"BitTorrent/Session/FinishedTorrentBackupDirectory"_s, u"BitTorrent/Session/FinishedTorrentBackupDirectoryEnabled"_s);
+    }
 }
 
 bool upgrade()
@@ -608,6 +626,9 @@ bool upgrade()
             migrateSMTPEncryptionSetting();
             setResolvePeerCountriesSetting();
         }
+
+        if (version < 11)
+            migrateTorrentExportFolderSettings();
 
         version = MIGRATION_VERSION;
     }

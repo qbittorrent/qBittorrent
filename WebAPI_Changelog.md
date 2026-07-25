@@ -2,6 +2,14 @@
 
 ## 2.16.0
 
+* [#24641](https://github.com/qbittorrent/qBittorrent/pull/24641)
+  * `app/preferences` and `app/setPreferences` endpoints no longer include `export_dir` and `export_dir_fin` options as they are no longer supported by the core
+  * `app/preferences` and `app/setPreferences` endpoints include the following new options:
+    * `torrent_files_backup_enabled` (bool) - enable/disable saving backup copies of .torrent files
+    * `torrent_files_backup_dir` (string) - the folder path for saving backup copies of .torrent files
+    * `torrent_files_finished_backup_dir_enabled` (bool) - enable/disable moving backup copies of .torrent files to another folder when torrent is finished
+    * `torrent_files_finished_backup_dir` (string) - the folder path for moving backup copies of .torrent files when torrent is finished
+    * `remove_torrent_file_backup` (bool) - whether .torrent file backup should be removed when removing the torrent
 * [#24684](https://github.com/qbittorrent/qBittorrent/pull/24684)
   * `app/preferences` endpoint includes `enable_multi_connections_from_same_peer_id` option
   * `app/setPreferences` endpoint allows to set `enable_multi_connections_from_same_peer_id` option

@@ -188,6 +188,39 @@
                 <label for="mergeTrackersInput">QBT_TR(Merge trackers to existing torrent)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
         </fieldset>
+        <fieldset class="settings">
+            <legend>
+                <label>QBT_TR(Store backup .torrent file)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <table id="torrentBackupSettings">
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="torrentBackupDirCheckbox" onclick="qBittorrent.Preferences.updateTorrentBackupControls();">
+                            <label id="backupDirLabel" for="torrentBackupDirCheckbox">QBT_TR(Store backup in:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="torrentBackupDir" class="pathDirectory" style="width: 30em;" autocorrect="off" autocapitalize="none" aria-labelledby="backupDirLabel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="torrentBackupFinishedDirCheckbox" onclick="qBittorrent.Preferences.updateFinishedTorrentBackupControls();">
+                            <label id="backupDirFinLabel" for="torrentBackupFinishedDirCheckbox">QBT_TR(When torrent finished move backup to:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="torrentBackupFinishedDir" class="pathDirectory" style="width: 30em;" autocorrect="off" autocapitalize="none" aria-labelledby="backupDirFinLabel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="torrentBackupRemoveCheckbox">
+                            <label id="backupRemoveLabel" for="torrentBackupRemoveCheckbox">QBT_TR(Remove backup when removing torrent)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
         <div class="formRow">
             <input type="checkbox" id="deletetorrentfileafter_checkbox">
             <label for="deletetorrentfileafter_checkbox">QBT_TR(Delete .torrent files afterwards)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -282,24 +315,6 @@
                     </td>
                     <td>
                         <input type="text" id="temppath_text" class="pathDirectory" autocorrect="off" autocapitalize="none" aria-labelledby="tempPathLabel">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" id="exportdir_checkbox" onclick="qBittorrent.Preferences.updateExportDirEnabled();">
-                        <label id="exportDirLabel" for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <input type="text" id="exportdir_text" class="pathDirectory" autocorrect="off" autocapitalize="none" aria-labelledby="exportDirLabel">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" id="exportdirfin_checkbox" onclick="qBittorrent.Preferences.updateExportDirFinEnabled();">
-                        <label id="exportDirFinLabel" for="exportdirfin_checkbox">QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <input type="text" id="exportdirfin_text" class="pathDirectory" autocorrect="off" autocapitalize="none" aria-labelledby="exportDirFinLabel">
                     </td>
                 </tr>
             </tbody>
@@ -1878,8 +1893,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateFileLogBackupEnabled: updateFileLogBackupEnabled,
                 updateFileLogDeleteEnabled: updateFileLogDeleteEnabled,
                 updateTempDirEnabled: updateTempDirEnabled,
-                updateExportDirEnabled: updateExportDirEnabled,
-                updateExportDirFinEnabled: updateExportDirFinEnabled,
+                updateTorrentBackupControls: updateTorrentBackupControls,
+                updateFinishedTorrentBackupControls: updateFinishedTorrentBackupControls,
                 addWatchFolder: addWatchFolder,
                 updateExcludedFileNamesEnabled: updateExcludedFileNamesEnabled,
                 changeWatchFolderSelect: changeWatchFolderSelect,
@@ -2035,14 +2050,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
         };
 
-        const updateExportDirEnabled = () => {
-            const isExportDirEnabled = document.getElementById("exportdir_checkbox").checked;
-            document.getElementById("exportdir_text").disabled = !isExportDirEnabled;
+        const updateTorrentBackupControls = () => {
+            const isTorrentBackupEnabled = document.getElementById("torrentBackupDirCheckbox").checked;
+            document.getElementById("torrentBackupDir").disabled = !isTorrentBackupEnabled;
         };
 
-        const updateExportDirFinEnabled = () => {
-            const isExportDirFinEnabled = document.getElementById("exportdirfin_checkbox").checked;
-            document.getElementById("exportdirfin_text").disabled = !isExportDirFinEnabled;
+        const updateFinishedTorrentBackupControls = () => {
+            const isFinishedTorrentBackupEnabled = document.getElementById("torrentBackupFinishedDirCheckbox").checked;
+            document.getElementById("torrentBackupFinishedDir").disabled = !isFinishedTorrentBackupEnabled;
         };
 
         const updateMailNotification = () => {
@@ -2460,24 +2475,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("temppath_checkbox").checked = pref.temp_path_enabled;
                     document.getElementById("temppath_text").value = pref.temp_path;
                     updateTempDirEnabled();
-                    if (pref.export_dir !== "") {
-                        document.getElementById("exportdir_checkbox").checked = true;
-                        document.getElementById("exportdir_text").value = pref.export_dir;
-                    }
-                    else {
-                        document.getElementById("exportdir_checkbox").checked = false;
-                        document.getElementById("exportdir_text").value = "";
-                    }
-                    updateExportDirEnabled();
-                    if (pref.export_dir_fin !== "") {
-                        document.getElementById("exportdirfin_checkbox").checked = true;
-                        document.getElementById("exportdirfin_text").value = pref.export_dir_fin;
-                    }
-                    else {
-                        document.getElementById("exportdirfin_checkbox").checked = false;
-                        document.getElementById("exportdirfin_text").value = "";
-                    }
-                    updateExportDirFinEnabled();
+
+                    document.getElementById("torrentBackupDirCheckbox").checked = pref.torrent_files_backup_enabled;
+                    document.getElementById("torrentBackupDir").value = pref.torrent_files_backup_dir;
+                    updateTorrentBackupControls();
+                    document.getElementById("torrentBackupFinishedDirCheckbox").checked = pref.torrent_files_finished_backup_dir_enabled;
+                    document.getElementById("torrentBackupFinishedDir").value = pref.torrent_files_finished_backup_dir;
+                    updateFinishedTorrentBackupControls();
+                    document.getElementById("torrentBackupRemoveCheckbox").checked = pref.remove_torrent_file_backup;
 
                     // Automatically add torrents from
                     for (const folder in pref.scan_dirs) {
@@ -2887,14 +2892,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["save_path"] = document.getElementById("savepath_text").value;
             settings["temp_path_enabled"] = document.getElementById("temppath_checkbox").checked;
             settings["temp_path"] = document.getElementById("temppath_text").value;
-            if (document.getElementById("exportdir_checkbox").checked)
-                settings["export_dir"] = document.getElementById("exportdir_text").value;
-            else
-                settings["export_dir"] = "";
-            if (document.getElementById("exportdirfin_checkbox").checked)
-                settings["export_dir_fin"] = document.getElementById("exportdirfin_text").value;
-            else
-                settings["export_dir_fin"] = "";
+
+            // Backup management
+            settings["torrent_files_backup_enabled"] = document.getElementById("torrentBackupDirCheckbox").checked;
+            settings["torrent_files_backup_dir"] = document.getElementById("torrentBackupDir").value;
+            settings["torrent_files_finished_backup_dir_enabled"] = document.getElementById("torrentBackupFinishedDirCheckbox").checked;
+            settings["torrent_files_finished_backup_dir"] = document.getElementById("torrentBackupFinishedDir").value;
+            settings["remove_torrent_file_backup"] = document.getElementById("torrentBackupRemoveCheckbox").checked;
 
             // Automatically add torrents from
             settings["scan_dirs"] = getWatchedFolders();
