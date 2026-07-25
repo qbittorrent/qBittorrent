@@ -227,10 +227,8 @@
             };
         };
 
-        // 1.5 seconds
-        const serverSyncRssDataInterval = 1500;
-        // 5 minutes
-        const serverSyncRssDataMaxInterval = 300000;
+        const serverSyncRssDataInterval = 1.5 * 1000;  // in miliseconds
+        const serverSyncRssDataMaxInterval = 5 * 60 * 1000;  // in miliseconds
         let currentServerSyncRssDataInterval = serverSyncRssDataInterval;
         let feedData = {};
         let pathByFeedId = new Map();
@@ -362,7 +360,7 @@
                 if (hasChanges)
                     currentServerSyncRssDataInterval = serverSyncRssDataInterval;
                 else
-                    currentServerSyncRssDataInterval = Math.min(currentServerSyncRssDataInterval * 2, serverSyncRssDataMaxInterval);
+                    currentServerSyncRssDataInterval = Math.min((currentServerSyncRssDataInterval * 2), serverSyncRssDataMaxInterval);
 
                 load();
             }, currentServerSyncRssDataInterval);
@@ -796,6 +794,7 @@
                     ++rowCount;
                 }
                 rssFeedTable.updateTable(false);
+
                 return true;
             }
         };
@@ -835,6 +834,7 @@
 
         const resetInterval = () => {
             clearTimeout(feedRefreshTimer);
+            feedRefreshTimer = -1;
             currentServerSyncRssDataInterval = serverSyncRssDataInterval;
             load();
         };
