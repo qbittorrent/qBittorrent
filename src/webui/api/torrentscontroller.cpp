@@ -2231,6 +2231,11 @@ void TorrentsController::fetchMetadataAction()
     // http(s) url
     else if (Net::DownloadManager::hasSupportedScheme(source))
     {
+        if (m_invalidTorrentSource.contains(source))
+        {
+            throw APIError(APIErrorType::BadData, tr("'%1' is not a valid torrent file.").arg(source));
+        }
+
         if (!m_requestedTorrentSource.contains(source))
         {
             if (!downloaderParam.isEmpty())
@@ -2444,10 +2449,12 @@ void TorrentsController::cacheTorrentFile(const QString &source, const QByteArra
         const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
         m_torrentSourceCache.insert(source, infoHash);
         m_torrentMetadataCache.insert(infoHash.toTorrentID(), torrentDescr);
+        m_invalidTorrentSource.remove(source);
     }
     else
     {
         LogMsg(tr("Parse torrent failed. URL: \"%1\". Error: \"%2\".").arg(source, loadResult.error()), Log::WARNING);
+        m_invalidTorrentSource.insert(source);
         m_torrentSourceCache.remove(source);
     }
 }
