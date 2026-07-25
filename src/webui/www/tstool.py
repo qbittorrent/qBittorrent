@@ -29,19 +29,20 @@
 import argparse
 import copy
 import os
-import os.path
 import re
 import sys
 import xml.etree.ElementTree as ET
 
+type SourceDict = dict[str, set[str]]
+
 accepted_exts = [".js", ".html", ".css"]
 
 no_obsolete = False
-www_folder = "."
+www_folder: str = "."
 ts_folder = os.path.join(www_folder, "translations")
 
 
-def parseSource(filename, sources):
+def parseSource(filename: str, sources: SourceDict) -> None:
     print(f"Parsing {os.path.normpath(filename)}...")
     with open(filename, mode='r', encoding='utf-8') as file:
         regex = re.compile(
@@ -55,7 +56,7 @@ def parseSource(filename, sources):
             sources[context].add(string)
 
 
-def processTranslation(filename, sources):
+def processTranslation(filename: str, sources: SourceDict) -> None:
     print(f'Processing {os.path.normpath(filename)}...')
 
     try:
@@ -65,8 +66,15 @@ def processTranslation(filename, sources):
         return
 
     root = tree.getroot()
+    if root is None:
+        return
+
     for context in root.findall('context'):
-        context_name = context.find('name').text
+        name_node = context.find('name')
+        if name_node is None or name_node.text is None:
+            continue
+        context_name = name_node.text
+
         has_context = context_name in sources
         if not has_context and no_obsolete:
             root.remove(context)
@@ -76,8 +84,15 @@ def processTranslation(filename, sources):
             for location in message.findall('location'):
                 message.remove(location)
 
-            source = message.find('source').text
+            source_node = message.find('source')
+            if source_node is None:
+                continue
+            source = source_node.text
+
             translation = message.find('translation')
+            if translation is None:
+                continue
+
             if has_context and source in sources[context_name]:
                 sources[context_name].remove(source)
 
@@ -143,7 +158,7 @@ ts_folder = args.ts_folder
 
 print("Processing source files...")
 nfiles = 0
-source_ts = {}
+source_ts: SourceDict = {}
 for root, dirs, files in os.walk(www_folder):
     for file in files:
         if os.path.splitext(file)[-1] in accepted_exts:

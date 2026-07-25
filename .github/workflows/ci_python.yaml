@@ -25,13 +25,18 @@ jobs:
           python-version: '3'  # use default version
 
       - name: Install tools (auxiliary scripts)
-        run: pip install bandit pycodestyle pyflakes ruff
+        run: pip install bandit mypy pycodestyle pyflakes pyright ruff
 
       - name: Gather files (auxiliary scripts)
         run: |
           export "PY_FILES=$(find . -type f -name '*.py' ! -path '*searchengine*' -printf '%p ')"
           echo $PY_FILES
           echo "PY_FILES=$PY_FILES" >> "$GITHUB_ENV"
+
+      - name: Check typings (auxiliary scripts)
+        run: |
+          mypy --strict $PY_FILES
+          pyright --project src/searchengine/nova3/pyproject.toml $PY_FILES
 
       - name: Lint code (auxiliary scripts)
         run: |
