@@ -520,7 +520,7 @@
   <customwidget>
    <class>CustomizableToolBar</class>
    <extends>QToolBar</extends>
-   <header>customizabletoolbar.h</header>
+   <header>gui/customizabletoolbar.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

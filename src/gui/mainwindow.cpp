@@ -451,7 +451,10 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         if (a->isSeparator() || a->text().isEmpty()
             || (a == m_spacerAction) || (a == m_columnFilterAction)
             || (a->objectName() == u"actionLock"_s))
+        {
             continue;
+        }
+
         m_allToolbarActions.append(a);
     }
     loadSettings();
@@ -671,7 +674,10 @@ void MainWindow::resetToolbarToDefault()
     {
         if ((a == m_spacerAction) || (a == m_columnFilterAction)
             || (a->objectName() == u"actionLock"_s))
+        {
             break;
+        }
+
         m_ui->toolBar->removeAction(a);
     }
     // Reinsert in default order, each action before spacer in sequence
@@ -1084,7 +1090,10 @@ void MainWindow::saveToolbarState() const
     {
         if ((action == m_spacerAction) || (action == m_columnFilterAction)
             || (action->objectName() == u"actionLock"_s))
+        {
             break;
+        }
+
         if (action->isSeparator())
             toolbarState << u"separator"_s;
         else
@@ -1163,7 +1172,10 @@ void MainWindow::loadSettings()
         {
             if ((a == m_spacerAction) || (a == m_columnFilterAction)
                 || (a->objectName() == u"actionLock"_s))
+            {
                 break;
+            }
+
             if (a->isSeparator() || actionMap.contains(a->objectName()))
                 m_ui->toolBar->removeAction(a);
         }
