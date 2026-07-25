@@ -892,6 +892,16 @@ void MainWindow::cleanup()
         delete w;
 }
 
+void MainWindow::selectTorrent(const BitTorrent::Torrent *torrent)
+{
+    if (!torrent)
+        return;
+
+    displayTransferTab();
+    if (m_transferListWidget->selectTorrent(torrent))
+        m_transferListWidget->setFocus();
+}
+
 void MainWindow::loadSettings()
 {
     const auto *pref = Preferences::instance();
