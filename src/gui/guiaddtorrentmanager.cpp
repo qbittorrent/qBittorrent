@@ -230,6 +230,10 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
             handleDuplicateTorrent(source, torrentDescr, torrent);
         }
 
+        // Point the user to the torrent that is already in the transfer list
+        if (MainWindow *mainWindow = app()->mainWindow())
+            mainWindow->selectTorrent(torrent);
+
         return false;
     }
 
