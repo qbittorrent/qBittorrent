@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2016  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,49 +28,27 @@
 
 #pragma once
 
-#include <QFile>
+#include <QFuture>
 #include <QObject>
-#include <QTimer>
+#include <QVariant>
 
-#include "base/path.h"
-
-namespace Log
-{
-    struct Msg;
-}
-
-class FileLogger final : public QObject
+class KeyValueDataStorage final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(FileLogger)
+    Q_DISABLE_COPY_MOVE(KeyValueDataStorage)
 
 public:
-    enum FileLogAgeType
-    {
-        DAYS,
-        MONTHS,
-        YEARS
-    };
+    explicit KeyValueDataStorage(const QString &storageName, QObject *parent = nullptr);
+    ~KeyValueDataStorage() override;
 
-    FileLogger(const Path &path, bool backup, int maxSize, bool deleteOld, int age, FileLogAgeType ageType);
-    ~FileLogger() override;
-
-    void setPath(const Path &newPath);
-    void deleteOld(int age, FileLogAgeType ageType);
-    void setBackup(bool value);
-    void setMaxSize(int value);
-
-private slots:
-    void addLogMessage(const Log::Msg &msg);
-    void flushLog();
+    QFuture<QVariant> fetchValue(const QString &key) const;
+    void storeValue(const QString &key, const QVariant &value);
+    void storeValue(const QString &key, QVariant &&value);
+    void removeValue(const QString &key);
 
 private:
-    void openLogFile();
-    void closeLogFile();
+    QString m_storageName;
 
-    Path m_logsFolderPath;
-    bool m_backup;
-    int m_maxSize;
-    QFile m_logFile;
-    QTimer m_flusher;
+    class Worker;
+    mutable Worker *m_asyncWorker = nullptr;
 };

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,24 +26,46 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include <QObject>
+#include <QTest>
 
-#include <QMetaType>
-#include <QString>
+#include "base/utils/net.h"
 
-namespace BitTorrent
+using namespace Qt::Literals::StringLiterals;
+
+class TestUtilsNet final : public QObject
 {
-    struct AddTorrentError
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TestUtilsNet)
+
+public:
+    TestUtilsNet() = default;
+
+private slots:
+    void testQHostAddressLessThan() const
     {
-        enum Kind
-        {
-            DuplicateTorrent,
-            Other
-        };
+        const auto ip1 = QHostAddress(u"127.0.0.1"_s);
+        const auto ip2 = QHostAddress(u"127.0.0.2"_s);
+        const auto ip3 = QHostAddress(u"2001::1"_s);
+        const auto ip4 = QHostAddress(u"2001::2"_s);
 
-        Kind kind = Other;
-        QString message;
-    };
-}
+        QCOMPARE(Utils::Net::lessThan({}, {}), false);
+        QCOMPARE(Utils::Net::lessThan({}, ip1), true);
+        QCOMPARE(Utils::Net::lessThan(ip1, {}), false);
 
-Q_DECLARE_METATYPE(BitTorrent::AddTorrentError)
+        QCOMPARE(Utils::Net::lessThan(ip1, ip1), false);
+        QCOMPARE(Utils::Net::lessThan(ip3, ip3), false);
+
+        QCOMPARE(Utils::Net::lessThan(ip1, ip2), true);
+        QCOMPARE(Utils::Net::lessThan(ip2, ip1), false);
+
+        QCOMPARE(Utils::Net::lessThan(ip2, ip3), true);
+        QCOMPARE(Utils::Net::lessThan(ip3, ip2), false);
+
+        QCOMPARE(Utils::Net::lessThan(ip3, ip4), true);
+        QCOMPARE(Utils::Net::lessThan(ip4, ip3), false);
+    }
+};
+
+QTEST_APPLESS_MAIN(TestUtilsNet)
+#include "testutilsnet.moc"

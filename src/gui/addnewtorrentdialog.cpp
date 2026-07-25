@@ -270,7 +270,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
         });
         dlg->open();
     });
-    connect(m_filterLine, &LineEdit::textChanged, this, &AddNewTorrentDialog::setContentFilterPattern);
+    connect(m_filterLine, &LineEdit::textUpdated, this, &AddNewTorrentDialog::setContentFilterPattern);
     connect(m_ui->buttonSelectAll, &QPushButton::clicked, m_ui->contentTreeView, &TorrentContentWidget::checkAll);
     connect(m_ui->buttonSelectNone, &QPushButton::clicked, m_ui->contentTreeView, &TorrentContentWidget::checkNone);
     connect(Preferences::instance(), &Preferences::changed, this, []

@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2016 Eugene Shalygin
  *
  * This program is free software; you can redistribute it and/or
@@ -39,7 +40,6 @@
 #include <QStyle>
 #include <QToolButton>
 
-#include "base/utils/fs.h"
 #include "fspathedit_p.h"
 
 namespace
@@ -83,7 +83,6 @@ private:
     QToolButton *m_browseBtn = nullptr;
     QString m_fileNameFilter;
     Mode m_mode = FileSystemPathEdit::Mode::FileOpen;
-    Path m_lastSignaledPath;
     QString m_dialogCaption;
     Private::FileSystemPathValidator *m_validator = nullptr;
 };
@@ -115,10 +114,10 @@ void FileSystemPathEdit::FileSystemPathEditPrivate::browseActionTriggered()
 {
     Q_Q(FileSystemPathEdit);
 
-    const Path currentDirectory = (m_mode == FileSystemPathEdit::Mode::DirectoryOpen) || (m_mode == FileSystemPathEdit::Mode::DirectorySave)
-            ? q->selectedPath()
-            : q->selectedPath().parentPath();
-    const Path initialDirectory = currentDirectory.isAbsolute() ? currentDirectory : (Utils::Fs::homePath() / currentDirectory);
+    const Path currentPath = q->getResolvedPath();
+    const Path initialDirectory = (m_mode == FileSystemPathEdit::Mode::DirectoryOpen) || (m_mode == FileSystemPathEdit::Mode::DirectorySave)
+            ? currentPath
+            : currentPath.parentPath();
 
     QString filter = q->fileNameFilter();
     QString newPath;
@@ -203,16 +202,29 @@ FileSystemPathEdit::~FileSystemPathEdit()
 
 Path FileSystemPathEdit::selectedPath() const
 {
-    return Path(editWidgetText());
+    return m_path;
 }
 
-void FileSystemPathEdit::setSelectedPath(const Path &val)
+void FileSystemPathEdit::setSelectedPath(const Path &path)
 {
-    Q_D(FileSystemPathEdit);
+    if (path != m_path)
+        setEditWidgetText(path.toString());
+}
 
-    const QString nativePath = val.toString();
-    setEditWidgetText(nativePath);
-    d->m_editor->widget()->setToolTip(nativePath);
+Path FileSystemPathEdit::basePath() const
+{
+    return m_basePath;
+}
+
+void FileSystemPathEdit::setBasePath(const Path &basePath)
+{
+    if (basePath == m_basePath)
+        return;
+
+    m_basePath = basePath;
+
+    Q_D(FileSystemPathEdit);
+    d->m_editor->widget()->setToolTip(getResolvedPath().toString());
 }
 
 QString FileSystemPathEdit::fileNameFilter() const
@@ -278,14 +290,15 @@ void FileSystemPathEdit::setBriefBrowseButtonCaption(bool brief)
 
 void FileSystemPathEdit::onPathEdited()
 {
-    Q_D(FileSystemPathEdit);
-
-    const Path newPath = selectedPath();
-    if (newPath != d->m_lastSignaledPath)
+    const Path newPath {editWidgetText()};
+    if (newPath != m_path)
     {
-        emit selectedPathChanged(newPath);
-        d->m_lastSignaledPath = newPath;
-        d->m_editor->widget()->setToolTip(editWidgetText());
+        m_path = newPath;
+
+        Q_D(FileSystemPathEdit);
+        d->m_editor->widget()->setToolTip(getResolvedPath().toString());
+
+        emit selectedPathChanged(m_path);
     }
 }
 
@@ -318,6 +331,11 @@ QWidget *FileSystemPathEdit::editWidgetImpl() const
 {
     Q_D(const FileSystemPathEdit);
     return d->m_editor->widget();
+}
+
+Path FileSystemPathEdit::getResolvedPath() const
+{
+    return m_path.isAbsolute() ? m_path : (m_basePath / m_path);
 }
 
 // ------------------------- FileSystemPathLineEdit ----------------------

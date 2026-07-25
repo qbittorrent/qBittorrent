@@ -187,8 +187,12 @@ void AppController::preferencesAction()
     data[u"temp_path_enabled"_s] = session->isDownloadPathEnabled();
     data[u"temp_path"_s] = session->downloadPath().toString();
     data[u"use_category_paths_in_manual_mode"_s] = session->useCategoryPathsInManualMode();
-    data[u"export_dir"_s] = session->torrentExportDirectory().toString();
-    data[u"export_dir_fin"_s] = session->finishedTorrentExportDirectory().toString();
+    // .torrent files backup management
+    data[u"torrent_files_backup_enabled"_s] = session->isTorrentFileBackupEnabled();
+    data[u"torrent_files_backup_dir"_s] = session->torrentBackupDirectory().toString();
+    data[u"torrent_files_finished_backup_dir_enabled"_s] = session->isFinishedTorrentBackupDirectoryEnabled();
+    data[u"torrent_files_finished_backup_dir"_s] = session->finishedTorrentBackupDirectory().toString();
+    data[u"remove_torrent_file_backup"_s] = session->removeTorrentFileBackup();
 
     // TODO: The following code is deprecated. Delete it once replaced by updated API method.
     // === BEGIN DEPRECATED CODE === //
@@ -485,6 +489,8 @@ void AppController::preferencesAction()
     data[u"idn_support_enabled"_s] = session->isIDNSupportEnabled();
     // Multiple connections per IP
     data[u"enable_multi_connections_from_same_ip"_s] = session->multiConnectionsPerIpEnabled();
+    // Multiple connections per Peer ID
+    data[u"enable_multi_connections_from_same_peer_id"_s] = session->multiConnectionsPerPeerIDEnabled();
     // Validate HTTPS tracker certificate
     data[u"validate_https_tracker_certificate"_s] = session->validateHTTPSTrackerCertificate();
     // SSRF mitigation
@@ -604,10 +610,18 @@ void AppController::setPreferencesAction()
         session->setDownloadPath(Path(it.value().toString()));
     if (hasKey(u"use_category_paths_in_manual_mode"_s))
         session->setUseCategoryPathsInManualMode(it.value().toBool());
-    if (hasKey(u"export_dir"_s))
-        session->setTorrentExportDirectory(Path(it.value().toString()));
-    if (hasKey(u"export_dir_fin"_s))
-        session->setFinishedTorrentExportDirectory(Path(it.value().toString()));
+
+    // .torrent files backup management
+    if (hasKey(u"torrent_files_backup_enabled"_s))
+        session->setTorrentFileBackupEnabled(it.value().toBool());
+    if (hasKey(u"torrent_files_backup_dir"_s))
+        session->setTorrentBackupDirectory(Path(it.value().toString()));
+    if (hasKey(u"torrent_files_finished_backup_dir_enabled"_s))
+        session->setFinishedTorrentBackupDirectoryEnabled(it.value().toBool());
+    if (hasKey(u"torrent_files_finished_backup_dir"_s))
+        session->setFinishedTorrentBackupDirectory(Path(it.value().toString()));
+    if (hasKey(u"remove_torrent_file_backup"_s))
+        session->setRemoveTorrentFileBackup(it.value().toBool());
 
     // TODO: The following code is deprecated. Delete it once replaced by updated API method.
     // === BEGIN DEPRECATED CODE === //
@@ -1153,6 +1167,9 @@ void AppController::setPreferencesAction()
     // Multiple connections per IP
     if (hasKey(u"enable_multi_connections_from_same_ip"_s))
         session->setMultiConnectionsPerIpEnabled(it.value().toBool());
+    // Multiple connections per Peer ID
+    if (hasKey(u"enable_multi_connections_from_same_peer_id"_s))
+        session->setMultiConnectionsPerPeerIDEnabled(it.value().toBool());
     // Validate HTTPS tracker certificate
     if (hasKey(u"validate_https_tracker_certificate"_s))
         session->setValidateHTTPSTrackerCertificate(it.value().toBool());

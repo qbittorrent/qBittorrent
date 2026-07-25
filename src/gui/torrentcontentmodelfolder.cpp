@@ -110,7 +110,8 @@ void TorrentContentModelFolder::updatePriority()
     if (isRootItem())
         return;
 
-    Q_ASSERT(!m_childItems.isEmpty());
+    if (m_childItems.isEmpty())
+        return;
 
     // If all children have the same priority
     // then the folder should have the same

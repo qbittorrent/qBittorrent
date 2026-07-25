@@ -889,20 +889,30 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
     m_sessions[m_currentSession->id()] = m_currentSession;
     m_sessionStateChange = SessionStateChange::Start;
 
-    m_currentSession->registerAPIController(u"app"_s, new AppController(app(), m_currentSession));
-    m_currentSession->registerAPIController(u"clientdata"_s, new ClientDataController(m_clientDataStorage, app(), m_currentSession));
-    m_currentSession->registerAPIController(u"log"_s, new LogController(app(), m_currentSession));
-    m_currentSession->registerAPIController(u"torrentcreator"_s, new TorrentCreatorController(m_torrentCreationManager, app(), m_currentSession));
-    m_currentSession->registerAPIController(u"rss"_s, new RSSController(app(), m_currentSession));
-    m_currentSession->registerAPIController(u"search"_s, new SearchController(app(), m_currentSession));
-    m_currentSession->registerAPIController(u"torrents"_s, new TorrentsController(app(), m_currentSession));
-    m_currentSession->registerAPIController(u"transfer"_s, new TransferController(app(), m_currentSession));
-
-    const auto *btSession = BitTorrent::Session::instance();
-    auto *syncController = new SyncController(app(), m_currentSession);
-    syncController->updateFreeDiskSpace(btSession->freeDiskSpace());
-    connect(btSession, &BitTorrent::Session::freeDiskSpaceChecked, syncController, &SyncController::updateFreeDiskSpace);
-    m_currentSession->registerAPIController(u"sync"_s, syncController);
+    m_currentSession->registerAPIController(u"app"_s, [app = app(), parent = m_currentSession] { return new AppController(app, parent); });
+    m_currentSession->registerAPIController(u"log"_s, [app = app(), parent = m_currentSession] { return new LogController(app, parent); });
+    m_currentSession->registerAPIController(u"rss"_s, [app = app(), parent = m_currentSession] { return new RSSController(app, parent); });
+    m_currentSession->registerAPIController(u"search"_s, [app = app(), parent = m_currentSession] { return new SearchController(app, parent); });
+    m_currentSession->registerAPIController(u"torrents"_s, [app = app(), parent = m_currentSession] { return new TorrentsController(app, parent); });
+    m_currentSession->registerAPIController(u"transfer"_s, [app = app(), parent = m_currentSession] { return new TransferController(app, parent); });
+    m_currentSession->registerAPIController(u"clientdata"_s
+            , [app = app(), parent = m_currentSession, clientDataStorage = m_clientDataStorage]
+    {
+        return new ClientDataController(clientDataStorage, app, parent);
+    });
+    m_currentSession->registerAPIController(u"torrentcreator"_s
+            , [app = app(), parent = m_currentSession, torrentCreationManager = m_torrentCreationManager]
+    {
+        return new TorrentCreatorController(torrentCreationManager, app, parent);
+    });
+    m_currentSession->registerAPIController(u"sync"_s
+            , [app = app(), parent = m_currentSession, btSession = BitTorrent::Session::instance()]
+    {
+        auto *syncController = new SyncController(app, parent);
+        syncController->updateFreeDiskSpace(btSession->freeDiskSpace());
+        connect(btSession, &BitTorrent::Session::freeDiskSpaceChecked, syncController, &SyncController::updateFreeDiskSpace);
+        return syncController;
+    });
 }
 
 void WebApplication::sessionEnd()
