@@ -673,6 +673,15 @@ BitTorrent::Torrent *TransferListModel::torrentHandle(const QModelIndex &index) 
     return m_torrents.get<ByIndex>().at(index.row());
 }
 
+QModelIndex TransferListModel::torrentIndex(BitTorrent::Torrent *const torrent) const
+{
+    const int row = getTorrentRow(torrent);
+    if (row < 0)
+        return {};
+
+    return index(row);
+}
+
 void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
 {
     const int row = getTorrentRow(torrent);

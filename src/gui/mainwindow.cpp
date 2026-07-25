@@ -1051,6 +1051,16 @@ TransferListWidget *MainWindow::transferListWidget() const
     return m_transferListWidget;
 }
 
+void MainWindow::selectTorrent(BitTorrent::Torrent *const torrent)
+{
+    if (!torrent)
+        return;
+
+    displayTransferTab();
+    if (m_transferListWidget->selectTorrent(torrent))
+        m_transferListWidget->setFocus();
+}
+
 bool MainWindow::unlockUI()
 {
     if (m_unlockDlgShowing)
