@@ -749,8 +749,12 @@ QString WebApplication::clientId() const
 
 void WebApplication::setSessionCookie(Http::HeaderMap &headers)
 {
+    if (!m_currentSession || 
+        (m_currentSession->type() != WebSessionType::CookieBased))
+        return;
+
     auto *currentSession = static_cast<CookieBasedWebSession *>(m_currentSession);
-    if (currentSession && currentSession->shouldRefreshCookie())
+    if (currentSession->shouldRefreshCookie())
     {
         // 'Permanent Cookie' still require an expiration date so set it to a date in the distant future
         const std::chrono::seconds cookieExpireDuration = (m_sessionTimeout > 0s) ? m_sessionTimeout : std::chrono::years(1);
@@ -887,7 +891,10 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
 
     m_currentSession = WebSession::create(sessionType, sessionId);
     m_sessions[m_currentSession->id()] = m_currentSession;
-    m_sessionStateChange = SessionStateChange::Start;
+
+    m_sessionStateChange = (sessionType == WebSessionType::CookieBased)
+        ? SessionStateChange::Start
+        : SessionStateChange::None;
 
     m_currentSession->registerAPIController(u"app"_s, [app = app(), parent = m_currentSession] { return new AppController(app, parent); });
     m_currentSession->registerAPIController(u"log"_s, [app = app(), parent = m_currentSession] { return new LogController(app, parent); });
@@ -918,10 +925,14 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
 void WebApplication::sessionEnd()
 {
     Q_ASSERT(m_currentSession);
+    const bool isCookieBased =
+       (m_currentSession->type() == WebSessionType::CookieBased);
 
     delete m_sessions.take(m_currentSession->id());
     m_currentSession = nullptr;
-    m_sessionStateChange = SessionStateChange::End;
+    m_sessionStateChange = isCookieBased
+       ? SessionStateChange::End
+       : SessionStateChange::None;
 }
 
 bool WebApplication::isOriginTrustworthy() const
