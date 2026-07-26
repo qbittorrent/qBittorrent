@@ -1057,6 +1057,13 @@
                 </layout>
                </item>
                <item>
+                <widget class="QCheckBox" name="appendHashToPayloadNamesCheckBox">
+                 <property name="text">
+                  <string>Append torrent hash to payload names</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkAddToQueueTop">
                  <property name="toolTip">
                   <string>The torrent will be added to the top of the download queue</string>

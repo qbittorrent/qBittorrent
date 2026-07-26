@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  The qBittorrent project
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,44 +28,51 @@
 
 #pragma once
 
-#include <libtorrent/add_torrent_params.hpp>
-
+#include <QList>
 #include <QString>
 
 #include "base/path.h"
-#include "base/tagset.h"
-#include "sharelimits.h"
-#include "sslparameters.h"
-#include "torrent.h"
-#include "torrentcontentlayout.h"
+#include "infohash.h"
 
 namespace BitTorrent
 {
-    struct LoadTorrentParams
+    // Stable short tag from TorrentID, e.g. " [qb-a19f83c275d1]".
+    QString payloadHashTag(const TorrentID &id);
+
+    // Top-level hash directory name: "Original Name [qb-HASH]".
+    QString payloadHashDirectoryName(const TorrentID &id, const QString &originalName);
+
+    // Put every payload path under a single top-level hash directory.
+    // Idempotent when already under that directory.
+    PathList applyPayloadHashNaming(PathList filePaths, const TorrentID &id, const QString &torrentName);
+
+    // One file rename for the manual conversion.
+    struct PayloadHashMigrationItem
     {
-        lt::add_torrent_params ltAddTorrentParams {};
+        int fileIndex = -1;
+        Path to;
+    };
 
-        QString name;
-        QString category;
-        TagSet tags;
-        Path savePath;
-        Path downloadPath;
-        QString comment;
-        TorrentContentLayout contentLayout = TorrentContentLayout::Original;
-        TorrentOperatingMode operatingMode = TorrentOperatingMode::AutoManaged;
-        bool useAutoTMM = false;
-        bool firstLastPiecePriority = false;
-        bool hasFinishedStatus = false;
-        // Set at add time from Session option + per-torrent preserve override.
-        // Not re-evaluated later so existing torrents (and pending magnets) are not renamed when the option changes.
-        bool appendHashToPayloadName = false;
-        bool stopped = false;
-        Torrent::StopCondition stopCondition = Torrent::StopCondition::None;
+    // Preflight only — no disk changes.
+    // If the target hash directory already exists: wipe it entirely after confirmation, then move payload in.
+    struct PayloadHashMigrationPlan
+    {
+        QList<PayloadHashMigrationItem> renames;
 
-        bool addToQueueTop = false; // only for new torrents
+        // Absolute path of the existing target hash directory to delete (empty if none).
+        Path destinationToWipe;
 
-        ShareLimits shareLimits;
+        bool blocked = false;
+        QString blockReason;
 
-        SSLParameters sslParameters;
+        bool isEmpty() const
+        {
+            return renames.isEmpty() && !blocked;
+        }
+
+        bool needsConfirmation() const
+        {
+            return !destinationToWipe.isEmpty();
+        }
     };
 }

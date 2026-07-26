@@ -31,6 +31,7 @@
 
 #include <functional>
 #include <memory>
+#include <optional>
 
 #include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
@@ -45,6 +46,7 @@
 #include <QMap>
 #include <QObject>
 #include <QQueue>
+#include <QSet>
 #include <QString>
 
 #include "base/path.h"
@@ -246,6 +248,8 @@ namespace BitTorrent
         QString createMagnetURI() const override;
         nonstd::expected<QByteArray, QString> exportToBuffer() const override;
         nonstd::expected<void, QString> exportToFile(const Path &path) const override;
+        PayloadHashMigrationPlan planPayloadHashMigration() const override;
+        bool startPayloadHashMigration(const PayloadHashMigrationPlan &plan) override;
 
         QFuture<QList<PeerInfo>> fetchPeerInfo() const override;
         QFuture<QList<QUrl>> fetchURLSeeds() const override;
@@ -297,6 +301,16 @@ namespace BitTorrent
             QHash<int, Path> renamedFiles {};
             QList<int> failedFileIndexes {};
         };
+
+        // Tracks the manual “append hash” conversion until all async renames finish.
+        struct PayloadHashMigrationJob
+        {
+            QSet<int> pendingFileIndexes;
+            QList<int> failedFileIndexes;
+        };
+
+        void notePayloadHashMigrationProgress(int fileIndex, bool success);
+        void finishPayloadHashMigration();
 
         std::shared_ptr<const lt::torrent_info> nativeTorrentInfo() const;
 
@@ -356,6 +370,7 @@ namespace BitTorrent
         QQueue<FileRenameInfo> m_renamingFiles;
         QQueue<FolderRenameInfo> m_renamingFolders;
         int m_nextFolderRenameJobID = 0;
+        std::optional<PayloadHashMigrationJob> m_payloadHashMigration;
 
         QQueue<EventTrigger> m_statusUpdatedTriggers;
 
@@ -376,6 +391,7 @@ namespace BitTorrent
         TorrentOperatingMode m_operatingMode = TorrentOperatingMode::AutoManaged;
         TorrentContentLayout m_contentLayout = TorrentContentLayout::Original;
         bool m_hasFinishedStatus = false;
+        bool m_appendHashToPayloadName = false;
         bool m_hasMissingFiles = false;
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM = false;

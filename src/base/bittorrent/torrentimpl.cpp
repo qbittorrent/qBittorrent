@@ -76,6 +76,7 @@
 #include "peeraddress.h"
 #include "peerinfo.h"
 #include "sessionimpl.h"
+#include "toplevelpayload.h"
 #include "trackerentry.h"
 
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
@@ -318,6 +319,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeH
     , m_operatingMode {params.operatingMode}
     , m_contentLayout {params.contentLayout}
     , m_hasFinishedStatus {params.hasFinishedStatus}
+    , m_appendHashToPayloadName {params.appendHashToPayloadName}
     , m_hasFirstLastPiecePriority {params.firstLastPiecePriority}
     , m_useAutoTMM {params.useAutoTMM}
     , m_isStopped {params.stopped}
@@ -2251,6 +2253,11 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
                 filePaths[i] = Path(it->second);
         }
 
+        // Deterministic hash naming decided at add time. Idempotent if already applied.
+        // Always use metadata name so magnet dn= / display name cannot diverge from .torrent.
+        if (m_appendHashToPayloadName)
+            filePaths = applyPayloadHashNaming(std::move(filePaths), id(), metadata.name());
+
         m_session->findIncompleteFiles(savePath(), downloadPath(), filePaths).then(this
                 , [this](const FileSearchResult &result)
         {
@@ -2318,6 +2325,7 @@ void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
         .useAutoTMM = m_useAutoTMM,
         .firstLastPiecePriority = m_hasFirstLastPiecePriority,
         .hasFinishedStatus = m_hasFinishedStatus,
+        .appendHashToPayloadName = m_appendHashToPayloadName,
         .stopped = m_isStopped,
         .stopCondition = m_stopCondition,
         .addToQueueTop = false,
@@ -2423,6 +2431,8 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
 
             m_session->handleTorrentContentFileRenamed(this, fileIndex, oldFilePath);
         }
+
+        notePayloadHashMigrationProgress(fileIndex, true);
     }
 
     while (!isMoveInProgress() && m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
@@ -2454,6 +2464,8 @@ void TorrentImpl::handleFileRenameFailed(const lt::file_index_t nativeFileIndex)
                     , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
         }
     }
+
+    notePayloadHashMigrationProgress(fileIndex, false);
 
     while (!isMoveInProgress() && m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
@@ -2881,6 +2893,155 @@ nonstd::expected<void, QString> TorrentImpl::exportToFile(const Path &path) cons
         return nonstd::make_unexpected(saveResult.error());
 
     return {};
+}
+
+PayloadHashMigrationPlan TorrentImpl::planPayloadHashMigration() const
+{
+    PayloadHashMigrationPlan plan;
+    if (!hasMetadata())
+        return plan;
+
+    const PathList currentPaths = filePaths();
+    // Same naming as add-time: info-dict name, always a top-level hash directory.
+    const PathList targetPaths = applyPayloadHashNaming(currentPaths, id(), info().name());
+    if (targetPaths == currentPaths)
+        return plan;
+
+    const Path storageRoot = actualStorageLocation();
+    if (storageRoot.isEmpty())
+    {
+        plan.blocked = true;
+        plan.blockReason = tr("Cannot migrate payload paths: storage location is unknown.");
+        return plan;
+    }
+
+    const Path hashDir = Path::findRootFolder(targetPaths);
+    if (hashDir.isEmpty())
+    {
+        // applyPayloadHashNaming always creates a top-level directory.
+        plan.blocked = true;
+        plan.blockReason = tr("Cannot migrate payload paths: target hash directory is invalid.");
+        return plan;
+    }
+
+    // Fixed rename list (kept for the whole job — never re-planned from a partial layout).
+    for (int i = 0; i < targetPaths.size(); ++i)
+    {
+        if (targetPaths.at(i) == currentPaths.at(i))
+            continue;
+
+        plan.renames.append({.fileIndex = i, .to = targetPaths.at(i)});
+    }
+
+    if (plan.renames.isEmpty())
+        return plan;
+
+    // One target: the hash directory. If it already exists, full replace after confirmation.
+    const Path destAbs = storageRoot / hashDir;
+    if (destAbs.exists())
+        plan.destinationToWipe = destAbs;
+
+    return plan;
+}
+
+bool TorrentImpl::startPayloadHashMigration(const PayloadHashMigrationPlan &plan)
+{
+    if (plan.blocked || plan.renames.isEmpty())
+        return false;
+    if (m_payloadHashMigration.has_value() || !m_renamingFiles.isEmpty())
+    {
+        emit payloadHashMigrationFinished(false
+                , tr("Cannot start payload hash conversion while another rename operation is in progress."));
+        return false;
+    }
+
+    // Delete the entire existing hash directory only after the user confirmed (plan.needsConfirmation).
+    if (!plan.destinationToWipe.isEmpty())
+    {
+        if (plan.destinationToWipe.exists())
+        {
+            if (Utils::Fs::isDir(plan.destinationToWipe))
+                Utils::Fs::removeDirRecursively(plan.destinationToWipe);
+            else
+                std::ignore = Utils::Fs::removeFile(plan.destinationToWipe);
+        }
+
+        if (plan.destinationToWipe.exists())
+        {
+            LogMsg(tr("Failed to delete existing hash directory during payload migration. Torrent: \"%1\". Path: \"%2\".")
+                    .arg(name(), plan.destinationToWipe.toString())
+                    , Log::WARNING);
+            emit payloadHashMigrationFinished(false
+                    , tr("Could not delete existing destination \"%1\". "
+                         "The torrent’s current payload was left unchanged.")
+                    .arg(plan.destinationToWipe.filename()));
+            return false;
+        }
+    }
+
+    // Move the current payload into the hash directory via libtorrent renames (async).
+    PayloadHashMigrationJob job;
+    for (const PayloadHashMigrationItem &item : asConst(plan.renames))
+    {
+        job.pendingFileIndexes.insert(item.fileIndex);
+        renameFile(item.fileIndex, item.to);
+    }
+
+    m_payloadHashMigration = std::move(job);
+    return true;
+}
+
+void TorrentImpl::notePayloadHashMigrationProgress(const int fileIndex, const bool success)
+{
+    if (!m_payloadHashMigration)
+        return;
+
+    PayloadHashMigrationJob &job = *m_payloadHashMigration;
+    if (!job.pendingFileIndexes.remove(fileIndex))
+        return;
+
+    if (!success)
+    {
+        job.failedFileIndexes.append(fileIndex);
+        LogMsg(tr("Failed to rename payload file during hash migration. Torrent: \"%1\". File index: %2.")
+                .arg(name(), QString::number(fileIndex))
+                , Log::WARNING);
+    }
+
+    if (job.pendingFileIndexes.isEmpty())
+        finishPayloadHashMigration();
+}
+
+void TorrentImpl::finishPayloadHashMigration()
+{
+    if (!m_payloadHashMigration)
+        return;
+
+    const PayloadHashMigrationJob job = *m_payloadHashMigration;
+    m_payloadHashMigration.reset();
+
+    const bool success = job.failedFileIndexes.isEmpty();
+    if (success)
+        m_appendHashToPayloadName = true;
+
+    deferredRequestResumeData();
+    forceRecheck();
+
+    if (success)
+    {
+        emit payloadHashMigrationFinished(true, tr("Payload hash conversion finished."));
+        return;
+    }
+
+    QStringList failed;
+    failed.reserve(job.failedFileIndexes.size());
+    for (const int index : asConst(job.failedFileIndexes))
+        failed.append(QString::number(index));
+
+    emit payloadHashMigrationFinished(false
+            , tr("Payload hash conversion failed for file index(es): %1. "
+                 "The torrent was not marked as migrated. A recheck was started.")
+            .arg(failed.join(u", "_s)));
 }
 
 QFuture<QList<PeerInfo>> TorrentImpl::fetchPeerInfo() const

@@ -39,6 +39,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QMimeData>
+#include <QPushButton>
 #include <QRegularExpression>
 #include <QSet>
 #include <QShortcut>
@@ -967,6 +968,56 @@ void TransferListWidget::renameSelectedTorrent()
     }
 }
 
+void TransferListWidget::renameSelectedTorrentsPayloadWithHash()
+{
+    if (!BitTorrent::Session::instance()->isAppendHashToPayloadNamesEnabled())
+        return;
+
+    applyToSelectedTorrents([this](BitTorrent::Torrent *const torrent)
+    {
+        const BitTorrent::PayloadHashMigrationPlan plan = torrent->planPayloadHashMigration();
+        if (plan.blocked)
+        {
+            QMessageBox::warning(this, tr("Payload hash conversion")
+                    , tr("Torrent: \"%1\"\n\n%2").arg(torrent->name(), plan.blockReason));
+            return;
+        }
+        if (plan.isEmpty())
+            return;
+
+        if (plan.needsConfirmation())
+        {
+            const QString text = tr(
+                    "Torrent: \"%1\"\n\n"
+                    "The hashed destination already exists:\n%2\n\n"
+                    "Continuing will permanently delete that entire directory (and all files inside it) "
+                    "and replace it with the torrent’s current payload.\n"
+                    "This cannot be undone by qBittorrent.\n"
+                    "A force recheck will run after the conversion finishes.")
+                    .arg(torrent->name(), plan.destinationToWipe.filename());
+
+            QMessageBox box {QMessageBox::Warning, tr("Confirm payload hash conversion"), text, QMessageBox::NoButton, this};
+            const QPushButton *continueButton = box.addButton(
+                    tr("Delete destination and continue"), QMessageBox::AcceptRole);
+            QPushButton *cancelButton = box.addButton(QMessageBox::Cancel);
+            box.setDefaultButton(cancelButton);
+            box.exec();
+            if (box.clickedButton() != continueButton)
+                return;
+        }
+
+        // Immediate and async failures are reported through this signal (success is silent).
+        connect(torrent, &BitTorrent::Torrent::payloadHashMigrationFinished, this
+                , [this](const bool success, const QString &message)
+        {
+            if (!success)
+                QMessageBox::warning(this, tr("Payload hash conversion failed"), message);
+        }, Qt::SingleShotConnection);
+
+        torrent->startPayloadHashMigration(plan);
+    });
+}
+
 void TransferListWidget::setSelectionCategory(const QString &category)
 {
     applyToSelectedTorrents([&category](BitTorrent::Torrent *torrent) { torrent->setCategory(category); });
@@ -1047,6 +1098,13 @@ void TransferListWidget::displayListMenu()
     connect(actionRename, &QAction::triggered, this, &TransferListWidget::renameSelectedTorrent);
     auto *actionManageContent = new QAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Manage content..."), listMenu);
     connect(actionManageContent, &QAction::triggered, this, &TransferListWidget::manageTorrentContent);
+    auto *actionRenamePayloadWithHash = new QAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s)
+            , tr("Append &hash to payload name"), listMenu);
+    actionRenamePayloadWithHash->setToolTip(tr(
+            "Move the selected torrent(s) into a top-level hash directory"
+            " (for example Show [qb-a19f83c275d1]). If that directory already exists, it is deleted"
+            " and replaced after confirmation. Already-hashed torrents are left unchanged."));
+    connect(actionRenamePayloadWithHash, &QAction::triggered, this, &TransferListWidget::renameSelectedTorrentsPayloadWithHash);
     auto *actionSequentialDownload = new TriStateAction(tr("Download in sequential order"), listMenu);
     connect(actionSequentialDownload, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSequentialDownload);
     auto *actionFirstLastPiecePrio = new TriStateAction(tr("Download first and last pieces first"), listMenu);
@@ -1196,6 +1254,11 @@ void TransferListWidget::displayListMenu()
     {
         listMenu->addAction(actionRename);
         listMenu->addAction(actionManageContent);
+    }
+    if (BitTorrent::Session::instance()->isAppendHashToPayloadNamesEnabled())
+    {
+        actionRenamePayloadWithHash->setEnabled(oneHasMetadata);
+        listMenu->addAction(actionRenamePayloadWithHash);
     }
     listMenu->addAction(actionEditTracker);
 

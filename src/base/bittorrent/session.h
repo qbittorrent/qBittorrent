@@ -220,6 +220,8 @@ namespace BitTorrent
         virtual void setTorrentStopCondition(Torrent::StopCondition stopCondition) = 0;
         virtual TorrentContentLayout torrentContentLayout() const = 0;
         virtual void setTorrentContentLayout(TorrentContentLayout value) = 0;
+        virtual bool isAppendHashToPayloadNamesEnabled() const = 0;
+        virtual void setAppendHashToPayloadNamesEnabled(bool enabled) = 0;
         virtual bool isTrackerEnabled() const = 0;
         virtual void setTrackerEnabled(bool enabled) = 0;
         virtual bool isAppendExtensionEnabled() const = 0;

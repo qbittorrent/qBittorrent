@@ -366,6 +366,16 @@
                 </item>
                </layout>
               </item>
+              <item>
+               <widget class="QCheckBox" name="preserveOriginalPayloadNameCheckBox">
+                <property name="toolTip">
+                 <string>Allow this torrent to use the original payload path without a hash suffix (for example for path-based cross-seeding). Only shown when “Append torrent hash to payload names” is enabled.</string>
+                </property>
+                <property name="text">
+                 <string>Preserve original payload name</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>

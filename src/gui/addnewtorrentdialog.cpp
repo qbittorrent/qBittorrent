@@ -350,6 +350,8 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
     m_ui->stopConditionComboBox->setEnabled(m_ui->startTorrentCheckBox->isChecked());
     m_ui->contentLayoutComboBox->setCurrentIndex(
             static_cast<int>(addTorrentParams.contentLayout.value_or(session->torrentContentLayout())));
+    m_ui->preserveOriginalPayloadNameCheckBox->setVisible(session->isAppendHashToPayloadNamesEnabled());
+    m_ui->preserveOriginalPayloadNameCheckBox->setChecked(addTorrentParams.preserveOriginalPayloadName);
     m_ui->sequentialCheckBox->setChecked(addTorrentParams.sequential);
     m_ui->firstLastCheckBox->setChecked(addTorrentParams.firstLastPiecePriority);
     m_ui->seedModeCheckBox->setChecked(addTorrentParams.seedMode);
@@ -447,6 +449,8 @@ void AddNewTorrentDialog::updateCurrentContext()
     addTorrentParams.addStopped = !m_ui->startTorrentCheckBox->isChecked();
     addTorrentParams.stopCondition = m_ui->stopConditionComboBox->currentData().value<BitTorrent::Torrent::StopCondition>();
     addTorrentParams.contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
+    addTorrentParams.preserveOriginalPayloadName = m_ui->preserveOriginalPayloadNameCheckBox->isVisible()
+            && m_ui->preserveOriginalPayloadNameCheckBox->isChecked();
 
     addTorrentParams.sequential = m_ui->sequentialCheckBox->isChecked();
     addTorrentParams.firstLastPiecePriority = m_ui->firstLastCheckBox->isChecked();
