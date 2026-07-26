@@ -223,7 +223,6 @@
                 markSelectedAsRead: markSelectedAsRead,
                 openRssDownloader: openRssDownloader,
                 rssFeedTable: rssFeedTable,
-                resetInterval: resetInterval,
             };
         };
 
@@ -554,7 +553,7 @@
             }
         };
 
-        const updateRssFeedList = async () => {
+        const updateRssFeedList = async (resetUpdateInterval = false) => {
             const url = new URL("api/v2/rss/items", window.location);
             url.search = new URLSearchParams({
                 withData: true
@@ -727,6 +726,10 @@
                     rssArticleTable.updateTable(true);
                 }
 
+                if (resetUpdateInterval) {
+                    resetInterval();
+                }
+
                 return statusDiffers || needsUpdate;
             }
             else {
@@ -794,6 +797,10 @@
                     ++rowCount;
                 }
                 rssFeedTable.updateTable(false);
+
+                if (resetUpdateInterval) {
+                    resetInterval();
+                }
 
                 return true;
             }
