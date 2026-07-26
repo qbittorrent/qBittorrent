@@ -726,9 +726,8 @@
                     rssArticleTable.updateTable(true);
                 }
 
-                if (resetUpdateInterval) {
+                if (resetUpdateInterval)
                     resetInterval();
-                }
 
                 return statusDiffers || needsUpdate;
             }
@@ -798,9 +797,8 @@
                 }
                 rssFeedTable.updateTable(false);
 
-                if (resetUpdateInterval) {
+                if (resetUpdateInterval)
                     resetInterval();
-                }
 
                 return true;
             }
