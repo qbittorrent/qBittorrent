@@ -290,7 +290,7 @@ if (PLUGINS)
     set_target_properties(qbt_luabridge PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_luabridge,INTERFACE_INCLUDE_DIRECTORIES>)
 
     target_compile_definitions(qbt_base PUBLIC ENABLE_PLUGINS)
-    target_link_libraries(qbt_base PUBLIC qbt_lua qbt_luabridge)
+    target_link_libraries(qbt_base PRIVATE qbt_lua qbt_luabridge)
 
     target_sources(qbt_base PRIVATE
             plugins/luaclasses.h
