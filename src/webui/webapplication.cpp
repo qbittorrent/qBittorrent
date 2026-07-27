@@ -386,18 +386,6 @@ void WebApplication::processAPIRequest(const QString &endpoint, const Http::Head
 
         Http::Response response {.headers = commonHeaders};
 
-        if (m_sessionStateChange == SessionStateChange::Start)
-        {
-            setSessionCookie(response.headers);
-        }
-        else if (m_sessionStateChange == SessionStateChange::End)
-        {
-            QNetworkCookie cookie {m_sessionCookieName.toLatin1()};
-            cookie.setPath(u"/"_s);
-            cookie.setExpirationDate(QDateTime::currentDateTime().addDays(-1));
-            response.headers.insert(Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm()));
-        }
-
         const auto result = std::get<RegularAPIResult>(apiResult);
         if (result.data.isNull())
         {
