@@ -28,6 +28,8 @@
 
 #include "torrentcontentlayoutdialog.h"
 
+#include <QCursor>
+#include <QMenu>
 #include <QPushButton>
 #include <QStyledItemDelegate>
 
@@ -124,6 +126,9 @@ TorrentContentLayoutDialog::TorrentContentLayoutDialog(BitTorrent::TorrentConten
         RaisedMessageBox::warning(this, tr("Rename error"), errorMessage, QMessageBox::Ok);
     });
 
+    m_ui->pathListView->header()->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_ui->pathListView->header(), &QWidget::customContextMenuRequested, this, &TorrentContentLayoutDialog::showColumnHeaderMenu);
+
     m_ui->pathListView->setItemDelegate(new TorrentContentLayoutItemDelegate(this));
 
     connect(m_ui->pathListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &TorrentContentLayoutDialog::populateCommonPath);
@@ -140,6 +145,27 @@ TorrentContentLayoutDialog::~TorrentContentLayoutDialog()
     m_storeDialogSize = size();
     m_storeViewState = m_ui->pathListView->header()->saveState();
     delete m_ui;
+}
+
+void TorrentContentLayoutDialog::showColumnHeaderMenu()
+{
+    auto *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->setToolTipsVisible(true);
+
+    QAction *resizeAction = menu->addAction(tr("Resize columns"), this, [this]()
+    {
+        for (int i = 0, count = m_ui->pathListView->header()->count(); i < count; ++i)
+        {
+            if (!m_ui->pathListView->isColumnHidden(i))
+                m_ui->pathListView->resizeColumnToContents(i);
+        }
+
+        m_storeViewState = m_ui->pathListView->header()->saveState();
+    });
+    resizeAction->setToolTip(tr("Resize all non-hidden columns to the size of their contents"));
+
+    menu->popup(QCursor::pos());
 }
 
 PathList TorrentContentLayoutDialog::selectedPaths() const
