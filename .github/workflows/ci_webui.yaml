@@ -11,7 +11,7 @@ concurrency:
 jobs:
   ci:
     name: Check
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     permissions:
       security-events: write
 
