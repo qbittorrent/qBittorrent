@@ -629,6 +629,9 @@ namespace BitTorrent
         void handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *alert);
         void handleTorrentCheckedAlert(const lt::torrent_checked_alert *alert);
         void handleTorrentFinishedAlert(const lt::torrent_finished_alert *alert);
+#if LIBTORRENT_VERSION_NUM >= 20101
+        void handleIPBanAlert(const lt::ip_ban_alert *alert);
+#endif
 
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, LoadTorrentParams params);
         TorrentImpl *getTorrent(const lt::torrent_handle &nativeHandle) const;
