@@ -316,7 +316,7 @@ void WebApplication::setPasswordHash(const QByteArray &passwordHash)
     m_passwordHash = passwordHash;
 }
 
-void WebApplication::processAPIRequest(const QString &endpoint, const Http::HeaderMap &commonHeaders, Http::ResponseWriter &responseWriter)
+void WebApplication::processAPIRequest(const QString &endpoint, const Http::HeaderMap &commonHeaders, Http::ResponseWriter &responseWriter, const bool isUsingApiKey)
 {
     const auto [scope, action] = parseAPIEndpoint(endpoint);
     if (scope.isEmpty())
@@ -385,6 +385,21 @@ void WebApplication::processAPIRequest(const QString &endpoint, const Http::Head
         }
 
         Http::Response response {.headers = commonHeaders};
+
+        if (!isUsingApiKey)
+        {
+            if (m_sessionStateChange == SessionStateChange::Start)
+            {
+                setSessionCookie(response.headers);
+            }
+            else if (m_sessionStateChange == SessionStateChange::End)
+            {
+                QNetworkCookie cookie {m_sessionCookieName.toLatin1()};
+                cookie.setPath(u"/"_s);
+                cookie.setExpirationDate(QDateTime::currentDateTime().addDays(-1));
+                response.headers.insert(Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm()));
+            }
+        }
 
         const auto result = std::get<RegularAPIResult>(apiResult);
         if (result.data.isNull())
@@ -710,7 +725,7 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
             if (isUsingApiKey && (endpoint.startsWith(u"auth/")))
                 throw ForbiddenHTTPError();
 
-            processAPIRequest(endpoint, commonHeaders, responseWriter);
+            processAPIRequest(endpoint, commonHeaders, responseWriter, isUsingApiKey);
         }
         else
         {

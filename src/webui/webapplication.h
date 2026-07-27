@@ -99,7 +99,7 @@ private:
     void sessionStartImpl(const QString &sessionId, WebSessionType sessionType);
     void sessionEnd() override;
 
-    void processAPIRequest(const QString &endpoint, const Http::HeaderMap &commonHeaders, Http::ResponseWriter &responseWriter);
+    void processAPIRequest(const QString &endpoint, const Http::HeaderMap &commonHeaders, Http::ResponseWriter &responseWriter, bool isUsingApiKey);
     void configure();
 
     void declarePublicAPI(const QString &apiPath);
