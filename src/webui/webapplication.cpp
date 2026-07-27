@@ -386,11 +386,11 @@ void WebApplication::processAPIRequest(const QString &endpoint, const Http::Head
 
         Http::Response response {.headers = commonHeaders};
 
-        if (m_sessionStateChange == SessionStateChange::Start)
+        if (m_cookieBasedSessionStateChange == SessionStateChange::Start)
         {
             setSessionCookie(response.headers);
         }
-        else if (m_sessionStateChange == SessionStateChange::End)
+        else if (m_cookieBasedSessionStateChange == SessionStateChange::End)
         {
             QNetworkCookie cookie {m_sessionCookieName.toLatin1()};
             cookie.setPath(u"/"_s);
@@ -684,7 +684,7 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
     m_currentSession = nullptr;
     m_request = request;
     m_env = env;
-    m_sessionStateChange = SessionStateChange::None;
+    m_cookieBasedSessionStateChange = SessionStateChange::None;
 
     const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
     const auto [authScheme, authData] = parseAuthorizationHeader(authHeader);
@@ -708,12 +708,15 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
         m_clientAddress = resolveClientAddress();
 
         if (isUsingApiKey)
+        {
             apiKeySessionInitialize(authData);
+        }
         else
+        {
             cookieSessionInitialize(authScheme, authData);
-
-        if (!isUsingApiKey)
-            setSessionCookie(commonHeaders);
+            if (m_currentSession)
+                setSessionCookie(commonHeaders);
+        }
 
         if (request.path.startsWith(API_PATH))
         {
@@ -749,8 +752,10 @@ QString WebApplication::clientId() const
 
 void WebApplication::setSessionCookie(Http::HeaderMap &headers)
 {
+    Q_ASSERT(m_currentSession && (m_currentSession->type() == WebSessionType::CookieBased));
+
     auto *currentSession = static_cast<CookieBasedWebSession *>(m_currentSession);
-    if (currentSession && currentSession->shouldRefreshCookie())
+    if (currentSession->shouldRefreshCookie())
     {
         // 'Permanent Cookie' still require an expiration date so set it to a date in the distant future
         const std::chrono::seconds cookieExpireDuration = (m_sessionTimeout > 0s) ? m_sessionTimeout : std::chrono::years(1);
@@ -887,7 +892,8 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
 
     m_currentSession = WebSession::create(sessionType, sessionId);
     m_sessions[m_currentSession->id()] = m_currentSession;
-    m_sessionStateChange = SessionStateChange::Start;
+    if (sessionType == WebSessionType::CookieBased)
+        m_cookieBasedSessionStateChange = SessionStateChange::Start;
 
     m_currentSession->registerAPIController(u"app"_s, [app = app(), parent = m_currentSession] { return new AppController(app, parent); });
     m_currentSession->registerAPIController(u"log"_s, [app = app(), parent = m_currentSession] { return new LogController(app, parent); });
@@ -919,9 +925,10 @@ void WebApplication::sessionEnd()
 {
     Q_ASSERT(m_currentSession);
 
+    if (m_currentSession->type() == WebSessionType::CookieBased)
+        m_cookieBasedSessionStateChange = SessionStateChange::End;
     delete m_sessions.take(m_currentSession->id());
     m_currentSession = nullptr;
-    m_sessionStateChange = SessionStateChange::End;
 }
 
 bool WebApplication::isOriginTrustworthy() const

@@ -146,7 +146,7 @@ private:
         End
     };
 
-    SessionStateChange m_sessionStateChange = SessionStateChange::None;
+    SessionStateChange m_cookieBasedSessionStateChange = SessionStateChange::None;
 
     QSet<QString> m_publicAPIs;
     const QHash<std::pair<QString, QString>, QString> m_allowedMethod =
