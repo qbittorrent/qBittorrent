@@ -3233,21 +3233,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0" colspan="3">
+               <item row="3" column="0" colspan="2">
                 <layout class="QHBoxLayout" name="layoutShareLimitsMode">
-                 <item>
-                  <spacer name="horizontalSpacer_26">
-                   <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
                  <item>
                   <widget class="QRadioButton" name="radioButtonShareLimitsModeAny">
                    <property name="text">
@@ -3266,7 +3253,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   </widget>
                  </item>
                  <item>
-                  <spacer name="horizontalSpacer_25">
+                  <spacer name="spacerShareLimitsMode">
                    <property name="orientation">
                     <enum>Qt::Orientation::Horizontal</enum>
                    </property>
@@ -3281,7 +3268,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                 </layout>
                </item>
                <item row="4" column="0">
-                <widget class="QLabel" name="label">
+                <widget class="QLabel" name="labelRatioLimitAct">
                  <property name="text">
                   <string>then</string>
                  </property>
