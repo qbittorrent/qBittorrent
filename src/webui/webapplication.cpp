@@ -686,7 +686,7 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
     m_env = env;
     m_cookieBasedSessionStateChange = SessionStateChange::None;
 
-    const auto [hasAPIKeyHeader, apiKeyHeader] = std::invoke([headers = m_request.headers]() -> std::tuple<bool, QString>
+    const auto [hasApiKeyHeader, apiKeyHeader] = std::invoke([headers = m_request.headers]() -> std::tuple<bool, QString>
     {
         const auto headersIter = headers.constFind(Http::HEADER_X_API_KEY);
         if (headersIter != headers.constEnd())
