@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,3 +27,62 @@
  */
 
 #include "torrentcontenthandler.h"
+
+#include <QDir>
+#include <QHash>
+#include <QList>
+
+#include "base/exceptions.h"
+#include "base/path.h"
+
+void BitTorrent::TorrentContentHandler::renameFile(const Path &oldPath, const Path &newPath)
+{
+    if (!oldPath.isValid())
+        throw RuntimeError(tr("The old path is invalid: '%1'.").arg(oldPath.toString()));
+    if (!newPath.isValid())
+        throw RuntimeError(tr("The new path is invalid: '%1'.").arg(newPath.toString()));
+    if (newPath.isAbsolute())
+        throw RuntimeError(tr("Absolute path isn't allowed: '%1'.").arg(newPath.toString()));
+
+    int renamingFileIndex = -1;
+    for (int i = 0; i < filesCount(); ++i)
+    {
+        const Path path = filePath(i);
+
+        if ((renamingFileIndex < 0) && (path == oldPath))
+            renamingFileIndex = i;
+        else if (path == newPath)
+            throw RuntimeError(tr("The file already exists: '%1'.").arg(newPath.toString()));
+    }
+
+    if (renamingFileIndex < 0)
+        throw RuntimeError(tr("No such file: '%1'.").arg(oldPath.toString()));
+
+    renameFile(renamingFileIndex, newPath);
+}
+
+void BitTorrent::TorrentContentHandler::renameFolder(const Path &oldFolderPath, const Path &newFolderPath)
+{
+    if (!oldFolderPath.isValid())
+        throw RuntimeError(tr("The old path is invalid: '%1'.").arg(oldFolderPath.toString()));
+    if (!newFolderPath.isValid())
+        throw RuntimeError(tr("The new path is invalid: '%1'.").arg(newFolderPath.toString()));
+    if (newFolderPath.isAbsolute())
+        throw RuntimeError(tr("Absolute path isn't allowed: '%1'.").arg(newFolderPath.toString()));
+
+    bool oldFolderExists = false;
+    for (int i = 0; i < filesCount(); ++i)
+    {
+        const Path path = filePath(i);
+        if (path.hasAncestor(newFolderPath))
+            throw RuntimeError(tr("The folder already exists: '%1'.").arg(newFolderPath.toString()));
+
+        if (!oldFolderExists && path.hasAncestor(oldFolderPath))
+            oldFolderExists = true;
+    }
+
+    if (!oldFolderExists)
+        throw RuntimeError(tr("No such folder: '%1'.").arg(oldFolderPath.toString()));
+
+    doRenameFolder(oldFolderPath, newFolderPath);
+}

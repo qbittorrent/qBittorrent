@@ -48,14 +48,17 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
-    const int MIGRATION_VERSION = 10;
+    const int MIGRATION_VERSION = 11;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()
     {
         const auto migrate = [](const QString &oldKey, const QString &newKey, const Path &savePath)
         {
-            SettingsStorage *settingsStorage {SettingsStorage::instance()};
+            auto *settingsStorage = SettingsStorage::instance();
+            if (!settingsStorage->hasKey(oldKey))
+                return;
+
             const auto oldData {settingsStorage->loadValue<QByteArray>(oldKey)};
             const auto newData {settingsStorage->loadValue<QString>(newKey)};
             const QString errorMsgFormat {QCoreApplication::translate("Upgrade", "Migrate preferences failed: WebUI https, file: \"%1\", error: \"%2\"")};
@@ -88,10 +91,13 @@ namespace
 
     void upgradeTorrentContentLayout()
     {
+        auto *settingsStorage = SettingsStorage::instance();
         const QString oldKey = u"BitTorrent/Session/CreateTorrentSubfolder"_s;
+        if (!settingsStorage->hasKey(oldKey))
+            return;
+
         const QString newKey = u"BitTorrent/Session/TorrentContentLayout"_s;
 
-        SettingsStorage *settingsStorage {SettingsStorage::instance()};
         const auto oldData {settingsStorage->loadValue<QVariant>(oldKey)};
         const auto newData {settingsStorage->loadValue<QString>(newKey)};
 
@@ -125,8 +131,10 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Preferences/Scheduler/days"_s;
-        const auto value = settingsStorage->loadValue<QString>(key);
+        if (!settingsStorage->hasKey(key))
+            return;
 
+        const auto value = settingsStorage->loadValue<QString>(key);
         bool ok = false;
         const auto number = value.toInt(&ok);
 
@@ -178,6 +186,8 @@ namespace
         auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Preferences/DynDNS/Service"_s;
         const auto value = settingsStorage->loadValue<QString>(key);
+        if (!settingsStorage->hasKey(key))
+            return;
 
         bool ok = false;
         const auto number = value.toInt(&ok);
@@ -208,8 +218,10 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Preferences/Advanced/TrayIconStyle"_s;
-        const auto value = settingsStorage->loadValue<QString>(key);
+        if (!settingsStorage->hasKey(key))
+            return;
 
+        const auto value = settingsStorage->loadValue<QString>(key);
         bool ok = false;
         const auto number = value.toInt(&ok);
 
@@ -239,6 +251,9 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto oldKey = u"Preferences/Advanced/TrayIconStyle"_s;
+        if (!settingsStorage->hasKey(oldKey))
+            return;
+
         const auto newKey = u"Appearance/TrayIconStyle"_s;
         const auto value = settingsStorage->loadValue<QString>(oldKey);
 
@@ -365,8 +380,10 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Network/Proxy/Type"_s;
-        const auto value = settingsStorage->loadValue<QString>(key);
+        if (!settingsStorage->hasKey(key))
+            return;
 
+        const auto value = settingsStorage->loadValue<QString>(key);
         bool ok = false;
         const auto number = value.toInt(&ok);
 
@@ -473,6 +490,9 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto oldKey = u"BitTorrent/Session/MaxRatioAction"_s;
+        if (!settingsStorage->hasKey(oldKey))
+            return;
+
         const auto newKey = u"BitTorrent/Session/ShareLimitAction"_s;
         const auto value = settingsStorage->loadValue<int>(oldKey);
 
@@ -503,8 +523,10 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto oldKey = u"BitTorrent/Session/AddTorrentPaused"_s;
-        const auto newKey = u"BitTorrent/Session/AddTorrentStopped"_s;
+        if (!settingsStorage->hasKey(oldKey))
+            return;
 
+        const auto newKey = u"BitTorrent/Session/AddTorrentStopped"_s;
         settingsStorage->storeValue(newKey, settingsStorage->loadValue<bool>(oldKey));
         settingsStorage->removeValue(oldKey);
     }
@@ -524,13 +546,40 @@ namespace
             settingsStorage->removeValue(oldKey);
         }
     }
+
+    void setResolvePeerCountriesSetting()
+    {
+        // User may not have touched this setting so it will stay at the default and its value is empty.
+        // Set it to the previous default value so existing installations are not affected by the new default
+
+        auto *settingsStorage = SettingsStorage::instance();
+        const QString key = u"Preferences/Connection/ResolvePeerCountries"_s;
+        if (!settingsStorage->hasKey(key))
+            SettingsStorage::instance()->storeValue(key, true);
+    }
+
+    void migrateTorrentExportFolderSettings()
+    {
+        const auto doMigrate = [](const QString &oldKey, const QString &newKey, const QString &newEnabledKey)
+        {
+            auto *settingsStorage = SettingsStorage::instance();
+            if (settingsStorage->hasKey(oldKey))
+            {
+                const auto oldPath = settingsStorage->loadValue<Path>(oldKey);
+                settingsStorage->storeValue(newKey, oldPath);
+                settingsStorage->storeValue(newEnabledKey, !oldPath.isEmpty());
+                settingsStorage->removeValue(oldKey);
+            }
+        };
+
+        doMigrate(u"BitTorrent/Session/TorrentExportDirectory"_s, u"BitTorrent/Session/TorrentBackupDirectory"_s, u"BitTorrent/Session/TorrentBackupEnabled"_s);
+        doMigrate(u"BitTorrent/Session/FinishedTorrentExportDirectory"_s, u"BitTorrent/Session/FinishedTorrentBackupDirectory"_s, u"BitTorrent/Session/FinishedTorrentBackupDirectoryEnabled"_s);
+    }
 }
 
 bool upgrade()
 {
-    CachedSettingValue<int> version {MIGRATION_VERSION_KEY, 0};
-
-    if (version != MIGRATION_VERSION)
+    if (CachedSettingValue<int> version {MIGRATION_VERSION_KEY, 0}; version != MIGRATION_VERSION)
     {
         if (version < 1)
         {
@@ -575,7 +624,11 @@ bool upgrade()
         {
             upgradeTrayIconStyleSettings2();
             migrateSMTPEncryptionSetting();
+            setResolvePeerCountriesSetting();
         }
+
+        if (version < 11)
+            migrateTorrentExportFolderSettings();
 
         version = MIGRATION_VERSION;
     }

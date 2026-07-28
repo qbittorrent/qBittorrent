@@ -1099,6 +1099,7 @@ void TorrentsController::addAction()
     const double ratioLimit = parseDouble(params()[u"ratioLimit"_s]).value_or(BitTorrent::DEFAULT_RATIO_LIMIT);
     const int seedingTimeLimit = parseInt(params()[u"seedingTimeLimit"_s]).value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
     const int inactiveSeedingTimeLimit = parseInt(params()[u"inactiveSeedingTimeLimit"_s]).value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
+    const BitTorrent::ShareLimitsMode shareLimitsMode = Utils::String::toEnum(params()[u"shareLimitsMode"_s], BitTorrent::ShareLimitsMode::Default);
     const BitTorrent::ShareLimitAction shareLimitAction = Utils::String::toEnum(params()[u"shareLimitAction"_s], BitTorrent::ShareLimitAction::Default);
     const std::optional<bool> autoTMM = parseBool(params()[u"autoTMM"_s]);
 
@@ -1163,6 +1164,7 @@ void TorrentsController::addAction()
             .ratioLimit = ratioLimit,
             .seedingTimeLimit = seedingTimeLimit,
             .inactiveSeedingTimeLimit = inactiveSeedingTimeLimit,
+            .mode = shareLimitsMode,
             .action = shareLimitAction
         },
         .sslParameters =
@@ -2024,7 +2026,7 @@ void TorrentsController::removeTagsAction()
     {
         applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent)
         {
-            torrent->removeAllTags();
+            torrent->clearTags();
         });
     }
 
@@ -2229,6 +2231,11 @@ void TorrentsController::fetchMetadataAction()
     // http(s) url
     else if (Net::DownloadManager::hasSupportedScheme(source))
     {
+        if (m_invalidTorrentSource.contains(source))
+        {
+            throw APIError(APIErrorType::BadData, tr("'%1' is not a valid torrent file.").arg(source));
+        }
+
         if (!m_requestedTorrentSource.contains(source))
         {
             if (!downloaderParam.isEmpty())
@@ -2442,10 +2449,12 @@ void TorrentsController::cacheTorrentFile(const QString &source, const QByteArra
         const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
         m_torrentSourceCache.insert(source, infoHash);
         m_torrentMetadataCache.insert(infoHash.toTorrentID(), torrentDescr);
+        m_invalidTorrentSource.remove(source);
     }
     else
     {
         LogMsg(tr("Parse torrent failed. URL: \"%1\". Error: \"%2\".").arg(source, loadResult.error()), Log::WARNING);
+        m_invalidTorrentSource.insert(source);
         m_torrentSourceCache.remove(source);
     }
 }

@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,13 +31,10 @@
 
 #include "torrentcontentmodelfolder.h"
 
-TorrentContentModelFile::TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
-                                                 TorrentContentModelFolder *parent, int fileIndex)
-    : TorrentContentModelItem(parent)
-    , m_fileIndex(fileIndex)
+TorrentContentModelFile::TorrentContentModelFile(const QString &fileName
+        , const qulonglong fileSize, const int fileIndex)
+    : m_fileIndex {fileIndex}
 {
-    Q_ASSERT(parent);
-
     m_name = fileName;
     m_size = fileSize;
 }
@@ -57,7 +55,7 @@ void TorrentContentModelFile::setPriority(BitTorrent::DownloadPriority newPriori
 
     // Update parent
     if (updateParent)
-        m_parentItem->updatePriority();
+        parent()->updatePriority();
 }
 
 void TorrentContentModelFile::setProgress(qreal progress)

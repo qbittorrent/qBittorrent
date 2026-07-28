@@ -79,7 +79,7 @@ bool ApplicationInstanceManager::isFirstInstance() const
     return m_isFirstInstance;
 }
 
-bool ApplicationInstanceManager::sendMessage(const QString &message, const int timeout)
+bool ApplicationInstanceManager::sendMessage(const QString &message, const std::chrono::milliseconds timeout)
 {
     return m_peer->sendMessage(message, timeout);
 }

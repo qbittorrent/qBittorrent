@@ -39,7 +39,7 @@ void BitTorrent::TorrentContentRemover::performJob(const QString &torrentName, c
 
     if (!fileNames.isEmpty())
     {
-        const auto removeFileFn = [&option](const Path &filePath)
+        const auto removeFileFn = [&option](const Path &filePath) -> nonstd::expected<void, QString>
         {
             return ((option == TorrentContentRemoveOption::MoveToTrash)
                     ? Utils::Fs::moveFileToTrash : Utils::Fs::removeFile)(filePath);

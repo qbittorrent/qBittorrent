@@ -132,7 +132,7 @@ namespace BitTorrent
         bool hasTag(const Tag &tag) const override;
         bool addTag(const Tag &tag) override;
         bool removeTag(const Tag &tag) override;
-        void removeAllTags() override;
+        void clearTags() override;
 
         int filesCount() const override;
         int piecesCount() const override;
@@ -283,6 +283,21 @@ namespace BitTorrent
     private:
         using EventTrigger = std::function<void ()>;
 
+        struct FileRenameInfo
+        {
+            int index = 0;
+            int folderRenameJobID = -1;
+        };
+
+        struct FolderRenameInfo
+        {
+            int folderRenameJobID = -1;
+            Path oldFolderPath {};
+            Path newFolderPath {};
+            QHash<int, Path> renamedFiles {};
+            QList<int> failedFileIndexes {};
+        };
+
         std::shared_ptr<const lt::torrent_info> nativeTorrentInfo() const;
 
         void updateStatus(const lt::torrent_status &nativeStatus);
@@ -293,10 +308,12 @@ namespace BitTorrent
 
         void setAutoManaged(bool enable);
 
+        void doRenameFile(int index, const Path &path, int folderRenameJobID = -1);
+        void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath) override;
+
         Path makeActualPath(int index, const Path &path) const;
         Path makeUserPath(const Path &path) const;
         void adjustStorageLocation();
-        void doRenameFile(int index, const Path &path);
         void moveStorage(const Path &newPath, MoveStorageContext context);
         void manageActualFilePaths();
         void applyFirstLastPiecePriority(bool enabled);
@@ -334,8 +351,11 @@ namespace BitTorrent
         // m_moveFinishedTriggers is activated only when the following conditions are met:
         // all file rename jobs complete, all file move jobs complete
         QQueue<EventTrigger> m_moveFinishedTriggers;
-        int m_renameCount = 0;
         bool m_storageIsMoving = false;
+
+        QQueue<FileRenameInfo> m_renamingFiles;
+        QQueue<FolderRenameInfo> m_renamingFolders;
+        int m_nextFolderRenameJobID = 0;
 
         QQueue<EventTrigger> m_statusUpdatedTriggers;
 

@@ -39,6 +39,7 @@
 #include <QMessageBox>
 #include <QMimeData>
 #include <QThread>
+#include <QThreadPool>
 #include <QUrl>
 
 #include "base/bittorrent/session.h"
@@ -99,7 +100,7 @@ namespace
 TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultPath)
     : QDialog(parent)
     , m_ui(new Ui::TorrentCreatorDialog)
-    , m_threadPool(this)
+    , m_threadPool {new QThreadPool(this)}
     , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
     , m_storePieceSize(SETTINGS_KEY(u"PieceSize"_s))
     , m_storeIgnoreDotfiles(SETTINGS_KEY(u"IgnoreDotfiles"_s))
@@ -142,8 +143,8 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
     loadSettings();
     updateInputPath(defaultPath);
 
-    m_threadPool.setMaxThreadCount(1);
-    m_threadPool.setObjectName("TorrentCreatorDialog m_threadPool");
+    m_threadPool->setMaxThreadCount(1);
+    m_threadPool->setObjectName("TorrentCreatorDialog m_threadPool");
 
 #ifdef QBT_USES_LIBTORRENT2
     m_ui->checkOptimizeAlignment->hide();
@@ -156,6 +157,7 @@ TorrentCreatorDialog::~TorrentCreatorDialog()
 {
     saveSettings();
 
+    delete m_threadPool;
     delete m_ui;
 }
 
@@ -330,7 +332,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     connect(torrentCreator, &BitTorrent::TorrentCreator::progressUpdated, this, &TorrentCreatorDialog::updateProgressBar);
 
     // run the torrentCreator in a thread
-    m_threadPool.start(torrentCreator);
+    m_threadPool->start(torrentCreator);
 }
 
 void TorrentCreatorDialog::handleCreationFailure(const QString &msg)
@@ -382,7 +384,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const BitTorrent::TorrentCreato
     }
 }
 
-void TorrentCreatorDialog::updateProgressBar(int progress)
+void TorrentCreatorDialog::updateProgressBar(const int progress)
 {
     m_ui->progressBar->setValue(progress);
 }

@@ -32,9 +32,8 @@
 #include <utility>
 
 #include <boost/multi_index_container.hpp>
-#include <boost/multi_index/composite_key.hpp>
 #include <boost/multi_index/indexed_by.hpp>
-#include <boost/multi_index/mem_fun.hpp>
+#include <boost/multi_index/key.hpp>
 #include <boost/multi_index/ordered_index.hpp>
 
 #include <QUuid>
@@ -45,14 +44,12 @@ namespace BitTorrent
 {
     using namespace boost::multi_index;
 
-    class TorrentCreationManager::TaskSet final : public boost::multi_index_container<
-            std::shared_ptr<TorrentCreationTask>,
-            indexed_by<
-                    ordered_unique<tag<struct ByID>, const_mem_fun<TorrentCreationTask, QString, &TorrentCreationTask::id>>,
-                    ordered_non_unique<tag<struct ByCompletion>, composite_key<
-                            TorrentCreationTask,
-                            const_mem_fun<TorrentCreationTask, bool, &TorrentCreationTask::isFinished>,
-                            const_mem_fun<TorrentCreationTask, QDateTime, &TorrentCreationTask::timeAdded>>>>>
+    class TorrentCreationManager::TaskSet final : public multi_index_container<
+        std::shared_ptr<TorrentCreationTask>,
+        indexed_by<
+            ordered_unique<tag<struct ByID>, key<&TorrentCreationTask::id>>,
+            ordered_non_unique<tag<struct ByCompletion>,
+                key<&TorrentCreationTask::isFinished, &TorrentCreationTask::timeAdded>>>>
     {
     };
 }
@@ -72,7 +69,7 @@ BitTorrent::TorrentCreationManager::TorrentCreationManager(IApplication *app, QO
 
 BitTorrent::TorrentCreationManager::~TorrentCreationManager() = default;
 
-std::shared_ptr<BitTorrent::TorrentCreationTask> BitTorrent::TorrentCreationManager::createTask(const TorrentCreatorParams &params, bool startSeeding)
+std::shared_ptr<BitTorrent::TorrentCreationTask> BitTorrent::TorrentCreationManager::createTask(const TorrentCreatorParams &params, const bool startSeeding)
 {
     if (std::cmp_greater_equal(m_tasks->size(), m_maxTasks.get()))
     {

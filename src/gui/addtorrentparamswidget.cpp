@@ -343,7 +343,7 @@ void AddTorrentParamsWidget::populateDefaultPaths()
 
     const Path defaultSavePath = btSession->suggestedSavePath(
             m_ui->categoryComboBox->currentText(), toOptionalBool(m_ui->comboTTM->currentData()));
-    m_ui->savePathEdit->setPlaceholder(defaultSavePath);
+    m_ui->savePathEdit->setPlaceholder(defaultSavePath.toString());
 
     populateDefaultDownloadPath();
 }
@@ -357,11 +357,11 @@ void AddTorrentParamsWidget::populateDefaultDownloadPath()
     {
         const Path defaultDownloadPath = btSession->suggestedDownloadPath(
                 m_ui->categoryComboBox->currentText(), toOptionalBool(m_ui->comboTTM->currentData()));
-        m_ui->downloadPathEdit->setPlaceholder(defaultDownloadPath);
+        m_ui->downloadPathEdit->setPlaceholder(defaultDownloadPath.toString());
     }
     else
     {
-        m_ui->downloadPathEdit->setPlaceholder(Path());
+        m_ui->downloadPathEdit->setPlaceholder(QString());
     }
 }
 

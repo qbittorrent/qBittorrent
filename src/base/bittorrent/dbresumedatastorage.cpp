@@ -47,6 +47,7 @@
 #include <QDebug>
 #include <QList>
 #include <QMutex>
+#include <QMutexLocker>
 #include <QSet>
 #include <QSqlDatabase>
 #include <QSqlError>
@@ -747,7 +748,8 @@ void BitTorrent::DBResumeDataStorage::Worker::run()
         int64_t transactedJobsCount = 0;
         while (true)
         {
-            m_jobsMutex.lock();
+            QMutexLocker jobsLocker {&m_jobsMutex};
+
             if (m_jobs.empty())
             {
                 if (transactedJobsCount > 0)
@@ -760,29 +762,24 @@ void BitTorrent::DBResumeDataStorage::Worker::run()
                 }
 
                 if (isInterruptionRequested())
-                {
-                    m_jobsMutex.unlock();
                     break;
-                }
 
                 m_waitCondition.wait(&m_jobsMutex);
                 if (isInterruptionRequested())
-                {
-                    m_jobsMutex.unlock();
                     break;
-                }
 
                 m_dbLock.lockForWrite();
                 if (!db.transaction())
                 {
-                    LogMsg(tr("Couldn't begin transaction. Error: %1").arg(db.lastError().text()), Log::WARNING);
+                    LogMsg(tr("Save resume data transaction failed. Error: %1").arg(db.lastError().text()), Log::WARNING);
                     m_dbLock.unlock();
                     break;
                 }
             }
+
             std::unique_ptr<Job> job = std::move(m_jobs.front());
             m_jobs.pop();
-            m_jobsMutex.unlock();
+            jobsLocker.unlock();
 
             job->perform(db);
             ++transactedJobsCount;

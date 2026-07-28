@@ -576,8 +576,8 @@ void Feed::cleanup()
 {
     m_dirty = false;
     m_savingTimer.stop();
-    Utils::Fs::removeFile(m_session->dataFileStorage()->storageDir() / m_dataFileName);
-    Utils::Fs::removeFile(m_iconPath);
+    std::ignore = Utils::Fs::removeFile(m_session->dataFileStorage()->storageDir() / m_dataFileName);
+    std::ignore = Utils::Fs::removeFile(m_iconPath);
 }
 
 void Feed::timerEvent([[maybe_unused]] QTimerEvent *event)
