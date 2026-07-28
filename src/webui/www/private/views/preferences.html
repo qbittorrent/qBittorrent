@@ -3263,7 +3263,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["embedded_tracker_port_forwarding"] = document.getElementById("embeddedTrackerPortForwarding").checked;
             settings["mark_of_the_web"] = document.getElementById("markOfTheWeb").checked;
             settings["ignore_ssl_errors"] = document.getElementById("ignoreSSLErrors").checked;
-            settings["python_executable_path"] = document.getElementById("pythonExecutablePath").value;
+
+            const pyPath = document.getElementById("pythonExecutablePath").value;
+            if ((pyPath.length > 0)
+                && (pyPath.startsWith("\"") || pyPath.startsWith("'")
+                    || pyPath.endsWith("\"") || pyPath.endsWith("'"))) {
+                alert("QBT_TR(Invalid path to Python executable. Path contains unnecessary leading and trailing quotes.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["python_executable_path"] = pyPath;
 
             // libtorrent section
             settings["bdecode_depth_limit"] = Number(document.getElementById("bdecodeDepthLimit").value);
