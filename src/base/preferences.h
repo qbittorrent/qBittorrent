@@ -348,6 +348,12 @@ public:
     int getBdecodeTokenLimit() const;
     void setBdecodeTokenLimit(int value);
 
+    // libtorrent filename deduplication
+    bool isFixMutatedFilenamesEnabled() const;
+    void setFixMutatedFilenamesEnabled(bool enabled);
+    bool isUseDedupedFilenamesEnabled() const;
+    void setUseDedupedFilenamesEnabled(bool enabled);
+
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.
     QDateTime getDNSLastUpd() const;

@@ -73,6 +73,7 @@
 #include "loadtorrentparams.h"
 #include "ltqbitarray.h"
 #include "lttypecast.h"
+#include "managededupedfilenames.h"
 #include "peeraddress.h"
 #include "peerinfo.h"
 #include "sessionimpl.h"
@@ -2211,6 +2212,10 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
     {
         Q_ASSERT(m_indexMap.isEmpty());
 
+        const bool useDedupedFilenames = Preferences::instance()->isUseDedupedFilenamesEnabled();
+        if (useDedupedFilenames)
+            manageDedupedFilenames(params, DedupeAction::MagnetInsert);
+
         const auto isSeedMode = static_cast<bool>(m_ltAddTorrentParams.flags & lt::torrent_flags::seed_mode);
         m_ltAddTorrentParams = std::move(params);
         if (isSeedMode)
@@ -2226,7 +2231,25 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
 
         const auto &renamedFiles = m_ltAddTorrentParams.renamed_files;
         PathList filePaths = metadata.filePaths();
-        if (renamedFiles.empty() && (m_contentLayout != TorrentContentLayout::Original))
+
+        // we are behind the HandleMetadata check here
+        // so i don't understand where renamed_files could come from other than filename deduplication
+        // or why content layout should not be applied if there are renamed_files
+        const auto nativeIndexes = metadata.nativeIndexes();
+        m_indexMap.reserve(filePaths.size());
+        for (qsizetype i = 0; i < filePaths.size(); ++i)
+        {
+            const auto nativeIndex = nativeIndexes.at(i);
+            m_indexMap[nativeIndex] = i;
+
+            if (useDedupedFilenames)
+            {
+                if (const auto it = renamedFiles.find(nativeIndex); it != renamedFiles.cend())
+                    filePaths[i] = Path(it->second);
+            }
+        }
+
+        if (m_contentLayout != TorrentContentLayout::Original)
         {
             const Path originalRootFolder = Path::findRootFolder(filePaths);
             const auto originalContentLayout = (originalRootFolder.isEmpty()
@@ -2238,17 +2261,6 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
                 else
                     Path::addRootFolder(filePaths, filePaths.at(0).removedExtension());
             }
-        }
-
-        const auto nativeIndexes = metadata.nativeIndexes();
-        m_indexMap.reserve(filePaths.size());
-        for (qsizetype i = 0; i < filePaths.size(); ++i)
-        {
-            const auto nativeIndex = nativeIndexes.at(i);
-            m_indexMap[nativeIndex] = i;
-
-            if (const auto it = renamedFiles.find(nativeIndex); it != renamedFiles.cend())
-                filePaths[i] = Path(it->second);
         }
 
         m_session->findIncompleteFiles(savePath(), downloadPath(), filePaths).then(this

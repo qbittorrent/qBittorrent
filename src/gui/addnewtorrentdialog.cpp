@@ -820,7 +820,23 @@ void AddNewTorrentDialog::setupTreeview()
 
     BitTorrent::AddTorrentParams &addTorrentParams = m_currentContext->torrentParams;
     if (addTorrentParams.filePaths.isEmpty())
+    {
         addTorrentParams.filePaths = torrentInfo.filePaths();
+        if (Preferences::instance()->isUseDedupedFilenamesEnabled())
+        {
+            const lt::add_torrent_params &p = torrentDescr.ltAddTorrentParams();
+            if (!p.renamed_files.empty())
+            {
+                const auto nativeIndexes = torrentInfo.nativeIndexes();
+                for (const auto &[renamedIndex, renamedFile] : p.renamed_files)
+                {
+                    const qsizetype fileIndex = nativeIndexes.indexOf(renamedIndex);
+                    if (fileIndex >= 0)
+                        addTorrentParams.filePaths[fileIndex] = Path(renamedFile);
+                }
+            }
+        }
+    }
 
     if (addTorrentParams.filePriorities.isEmpty())
     {
