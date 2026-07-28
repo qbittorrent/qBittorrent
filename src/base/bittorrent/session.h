@@ -133,6 +133,16 @@ namespace BitTorrent
             SQLite
         };
         Q_ENUM_NS(ResumeDataStorageType)
+
+        enum class QueueSortMode : int
+        {
+            DateAdded = 0,
+            PercentDownloaded = 1,
+            BytesRemaining = 2,
+            Name = 3,
+            Size = 4
+        };
+        Q_ENUM_NS(QueueSortMode)
     }
 
     class Session : public QObject
@@ -377,6 +387,8 @@ namespace BitTorrent
         virtual void setAnonymousModeEnabled(bool enabled) = 0;
         virtual bool isQueueingSystemEnabled() const = 0;
         virtual void setQueueingSystemEnabled(bool enabled) = 0;
+        virtual QueueSortMode queueSortMode() const = 0;
+        virtual void setQueueSortMode(QueueSortMode mode) = 0;
         virtual bool ignoreSlowTorrentsForQueueing() const = 0;
         virtual void setIgnoreSlowTorrentsForQueueing(bool ignore) = 0;
         virtual int downloadRateForSlowTorrents() const = 0;

@@ -518,6 +518,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_socketBacklogSize(BITTORRENT_SESSION_KEY(u"SocketBacklogSize"_s), 30)
     , m_isAnonymousModeEnabled(BITTORRENT_SESSION_KEY(u"AnonymousModeEnabled"_s), false)
     , m_isQueueingEnabled(BITTORRENT_SESSION_KEY(u"QueueingSystemEnabled"_s), false)
+    , m_queueSortMode(BITTORRENT_SESSION_KEY(u"QueueSortMode"_s), QueueSortMode::DateAdded)
     , m_maxActiveDownloads(BITTORRENT_SESSION_KEY(u"MaxActiveDownloads"_s), 3, lowerLimited(-1))
     , m_maxActiveUploads(BITTORRENT_SESSION_KEY(u"MaxActiveUploads"_s), 3, lowerLimited(-1))
     , m_maxActiveTorrents(BITTORRENT_SESSION_KEY(u"MaxActiveTorrents"_s), 5, lowerLimited(-1))
@@ -674,6 +675,14 @@ SessionImpl::SessionImpl(QObject *parent)
         const QHash<TorrentID, TorrentImpl *> torrents {m_torrents};
         for (TorrentImpl *torrent : torrents)
             processTorrentShareLimits(torrent);
+    });
+
+    m_queueSortTimer = new QTimer(this);
+    m_queueSortTimer->setInterval(30s);
+    connect(m_queueSortTimer, &QTimer::timeout, this, [this]
+    {
+        if (isQueueingSystemEnabled())
+            sortTorrentsQueue();
     });
 
     initializeNativeSession();
@@ -3126,6 +3135,12 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
                 LogMsg(tr("Added new torrent. Torrent: \"%1\"").arg(torrent->name()));
                 emit torrentAdded(torrent);
 
+                if (isQueueingSystemEnabled())
+                {
+                    sortTorrentsQueue();
+                    startQueueSortTimer();
+                }
+
                 if (isTorrentFileBackupEnabled())
                     backupTorrentFile(torrent, torrentDescr);
             }
@@ -3401,6 +3416,65 @@ void SessionImpl::removeTorrentsQueue()
     m_resumeDataStorage->storeQueue({});
     m_torrentsQueueChanged = false;
     m_needSaveTorrentsQueue = false;
+}
+
+void SessionImpl::sortTorrentsQueue()
+{
+    QList<TorrentImpl *> queuedTorrents;
+    queuedTorrents.reserve(m_torrents.size());
+    for (TorrentImpl *torrent : asConst(m_torrents))
+    {
+        if (torrent->queuePosition() >= 0)
+            queuedTorrents.push_back(torrent);
+    }
+
+    if (queuedTorrents.size() <= 1)
+        return;
+
+    switch (queueSortMode())
+    {
+    case QueueSortMode::DateAdded:
+        std::ranges::sort(queuedTorrents, std::less(), &TorrentImpl::addedTime);
+        break;
+    case QueueSortMode::PercentDownloaded:
+        std::ranges::sort(queuedTorrents, std::greater(), &TorrentImpl::progress);
+        break;
+    case QueueSortMode::BytesRemaining:
+        std::ranges::sort(queuedTorrents, std::less(), &TorrentImpl::remainingSize);
+        break;
+    case QueueSortMode::Name:
+        std::ranges::sort(queuedTorrents, [](const TorrentImpl *lhs, const TorrentImpl *rhs)
+        {
+            return (QString::compare(lhs->name(), rhs->name(), Qt::CaseInsensitive) < 0);
+        });
+        break;
+    case QueueSortMode::Size:
+        std::ranges::sort(queuedTorrents, std::less(), &TorrentImpl::totalSize);
+        break;
+    }
+
+    // Apply sorted order using queue_position_top in reverse,
+    // matching the pattern used by topTorrentsQueuePos()
+    for (int i = static_cast<int>(queuedTorrents.size()) - 1; i >= 0; --i)
+        torrentQueuePositionTop(queuedTorrents[i]->nativeHandle());
+
+    m_torrentsQueueChanged = true;
+    m_nativeSession->post_torrent_updates();
+}
+
+void SessionImpl::startQueueSortTimer()
+{
+    const QueueSortMode mode = queueSortMode();
+    if (((mode == QueueSortMode::PercentDownloaded) || (mode == QueueSortMode::BytesRemaining))
+            && isQueueingSystemEnabled() && !m_queueSortTimer->isActive())
+    {
+        m_queueSortTimer->start();
+    }
+}
+
+void SessionImpl::stopQueueSortTimer()
+{
+    m_queueSortTimer->stop();
 }
 
 void SessionImpl::setSavePath(const Path &path)
@@ -4862,12 +4936,42 @@ void SessionImpl::setQueueingSystemEnabled(const bool enabled)
         configureDeferred();
 
         if (enabled)
+        {
             m_torrentsQueueChanged = true;
+            sortTorrentsQueue();
+            startQueueSortTimer();
+        }
         else
+        {
             removeTorrentsQueue();
+            stopQueueSortTimer();
+        }
 
         for (TorrentImpl *torrent : asConst(m_torrents))
             torrent->handleQueueingModeChanged();
+    }
+}
+
+QueueSortMode SessionImpl::queueSortMode() const
+{
+    return m_queueSortMode;
+}
+
+void SessionImpl::setQueueSortMode(const QueueSortMode mode)
+{
+    if (mode != m_queueSortMode)
+    {
+        m_queueSortMode = mode;
+
+        if (isQueueingSystemEnabled())
+        {
+            sortTorrentsQueue();
+
+            if ((mode == QueueSortMode::PercentDownloaded) || (mode == QueueSortMode::BytesRemaining))
+                startQueueSortTimer();
+            else
+                stopQueueSortTimer();
+        }
     }
 }
 
