@@ -93,6 +93,7 @@ public:
         TR_REANNOUNCE,
         TR_PRIVATE,
         TR_CREATE_DATE,
+        TR_DISPLAY_NAME,
 
         NB_COLUMNS
     };
