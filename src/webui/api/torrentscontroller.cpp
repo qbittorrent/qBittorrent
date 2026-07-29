@@ -69,6 +69,7 @@
 #include "apierror.h"
 #include "apistatus.h"
 #include "serialize/serialize_torrent.h"
+#include "serializedtorrentscache.h"
 
 // Tracker keys
 const QString KEY_TRACKER_URL = u"url"_s;
@@ -560,8 +561,9 @@ namespace
     }
 }
 
-TorrentsController::TorrentsController(IApplication *app, QObject *parent)
+TorrentsController::TorrentsController(SerializedTorrentsCache *serializationCache, IApplication *app, QObject *parent)
     : APIController(app, parent)
+    , m_serializationCache {serializationCache}
 {
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &TorrentsController::onMetadataDownloaded);
 }
@@ -627,13 +629,13 @@ void TorrentsController::infoAction()
     }
 
     const TorrentFilter torrentFilter {parseTorrentStatus(filter), idSet, category, tag, isPrivate};
-    QVariantList torrentList;
+    QList<QJsonObject> torrentList;
     for (const BitTorrent::Torrent *torrent : asConst(BitTorrent::Session::instance()->torrents()))
     {
         if (!torrentFilter.match(torrent))
             continue;
 
-        QVariantMap serializedTorrent = serialize(*torrent);
+        QJsonObject serializedTorrent = m_serializationCache->value(*torrent);
 
         if (includeFiles && torrent->hasMetadata())
             serializedTorrent.insert(KEY_PROP_FILES, getFiles(torrent));
@@ -651,40 +653,25 @@ void TorrentsController::infoAction()
 
     if (!sortedColumn.isEmpty())
     {
-        if (!torrentList[0].toMap().contains(sortedColumn))
+        if (!torrentList[0].contains(sortedColumn))
             throw APIError(APIErrorType::BadParams, tr("'sort' parameter is invalid"));
 
-        const auto lessThan = [](const QVariant &left, const QVariant &right) -> bool
+        const auto lessThan = [](const QJsonValue &left, const QJsonValue &right) -> bool
         {
-            Q_ASSERT(left.userType() == right.userType());
-
-            switch (left.userType())
-            {
-            case QMetaType::Bool:
-                return left.value<bool>() < right.value<bool>();
-            case QMetaType::Double:
-                return left.value<double>() < right.value<double>();
-            case QMetaType::Float:
-                return left.value<float>() < right.value<float>();
-            case QMetaType::Int:
-                return left.value<int>() < right.value<int>();
-            case QMetaType::LongLong:
-                return left.value<qlonglong>() < right.value<qlonglong>();
-            case QMetaType::QString:
-                return left.value<QString>() < right.value<QString>();
-            default:
-                qWarning("Unhandled QVariant comparison, type: %d, name: %s"
-                        , left.userType(), left.metaType().name());
-                break;
-            }
+            if (left.isBool())
+                return left.toBool() < right.toBool();
+            if (left.isDouble())
+                return left.toDouble() < right.toDouble();
+            if (left.isString())
+                return left.toString() < right.toString();
             return false;
         };
 
         std::ranges::sort(torrentList
-            , [reverse, &sortedColumn, &lessThan](const QVariant &torrent1, const QVariant &torrent2)
+            , [reverse, &sortedColumn, &lessThan](const QJsonObject &torrent1, const QJsonObject &torrent2)
         {
-            const QVariant value1 {torrent1.toMap().value(sortedColumn)};
-            const QVariant value2 {torrent2.toMap().value(sortedColumn)};
+            const QJsonValue value1 {torrent1.value(sortedColumn)};
+            const QJsonValue value2 {torrent2.value(sortedColumn)};
             return reverse ? lessThan(value2, value1) : lessThan(value1, value2);
         });
     }
@@ -700,7 +687,10 @@ void TorrentsController::infoAction()
     if ((limit > 0) || (offset > 0))
         torrentList = torrentList.mid(offset, limit);
 
-    setResult(QJsonArray::fromVariantList(torrentList));
+    QJsonArray result;
+    for (const QJsonObject &serializedTorrent : asConst(torrentList))
+        result.append(serializedTorrent);
+    setResult(result);
 }
 
 // Returns the properties for a torrent in JSON format.
