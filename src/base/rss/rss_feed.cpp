@@ -406,9 +406,20 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
         // If article has no publication date we use feed update time as a fallback.
         // To prevent processing of "out-of-limit" articles we must not assign dates
         // that are earlier than the dates of existing articles.
-        const Article *existingArticle = articleByGUID(article[Article::KeyId].toString());
+        Article *existingArticle = articleByGUID(article[Article::KeyId].toString());
         if (existingArticle)
         {
+            // If pubDates change, we need to update existing articles to avoid
+            // using out-of-date cached values when sorting.
+            const QDateTime feedDate = article[Article::KeyDate].toDateTime();
+            if (feedDate.isValid() && (feedDate != existingArticle->date()))
+            {
+                existingArticle->m_date = feedDate;
+                existingArticle->m_data[Article::KeyDate] = feedDate;
+
+                m_dirty = true;
+            }
+
             dummyPubDate = existingArticle->date().addMSecs(-1);
             continue;
         }
@@ -420,22 +431,49 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
         newArticles.append(article);
     }
 
+    // Re-sort the articles list if any date has changed.
+    if (m_dirty)
+    {
+        std::ranges::sort(m_articlesByDate, [](const Article *a1, const Article *a2)
+        {
+            if (a1->date() != a2->date())
+                return (a1->date() > a2->date());
+            return (a1->guid() > a2->guid());
+        });
+    }
+
     if (newArticles.empty())
         return 0;
 
-    using ArticleSortAdaptor = std::pair<QDateTime, const QVariantHash *>;
+    struct ArticleSortAdaptor
+    {
+        QDateTime date;
+        QString guid;
+        const QVariantHash *newArticleData = nullptr;
+    };
     std::vector<ArticleSortAdaptor> sortData;
     const QList<Article *> existingArticles = articles();
     sortData.reserve(existingArticles.size() + newArticles.size());
     for (const Article *article : existingArticles)
-        sortData.push_back(std::make_pair(article->date(), nullptr));
+        sortData.push_back({article->date(), article->guid(), nullptr});
     for (const QVariantHash &article : asConst(newArticles))
-        sortData.push_back(std::make_pair(article[Article::KeyDate].toDateTime(), &article));
+        sortData.push_back({article[Article::KeyDate].toDateTime(), article[Article::KeyId].toString(), &article});
 
-    // Sort article list in reverse chronological order
+    // Sort article list in reverse chronological order.
+    // If dates are equal, prefer existing articles over new articles to prevent
+    // existing read articles from being evicted when maxArticlesPerFeed is applied.
+    // Use GUID to break ties so that the sort order is deterministic.
     std::ranges::sort(sortData, [](const ArticleSortAdaptor &a1, const ArticleSortAdaptor &a2)
     {
-        return (a1.first > a2.first);
+        if (a1.date != a2.date)
+            return (a1.date > a2.date);
+
+        const bool a1IsExisting = (a1.newArticleData == nullptr);
+        const bool a2IsExisting = (a2.newArticleData == nullptr);
+        if (a1IsExisting != a2IsExisting)
+            return a1IsExisting;
+
+        return (a1.guid > a2.guid);
     });
 
     if (sortData.size() > static_cast<uint>(m_session->maxArticlesPerFeed()))
@@ -444,9 +482,9 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
     int newArticlesCount = 0;
     for (const ArticleSortAdaptor &a : std::views::reverse(sortData))
     {
-        if (a.second)
+        if (a.newArticleData)
         {
-            addArticle(*a.second);
+            addArticle(*a.newArticleData);
             ++newArticlesCount;
         }
     }
