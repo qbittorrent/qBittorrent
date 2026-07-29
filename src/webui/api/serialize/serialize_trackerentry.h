@@ -28,38 +28,29 @@
 
 #pragma once
 
-#include <QHash>
-#include <QJsonArray>
 #include <QJsonObject>
-#include <QObject>
 
-#include "base/bittorrent/infohash.h"
+#include "base/global.h"
 
 namespace BitTorrent
 {
-    class Torrent;
+    struct TrackerEntryStatus;
 }
 
-// Application-wide cache of serialized torrents. Serializing a torrent and
-// converting the result to JSON is expensive and identical for all WebAPI
-// clients, so it is done once per torrent change and shared between requests.
-// Entries are evicted when the corresponding torrent reports a change and
-// are lazily re-created on next access.
-class SerializedTorrentsCache final : public QObject
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(SerializedTorrentsCache)
+// Tracker keys
+inline const QString KEY_TRACKER_URL = u"url"_s;
+inline const QString KEY_TRACKER_NAME = u"name"_s;
+inline const QString KEY_TRACKER_UPDATING = u"updating"_s;
+inline const QString KEY_TRACKER_STATUS = u"status"_s;
+inline const QString KEY_TRACKER_TIER = u"tier"_s;
+inline const QString KEY_TRACKER_MSG = u"msg"_s;
+inline const QString KEY_TRACKER_BT_VERSION = u"bt_version"_s;
+inline const QString KEY_TRACKER_PEERS_COUNT = u"num_peers"_s;
+inline const QString KEY_TRACKER_SEEDS_COUNT = u"num_seeds"_s;
+inline const QString KEY_TRACKER_LEECHES_COUNT = u"num_leeches"_s;
+inline const QString KEY_TRACKER_DOWNLOADED_COUNT = u"num_downloaded"_s;
+inline const QString KEY_TRACKER_NEXT_ANNOUNCE = u"next_announce"_s;
+inline const QString KEY_TRACKER_MIN_ANNOUNCE = u"min_announce"_s;
+inline const QString KEY_TRACKER_ENDPOINTS = u"endpoints"_s;
 
-public:
-    explicit SerializedTorrentsCache(QObject *parent = nullptr);
-
-    QJsonObject value(const BitTorrent::Torrent &torrent);
-    QJsonArray trackers(const BitTorrent::Torrent &torrent);
-
-private:
-    void invalidate(const BitTorrent::Torrent *torrent);
-    void invalidateWithTrackers(const BitTorrent::Torrent *torrent);
-
-    QHash<BitTorrent::TorrentID, QJsonObject> m_cache;
-    QHash<BitTorrent::TorrentID, QJsonArray> m_trackers;
-};
+QJsonObject serialize(const BitTorrent::TrackerEntryStatus &tracker);

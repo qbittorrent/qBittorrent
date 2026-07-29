@@ -69,23 +69,8 @@
 #include "apierror.h"
 #include "apistatus.h"
 #include "serialize/serialize_torrent.h"
+#include "serialize/serialize_trackerentry.h"
 #include "serializedtorrentscache.h"
-
-// Tracker keys
-const QString KEY_TRACKER_URL = u"url"_s;
-const QString KEY_TRACKER_NAME = u"name"_s;
-const QString KEY_TRACKER_UPDATING = u"updating"_s;
-const QString KEY_TRACKER_STATUS = u"status"_s;
-const QString KEY_TRACKER_TIER = u"tier"_s;
-const QString KEY_TRACKER_MSG = u"msg"_s;
-const QString KEY_TRACKER_BT_VERSION = u"bt_version"_s;
-const QString KEY_TRACKER_PEERS_COUNT = u"num_peers"_s;
-const QString KEY_TRACKER_SEEDS_COUNT = u"num_seeds"_s;
-const QString KEY_TRACKER_LEECHES_COUNT = u"num_leeches"_s;
-const QString KEY_TRACKER_DOWNLOADED_COUNT = u"num_downloaded"_s;
-const QString KEY_TRACKER_NEXT_ANNOUNCE = u"next_announce"_s;
-const QString KEY_TRACKER_MIN_ANNOUNCE = u"min_announce"_s;
-const QString KEY_TRACKER_ENDPOINTS = u"endpoints"_s;
 
 // Web seed keys
 const QString KEY_WEBSEED_URL = u"url"_s;
@@ -276,60 +261,6 @@ namespace
         };
 
         return {dht, pex, lsd};
-    }
-
-    QJsonArray getTrackers(const BitTorrent::Torrent *const torrent)
-    {
-        const auto now = std::chrono::system_clock::now();
-        const auto timepointNow = BitTorrent::AnnounceTimePoint::clock::now();
-        const auto toSecondsSinceEpoch = [&now, &timepointNow](const BitTorrent::AnnounceTimePoint &time) -> qint64
-        {
-            const auto timeEpoch = (now + (time - timepointNow)).time_since_epoch();
-            return std::chrono::duration_cast<std::chrono::seconds>(timeEpoch).count();
-        };
-
-        QJsonArray trackerList;
-
-        for (const BitTorrent::TrackerEntryStatus &tracker : asConst(torrent->trackers()))
-        {
-            QJsonArray endpointsList;
-
-            for (const BitTorrent::TrackerEndpointStatus &endpoint : tracker.endpoints)
-            {
-                endpointsList << QJsonObject
-                {
-                    {KEY_TRACKER_NAME, endpoint.name},
-                    {KEY_TRACKER_UPDATING, endpoint.isUpdating},
-                    {KEY_TRACKER_STATUS, static_cast<int>(endpoint.state)},
-                    {KEY_TRACKER_MSG, endpoint.message},
-                    {KEY_TRACKER_BT_VERSION, static_cast<int>(endpoint.btVersion)},
-                    {KEY_TRACKER_PEERS_COUNT, endpoint.numPeers},
-                    {KEY_TRACKER_SEEDS_COUNT, endpoint.numSeeds},
-                    {KEY_TRACKER_LEECHES_COUNT, endpoint.numLeeches},
-                    {KEY_TRACKER_DOWNLOADED_COUNT, endpoint.numDownloaded},
-                    {KEY_TRACKER_NEXT_ANNOUNCE, toSecondsSinceEpoch(endpoint.nextAnnounceTime)},
-                    {KEY_TRACKER_MIN_ANNOUNCE, toSecondsSinceEpoch(endpoint.minAnnounceTime)}
-                };
-            }
-
-            trackerList << QJsonObject
-            {
-                {KEY_TRACKER_URL, tracker.url},
-                {KEY_TRACKER_TIER, tracker.tier},
-                {KEY_TRACKER_UPDATING, tracker.isUpdating},
-                {KEY_TRACKER_STATUS, static_cast<int>(tracker.state)},
-                {KEY_TRACKER_MSG, tracker.message},
-                {KEY_TRACKER_PEERS_COUNT, tracker.numPeers},
-                {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds},
-                {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches},
-                {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded},
-                {KEY_TRACKER_NEXT_ANNOUNCE, toSecondsSinceEpoch(tracker.nextAnnounceTime)},
-                {KEY_TRACKER_MIN_ANNOUNCE, toSecondsSinceEpoch(tracker.minAnnounceTime)},
-                {KEY_TRACKER_ENDPOINTS, endpointsList}
-            };
-        }
-
-        return trackerList;
     }
 
     QJsonArray getFiles(const BitTorrent::Torrent *const torrent, QList<int> fileIndexes = {})
@@ -640,7 +571,7 @@ void TorrentsController::infoAction()
         if (includeFiles && torrent->hasMetadata())
             serializedTorrent.insert(KEY_PROP_FILES, getFiles(torrent));
         if (includeTrackers)
-            serializedTorrent.insert(KEY_PROP_TRACKERS, getTrackers(torrent));
+            serializedTorrent.insert(KEY_PROP_TRACKERS, m_serializationCache->trackers(*torrent));
 
         torrentList.append(serializedTorrent);
     }
@@ -831,7 +762,7 @@ void TorrentsController::trackersAction()
     QJsonArray trackersList = getStickyTrackers(torrent);
 
     // merge QJsonArray
-    for (const auto &tracker : asConst(getTrackers(torrent)))
+    for (const auto &tracker : asConst(m_serializationCache->trackers(*torrent)))
         trackersList.append(tracker);
 
     setResult(trackersList);
