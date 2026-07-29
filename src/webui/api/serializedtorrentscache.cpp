@@ -28,11 +28,15 @@
 
 #include "serializedtorrentscache.h"
 
+#include <QJsonArray>
 #include <QList>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
+#include "base/bittorrent/trackerentrystatus.h"
+#include "base/global.h"
 #include "serialize/serialize_torrent.h"
+#include "serialize/serialize_trackerentry.h"
 
 SerializedTorrentsCache::SerializedTorrentsCache(QObject *parent)
     : QObject(parent)
@@ -44,7 +48,7 @@ SerializedTorrentsCache::SerializedTorrentsCache(QObject *parent)
         for (const BitTorrent::Torrent *torrent : torrents)
             invalidate(torrent);
     });
-    connect(session, &BitTorrent::Session::torrentAboutToBeRemoved, this, &SerializedTorrentsCache::invalidate);
+    connect(session, &BitTorrent::Session::torrentAboutToBeRemoved, this, &SerializedTorrentsCache::invalidateWithTrackers);
     connect(session, &BitTorrent::Session::torrentCategoryChanged, this, &SerializedTorrentsCache::invalidate);
     connect(session, &BitTorrent::Session::torrentFinished, this, &SerializedTorrentsCache::invalidate);
     connect(session, &BitTorrent::Session::torrentFinishedChecking, this, &SerializedTorrentsCache::invalidate);
@@ -56,10 +60,12 @@ SerializedTorrentsCache::SerializedTorrentsCache(QObject *parent)
     connect(session, &BitTorrent::Session::torrentTagAdded, this, &SerializedTorrentsCache::invalidate);
     connect(session, &BitTorrent::Session::torrentTagRemoved, this, &SerializedTorrentsCache::invalidate);
     connect(session, &BitTorrent::Session::torrentContentFolderRenamed, this, &SerializedTorrentsCache::invalidate);
-    connect(session, &BitTorrent::Session::trackersAdded, this, &SerializedTorrentsCache::invalidate);
-    connect(session, &BitTorrent::Session::trackersRemoved, this, &SerializedTorrentsCache::invalidate);
-    connect(session, &BitTorrent::Session::trackersReset, this, &SerializedTorrentsCache::invalidate);
-    connect(session, &BitTorrent::Session::trackerEntryStatusesUpdated, this, &SerializedTorrentsCache::invalidate);
+    // tracker changes also affect fields of the serialized torrent itself
+    // ("tracker", "trackers_count", "reannounce"), so they invalidate both caches
+    connect(session, &BitTorrent::Session::trackersAdded, this, &SerializedTorrentsCache::invalidateWithTrackers);
+    connect(session, &BitTorrent::Session::trackersRemoved, this, &SerializedTorrentsCache::invalidateWithTrackers);
+    connect(session, &BitTorrent::Session::trackersReset, this, &SerializedTorrentsCache::invalidateWithTrackers);
+    connect(session, &BitTorrent::Session::trackerEntryStatusesUpdated, this, &SerializedTorrentsCache::invalidateWithTrackers);
 }
 
 QJsonObject SerializedTorrentsCache::value(const BitTorrent::Torrent &torrent)
@@ -70,7 +76,26 @@ QJsonObject SerializedTorrentsCache::value(const BitTorrent::Torrent &torrent)
     return *it;
 }
 
+QJsonArray SerializedTorrentsCache::trackers(const BitTorrent::Torrent &torrent)
+{
+    auto it = m_trackers.constFind(torrent.id());
+    if (it == m_trackers.cend())
+    {
+        QJsonArray serializedTrackers;
+        for (const BitTorrent::TrackerEntryStatus &trackerStatus : asConst(torrent.trackers()))
+            serializedTrackers.append(serialize(trackerStatus));
+        it = m_trackers.insert(torrent.id(), serializedTrackers);
+    }
+    return *it;
+}
+
 void SerializedTorrentsCache::invalidate(const BitTorrent::Torrent *torrent)
 {
     m_cache.remove(torrent->id());
+}
+
+void SerializedTorrentsCache::invalidateWithTrackers(const BitTorrent::Torrent *torrent)
+{
+    m_cache.remove(torrent->id());
+    m_trackers.remove(torrent->id());
 }

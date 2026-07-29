@@ -29,6 +29,7 @@
 #pragma once
 
 #include <QHash>
+#include <QJsonArray>
 #include <QJsonObject>
 #include <QObject>
 
@@ -53,9 +54,12 @@ public:
     explicit SerializedTorrentsCache(QObject *parent = nullptr);
 
     QJsonObject value(const BitTorrent::Torrent &torrent);
+    QJsonArray trackers(const BitTorrent::Torrent &torrent);
 
 private:
     void invalidate(const BitTorrent::Torrent *torrent);
+    void invalidateWithTrackers(const BitTorrent::Torrent *torrent);
 
     QHash<BitTorrent::TorrentID, QJsonObject> m_cache;
+    QHash<BitTorrent::TorrentID, QJsonArray> m_trackers;
 };
