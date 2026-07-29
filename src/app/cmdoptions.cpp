@@ -317,6 +317,7 @@ namespace
 #endif
     constexpr const IntOption WEBUI_PORT_OPTION {u"webui-port"};
     constexpr const IntOption TORRENTING_PORT_OPTION {u"torrenting-port"};
+    constexpr const IntOption ANNOUNCE_PORT_OPTION {u"announce-port"};
     constexpr const StringOption PROFILE_OPTION {u"profile"};
     constexpr const StringOption CONFIGURATION_OPTION {u"configuration"};
     constexpr const BoolOption RELATIVE_FASTRESUME {u"relative-fastresume"};
@@ -378,6 +379,9 @@ namespace
             + TORRENTING_PORT_OPTION.usage(QCoreApplication::translate("CMD Options", "port"))
             + wrapText(QCoreApplication::translate("CMD Options", "Change the torrenting port"))
             + u'\n'
+            + ANNOUNCE_PORT_OPTION.usage(QCoreApplication::translate("CMD Options", "port"))
+            + wrapText(QCoreApplication::translate("CMD Options", "Change the announce port"))
+            + u'\n'
 #ifndef DISABLE_GUI
             + NO_SPLASH_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Disable splash screen")) + u'\n'
 #elif !defined(Q_OS_WIN)
@@ -431,6 +435,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
 #endif
     , webUIPort(WEBUI_PORT_OPTION.value(env, -1))
     , torrentingPort(TORRENTING_PORT_OPTION.value(env, -1))
+    , announcePort(ANNOUNCE_PORT_OPTION.value(env, -1))
     , skipDialog(SKIP_DIALOG_OPTION.value(env))
     , profileDir(Utils::Fs::toAbsolutePath(Path(PROFILE_OPTION.value(env))))
     , configurationName(CONFIGURATION_OPTION.value(env))
@@ -481,6 +486,15 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
                 {
                     throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "%1 must specify a valid port (1 to 65535).")
                                                     .arg(u"--torrenting-port"_s));
+                }
+            }
+            else if (arg == ANNOUNCE_PORT_OPTION)
+            {
+                result.announcePort = ANNOUNCE_PORT_OPTION.value(arg);
+                if ((result.announcePort < 1) || (result.announcePort > 65535))
+                {
+                    throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "%1 must specify a valid port (1 to 65535).")
+                                                    .arg(u"--announce-port"_s));
                 }
             }
 #ifndef DISABLE_GUI
