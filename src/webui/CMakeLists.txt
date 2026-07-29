@@ -10,6 +10,7 @@ add_library(qbt_webui STATIC
     api/logcontroller.h
     api/rsscontroller.h
     api/searchcontroller.h
+    api/serializedtorrentscache.h
     api/synccontroller.h
     api/torrentcreatorcontroller.h
     api/torrentscontroller.h
@@ -30,6 +31,7 @@ add_library(qbt_webui STATIC
     api/logcontroller.cpp
     api/rsscontroller.cpp
     api/searchcontroller.cpp
+    api/serializedtorrentscache.cpp
     api/synccontroller.cpp
     api/torrentcreatorcontroller.cpp
     api/torrentscontroller.cpp
