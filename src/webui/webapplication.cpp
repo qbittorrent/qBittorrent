@@ -715,7 +715,9 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
         m_clientAddress = resolveClientAddress();
 
         if (isUsingApiKey)
+        {
             apiKeySessionInitialize(hasApiKeyHeader ? apiKeyHeader : authData);
+        }
         else
         {
             cookieSessionInitialize(authScheme, authData);
