@@ -6141,6 +6141,11 @@ void SessionImpl::handleAlert(lt::alert *alert)
             handleTorrentConflictAlert(static_cast<const lt::torrent_conflict_alert *>(alert));
             break;
 #endif
+#if LIBTORRENT_VERSION_NUM >= 20101
+        case lt::ip_ban_alert::alert_type:
+            handleIPBanAlert(static_cast<const lt::ip_ban_alert *>(alert));
+            break;
+#endif
         }
     }
     catch (const std::exception &exc)
@@ -6735,6 +6740,14 @@ void SessionImpl::handleTorrentFinishedAlert([[maybe_unused]] const lt::torrent_
     if (TorrentImpl *torrent = getTorrent(alert->handle)) [[likely]]
         torrent->handleTorrentFinished();
 }
+
+#if LIBTORRENT_VERSION_NUM >= 20101
+void SessionImpl::handleIPBanAlert(const lt::ip_ban_alert *alert)
+{
+    // an IP was banned by libtorrent internally
+    LogMsg(tr("IP banned by libtorrent. IP: %1.").arg(toString(alert->banned_address)), Log::INFO);
+}
+#endif
 
 void SessionImpl::handleSaveResumeDataAlert(lt::save_resume_data_alert *alert)
 {

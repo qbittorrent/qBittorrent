@@ -359,7 +359,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Ignore SSL errors
     pref->setIgnoreSSLErrors(m_checkBoxIgnoreSSLErrors.isChecked());
     // Python executable path
-    pref->setPythonExecutablePath(Path(m_pythonExecutablePath.text().trimmed()));
+    pref->setPythonExecutablePath(m_pythonExecutablePath.selectedPath());
     // Start session paused
     session->setStartPaused(m_checkBoxStartSessionPaused.isChecked());
     // Session shutdown timeout
@@ -923,8 +923,10 @@ void AdvancedSettings::loadAdvancedSettings()
     m_checkBoxIgnoreSSLErrors.setToolTip(tr("Affects certificate validation and non-torrent protocol activities (e.g. RSS feeds, program updates, torrent files, geoip db, etc)"));
     addRow(IGNORE_SSL_ERRORS, tr("Ignore SSL errors"), &m_checkBoxIgnoreSSLErrors);
     // Python executable path
-    m_pythonExecutablePath.setPlaceholderText(tr("(Auto detect if empty)"));
-    m_pythonExecutablePath.setText(pref->getPythonExecutablePath().toString());
+    m_pythonExecutablePath.setMode(FileSystemPathEdit::Mode::FileOpen);
+    m_pythonExecutablePath.setDialogCaption(tr("Select Python Executable"));
+    m_pythonExecutablePath.setPlaceholder(tr("(Auto detect if empty)"));
+    m_pythonExecutablePath.setSelectedPath(pref->getPythonExecutablePath());
     addRow(PYTHON_EXECUTABLE_PATH, tr("Python executable path (may require restart)"), &m_pythonExecutablePath);
     // Start session paused
     m_checkBoxStartSessionPaused.setChecked(session->isStartPaused());
@@ -1039,7 +1041,9 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
     setCellWidget(row, PROPERTY, label);
     setCellWidget(row, VALUE, widget);
 
-    if constexpr (std::is_same_v<T, QCheckBox>)
+    if constexpr (std::is_same_v<T, FileSystemPathLineEdit>)
+        connect(widget, &FileSystemPathEdit::selectedPathChanged, this, &AdvancedSettings::settingsChanged);
+    else if constexpr (std::is_same_v<T, QCheckBox>)
     {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
         connect(widget, &QCheckBox::checkStateChanged, this, &AdvancedSettings::settingsChanged);
@@ -1047,10 +1051,10 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
         connect(widget, &QCheckBox::stateChanged, this, &AdvancedSettings::settingsChanged);
 #endif
     }
-    else if constexpr (std::is_same_v<T, QSpinBox>)
-        connect(widget, qOverload<int>(&QSpinBox::valueChanged), this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QComboBox>)
         connect(widget, qOverload<int>(&QComboBox::currentIndexChanged), this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QLineEdit>)
         connect(widget, &QLineEdit::textChanged, this, &AdvancedSettings::settingsChanged);
+    else if constexpr (std::is_same_v<T, QSpinBox>)
+        connect(widget, qOverload<int>(&QSpinBox::valueChanged), this, &AdvancedSettings::settingsChanged);
 }

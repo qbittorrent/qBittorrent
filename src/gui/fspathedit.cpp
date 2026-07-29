@@ -264,13 +264,13 @@ void FileSystemPathEdit::setFileNameFilter(const QString &val)
 #endif
 }
 
-Path FileSystemPathEdit::placeholder() const
+QString FileSystemPathEdit::placeholder() const
 {
     Q_D(const FileSystemPathEdit);
     return d->m_editor->placeholder();
 }
 
-void FileSystemPathEdit::setPlaceholder(const Path &val)
+void FileSystemPathEdit::setPlaceholder(const QString &val)
 {
     Q_D(FileSystemPathEdit);
     d->m_editor->setPlaceholder(val);
