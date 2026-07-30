@@ -189,7 +189,7 @@
     <li><a href="#update"><img src="images/view-refresh.svg" alt="QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]</a></li>
     <li><a href="#markRead"><img src="images/task-complete.svg" alt="QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</a></li>
     <li class="separator"><a href="#rename"><img src="images/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#edit"><img src="images/edit-rename.svg" alt="QBT_TR(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#edit"><img src="images/edit-rename.svg" alt="QBT_TR(Feed options...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Feed options...)QBT_TR[CONTEXT=RSSWidget]</a></li>
     <li><a href="#delete"><img src="images/edit-clear.svg" alt="QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]</a></li>
 
     <li class="separator"><a href="#newSubscription"><img src="images/list-add.svg" alt="QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]</a></li>
@@ -261,7 +261,7 @@
                     },
                     edit: (el) => {
                         const data = rssFeedTable.getRow(rssFeedTable.selectedRows[0]).full_data;
-                        editUrl(data.dataPath, data.dataUrl);
+                        editFeed(data.dataPath, data.dataUrl, data.dataRefreshInterval ?? 0);
                     },
                     delete: (el) => {
                         const selectedDatapaths = rssFeedTable.selectedRows
@@ -374,14 +374,14 @@
             new MochaUI.Window({
                 id: "newFeed",
                 icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
+                title: "QBT_TR(RSS Feed Options)QBT_TR[CONTEXT=RSSFeedDialog]",
                 loadMethod: "iframe",
                 contentURL: `newfeed.html?v=${CACHEID}&path=${encodeURIComponent(path)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
                 width: window.qBittorrent.Dialog.limitWidthToViewport(350),
-                height: 100
+                height: 130
             });
         };
 
@@ -601,8 +601,21 @@
                                 match = false;
                                 break;
                             }
-                            // only non-folders have these properties
-                            if (!newData.isFolder && ((newData.uid !== existingData.dataUid) || (newData.url !== existingData.dataUrl))) {
+
+                            if (newData.isFolder)
+                                continue;
+
+                            if (newData.uid !== existingData.dataUid) {
+                                match = false;
+                                break;
+                            }
+
+                            if (newData.url !== existingData.dataUrl) {
+                                match = false;
+                                break;
+                            }
+
+                            if ((newData.refreshInterval ?? 0) !== (existingData.dataRefreshInterval ?? 0)) {
                                 match = false;
                                 break;
                             }
@@ -767,6 +780,7 @@
                                     indentation: dataEntry.depth,
                                     dataUid: dataEntry.uid,
                                     dataUrl: dataEntry.url,
+                                    dataRefreshInterval: dataEntry.refreshInterval ?? 0,
                                     dataPath: dataEntry.fullName
                                 });
 
@@ -834,24 +848,25 @@
             });
         };
 
-        const editUrl = (path, url) => {
-            const contentURL = new URL("editfeedurl.html", window.location);
+        const editFeed = (path, url, refreshInterval) => {
+            const contentURL = new URL("editfeed.html", window.location);
             contentURL.search = new URLSearchParams({
                 v: "${CACHEID}",
                 path: path,
-                url: url
+                url: url,
+                refreshInterval: refreshInterval
             });
             new MochaUI.Window({
-                id: "editFeedURL",
+                id: "editFeed",
                 icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
+                title: "QBT_TR(RSS Feed Options)QBT_TR[CONTEXT=RSSFeedDialog]",
                 loadMethod: "iframe",
                 contentURL: contentURL.toString(),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
                 width: window.qBittorrent.Dialog.limitWidthToViewport(350),
-                height: 100
+                height: 130
             });
         };
 

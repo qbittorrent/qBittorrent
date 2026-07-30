@@ -170,6 +170,7 @@ private:
         {{u"rss"_s, u"removeItem"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"removeRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"renameRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"setFeedRefreshInterval"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"setFeedURL"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"setRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"search"_s, u"delete"_s}, Http::HEADER_REQUEST_METHOD_POST},
