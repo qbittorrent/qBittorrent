@@ -2,6 +2,9 @@
 
 ## 2.16.0
 
+* [#24724](https://github.com/qbittorrent/qBittorrent/pull/24724)
+  * `torrents/add` endpoint accepts `seedMode` (bool) parameter
+  * `torrents/add` endpoint no longer accepts `skip_checking` parameter
 * [#24720](https://github.com/qbittorrent/qBittorrent/pull/24720)
   * `app/preferences` endpoint includes `web_ui_sessions_count_limit` (int) option
   * `app/setPreferences` endpoint allows to set `web_ui_sessions_count_limit` (int) option
