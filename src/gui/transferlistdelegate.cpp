@@ -31,6 +31,7 @@
 
 #include <QModelIndex>
 
+#include "base/bittorrent/torrent.h"
 #include "base/preferences.h"
 #include "transferlistmodel.h"
 
@@ -89,6 +90,19 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             const QColor color = Preferences::instance()->getProgressBarFollowsTextColor() ? index.data(Qt::ForegroundRole).value<QColor>() : QColor();
 
             m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress, color);
+        }
+        break;
+    case TransferListModel::TR_RATIO:
+        {
+            const qreal ratio = index.data(TransferListModel::UnderlyingDataRole).toReal();
+            const qreal ratioLimit = index.siblingAtColumn(TransferListModel::TR_RATIO_LIMIT)
+                .data(TransferListModel::UnderlyingDataRole).toReal();
+            const qreal cap = (ratioLimit > 0 && ratioLimit < 100.0) ? ratioLimit : 2.0;
+            const int progress = static_cast<int>(std::min(ratio / cap, 1.0) * 100);
+
+            QStyleOptionViewItem customOption {option};
+            customOption.state.setFlag(QStyle::State_Enabled, ratio >= 0);
+            m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress, QColor());
         }
         break;
     default:
