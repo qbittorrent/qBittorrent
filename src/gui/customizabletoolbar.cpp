@@ -116,11 +116,11 @@ bool CustomizableToolBar::handleMousePress(QWidget *widget, QMouseEvent *mouseEv
         return false;
 
     QAction *action = nullptr;
-    for (QAction *a : asConst(actions()))
+    for (QAction *candidateAction : asConst(actions()))
     {
-        if (widgetForAction(a) == widget)
+        if (widgetForAction(candidateAction) == widget)
         {
-            action = a;
+            action = candidateAction;
             break;
         }
     }
@@ -241,19 +241,19 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
     QAction *newInsertBefore = (bi >= 0) ? acts[bi] : nullptr;
     for (int i = 0; i < bi; ++i)
     {
-        QAction *a = acts[i];
-        if (a == m_dragAction)
+        QAction *action = acts[i];
+        if (action == m_dragAction)
             continue;
-        QWidget *w = widgetForAction(a);
-        if (!w && !a->isSeparator())
+        QWidget *widget = widgetForAction(action);
+        if (!widget && !action->isSeparator())
             continue;
 
-        const int threshold = w ? (a->isSeparator() ? (movingLeft ? w->x() + w->width() + fw / 2 : w->x() - fw / 2) : w->x() + w->width() / 2) : 0;
+        const int threshold = widget ? (action->isSeparator() ? (movingLeft ? widget->x() + widget->width() + fw / 2 : widget->x() - fw / 2) : widget->x() + widget->width() / 2) : 0;
 
-        const int compareX = a->isSeparator() ? dragFloatCentre : (movingLeft ? dragFloatLeft : dragFloatRight);
+        const int compareX = action->isSeparator() ? dragFloatCentre : (movingLeft ? dragFloatLeft : dragFloatRight);
         if (compareX < threshold)
         {
-            newInsertBefore = a;
+            newInsertBefore = action;
             break;
         }
     }
@@ -330,9 +330,9 @@ int CustomizableToolBar::getBoundaryGlobalX() const
     const int bi = findBoundaryIndex();
     if (bi >= 0)
     {
-        QWidget *bw = widgetForAction(actions()[bi]);
-        if (bw)
-            return mapToGlobal(QPoint(bw->x(), 0)).x();
+        QWidget *boundaryWidget = widgetForAction(actions()[bi]);
+        if (boundaryWidget)
+            return mapToGlobal(QPoint(boundaryWidget->x(), 0)).x();
     }
     return mapToGlobal(QPoint(width(), 0)).x();
 }

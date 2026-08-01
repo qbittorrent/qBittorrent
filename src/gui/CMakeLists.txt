@@ -51,6 +51,7 @@ add_library(qbt_gui STATIC
     colorscheme.h
     cookiesdialog.h
     cookiesmodel.h
+    customizabletoolbar.h
     deletionconfirmationdialog.h
     desktopintegration.h
     downloadfromurldialog.h
@@ -69,7 +70,6 @@ add_library(qbt_gui STATIC
     log/logfiltermodel.h
     log/loglistview.h
     log/logmodel.h
-    customizabletoolbar.h
     mainwindow.h
     optionsdialog.h
     powermanagement/inhibitor.h
@@ -161,6 +161,7 @@ add_library(qbt_gui STATIC
     banlistoptionsdialog.cpp
     cookiesdialog.cpp
     cookiesmodel.cpp
+    customizabletoolbar.cpp
     deletionconfirmationdialog.cpp
     desktopintegration.cpp
     downloadfromurldialog.cpp
@@ -176,7 +177,6 @@ add_library(qbt_gui STATIC
     log/logfiltermodel.cpp
     log/loglistview.cpp
     log/logmodel.cpp
-    customizabletoolbar.cpp
     mainwindow.cpp
     optionsdialog.cpp
     powermanagement/inhibitor.cpp

@@ -251,12 +251,12 @@ private:
     QWidget *m_columnFilterWidget = nullptr;
     LineEdit *m_columnFilterEdit = nullptr;
     QAction *m_columnFilterAction = nullptr;
-    QAction *m_spacerAction = nullptr;
     QComboBox *m_columnFilterComboBox = nullptr;
     // Widgets
     QAction *m_queueSeparator = nullptr;
     QAction *m_queueSeparatorMenu = nullptr;
     bool m_queueActionsShown = false;
+    QAction *m_spacerAction = nullptr;
     QHash<QString, int> m_hiddenToolbarActions;
     QList<QAction *> m_allToolbarActions;
     QSplitter *m_splitter = nullptr;
