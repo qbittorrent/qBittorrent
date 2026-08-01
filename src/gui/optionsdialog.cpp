@@ -92,6 +92,24 @@
 #include "macutilities.h"
 #endif
 
+namespace
+{
+#ifdef Q_OS_WIN
+bool isMagnetProtocolRegistered()
+{
+    QSettings magnetProtocol {u"HKEY_CURRENT_USER\\Software\\Classes\\magnet"_s, QSettings::NativeFormat};
+    const auto protocolDescription = magnetProtocol.value(u"."_s).toString();
+    const auto contentType = magnetProtocol.value(u"Content Type"_s).toString();
+    const bool hasUrlProtocol = magnetProtocol.contains(u"URL Protocol"_s);
+
+    return (magnetProtocol.status() == QSettings::NoError)
+            && (protocolDescription == u"URL:Magnet URI"_s)
+            && (contentType == u"application/x-magnet"_s)
+            && hasUrlProtocol;
+}
+#endif
+}
+
 #define SETTINGS_KEY(name) u"OptionsDialog/" name
 
 const int WEBUI_MIN_USERNAME_LENGTH = 3;
@@ -444,6 +462,7 @@ void OptionsDialog::loadBehaviorTabOptions()
 
 #ifdef Q_OS_WIN
     m_ui->assocPanel->hide();
+    m_ui->buttonRestoreMagnetProtocolRegistration->setVisible(!isMagnetProtocolRegistered());
     connect(m_ui->buttonRestoreMagnetProtocolRegistration, &QAbstractButton::clicked, this, &ThisType::restoreMagnetProtocolRegistration);
 #endif
 
@@ -483,6 +502,7 @@ void OptionsDialog::restoreMagnetProtocolRegistration()
 
     if (magnetProtocol.status() == QSettings::NoError)
     {
+        m_ui->buttonRestoreMagnetProtocolRegistration->setVisible(!isMagnetProtocolRegistered());
         QMessageBox::information(this, tr("Magnet protocol registration restored")
                 , tr("Magnet protocol registration has been restored. You can now choose qBittorrent as the default app for magnet links in Windows."));
     }
