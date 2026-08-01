@@ -21,12 +21,12 @@ jobs:
           persist-credentials: false
 
       - name: Setup python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "*"
 
       - name: Check files
-        uses: j178/prek-action@v2
+        uses: j178/prek-action@v2.0.6
 
       - name: Check doc
         env:
@@ -66,7 +66,7 @@ jobs:
             > "${{ runner.temp }}/zizmor_results.sarif"
 
       - name: Upload zizmor results
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@v4.37.3
         with:
           category: zizmor
           sarif_file: "${{ runner.temp }}/zizmor_results.sarif"
