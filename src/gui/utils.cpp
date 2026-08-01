@@ -52,11 +52,94 @@
 #include <QWidget>
 #include <QWindow>
 
+#ifdef QBT_USES_DBUS
+#include <QDBusConnection>
+#include <QDBusInterface>
+#include <QDBusPendingCall>
+#include <QDBusPendingCallWatcher>
+#include <QDBusPendingReply>
+#endif
+
 #include "base/global.h"
 #include "base/path.h"
 #include "base/tag.h"
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
+
+namespace
+{
+    QUrl toURL(const Path &path)
+    {
+        // Hack to access samba shares with QDesktopServices::openUrl
+        return path.data().startsWith(u"//")
+            ? QUrl(u"file:" + path.data())
+            : QUrl::fromLocalFile(path.data());
+    }
+
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
+    void invokeFileManager(const Path &path)
+    {
+        // detect and invoke file manager directly
+        const int lineMaxLength = 64;
+
+        auto lookupProc = new QProcess;
+        lookupProc->setProcessChannelMode(QProcess::ForwardedErrorChannel);
+        lookupProc->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
+        QObject::connect(lookupProc, &QProcess::finished, lookupProc
+            , [path, lookupProc](int, QProcess::ExitStatus)
+        {
+            lookupProc->deleteLater();
+
+            const auto output = QString::fromLocal8Bit(lookupProc->readLine(lineMaxLength).simplified());
+            if ((output == u"dolphin.desktop") || (output == u"org.kde.dolphin.desktop"))
+            {
+                QProcess::startDetached(u"dolphin"_s, {u"--select"_s, path.toString()});
+            }
+            else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
+                || (output == u"nautilus-folder-handler.desktop"))
+            {
+                auto deProcess = new QProcess;
+                deProcess->setProcessChannelMode(QProcess::ForwardedErrorChannel);
+                deProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
+                QObject::connect(deProcess, &QProcess::finished, deProcess
+                    , [deProcess, path](int, QProcess::ExitStatus)
+                {
+                    deProcess->deleteLater();
+
+                    const auto nautilusVerStr = QString::fromLocal8Bit(deProcess->readLine(lineMaxLength))
+                        .remove(QRegularExpression(u"[^0-9.]"_s));
+                    using NautilusVersion = Utils::Version<3>;
+                    const QString pathParam = (Utils::Fs::isDir(path) ? path.parentPath() : path).toString();
+
+                    if (NautilusVersion::fromString(nautilusVerStr, {1, 0, 0}) > NautilusVersion(3, 28, 0))
+                        QProcess::startDetached(u"nautilus"_s, {pathParam});
+                    else
+                        QProcess::startDetached(u"nautilus"_s, {u"--no-desktop"_s, pathParam});
+                });
+                deProcess->start(u"nautilus"_s, {u"--version"_s});
+            }
+            else if (output == u"nemo.desktop")
+            {
+                QProcess::startDetached(u"nemo"_s, {u"--no-desktop"_s, (Utils::Fs::isDir(path) ? path.parentPath() : path).toString()});
+            }
+            else if ((output == u"konqueror.desktop") || (output == u"kfmclient_dir.desktop"))
+            {
+                QProcess::startDetached(u"konqueror"_s, {u"--select"_s, path.toString()});
+            }
+            else if (output == u"thunar.desktop")
+            {
+                QProcess::startDetached(u"thunar"_s, {path.toString()});
+            }
+            else
+            {
+                // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
+                Utils::Gui::openPath(path.parentPath());
+            }
+        });
+        lookupProc->start(u"xdg-mime"_s, {u"query"_s, u"default"_s, u"inode/directory"_s});
+    }
+#endif
+}
 
 QPixmap Utils::Gui::scaledPixmap(const Path &path, const int height)
 {
@@ -117,10 +200,7 @@ QPoint Utils::Gui::screenCenter(const QWidget *w)
 // Open the given path with an appropriate application
 void Utils::Gui::openPath(const Path &path)
 {
-    // Hack to access samba shares with QDesktopServices::openUrl
-    const QUrl url = path.data().startsWith(u"//")
-        ? QUrl(u"file:" + path.data())
-        : QUrl::fromLocalFile(path.data());
+    const QUrl url = toURL(path);
 
 #ifdef Q_OS_WIN
     auto *thread = QThread::create([path]()
@@ -144,7 +224,7 @@ void Utils::Gui::openPath(const Path &path)
 
 // Open the parent directory of the given path with a file manager and select
 // (if possible) the item at the given path
-void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *parent)
+void Utils::Gui::openFolderSelect(const Path &path)
 {
     // If the item to select doesn't exist, try to open its parent
     if (!path.exists())
@@ -173,63 +253,27 @@ void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *pa
     QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
     thread->start();
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
-    const int lineMaxLength = 64;
-
-    auto lookupProc = new QProcess(parent);
-    lookupProc->setProcessChannelMode(QProcess::ForwardedErrorChannel);
-    lookupProc->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
-    QObject::connect(lookupProc, &QProcess::finished, lookupProc
-        , [parent, path, lookupProc]([[maybe_unused]] const int exitCode, [[maybe_unused]] const QProcess::ExitStatus exitStatus)
+#ifdef QBT_USES_DBUS
+    // rely on dbus interface
+    QDBusInterface fmInterface {u"org.freedesktop.FileManager1"_s, u"/org/freedesktop/FileManager1"_s
+        , u"org.freedesktop.FileManager1"_s, QDBusConnection::sessionBus()};
+    if (fmInterface.isValid())
     {
-        lookupProc->deleteLater();
+        const QStringList params = {toURL(path).toString()};
+        const QDBusPendingCall pcall = fmInterface.asyncCall(u"ShowItems"_s, params, QString());
+        auto watcher = new QDBusPendingCallWatcher(pcall);
+        QObject::connect(watcher, &QDBusPendingCallWatcher::finished, watcher, [path](QDBusPendingCallWatcher *watcher)
+        {
+            watcher->deleteLater();
 
-        const auto output = QString::fromLocal8Bit(lookupProc->readLine(lineMaxLength).simplified());
-        if ((output == u"dolphin.desktop") || (output == u"org.kde.dolphin.desktop"))
-        {
-            QProcess::startDetached(u"dolphin"_s, {u"--select"_s, path.toString()});
-        }
-        else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
-            || (output == u"nautilus-folder-handler.desktop"))
-        {
-            auto deProcess = new QProcess(parent);
-            deProcess->setProcessChannelMode(QProcess::ForwardedErrorChannel);
-            deProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
-            QObject::connect(deProcess, &QProcess::finished, deProcess
-                , [deProcess, path]([[maybe_unused]] const int exitCode, [[maybe_unused]] const QProcess::ExitStatus exitStatus)
-            {
-                deProcess->deleteLater();
-
-                const auto nautilusVerStr = QString::fromLocal8Bit(deProcess->readLine(lineMaxLength))
-                    .remove(QRegularExpression(u"[^0-9.]"_s));
-                using NautilusVersion = Utils::Version<3>;
-                const QString pathParam = (Fs::isDir(path) ? path.parentPath() : path).toString();
-
-                if (NautilusVersion::fromString(nautilusVerStr, {1, 0, 0}) > NautilusVersion(3, 28, 0))
-                    QProcess::startDetached(u"nautilus"_s, {pathParam});
-                else
-                    QProcess::startDetached(u"nautilus"_s, {u"--no-desktop"_s, pathParam});
-            });
-            deProcess->start(u"nautilus"_s, {u"--version"_s});
-        }
-        else if (output == u"nemo.desktop")
-        {
-            QProcess::startDetached(u"nemo"_s, {u"--no-desktop"_s, (Fs::isDir(path) ? path.parentPath() : path).toString()});
-        }
-        else if ((output == u"konqueror.desktop") || (output == u"kfmclient_dir.desktop"))
-        {
-            QProcess::startDetached(u"konqueror"_s, {u"--select"_s, path.toString()});
-        }
-        else if (output == u"thunar.desktop")
-        {
-            QProcess::startDetached(u"thunar"_s, {path.toString()});
-        }
-        else
-        {
-            // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
-            openPath(path.parentPath());
-        }
-    });
-    lookupProc->start(u"xdg-mime"_s, {u"query"_s, u"default"_s, u"inode/directory"_s});
+            const QDBusPendingReply reply = *watcher;
+            if (reply.isError())
+                invokeFileManager(path);
+        });
+        return;
+    }
+#endif  // QBT_USES_DBUS
+    invokeFileManager(path);
 #else
     openPath(path.parentPath());
 #endif

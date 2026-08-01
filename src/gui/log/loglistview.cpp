@@ -140,7 +140,7 @@ LogListView::LogListView(QWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setItemDelegate(new LogItemDelegate(this));
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
 }

@@ -107,8 +107,8 @@ namespace Private
         virtual void setFilenameFilters(const QStringList &filters) = 0;
         virtual void setBrowseAction(QAction *action) = 0;
         virtual void setValidator(QValidator *validator) = 0;
-        virtual Path placeholder() const = 0;
-        virtual void setPlaceholder(const Path &val) = 0;
+        virtual QString placeholder() const = 0;
+        virtual void setPlaceholder(const QString &val) = 0;
         virtual QWidget *widget() = 0;
     };
 
@@ -125,8 +125,8 @@ namespace Private
         void setFilenameFilters(const QStringList &filters) override;
         void setBrowseAction(QAction *action) override;
         void setValidator(QValidator *validator) override;
-        Path placeholder() const override;
-        void setPlaceholder(const Path &val) override;
+        QString placeholder() const override;
+        void setPlaceholder(const QString &val) override;
         QWidget *widget() override;
 
     protected:
@@ -159,8 +159,8 @@ namespace Private
         void setFilenameFilters(const QStringList &filters) override;
         void setBrowseAction(QAction *action) override;
         void setValidator(QValidator *validator) override;
-        Path placeholder() const override;
-        void setPlaceholder(const Path &val) override;
+        QString placeholder() const override;
+        void setPlaceholder(const QString &val) override;
         QWidget *widget() override;
 
     protected:

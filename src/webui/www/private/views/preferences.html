@@ -140,6 +140,10 @@
     <fieldset class="settings">
         <legend title="QBT_TR(Following settings are WebUI only)QBT_TR[CONTEXT=OptionsDialog]">QBT_TR(Custom WebUI settings)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="addTorrentWindowEnabled">
+            <label for="addTorrentWindowEnabled">QBT_TR(Display torrent content and some options)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow" style="margin-bottom: 3px;">
             <input type="checkbox" id="displayFullURLTrackerColumn">
             <label for="displayFullURLTrackerColumn">QBT_TR(Display full announce URL in the Tracker column)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
@@ -183,6 +187,39 @@
                 <input type="checkbox" id="mergeTrackersInput">
                 <label for="mergeTrackersInput">QBT_TR(Merge trackers to existing torrent)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
+        </fieldset>
+        <fieldset class="settings">
+            <legend>
+                <label>QBT_TR(Store backup .torrent file)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <table id="torrentBackupSettings">
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="torrentBackupDirCheckbox" onclick="qBittorrent.Preferences.updateTorrentBackupControls();">
+                            <label id="backupDirLabel" for="torrentBackupDirCheckbox">QBT_TR(Store backup in:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="torrentBackupDir" class="pathDirectory" style="width: 30em;" autocorrect="off" autocapitalize="none" aria-labelledby="backupDirLabel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="torrentBackupFinishedDirCheckbox" onclick="qBittorrent.Preferences.updateFinishedTorrentBackupControls();">
+                            <label id="backupDirFinLabel" for="torrentBackupFinishedDirCheckbox">QBT_TR(When torrent finished move backup to:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="torrentBackupFinishedDir" class="pathDirectory" style="width: 30em;" autocorrect="off" autocapitalize="none" aria-labelledby="backupDirFinLabel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="torrentBackupRemoveCheckbox">
+                            <label id="backupRemoveLabel" for="torrentBackupRemoveCheckbox">QBT_TR(Remove backup when removing torrent)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </fieldset>
         <div class="formRow">
             <input type="checkbox" id="deletetorrentfileafter_checkbox">
@@ -280,24 +317,6 @@
                         <input type="text" id="temppath_text" class="pathDirectory" autocorrect="off" autocapitalize="none" aria-labelledby="tempPathLabel">
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" id="exportdir_checkbox" onclick="qBittorrent.Preferences.updateExportDirEnabled();">
-                        <label id="exportDirLabel" for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <input type="text" id="exportdir_text" class="pathDirectory" autocorrect="off" autocapitalize="none" aria-labelledby="exportDirLabel">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" id="exportdirfin_checkbox" onclick="qBittorrent.Preferences.updateExportDirFinEnabled();">
-                        <label id="exportDirFinLabel" for="exportdirfin_checkbox">QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <input type="text" id="exportdirfin_text" class="pathDirectory" autocorrect="off" autocapitalize="none" aria-labelledby="exportDirFinLabel">
-                    </td>
-                </tr>
             </tbody>
         </table>
     </fieldset>
@@ -343,9 +362,15 @@
                         <label for="dest_email_txt">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="dest_email_txt" style="width: 40em;" title="QBT_TR(Provide the recipient email address.)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="dest_email_txt" style="width: 40em;" title="QBT_TR(Provide the recipient email address or addresses.)QBT_TR[CONTEXT=OptionsDialog]
 
-QBT_TR(Note: only a single recipient email address can be specified.)QBT_TR[CONTEXT=OptionsDialog]">
+QBT_TR(Separate multiple emails with a semicolon.)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR(Separate multiple email addresses within each email with a comma.)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(Example:)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR(a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(Note: b@y.com & c@z.com will both see each other's email addresses, whereas a@x.com will not see them nor be seen.)QBT_TR[CONTEXT=OptionsDialog]">
                     </td>
                 </tr>
                 <tr>
@@ -1100,6 +1125,10 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
                         <td><label for="webUISessionTimeoutInput">QBT_TR(Session timeout:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                         <td><input type="number" id="webUISessionTimeoutInput" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]</td>
                     </tr>
+                    <tr>
+                        <td><label for="webUISessionsCountLimitInput">QBT_TR(Sessions count limit:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td><input type="number" id="webUISessionsCountLimitInput" style="width: 7em;" min="0">&nbsp;&nbsp;<i>QBT_TR(0 means unlimited)QBT_TR[CONTEXT=OptionsDialog]</i></td>
+                    </tr>
                 </tbody>
             </table>
         </fieldset>
@@ -1673,6 +1702,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <input type="checkbox" id="allowMultipleConnectionsFromTheSameIPAddress">
                     </td>
                 </tr>
+                <tr id="rowMultiConnectionsPerPeerID">
+                    <td>
+                        <label for="allowMultipleConnectionsFromTheSamePeerID">QBT_TR(Allow multiple connections from the same Peer ID:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#allow_multiple_connections_per_pid" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="allowMultipleConnectionsFromTheSamePeerID">
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <label for="validateHTTPSTrackerCertificate">QBT_TR(Validate HTTPS tracker certificate:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#validate_https_trackers" target="_blank">(?)</a></label>
@@ -1860,8 +1897,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateFileLogBackupEnabled: updateFileLogBackupEnabled,
                 updateFileLogDeleteEnabled: updateFileLogDeleteEnabled,
                 updateTempDirEnabled: updateTempDirEnabled,
-                updateExportDirEnabled: updateExportDirEnabled,
-                updateExportDirFinEnabled: updateExportDirFinEnabled,
+                updateTorrentBackupControls: updateTorrentBackupControls,
+                updateFinishedTorrentBackupControls: updateFinishedTorrentBackupControls,
                 addWatchFolder: addWatchFolder,
                 updateExcludedFileNamesEnabled: updateExcludedFileNamesEnabled,
                 changeWatchFolderSelect: changeWatchFolderSelect,
@@ -2017,14 +2054,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
         };
 
-        const updateExportDirEnabled = () => {
-            const isExportDirEnabled = document.getElementById("exportdir_checkbox").checked;
-            document.getElementById("exportdir_text").disabled = !isExportDirEnabled;
+        const updateTorrentBackupControls = () => {
+            const isTorrentBackupEnabled = document.getElementById("torrentBackupDirCheckbox").checked;
+            document.getElementById("torrentBackupDir").disabled = !isTorrentBackupEnabled;
         };
 
-        const updateExportDirFinEnabled = () => {
-            const isExportDirFinEnabled = document.getElementById("exportdirfin_checkbox").checked;
-            document.getElementById("exportdirfin_text").disabled = !isExportDirFinEnabled;
+        const updateFinishedTorrentBackupControls = () => {
+            const isFinishedTorrentBackupEnabled = document.getElementById("torrentBackupFinishedDirCheckbox").checked;
+            document.getElementById("torrentBackupFinishedDir").disabled = !isFinishedTorrentBackupEnabled;
         };
 
         const updateMailNotification = () => {
@@ -2049,16 +2086,32 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const sendTestEmail = () => {
+            const showNotification = (text, width, height, duration) => {
+                new MochaUI.Window({
+                    id: "testEmailNotificationDialog",
+                    icon: "images/qbittorrent-tray.svg",
+                    title: "QBT_TR(Notification)QBT_TR[CONTEXT=OptionsDialog]",
+                    loadMethod: "html",
+                    closeAfter: duration,
+                    type: "notification",
+                    addClass: "notification",
+                    content: text,
+                    width: width,
+                    height: height,
+                    padding: { top: 10, right: 12, bottom: 10, left: 12 },
+                });
+            };
+
             fetch("api/v2/app/sendTestEmail", {
                     method: "POST"
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alert("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=HttpServer]");
+                        showNotification("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=OptionsDialog]", 300, 60, 5000);
                         return;
                     }
 
-                    alert("QBT_TR(Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]");
+                    showNotification("QBT_TR(Attempted to send test email.<br>Check your inbox to confirm success.<br>Check the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]", 300, 80, 5000);
                 });
         };
 
@@ -2342,6 +2395,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const dblclickComplete = clientData.get("dblclick_complete") ?? "1";
                     const dblclickFilter = clientData.get("dblclick_filter") ?? "1";
                     const useAltRowColors = clientData.get("use_alt_row_colors");
+                    const addTorrentWindowEnabled = clientData.get("add_new_torrent_dialog_enabled") ?? true;
 
                     // Behavior tab
                     // Localization
@@ -2359,7 +2413,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Interface
                     updateColoSchemeSelect(colorScheme);
                     document.getElementById("displayDensitySelect").value = displayDensity;
-
+                    document.getElementById("addTorrentWindowEnabled").checked = addTorrentWindowEnabled === true;
                     document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
                     document.getElementById("displayFullURLTrackerColumn").checked = fullUrlTrackerColumn === true;
@@ -2425,24 +2479,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("temppath_checkbox").checked = pref.temp_path_enabled;
                     document.getElementById("temppath_text").value = pref.temp_path;
                     updateTempDirEnabled();
-                    if (pref.export_dir !== "") {
-                        document.getElementById("exportdir_checkbox").checked = true;
-                        document.getElementById("exportdir_text").value = pref.export_dir;
-                    }
-                    else {
-                        document.getElementById("exportdir_checkbox").checked = false;
-                        document.getElementById("exportdir_text").value = "";
-                    }
-                    updateExportDirEnabled();
-                    if (pref.export_dir_fin !== "") {
-                        document.getElementById("exportdirfin_checkbox").checked = true;
-                        document.getElementById("exportdirfin_text").value = pref.export_dir_fin;
-                    }
-                    else {
-                        document.getElementById("exportdirfin_checkbox").checked = false;
-                        document.getElementById("exportdirfin_text").value = "";
-                    }
-                    updateExportDirFinEnabled();
+
+                    document.getElementById("torrentBackupDirCheckbox").checked = pref.torrent_files_backup_enabled;
+                    document.getElementById("torrentBackupDir").value = pref.torrent_files_backup_dir;
+                    updateTorrentBackupControls();
+                    document.getElementById("torrentBackupFinishedDirCheckbox").checked = pref.torrent_files_finished_backup_dir_enabled;
+                    document.getElementById("torrentBackupFinishedDir").value = pref.torrent_files_finished_backup_dir;
+                    updateFinishedTorrentBackupControls();
+                    document.getElementById("torrentBackupRemoveCheckbox").checked = pref.remove_torrent_file_backup;
 
                     // Automatically add torrents from
                     for (const folder in pref.scan_dirs) {
@@ -2670,6 +2714,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("webUIMaxAuthFailCountInput").value = Number(pref.web_ui_max_auth_fail_count);
                     document.getElementById("webUIBanDurationInput").value = Number(pref.web_ui_ban_duration);
                     document.getElementById("webUISessionTimeoutInput").value = Number(pref.web_ui_session_timeout);
+                    document.getElementById("webUISessionsCountLimitInput").value = Number(pref.web_ui_sessions_count_limit);
 
                     // API key
                     if (pref.web_ui_api_key.length > 0) {
@@ -2766,6 +2811,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("hostnameCacheTTL").value = pref.hostname_cache_ttl;
                     document.getElementById("IDNSupportCheckbox").checked = pref.idn_support_enabled;
                     document.getElementById("allowMultipleConnectionsFromTheSameIPAddress").checked = pref.enable_multi_connections_from_same_ip;
+                    document.getElementById("allowMultipleConnectionsFromTheSamePeerID").checked = pref.enable_multi_connections_from_same_peer_id;
                     document.getElementById("validateHTTPSTrackerCertificate").checked = pref.validate_https_tracker_certificate;
                     document.getElementById("mitigateSSRF").checked = pref.ssrf_mitigation;
                     document.getElementById("blockPeersOnPrivilegedPorts").checked = pref.block_peers_on_privileged_ports;
@@ -2814,6 +2860,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
             clientData.full_url_tracker_column = document.getElementById("displayFullURLTrackerColumn").checked;
             clientData.use_virtual_list = document.getElementById("useVirtualList").checked;
+            clientData.add_new_torrent_dialog_enabled = document.getElementById("addTorrentWindowEnabled").checked;
             clientData.hide_zero_status_filters = document.getElementById("hideZeroFiltersCheckbox").checked;
             clientData.dblclick_download = document.getElementById("dblclickDownloadSelect").value;
             clientData.dblclick_complete = document.getElementById("dblclickCompleteSelect").value;
@@ -2850,14 +2897,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["save_path"] = document.getElementById("savepath_text").value;
             settings["temp_path_enabled"] = document.getElementById("temppath_checkbox").checked;
             settings["temp_path"] = document.getElementById("temppath_text").value;
-            if (document.getElementById("exportdir_checkbox").checked)
-                settings["export_dir"] = document.getElementById("exportdir_text").value;
-            else
-                settings["export_dir"] = "";
-            if (document.getElementById("exportdirfin_checkbox").checked)
-                settings["export_dir_fin"] = document.getElementById("exportdirfin_text").value;
-            else
-                settings["export_dir_fin"] = "";
+
+            // Backup management
+            settings["torrent_files_backup_enabled"] = document.getElementById("torrentBackupDirCheckbox").checked;
+            settings["torrent_files_backup_dir"] = document.getElementById("torrentBackupDir").value;
+            settings["torrent_files_finished_backup_dir_enabled"] = document.getElementById("torrentBackupFinishedDirCheckbox").checked;
+            settings["torrent_files_finished_backup_dir"] = document.getElementById("torrentBackupFinishedDir").value;
+            settings["remove_torrent_file_backup"] = document.getElementById("torrentBackupRemoveCheckbox").checked;
 
             // Automatically add torrents from
             settings["scan_dirs"] = getWatchedFolders();
@@ -3168,6 +3214,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["web_ui_max_auth_fail_count"] = Number(document.getElementById("webUIMaxAuthFailCountInput").value);
             settings["web_ui_ban_duration"] = Number(document.getElementById("webUIBanDurationInput").value);
             settings["web_ui_session_timeout"] = Number(document.getElementById("webUISessionTimeoutInput").value);
+            settings["web_ui_sessions_count_limit"] = Number(document.getElementById("webUISessionsCountLimitInput").value);
 
             // Use alternative WebUI
             const alternative_webui_enabled = document.getElementById("use_alt_webui_checkbox").checked;
@@ -3222,7 +3269,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["embedded_tracker_port_forwarding"] = document.getElementById("embeddedTrackerPortForwarding").checked;
             settings["mark_of_the_web"] = document.getElementById("markOfTheWeb").checked;
             settings["ignore_ssl_errors"] = document.getElementById("ignoreSSLErrors").checked;
-            settings["python_executable_path"] = document.getElementById("pythonExecutablePath").value;
+
+            const pyPath = document.getElementById("pythonExecutablePath").value;
+            if ((pyPath.length > 0)
+                && (pyPath.startsWith("\"") || pyPath.startsWith("'")
+                    || pyPath.endsWith("\"") || pyPath.endsWith("'"))) {
+                alert("QBT_TR(Invalid path to Python executable. Path contains unnecessary leading and trailing quotes.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["python_executable_path"] = pyPath;
 
             // libtorrent section
             settings["bdecode_depth_limit"] = Number(document.getElementById("bdecodeDepthLimit").value);
@@ -3270,6 +3325,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["hostname_cache_ttl"] = Number(document.getElementById("hostnameCacheTTL").value);
             settings["idn_support_enabled"] = document.getElementById("IDNSupportCheckbox").checked;
             settings["enable_multi_connections_from_same_ip"] = document.getElementById("allowMultipleConnectionsFromTheSameIPAddress").checked;
+            settings["enable_multi_connections_from_same_peer_id"] = document.getElementById("allowMultipleConnectionsFromTheSamePeerID").checked;
             settings["validate_https_tracker_certificate"] = document.getElementById("validateHTTPSTrackerCertificate").checked;
             settings["ssrf_mitigation"] = document.getElementById("mitigateSSRF").checked;
             settings["block_peers_on_privileged_ports"] = document.getElementById("blockPeersOnPrivilegedPorts").checked;
@@ -3359,6 +3415,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.6") < 0)
                 document.getElementById("diskIOWriteModeWriteThrough").hidden = true;
+
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.13") < 0)
+                document.getElementById("rowMultiConnectionsPerPeerID").style.display = "none";
 
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.1") < 0)
                 document.getElementById("diskIOTypePreadPwrite").hidden = true;

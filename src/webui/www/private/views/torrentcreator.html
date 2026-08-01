@@ -40,14 +40,14 @@
         </button>
     </div>
     <div id="torrentCreatorContentView">
-        <div id="torrentCreationTasksTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
-            <table class="dynamicTable" style="position:relative;">
-                <thead>
-                    <tr class="dynamicTableHeader"></tr>
-                </thead>
-            </table>
-        </div>
         <div id="torrentCreationTasksTableDiv" class="dynamicTableDiv">
+            <div id="torrentCreationTasksTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+                <table class="dynamicTable" style="position:relative;">
+                    <thead>
+                        <tr class="dynamicTableHeader"></tr>
+                    </thead>
+                </table>
+            </div>
             <table class="dynamicTable">
                 <tbody></tbody>
             </table>
@@ -248,6 +248,7 @@
                             status: status,
                             torrent_format: entry.format,
                             piece_size: entry.pieceSize,
+                            ignore_dotfiles: entry.ignoreDotfiles,
                             private: entry.private,
                             added_on: entry.timeAdded,
                             start_on: entry.timeStarted,

@@ -39,7 +39,7 @@ target_sources(qbt_app PRIVATE
     cmdoptions.h
     filelogger.h
     legalnotice.h
-    qtlocalpeer/qtlocalpeer.h
+    localpeer.h
     signalhandler.h
     upgrade.h
 
@@ -49,8 +49,8 @@ target_sources(qbt_app PRIVATE
     cmdoptions.cpp
     filelogger.cpp
     legalnotice.cpp
+    localpeer.cpp
     main.cpp
-    qtlocalpeer/qtlocalpeer.cpp
     signalhandler.cpp
     upgrade.cpp
 

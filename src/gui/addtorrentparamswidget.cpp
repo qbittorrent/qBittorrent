@@ -121,8 +121,8 @@ AddTorrentParamsWidget::AddTorrentParamsWidget(BitTorrent::AddTorrentParams addT
     auto *miscParamsLayout = new FlowLayout(m_ui->miscParamsWidget);
     miscParamsLayout->setContentsMargins(0, 0, 0, 0);
     miscParamsLayout->addWidget(m_ui->contentLayoutWidget);
-    miscParamsLayout->addWidget(m_ui->skipCheckingCheckBox);
-    miscParamsLayout->setAlignment(m_ui->skipCheckingCheckBox, Qt::AlignVCenter);
+    miscParamsLayout->addWidget(m_ui->seedModeCheckBox);
+    miscParamsLayout->setAlignment(m_ui->seedModeCheckBox, Qt::AlignVCenter);
     miscParamsLayout->addWidget(m_ui->startTorrentWidget);
     miscParamsLayout->addWidget(m_ui->stopConditionWidget);
     miscParamsLayout->addWidget(m_ui->addToQueueTopWidget);
@@ -253,11 +253,11 @@ void AddTorrentParamsWidget::populate()
             m_addTorrentParams.addStopped = !data.toBool();
     });
 
-    m_ui->skipCheckingCheckBox->disconnect(this);
-    m_ui->skipCheckingCheckBox->setChecked(m_addTorrentParams.skipChecking);
-    connect(m_ui->skipCheckingCheckBox, &QCheckBox::toggled, this, [this]
+    m_ui->seedModeCheckBox->disconnect(this);
+    m_ui->seedModeCheckBox->setChecked(m_addTorrentParams.seedMode);
+    connect(m_ui->seedModeCheckBox, &QCheckBox::toggled, this, [this]
     {
-        m_addTorrentParams.skipChecking = m_ui->skipCheckingCheckBox->isChecked();
+        m_addTorrentParams.seedMode = m_ui->seedModeCheckBox->isChecked();
     });
 
     m_ui->addToQueueTopComboBox->disconnect(this);
@@ -343,7 +343,7 @@ void AddTorrentParamsWidget::populateDefaultPaths()
 
     const Path defaultSavePath = btSession->suggestedSavePath(
             m_ui->categoryComboBox->currentText(), toOptionalBool(m_ui->comboTTM->currentData()));
-    m_ui->savePathEdit->setPlaceholder(defaultSavePath);
+    m_ui->savePathEdit->setPlaceholder(defaultSavePath.toString());
 
     populateDefaultDownloadPath();
 }
@@ -357,11 +357,11 @@ void AddTorrentParamsWidget::populateDefaultDownloadPath()
     {
         const Path defaultDownloadPath = btSession->suggestedDownloadPath(
                 m_ui->categoryComboBox->currentText(), toOptionalBool(m_ui->comboTTM->currentData()));
-        m_ui->downloadPathEdit->setPlaceholder(defaultDownloadPath);
+        m_ui->downloadPathEdit->setPlaceholder(defaultDownloadPath.toString());
     }
     else
     {
-        m_ui->downloadPathEdit->setPlaceholder(Path());
+        m_ui->downloadPathEdit->setPlaceholder(QString());
     }
 }
 

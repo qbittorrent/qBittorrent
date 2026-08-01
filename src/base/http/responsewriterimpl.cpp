@@ -73,7 +73,7 @@ namespace
             .append(u" GMT");
     }
 
-    bool acceptsGzipEncoding(QString encodings)
+    bool acceptsGzipEncoding(const QStringView encodings)
     {
         // [rfc7231] 5.3.4. Accept-Encoding
 
@@ -87,20 +87,22 @@ namespace
                 return true;
 
             // [rfc7231] 5.3.1. Quality Values
-            const QStringView substr = encodingEntry.mid(encoding.size() + 3);  // ex. skip over "gzip;q="
+            const QStringView qualityStr = encodingEntry.sliced(encoding.size() + 1).trimmed();  // ex. skip over "gzip;"
+            if (!qualityStr.startsWith(u"q="))
+                return false;
 
             bool ok = false;
-            const double qvalue = substr.toDouble(&ok);
+            const double qvalue = qualityStr.sliced(2).toDouble(&ok);
             if (ok && (qvalue > 0))
                 return true;
 
             return false;
         };
 
-        encodings.remove(u' ').remove(u'\t');
         return std::ranges::any_of(qTokenize(encodings, u',', Qt::SkipEmptyParts)
-                , [&matchEncoding](const QStringView encodingEntry)
+                , [&matchEncoding](QStringView encodingEntry)
         {
+            encodingEntry = encodingEntry.trimmed();
             return matchEncoding(encodingEntry, u"gzip") || matchEncoding(encodingEntry, u"*");
         });
     }
@@ -560,7 +562,7 @@ void Http::ResponseWriterImpl::Worker::run()
 QByteArray Http::ResponseWriterImpl::Worker::fetchData(const qint64 maxSize)
 {
     const QReadLocker locker {&m_bufferLock};
-    const qint64 sizeToFetch = std::min(maxSize, m_buffer.size());
+    const auto sizeToFetch = std::min<qint64>(maxSize, m_buffer.size());
     const QByteArray data = m_buffer.first(sizeToFetch);
     m_buffer.remove(0, sizeToFetch);
     m_bufferSemaphore.release(sizeToFetch);
