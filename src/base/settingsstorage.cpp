@@ -154,8 +154,8 @@ void SettingsStorage::readNativeSettings()
         finalPathStr.remove(index, 4);
 
         const Path finalPath {finalPathStr};
-        Utils::Fs::removeFile(finalPath);
-        Utils::Fs::renameFile(newPath, finalPath);
+        if (Utils::Fs::removeFile(finalPath))
+            Utils::Fs::renameFile(newPath, finalPath);
     }
     else
     {
@@ -207,7 +207,7 @@ bool SettingsStorage::writeNativeSettings() const
 
     if (status != QSettings::NoError)
     {
-        Utils::Fs::removeFile(newPath);
+        std::ignore = Utils::Fs::removeFile(newPath);
         return false;
     }
 
@@ -216,7 +216,7 @@ bool SettingsStorage::writeNativeSettings() const
     finalPathStr.remove(index, 4);
 
     const Path finalPath {finalPathStr};
-    Utils::Fs::removeFile(finalPath);
+    std::ignore = Utils::Fs::removeFile(finalPath);
     return Utils::Fs::renameFile(newPath, finalPath);
 }
 

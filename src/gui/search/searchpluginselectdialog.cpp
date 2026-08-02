@@ -427,7 +427,7 @@ void SearchPluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &r
                 bool invalidExt = (sizesExt.isEmpty() || iconWithExt.pixmap(sizesExt.first()).isNull());
                 if (invalidExt)
                 {
-                    Utils::Fs::removeFile(iconPath);
+                    std::ignore = Utils::Fs::removeFile(iconPath);
                     continue;
                 }
 
@@ -437,7 +437,7 @@ void SearchPluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &r
         }
     }
     // Delete tmp file
-    Utils::Fs::removeFile(filePath);
+    std::ignore = Utils::Fs::removeFile(filePath);
 }
 
 void SearchPluginSelectDialog::checkForUpdatesFinished(const QHash<QString, SearchPluginVersion> &updateInfo)

@@ -38,6 +38,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QModelIndexList>
+#include <QSet>
 #include <QShortcut>
 #include <QWheelEvent>
 
@@ -328,7 +329,12 @@ void TorrentContentWidget::renameSelectedFile()
 
 void TorrentContentWidget::batchRenameFiles()
 {
-    auto *dialog = new TorrentContentLayoutDialog(m_model->contentHandler(), this);
+    const QModelIndexList selectedRows = selectionModel()->selectedRows();
+    QSet<int> fileIndexes;
+    for (const QModelIndex &rowIndex : selectedRows)
+        fileIndexes.unite(m_filterModel->getFileIndexes(rowIndex));
+
+    auto *dialog = new TorrentContentLayoutDialog(m_model->contentHandler(), fileIndexes, this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(m_model->contentHandler(), &QObject::destroyed, dialog, &QDialog::reject);
     dialog->open();
@@ -568,72 +574,50 @@ void TorrentContentWidget::displayContextMenu()
         }
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Rename...")
                 , this, &TorrentContentWidget::renameSelectedFile);
-        menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s), tr("Wrap in folder...")
-                , this, &TorrentContentWidget::wrapSelectedItemsInFolder);
-        if (m_filterModel->itemType(index) == TorrentContentModelItem::FolderType)
-        {
-            menu->addAction(UIThemeManager::instance()->getIcon(u"folder-documents"_s), tr("Unwrap folder")
-                    , this, &TorrentContentWidget::unwrapSelectedFolder);
-        }
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Batch rename...")
-                , this, &TorrentContentWidget::batchRenameFiles);
-        menu->addSeparator();
-
-        QMenu *subMenu = menu->addMenu(tr("Priority"));
-
-        subMenu->addAction(tr("Do not download"), this, [this]
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Ignored);
-        });
-        subMenu->addAction(tr("Normal"), this, [this]
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Normal);
-        });
-        subMenu->addAction(tr("High"), this, [this]
-        {
-            applyPriorities(BitTorrent::DownloadPriority::High);
-        });
-        subMenu->addAction(tr("Maximum"), this, [this]
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Maximum);
-        });
-        subMenu->addSeparator();
-        subMenu->addAction(tr("By shown file order"), this, &TorrentContentWidget::applyPrioritiesByOrder);
     }
-    else
+
+    QAction *wrapAction = menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s)
+            , tr("Wrap in folder..."), this, &TorrentContentWidget::wrapSelectedItemsInFolder);
+    const QModelIndex parentIndex = selectedRows.first().parent();
+    for (const QModelIndex &index : selectedRows)
     {
-        QAction *wrapAction = menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s)
-                , tr("Wrap in folder..."), this, &TorrentContentWidget::wrapSelectedItemsInFolder);
-        const QModelIndex parentIndex = selectedRows.first().parent();
-        for (const QModelIndex &index : selectedRows)
+        if (index.parent() != parentIndex)
         {
-            if (index.parent() != parentIndex)
-            {
-                wrapAction->setEnabled(false);
-                break;
-            }
+            wrapAction->setEnabled(false);
+            break;
         }
-        menu->addSeparator();
-
-        menu->addAction(tr("Do not download"), this, [this]
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Ignored);
-        });
-        menu->addAction(tr("Normal priority"), this, [this]
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Normal);
-        });
-        menu->addAction(tr("High priority"), this, [this]
-        {
-            applyPriorities(BitTorrent::DownloadPriority::High);
-        });
-        menu->addAction(tr("Maximum priority"), this, [this]
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Maximum);
-        });
-        menu->addSeparator();
-        menu->addAction(tr("Priority by shown file order"), this, &TorrentContentWidget::applyPrioritiesByOrder);
     }
+
+    if ((selectedRows.size() == 1)
+            && (m_filterModel->itemType(selectedRows.first()) == TorrentContentModelItem::FolderType))
+    {
+        menu->addAction(UIThemeManager::instance()->getIcon(u"folder-documents"_s), tr("Unwrap folder")
+                , this, &TorrentContentWidget::unwrapSelectedFolder);
+    }
+
+    menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Batch rename...")
+            , this, &TorrentContentWidget::batchRenameFiles);
+    menu->addSeparator();
+
+    QMenu *subMenu = menu->addMenu(tr("Priority"));
+    subMenu->addAction(tr("Do not download"), this, [this]
+    {
+        applyPriorities(BitTorrent::DownloadPriority::Ignored);
+    });
+    subMenu->addAction(tr("Normal"), this, [this]
+    {
+        applyPriorities(BitTorrent::DownloadPriority::Normal);
+    });
+    subMenu->addAction(tr("High"), this, [this]
+    {
+        applyPriorities(BitTorrent::DownloadPriority::High);
+    });
+    subMenu->addAction(tr("Maximum"), this, [this]
+    {
+        applyPriorities(BitTorrent::DownloadPriority::Maximum);
+    });
+    subMenu->addSeparator();
+    subMenu->addAction(tr("By shown file order"), this, &TorrentContentWidget::applyPrioritiesByOrder);
 
     // The selected torrent might have disappeared during exec()
     // so we just close menu when an appropriate model is reset

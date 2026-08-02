@@ -35,7 +35,7 @@ window.qBittorrent.Filesystem ??= (() => {
     const exports = () => {
         return {
             PathSeparator: PathSeparator,
-            ServerPathSeparator: ServerPathSeparator,
+            getServerPathSeparator: getServerPathSeparator,
             fileExtension: fileExtension,
             fileName: fileName,
             folderName: folderName
@@ -47,8 +47,10 @@ window.qBittorrent.Filesystem ??= (() => {
     /**
      * The native path separator used on the server
      */
-    const ServerPathSeparator = (window.qBittorrent?.Cache.buildInfo.get().platform === "windows")
-        ? "\\" : PathSeparator;
+    const getServerPathSeparator = () => {
+        return (window.qBittorrent?.Cache?.buildInfo.get().platform === "windows")
+            ? "\\" : PathSeparator;
+    };
 
     /**
      * Returns the file extension part of a file name.

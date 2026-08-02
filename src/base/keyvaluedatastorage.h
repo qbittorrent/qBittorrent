@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024-2026  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,42 +26,29 @@
  * exception statement from your version.
  */
 
-#include "torrentcontentremover.h"
+#pragma once
 
-#include <QSet>
+#include <QFuture>
+#include <QObject>
+#include <QVariant>
 
-#include "base/utils/fs.h"
-
-void BitTorrent::TorrentContentRemover::performJob(const QString &torrentName, const Path &basePath
-        , const PathList &fileNames, const TorrentContentRemoveOption option)
+class KeyValueDataStorage final : public QObject
 {
-    QString errorMessage;
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(KeyValueDataStorage)
 
-    if (!fileNames.isEmpty())
-    {
-        const auto removeFileFn = [&option](const Path &filePath) -> nonstd::expected<void, QString>
-        {
-            return ((option == TorrentContentRemoveOption::MoveToTrash)
-                    ? Utils::Fs::moveFileToTrash : Utils::Fs::removeFile)(filePath);
-        };
+public:
+    explicit KeyValueDataStorage(const QString &storageName, QObject *parent = nullptr);
+    ~KeyValueDataStorage() override;
 
-        QSet<Path> topLevelFolders;
-        for (const Path &fileName : fileNames)
-        {
-            const Path rootItem = fileName.rootItem();
-            if (rootItem != fileName)
-                topLevelFolders.insert(rootItem);
+    QFuture<QVariant> fetchValue(const QString &key) const;
+    void storeValue(const QString &key, const QVariant &value);
+    void storeValue(const QString &key, QVariant &&value);
+    void removeValue(const QString &key);
 
-            if (const auto result = removeFileFn(basePath / fileName)
-                    ; !result && errorMessage.isEmpty())
-            {
-                errorMessage = result.error();
-            }
-        }
+private:
+    QString m_storageName;
 
-        for (const Path &topLevelFolder : asConst(topLevelFolders))
-            Utils::Fs::smartRemoveEmptyFolderTree(basePath / topLevelFolder);
-    }
-
-    emit jobFinished(torrentName, errorMessage);
-}
+    class Worker;
+    mutable Worker *m_asyncWorker = nullptr;
+};

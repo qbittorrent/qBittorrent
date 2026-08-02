@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <QtContainerFwd>
 #include <QAbstractItemModel>
 #include <QList>
 
@@ -70,6 +71,7 @@ public:
     QList<BitTorrent::DownloadPriority> getFilePriorities() const;
     TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;
     int getFileIndex(const QModelIndex &index) const;
+    QSet<int> getFileIndexes(const QModelIndex &itemIndex) const;
     Path getItemPath(const QModelIndex &index) const;
 
     int columnCount(const QModelIndex &parent = {}) const override;
