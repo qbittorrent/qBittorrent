@@ -36,43 +36,26 @@
 
 namespace BitTorrent
 {
-    // Stable short tag from TorrentID, e.g. " [qb-a19f83c275d1]".
-    QString payloadHashTag(const TorrentID &id);
+    QString uniqueSubfolderTag(const TorrentID &id);
+    QString uniqueSubfolderName(const TorrentID &id, const QString &originalName);
+    PathList applyUniqueSubfolderLayout(PathList filePaths, const TorrentID &id, const QString &torrentName);
 
-    // Top-level hash directory name: "Original Name [qb-HASH]".
-    QString payloadHashDirectoryName(const TorrentID &id, const QString &originalName);
-
-    // Put every payload path under a single top-level hash directory.
-    // Idempotent when already under that directory.
-    PathList applyPayloadHashNaming(PathList filePaths, const TorrentID &id, const QString &torrentName);
-
-    // One file rename for the manual conversion.
-    struct PayloadHashMigrationItem
+    struct UniqueSubfolderRename
     {
         int fileIndex = -1;
         Path to;
     };
 
-    // Preflight only — no disk changes.
-    // If the target hash directory already exists: wipe it entirely after confirmation, then move payload in.
-    struct PayloadHashMigrationPlan
+    // Preflight only. If blocked, show blockReason and do nothing.
+    struct UniqueSubfolderMigrationPlan
     {
-        QList<PayloadHashMigrationItem> renames;
-
-        // Absolute path of the existing target hash directory to delete (empty if none).
-        Path destinationToWipe;
-
+        QList<UniqueSubfolderRename> renames;
         bool blocked = false;
         QString blockReason;
 
         bool isEmpty() const
         {
             return renames.isEmpty() && !blocked;
-        }
-
-        bool needsConfirmation() const
-        {
-            return !destinationToWipe.isEmpty();
         }
     };
 }

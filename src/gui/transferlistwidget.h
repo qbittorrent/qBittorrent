@@ -105,7 +105,7 @@ public slots:
     void applyAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus);
     void previewFile(const Path &filePath);
     void renameSelectedTorrent();
-    void renameSelectedTorrentsPayloadWithHash();
+    void createUniqueSubfolderForSelectedTorrents();
 
 signals:
     void currentTorrentChanged(BitTorrent::Torrent *torrent);

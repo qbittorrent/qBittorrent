@@ -170,7 +170,6 @@ void AppController::preferencesAction()
     // Downloads
     // When adding a torrent
     data[u"torrent_content_layout"_s] = Utils::String::fromEnum(session->torrentContentLayout());
-    data[u"append_hash_to_payload_names"_s] = session->isAppendHashToPayloadNamesEnabled();
     data[u"add_to_top_of_queue"_s] = session->isAddTorrentToQueueTop();
     data[u"add_stopped_enabled"_s] = session->isAddTorrentStopped();
     data[u"torrent_stop_condition"_s] = Utils::String::fromEnum(session->torrentStopCondition());
@@ -577,8 +576,6 @@ void AppController::setPreferencesAction()
     // When adding a torrent
     if (hasKey(u"torrent_content_layout"_s))
         session->setTorrentContentLayout(Utils::String::toEnum(it.value().toString(), BitTorrent::TorrentContentLayout::Original));
-    if (hasKey(u"append_hash_to_payload_names"_s))
-        session->setAppendHashToPayloadNamesEnabled(it.value().toBool());
     if (hasKey(u"add_to_top_of_queue"_s))
         session->setAddTorrentToQueueTop(it.value().toBool());
     if (hasKey(u"add_stopped_enabled"_s))

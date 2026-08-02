@@ -98,7 +98,6 @@
 #include "base/version.h"
 #include "bandwidthscheduler.h"
 #include "bencoderesumedatastorage.h"
-#include "common.h"
 #include "customstorage.h"
 #include "toplevelpayload.h"
 #include "dbresumedatastorage.h"
@@ -567,7 +566,6 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isAddTorrentStopped(BITTORRENT_SESSION_KEY(u"AddTorrentStopped"_s), false)
     , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_s), Torrent::StopCondition::None)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY(u"TorrentContentLayout"_s), TorrentContentLayout::Original)
-    , m_appendHashToPayloadNames(BITTORRENT_SESSION_KEY(u"AppendHashToPayloadNames"_s), false)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY(u"AddExtensionToIncompleteFiles"_s), false)
     , m_isUnwantedFolderEnabled(BITTORRENT_SESSION_KEY(u"UseUnwantedFolder"_s), false)
     , m_refreshInterval(BITTORRENT_SESSION_KEY(u"RefreshInterval"_s), 1500)
@@ -2793,8 +2791,6 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     loadTorrentParams.name = addTorrentParams.name;
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
     loadTorrentParams.hasFinishedStatus = addTorrentParams.seedMode; // do not react on 'torrent_finished_alert' when skipping
-    loadTorrentParams.appendHashToPayloadName = isAppendHashToPayloadNamesEnabled()
-            && !addTorrentParams.preserveOriginalPayloadName;
     loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
     loadTorrentParams.operatingMode = (addTorrentParams.addForced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
     loadTorrentParams.stopped = addTorrentParams.addStopped.value_or(isAddTorrentStopped());
@@ -2937,7 +2933,11 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
         if (filePaths.isEmpty())
         {
             filePaths = torrentInfo.filePaths();
-            if (loadTorrentParams.contentLayout != TorrentContentLayout::Original)
+            if (loadTorrentParams.contentLayout == TorrentContentLayout::UniqueSubfolder)
+            {
+                filePaths = applyUniqueSubfolderLayout(std::move(filePaths), id, torrentInfo.name());
+            }
+            else if (loadTorrentParams.contentLayout != TorrentContentLayout::Original)
             {
                 const Path originalRootFolder = Path::findRootFolder(filePaths);
                 const auto originalContentLayout = (originalRootFolder.isEmpty()
@@ -2963,11 +2963,6 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
             if (!contentName.isEmpty() && (contentName != torrentInfo.name()))
                 loadTorrentParams.name = contentName;
         }
-
-        // Optional deterministic payload hash naming (decision fixed at add time).
-        // Always use the torrent info name so magnet dn= / display name cannot diverge.
-        if (loadTorrentParams.appendHashToPayloadName)
-            filePaths = applyPayloadHashNaming(std::move(filePaths), id, torrentInfo.name());
 
         const auto nativeIndexes = torrentInfo.nativeIndexes();
 
@@ -5993,16 +5988,6 @@ TorrentContentLayout SessionImpl::torrentContentLayout() const
 void SessionImpl::setTorrentContentLayout(const TorrentContentLayout value)
 {
     m_torrentContentLayout = value;
-}
-
-bool SessionImpl::isAppendHashToPayloadNamesEnabled() const
-{
-    return m_appendHashToPayloadNames;
-}
-
-void SessionImpl::setAppendHashToPayloadNamesEnabled(const bool enabled)
-{
-    m_appendHashToPayloadNames = enabled;
 }
 
 // Read alerts sent by libtorrent session

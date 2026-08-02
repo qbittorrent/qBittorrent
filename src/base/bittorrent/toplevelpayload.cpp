@@ -36,7 +36,6 @@
 namespace
 {
     constexpr int HASH_TAG_HEX_LEN = 12;
-    constexpr int MAX_COMPONENT_LEN = 255;
 
     PathList renameRootFolder(PathList filePaths, const QString &oldName, const QString &newName)
     {
@@ -52,24 +51,45 @@ namespace
         return filePaths;
     }
 
-    // Sanitize and append tag, leaving room for the tag within MAX_COMPONENT_LEN.
-    QString hashedComponent(const QString &name, const QString &tag)
+    // Same limits as Utils::Fs::isValidFileName (Win: 255 chars, else 255 UTF-8 bytes).
+    bool exceedsFileNameLengthLimit(const QString &name)
+    {
+#ifdef Q_OS_WIN
+        return (name.length() > 255);
+#else
+        return (name.toUtf8().length() > 255);
+#endif
+    }
+
+    // Always keep full tag at the end; shorten the name until base+tag fits the platform limit.
+    QString taggedComponent(const QString &name, const QString &tag)
     {
         QString base = Utils::Fs::toValidFileName(name.trimmed());
         if (base.isEmpty())
             base = u"Torrent"_s;
 
         if (base.endsWith(tag))
-            return base;
+            base.chop(tag.size());
 
-        const int maxBaseLen = std::max(1, MAX_COMPONENT_LEN - static_cast<int>(tag.size()));
-        if (base.size() > maxBaseLen)
-            base = base.left(maxBaseLen);
+        QString result = base + tag;
+        while (exceedsFileNameLengthLimit(result) && !base.isEmpty())
+        {
+            base.chop(1);
+#ifdef Q_OS_WIN
+            // Windows forbids trailing dots/spaces; tag starts with a space so keep base clean.
+            while (base.endsWith(u'.') || base.endsWith(u' '))
+                base.chop(1);
+#endif
+            result = base + tag;
+        }
 
-        return base + tag;
+        if (base.isEmpty())
+            result = u"Torrent"_s + tag;
+
+        return result;
     }
 
-    QString originalNameForHashDir(const PathList &filePaths, const QString &torrentName, const QString &tag)
+    QString originalNameForUniqueDir(const PathList &filePaths, const QString &torrentName, const QString &tag)
     {
         QString base = torrentName.trimmed();
         if (base.isEmpty())
@@ -83,7 +103,7 @@ namespace
         if (base.isEmpty())
             base = u"Torrent"_s;
 
-        // Avoid "Name [qb-… ] [qb-…]" if the display/root name already carries this tag.
+        // Avoid doubling the tag if the name already ends with it.
         if (base.endsWith(tag))
             base.chop(tag.size());
 
@@ -91,35 +111,33 @@ namespace
     }
 }
 
-QString BitTorrent::payloadHashTag(const TorrentID &id)
+QString BitTorrent::uniqueSubfolderTag(const TorrentID &id)
 {
-    return u" [qb-"_s + id.toString().left(HASH_TAG_HEX_LEN) + u']';
+    return u' ' + id.toString().left(HASH_TAG_HEX_LEN);
 }
 
-QString BitTorrent::payloadHashDirectoryName(const TorrentID &id, const QString &originalName)
+QString BitTorrent::uniqueSubfolderName(const TorrentID &id, const QString &originalName)
 {
-    return hashedComponent(originalName, payloadHashTag(id));
+    return taggedComponent(originalName, uniqueSubfolderTag(id));
 }
 
-PathList BitTorrent::applyPayloadHashNaming(PathList filePaths, const TorrentID &id, const QString &torrentName)
+PathList BitTorrent::applyUniqueSubfolderLayout(PathList filePaths, const TorrentID &id, const QString &torrentName)
 {
     if (filePaths.isEmpty())
         return filePaths;
 
-    const QString tag = payloadHashTag(id);
-    const QString hashDir = payloadHashDirectoryName(id, originalNameForHashDir(filePaths, torrentName, tag));
+    const QString tag = uniqueSubfolderTag(id);
+    const QString folderName = uniqueSubfolderName(id, originalNameForUniqueDir(filePaths, torrentName, tag));
 
     const Path rootFolder = Path::findRootFolder(filePaths);
     if (!rootFolder.isEmpty())
     {
-        // Already under the correct hash directory.
-        if (rootFolder.toString() == hashDir)
+        if (rootFolder.toString() == folderName)
             return filePaths;
-        // Rename existing top-level folder (e.g. Show/ → Show [qb-HASH]/).
-        return renameRootFolder(std::move(filePaths), rootFolder.toString(), hashDir);
+        return renameRootFolder(std::move(filePaths), rootFolder.toString(), folderName);
     }
 
-    // Single file or rootless multi-file: wrap under the hash directory.
-    Path::addRootFolder(filePaths, Path(hashDir));
+    // Single file or rootless multi-file: wrap under the unique folder.
+    Path::addRootFolder(filePaths, Path(folderName));
     return filePaths;
 }

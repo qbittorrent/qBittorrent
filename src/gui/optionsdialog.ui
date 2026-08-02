@@ -1036,6 +1036,11 @@
                    </item>
                    <item>
                     <property name="text">
+                     <string>Create unique subfolder</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
                      <string>Don't create subfolder</string>
                     </property>
                    </item>
@@ -1055,13 +1060,6 @@
                   </spacer>
                  </item>
                 </layout>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="appendHashToPayloadNamesCheckBox">
-                 <property name="text">
-                  <string>Append torrent hash to payload names</string>
-                 </property>
-                </widget>
                </item>
                <item>
                 <widget class="QCheckBox" name="checkAddToQueueTop">

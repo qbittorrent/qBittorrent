@@ -648,7 +648,6 @@ LoadResumeDataResult DBResumeDataStorage::parseQueryResultRow(const QSqlQuery &q
     }
     resumeData.hasFinishedStatus = query.value(DB_COLUMN_HAS_SEED_STATUS.name).toBool();
     resumeData.firstLastPiecePriority = query.value(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY.name).toBool();
-    resumeData.appendHashToPayloadName = query.value(DB_COLUMN_APPEND_HASH_TO_PAYLOAD_NAME.name).toBool();
     resumeData.shareLimits = {
         .ratioLimit = query.value(DB_COLUMN_RATIO_LIMIT.name).toInt() / 1000.0,
         .seedingTimeLimit = query.value(DB_COLUMN_SEEDING_TIME_LIMIT.name).toInt(),
@@ -657,7 +656,10 @@ LoadResumeDataResult DBResumeDataStorage::parseQueryResultRow(const QSqlQuery &q
         .action = Utils::String::toEnum(query.value(DB_COLUMN_SHARE_LIMIT_ACTION.name).toString(), ShareLimitAction::Default)
     };
     resumeData.contentLayout = Utils::String::toEnum<TorrentContentLayout>(
-        query.value(DB_COLUMN_CONTENT_LAYOUT.name).toString(), TorrentContentLayout::Original);
+            query.value(DB_COLUMN_CONTENT_LAYOUT.name).toString(), TorrentContentLayout::Original);
+    // Legacy column (pre-UniqueSubfolder layout enum); content_layout is source of truth now.
+    if (query.value(DB_COLUMN_APPEND_HASH_TO_PAYLOAD_NAME.name).toBool())
+        resumeData.contentLayout = TorrentContentLayout::UniqueSubfolder;
     resumeData.operatingMode = Utils::String::toEnum<TorrentOperatingMode>(
         query.value(DB_COLUMN_OPERATING_MODE.name).toString(), TorrentOperatingMode::AutoManaged);
     resumeData.stopped = query.value(DB_COLUMN_STOPPED.name).toBool();
@@ -945,7 +947,8 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
             query.bindValue(DB_COLUMN_SHARE_LIMIT_ACTION.placeholder, Utils::String::fromEnum(m_resumeData.shareLimits.action));
             query.bindValue(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY.placeholder, m_resumeData.firstLastPiecePriority);
             query.bindValue(DB_COLUMN_HAS_SEED_STATUS.placeholder, m_resumeData.hasFinishedStatus);
-            query.bindValue(DB_COLUMN_APPEND_HASH_TO_PAYLOAD_NAME.placeholder, m_resumeData.appendHashToPayloadName);
+            // Column kept for schema compatibility; always 0. Layout is in content_layout.
+            query.bindValue(DB_COLUMN_APPEND_HASH_TO_PAYLOAD_NAME.placeholder, false);
             query.bindValue(DB_COLUMN_OPERATING_MODE.placeholder, Utils::String::fromEnum(m_resumeData.operatingMode));
             query.bindValue(DB_COLUMN_STOPPED.placeholder, m_resumeData.stopped);
             query.bindValue(DB_COLUMN_STOP_CONDITION.placeholder, Utils::String::fromEnum(m_resumeData.stopCondition));

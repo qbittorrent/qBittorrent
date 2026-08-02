@@ -245,7 +245,6 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     torrentParams.comment = fromLTString(resumeDataRoot.dict_find_string_value("qBt-comment"));
     torrentParams.hasFinishedStatus = resumeDataRoot.dict_find_int_value("qBt-seedStatus");
     torrentParams.firstLastPiecePriority = resumeDataRoot.dict_find_int_value("qBt-firstLastPiecePriority");
-    torrentParams.appendHashToPayloadName = resumeDataRoot.dict_find_int_value("qBt-appendHashToPayloadName");
 
     const lt::string_view ratioLimitString = resumeDataRoot.dict_find_string_value("qBt-ratioLimit");
     torrentParams.shareLimits = {
@@ -285,6 +284,10 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     //    torrentParams.contentLayout = Utils::String::parse(
     //                fromLTString(root.dict_find_string_value("qBt-contentLayout")), TorrentContentLayout::Default);
     // === END REPLACEMENT CODE === //
+
+    // Legacy flag from intermediate builds; content_layout is source of truth now.
+    if (resumeDataRoot.dict_find_int_value("qBt-appendHashToPayloadName"))
+        torrentParams.contentLayout = TorrentContentLayout::UniqueSubfolder;
 
     torrentParams.stopCondition = Utils::String::toEnum(
             fromLTString(resumeDataRoot.dict_find_string_value("qBt-stopCondition")), Torrent::StopCondition::None);
@@ -466,7 +469,6 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     data["qBt-seedStatus"] = resumeData.hasFinishedStatus;
     data["qBt-contentLayout"] = Utils::String::fromEnum(resumeData.contentLayout).toStdString();
     data["qBt-firstLastPiecePriority"] = resumeData.firstLastPiecePriority;
-    data["qBt-appendHashToPayloadName"] = resumeData.appendHashToPayloadName;
     data["qBt-stopCondition"] = Utils::String::fromEnum(resumeData.stopCondition).toStdString();
 
     if (!resumeData.sslParameters.certificate.isNull())

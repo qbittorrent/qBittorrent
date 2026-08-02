@@ -126,7 +126,6 @@ BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject
         .filePaths = {},
         .filePriorities = {},
         .seedMode = seedModeValue.toBool(jsonObj.value(DEPRECATED_PARAM_SKIP_CHECKING).toBool()),
-        .preserveOriginalPayloadName = jsonObj.value(u"preserveOriginalPayloadName"_s).toBool(),
         .contentLayout = getOptionalEnum<TorrentContentLayout>(jsonObj, PARAM_CONTENTLAYOUT),
         .useAutoTMM = getOptionalBool(jsonObj, PARAM_AUTOTMM),
         .uploadLimit = jsonObj.value(PARAM_UPLOADLIMIT).toInt(-1),
@@ -160,7 +159,6 @@ QJsonObject BitTorrent::serializeAddTorrentParams(const AddTorrentParams &params
         {PARAM_OPERATINGMODE, Utils::String::fromEnum(params.addForced
                 ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged)},
         {PARAM_SEEDMODE, params.seedMode},
-        {u"preserveOriginalPayloadName"_s, params.preserveOriginalPayloadName},
         {PARAM_UPLOADLIMIT, params.uploadLimit},
         {PARAM_DOWNLOADLIMIT, params.downloadLimit},
         {PARAM_RATIOLIMIT, params.shareLimits.ratioLimit},

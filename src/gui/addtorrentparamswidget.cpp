@@ -91,6 +91,7 @@ AddTorrentParamsWidget::AddTorrentParamsWidget(BitTorrent::AddTorrentParams addT
     m_ui->contentLayoutComboBox->addItem(tr("Default"));
     m_ui->contentLayoutComboBox->addItem(tr("Original"), QVariant::fromValue(BitTorrent::TorrentContentLayout::Original));
     m_ui->contentLayoutComboBox->addItem(tr("Create subfolder"), QVariant::fromValue(BitTorrent::TorrentContentLayout::Subfolder));
+    m_ui->contentLayoutComboBox->addItem(tr("Create unique subfolder"), QVariant::fromValue(BitTorrent::TorrentContentLayout::UniqueSubfolder));
     m_ui->contentLayoutComboBox->addItem(tr("Don't create subfolder"), QVariant::fromValue(BitTorrent::TorrentContentLayout::NoSubfolder));
 
     m_ui->stopConditionComboBox->addItem(tr("Default"));

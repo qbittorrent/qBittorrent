@@ -579,19 +579,18 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->checkAdditionDialogFront->setChecked(pref->isAddNewTorrentDialogTopLevel());
 
     m_ui->contentLayoutComboBox->setCurrentIndex(static_cast<int>(session->torrentContentLayout()));
-    m_ui->appendHashToPayloadNamesCheckBox->setChecked(session->isAppendHashToPayloadNamesEnabled());
-    m_ui->appendHashToPayloadNamesCheckBox->setToolTip(
-            u"<html><body><p>"
-            + tr("Prevents two torrents with the same name from writing into the same path by placing content under a top-level hash directory (for example Show [qb-a19f83c275d1]).")
-            + u"</p><p><b>" + tr("Note:") + u"</b> "
-            + tr("Different torrents will no longer share the same path, so path-based cross-seeding will not work unless you turn this off for that torrent.")
-            + u"</p><ul><li>"
-            + tr("Applies to newly added torrents only (existing ones are not renamed automatically).")
-            + u"</li><li>"
-            + tr("In the Add Torrent dialog: “Preserve original payload name” disables this for one torrent.")
-            + u"</li><li>"
-            + tr("Right-click a torrent: “Append hash to payload name” moves selected existing torrents into that hash directory (replacing it entirely if it already exists).")
-            + u"</li></ul></body></html>");
+    m_ui->contentLayoutComboBox->setToolTip(
+            u"<html><body><p><b>" + tr("Original") + u"</b> - "
+            + tr("Keep the torrent’s original layout.")
+            + u"</p><p><b>" + tr("Create subfolder") + u"</b> - "
+            + tr("Put content in a subfolder named after the torrent.")
+            + u"</p><p><b>" + tr("Create unique subfolder") + u"</b> - "
+            + tr("Put content in a unique folder with a short hash suffix (e.g. Show a19f83c275d1). "
+                 "Avoids name collisions; breaks path-based cross-seeding. "
+                 "Existing torrents stay as-is until converted via right-click.")
+            + u"</p><p><b>" + tr("Don't create subfolder") + u"</b> - "
+            + tr("Put files directly in the save path.")
+            + u"</p></body></html>");
     m_ui->checkAddToQueueTop->setChecked(session->isAddTorrentToQueueTop());
     m_ui->checkAddStopped->setChecked(session->isAddTorrentStopped());
 
@@ -762,7 +761,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->checkAdditionDialogFront, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->contentLayoutComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->appendHashToPayloadNamesCheckBox, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkAddToQueueTop, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAddStopped, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -843,7 +841,6 @@ void OptionsDialog::saveDownloadsTabOptions() const
     pref->setAddNewTorrentDialogTopLevel(m_ui->checkAdditionDialogFront->isChecked());
 
     session->setTorrentContentLayout(static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
-    session->setAppendHashToPayloadNamesEnabled(m_ui->appendHashToPayloadNamesCheckBox->isChecked());
 
     session->setAddTorrentToQueueTop(m_ui->checkAddToQueueTop->isChecked());
     session->setAddTorrentStopped(addTorrentsStopped());

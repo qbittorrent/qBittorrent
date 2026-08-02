@@ -56,9 +56,6 @@ namespace BitTorrent
         bool useAutoTMM = false;
         bool firstLastPiecePriority = false;
         bool hasFinishedStatus = false;
-        // Set at add time from Session option + per-torrent preserve override.
-        // Not re-evaluated later so existing torrents (and pending magnets) are not renamed when the option changes.
-        bool appendHashToPayloadName = false;
         bool stopped = false;
         Torrent::StopCondition stopCondition = Torrent::StopCondition::None;
 

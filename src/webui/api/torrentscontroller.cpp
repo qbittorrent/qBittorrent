@@ -1155,7 +1155,6 @@ void TorrentsController::addAction()
         .filePaths = {},
         .filePriorities = {},
         .seedMode = seedMode,
-        .preserveOriginalPayloadName = parseBool(params()[u"preserveOriginalPayloadName"_s]).value_or(false),
         .contentLayout = contentLayout,
         .useAutoTMM = autoTMM,
         .uploadLimit = upLimit,

@@ -248,8 +248,8 @@ namespace BitTorrent
         QString createMagnetURI() const override;
         nonstd::expected<QByteArray, QString> exportToBuffer() const override;
         nonstd::expected<void, QString> exportToFile(const Path &path) const override;
-        PayloadHashMigrationPlan planPayloadHashMigration() const override;
-        bool startPayloadHashMigration(const PayloadHashMigrationPlan &plan) override;
+        UniqueSubfolderMigrationPlan planUniqueSubfolderMigration() const override;
+        void startUniqueSubfolderMigration(const UniqueSubfolderMigrationPlan &plan) override;
 
         QFuture<QList<PeerInfo>> fetchPeerInfo() const override;
         QFuture<QList<QUrl>> fetchURLSeeds() const override;
@@ -302,15 +302,14 @@ namespace BitTorrent
             QList<int> failedFileIndexes {};
         };
 
-        // Tracks the manual “append hash” conversion until all async renames finish.
-        struct PayloadHashMigrationJob
+        struct UniqueSubfolderMigrationJob
         {
             QSet<int> pendingFileIndexes;
             QList<int> failedFileIndexes;
         };
 
-        void notePayloadHashMigrationProgress(int fileIndex, bool success);
-        void finishPayloadHashMigration();
+        void noteUniqueSubfolderMigrationProgress(int fileIndex, bool success);
+        void finishUniqueSubfolderMigration();
 
         std::shared_ptr<const lt::torrent_info> nativeTorrentInfo() const;
 
@@ -370,7 +369,7 @@ namespace BitTorrent
         QQueue<FileRenameInfo> m_renamingFiles;
         QQueue<FolderRenameInfo> m_renamingFolders;
         int m_nextFolderRenameJobID = 0;
-        std::optional<PayloadHashMigrationJob> m_payloadHashMigration;
+        std::optional<UniqueSubfolderMigrationJob> m_uniqueSubfolderMigration;
 
         QQueue<EventTrigger> m_statusUpdatedTriggers;
 
@@ -391,7 +390,6 @@ namespace BitTorrent
         TorrentOperatingMode m_operatingMode = TorrentOperatingMode::AutoManaged;
         TorrentContentLayout m_contentLayout = TorrentContentLayout::Original;
         bool m_hasFinishedStatus = false;
-        bool m_appendHashToPayloadName = false;
         bool m_hasMissingFiles = false;
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM = false;

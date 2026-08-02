@@ -64,8 +64,6 @@ namespace BitTorrent
         PathList filePaths; // used if TorrentInfo is set
         QList<DownloadPriority> filePriorities; // used if TorrentInfo is set
         bool seedMode = false;
-        // When Session::isAppendHashToPayloadNamesEnabled(), skip deterministic hash suffix for this torrent.
-        bool preserveOriginalPayloadName = false;
         std::optional<BitTorrent::TorrentContentLayout> contentLayout;
         std::optional<bool> useAutoTMM;
         int uploadLimit = -1;

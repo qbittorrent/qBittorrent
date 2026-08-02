@@ -59,6 +59,7 @@
 #include "base/bittorrent/torrentcontenthandler.h"
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/bittorrent/torrentdescriptor.h"
+#include "base/bittorrent/toplevelpayload.h"
 #include "base/global.h"
 #include "base/preferences.h"
 #include "base/settingsstorage.h"
@@ -350,8 +351,6 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
     m_ui->stopConditionComboBox->setEnabled(m_ui->startTorrentCheckBox->isChecked());
     m_ui->contentLayoutComboBox->setCurrentIndex(
             static_cast<int>(addTorrentParams.contentLayout.value_or(session->torrentContentLayout())));
-    m_ui->preserveOriginalPayloadNameCheckBox->setVisible(session->isAppendHashToPayloadNamesEnabled());
-    m_ui->preserveOriginalPayloadNameCheckBox->setChecked(addTorrentParams.preserveOriginalPayloadName);
     m_ui->sequentialCheckBox->setChecked(addTorrentParams.sequential);
     m_ui->firstLastCheckBox->setChecked(addTorrentParams.firstLastPiecePriority);
     m_ui->seedModeCheckBox->setChecked(addTorrentParams.seedMode);
@@ -449,8 +448,6 @@ void AddNewTorrentDialog::updateCurrentContext()
     addTorrentParams.addStopped = !m_ui->startTorrentCheckBox->isChecked();
     addTorrentParams.stopCondition = m_ui->stopConditionComboBox->currentData().value<BitTorrent::Torrent::StopCondition>();
     addTorrentParams.contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
-    addTorrentParams.preserveOriginalPayloadName = m_ui->preserveOriginalPayloadNameCheckBox->isVisible()
-            && m_ui->preserveOriginalPayloadNameCheckBox->isChecked();
 
     addTorrentParams.sequential = m_ui->sequentialCheckBox->isChecked();
     addTorrentParams.firstLastPiecePriority = m_ui->firstLastCheckBox->isChecked();
@@ -999,34 +996,47 @@ void AddNewTorrentDialog::TorrentContentAdaptor::renameFile(const int index, con
 void AddNewTorrentDialog::TorrentContentAdaptor::applyContentLayout(const BitTorrent::TorrentContentLayout contentLayout)
 {
     Q_ASSERT(hasMetadata());
-    Q_ASSERT(!m_filePaths.isEmpty());
 
     const auto originalContentLayout = (m_originalRootFolder.isEmpty()
             ? BitTorrent::TorrentContentLayout::NoSubfolder
             : BitTorrent::TorrentContentLayout::Subfolder);
     const auto newContentLayout = ((contentLayout == BitTorrent::TorrentContentLayout::Original)
             ? originalContentLayout : contentLayout);
-    if (newContentLayout != m_currentContentLayout)
+    if (newContentLayout == m_currentContentLayout)
+        return;
+
+    // Transform the current path list so per-file renames are preserved.
+    if (m_filePaths.isEmpty())
+        m_filePaths = m_torrentInfo.filePaths();
+
+    const PathList oldFilePaths = m_filePaths;
+    PathList newFilePaths = m_filePaths;
+
+    if (newContentLayout == BitTorrent::TorrentContentLayout::UniqueSubfolder)
     {
-        const PathList oldFilePaths = m_filePaths;
-
-        if (newContentLayout == BitTorrent::TorrentContentLayout::NoSubfolder)
-        {
-            Path::stripRootFolder(m_filePaths);
-        }
-        else
-        {
-            const auto rootFolder = ((originalContentLayout == BitTorrent::TorrentContentLayout::Subfolder)
-                    ? m_originalRootFolder : m_filePaths.at(0).removedExtension());
-            Path::addRootFolder(m_filePaths, rootFolder);
-        }
-
-        m_currentContentLayout = newContentLayout;
-
-        const qsizetype filesCount = m_filePaths.size();
-        for (int i = 0; i < filesCount; ++i)
-            emit fileRenamed(i, oldFilePaths.at(i));
+        newFilePaths = BitTorrent::applyUniqueSubfolderLayout(std::move(newFilePaths)
+                , BitTorrent::TorrentID::fromInfoHash(m_torrentInfo.infoHash()), m_torrentInfo.name());
     }
+    else if (newContentLayout == BitTorrent::TorrentContentLayout::NoSubfolder)
+    {
+        Path::stripRootFolder(newFilePaths);
+    }
+    else // Subfolder
+    {
+        // Drop any current top-level folder (including a unique one), then restore Subfolder root.
+        if (!Path::findRootFolder(newFilePaths).isEmpty())
+            Path::stripRootFolder(newFilePaths);
+
+        const Path rootFolder = m_originalRootFolder.isEmpty()
+                ? newFilePaths.at(0).removedExtension() : m_originalRootFolder;
+        Path::addRootFolder(newFilePaths, rootFolder);
+    }
+
+    m_filePaths = std::move(newFilePaths);
+    m_currentContentLayout = newContentLayout;
+
+    for (int i = 0; i < m_filePaths.size(); ++i)
+        emit fileRenamed(i, oldFilePaths.at(i));
 }
 
 void AddNewTorrentDialog::TorrentContentAdaptor::prioritizeFiles(const QList<BitTorrent::DownloadPriority> &priorities)

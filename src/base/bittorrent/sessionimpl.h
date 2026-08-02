@@ -205,8 +205,6 @@ namespace BitTorrent
         void setTorrentStopCondition(Torrent::StopCondition stopCondition) override;
         TorrentContentLayout torrentContentLayout() const override;
         void setTorrentContentLayout(TorrentContentLayout value) override;
-        bool isAppendHashToPayloadNamesEnabled() const override;
-        void setAppendHashToPayloadNamesEnabled(bool enabled) override;
         bool isTrackerEnabled() const override;
         void setTrackerEnabled(bool enabled) override;
         bool isAppendExtensionEnabled() const override;
@@ -745,7 +743,6 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isAddTorrentStopped;
         CachedSettingValue<Torrent::StopCondition> m_torrentStopCondition;
         CachedSettingValue<TorrentContentLayout> m_torrentContentLayout;
-        CachedSettingValue<bool> m_appendHashToPayloadNames;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
         CachedSettingValue<bool> m_isUnwantedFolderEnabled;
         CachedSettingValue<int> m_refreshInterval;

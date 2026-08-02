@@ -32,8 +32,14 @@
 #include "base/bittorrent/toplevelpayload.h"
 #include "base/global.h"
 #include "base/path.h"
+#include "base/utils/fs.h"
 
 using namespace BitTorrent;
+
+namespace
+{
+    const TorrentID sampleId = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
+}
 
 class TestTopLevelPayload final : public QObject
 {
@@ -44,105 +50,104 @@ public:
     TestTopLevelPayload() = default;
 
 private slots:
-    void testHashTagFormat() const
+    void testTagFormat() const
     {
-        const TorrentID id = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
-        QCOMPARE(payloadHashTag(id), u" [qb-a19f83c275d1]"_s);
+        QCOMPARE(uniqueSubfolderTag(sampleId), u" a19f83c275d1"_s);
     }
 
-    void testHashDirectoryName() const
+    void testFolderName() const
     {
-        const TorrentID id = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
-        QCOMPARE(payloadHashDirectoryName(id, u"Show"_s), u"Show [qb-a19f83c275d1]"_s);
+        QCOMPARE(uniqueSubfolderName(sampleId, u"Show"_s), u"Show a19f83c275d1"_s);
     }
 
-    void testFolderBecomesHashDirectory() const
+    void testFolderBecomesUniqueSubfolder() const
     {
-        const TorrentID id = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
-        const PathList out = applyPayloadHashNaming(
-                {Path(u"Show/ep1.mkv"_s), Path(u"Show/ep2.mkv"_s)}, id, u"Show"_s);
-        QCOMPARE(Path::findRootFolder(out).toString(), u"Show [qb-a19f83c275d1]"_s);
-        QCOMPARE(out.at(0), Path(u"Show [qb-a19f83c275d1]/ep1.mkv"_s));
+        const PathList out = applyUniqueSubfolderLayout(
+                {Path(u"Show/ep1.mkv"_s), Path(u"Show/ep2.mkv"_s)}, sampleId, u"Show"_s);
+        QCOMPARE(Path::findRootFolder(out).toString(), u"Show a19f83c275d1"_s);
+        QCOMPARE(out.at(0), Path(u"Show a19f83c275d1/ep1.mkv"_s));
     }
 
-    void testSingleFileWrapsInHashDirectory() const
+    void testSingleFileWraps() const
     {
-        const TorrentID id = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
-        const PathList out = applyPayloadHashNaming({Path(u"movie.mkv"_s)}, id, u"movie"_s);
-        QCOMPARE(Path::findRootFolder(out).toString(), u"movie [qb-a19f83c275d1]"_s);
-        QCOMPARE(out.at(0), Path(u"movie [qb-a19f83c275d1]/movie.mkv"_s));
+        const PathList out = applyUniqueSubfolderLayout({Path(u"movie.mkv"_s)}, sampleId, u"movie"_s);
+        QCOMPARE(Path::findRootFolder(out).toString(), u"movie a19f83c275d1"_s);
+        QCOMPARE(out.at(0), Path(u"movie a19f83c275d1/movie.mkv"_s));
     }
 
-    void testRootlessWrapsInHashDirectory() const
+    void testRootlessWraps() const
     {
-        const TorrentID id = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
-        const PathList out = applyPayloadHashNaming(
-                {Path(u"a.mkv"_s), Path(u"b.srt"_s)}, id, u"Torrent Name"_s);
-        QCOMPARE(Path::findRootFolder(out).toString(), u"Torrent Name [qb-a19f83c275d1]"_s);
-        QCOMPARE(out.at(0), Path(u"Torrent Name [qb-a19f83c275d1]/a.mkv"_s));
+        const PathList out = applyUniqueSubfolderLayout(
+                {Path(u"a.mkv"_s), Path(u"b.srt"_s)}, sampleId, u"Torrent Name"_s);
+        QCOMPARE(Path::findRootFolder(out).toString(), u"Torrent Name a19f83c275d1"_s);
+        QCOMPARE(out.at(0), Path(u"Torrent Name a19f83c275d1/a.mkv"_s));
     }
 
-    void testDifferentTorrentsDifferentDirectories() const
+    void testDifferentTorrentsDifferentFolders() const
     {
         const TorrentID idA = TorrentID::fromString(u"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"_s);
         const TorrentID idB = TorrentID::fromString(u"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"_s);
         const PathList layout {Path(u"Show/ep.mkv"_s)};
-        const PathList outA = applyPayloadHashNaming(layout, idA, u"Show"_s);
-        const PathList outB = applyPayloadHashNaming(layout, idB, u"Show"_s);
+        const PathList outA = applyUniqueSubfolderLayout(layout, idA, u"Show"_s);
+        const PathList outB = applyUniqueSubfolderLayout(layout, idB, u"Show"_s);
         QVERIFY(Path::findRootFolder(outA) != Path::findRootFolder(outB));
     }
 
-    void testIdempotentNoNestedHashDirectory() const
+    void testIdempotentMultiFile() const
     {
-        const TorrentID id = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
-        const PathList once = applyPayloadHashNaming({Path(u"Show/ep.mkv"_s)}, id, u"Show"_s);
-        const PathList twice = applyPayloadHashNaming(once, id, u"Show"_s);
+        const PathList once = applyUniqueSubfolderLayout({Path(u"Show/ep.mkv"_s)}, sampleId, u"Show"_s);
+        const PathList twice = applyUniqueSubfolderLayout(once, sampleId, u"Show"_s);
         QCOMPARE(twice, once);
-        QCOMPARE(Path::findRootFolder(twice).toString(), u"Show [qb-a19f83c275d1]"_s);
+        QCOMPARE(Path::findRootFolder(twice).toString(), u"Show a19f83c275d1"_s);
     }
 
     void testIdempotentSingleFile() const
     {
-        const TorrentID id = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
-        const PathList once = applyPayloadHashNaming({Path(u"movie.mkv"_s)}, id, u"movie"_s);
-        const PathList twice = applyPayloadHashNaming(once, id, u"movie"_s);
+        const PathList once = applyUniqueSubfolderLayout({Path(u"movie.mkv"_s)}, sampleId, u"movie"_s);
+        const PathList twice = applyUniqueSubfolderLayout(once, sampleId, u"movie"_s);
         QCOMPARE(twice, once);
-        QCOMPARE(twice.at(0), Path(u"movie [qb-a19f83c275d1]/movie.mkv"_s));
+        QCOMPARE(twice.at(0), Path(u"movie a19f83c275d1/movie.mkv"_s));
     }
 
     void testIdempotentRootless() const
     {
-        const TorrentID id = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
-        const PathList once = applyPayloadHashNaming(
-                {Path(u"a.mkv"_s), Path(u"b.srt"_s)}, id, u"Pack"_s);
-        const PathList twice = applyPayloadHashNaming(once, id, u"Pack"_s);
+        const PathList once = applyUniqueSubfolderLayout(
+                {Path(u"a.mkv"_s), Path(u"b.srt"_s)}, sampleId, u"Pack"_s);
+        const PathList twice = applyUniqueSubfolderLayout(once, sampleId, u"Pack"_s);
         QCOMPARE(twice, once);
-        QVERIFY(!twice.at(0).toString().contains(u"[qb-a19f83c275d1]/Pack [qb-"_s));
+        QVERIFY(!twice.at(0).toString().contains(u"a19f83c275d1/Pack a19f"_s));
     }
 
     void testUnicodeName() const
     {
-        const TorrentID id = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
-        const PathList out = applyPayloadHashNaming(
-                {Path(u"映画/ep.mkv"_s)}, id, u"映画"_s);
-        QCOMPARE(Path::findRootFolder(out).toString(), u"映画 [qb-a19f83c275d1]"_s);
+        const PathList out = applyUniqueSubfolderLayout(
+                {Path(u"映画/ep.mkv"_s)}, sampleId, u"映画"_s);
+        QCOMPARE(Path::findRootFolder(out).toString(), u"映画 a19f83c275d1"_s);
     }
 
     void testLongNameTruncated() const
     {
-        const TorrentID id = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
         const QString longName = QString(300, u'a');
-        const PathList out = applyPayloadHashNaming({Path(u"f.mkv"_s)}, id, longName);
+        const PathList out = applyUniqueSubfolderLayout({Path(u"f.mkv"_s)}, sampleId, longName);
         const QString root = Path::findRootFolder(out).toString();
-        QVERIFY(root.size() <= 255);
-        QVERIFY(root.endsWith(u" [qb-a19f83c275d1]"_s));
+        QVERIFY(Utils::Fs::isValidFileName(root));
+        QVERIFY(root.endsWith(u" a19f83c275d1"_s));
     }
 
-    void testAlreadyHashedRootUnchanged() const
+    void testLongUnicodeNameTruncated() const
     {
-        const TorrentID id = TorrentID::fromString(u"a19f83c275d1aabbccddeeff0011223344556677"_s);
-        const PathList partial {Path(u"Show [qb-a19f83c275d1]/ep.mkv"_s)};
-        const PathList out = applyPayloadHashNaming(partial, id, u"Show"_s);
+        // CJK is multi-byte in UTF-8; must still keep full hash and fit platform limit.
+        const QString longName = QString(200, QChar(0x6620));
+        const PathList out = applyUniqueSubfolderLayout({Path(u"f.mkv"_s)}, sampleId, longName);
+        const QString root = Path::findRootFolder(out).toString();
+        QVERIFY(Utils::Fs::isValidFileName(root));
+        QVERIFY(root.endsWith(u" a19f83c275d1"_s));
+    }
+
+    void testAlreadyUniqueRootUnchanged() const
+    {
+        const PathList partial {Path(u"Show a19f83c275d1/ep.mkv"_s)};
+        const PathList out = applyUniqueSubfolderLayout(partial, sampleId, u"Show"_s);
         QCOMPARE(out, partial);
     }
 };

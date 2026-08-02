@@ -309,10 +309,8 @@ namespace BitTorrent
         virtual nonstd::expected<QByteArray, QString> exportToBuffer() const = 0;
         virtual nonstd::expected<void, QString> exportToFile(const Path &path) const = 0;
 
-        // Manual conversion to hashed payload names (right-click). Plan first (no side effects),
-        // then start after the user confirms full destination replacement (not a merge).
-        virtual PayloadHashMigrationPlan planPayloadHashMigration() const = 0;
-        virtual bool startPayloadHashMigration(const PayloadHashMigrationPlan &plan) = 0;
+        virtual UniqueSubfolderMigrationPlan planUniqueSubfolderMigration() const = 0;
+        virtual void startUniqueSubfolderMigration(const UniqueSubfolderMigrationPlan &plan) = 0;
 
         virtual QFuture<QList<PeerInfo>> fetchPeerInfo() const = 0;
         virtual QFuture<QList<QUrl>> fetchURLSeeds() const = 0;
@@ -327,8 +325,7 @@ namespace BitTorrent
         void toggleFirstLastPiecePriority();
 
     signals:
-        // Emitted when a manual payload-hash migration job finishes (success or failure).
-        void payloadHashMigrationFinished(bool success, const QString &message);
+        void uniqueSubfolderMigrationFinished(bool success, const QString &message);
     };
 }
 
