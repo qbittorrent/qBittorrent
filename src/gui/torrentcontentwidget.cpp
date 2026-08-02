@@ -576,6 +576,9 @@ void TorrentContentWidget::displayContextMenu()
                 , this, &TorrentContentWidget::renameSelectedFile);
     }
 
+    menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Batch rename...")
+            , this, &TorrentContentWidget::batchRenameFiles);
+
     QAction *wrapAction = menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s)
             , tr("Group in new folder..."), this, &TorrentContentWidget::wrapSelectedItemsInFolder);
     const QModelIndex parentIndex = selectedRows.first().parent();
@@ -595,8 +598,6 @@ void TorrentContentWidget::displayContextMenu()
                 , this, &TorrentContentWidget::unwrapSelectedFolder);
     }
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Batch rename...")
-            , this, &TorrentContentWidget::batchRenameFiles);
     menu->addSeparator();
 
     QMenu *subMenu = menu->addMenu(tr("Priority"));
