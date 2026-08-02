@@ -25,8 +25,10 @@ UPnP port forwarding / NAT-PMP, encryption (Vuze compatible), FAST extension (ma
 and PeX support (utorrent compatible).
 
 qBittorrent-nox is meant to be controlled via its feature-rich Web UI which is
-accessible as a default on http://localhost:8080. The Web UI access is secured and
-the default account user name is "admin" with "adminadmin" as a password.
+accessible by default at http://localhost:8080. The default WebUI administrator
+user name is "admin". If no password has been set, a temporary random password is
+generated and printed to the console on each startup; you should set your own
+password in the program preferences.
 
 
 # OPTIONS
