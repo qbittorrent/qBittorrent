@@ -105,13 +105,13 @@ namespace
 #ifdef Q_OS_WIN
 bool isMagnetProtocolRegistered()
 {
-    QSettings magnetProtocol {u"HKEY_CURRENT_USER\\Software\\Classes\\magnet"_s, QSettings::NativeFormat};
+    QSettings magnetProtocol {u"HKEY_CLASSES_ROOT\\magnet"_s, QSettings::NativeFormat};
     const auto protocolDescription = magnetProtocol.value(u"."_s).toString();
     const auto contentType = magnetProtocol.value(u"Content Type"_s).toString();
     const bool hasUrlProtocol = magnetProtocol.contains(u"URL Protocol"_s);
 
     return (magnetProtocol.status() == QSettings::NoError)
-            && (protocolDescription == u"URL:Magnet URI"_s)
+            && !protocolDescription.isEmpty()
             && (contentType == u"application/x-magnet"_s)
             && hasUrlProtocol;
 }
@@ -521,7 +521,7 @@ void OptionsDialog::restoreMagnetProtocolRegistration()
     else
     {
         QMessageBox::warning(this, tr("Magnet protocol registration restore failed")
-                , tr("Could not restore magnet protocol registration. Check the execution log for details."));
+                , tr("Could not restore magnet protocol registration."));
     }
 }
 #endif
