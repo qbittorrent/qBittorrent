@@ -331,10 +331,14 @@ Path Path::commonPath(const PathList &filePaths)
 
 Path Path::findRootFolder(const PathList &filePaths)
 {
+    // find the common first level path of all `filePaths`
+
     Path rootFolder;
     for (const Path &filePath : filePaths)
     {
-        const auto filePathElements = QStringView(filePath.m_pathStr).split(u'/');
+        Q_ASSERT(!filePath.m_pathStr.startsWith(u'/'));  // currently this function doesn't know how to handle absolute paths
+
+        const auto filePathElements = QStringView(filePath.m_pathStr).split(u'/', Qt::SkipEmptyParts);
         // if at least one file has no root folder, no common root folder exists
         if (filePathElements.count() <= 1)
             return {};

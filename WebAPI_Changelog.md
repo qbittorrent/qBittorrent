@@ -2,6 +2,12 @@
 
 ## 2.16.0
 
+* [#24724](https://github.com/qbittorrent/qBittorrent/pull/24724)
+  * `torrents/add` endpoint accepts `seedMode` (bool) parameter
+  * `torrents/add` endpoint no longer accepts `skip_checking` parameter
+* [#24720](https://github.com/qbittorrent/qBittorrent/pull/24720)
+  * `app/preferences` endpoint includes `web_ui_sessions_count_limit` (int) option
+  * `app/setPreferences` endpoint allows to set `web_ui_sessions_count_limit` (int) option
 * [#24641](https://github.com/qbittorrent/qBittorrent/pull/24641)
   * `app/preferences` and `app/setPreferences` endpoints no longer include `export_dir` and `export_dir_fin` options as they are no longer supported by the core
   * `app/preferences` and `app/setPreferences` endpoints include the following new options:
