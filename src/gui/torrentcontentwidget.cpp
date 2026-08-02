@@ -354,7 +354,7 @@ void TorrentContentWidget::wrapSelectedItemsInFolder()
     }
 
     bool ok = false;
-    const QString folderName = AutoExpandableDialog::getText(this, tr("Wrap in folder"), tr("Folder name:")
+    const QString folderName = AutoExpandableDialog::getText(this, tr("Group in new folder"), tr("Folder name:")
             , QLineEdit::Normal, {}, &ok).trimmed();
     if (!ok)
         return;
@@ -367,7 +367,7 @@ void TorrentContentWidget::wrapSelectedItemsInFolder()
 
     if (!Utils::Fs::isValidFileName(folderName))
     {
-        RaisedMessageBox::warning(this, tr("Wrap in folder error")
+        RaisedMessageBox::warning(this, tr("Group in new folder error")
                 , tr("The folder name is invalid: '%1'").arg(folderName), QMessageBox::Ok);
         return;
     }
@@ -394,7 +394,7 @@ void TorrentContentWidget::wrapSelectedItemsInFolder()
     }
     catch (const RuntimeError &error)
     {
-        RaisedMessageBox::warning(this, tr("Wrap in folder error"), error.message(), QMessageBox::Ok);
+        RaisedMessageBox::warning(this, tr("Group in new folder error"), error.message(), QMessageBox::Ok);
     }
 }
 
@@ -433,7 +433,7 @@ void TorrentContentWidget::unwrapSelectedFolder()
     }
     catch (const RuntimeError &error)
     {
-        RaisedMessageBox::warning(this, tr("Unwrap folder error"), error.message(), QMessageBox::Ok);
+        RaisedMessageBox::warning(this, tr("Ungroup folder error"), error.message(), QMessageBox::Ok);
     }
 }
 
@@ -577,7 +577,7 @@ void TorrentContentWidget::displayContextMenu()
     }
 
     QAction *wrapAction = menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s)
-            , tr("Wrap in folder..."), this, &TorrentContentWidget::wrapSelectedItemsInFolder);
+            , tr("Group in new folder..."), this, &TorrentContentWidget::wrapSelectedItemsInFolder);
     const QModelIndex parentIndex = selectedRows.first().parent();
     for (const QModelIndex &index : selectedRows)
     {
@@ -591,7 +591,7 @@ void TorrentContentWidget::displayContextMenu()
     if ((selectedRows.size() == 1)
             && (m_filterModel->itemType(selectedRows.first()) == TorrentContentModelItem::FolderType))
     {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"folder-documents"_s), tr("Unwrap folder")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"folder-documents"_s), tr("Ungroup folder")
                 , this, &TorrentContentWidget::unwrapSelectedFolder);
     }
 
