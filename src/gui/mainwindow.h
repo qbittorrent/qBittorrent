@@ -257,8 +257,6 @@ private:
     QAction *m_queueSeparatorMenu = nullptr;
     bool m_queueActionsShown = false;
     QAction *m_spacerAction = nullptr;
-    QHash<QString, int> m_hiddenToolbarActions;
-    QList<QAction *> m_allToolbarActions;
     QSplitter *m_splitter = nullptr;
     QPointer<SearchWidget> m_searchWidget;
     QPointer<RSSWidget> m_rssWidget;

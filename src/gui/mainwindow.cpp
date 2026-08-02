@@ -446,17 +446,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     // Load Window state and sizes
     // Snapshot all customizable toolbar actions before loadSettings may reorder them
-    for (QAction *action : asConst(m_ui->toolBar->actions()))
-    {
-        if (action->isSeparator() || action->text().isEmpty()
-            || (action == m_spacerAction) || (action == m_columnFilterAction)
-            || (action->objectName() == u"actionLock"_s))
-        {
-            continue;
-        }
-
-        m_allToolbarActions.append(action);
-    }
+    m_ui->toolBar->registerCustomizableActions();
     loadSettings();
 
     populateDesktopIntegrationMenu();
@@ -663,26 +653,7 @@ void MainWindow::addToolbarContextMenu()
 
 void MainWindow::resetToolbarToDefault()
 {
-    // Build action map from master list so hidden actions are included
-    QHash<QString, QAction *> actionMap;
-    for (QAction *action : asConst(m_allToolbarActions))
-        actionMap[action->objectName()] = action;
-    m_hiddenToolbarActions.clear();
-    // Remove all non-locked actions and separators
-    const QList<QAction *> current = m_ui->toolBar->actions();
-    for (QAction *action : current)
-    {
-        if ((action == m_spacerAction) || (action == m_columnFilterAction)
-            || (action->objectName() == u"actionLock"_s))
-        {
-            break;
-        }
-
-        m_ui->toolBar->removeAction(action);
-    }
-    // Reinsert in default order, each action before spacer in sequence
-    struct DefaultEntry { QString name; bool sepAfter; };
-    const QList<DefaultEntry> defaultOrder = {
+    const QList<CustomizableToolBar::DefaultEntry> defaultOrder = {
         {u"actionBottomQueuePos"_s, false},
         {u"actionDecreaseQueuePos"_s, false},
         {u"actionIncreaseQueuePos"_s, false},
@@ -696,18 +667,8 @@ void MainWindow::resetToolbarToDefault()
         {u"actionCreateTorrent"_s, false},
         {u"actionOptions"_s, false},
     };
-    QAction *insertAnchor = m_spacerAction;
-    for (auto it = defaultOrder.rbegin(); it != defaultOrder.rend(); ++it)
-    {
-        if (QAction *action = actionMap.value(it->name))
-        {
-            action->setVisible(true);
-            m_ui->toolBar->insertAction(insertAnchor, action);
-            if (it->sepAfter)
-                m_ui->toolBar->insertSeparator(insertAnchor);
-            insertAnchor = action;
-        }
-    }
+    m_ui->toolBar->resetToDefault(defaultOrder);
+
     // Hide queue actions and reset shown flag so loadPreferences re-evaluates
     const QStringList queueActions = {
         u"actionTopQueuePos"_s, u"actionIncreaseQueuePos"_s,
@@ -715,7 +676,7 @@ void MainWindow::resetToolbarToDefault()
     };
     for (const QString &name : queueActions)
     {
-        if (QAction *action = actionMap.value(name))
+        if (QAction *action = m_ui->toolBar->actionByName(name))
             action->setVisible(false);
     }
     m_queueActionsShown = false;
@@ -737,28 +698,13 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
         && (action != m_spacerAction) && (action != m_columnFilterAction)
         && (action->objectName() != u"actionLock"_s))
     {
-        const QList<QAction *> acts = m_ui->toolBar->actions();
-        const int idx = acts.indexOf(action);
-
-        // Find nearest visible action/separator before this one
-        int prevIdx = idx - 1;
-        while ((prevIdx >= 0) && !acts[prevIdx]->isSeparator() && !acts[prevIdx]->isVisible())
-            --prevIdx;
-        const bool hasSepBefore = (prevIdx >= 0) && acts[prevIdx]->isSeparator();
-
-        // Find nearest visible action/separator after this one
-        int nextIdx = idx + 1;
-        while ((nextIdx < acts.size()) && !acts[nextIdx]->isSeparator() && !acts[nextIdx]->isVisible())
-            ++nextIdx;
-        const bool hasSepAfter = (nextIdx < acts.size()) && acts[nextIdx]->isSeparator();
-
         QMenu buttonMenu {this};
 
-        if (hasSepBefore)
+        if (m_ui->toolBar->hasSeparatorBefore(action))
         {
-            buttonMenu.addAction(tr("Remove separator before"), this, [this, acts, prevIdx]()
+            buttonMenu.addAction(tr("Remove separator before"), this, [this, action]()
             {
-                m_ui->toolBar->removeAction(acts[prevIdx]);
+                m_ui->toolBar->removeSeparatorBefore(action);
                 saveToolbarState();
             });
         }
@@ -766,27 +712,24 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
         {
             buttonMenu.addAction(tr("Add separator before"), this, [this, action]()
             {
-                m_ui->toolBar->insertSeparator(action);
+                m_ui->toolBar->addSeparatorBefore(action);
                 saveToolbarState();
             });
         }
 
-        if (hasSepAfter)
+        if (m_ui->toolBar->hasSeparatorAfter(action))
         {
-            buttonMenu.addAction(tr("Remove separator after"), this, [this, acts, nextIdx]()
+            buttonMenu.addAction(tr("Remove separator after"), this, [this, action]()
             {
-                m_ui->toolBar->removeAction(acts[nextIdx]);
+                m_ui->toolBar->removeSeparatorAfter(action);
                 saveToolbarState();
             });
         }
         else
         {
-            buttonMenu.addAction(tr("Add separator after"), this, [this, acts, nextIdx]()
+            buttonMenu.addAction(tr("Add separator after"), this, [this, action]()
             {
-                if (nextIdx < acts.size())
-                    m_ui->toolBar->insertSeparator(acts[nextIdx]);
-                else
-                    m_ui->toolBar->addSeparator();
+                m_ui->toolBar->addSeparatorAfter(action);
                 saveToolbarState();
             });
         }
@@ -799,39 +742,23 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
         visibilityMenu->addSeparator();
         const QStringList queueActionNames = {u"actionTopQueuePos"_s, u"actionIncreaseQueuePos"_s,
             u"actionDecreaseQueuePos"_s, u"actionBottomQueuePos"_s};
-        for (QAction *toolbarAction : asConst(m_allToolbarActions))
+        for (QAction *toolbarAction : asConst(m_ui->toolBar->customizableActions()))
         {
             if (queueActionNames.contains(toolbarAction->objectName()))
                 continue;
 
             QAction *checkAction = visibilityMenu->addAction(toolbarAction->text());
             checkAction->setCheckable(true);
-            const bool inToolbar = m_ui->toolBar->actions().contains(toolbarAction);
-            checkAction->setChecked(inToolbar);
+            checkAction->setChecked(m_ui->toolBar->isActionVisible(toolbarAction));
             connect(checkAction, &QAction::toggled, this, [this, toolbarAction](bool checked)
             {
-                if (!checked)
-                {
-                    const QList<QAction *> acts = m_ui->toolBar->actions();
-                    m_hiddenToolbarActions[toolbarAction->objectName()] = acts.indexOf(toolbarAction);
-                    m_ui->toolBar->removeAction(toolbarAction);
-                }
-                else
-                {
-                    const int savedIdx = m_hiddenToolbarActions.value(toolbarAction->objectName(), -1);
-                    const QList<QAction *> acts = m_ui->toolBar->actions();
-                    if (savedIdx >= 0 && savedIdx < acts.size())
-                        m_ui->toolBar->insertAction(acts[savedIdx], toolbarAction);
-                    else
-                        m_ui->toolBar->insertAction(m_spacerAction, toolbarAction);
-                    m_hiddenToolbarActions.remove(toolbarAction->objectName());
-                }
+                m_ui->toolBar->setActionVisible(toolbarAction, checked);
                 saveToolbarState();
             });
         }
         visibilityMenu->addSeparator();
         const bool queuingEnabled = BitTorrent::Session::instance()->isQueueingSystemEnabled();
-        for (QAction *toolbarAction : asConst(m_allToolbarActions))
+        for (QAction *toolbarAction : asConst(m_ui->toolBar->customizableActions()))
         {
             if (!queueActionNames.contains(toolbarAction->objectName()))
                 continue;
@@ -840,26 +767,10 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
             if (queuingEnabled)
             {
                 checkAction->setCheckable(true);
-                const bool inToolbar = m_ui->toolBar->actions().contains(toolbarAction);
-                checkAction->setChecked(inToolbar);
+                checkAction->setChecked(m_ui->toolBar->isActionVisible(toolbarAction));
                 connect(checkAction, &QAction::toggled, this, [this, toolbarAction](bool checked)
                 {
-                    if (!checked)
-                    {
-                        const QList<QAction *> acts = m_ui->toolBar->actions();
-                        m_hiddenToolbarActions[toolbarAction->objectName()] = acts.indexOf(toolbarAction);
-                        m_ui->toolBar->removeAction(toolbarAction);
-                    }
-                    else
-                    {
-                        const int savedIdx = m_hiddenToolbarActions.value(toolbarAction->objectName(), -1);
-                        const QList<QAction *> acts = m_ui->toolBar->actions();
-                        if (savedIdx >= 0 && savedIdx < acts.size())
-                            m_ui->toolBar->insertAction(acts[savedIdx], toolbarAction);
-                        else
-                            m_ui->toolBar->insertAction(m_spacerAction, toolbarAction);
-                        m_hiddenToolbarActions.remove(toolbarAction->objectName());
-                    }
+                    m_ui->toolBar->setActionVisible(toolbarAction, checked);
                     saveToolbarState();
                 });
             }

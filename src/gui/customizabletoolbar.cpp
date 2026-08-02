@@ -336,3 +336,170 @@ int CustomizableToolBar::getBoundaryGlobalX() const
     }
     return mapToGlobal(QPoint(width(), 0)).x();
 }
+
+void CustomizableToolBar::registerCustomizableActions()
+{
+    m_allActions.clear();
+    for (QAction *action : asConst(actions()))
+    {
+        if (action->isSeparator() || action->text().isEmpty() || m_lockedActions.contains(action))
+            continue;
+
+        m_allActions.append(action);
+    }
+}
+
+QList<QAction *> CustomizableToolBar::customizableActions() const
+{
+    return m_allActions;
+}
+
+void CustomizableToolBar::clearHiddenActions()
+{
+    m_hiddenActions.clear();
+}
+
+void CustomizableToolBar::setActionVisible(QAction *action, const bool visible)
+{
+    if (!action)
+        return;
+
+    if (!visible)
+    {
+        const QList<QAction *> acts = actions();
+        if (acts.contains(action))
+        {
+            m_hiddenActions[action->objectName()] = acts.indexOf(action);
+            removeAction(action);
+        }
+    }
+    else
+    {
+        if (!actions().contains(action))
+        {
+            const int savedIdx = m_hiddenActions.value(action->objectName(), -1);
+            const QList<QAction *> acts = actions();
+            if ((savedIdx >= 0) && (savedIdx < acts.size()))
+            {
+                insertAction(acts[savedIdx], action);
+            }
+            else
+            {
+                const int bi = findBoundaryIndex();
+                insertAction((bi >= 0) ? acts.value(bi) : nullptr, action);
+            }
+        }
+        m_hiddenActions.remove(action->objectName());
+    }
+}
+
+bool CustomizableToolBar::isActionVisible(QAction *action) const
+{
+    return action && actions().contains(action);
+}
+
+int CustomizableToolBar::nearestActionIndexBefore(QAction *action) const
+{
+    const QList<QAction *> acts = actions();
+    const int idx = acts.indexOf(action);
+    if (idx < 0)
+        return -1;
+
+    int prevIdx = idx - 1;
+    while ((prevIdx >= 0) && !acts[prevIdx]->isSeparator() && !acts[prevIdx]->isVisible())
+        --prevIdx;
+    return prevIdx;
+}
+
+int CustomizableToolBar::nearestActionIndexAfter(QAction *action) const
+{
+    const QList<QAction *> acts = actions();
+    const int idx = acts.indexOf(action);
+    if (idx < 0)
+        return acts.size();
+
+    int nextIdx = idx + 1;
+    while ((nextIdx < acts.size()) && !acts[nextIdx]->isSeparator() && !acts[nextIdx]->isVisible())
+        ++nextIdx;
+    return nextIdx;
+}
+
+bool CustomizableToolBar::hasSeparatorBefore(QAction *action) const
+{
+    const int prevIdx = nearestActionIndexBefore(action);
+    return (prevIdx >= 0) && actions()[prevIdx]->isSeparator();
+}
+
+bool CustomizableToolBar::hasSeparatorAfter(QAction *action) const
+{
+    const QList<QAction *> acts = actions();
+    const int nextIdx = nearestActionIndexAfter(action);
+    return (nextIdx < acts.size()) && acts[nextIdx]->isSeparator();
+}
+
+void CustomizableToolBar::addSeparatorBefore(QAction *action)
+{
+    insertSeparator(action);
+}
+
+void CustomizableToolBar::addSeparatorAfter(QAction *action)
+{
+    const QList<QAction *> acts = actions();
+    const int nextIdx = nearestActionIndexAfter(action);
+    if (nextIdx < acts.size())
+        insertSeparator(acts[nextIdx]);
+    else
+        addSeparator();
+}
+
+void CustomizableToolBar::removeSeparatorBefore(QAction *action)
+{
+    const int prevIdx = nearestActionIndexBefore(action);
+    const QList<QAction *> acts = actions();
+    if ((prevIdx >= 0) && acts[prevIdx]->isSeparator())
+        removeAction(acts[prevIdx]);
+}
+
+void CustomizableToolBar::removeSeparatorAfter(QAction *action)
+{
+    const QList<QAction *> acts = actions();
+    const int nextIdx = nearestActionIndexAfter(action);
+    if ((nextIdx < acts.size()) && acts[nextIdx]->isSeparator())
+        removeAction(acts[nextIdx]);
+}
+
+QAction *CustomizableToolBar::actionByName(const QString &name) const
+{
+    for (QAction *action : asConst(m_allActions))
+    {
+        if (action->objectName() == name)
+            return action;
+    }
+    return nullptr;
+}
+
+void CustomizableToolBar::resetToDefault(const QList<DefaultEntry> &order)
+{
+    QHash<QString, QAction *> actionMap;
+    for (QAction *action : asConst(m_allActions))
+        actionMap[action->objectName()] = action;
+    m_hiddenActions.clear();
+
+    const int bi = findBoundaryIndex();
+    const QList<QAction *> current = actions();
+    for (int i = 0; i < bi; ++i)
+        removeAction(current[i]);
+
+    QAction *insertAnchor = (bi >= 0) ? current[bi] : nullptr;
+    for (auto it = order.rbegin(); it != order.rend(); ++it)
+    {
+        if (QAction *action = actionMap.value(it->name))
+        {
+            action->setVisible(true);
+            insertAction(insertAnchor, action);
+            if (it->sepAfter)
+                insertSeparator(insertAnchor);
+            insertAnchor = action;
+        }
+    }
+}

@@ -28,8 +28,10 @@
 
 #pragma once
 
+#include <QHash>
 #include <QList>
 #include <QPoint>
+#include <QString>
 #include <QToolBar>
 
 class QAction;
@@ -44,11 +46,33 @@ class CustomizableToolBar final : public QToolBar
     Q_DISABLE_COPY_MOVE(CustomizableToolBar)
 
 public:
+    struct DefaultEntry
+    {
+        QString name;
+        bool sepAfter = false;
+    };
+
     explicit CustomizableToolBar(QWidget *parent = nullptr);
     explicit CustomizableToolBar(const QString &title, QWidget *parent = nullptr);
 
     void lockAction(QAction *action);
     void setLocked(bool locked);
+
+    void registerCustomizableActions();
+    QList<QAction *> customizableActions() const;
+    void clearHiddenActions();
+    void setActionVisible(QAction *action, bool visible);
+    bool isActionVisible(QAction *action) const;
+
+    bool hasSeparatorBefore(QAction *action) const;
+    bool hasSeparatorAfter(QAction *action) const;
+    void addSeparatorBefore(QAction *action);
+    void addSeparatorAfter(QAction *action);
+    void removeSeparatorBefore(QAction *action);
+    void removeSeparatorAfter(QAction *action);
+
+    QAction *actionByName(const QString &name) const;
+    void resetToDefault(const QList<DefaultEntry> &order);
 
 signals:
     void actionOrderChanged();
@@ -64,12 +88,17 @@ private:
 
     int findBoundaryIndex() const;
     int getBoundaryGlobalX() const;
+    int nearestActionIndexBefore(QAction *action) const;
+    int nearestActionIndexAfter(QAction *action) const;
     void startDrag(QWidget *widget, const QPoint &globalPos);
     void updateDrag(const QPoint &globalPos);
     void endDrag(const QPoint &globalPos);
 
     QList<QAction *> m_lockedActions;
     bool m_locked = true;
+
+    QList<QAction *> m_allActions;
+    QHash<QString, int> m_hiddenActions;
 
     QAction *m_dragAction = nullptr;
     QAction *m_gapTarget = nullptr;
