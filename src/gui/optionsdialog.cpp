@@ -103,18 +103,18 @@
 namespace
 {
 #ifdef Q_OS_WIN
-bool isMagnetProtocolRegistered()
-{
-    QSettings magnetProtocol {u"HKEY_CLASSES_ROOT\\magnet"_s, QSettings::NativeFormat};
-    const auto protocolDescription = magnetProtocol.value(u"."_s).toString();
-    const auto contentType = magnetProtocol.value(u"Content Type"_s).toString();
-    const bool hasUrlProtocol = magnetProtocol.contains(u"URL Protocol"_s);
+    bool isMagnetProtocolRegistered()
+    {
+        QSettings magnetProtocol {u"HKEY_CLASSES_ROOT\\magnet"_s, QSettings::NativeFormat};
+        const auto protocolDescription = magnetProtocol.value(u"."_s).toString();
+        const auto contentType = magnetProtocol.value(u"Content Type"_s).toString();
+        const bool hasUrlProtocol = magnetProtocol.contains(u"URL Protocol"_s);
 
-    return (magnetProtocol.status() == QSettings::NoError)
-            && !protocolDescription.isEmpty()
-            && (contentType == u"application/x-magnet"_s)
-            && hasUrlProtocol;
-}
+        return (magnetProtocol.status() == QSettings::NoError)
+                && !protocolDescription.isEmpty()
+                && (contentType == u"application/x-magnet"_s)
+                && hasUrlProtocol;
+    }
 #endif
 }
 
