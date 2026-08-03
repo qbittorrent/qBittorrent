@@ -46,6 +46,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentcreationmanager.h"
 #include "base/http/httperror.h"
+#include "base/http/header.h"
 #include "base/http/response.h"
 #include "base/http/responsewriter.h"
 #include "base/logger.h"
@@ -426,7 +427,7 @@ void WebApplication::processAPIRequest(const QString &endpoint, const Http::Head
                     const auto resultData = result.data.toByteArray();
                     response.headers.insert(Http::HEADER_CONTENT_TYPE, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
                     if (!result.filename.isEmpty())
-                        response.headers.insert(Http::HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(result.filename));
+                        response.headers.insert(Http::HEADER_CONTENT_DISPOSITION, Http::attachmentContentDisposition(result.filename));
                     response.content = resultData;
                 }
                 break;

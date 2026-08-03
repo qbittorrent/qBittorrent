@@ -47,6 +47,7 @@
 #include "base/path.h"
 #include "base/utils/gzip.h"
 #include "constants.h"
+#include "header.h"
 
 const qint64 CHUNK_SIZE = 256 * 1024;
 const qint64 MAX_BUFFER_SIZE = 1024 * 1024;
@@ -513,7 +514,7 @@ void Http::ResponseWriterImpl::Worker::run()
     m_headers.insert(HEADER_CONTENT_LENGTH, QString::number(m_remainingSize));
     m_headers.insert(HEADER_ACCEPT_RANGES, u"bytes"_s);
     m_headers.insert(HEADER_CONTENT_TYPE, QMimeDatabase().mimeTypeForFile(m_filePath.data()).name());
-    m_headers.insert(HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(m_filePath.filename()));
+    m_headers.insert(HEADER_CONTENT_DISPOSITION, attachmentContentDisposition(m_filePath.filename()));
 
     {
         const QWriteLocker locker {&m_bufferLock};
