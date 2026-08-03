@@ -17,6 +17,7 @@ set(testFiles
     testutilsbytearray.cpp
     testutilscompare.cpp
     testutilsdatetime.cpp
+    testutilsfs.cpp
     testutilsgzip.cpp
     testutilshashvalue.cpp
     testutilsio.cpp
@@ -36,3 +37,18 @@ foreach(testFile ${testFiles})
 
     add_dependencies(check "${testFilename}")
 endforeach()
+
+if (GUI AND (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
+    if (WEBUI)
+        find_package(Python3 REQUIRED COMPONENTS Interpreter)
+
+        add_test(NAME testsessionpaths
+            COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/testsessionpaths.py"
+                "$<TARGET_FILE:qbt_app>")
+        set_tests_properties(testsessionpaths PROPERTIES
+            RUN_SERIAL TRUE
+            TIMEOUT 120
+        )
+        add_dependencies(check qbt_app)
+    endif()
+endif()

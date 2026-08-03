@@ -70,6 +70,7 @@ namespace Utils::Fs
     void removeDirRecursively(const Path &path);
     bool smartRemoveEmptyFolderTree(const Path &path);
 
+    Path expandTilde(const Path &path);
     Path homePath();
     Path tempPath();
 }
