@@ -1003,7 +1003,7 @@ void TransferListWidget::displayListMenu()
     connect(actionStart, &QAction::triggered, this, &TransferListWidget::startSelectedTorrents);
     auto *actionStop = new QAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Sto&p", "Stop the torrent"), listMenu);
     connect(actionStop, &QAction::triggered, this, &TransferListWidget::stopSelectedTorrents);
-    auto *actionForceStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start-forced"_s, u"media-playback-start"_s), tr("Force Star&t", "Force Resume/start the torrent"), listMenu);
+    auto *actionForceStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start-forced"_s, u"media-playback-start"_s), tr("Force star&t", "Force resume/start the torrent"), listMenu);
     connect(actionForceStart, &QAction::triggered, this, &TransferListWidget::forceStartSelectedTorrents);
     auto *actionDelete = new QAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("&Remove", "Remove the torrent"), listMenu);
     connect(actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
@@ -1039,7 +1039,7 @@ void TransferListWidget::displayListMenu()
     connect(actionCopyHash1, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version1); });
     auto *actionCopyHash2 = new QAction(UIThemeManager::instance()->getIcon(u"hash"_s, u"edit-copy"_s), tr("Info h&ash v2"), listMenu);
     connect(actionCopyHash2, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version2); });
-    auto *actionCopyContentPath = new QAction(UIThemeManager::instance()->getIcon(u"directory"_s, u"edit-copy"_s), tr("Content &Path"), listMenu);
+    auto *actionCopyContentPath = new QAction(UIThemeManager::instance()->getIcon(u"directory"_s, u"edit-copy"_s), tr("Content &path"), listMenu);
     connect(actionCopyContentPath, &QAction::triggered, this, &TransferListWidget::copyContentPaths);
     auto *actionSuperSeedingMode = new TriStateAction(tr("Super seeding mode"), listMenu);
     connect(actionSuperSeedingMode, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSuperSeeding);
@@ -1229,7 +1229,7 @@ void TransferListWidget::displayListMenu()
 
     tagsMenu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("&Add...", "Add / assign multiple tags...")
         , this, &TransferListWidget::askAddTagsForSelection);
-    tagsMenu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s), tr("&Remove All", "Remove all tags")
+    tagsMenu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s), tr("&Remove all", "Remove all tags")
         , this, [this]()
     {
         if (Preferences::instance()->confirmRemoveAllTags())

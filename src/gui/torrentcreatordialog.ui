@@ -53,7 +53,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
-          <string>Select file/folder to share</string>
+          <string>Select File/Folder to Share</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
@@ -241,7 +241,7 @@
           <item>
            <widget class="QCheckBox" name="checkPrivate">
             <property name="text">
-             <string>Private torrent (Won't distribute on DHT network)</string>
+             <string>Private torrent (won't distribute on DHT network)</string>
             </property>
            </widget>
           </item>

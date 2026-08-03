@@ -1122,14 +1122,14 @@
          <item>
           <widget class="QPushButton" name="selectAllButton">
            <property name="text">
-            <string>Select All</string>
+            <string>Select all</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="selectNoneButton">
            <property name="text">
-            <string>Select None</string>
+            <string>Select none</string>
            </property>
           </widget>
          </item>

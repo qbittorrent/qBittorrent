@@ -552,7 +552,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 return item;
             };
             contextTagList.appendChild(createMenuItem("QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", (event) => { torrentAddTagsFN(); }));
-            contextTagList.appendChild(createMenuItem("QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", (event) => { torrentRemoveAllTagsFN(); }));
+            contextTagList.appendChild(createMenuItem("QBT_TR(Remove all)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", (event) => { torrentRemoveAllTagsFN(); }));
 
             const sortedTags = [...tags.keys()];
             sortedTags.sort(window.qBittorrent.Misc.naturalSortCollator.compare);

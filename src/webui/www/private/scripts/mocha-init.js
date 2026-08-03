@@ -524,7 +524,7 @@ const initializeWindows = () => {
                 new MochaUI.Modal({
                     ...window.qBittorrent.Dialog.baseModalOptions,
                     id: "confirmDeletionPage",
-                    title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
+                    title: "QBT_TR(Remove Torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
                     data: {
                         hashes: hashes,
                         forceDeleteFiles: forceDeleteFiles
@@ -602,7 +602,7 @@ const initializeWindows = () => {
                 new MochaUI.Modal({
                     ...window.qBittorrent.Dialog.baseModalOptions,
                     id: "confirmAutoTMMDialog",
-                    title: "QBT_TR(Enable automatic torrent management)QBT_TR[CONTEXT=confirmAutoTMMDialog]",
+                    title: "QBT_TR(Enable Automatic Torrent Management)QBT_TR[CONTEXT=confirmAutoTMMDialog]",
                     data: {
                         hashes: hashes,
                         enable: enableAutoTMM
@@ -637,7 +637,7 @@ const initializeWindows = () => {
                 new MochaUI.Modal({
                     ...window.qBittorrent.Dialog.baseModalOptions,
                     id: "confirmRecheckDialog",
-                    title: "QBT_TR(Recheck confirmation)QBT_TR[CONTEXT=confirmRecheckDialog]",
+                    title: "QBT_TR(Recheck Confirmation)QBT_TR[CONTEXT=confirmRecheckDialog]",
                     data: { hashes: hashes },
                     contentURL: "views/confirmRecheck.html?v=${CACHEID}"
                 });
@@ -688,7 +688,7 @@ const initializeWindows = () => {
         new MochaUI.Window({
             id: "setLocationPage",
             icon: "images/qbittorrent-tray.svg",
-            title: "QBT_TR(Set location)QBT_TR[CONTEXT=TransferListWidget]",
+            title: "QBT_TR(Set Location)QBT_TR[CONTEXT=TransferListWidget]",
             loadMethod: "iframe",
             contentURL: contentURL.toString(),
             scrollbars: false,
@@ -829,7 +829,7 @@ const initializeWindows = () => {
                 new MochaUI.Modal({
                     ...window.qBittorrent.Dialog.baseModalOptions,
                     id: "confirmDeletionPage",
-                    title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
+                    title: "QBT_TR(Remove Torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
                     data: {
                         hashes: hashes,
                         isDeletingVisibleTorrents: true
@@ -1029,7 +1029,7 @@ const initializeWindows = () => {
         new MochaUI.Window({
             id: "newTagPage",
             icon: "images/qbittorrent-tray.svg",
-            title: "QBT_TR(Add tags)QBT_TR[CONTEXT=TransferListWidget]",
+            title: "QBT_TR(Add Tags)QBT_TR[CONTEXT=TransferListWidget]",
             loadMethod: "iframe",
             contentURL: contentURL.toString(),
             scrollbars: false,
@@ -1132,7 +1132,7 @@ const initializeWindows = () => {
         });
         new MochaUI.Window({
             id: "confirmDeletionPage",
-            title: "QBT_TR(Remove tracker)QBT_TR[CONTEXT=confirmDeletionDlg]",
+            title: "QBT_TR(Remove Tracker)QBT_TR[CONTEXT=confirmDeletionDlg]",
             loadMethod: "iframe",
             contentURL: contentURL.toString(),
             scrollbars: false,

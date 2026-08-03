@@ -218,8 +218,8 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     });
 
     auto *lockMenu = new QMenu(m_ui->menuView);
-    lockMenu->addAction(tr("&Set Password"), this, &MainWindow::defineUILockPassword);
-    lockMenu->addAction(tr("&Clear Password"), this, &MainWindow::clearUILockPassword);
+    lockMenu->addAction(tr("&Set password"), this, &MainWindow::defineUILockPassword);
+    lockMenu->addAction(tr("&Clear password"), this, &MainWindow::clearUILockPassword);
     m_ui->actionLock->setMenu(lockMenu);
 
     updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());

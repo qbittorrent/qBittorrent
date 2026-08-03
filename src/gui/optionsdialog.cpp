@@ -269,8 +269,8 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkUseCustomTheme->setChecked(Preferences::instance()->useCustomUITheme());
     m_ui->customThemeFilePath->setSelectedPath(Preferences::instance()->customUIThemePath());
     m_ui->customThemeFilePath->setMode(FileSystemPathEdit::Mode::FileOpen);
-    m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI Theme file"));
-    m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme config.json)"));
+    m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI theme file"));
+    m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI theme file (*.qbtheme config.json)"));
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     m_ui->checkUseSystemIcon->setChecked(pref->useSystemIcons());
 #else
@@ -1414,7 +1414,7 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->textWebUIHttpsKey->setFileNameFilter(tr("Private key") + u" (*.key *.pem)");
     m_ui->textWebUIHttpsKey->setDialogCaption(tr("Select private key"));
     m_ui->textWebUIRootFolder->setMode(FileSystemPathEdit::Mode::DirectoryOpen);
-    m_ui->textWebUIRootFolder->setDialogCaption(tr("Choose Alternative UI files location"));
+    m_ui->textWebUIRootFolder->setDialogCaption(tr("Choose alternative UI files location"));
 
     if (app()->webUI()->isErrored())
         m_ui->labelWebUIError->setText(tr("WebUI configuration failed. Reason: %1").arg(app()->webUI()->errorMessage()));
