@@ -42,6 +42,7 @@
 #include <QJsonObject>
 #include <QJsonParseError>
 #include <QJsonValue>
+#include <QKeyEvent>
 #include <QList>
 #include <QMenu>
 #include <QMessageBox>
@@ -451,6 +452,27 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
 
     loadHistory();
     restoreSession();
+}
+
+bool SearchWidget::event(QEvent *event)
+{
+#ifdef Q_OS_MACOS
+    if (((event->type() == QEvent::ShortcutOverride) || (event->type() == QEvent::KeyPress))
+            && (m_ui->tabWidget->currentIndex() >= 0))
+    {
+        const auto *keyEvent = static_cast<QKeyEvent *>(event);
+        if (keyEvent->matches(QKeySequence::Close))
+        {
+            event->accept();
+            if (event->type() == QEvent::KeyPress)
+                closeTab(m_ui->tabWidget->currentIndex());
+
+            return true;
+        }
+    }
+#endif
+
+    return GUIApplicationComponent<QWidget>::event(event);
 }
 
 bool SearchWidget::eventFilter(QObject *object, QEvent *event)
