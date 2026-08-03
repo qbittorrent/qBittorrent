@@ -687,9 +687,16 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
     m_env = env;
     m_cookieBasedSessionStateChange = SessionStateChange::None;
 
+    const auto [hasApiKeyHeader, apiKeyHeader] = std::invoke([headers = m_request.headers]() -> std::tuple<bool, QString>
+    {
+        const auto headersIter = headers.constFind(Http::HEADER_X_API_KEY);
+        if (headersIter != headers.constEnd())
+            return {true, headersIter.value()};
+        return {false, {}};
+    });
     const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
     const auto [authScheme, authData] = parseAuthorizationHeader(authHeader);
-    const bool isUsingApiKey = (authScheme.compare(BEARER_AUTH, Qt::CaseInsensitive) == 0);
+    const bool isUsingApiKey = hasApiKeyHeader || (authScheme.compare(BEARER_AUTH, Qt::CaseInsensitive) == 0);
 
     Http::HeaderMap commonHeaders = m_prebuiltHeaders;
 
@@ -710,7 +717,7 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
 
         if (isUsingApiKey)
         {
-            apiKeySessionInitialize(authData);
+            apiKeySessionInitialize(hasApiKeyHeader ? apiKeyHeader : authData);
         }
         else
         {
