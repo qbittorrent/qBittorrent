@@ -1384,9 +1384,6 @@ qlonglong TorrentImpl::totalUpload() const
 
 qlonglong TorrentImpl::eta() const
 {
-    if (isStopped())
-        return MAX_ETA;
-
     const SpeedSampleAvg speedAverage = m_payloadRateMonitor.average();
 
     if (isFinished())
@@ -1431,10 +1428,17 @@ qlonglong TorrentImpl::eta() const
         if (etaList.isEmpty())
             return MAX_ETA;
 
-        return (shareLimits.mode == ShareLimitsMode::MatchAny)
+        const qint64 eta = (shareLimits.mode == ShareLimitsMode::MatchAny)
                 ? std::ranges::min(etaList)
                 : std::ranges::max(etaList);
+        if (!isStopped())
+            return eta;
+
+        return (eta > ZERO_ETA) ? MAX_ETA : ZERO_ETA;
     }
+
+    if (isStopped())
+        return MAX_ETA;
 
     if (!speedAverage.download)
         return MAX_ETA;
