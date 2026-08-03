@@ -1772,8 +1772,8 @@ void TorrentsController::setDownloadPathAction()
 
     applyToTorrents(ids, [&newPath](BitTorrent::Torrent *const torrent)
     {
-        if (!torrent->isAutoTMMEnabled())
-            torrent->setDownloadPath(newPath);
+        torrent->setAutoTMMEnabled(false);
+        torrent->setDownloadPath(newPath);
     });
 
     setResult(QString());
