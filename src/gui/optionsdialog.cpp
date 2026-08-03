@@ -49,6 +49,10 @@
 #include <QProcess>
 #endif
 
+#ifdef Q_OS_WIN
+#include <QSettings>
+#endif
+
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sharelimits.h"
 #include "base/exceptions.h"
@@ -95,6 +99,24 @@
 #ifdef Q_OS_WIN
 #include "base/utils/os.h"
 #endif
+
+namespace
+{
+#ifdef Q_OS_WIN
+    bool isMagnetProtocolRegistered()
+    {
+        QSettings magnetProtocol {u"HKEY_CLASSES_ROOT\\magnet"_s, QSettings::NativeFormat};
+        const auto protocolDescription = magnetProtocol.value(u"."_s).toString();
+        const auto contentType = magnetProtocol.value(u"Content Type"_s).toString();
+        const bool hasUrlProtocol = magnetProtocol.contains(u"URL Protocol"_s);
+
+        return (magnetProtocol.status() == QSettings::NoError)
+            && !protocolDescription.isEmpty()
+            && (contentType == u"application/x-magnet"_s)
+            && hasUrlProtocol;
+    }
+#endif
+}
 
 #define SETTINGS_KEY(name) u"OptionsDialog/" name
 
@@ -456,6 +478,8 @@ void OptionsDialog::loadBehaviorTabOptions()
 
 #ifdef Q_OS_WIN
     m_ui->assocPanel->hide();
+    m_ui->buttonRestoreMagnetProtocolRegistration->setVisible(!isMagnetProtocolRegistered());
+    connect(m_ui->buttonRestoreMagnetProtocolRegistration, &QAbstractButton::clicked, this, &ThisType::restoreMagnetProtocolRegistration);
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && !defined(QBT_USES_DBUS)
@@ -478,6 +502,29 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->checkBoxExternalIPStatusBar, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBoxPerformanceWarning, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 }
+
+#ifdef Q_OS_WIN
+void OptionsDialog::restoreMagnetProtocolRegistration()
+{
+    QSettings magnetProtocol {u"HKEY_CURRENT_USER\\Software\\Classes\\magnet"_s, QSettings::NativeFormat};
+    magnetProtocol.setValue(u"."_s, u"URL:Magnet URI"_s);
+    magnetProtocol.setValue(u"Content Type"_s, u"application/x-magnet"_s);
+    magnetProtocol.setValue(u"URL Protocol"_s, QString());
+    magnetProtocol.sync();
+
+    if (magnetProtocol.status() == QSettings::NoError)
+    {
+        m_ui->buttonRestoreMagnetProtocolRegistration->setVisible(!isMagnetProtocolRegistered());
+        QMessageBox::information(this, tr("Magnet protocol registration restored")
+                , tr("Magnet protocol registration has been restored. You can now choose qBittorrent as the default app for magnet links in Windows."));
+    }
+    else
+    {
+        QMessageBox::warning(this, tr("Magnet protocol registration restore failed")
+                , tr("Could not restore magnet protocol registration."));
+    }
+}
+#endif
 
 void OptionsDialog::saveBehaviorTabOptions() const
 {

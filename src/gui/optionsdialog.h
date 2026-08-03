@@ -122,6 +122,9 @@ private:
 
     void loadBehaviorTabOptions();
     void saveBehaviorTabOptions() const;
+#ifdef Q_OS_WIN
+    void restoreMagnetProtocolRegistration();
+#endif
 
     void loadDownloadsTabOptions();
     void saveDownloadsTabOptions() const;
