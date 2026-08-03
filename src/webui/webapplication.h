@@ -66,7 +66,7 @@ class APIController;
 class AuthController;
 class ClientDataStorage;
 class SearchJobManager;
-class SerializedTorrentsCache;
+class TorrentSerializer;
 class WebSession;
 
 enum class WebSessionType : qint8;
@@ -283,7 +283,7 @@ private:
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
     SearchJobManager *m_searchJobManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;
-    SerializedTorrentsCache *m_serializedTorrentsCache = nullptr;
+    TorrentSerializer *m_torrentSerializer = nullptr;
 
     struct FailedLogin
     {
