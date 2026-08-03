@@ -40,26 +40,27 @@ namespace BitTorrent
     class Torrent;
 }
 
-// Application-wide cache of serialized torrents. Serializing a torrent and
-// converting the result to JSON is expensive and identical for all WebAPI
-// clients, so it is done once per torrent change and shared between requests.
-// Entries are evicted when the corresponding torrent reports a change and
-// are lazily re-created on next access.
-class SerializedTorrentsCache final : public QObject
+// Serializes torrents and their trackers to JSON for the WebAPI. Serializing
+// a torrent and converting the result to JSON is expensive and identical for
+// all WebAPI clients, so results are cached internally, keyed per torrent,
+// and shared between requests. Cache entries are evicted when the
+// corresponding torrent reports a change and are lazily re-created on next
+// access.
+class TorrentSerializer final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(SerializedTorrentsCache)
+    Q_DISABLE_COPY_MOVE(TorrentSerializer)
 
 public:
-    explicit SerializedTorrentsCache(QObject *parent = nullptr);
+    explicit TorrentSerializer(QObject *parent = nullptr);
 
-    QJsonObject value(const BitTorrent::Torrent &torrent);
-    QJsonArray trackers(const BitTorrent::Torrent &torrent);
+    QJsonObject serializeTorrent(const BitTorrent::Torrent &torrent);
+    QJsonArray serializeTrackers(const BitTorrent::Torrent &torrent);
 
 private:
     void invalidate(const BitTorrent::Torrent *torrent);
     void invalidateWithTrackers(const BitTorrent::Torrent *torrent);
 
-    QHash<BitTorrent::TorrentID, QJsonObject> m_cache;
-    QHash<BitTorrent::TorrentID, QJsonArray> m_trackers;
+    QHash<BitTorrent::TorrentID, QJsonObject> m_torrentsCache;
+    QHash<BitTorrent::TorrentID, QJsonArray> m_trackersCache;
 };

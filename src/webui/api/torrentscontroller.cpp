@@ -70,7 +70,7 @@
 #include "apistatus.h"
 #include "serialize/serialize_torrent.h"
 #include "serialize/serialize_trackerentry.h"
-#include "serializedtorrentscache.h"
+#include "torrentserializer.h"
 
 // Web seed keys
 const QString KEY_WEBSEED_URL = u"url"_s;
@@ -492,9 +492,9 @@ namespace
     }
 }
 
-TorrentsController::TorrentsController(SerializedTorrentsCache *serializationCache, IApplication *app, QObject *parent)
+TorrentsController::TorrentsController(TorrentSerializer *torrentSerializer, IApplication *app, QObject *parent)
     : APIController(app, parent)
-    , m_serializationCache {serializationCache}
+    , m_torrentSerializer {torrentSerializer}
 {
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &TorrentsController::onMetadataDownloaded);
 }
@@ -566,12 +566,12 @@ void TorrentsController::infoAction()
         if (!torrentFilter.match(torrent))
             continue;
 
-        QJsonObject serializedTorrent = m_serializationCache->value(*torrent);
+        QJsonObject serializedTorrent = m_torrentSerializer->serializeTorrent(*torrent);
 
         if (includeFiles && torrent->hasMetadata())
             serializedTorrent.insert(KEY_PROP_FILES, getFiles(torrent));
         if (includeTrackers)
-            serializedTorrent.insert(KEY_PROP_TRACKERS, m_serializationCache->trackers(*torrent));
+            serializedTorrent.insert(KEY_PROP_TRACKERS, m_torrentSerializer->serializeTrackers(*torrent));
 
         torrentList.append(serializedTorrent);
     }
@@ -762,7 +762,7 @@ void TorrentsController::trackersAction()
     QJsonArray trackersList = getStickyTrackers(torrent);
 
     // merge QJsonArray
-    for (const auto &tracker : asConst(m_serializationCache->trackers(*torrent)))
+    for (const auto &tracker : asConst(m_torrentSerializer->serializeTrackers(*torrent)))
         trackersList.append(tracker);
 
     setResult(trackersList);

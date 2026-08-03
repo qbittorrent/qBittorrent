@@ -48,7 +48,7 @@ namespace Net
     struct DownloadResult;
 }
 
-class SerializedTorrentsCache;
+class TorrentSerializer;
 
 class TorrentsController : public APIController
 {
@@ -56,7 +56,7 @@ class TorrentsController : public APIController
     Q_DISABLE_COPY_MOVE(TorrentsController)
 
 public:
-    TorrentsController(SerializedTorrentsCache *serializationCache, IApplication *app, QObject *parent = nullptr);
+    TorrentsController(TorrentSerializer *torrentSerializer, IApplication *app, QObject *parent = nullptr);
 
 private slots:
     void countAction();
@@ -129,7 +129,7 @@ private:
     void cacheTorrentFile(const QString &source, const QByteArray &data);
     void cacheMagnetURI(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr);
 
-    SerializedTorrentsCache *m_serializationCache = nullptr;
+    TorrentSerializer *m_torrentSerializer = nullptr;
     QHash<QString, BitTorrent::InfoHash> m_torrentSourceCache;
     QHash<BitTorrent::TorrentID, BitTorrent::TorrentDescriptor> m_torrentMetadataCache;
     QSet<QString> m_requestedTorrentSource;
