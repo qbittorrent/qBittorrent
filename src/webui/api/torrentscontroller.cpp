@@ -2133,7 +2133,12 @@ void TorrentsController::exportAction()
     if (!result)
         throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(result.error()));
 
-    setResult(result.value(), u"application/x-bittorrent"_s, (id.toString() + u".torrent"));
+    QString filename = Utils::Fs::toValidFileName(torrent->name(), {});
+    if (filename.isEmpty())
+        filename = id.toString();
+    filename += u".torrent";
+
+    setResult(result.value(), u"application/x-bittorrent"_s, filename);
 }
 
 void TorrentsController::SSLParametersAction()
