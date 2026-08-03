@@ -309,6 +309,7 @@ void AppController::preferencesAction()
     data[u"max_active_checking_torrents"_s] = session->maxActiveCheckingTorrents();
     // Torrent Queueing
     data[u"queueing_enabled"_s] = session->isQueueingSystemEnabled();
+    data[u"queue_sort_mode"_s] = static_cast<int>(session->queueSortMode());
     data[u"max_active_downloads"_s] = session->maxActiveDownloads();
     data[u"max_active_torrents"_s] = session->maxActiveTorrents();
     data[u"max_active_uploads"_s] = session->maxActiveUploads();
@@ -839,6 +840,8 @@ void AppController::setPreferencesAction()
     // Torrent Queueing
     if (hasKey(u"queueing_enabled"_s))
         session->setQueueingSystemEnabled(it.value().toBool());
+    if (hasKey(u"queue_sort_mode"_s))
+        session->setQueueSortMode(static_cast<BitTorrent::QueueSortMode>(it.value().toInt()));
     if (hasKey(u"max_active_downloads"_s))
         session->setMaxActiveDownloads(it.value().toInt());
     if (hasKey(u"max_active_torrents"_s))

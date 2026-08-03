@@ -354,6 +354,8 @@ namespace BitTorrent
         void setAnonymousModeEnabled(bool enabled) override;
         bool isQueueingSystemEnabled() const override;
         void setQueueingSystemEnabled(bool enabled) override;
+        QueueSortMode queueSortMode() const override;
+        void setQueueSortMode(QueueSortMode mode) override;
         bool ignoreSlowTorrentsForQueueing() const override;
         void setIgnoreSlowTorrentsForQueueing(bool ignore) override;
         int downloadRateForSlowTorrents() const override;
@@ -640,6 +642,9 @@ namespace BitTorrent
         void saveResumeData();
         void saveTorrentsQueue();
         void removeTorrentsQueue();
+        void sortTorrentsQueue();
+        void startQueueSortTimer();
+        void stopQueueSortTimer();
 
         void populateAdditionalTrackersFromURL();
 
@@ -698,6 +703,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_socketBacklogSize;
         CachedSettingValue<bool> m_isAnonymousModeEnabled;
         CachedSettingValue<bool> m_isQueueingEnabled;
+        CachedSettingValue<QueueSortMode> m_queueSortMode;
         CachedSettingValue<int> m_maxActiveDownloads;
         CachedSettingValue<int> m_maxActiveUploads;
         CachedSettingValue<int> m_maxActiveTorrents;
@@ -836,6 +842,7 @@ namespace BitTorrent
         bool m_needSaveTorrentsQueue = false;
         bool m_refreshEnqueued = false;
         QTimer *m_seedingLimitTimer = nullptr;
+        QTimer *m_queueSortTimer = nullptr;
         QTimer *m_resumeDataTimer = nullptr;
         // IP filtering
         QPointer<FilterParserThread> m_filterParser;
