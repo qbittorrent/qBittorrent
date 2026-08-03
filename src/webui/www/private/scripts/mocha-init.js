@@ -215,7 +215,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 500),
-            height: loadWindowHeight(id, 300),
+            height: loadWindowHeight(id, 350),
             onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
             })

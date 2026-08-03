@@ -55,7 +55,7 @@ namespace
 
     Path resolveThemePath(const Path &themePath)
     {
-        return (themePath.isAbsolute() ? themePath : (Profile::instance()->rootPath() / themePath));
+        return (themePath.isAbsolute() ? themePath : (Profile::instance()->location(SpecialFolder::Config) / themePath));
     }
 }
 

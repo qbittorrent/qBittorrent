@@ -271,7 +271,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         m_columnFilterComboBox->addItem(typeName, type);
     }
     connect(m_columnFilterComboBox, &QComboBox::currentIndexChanged, this, &MainWindow::applyTransferListFilter);
-    connect(m_columnFilterEdit, &LineEdit::textChanged, this, &MainWindow::applyTransferListFilter);
+    connect(m_columnFilterEdit, &LineEdit::textUpdated, this, &MainWindow::applyTransferListFilter);
     connect(hSplitter, &QSplitter::splitterMoved, this, &MainWindow::saveSettings);
     connect(m_splitter, &QSplitter::splitterMoved, this, &MainWindow::saveSplitterSettings);
 
