@@ -111,9 +111,9 @@ namespace
         const bool hasUrlProtocol = magnetProtocol.contains(u"URL Protocol"_s);
 
         return (magnetProtocol.status() == QSettings::NoError)
-                && !protocolDescription.isEmpty()
-                && (contentType == u"application/x-magnet"_s)
-                && hasUrlProtocol;
+            && !protocolDescription.isEmpty()
+            && (contentType == u"application/x-magnet"_s)
+            && hasUrlProtocol;
     }
 #endif
 }
