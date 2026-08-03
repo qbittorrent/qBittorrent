@@ -1,13 +1,13 @@
 % QBITTORRENT-NOX(1) Command line Bittorrent client written in C++ / Qt
 %
-% January 16th 2010
+% August 2026
 
 # NAME
 qBittorrent-nox - a command line Bittorrent client written in C++ / Qt
 
 
 # SYNOPSIS
-**qbittorrent-nox** `[--d|--daemon] [--webui-port=x] [TORRENT_FILE | URL]...`
+**qbittorrent-nox** `[options] [(<filename> | <url>)...]`
 
 **qbittorrent-nox** `--help`
 
@@ -25,16 +25,62 @@ UPnP port forwarding / NAT-PMP, encryption (Vuze compatible), FAST extension (ma
 and PeX support (utorrent compatible).
 
 qBittorrent-nox is meant to be controlled via its feature-rich Web UI which is
-accessible as a default on http://localhost:8080. The Web UI access is secured and
-the default account user name is "admin" with "adminadmin" as a password.
+accessible by default at http://localhost:8080. The default WebUI administrator
+user name is "admin". If no password has been set, a temporary random password is
+generated and printed to the console on each startup; you should set your own
+password in the program preferences.
 
 
 # OPTIONS
-**`--help`** Prints the command line options.
+**`-h | --help`** Display this help message and exit.
 
-**`--version`** Prints qbittorrent program version number.
+**`-v | --version`** Display program version and exit.
 
-**`--webui-port=x`** Changes Web UI port to x (default: 8080).
+**`--confirm-legal-notice`** Confirm the legal notice.
+
+**`--webui-port=<port>`** Change the WebUI port.
+
+**`--torrenting-port=<port>`** Change the torrenting port.
+
+**`-d | --daemon`** Run in daemon-mode (background).
+
+**`--profile=<dir>`** Store configuration files in `<dir>`.
+
+**`--configuration=<name>`** Store configuration files in directories qBittorrent_`<name>`.
+
+**`--relative-fastresume`** Hack into libtorrent fastresume files and make file paths
+relative to the profile directory.
+
+**`(<filename> | <url>)...`** Download the torrents passed by the user.
+
+
+## Options when adding new torrents
+**`--save-path=<path>`** Torrent save path.
+
+**`--add-stopped=<true|false>`** Add torrents as running or stopped.
+
+**`--seed-mode`** Seed mode.
+
+**`--category=<name>`** Assign torrents to category. If the category doesn't exist,
+it will be created.
+
+**`--sequential`** Download files in sequential order.
+
+**`--first-and-last`** Download first and last pieces first.
+
+**`--skip-dialog=<true|false>`** Specify whether the "Add New Torrent" dialog opens
+when adding a torrent.
+
+
+# ENVIRONMENT
+Option values may be supplied via environment variables. For an option named
+'parameter-name', the environment variable name is 'QBT_PARAMETER_NAME' (upper
+case, with '-' replaced by '_'). To pass flag values, set the variable to '1' or
+'TRUE'. For example, to change the WebUI port:
+
+    QBT_WEBUI_PORT=8081 qbittorrent-nox
+
+Command line parameters take precedence over environment variables.
 
 
 # BUGS
