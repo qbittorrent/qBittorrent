@@ -415,30 +415,27 @@ const initializeWindows = () => {
         });
     };
 
-    toggleSequentialDownloadFN = () => {
-        const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            fetch("api/v2/torrents/toggleSequentialDownload", {
-                method: "POST",
-                body: new URLSearchParams({
-                    hashes: hashes.join("|")
-                })
-            });
-            updateMainData();
-        }
+    const toggleSelectedTorrentsByProperty = (propertyName, endpoint, value) => {
+        const hashes = torrentsTable.selectedRowsIds()
+            .filter((hash) => (value === undefined) || (torrentsTable.getRow(hash).full_data[propertyName] !== value));
+        if (hashes.length <= 0)
+            return;
+
+        fetch(endpoint, {
+            method: "POST",
+            body: new URLSearchParams({
+                hashes: hashes.join("|")
+            })
+        });
+        updateMainData();
     };
 
-    toggleFirstLastPiecePrioFN = () => {
-        const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            fetch("api/v2/torrents/toggleFirstLastPiecePrio", {
-                method: "POST",
-                body: new URLSearchParams({
-                    hashes: hashes.join("|")
-                })
-            });
-            updateMainData();
-        }
+    toggleSequentialDownloadFN = (value) => {
+        toggleSelectedTorrentsByProperty("seq_dl", "api/v2/torrents/toggleSequentialDownload", value);
+    };
+
+    toggleFirstLastPiecePrioFN = (value) => {
+        toggleSelectedTorrentsByProperty("f_l_piece_prio", "api/v2/torrents/toggleFirstLastPiecePrio", value);
     };
 
     setSuperSeedingFN = (val) => {
