@@ -59,6 +59,7 @@ TorrentSerializer::TorrentSerializer(QObject *parent)
     connect(session, &BitTorrent::Session::torrentSavingModeChanged, this, &TorrentSerializer::invalidate);
     connect(session, &BitTorrent::Session::torrentTagAdded, this, &TorrentSerializer::invalidate);
     connect(session, &BitTorrent::Session::torrentTagRemoved, this, &TorrentSerializer::invalidate);
+    connect(session, &BitTorrent::Session::torrentContentFileRenamed, this, &TorrentSerializer::invalidate);
     connect(session, &BitTorrent::Session::torrentContentFolderRenamed, this, &TorrentSerializer::invalidate);
     // tracker changes also affect fields of the serialized torrent itself
     // ("tracker", "trackers_count", "reannounce"), so they invalidate both caches
