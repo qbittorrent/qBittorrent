@@ -457,7 +457,6 @@ bool SearchWidget::eventFilter(QObject *object, QEvent *event)
 {
     if (object == m_ui->tabWidget->tabBar())
     {
-        // Close tabs when middle-clicked
         if (event->type() != QEvent::MouseButtonRelease)
             return false;
 
@@ -465,12 +464,6 @@ bool SearchWidget::eventFilter(QObject *object, QEvent *event)
         const int tabIndex = m_ui->tabWidget->tabBar()->tabAt(mouseEvent->pos());
         if (tabIndex >= 0)
         {
-            if (mouseEvent->button() == Qt::MiddleButton)
-            {
-                closeTab(tabIndex);
-                return true;
-            }
-
             if (mouseEvent->button() == Qt::RightButton)
             {
                 showTabMenu(tabIndex);
