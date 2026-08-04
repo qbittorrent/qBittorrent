@@ -80,6 +80,8 @@ QJsonObject TorrentSerializer::serializeTorrent(const BitTorrent::Torrent &torre
     if (!includeTrackers)
         return *it;
 
+    // copy deliberately: inserting into *it would leak trackers into the
+    // cached torrent object shared by callers that don't request them
     QJsonObject result = *it;
     result.insert(KEY_PROP_TRACKERS, serializeTrackers(torrent));
     return result;
