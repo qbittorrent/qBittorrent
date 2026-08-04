@@ -38,6 +38,8 @@
 #include "serialize/serialize_torrent.h"
 #include "serialize/serialize_trackerentry.h"
 
+const QString KEY_PROP_TRACKERS = u"trackers"_s;
+
 TorrentSerializer::TorrentSerializer(QObject *parent)
     : QObject(parent)
 {
@@ -69,12 +71,18 @@ TorrentSerializer::TorrentSerializer(QObject *parent)
     connect(session, &BitTorrent::Session::trackerEntryStatusesUpdated, this, &TorrentSerializer::invalidateWithTrackers);
 }
 
-QJsonObject TorrentSerializer::serializeTorrent(const BitTorrent::Torrent &torrent)
+QJsonObject TorrentSerializer::serializeTorrent(const BitTorrent::Torrent &torrent, const bool includeTrackers)
 {
     auto it = m_torrentsCache.constFind(torrent.id());
     if (it == m_torrentsCache.cend())
         it = m_torrentsCache.insert(torrent.id(), QJsonObject::fromVariantMap(serialize(torrent)));
-    return *it;
+
+    if (!includeTrackers)
+        return *it;
+
+    QJsonObject result = *it;
+    result.insert(KEY_PROP_TRACKERS, serializeTrackers(torrent));
+    return result;
 }
 
 QJsonArray TorrentSerializer::serializeTrackers(const BitTorrent::Torrent &torrent)
