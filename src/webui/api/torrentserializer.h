@@ -54,7 +54,7 @@ class TorrentSerializer final : public QObject
 public:
     explicit TorrentSerializer(QObject *parent = nullptr);
 
-    QJsonObject serializeTorrent(const BitTorrent::Torrent &torrent);
+    QJsonObject serializeTorrent(const BitTorrent::Torrent &torrent, bool includeTrackers = false);
     QJsonArray serializeTrackers(const BitTorrent::Torrent &torrent);
 
 private:
