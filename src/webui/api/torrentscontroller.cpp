@@ -2471,3 +2471,15 @@ void TorrentsController::cacheMagnetURI(const QString &source, const BitTorrent:
             m_torrentMetadataCache.insert(torrentID, torrentDescr);
     }
 }
+
+void TorrentsController::pauseSessionAction()
+{
+    BitTorrent::Session::instance()->pause();
+    setResult(QString());
+}
+
+void TorrentsController::resumeSessionAction()
+{
+    BitTorrent::Session::instance()->resume();
+    setResult(QString());
+}
