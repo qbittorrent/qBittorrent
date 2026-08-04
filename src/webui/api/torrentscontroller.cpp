@@ -119,7 +119,6 @@ const QString KEY_PROP_SSL_DHPARAMS = u"ssl_dh_params"_s;
 const QString KEY_PROP_HAS_METADATA = u"has_metadata"_s;
 const QString KEY_PROP_PROGRESS = u"progress"_s;
 const QString KEY_PROP_FILES = u"files"_s;
-const QString KEY_PROP_TRACKERS = u"trackers"_s;
 
 
 // File keys
@@ -566,12 +565,10 @@ void TorrentsController::infoAction()
         if (!torrentFilter.match(torrent))
             continue;
 
-        QJsonObject serializedTorrent = m_torrentSerializer->serializeTorrent(*torrent);
+        QJsonObject serializedTorrent = m_torrentSerializer->serializeTorrent(*torrent, includeTrackers);
 
         if (includeFiles && torrent->hasMetadata())
             serializedTorrent.insert(KEY_PROP_FILES, getFiles(torrent));
-        if (includeTrackers)
-            serializedTorrent.insert(KEY_PROP_TRACKERS, m_torrentSerializer->serializeTrackers(*torrent));
 
         torrentList.append(serializedTorrent);
     }
