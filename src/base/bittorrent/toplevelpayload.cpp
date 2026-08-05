@@ -30,6 +30,8 @@
 
 #include <algorithm>
 
+#include <QCoreApplication>
+
 #include "base/global.h"
 #include "base/utils/fs.h"
 
@@ -140,4 +142,47 @@ PathList BitTorrent::applyUniqueSubfolderLayout(PathList filePaths, const Torren
     // Single file or rootless multi-file: wrap under the unique folder.
     Path::addRootFolder(filePaths, Path(folderName));
     return filePaths;
+}
+
+BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigrationPlan(
+        const PathList &currentPaths, const TorrentID &id, const QString &torrentName
+        , const Path &storageRoot)
+{
+    UniqueSubfolderMigrationPlan plan;
+    if (currentPaths.isEmpty())
+        return plan;
+
+    const PathList targetPaths = applyUniqueSubfolderLayout(currentPaths, id, torrentName);
+    if (targetPaths == currentPaths)
+        return plan;
+
+    if (storageRoot.isEmpty())
+    {
+        plan.blocked = true;
+        plan.blockReason = QCoreApplication::translate("BitTorrent", "Storage location is unknown.");
+        return plan;
+    }
+
+    const Path uniqueDir = Path::findRootFolder(targetPaths);
+    if (uniqueDir.isEmpty())
+    {
+        plan.blocked = true;
+        plan.blockReason = QCoreApplication::translate("BitTorrent", "Target unique subfolder is invalid.");
+        return plan;
+    }
+
+    for (int i = 0; i < targetPaths.size(); ++i)
+    {
+        if (targetPaths.at(i) != currentPaths.at(i))
+            plan.renames.append({.fileIndex = i, .to = targetPaths.at(i)});
+    }
+    if (plan.renames.isEmpty())
+        return plan;
+
+    // Existing destination: do not block. UI may confirm a merge (overwrite matching paths only).
+    const Path destAbs = storageRoot / uniqueDir;
+    if (destAbs.exists())
+        plan.existingUniqueFolder = destAbs;
+
+    return plan;
 }

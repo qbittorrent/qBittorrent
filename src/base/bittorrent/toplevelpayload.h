@@ -46,10 +46,15 @@ namespace BitTorrent
         Path to;
     };
 
-    // Preflight only. If blocked, show blockReason and do nothing.
+    // Preflight only — no disk changes.
+    // When existingUniqueFolder is set, the UI should confirm a merge before start.
     struct UniqueSubfolderMigrationPlan
     {
         QList<UniqueSubfolderRename> renames;
+
+        // Absolute path of an existing unique destination (empty if none).
+        Path existingUniqueFolder;
+
         bool blocked = false;
         QString blockReason;
 
@@ -57,5 +62,16 @@ namespace BitTorrent
         {
             return renames.isEmpty() && !blocked;
         }
+
+        bool needsConfirmation() const
+        {
+            return !existingUniqueFolder.isEmpty();
+        }
     };
+
+    // Pure preflight used by TorrentImpl and unit tests.
+    // storageRoot: absolute save/download location for this torrent.
+    UniqueSubfolderMigrationPlan makeUniqueSubfolderMigrationPlan(
+            const PathList &currentPaths, const TorrentID &id, const QString &torrentName
+            , const Path &storageRoot);
 }

@@ -2897,45 +2897,10 @@ nonstd::expected<void, QString> TorrentImpl::exportToFile(const Path &path) cons
 
 UniqueSubfolderMigrationPlan TorrentImpl::planUniqueSubfolderMigration() const
 {
-    UniqueSubfolderMigrationPlan plan;
     if (!hasMetadata())
-        return plan;
+        return {};
 
-    const PathList currentPaths = filePaths();
-    const PathList targetPaths = applyUniqueSubfolderLayout(currentPaths, id(), info().name());
-    if (targetPaths == currentPaths)
-        return plan;
-
-    const Path storageRoot = actualStorageLocation();
-    if (storageRoot.isEmpty())
-    {
-        plan.blocked = true;
-        plan.blockReason = tr("Storage location is unknown.");
-        return plan;
-    }
-
-    const Path uniqueDir = Path::findRootFolder(targetPaths);
-    if (uniqueDir.isEmpty())
-    {
-        plan.blocked = true;
-        plan.blockReason = tr("Target unique subfolder is invalid.");
-        return plan;
-    }
-
-    // Bare minimum: refuse if the unique folder already exists. No wipe / use-existing.
-    if ((storageRoot / uniqueDir).exists())
-    {
-        plan.blocked = true;
-        plan.blockReason = tr("Unique subfolder already exists: \"%1\".").arg(uniqueDir.toString());
-        return plan;
-    }
-
-    for (int i = 0; i < targetPaths.size(); ++i)
-    {
-        if (targetPaths.at(i) != currentPaths.at(i))
-            plan.renames.append({.fileIndex = i, .to = targetPaths.at(i)});
-    }
-    return plan;
+    return makeUniqueSubfolderMigrationPlan(filePaths(), id(), info().name(), actualStorageLocation());
 }
 
 void TorrentImpl::startUniqueSubfolderMigration(const UniqueSubfolderMigrationPlan &plan)
@@ -3000,7 +2965,15 @@ void TorrentImpl::finishUniqueSubfolderMigration()
     }
 
     forceRecheck();
-    emit uniqueSubfolderMigrationFinished(false, tr("Rename failed. Layout was not updated."));
+
+    QStringList failed;
+    failed.reserve(job.failedFileIndexes.size());
+    for (const int index : asConst(job.failedFileIndexes))
+        failed.append(QString::number(index));
+
+    emit uniqueSubfolderMigrationFinished(false
+            , tr("Rename failed for file index(es): %1. Layout was not updated. A recheck was started.")
+            .arg(failed.join(u", "_s)));
 }
 
 QFuture<QList<PeerInfo>> TorrentImpl::fetchPeerInfo() const
