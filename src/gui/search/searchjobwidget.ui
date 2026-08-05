@@ -173,6 +173,32 @@
        </item>
       </layout>
      </item>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Policy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>12</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="rememberFilters">
+       <property name="toolTip">
+        <string>Save these filter values and reuse them for new searches</string>
+       </property>
+       <property name="text">
+        <string>Remember filters</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
