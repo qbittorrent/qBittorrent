@@ -18,6 +18,12 @@ repos:
         types_or:
           - ts
 
+      - id: check-webui-translation-newlines
+        name: Check WebUI translation newline characters
+        entry: .github/workflows/helper/pre-commit/check_webui_translation_newlines.py
+        language: script
+        files: ^src/webui/www/translations/.*\.ts$
+
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
     rev: v6.0.0
     hooks:
