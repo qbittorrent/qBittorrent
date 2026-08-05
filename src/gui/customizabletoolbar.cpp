@@ -346,6 +346,10 @@ void CustomizableToolBar::registerCustomizableActions()
             continue;
 
         m_allActions.append(action);
+        connect(action, &QAction::enabledChanged, this, [this, action](bool enabled)
+        {
+            setActionVisible(action, enabled);
+        });
     }
 }
 

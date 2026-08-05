@@ -382,6 +382,9 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(pref, &Preferences::changed, this, &MainWindow::updatePowerManagementState);
     updatePowerManagementState();
 
+    // Snapshot all customizable toolbar actions before loadPreferences may enable/disable them
+    m_ui->toolBar->registerCustomizableActions();
+
     // Configure BT session according to options
     loadPreferences();
 
@@ -445,8 +448,6 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         m_ui->actionAutoShutdownDisabled->setChecked(true);
 
     // Load Window state and sizes
-    // Snapshot all customizable toolbar actions before loadSettings may reorder them
-    m_ui->toolBar->registerCustomizableActions();
     loadSettings();
 
     populateDesktopIntegrationMenu();
@@ -669,16 +670,7 @@ void MainWindow::resetToolbarToDefault()
     };
     m_ui->toolBar->resetToDefault(defaultOrder);
 
-    // Hide queue actions and reset shown flag so loadPreferences re-evaluates
-    const QStringList queueActions = {
-        u"actionTopQueuePos"_s, u"actionIncreaseQueuePos"_s,
-        u"actionDecreaseQueuePos"_s, u"actionBottomQueuePos"_s
-    };
-    for (const QString &name : queueActions)
-    {
-        if (QAction *action = m_ui->toolBar->actionByName(name))
-            action->setVisible(false);
-    }
+    // Reset shown flag so loadPreferences re-evaluates queue action placement
     m_queueActionsShown = false;
     loadPreferences();
     saveToolbarState();
@@ -757,14 +749,13 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
             });
         }
         visibilityMenu->addSeparator();
-        const bool queuingEnabled = BitTorrent::Session::instance()->isQueueingSystemEnabled();
         for (QAction *toolbarAction : asConst(m_ui->toolBar->customizableActions()))
         {
             if (!queueActionNames.contains(toolbarAction->objectName()))
                 continue;
 
             QAction *checkAction = visibilityMenu->addAction(toolbarAction->text());
-            if (queuingEnabled)
+            if (toolbarAction->isEnabled())
             {
                 checkAction->setCheckable(true);
                 checkAction->setChecked(m_ui->toolBar->isActionVisible(toolbarAction));
@@ -1669,6 +1660,7 @@ void MainWindow::loadPreferences()
             {
                 m_ui->toolBar->removeAction(action);
                 m_ui->toolBar->insertAction(m_spacerAction, action);
+                action->setEnabled(true);
                 action->setVisible(true);
             }
             // Move queue separator to just before the group, unless one is already there
@@ -1685,10 +1677,17 @@ void MainWindow::loadPreferences()
     else
     {
         m_transferListWidget->hideQueuePosColumn(true);
-        m_ui->actionDecreaseQueuePos->setVisible(false);
-        m_ui->actionIncreaseQueuePos->setVisible(false);
-        m_ui->actionTopQueuePos->setVisible(false);
-        m_ui->actionBottomQueuePos->setVisible(false);
+        const QList<QAction *> queueActionsToHide = {
+            m_ui->actionTopQueuePos,
+            m_ui->actionIncreaseQueuePos,
+            m_ui->actionDecreaseQueuePos,
+            m_ui->actionBottomQueuePos
+        };
+        for (QAction *action : queueActionsToHide)
+        {
+            action->setEnabled(false);
+            action->setVisible(false);
+        }
         m_queueSeparator->setVisible(false);
         m_queueSeparatorMenu->setVisible(false);
         m_queueActionsShown = false;
