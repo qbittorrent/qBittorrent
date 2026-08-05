@@ -3479,6 +3479,13 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </item>
                 </layout>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkCloseSearchTabWithMiddleClick">
+                 <property name="text">
+                  <string>Allow closing tabs with middle-click</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
