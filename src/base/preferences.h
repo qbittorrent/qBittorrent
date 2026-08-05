@@ -358,6 +358,10 @@ public:
     void setDNSLastIP(const QString &ip);
     QByteArray getMainGeometry() const;
     void setMainGeometry(const QByteArray &geometry);
+    QByteArray getToolbarState(const QString &toolbarId = QStringLiteral("MainWindow")) const;
+    void setToolbarState(const QByteArray &state, const QString &toolbarId = QStringLiteral("MainWindow"));
+    bool isToolbarLocked(const QString &toolbarId = QStringLiteral("MainWindow")) const;
+    void setToolbarLocked(const bool locked, const QString &toolbarId = QStringLiteral("MainWindow"));
     bool isFiltersSidebarVisible() const;
     void setFiltersSidebarVisible(bool value);
     int getFiltersSidebarWidth() const;
