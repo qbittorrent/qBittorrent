@@ -175,6 +175,8 @@ public:
     void setStoreSearchJobs(bool enabled);
     bool storeSearchJobResults() const;
     void setStoreSearchJobResults(bool enabled);
+    bool closeSearchTabWithMiddleClick() const;
+    void setCloseSearchTabWithMiddleClick(bool enabled);
 
     // HTTP Server
     bool isWebUIEnabled() const;

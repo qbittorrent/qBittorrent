@@ -753,6 +753,19 @@ void Preferences::setStoreSearchJobResults(const bool enabled)
     setValue(u"Search/StoreSearchJobResults"_s, enabled);
 }
 
+bool Preferences::closeSearchTabWithMiddleClick() const
+{
+    return value(u"Search/CloseSearchTabWithMiddleClick"_s, true);
+}
+
+void Preferences::setCloseSearchTabWithMiddleClick(const bool enabled)
+{
+    if (enabled == closeSearchTabWithMiddleClick())
+        return;
+
+    setValue(u"Search/CloseSearchTabWithMiddleClick"_s, enabled);
+}
+
 bool Preferences::isWebUIEnabled() const
 {
 #ifdef DISABLE_GUI
