@@ -47,6 +47,23 @@ namespace BitTorrent
 {
     enum class DownloadPriority;
 
+    // Optional lifetime stats to seed on torrent add
+    struct InitialTorrentStats
+    {
+        qint64 totalUploaded = 0;
+        qint64 totalDownloaded = 0;
+        qint64 addedTime = 0;          // posix seconds
+        qint64 completedTime = 0;      // posix seconds
+        qint64 lastSeenComplete = 0;   // posix seconds
+        qint64 lastUpload = 0;         // posix seconds
+        qint64 lastDownload = 0;       // posix seconds
+        int activeTime = 0;            // seconds
+        int finishedTime = 0;          // seconds
+        int seedingTime = 0;           // seconds
+
+        friend bool operator==(const InitialTorrentStats &lhs, const InitialTorrentStats &rhs) = default;
+    };
+
     struct AddTorrentParams
     {
         QString name;
@@ -70,6 +87,7 @@ namespace BitTorrent
         int downloadLimit = -1;
         ShareLimits shareLimits;
         SSLParameters sslParameters;
+        std::optional<InitialTorrentStats> initialStats;
 
         friend bool operator==(const AddTorrentParams &lhs, const AddTorrentParams &rhs) = default;
     };
