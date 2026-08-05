@@ -211,6 +211,13 @@ namespace
             map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY_CODE] = ip6CountryCode.toLower();
             map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY] = Net::GeoIPManager::CountryName(ip6CountryCode);
         }
+        else
+        {
+            map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4_COUNTRY_CODE] = {};
+            map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4_COUNTRY] = {};
+            map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY_CODE] = {};
+            map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY] = {};
+        }
 
         map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
         map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
