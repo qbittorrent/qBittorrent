@@ -2954,7 +2954,9 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
 
         // if torrent name wasn't explicitly set we handle the case of
         // initial renaming of torrent content and rename torrent accordingly
-        if (loadTorrentParams.name.isEmpty())
+        // UniqueSubfolder keeps the torrent display name (e.g. "Show"); only the folder is hashed.
+        if (loadTorrentParams.name.isEmpty()
+                && (loadTorrentParams.contentLayout != TorrentContentLayout::UniqueSubfolder))
         {
             QString contentName = Path::findRootFolder(filePaths).toString();
             if (contentName.isEmpty() && (filePaths.size() == 1))

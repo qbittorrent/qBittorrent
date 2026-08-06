@@ -142,20 +142,46 @@ private slots:
         QCOMPARE(plan.renames.at(1).to, Path(u"Show a19f83c275d1/ep2.mkv"_s));
     }
 
-    void testPlanInconsistentSubfolderDifferentFirstFolders() const
+    void testPlanInconsistentSubfolderRejected() const
     {
-        // Stored as Subfolder but paths have no shared root (Disc1/Disc2).
+        // Original/Subfolder require one shared top-level root.
         QTemporaryDir tmp;
         QVERIFY(tmp.isValid());
         const PathList current {Path(u"Disc1/movie.mkv"_s), Path(u"Disc2/subtitle.srt"_s)};
 
+        for (const auto layout : {TorrentContentLayout::Subfolder, TorrentContentLayout::Original})
+        {
+            const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
+                    current, sampleId, u"Show"_s, Path(tmp.path()), layout);
+
+            QVERIFY(plan.blocked);
+            QVERIFY(plan.renames.isEmpty());
+            QVERIFY(plan.blockReason.contains(u"share one top-level folder"_s));
+        }
+    }
+
+    void testPlanNoSubfolderCD1CD2StillWorks() const
+    {
+        QTemporaryDir tmp;
+        QVERIFY(tmp.isValid());
+        const PathList current {Path(u"CD1/movie.mkv"_s), Path(u"CD2/movie.mkv"_s)};
+
         const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
-                current, sampleId, u"Show"_s, Path(tmp.path()), TorrentContentLayout::Subfolder);
+                current, sampleId, u"Show"_s, Path(tmp.path()), TorrentContentLayout::NoSubfolder);
 
         QVERIFY(!plan.blocked);
-        QCOMPARE(plan.renames.size(), 2);
-        QCOMPARE(plan.renames.at(0).to, Path(u"Show a19f83c275d1/Disc1/movie.mkv"_s));
-        QCOMPARE(plan.renames.at(1).to, Path(u"Show a19f83c275d1/Disc2/subtitle.srt"_s));
+        QCOMPARE(plan.renames.at(0).to, Path(u"Show a19f83c275d1/CD1/movie.mkv"_s));
+        QCOMPARE(plan.renames.at(1).to, Path(u"Show a19f83c275d1/CD2/movie.mkv"_s));
+    }
+
+    void testUniqueFolderDoesNotImplyDisplayNameChange() const
+    {
+        // Folder is hashed; display name stays the torrent name (session skips name rewrite).
+        const QString torrentName = u"Show"_s;
+        const QString folder = uniqueSubfolderName(sampleId, torrentName);
+        QVERIFY(folder != torrentName);
+        QVERIFY(folder.startsWith(torrentName));
+        QVERIFY(folder.endsWith(u" a19f83c275d1"_s));
     }
 
     void testPlanPartialMigrationKeepsUniquePaths() const
@@ -179,32 +205,9 @@ private slots:
 
     void testPlanDuplicateTargetPathsRejected() const
     {
-        // Two different top-level folders mapping to the same relative file under Unique
-        // would collide if first components were stripped blindly; with no shared root
-        // both keep their prefixes. Force a duplicate by using NoSubfolder with same full path
-        // is impossible — use Subfolder-style same relative after strip with shared root no:
-        // Construct: NoSubfolder paths that already equal after prepend... actually
-        // Disc1/a.mkv and Disc1/a.mkv can't both exist as two indexes with same path.
-        // Instead: two files under different folders that share name when stripped wrongly —
-        // with fixed mapping Disc1/a + Disc2/a stay unique.
-        // Duplicate only if shared root replace of Show/a + Show/a — invalid list.
-        // Use Original layout with paths outside unique that map identically:
-        // "A/x.mkv" and "B/x.mkv" with shared root empty → Unique/A/x and Unique/B/x — no duplicate.
-        // Shared root "Pack" with Pack/x and Pack/x — can't have two same paths.
-        // Simulate via two paths that strip to same: only if we had shared root X and files X/a, X/a.
-        // Real duplicate case: NoSubfolder "a.mkv" and "a.mkv" — impossible in PathList as distinct?
-        // We'll use Subfolder with inconsistent mapping intentional:
-        // remaining after unique skip none: paths "Show/ep.mkv" and "Other/ep.mkv" → prepend full → no dup.
-        // Force collision: layout Subfolder, only one remaining shared root path isn't enough.
-        // When shared root is Show, Show/ep.mkv and Show/ep.mkv can't be two entries.
-        // Alternative: block when target list has duplicates from any source —
-        // craft with NoSubfolder: "ep.mkv" and "./ep.mkv" normalize differently...
-        // Simplest realistic collision under OLD bug: Subfolder Disc1/movie + Disc2/movie both → Unique/movie.
-        // With NEW code that's Unique/Disc1/movie + Unique/Disc2/movie.
-        // For duplicate detection unit test, call map by using shared root on:
-        // "Root/a/f.mkv" and "Root/a/f.mkv" — PathList can have identical paths at two indexes.
         QTemporaryDir tmp;
         QVERIFY(tmp.isValid());
+        // Identical paths at two indexes map to the same destination.
         const PathList current {
             Path(u"Root/a/f.mkv"_s),
             Path(u"Root/a/f.mkv"_s)
@@ -213,7 +216,6 @@ private slots:
         const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
                 current, sampleId, u"Show"_s, Path(tmp.path()), TorrentContentLayout::Subfolder);
 
-        // Both map to the same unique target; migration must refuse.
         QVERIFY(plan.blocked);
         QVERIFY(plan.renames.isEmpty());
         QVERIFY(plan.blockReason.contains(u"same destination"_s));
