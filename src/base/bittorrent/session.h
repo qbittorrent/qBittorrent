@@ -307,6 +307,8 @@ namespace BitTorrent
         virtual void setI2POutboundLength(int value) = 0;
         virtual bool isProxyPeerConnectionsEnabled() const = 0;
         virtual void setProxyPeerConnectionsEnabled(bool enabled) = 0;
+        virtual bool isProxySendHostInConnectEnabled() const = 0;
+        virtual void setProxySendHostInConnectEnabled(bool enabled) = 0;
         virtual ChokingAlgorithm chokingAlgorithm() const = 0;
         virtual void setChokingAlgorithm(ChokingAlgorithm mode) = 0;
         virtual SeedChokingAlgorithm seedChokingAlgorithm() const = 0;

@@ -639,6 +639,10 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
                 <input type="checkbox" id="use_peer_proxy_checkbox">
                 <label for="use_peer_proxy_checkbox">QBT_TR(Use proxy for peer connections)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
+            <div class="formRow">
+                <input type="checkbox" id="proxy_send_host_in_connect_checkbox">
+                <label for="proxy_send_host_in_connect_checkbox">QBT_TR(Send hostname in CONNECT request (HTTP proxy))QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
         </fieldset>
         <div class="formRow">
             <input type="checkbox" id="proxy_rss_checkbox">
@@ -2165,6 +2169,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("peer_proxy_auth_checkbox").disabled = (isProxyDisabled || isProxySocks4);
             document.getElementById("proxy_bittorrent_checkbox").disabled = isProxyDisabled;
             document.getElementById("use_peer_proxy_checkbox").disabled = (isProxyDisabled || !document.getElementById("proxy_bittorrent_checkbox").checked);
+            document.getElementById("proxy_send_host_in_connect_checkbox").disabled = (isProxyDisabled || !document.getElementById("proxy_bittorrent_checkbox").checked);
             document.getElementById("proxyHostnameLookupCheckbox").disabled = (isProxyDisabled || isProxySocks4);
             document.getElementById("proxy_rss_checkbox").disabled = (isProxyDisabled || isProxySocks4);
             document.getElementById("proxy_misc_checkbox").disabled = (isProxyDisabled || isProxySocks4);
@@ -2596,6 +2601,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("proxyHostnameLookupCheckbox").checked = pref.proxy_hostname_lookup;
                     document.getElementById("proxy_bittorrent_checkbox").checked = pref.proxy_bittorrent;
                     document.getElementById("use_peer_proxy_checkbox").checked = pref.proxy_peer_connections;
+                    document.getElementById("proxy_send_host_in_connect_checkbox").checked = pref.proxy_send_host_in_connect;
                     document.getElementById("proxy_rss_checkbox").checked = pref.proxy_rss;
                     document.getElementById("proxy_misc_checkbox").checked = pref.proxy_misc;
                     updatePeerProxySettings();
@@ -2996,6 +3002,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["proxy_hostname_lookup"] = document.getElementById("proxyHostnameLookupCheckbox").checked;
             settings["proxy_bittorrent"] = document.getElementById("proxy_bittorrent_checkbox").checked;
             settings["proxy_peer_connections"] = document.getElementById("use_peer_proxy_checkbox").checked;
+            settings["proxy_send_host_in_connect"] = document.getElementById("proxy_send_host_in_connect_checkbox").checked;
             settings["proxy_rss"] = document.getElementById("proxy_rss_checkbox").checked;
             settings["proxy_misc"] = document.getElementById("proxy_misc_checkbox").checked;
 
