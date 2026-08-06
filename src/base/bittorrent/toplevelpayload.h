@@ -33,6 +33,7 @@
 
 #include "base/path.h"
 #include "infohash.h"
+#include "torrentcontentlayout.h"
 
 namespace BitTorrent
 {
@@ -47,22 +48,22 @@ namespace BitTorrent
     };
 
     // Preflight only — no disk changes.
-    // If any absolute target *file* already exists, blocked is set (directories are OK).
     struct UniqueSubfolderMigrationPlan
     {
         QList<UniqueSubfolderRename> renames;
         bool blocked = false;
         QString blockReason;
+        // All payload paths already under the unique folder; only the stored layout flag needs updating.
+        bool finalizeOnly = false;
 
         bool isEmpty() const
         {
-            return renames.isEmpty() && !blocked;
+            return renames.isEmpty() && !blocked && !finalizeOnly;
         }
     };
 
     // Pure preflight used by TorrentImpl and unit tests.
-    // storageRoot: absolute save/download location for this torrent.
     UniqueSubfolderMigrationPlan makeUniqueSubfolderMigrationPlan(
             const PathList &currentPaths, const TorrentID &id, const QString &torrentName
-            , const Path &storageRoot);
+            , const Path &storageRoot, TorrentContentLayout currentLayout);
 }

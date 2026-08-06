@@ -37,6 +37,8 @@
 
 namespace
 {
+    using BitTorrent::TorrentContentLayout;
+
     constexpr int HASH_TAG_HEX_LEN = 12;
 
     PathList renameRootFolder(PathList filePaths, const QString &oldName, const QString &newName)
@@ -78,7 +80,6 @@ namespace
         {
             base.chop(1);
 #ifdef Q_OS_WIN
-            // Windows forbids trailing dots/spaces; tag starts with a space so keep base clean.
             while (base.endsWith(u'.') || base.endsWith(u' '))
                 base.chop(1);
 #endif
@@ -105,14 +106,12 @@ namespace
         if (base.isEmpty())
             base = u"Torrent"_s;
 
-        // Avoid doubling the tag if the name already ends with it.
         if (base.endsWith(tag))
             base.chop(tag.size());
 
         return base;
     }
 
-    // Path without its first component (or the path itself when single-component).
     Path payloadRelativePath(const Path &path)
     {
         const QString s = path.data();
@@ -122,19 +121,56 @@ namespace
         return Path(s.sliced(slash + 1));
     }
 
-    // Map each path under uniqueRoot without double-wrapping paths already there.
-    PathList mapUnderUniqueRoot(const PathList &filePaths, const Path &uniqueRoot)
+    bool isUnderUniqueRoot(const Path &path, const Path &uniqueRoot)
+    {
+        return (path == uniqueRoot) || path.hasAncestor(uniqueRoot);
+    }
+
+    // Map one path into uniqueRoot according to the torrent's current content layout.
+    Path mapPathIntoUniqueRoot(const Path &path, const Path &uniqueRoot, const TorrentContentLayout layout)
+    {
+        if (isUnderUniqueRoot(path, uniqueRoot))
+            return path;
+
+        // NoSubfolder (flat): keep the full relative path under the unique folder.
+        if (layout == TorrentContentLayout::NoSubfolder)
+            return uniqueRoot / path;
+
+        // Original / Subfolder: replace the existing top-level folder (if any).
+        const Path first = path.rootItem();
+        if (path == first)
+            return uniqueRoot / path;
+        return uniqueRoot / payloadRelativePath(path);
+    }
+
+    PathList mapPathsIntoUniqueRoot(const PathList &filePaths, const Path &uniqueRoot
+            , const TorrentContentLayout layout)
     {
         PathList out;
         out.reserve(filePaths.size());
         for (const Path &path : filePaths)
-        {
-            if ((path == uniqueRoot) || path.hasAncestor(uniqueRoot))
-                out.append(path);
-            else
-                out.append(uniqueRoot / payloadRelativePath(path));
-        }
+            out.append(mapPathIntoUniqueRoot(path, uniqueRoot, layout));
         return out;
+    }
+
+    // True if the exact target path exists, or any parent component is a regular file.
+    bool targetPathIsBlocked(const Path &targetAbs)
+    {
+        if (targetAbs.exists())
+            return true;
+
+        Path cursor = targetAbs.parentPath();
+        while (!cursor.isEmpty())
+        {
+            if (cursor.exists() && !Utils::Fs::isDir(cursor))
+                return true;
+
+            const Path parent = cursor.parentPath();
+            if (parent == cursor)
+                break;
+            cursor = parent;
+        }
+        return false;
     }
 }
 
@@ -157,23 +193,23 @@ PathList BitTorrent::applyUniqueSubfolderLayout(PathList filePaths, const Torren
     const QString folderName = uniqueSubfolderName(id, originalNameForUniqueDir(filePaths, torrentName, tag));
     const Path uniqueRoot {folderName};
 
-    // Uniform layout: common root rename, or wrap rootless/single-file.
-    // Mixed (partial migration) is handled by mapUnderUniqueRoot so paths already
-    // under uniqueRoot are left alone.
     const Path rootFolder = Path::findRootFolder(filePaths);
     if (!rootFolder.isEmpty())
     {
         if (rootFolder == uniqueRoot)
             return filePaths;
+        // Common top-level folder (Original/Subfolder style): rename the root only.
         return renameRootFolder(std::move(filePaths), rootFolder.toString(), folderName);
     }
 
-    return mapUnderUniqueRoot(filePaths, uniqueRoot);
+    // Rootless multi-file or single file: prepend unique folder to the full path.
+    // e.g. CD1/movie.mkv + CD2/movie.mkv → Unique/CD1/movie.mkv, Unique/CD2/movie.mkv
+    return mapPathsIntoUniqueRoot(filePaths, uniqueRoot, TorrentContentLayout::NoSubfolder);
 }
 
 BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigrationPlan(
         const PathList &currentPaths, const TorrentID &id, const QString &torrentName
-        , const Path &storageRoot)
+        , const Path &storageRoot, const TorrentContentLayout currentLayout)
 {
     UniqueSubfolderMigrationPlan plan;
     if (currentPaths.isEmpty())
@@ -186,7 +222,6 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
         return plan;
     }
 
-    // Always derive the unique folder from the torrent name (stable across partial states).
     const QString tag = uniqueSubfolderTag(id);
     const Path uniqueRoot {uniqueSubfolderName(id, originalNameForUniqueDir(currentPaths, torrentName, tag))};
     if (uniqueRoot.isEmpty())
@@ -196,21 +231,37 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
         return plan;
     }
 
-    const PathList targetPaths = mapUnderUniqueRoot(currentPaths, uniqueRoot);
+    const PathList targetPaths = mapPathsIntoUniqueRoot(currentPaths, uniqueRoot, currentLayout);
+
+    bool allAlreadyUnderUnique = true;
+    for (const Path &path : currentPaths)
+    {
+        if (!isUnderUniqueRoot(path, uniqueRoot))
+        {
+            allAlreadyUnderUnique = false;
+            break;
+        }
+    }
+
+    if (allAlreadyUnderUnique)
+    {
+        // Paths already converted; only the stored layout may still need updating.
+        if (currentLayout != TorrentContentLayout::UniqueSubfolder)
+            plan.finalizeOnly = true;
+        return plan;
+    }
 
     for (int i = 0; i < targetPaths.size(); ++i)
     {
         if (targetPaths.at(i) == currentPaths.at(i))
             continue;
 
-        // Refuse if the destination *file* already exists. Existing directories are fine.
-        // Unrelated files under the unique folder that are not rename targets are left alone.
         const Path targetAbs = storageRoot / targetPaths.at(i);
-        if (targetAbs.exists() && !Utils::Fs::isDir(targetAbs))
+        if (targetPathIsBlocked(targetAbs))
         {
             plan.blocked = true;
             plan.blockReason = QCoreApplication::translate("BitTorrent"
-                    , "Migration cannot continue: destination file already exists: \"%1\".")
+                    , "Migration cannot continue: destination path already exists or a parent is a file: \"%1\".")
                     .arg(targetPaths.at(i).toString());
             plan.renames.clear();
             return plan;

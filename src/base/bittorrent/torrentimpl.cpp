@@ -2900,12 +2900,25 @@ UniqueSubfolderMigrationPlan TorrentImpl::planUniqueSubfolderMigration() const
     if (!hasMetadata())
         return {};
 
-    return makeUniqueSubfolderMigrationPlan(filePaths(), id(), info().name(), actualStorageLocation());
+    return makeUniqueSubfolderMigrationPlan(filePaths(), id(), info().name()
+            , actualStorageLocation(), m_contentLayout);
 }
 
 void TorrentImpl::startUniqueSubfolderMigration(const UniqueSubfolderMigrationPlan &plan)
 {
-    if (plan.blocked || plan.renames.isEmpty())
+    if (plan.blocked)
+        return;
+
+    // Paths already under the unique folder: only fix the stored layout flag.
+    if (plan.finalizeOnly)
+    {
+        m_contentLayout = TorrentContentLayout::UniqueSubfolder;
+        deferredRequestResumeData();
+        emit uniqueSubfolderMigrationFinished(true, {});
+        return;
+    }
+
+    if (plan.renames.isEmpty())
         return;
 
     if (m_uniqueSubfolderMigration.has_value() || !m_renamingFiles.isEmpty() || isMoveInProgress())
