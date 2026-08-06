@@ -275,6 +275,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                                 <option value="Default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
                                 <option value="Original">QBT_TR(Original)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
                                 <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                                <option value="UniqueSubfolder">QBT_TR(Create unique subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
                                 <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
                             </select>
                         </td>
@@ -654,6 +655,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     break;
                 case "Subfolder":
                     rulesList[rule].torrentParams.content_layout = "Subfolder";
+                    break;
+                case "UniqueSubfolder":
+                    rulesList[rule].torrentParams.content_layout = "UniqueSubfolder";
                     break;
                 case "NoSubfolder":
                     rulesList[rule].torrentParams.content_layout = "NoSubfolder";

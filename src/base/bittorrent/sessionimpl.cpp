@@ -99,6 +99,7 @@
 #include "bandwidthscheduler.h"
 #include "bencoderesumedatastorage.h"
 #include "customstorage.h"
+#include "toplevelpayload.h"
 #include "dbresumedatastorage.h"
 #include "downloadpriority.h"
 #include "extensiondata.h"
@@ -2608,7 +2609,6 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
 
     const TorrentID torrentID = torrent->id();
     const QString torrentName = torrent->name();
-
     qDebug("Deleting torrent with ID: %s", qUtf8Printable(torrentID.toString()));
     emit torrentAboutToBeRemoved(torrent);
 
@@ -2933,7 +2933,11 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
         if (filePaths.isEmpty())
         {
             filePaths = torrentInfo.filePaths();
-            if (loadTorrentParams.contentLayout != TorrentContentLayout::Original)
+            if (loadTorrentParams.contentLayout == TorrentContentLayout::UniqueSubfolder)
+            {
+                filePaths = applyUniqueSubfolderLayout(std::move(filePaths), id, torrentInfo.name());
+            }
+            else if (loadTorrentParams.contentLayout != TorrentContentLayout::Original)
             {
                 const Path originalRootFolder = Path::findRootFolder(filePaths);
                 const auto originalContentLayout = (originalRootFolder.isEmpty()
@@ -2950,7 +2954,9 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
 
         // if torrent name wasn't explicitly set we handle the case of
         // initial renaming of torrent content and rename torrent accordingly
-        if (loadTorrentParams.name.isEmpty())
+        // UniqueSubfolder keeps the torrent display name (e.g. "Show"); only the folder is hashed.
+        if (loadTorrentParams.name.isEmpty()
+                && (loadTorrentParams.contentLayout != TorrentContentLayout::UniqueSubfolder))
         {
             QString contentName = Path::findRootFolder(filePaths).toString();
             if (contentName.isEmpty() && (filePaths.size() == 1))
@@ -3083,7 +3089,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
     };
 
     resolveFileNames().then(this
-        , [this, id, torrentDescr, loadTorrentParams = std::move(loadTorrentParams)](const FileSearchResult &result) mutable
+        , [this, torrentDescr, loadTorrentParams = std::move(loadTorrentParams)](const FileSearchResult &result) mutable
     {
         lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
 

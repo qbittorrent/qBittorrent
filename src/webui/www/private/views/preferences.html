@@ -162,6 +162,7 @@
             <select id="contentlayout_select">
                 <option value="Original">QBT_TR(Original)QBT_TR[CONTEXT=OptionsDialog]</option>
                 <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="UniqueSubfolder">QBT_TR(Create unique subfolder)QBT_TR[CONTEXT=OptionsDialog]</option>
                 <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=OptionsDialog]</option>
             </select>
         </div>
@@ -2443,8 +2444,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         case "Subfolder":
                             index = 1;
                             break;
-                        case "NoSubfolder":
+                        case "UniqueSubfolder":
                             index = 2;
+                            break;
+                        case "NoSubfolder":
+                            index = 3;
                             break;
                     }
                     document.getElementById("contentlayout_select").getChildren("option")[index].selected = true;
