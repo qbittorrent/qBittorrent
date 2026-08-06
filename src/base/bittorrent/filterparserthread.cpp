@@ -31,6 +31,7 @@
 #include <cctype>
 
 #include <libtorrent/error_code.hpp>
+#include <libtorrent/version.hpp>
 
 #include <QDataStream>
 #include <QFile>

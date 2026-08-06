@@ -69,9 +69,7 @@ namespace Utils::String
 
     QString fromDouble(double n, int precision);
     QString fromLatin1(std::string_view string);
-#if LIBTORRENT_VERSION_NUM < 20100
     QString fromLocal8Bit(std::string_view string);
-#endif
 
     template <typename Container>
     QString joinIntoString(const Container &container, const QString &separator)
