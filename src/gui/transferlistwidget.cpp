@@ -1077,7 +1077,7 @@ void TransferListWidget::displayListMenu()
             , tr("Create &unique subfolder"), listMenu);
     actionCreateUniqueSubfolder->setToolTip(tr(
             "Move selected torrents into a unique folder (e.g. Show a19f83c275d1). "
-            "If matching destination files already exist, migration cannot continue."));
+            "File conflicts are handled in the same way as normal content renaming."));
     connect(actionCreateUniqueSubfolder, &QAction::triggered, this, &TransferListWidget::createUniqueSubfolderForSelectedTorrents);
     auto *actionSequentialDownload = new TriStateAction(tr("Download in sequential order"), listMenu);
     connect(actionSequentialDownload, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSequentialDownload);

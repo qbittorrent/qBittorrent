@@ -1848,6 +1848,8 @@ void TorrentImpl::scheduleRenameJob(const Path &oldFolderPath, const Path &newFo
     if (fileRenames.isEmpty())
         return;
 
+    // oldFolderPath may be empty for NoSubfolder wraps (batch rename under newFolderPath only).
+    // Job tracking, alerts, and success/failure handling are shared with doRenameFolder().
     const int folderRenameJobID = m_nextFolderRenameJobID++;
     m_renamingFolders.enqueue(
     {
@@ -2943,27 +2945,9 @@ void TorrentImpl::startUniqueSubfolderMigration(const UniqueSubfolderMigrationPl
         return;
     }
 
-    // Original/Subfolder with a shared root: same as renameFolder(oldRoot → uniqueRoot).
-    if (plan.isFolderRename())
-    {
-        QList<QPair<int, Path>> fileRenames;
-        for (int i = 0; i < filesCount(); ++i)
-        {
-            const Path path = filePath(i);
-            if (!path.hasAncestor(plan.folderRenameOldRoot))
-                continue;
-            fileRenames.append({i, plan.uniqueRoot / plan.folderRenameOldRoot.relativePathOf(path)});
-        }
-        scheduleRenameJob(plan.folderRenameOldRoot, plan.uniqueRoot, fileRenames, true);
-        return;
-    }
-
-    // NoSubfolder (or single-component wrap): one batch rename job, same machinery as folder rename.
-    QList<QPair<int, Path>> fileRenames;
-    fileRenames.reserve(plan.renames.size());
-    for (const UniqueSubfolderRename &item : asConst(plan.renames))
-        fileRenames.append({item.fileIndex, item.to});
-    scheduleRenameJob({}, plan.uniqueRoot, fileRenames, true);
+    // Shared rename-job path (same as doRenameFolder). Empty old root is valid for NoSubfolder wraps.
+    const QList<QPair<int, Path>> fileRenames = buildUniqueSubfolderRenamePairs(plan, filePaths());
+    scheduleRenameJob(plan.folderRenameOldRoot, plan.uniqueRoot, fileRenames, true);
 }
 
 void TorrentImpl::finishUniqueSubfolderConversion(const bool success, const QList<int> &failedFileIndexes)
