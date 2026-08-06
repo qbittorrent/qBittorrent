@@ -133,11 +133,7 @@ void DNSUpdater::updateDNSService()
 QString DNSUpdater::getUpdateUrl() const
 {
     QUrl url;
-#ifdef QT_NO_OPENSSL
-    url.setScheme(u"http"_s);
-#else
     url.setScheme(u"https"_s);
-#endif
     url.setUserName(m_username);
     url.setPassword(m_password);
 

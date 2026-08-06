@@ -36,6 +36,8 @@
 #include <QLabel>
 #include <QNetworkInterface>
 
+#include <libtorrent/version.hpp>
+
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/preferences.h"
@@ -143,6 +145,7 @@ namespace
         SEND_BUF_WATERMARK_FACTOR,
         // networking & ports
         CONNECTION_SPEED,
+        SEEDING_OUTGOING_CONNECTIONS,
         SOCKET_SEND_BUFFER_SIZE,
         SOCKET_RECEIVE_BUFFER_SIZE,
         SOCKET_BACKLOG_SIZE,
@@ -154,6 +157,9 @@ namespace
         HOSTNAME_CACHE_TTL,
         IDN_SUPPORT,
         MULTI_CONNECTIONS_PER_IP,
+#if LIBTORRENT_VERSION_NUM >= 20013
+        MULTI_CONNECTIONS_PER_PEER_ID,
+#endif
         VALIDATE_HTTPS_TRACKER_CERTIFICATE,
         SSRF_MITIGATION,
         BLOCK_PEERS_ON_PRIVILEGED_PORTS,
@@ -258,6 +264,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setSendBufferWatermarkFactor(m_spinBoxSendBufferWatermarkFactor.value());
     // Outgoing connections per second
     session->setConnectionSpeed(m_spinBoxConnectionSpeed.value());
+    // Allow outgoing connections when seeding
+    session->setSeedingOutgoingConnections(m_checkBoxSeedingOutgoingConnections.isChecked());
     // Socket send buffer size
     session->setSocketSendBufferSize(m_spinBoxSocketSendBufferSize.value() * 1024);
     // Socket receive buffer size
@@ -285,6 +293,10 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setIDNSupportEnabled(m_checkBoxIDNSupport.isChecked());
     // multiple connections per IP
     session->setMultiConnectionsPerIpEnabled(m_checkBoxMultiConnectionsPerIp.isChecked());
+#if LIBTORRENT_VERSION_NUM >= 20013
+    // multiple connections per Peer ID
+    session->setMultiConnectionsPerPeerIDEnabled(m_checkBoxMultiConnectionsPerPeerID.isChecked());
+#endif
     // Validate HTTPS tracker certificate
     session->setValidateHTTPSTrackerCertificate(m_checkBoxValidateHTTPSTrackerCertificate.isChecked());
     // SSRF mitigation
@@ -347,7 +359,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Ignore SSL errors
     pref->setIgnoreSSLErrors(m_checkBoxIgnoreSSLErrors.isChecked());
     // Python executable path
-    pref->setPythonExecutablePath(Path(m_pythonExecutablePath.text().trimmed()));
+    pref->setPythonExecutablePath(m_pythonExecutablePath.selectedPath());
     // Start session paused
     session->setStartPaused(m_checkBoxStartSessionPaused.isChecked());
     // Session shutdown timeout
@@ -599,6 +611,9 @@ void AdvancedSettings::loadAdvancedSettings()
     m_comboBoxDiskIOType.addItem(tr("Memory mapped files"), QVariant::fromValue(BitTorrent::DiskIOType::MMap));
     m_comboBoxDiskIOType.addItem(tr("POSIX-compliant"), QVariant::fromValue(BitTorrent::DiskIOType::Posix));
     m_comboBoxDiskIOType.addItem(tr("Simple pread/pwrite"), QVariant::fromValue(BitTorrent::DiskIOType::SimplePreadPwrite));
+#if LIBTORRENT_VERSION_NUM >= 20100
+    m_comboBoxDiskIOType.addItem(tr("Pread/pwrite"), QVariant::fromValue(BitTorrent::DiskIOType::PreadPwrite));
+#endif
     m_comboBoxDiskIOType.setCurrentIndex(m_comboBoxDiskIOType.findData(QVariant::fromValue(session->diskIOType())));
     addRow(DISK_IO_TYPE, tr("Disk IO type (requires restart)") + u' ' + makeLink(u"https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor", u"(?)")
            , &m_comboBoxDiskIOType);
@@ -656,6 +671,10 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxConnectionSpeed.setValue(session->connectionSpeed());
     addRow(CONNECTION_SPEED, (tr("Outgoing connections per second") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#connection_speed", u"(?)"))
             , &m_spinBoxConnectionSpeed);
+    // Allow outgoing connections when seeding
+    m_checkBoxSeedingOutgoingConnections.setChecked(session->isSeedingOutgoingConnectionsEnabled());
+    addRow(SEEDING_OUTGOING_CONNECTIONS, (tr("Allow outgoing connections when seeding") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#seeding_outgoing_connections", u"(?)"))
+            , &m_checkBoxSeedingOutgoingConnections);
     // Socket send buffer size
     m_spinBoxSocketSendBufferSize.setMinimum(0);
     m_spinBoxSocketSendBufferSize.setMaximum(std::numeric_limits<int>::max() / 1024);
@@ -753,6 +772,13 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(MULTI_CONNECTIONS_PER_IP, (tr("Allow multiple connections from the same IP address")
             + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#allow_multiple_connections_per_ip", u"(?)"))
             , &m_checkBoxMultiConnectionsPerIp);
+#if LIBTORRENT_VERSION_NUM >= 20013
+    // multiple connections per Peer ID
+    m_checkBoxMultiConnectionsPerPeerID.setChecked(session->multiConnectionsPerPeerIDEnabled());
+    addRow(MULTI_CONNECTIONS_PER_PEER_ID, (tr("Allow multiple connections from the same Peer ID")
+            + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#allow_multiple_connections_per_pid", u"(?)"))
+            , &m_checkBoxMultiConnectionsPerPeerID);
+#endif
     // Validate HTTPS tracker certificate
     m_checkBoxValidateHTTPSTrackerCertificate.setChecked(session->validateHTTPSTrackerCertificate());
     addRow(VALIDATE_HTTPS_TRACKER_CERTIFICATE, (tr("Validate HTTPS tracker certificates")
@@ -897,8 +923,10 @@ void AdvancedSettings::loadAdvancedSettings()
     m_checkBoxIgnoreSSLErrors.setToolTip(tr("Affects certificate validation and non-torrent protocol activities (e.g. RSS feeds, program updates, torrent files, geoip db, etc)"));
     addRow(IGNORE_SSL_ERRORS, tr("Ignore SSL errors"), &m_checkBoxIgnoreSSLErrors);
     // Python executable path
-    m_pythonExecutablePath.setPlaceholderText(tr("(Auto detect if empty)"));
-    m_pythonExecutablePath.setText(pref->getPythonExecutablePath().toString());
+    m_pythonExecutablePath.setMode(FileSystemPathEdit::Mode::FileOpen);
+    m_pythonExecutablePath.setDialogCaption(tr("Select Python Executable"));
+    m_pythonExecutablePath.setPlaceholder(tr("(Auto detect if empty)"));
+    m_pythonExecutablePath.setSelectedPath(pref->getPythonExecutablePath());
     addRow(PYTHON_EXECUTABLE_PATH, tr("Python executable path (may require restart)"), &m_pythonExecutablePath);
     // Start session paused
     m_checkBoxStartSessionPaused.setChecked(session->isStartPaused());
@@ -1013,7 +1041,9 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
     setCellWidget(row, PROPERTY, label);
     setCellWidget(row, VALUE, widget);
 
-    if constexpr (std::is_same_v<T, QCheckBox>)
+    if constexpr (std::is_same_v<T, FileSystemPathLineEdit>)
+        connect(widget, &FileSystemPathEdit::selectedPathChanged, this, &AdvancedSettings::settingsChanged);
+    else if constexpr (std::is_same_v<T, QCheckBox>)
     {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
         connect(widget, &QCheckBox::checkStateChanged, this, &AdvancedSettings::settingsChanged);
@@ -1021,10 +1051,10 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
         connect(widget, &QCheckBox::stateChanged, this, &AdvancedSettings::settingsChanged);
 #endif
     }
-    else if constexpr (std::is_same_v<T, QSpinBox>)
-        connect(widget, qOverload<int>(&QSpinBox::valueChanged), this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QComboBox>)
         connect(widget, qOverload<int>(&QComboBox::currentIndexChanged), this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QLineEdit>)
         connect(widget, &QLineEdit::textChanged, this, &AdvancedSettings::settingsChanged);
+    else if constexpr (std::is_same_v<T, QSpinBox>)
+        connect(widget, qOverload<int>(&QSpinBox::valueChanged), this, &AdvancedSettings::settingsChanged);
 }

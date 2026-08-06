@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -40,6 +40,18 @@
 #include "infohash.h"
 #include "trackerentry.h"
 
+namespace
+{
+    const lt::file_storage &getFileStorage(const lt::torrent_info &torrentInfo)
+    {
+#if LIBTORRENT_VERSION_NUM >= 20100
+        return torrentInfo.layout();
+#else
+        return torrentInfo.orig_files();
+#endif
+    }
+}
+
 using namespace BitTorrent;
 
 const int TORRENTINFO_TYPEID = qRegisterMetaType<TorrentInfo>();
@@ -49,7 +61,7 @@ TorrentInfo::TorrentInfo(const lt::torrent_info &nativeInfo)
 {
     Q_ASSERT(m_nativeInfo->is_valid() && (m_nativeInfo->num_files() > 0));
 
-    const lt::file_storage &fileStorage = m_nativeInfo->orig_files();
+    const lt::file_storage &fileStorage = getFileStorage(*m_nativeInfo);
     m_nativeIndexes.reserve(fileStorage.num_files());
     for (const lt::file_index_t nativeIndex : fileStorage.file_range())
     {
@@ -86,9 +98,10 @@ InfoHash TorrentInfo::infoHash() const
 
 QString TorrentInfo::name() const
 {
-    if (!isValid()) return {};
+    if (!isValid())
+        return {};
 
-    return QString::fromStdString(m_nativeInfo->orig_files().name());
+    return QString::fromStdString(getFileStorage(*m_nativeInfo).name());
 }
 
 bool TorrentInfo::isPrivate() const
@@ -142,7 +155,7 @@ Path TorrentInfo::filePath(const int index) const
     if ((index < 0) || (index >= m_nativeIndexes.size()))
         return {};
 
-    return Path(m_nativeInfo->orig_files().file_path(m_nativeIndexes[index]));
+    return Path(getFileStorage(*m_nativeInfo).file_path(m_nativeIndexes[index]));
 }
 
 PathList TorrentInfo::filePaths() const
@@ -164,7 +177,7 @@ qlonglong TorrentInfo::fileSize(const int index) const
     if ((index < 0) || (index >= m_nativeIndexes.size()))
         return -1;
 
-    return m_nativeInfo->orig_files().file_size(m_nativeIndexes[index]);
+    return getFileStorage(*m_nativeInfo).file_size(m_nativeIndexes[index]);
 }
 
 qlonglong TorrentInfo::fileOffset(const int index) const
@@ -176,7 +189,7 @@ qlonglong TorrentInfo::fileOffset(const int index) const
     if ((index < 0) || (index >= m_nativeIndexes.size()))
         return -1;
 
-    return m_nativeInfo->orig_files().file_offset(m_nativeIndexes[index]);
+    return getFileStorage(*m_nativeInfo).file_offset(m_nativeIndexes[index]);
 }
 
 QByteArray TorrentInfo::rawData() const
@@ -250,7 +263,7 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const int fileIndex) const
     if ((fileIndex < 0) || (fileIndex >= filesCount()))
         return {};
 
-    const lt::file_storage &files = m_nativeInfo->orig_files();
+    const lt::file_storage &files = getFileStorage(*m_nativeInfo);
     const auto fileSize = files.file_size(m_nativeIndexes[fileIndex]);
     const auto fileOffset = files.file_offset(m_nativeIndexes[fileIndex]);
 

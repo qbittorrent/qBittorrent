@@ -47,11 +47,6 @@ class Application;
 class AsyncFileStorage;
 struct ProcessingJob;
 
-namespace BitTorrent
-{
-    struct AddTorrentError;
-}
-
 namespace RSS
 {
     class Article;
@@ -100,6 +95,7 @@ namespace RSS
         QList<AutoDownloadRule> rules() const;
 
         void setRule(const AutoDownloadRule &rule);
+        bool cloneRule(const QString &ruleName, const QString &cloneRuleName);
         bool renameRule(const QString &ruleName, const QString &newRuleName);
         void removeRule(const QString &ruleName);
 
@@ -116,7 +112,7 @@ namespace RSS
     private slots:
         void process();
         void handleTorrentAdded(const QString &source);
-        void handleAddTorrentFailed(const QString &url, const BitTorrent::AddTorrentError &error);
+        void handleAddTorrentFailed(const QString &url, const QString &error);
         void handleNewArticle(const Article *article);
         void handleFeedURLChanged(Feed *feed, const QString &oldURL);
 

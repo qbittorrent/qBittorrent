@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -73,6 +73,7 @@ public slots:
     void startSelectedTorrents();
     void forceStartSelectedTorrents();
     void startVisibleTorrents();
+    void forceStartVisibleTorrents();
     void stopSelectedTorrents();
     void stopVisibleTorrents();
     void softDeleteSelectedTorrents();
@@ -133,6 +134,7 @@ private:
     QList<BitTorrent::Torrent *> getSelectedTorrents() const;
     void askAddTagsForSelection();
     void editTorrentTrackers();
+    void manageTorrentContent();
     void exportTorrent();
     void confirmRemoveAllTagsForSelection();
     TagSet askTagsForSelection(const QString &dialogTitle);

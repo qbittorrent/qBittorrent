@@ -50,7 +50,7 @@ namespace Utils::ForeignApps
         Path executablePath;
         Version version;
 
-        inline static const Version MINIMUM_SUPPORTED_VERSION {3, 9, 0};
+        inline static const Version MINIMUM_SUPPORTED_VERSION {3, 13, 0};
     };
 
     PythonInfo pythonInfo();

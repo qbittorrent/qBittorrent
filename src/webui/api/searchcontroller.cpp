@@ -298,7 +298,7 @@ void SearchController::updatePluginsAction()
     setResult(QString());
 }
 
-void SearchController::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo)
+void SearchController::checkForUpdatesFinished(const QHash<QString, SearchPluginVersion> &updateInfo)
 {
     if (updateInfo.isEmpty())
     {
@@ -396,7 +396,7 @@ QJsonArray SearchController::getPluginsInfo(const QStringList &plugins) const
 
     for (const QString &plugin : plugins)
     {
-        const PluginInfo *const pluginInfo = SearchPluginManager::instance()->pluginInfo(plugin);
+        const SearchPluginInfo *const pluginInfo = SearchPluginManager::instance()->pluginInfo(plugin);
 
         pluginsArray << QJsonObject
         {

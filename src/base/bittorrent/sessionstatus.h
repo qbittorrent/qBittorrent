@@ -73,5 +73,7 @@ namespace BitTorrent
         qint64 diskWriteQueue = 0;
         qint64 dhtNodes = 0;
         qint64 peersCount = 0;
+
+        qint64 queuedTrackerAnnounces = 0;
     };
 }

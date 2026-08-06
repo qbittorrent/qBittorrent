@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,6 +30,7 @@
 #include "path.h"
 
 #include <algorithm>
+#include <ranges>
 
 #include <QDataStream>
 #include <QDir>
@@ -40,7 +41,9 @@
 #include <QStringView>
 
 #include "base/concepts/stringable.h"
-#include "base/global.h"
+#include "base/utils/fs.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 #if defined(Q_OS_WIN)
 const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseInsensitive;
@@ -78,39 +81,37 @@ Path::Path(const QString &pathStr)
 {
 }
 
-Path::Path(const std::string &pathStr)
-    : Path(QString::fromStdString(pathStr))
+Path::Path(const std::string_view pathStr)
+    : Path(QString::fromUtf8(pathStr.data(), pathStr.size()))
 {
 }
 
+// Returns true if the path is non-empty and all its components are valid
 bool Path::isValid() const
 {
-    // does not support UNC path
-
-    if (isEmpty())
+    // Reject empty paths
+    if (m_pathStr.isEmpty())
         return false;
 
-    // https://stackoverflow.com/a/31976060
-#if defined(Q_OS_WIN)
-    QStringView view = m_pathStr;
-    if (hasDriveLetter(view))
-    {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
-        view.slice(3);
-#else
-        view = view.sliced(3);
+    QStringView pathStrView = m_pathStr;
+
+#ifdef Q_OS_WIN
+    // Remove Windows drive letter prefix (e.g., "C:/") if present
+    if (hasDriveLetter(pathStrView))
+        pathStrView = pathStrView.sliced(3);
 #endif
+
+    // Split path into components and validate each one
+    for (const QStringView component : pathStrView.split(u'/', Qt::SkipEmptyParts))
+    {
+        if ((component == u".") || (component == u".."))
+            continue;
+
+        if (!Utils::Fs::isValidFileName(component))
+            return false;
     }
 
-    // \\37 is using base-8 number system
-    const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_s};
-    return !regex.matchView(view).hasMatch();
-#elif defined(Q_OS_MACOS)
-    const QRegularExpression regex {u"[\\0:]"_s};
-#else
-    const QRegularExpression regex {u"\\0"_s};
-#endif
-    return !m_pathStr.contains(regex);
+    return true;
 }
 
 bool Path::isEmpty() const
@@ -276,6 +277,16 @@ Path &Path::operator+=(const QStringView str)
     return *this;
 }
 
+Path::Iterator Path::begin() const
+{
+    return Iterator(*this);
+}
+
+Path::Iterator Path::end() const
+{
+    return Iterator(*this, {});
+}
+
 Path Path::commonPath(const Path &left, const Path &right)
 {
     if (left.isEmpty() || right.isEmpty())
@@ -302,12 +313,32 @@ Path Path::commonPath(const Path &left, const Path &right)
     return Path::createUnchecked(left.m_pathStr.first(commonPathSize));
 }
 
+Path Path::commonPath(const PathList &filePaths)
+{
+    if (filePaths.isEmpty())
+        return {};
+
+    Path commonPath = filePaths.at(0);
+    for (const Path &filePath : std::views::drop(filePaths, 1))
+    {
+        commonPath = Path::commonPath(commonPath, filePath);
+        if (commonPath.isEmpty())
+            return commonPath;
+    }
+
+    return commonPath;
+}
+
 Path Path::findRootFolder(const PathList &filePaths)
 {
+    // find the common first level path of all `filePaths`
+
     Path rootFolder;
     for (const Path &filePath : filePaths)
     {
-        const auto filePathElements = QStringView(filePath.m_pathStr).split(u'/');
+        Q_ASSERT(!filePath.m_pathStr.startsWith(u'/'));  // currently this function doesn't know how to handle absolute paths
+
+        const auto filePathElements = QStringView(filePath.m_pathStr).split(u'/', Qt::SkipEmptyParts);
         // if at least one file has no root folder, no common root folder exists
         if (filePathElements.count() <= 1)
             return {};
@@ -391,4 +422,86 @@ QDataStream &operator>>(QDataStream &in, Path &path)
 std::size_t qHash(const Path &key, const std::size_t seed)
 {
     return ::qHash(key.data(), seed);
+}
+
+Path::Iterator::Iterator(const Path &path)
+    : m_path {path}
+{
+    if (!m_path.m_pathStr.isEmpty())
+    {
+        m_itemsCount = m_path.m_pathStr.count(u'/');
+        if (!m_path.m_pathStr.startsWith(u'/'))
+            ++m_itemsCount;
+
+        qsizetype sepPos = 0;
+        for (qsizetype i = 0; i <= m_depth; ++i)
+            sepPos = m_path.m_pathStr.indexOf(u'/', (sepPos + 1));
+#ifdef Q_OS_WIN
+        if (hasDriveLetter(m_path.m_pathStr))
+            m_currentPath = Path::createUnchecked(m_path.m_pathStr.first(3));
+        else
+            m_currentPath = Path::createUnchecked((sepPos > 0) ? m_path.m_pathStr.first(sepPos) : m_path.m_pathStr);
+#else
+        m_currentPath = Path::createUnchecked((sepPos > 0) ? m_path.m_pathStr.first(sepPos) : m_path.m_pathStr);
+#endif
+    }
+}
+
+Path::Iterator::Iterator(const Path &path, EndIteratorTag)
+    : m_path {path}
+{
+    if (!m_path.m_pathStr.isEmpty())
+    {
+        m_itemsCount = m_path.m_pathStr.count(u'/');
+        if (!m_path.m_pathStr.startsWith(u'/'))
+            ++m_itemsCount;
+        m_depth = m_itemsCount;
+    }
+}
+
+Path::Iterator::reference Path::Iterator::operator*() const
+{
+    Q_ASSERT(m_depth < m_itemsCount);
+
+    return m_currentPath;
+}
+
+Path::Iterator::pointer Path::Iterator::operator->()
+{
+    Q_ASSERT(m_depth < m_itemsCount);
+
+    return &m_currentPath;
+}
+
+Path::Iterator &Path::Iterator::operator++()
+{
+    ++m_depth;
+    if (m_depth < m_itemsCount)
+    {
+        const qsizetype sepPos = m_path.m_pathStr.indexOf(u'/', (m_currentPath.m_pathStr.size() + 1));
+        m_currentPath = Path::createUnchecked((sepPos > 0) ? m_path.m_pathStr.first(sepPos) : m_path.m_pathStr);
+    }
+    else
+    {
+        m_currentPath = {};
+    }
+
+    return *this;
+}
+
+Path::Iterator Path::Iterator::operator++(int)
+{
+    Iterator tmp = *this;
+    ++(*this);
+    return tmp;
+}
+
+bool operator==(const Path::Iterator &a, const Path::Iterator &b)
+{
+    return (&a.m_path == &b.m_path) && (a.m_depth == b.m_depth);
+}
+
+bool operator!=(const Path::Iterator &a, const Path::Iterator &b)
+{
+    return !(a == b);
 }

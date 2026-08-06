@@ -43,6 +43,79 @@ test("Test filterInPlace()", () => {
     expect(filterInPlace([1, 2, 3, 4], (x => (x % 2) === 0))).toStrictEqual([2, 4]);
 });
 
+test("Test parseVersion()", () => {
+    const parseVersion = window.qBittorrent.Misc.parseVersion;
+
+    expect(parseVersion("")).toStrictEqual({ valid: false });
+    expect(parseVersion("1")).toStrictEqual({ valid: true, major: 1, minor: undefined, fix: undefined, patch: undefined });
+    expect(parseVersion("a")).toStrictEqual({ valid: true, major: "a", minor: undefined, fix: undefined, patch: undefined });
+    expect(parseVersion("ab")).toStrictEqual({ valid: true, major: "ab", minor: undefined, fix: undefined, patch: undefined });
+    expect(parseVersion("NaN")).toStrictEqual({ valid: true, major: "NaN", minor: undefined, fix: undefined, patch: undefined });
+    expect(parseVersion("1.2")).toStrictEqual({ valid: true, major: 1, minor: 2, fix: undefined, patch: undefined });
+    expect(parseVersion("1.ab")).toStrictEqual({ valid: true, major: 1, minor: "ab", fix: undefined, patch: undefined });
+    expect(parseVersion("1.2.3")).toStrictEqual({ valid: true, major: 1, minor: 2, fix: 3, patch: undefined });
+    expect(parseVersion("1.2.3.4")).toStrictEqual({ valid: true, major: 1, minor: 2, fix: 3, patch: 4 });
+    expect(parseVersion("a.b.c.d")).toStrictEqual({ valid: true, major: "a", minor: "b", fix: "c", patch: "d" });
+});
+
+test("Test compareVersions()", () => {
+    const cmp = (left, right, result) => {
+        const compareVersions = window.qBittorrent.Misc.compareVersions;
+        const parseVersion = window.qBittorrent.Misc.parseVersion;
+
+        if (result < 0) {
+            expect(compareVersions(left, right)).toBeLessThan(0);
+            expect(compareVersions(parseVersion(left), right)).toBeLessThan(0);
+            expect(compareVersions(left, parseVersion(right))).toBeLessThan(0);
+        }
+        else if (result === 0) {
+            expect(compareVersions(left, right)).toBe(0);
+            expect(compareVersions(parseVersion(left), right)).toBe(0);
+            expect(compareVersions(left, parseVersion(right))).toBe(0);
+        }
+        else {
+            expect(compareVersions(left, right)).toBeGreaterThan(0);
+            expect(compareVersions(parseVersion(left), right)).toBeGreaterThan(0);
+            expect(compareVersions(left, parseVersion(right))).toBeGreaterThan(0);
+        }
+    };
+
+    cmp("", "", 0);
+
+    cmp("1", "", -1);
+    cmp("", "1", 1);
+    cmp("1", "1", 0);
+
+    cmp("a", "", -1);
+    cmp("", "a", 1);
+    cmp("a", "a", 0);
+
+    cmp("NaN", "1", 1);
+    cmp("1", "NaN", -1);
+    cmp("NaN", "NaN", 0);
+
+    cmp("1", "2", -1);
+    cmp("2", "1", 1);
+
+    cmp("1", "1.1", -1);
+    cmp("1.1", "1", 1);
+    cmp("1.1", "1.1", 0);
+
+    cmp("1.1", "1.a", -1);
+    cmp("1.a", "1.1", 1);
+    cmp("1.a", "1.a", 0);
+
+    cmp("1.a", "1.ab", -1);
+    cmp("1.ab", "1.a", 1);
+    cmp("1.ab", "1.ab", 0);
+
+    cmp("1.2.3.4", "99.4.5", -1);
+    cmp("99.4.5", "1.2.3.4", 1);
+
+    cmp("1.2.3.4", "1.2.3.5", -1);
+    cmp("1.2.3.4", "1.2.3.4", 0);
+});
+
 test("Test toFixedPointString()", () => {
     const toFixedPointString = window.qBittorrent.Misc.toFixedPointString;
 

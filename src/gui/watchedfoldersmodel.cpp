@@ -90,10 +90,11 @@ bool WatchedFoldersModel::removeRows(const int row, const int count, const QMode
     beginRemoveRows(parent, firstRow, lastRow);
     for (int i = firstRow; i <= lastRow; ++i)
     {
-        const Path folderPath = m_watchedFolders.takeAt(i);
+        const Path &folderPath = m_watchedFolders.at(i);
         m_watchedFoldersOptions.remove(folderPath);
         m_deletedFolders.insert(folderPath);
     }
+    m_watchedFolders.remove(firstRow, count);
     endRemoveRows();
 
     return true;

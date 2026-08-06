@@ -70,6 +70,7 @@ public:
         TOT_UP,
         RELEVANCE,
         DOWNLOADING_PIECE,
+        CONTRIBUTION,
         IP_HIDDEN,
 
         COL_COUNT

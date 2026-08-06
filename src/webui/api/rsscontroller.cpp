@@ -199,6 +199,18 @@ void RSSController::renameRuleAction()
     setResult(QString());
 }
 
+void RSSController::cloneRuleAction()
+{
+    requireParams({u"sourceName"_s, u"cloneName"_s});
+
+    const QString sourceName {params()[u"sourceName"_s]};
+    const QString cloneName {params()[u"cloneName"_s]};
+
+    RSS::AutoDownloader::instance()->cloneRule(sourceName, cloneName);
+
+    setResult(QString());
+}
+
 void RSSController::removeRuleAction()
 {
     requireParams({u"ruleName"_s});

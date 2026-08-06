@@ -16,22 +16,22 @@ jobs:
       security-events: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
 
       - name: Setup python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "*"
 
       - name: Check files
-        uses: pre-commit/action@v3.0.1
+        uses: j178/prek-action@v2
 
       - name: Check doc
         env:
           pandoc_path: "${{ github.workspace }}/../pandoc"
-          pandoc_version: "3.8.3"
+          pandoc_version: "3.9.0.2"
         run: |
           # install pandoc
           curl \

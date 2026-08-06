@@ -71,6 +71,7 @@ private slots:
     void handleRuleCheckStateChange(QListWidgetItem *ruleItem);
     void handleFeedCheckStateChange(QListWidgetItem *feedItem);
     void displayRulesListMenu();
+    void cloneSelectedRule();
     void renameSelectedRule();
     void updateRuleDefinitionBox();
     void clearSelectedRuleDownloadedEpisodeList();

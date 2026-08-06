@@ -30,6 +30,13 @@
                     document.getElementById("urls").value = urls.join("\n");
             }
 
+            const clientData = window.parent.qBittorrent.ClientData;
+            const separateDialogCheckbox = document.getElementById("separateDialogPerTorrent");
+            separateDialogCheckbox.checked = clientData.get("add_torrent_separate_dialog_per_torrent") ?? false;
+            separateDialogCheckbox.addEventListener("change", (e) => {
+                clientData.set({ add_torrent_separate_dialog_per_torrent: e.target.checked }).catch(console.error);
+            });
+
             document.getElementById("submitButton").addEventListener("click", (e) => {
                 e.preventDefault();
 
@@ -37,19 +44,38 @@
                 if (urls.length === 0)
                     return;
 
-                for (const url of urls)
-                    window.parent.qBittorrent.Client.createAddTorrentWindow("QBT_TR(Magnet link)QBT_TR[CONTEXT=DownloadFromURLDialog]", url);
+                const addTorrentWindowEnabled = clientData.get("add_new_torrent_dialog_enabled") ?? true;
+                if (!addTorrentWindowEnabled) {
+                    fetch("api/v2/torrents/add", {
+                            method: "POST",
+                            body: new URLSearchParams({
+                                urls: urls.join("\n")
+                            })
+                        })
+                        .then((response) => {
+                            if (!response.ok)
+                                alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        })
+                        .catch((error) => {
+                            alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        })
+                        .finally(() => {
+                            window.parent.qBittorrent.Client.closeFrameWindow(window);
+                        });
+                    return;
+                }
+
+                const useSeparateDialogs = separateDialogCheckbox.checked || (urls.length === 1);
+                if (useSeparateDialogs) {
+                    for (const url of urls)
+                        window.parent.qBittorrent.Client.createAddTorrentWindow("QBT_TR(Magnet link)QBT_TR[CONTEXT=DownloadFromURLDialog]", url);
+                }
+                else {
+                    const title = "QBT_TR(Add %1 torrents)QBT_TR[CONTEXT=DownloadFromURLDialog]".replace("%1", urls.length);
+                    window.parent.qBittorrent.Client.createAddTorrentWindow(title, urls.join("\n"), undefined, { shared: true });
+                }
 
                 window.parent.qBittorrent.Client.closeFrameWindow(window);
-            });
-
-            window.addEventListener("keydown", (event) => {
-                switch (event.key) {
-                    case "Escape":
-                        event.preventDefault();
-                        window.parent.qBittorrent.Client.closeFrameWindow(window);
-                        break;
-                }
             });
         });
     </script>
@@ -62,8 +88,12 @@
         <h2 class="vcenter">QBT_TR(Add torrent links)QBT_TR[CONTEXT=DownloadFromURLDialog]</h2>
         <textarea id="urls" name="urls" rows="10" required style="width: 80%;" aria-label="QBT_TR(URLs)QBT_TR[CONTEXT=DownloadFromURLDialog]"></textarea>
         <p><i>QBT_TR(One link per line (HTTP links, Magnet links and info-hashes are supported))QBT_TR[CONTEXT=DownloadFromURLDialog]</i></p>
+        <div style="margin-top: 8px;">
+            <input type="checkbox" id="separateDialogPerTorrent">
+            <label for="separateDialogPerTorrent">QBT_TR(Open separate dialog for each torrent)QBT_TR[CONTEXT=DownloadFromURLDialog]</label>
+        </div>
         <div id="submitbutton" style="margin-top: 12px; text-align: center;">
-            <button type="submit" id="submitButton">QBT_TR(Download)QBT_TR[CONTEXT=DownloadFromURLDialog]</button>
+            <button type="submit" id="submitButton">QBT_TR(Continue)QBT_TR[CONTEXT=DownloadFromURLDialog]</button>
         </div>
     </div>
 </body>

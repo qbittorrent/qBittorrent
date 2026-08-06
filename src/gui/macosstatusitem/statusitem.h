@@ -39,6 +39,7 @@ namespace MacUtils
         ~StatusItem();
 
         void updateSpeed(int64_t downloadRate, int64_t uploadRate);
+        void setVisible(bool visible);
 
     private:
         struct Impl;

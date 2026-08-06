@@ -134,6 +134,8 @@ void CategoryFilterWidget::showMenu()
     menu->addSeparator();
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Start torrents")
         , this, &CategoryFilterWidget::actionStartTorrentsTriggered);
+    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start-forced"_s, u"media-playback-start"_s), tr("Force start torrents")
+        , this, &CategoryFilterWidget::actionForceStartTorrentsTriggered);
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Stop torrents")
         , this, &CategoryFilterWidget::actionStopTorrentsTriggered);
     menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("Remove torrents")

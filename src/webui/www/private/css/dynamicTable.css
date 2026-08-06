@@ -150,15 +150,21 @@
     padding-left: 25px;
 }
 
-div:has(> div.dynamicTableFixedHeaderDiv):not(.invisible) {
+div:has(> div.dynamicTableDiv):not(.invisible) {
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
 .dynamicTableFixedHeaderDiv {
-    flex-shrink: 0;
-    overflow: hidden;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* opaque background on the header table so body rows don't show through when scrolling under it */
+.dynamicTableFixedHeaderDiv table {
+    background-color: var(--color-background-primary);
 }
 
 #propertiesPanel .dynamicTableFixedHeaderDiv,

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -203,7 +203,7 @@ namespace BitTorrent
         virtual bool hasTag(const Tag &tag) const = 0;
         virtual bool addTag(const Tag &tag) = 0;
         virtual bool removeTag(const Tag &tag) = 0;
-        virtual void removeAllTags() = 0;
+        virtual void clearTags() = 0;
 
         virtual int piecesCount() const = 0;
         virtual int piecesHave() const = 0;
@@ -219,18 +219,9 @@ namespace BitTorrent
         virtual qlonglong timeSinceActivity() const = 0;
 
         // Share limits
-        virtual qreal ratioLimit() const = 0;
-        virtual void setRatioLimit(qreal limit) = 0;
-        virtual int seedingTimeLimit() const = 0;
-        virtual void setSeedingTimeLimit(int limit) = 0;
-        virtual int inactiveSeedingTimeLimit() const = 0;
-        virtual void setInactiveSeedingTimeLimit(int limit) = 0;
-        virtual ShareLimitAction shareLimitAction() const = 0;
-        virtual void setShareLimitAction(ShareLimitAction action) = 0;
-        virtual qreal effectiveRatioLimit() const = 0;
-        virtual int effectiveSeedingTimeLimit() const = 0;
-        virtual int effectiveInactiveSeedingTimeLimit() const = 0;
-        virtual ShareLimitAction effectiveShareLimitAction() const = 0;
+        virtual const ShareLimits &shareLimits() const = 0;
+        virtual void setShareLimits(ShareLimits shareLimits) = 0;
+        virtual ShareLimits effectiveShareLimits() const = 0;
 
         virtual PathList filePaths() const = 0;
         virtual PathList actualFilePaths() const = 0;

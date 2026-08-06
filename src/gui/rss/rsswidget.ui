@@ -121,11 +121,7 @@
           <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <widget class="ArticleListWidget" name="articleListWidget"/>
-         <widget class="HtmlBrowser" name="textBrowser">
-          <property name="openExternalLinks">
-           <bool>true</bool>
-          </property>
-         </widget>
+         <widget class="HtmlBrowser" name="textBrowser"/>
         </widget>
        </item>
       </layout>

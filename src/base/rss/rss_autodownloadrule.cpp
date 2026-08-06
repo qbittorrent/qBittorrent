@@ -187,8 +187,12 @@ QString computeEpisodeName(const QString &article)
         if (cap.isEmpty())
             continue;
 
-        ret.append(cap);
+        bool isInt = false;
+        const int x = cap.toInt(&isInt);
+
+        ret.append(isInt ? QString::number(x) : cap);
     }
+
     return ret.join(u'x');
 }
 

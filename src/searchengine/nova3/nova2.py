@@ -1,4 +1,4 @@
-# VERSION: 1.52
+# VERSION: 1.53
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -32,6 +32,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import importlib
+import multiprocessing as MP
 import pathlib
 import sys
 import traceback
@@ -41,7 +42,6 @@ from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from enum import Enum
 from glob import glob
-from multiprocessing import Pool, cpu_count
 from os import path
 from typing import Optional
 
@@ -57,7 +57,7 @@ helpers.enable_socks_proxy(True)
 
 THREADED: bool = True
 try:
-    MAX_THREADS: int = cpu_count()
+    MAX_THREADS: int = MP.cpu_count()
 except NotImplementedError:
     MAX_THREADS = 1  # pyright: ignore[reportConstantRedefinition]
 
@@ -250,7 +250,8 @@ if __name__ == "__main__":
         search_success = False
         if THREADED:
             processes = max(min(len(engines), MAX_THREADS), 1)
-            with Pool(processes) as pool:
+            # cannot use `forkserver` as it will interfere with `helpers.enable_socks_proxy()`
+            with MP.get_context("spawn").Pool(processes) as pool:
                 search_success = all(pool.map(run_search, params))
         else:
             search_success = all(map(run_search, params))

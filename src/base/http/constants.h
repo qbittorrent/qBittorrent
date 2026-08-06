@@ -35,15 +35,14 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace Http
 {
-    inline const QString METHOD_GET = u"GET"_s;
-    inline const QString METHOD_POST = u"POST"_s;
-
+    inline const QString HEADER_ACCEPT_RANGES = u"accept-ranges"_s;
     inline const QString HEADER_AUTHORIZATION = u"authorization"_s;
     inline const QString HEADER_CACHE_CONTROL = u"cache-control"_s;
     inline const QString HEADER_CONNECTION = u"connection"_s;
     inline const QString HEADER_CONTENT_DISPOSITION = u"content-disposition"_s;
     inline const QString HEADER_CONTENT_ENCODING = u"content-encoding"_s;
     inline const QString HEADER_CONTENT_LENGTH = u"content-length"_s;
+    inline const QString HEADER_CONTENT_RANGE = u"content-range"_s;
     inline const QString HEADER_CONTENT_SECURITY_POLICY = u"content-security-policy"_s;
     inline const QString HEADER_CONTENT_TYPE = u"content-type"_s;
     inline const QString HEADER_COOKIE = u"cookie"_s;
@@ -51,6 +50,7 @@ namespace Http
     inline const QString HEADER_DATE = u"date"_s;
     inline const QString HEADER_HOST = u"host"_s;
     inline const QString HEADER_ORIGIN = u"origin"_s;
+    inline const QString HEADER_RANGE = u"range"_s;
     inline const QString HEADER_REFERER = u"referer"_s;
     inline const QString HEADER_REFERRER_POLICY = u"referrer-policy"_s;
     inline const QString HEADER_SET_COOKIE = u"set-cookie"_s;

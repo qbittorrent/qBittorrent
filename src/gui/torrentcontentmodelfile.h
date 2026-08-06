@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -38,8 +39,7 @@ namespace BitTorrent
 class TorrentContentModelFile final : public TorrentContentModelItem
 {
 public:
-    TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
-                            TorrentContentModelFolder *parent, int fileIndex);
+    TorrentContentModelFile(const QString &fileName, qulonglong fileSize, int fileIndex);
 
     int fileIndex() const;
     void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) override;

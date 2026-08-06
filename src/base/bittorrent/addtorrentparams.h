@@ -63,15 +63,12 @@ namespace BitTorrent
         std::optional<Torrent::StopCondition> stopCondition;
         PathList filePaths; // used if TorrentInfo is set
         QList<DownloadPriority> filePriorities; // used if TorrentInfo is set
-        bool skipChecking = false;
+        bool seedMode = false;
         std::optional<BitTorrent::TorrentContentLayout> contentLayout;
         std::optional<bool> useAutoTMM;
         int uploadLimit = -1;
         int downloadLimit = -1;
-        int seedingTimeLimit = DEFAULT_SEEDING_TIME_LIMIT;
-        int inactiveSeedingTimeLimit = DEFAULT_SEEDING_TIME_LIMIT;
-        qreal ratioLimit = DEFAULT_RATIO_LIMIT;
-        ShareLimitAction shareLimitAction = ShareLimitAction::Default;
+        ShareLimits shareLimits;
         SSLParameters sslParameters;
 
         friend bool operator==(const AddTorrentParams &lhs, const AddTorrentParams &rhs) = default;

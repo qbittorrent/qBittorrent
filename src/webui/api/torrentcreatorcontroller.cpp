@@ -37,6 +37,7 @@
 #include "base/global.h"
 #include "base/bittorrent/torrentcreationmanager.h"
 #include "base/preferences.h"
+#include "base/utils/datetime.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
 #include "apierror.h"
@@ -44,6 +45,7 @@
 const QString KEY_COMMENT = u"comment"_s;
 const QString KEY_ERROR_MESSAGE = u"errorMessage"_s;
 const QString KEY_FORMAT = u"format"_s;
+const QString KEY_IGNORE_DOTFILES = u"ignoreDotfiles"_s;
 const QString KEY_OPTIMIZE_ALIGNMENT = u"optimizeAlignment"_s;
 const QString KEY_PADDED_FILE_SIZE_LIMIT = u"paddedFileSizeLimit"_s;
 const QString KEY_PIECE_SIZE = u"pieceSize"_s;
@@ -130,6 +132,7 @@ void TorrentCreatorController::addTaskAction()
 
     const BitTorrent::TorrentCreatorParams createTorrentParams
     {
+        .ignoreDotfiles = parseBool(params()[KEY_IGNORE_DOTFILES]).value_or(true),
         .isPrivate = parseBool(params()[KEY_PRIVATE]).value_or(false),
 #ifdef QBT_USES_LIBTORRENT2
         .torrentFormat = parseTorrentFormat(params()[KEY_FORMAT].toLower()),
@@ -146,9 +149,9 @@ void TorrentCreatorController::addTaskAction()
         .urlSeeds = parseUrls(params()[KEY_URL_SEEDS])
     };
 
-    bool const startSeeding = parseBool(params()[u"startSeeding"_s]).value_or(createTorrentParams.torrentFilePath.isEmpty());
+    const bool startSeeding = parseBool(params()[u"startSeeding"_s]).value_or(createTorrentParams.torrentFilePath.isEmpty());
 
-    auto task = m_torrentCreationManager->createTask(createTorrentParams, startSeeding);
+    const auto task = m_torrentCreationManager->createTask(createTorrentParams, startSeeding);
     if (!task)
         throw APIError(APIErrorType::Conflict, tr("Too many active tasks"));
 
@@ -173,8 +176,9 @@ void TorrentCreatorController::statusAction()
             {KEY_TASK_ID, task->id()},
             {KEY_SOURCE_PATH, task->params().sourcePath.toString()},
             {KEY_PIECE_SIZE, task->params().pieceSize},
+            {KEY_IGNORE_DOTFILES, task->params().ignoreDotfiles},
             {KEY_PRIVATE, task->params().isPrivate},
-            {KEY_TIME_ADDED, task->timeAdded().toString()},
+            {KEY_TIME_ADDED, Utils::DateTime::toSecsSinceEpoch(task->timeAdded())},
 #ifdef QBT_USES_LIBTORRENT2
             {KEY_FORMAT, torrentFormatToString(task->params().torrentFormat)},
 #else
@@ -200,10 +204,10 @@ void TorrentCreatorController::statusAction()
             taskJson[KEY_URL_SEEDS] = QJsonArray::fromStringList(task->params().urlSeeds);
 
         if (const QDateTime timeStarted = task->timeStarted(); !timeStarted.isNull())
-            taskJson[KEY_TIME_STARTED] = timeStarted.toString();
+            taskJson[KEY_TIME_STARTED] = Utils::DateTime::toSecsSinceEpoch(timeStarted);
 
-        if (const QDateTime timeFinished = task->timeFinished(); !task->timeFinished().isNull())
-            taskJson[KEY_TIME_FINISHED] = timeFinished.toString();
+        if (const QDateTime timeFinished = task->timeFinished(); !timeFinished.isNull())
+            taskJson[KEY_TIME_FINISHED] = Utils::DateTime::toSecsSinceEpoch(timeFinished);
 
         if (task->isFinished())
         {

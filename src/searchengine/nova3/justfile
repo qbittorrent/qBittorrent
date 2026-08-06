@@ -22,7 +22,7 @@ check files=PY_FILES: fetch_aux
 fetch_aux:
     #!/usr/bin/sh
     if [ ! -f 'socks.pyi' ]; then
-        curl -L -o socks.pyi "https://github.com/python/typeshed/raw/refs/heads/main/stubs/PySocks/socks.pyi"
+        curl -L -o socks.pyi "https://raw.githubusercontent.com/python/typeshed/refs/heads/main/stubs/PySocks/socks.pyi"
     fi
 
 # Apply formatting

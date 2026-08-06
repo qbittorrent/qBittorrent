@@ -489,6 +489,29 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="statusBarGroup">
+              <property name="title">
+               <string>Status Bar</string>
+              </property>
+              <layout class="QVBoxLayout" name="statusBarGroupLayout">
+               <item>
+                <widget class="QCheckBox" name="checkBoxFreeDiskSpaceStatusBar">
+                 <property name="text">
+                  <string>Show free disk space</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxExternalIPStatusBar">
+                 <property name="text">
+                  <string>Show external IP</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="systrayBox">
               <property name="title">
                <string>Desktop</string>
@@ -615,12 +638,7 @@
                       </item>
                       <item>
                        <property name="text">
-                        <string>Monochrome (for dark theme)</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Monochrome (for light theme)</string>
+                        <string>Monochrome</string>
                        </property>
                       </item>
                      </widget>
@@ -699,7 +717,23 @@
                      <item>
                       <widget class="QLabel" name="labelSetAssoc">
                        <property name="text">
-                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set qBittorrent as default program for .torrent files and/or Magnet links&lt;br/&gt;you can use &lt;span style=&quot; font-weight:600;&quot;&gt;Default Programs&lt;/span&gt; dialog from &lt;span style=&quot; font-weight:600;&quot;&gt;Control Panel&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        <string>To set qBittorrent as the default program for .torrent files and Magnet links, click the button below and add them manually:</string>
+                       </property>
+                       <property name="wordWrap">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="buttonOpenDefaultApps">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>Open Windows Default Apps settings page</string>
                        </property>
                       </widget>
                      </item>
@@ -720,6 +754,13 @@
                 <widget class="QCheckBox" name="checkShowSpeedInDock">
                  <property name="text">
                   <string>Show speed in Dock</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkShowMenuBarIcon">
+                 <property name="text">
+                  <string>Show qBittorrent in menu bar</string>
                  </property>
                 </widget>
                </item>
@@ -884,20 +925,6 @@
                 </layout>
                </item>
               </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxFreeDiskSpaceStatusBar">
-              <property name="text">
-               <string>Show free disk space in status bar</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxExternalIPStatusBar">
-              <property name="text">
-               <string>Show external IP in status bar</string>
-              </property>
              </widget>
             </item>
             <item>
@@ -1125,12 +1152,48 @@
                 </widget>
                </item>
                <item>
+                <widget class="QGroupBox" name="backupTorrentFileGroupBox">
+                 <property name="title">
+                  <string>Store backup .torrent file</string>
+                 </property>
+                 <layout class="QGridLayout" name="backupTorrentFileLayout">
+                  <item row="0" column="0">
+                   <widget class="QCheckBox" name="backupDirCheckBox">
+                    <property name="text">
+                     <string>Store backup in:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="FileSystemPathLineEdit" name="backupDirPathEdit" native="true"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QCheckBox" name="finishedBackupDirCheckBox">
+                    <property name="text">
+                     <string>When torrent finished move backup to:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="FileSystemPathLineEdit" name="finishedBackupDirPathEdit" native="true"/>
+                  </item>
+                  <item row="2" column="0" colspan="2">
+                   <widget class="QCheckBox" name="removeBackupTorrentFileCheckBox">
+                    <property name="text">
+                     <string>Remove backup when removing torrent</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="deleteTorrentBox">
                  <property name="toolTip">
                   <string>Whether the .torrent file should be deleted after adding it</string>
                  </property>
                  <property name="title">
-                  <string>De&amp;lete .torrent files afterwards </string>
+                  <string>De&amp;lete .torrent file afterwards </string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -1420,26 +1483,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                  <item row="1" column="1">
                   <widget class="FileSystemPathLineEdit" name="textDownloadPath" native="true"/>
                  </item>
-                 <item row="2" column="0">
-                  <widget class="QCheckBox" name="checkExportDir">
-                   <property name="text">
-                    <string>Copy .torrent files to:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QCheckBox" name="checkExportDirFin">
-                   <property name="text">
-                    <string>Copy .torrent files for finished downloads to:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="FileSystemPathLineEdit" name="textExportDirFin" native="true"/>
-                 </item>
                 </layout>
                </item>
               </layout>
@@ -1631,20 +1674,47 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   </widget>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QLineEdit" name="lineEditSmtpServer">
+                  <widget class="QLineEdit" name="lineEditSMTPServer">
                    <property name="placeholderText">
                     <string notr="true">smtp.example.com:465</string>
                    </property>
                   </widget>
                  </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="labelSMTPEncryption">
+                   <property name="text">
+                    <string>SMTP encryption:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <layout class="QHBoxLayout" name="layoutSMTPEncryption">
+                   <item>
+                    <widget class="QComboBox" name="comboSMTPEncryption"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="labelSMTPEncryptionPortInfo">
+                     <property name="text">
+                      <string>Default port: </string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSMTPEncryptionSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
                 </layout>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkSmtpSSL">
-                 <property name="text">
-                  <string>This server requires a secure connection (SSL)</string>
-                 </property>
-                </widget>
                </item>
                <item>
                 <widget class="QGroupBox" name="groupMailNotifAuth">
@@ -3173,8 +3243,42 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="label">
+               <item row="3" column="0" colspan="2">
+                <layout class="QHBoxLayout" name="layoutShareLimitsMode">
+                 <item>
+                  <widget class="QRadioButton" name="radioButtonShareLimitsModeAny">
+                   <property name="text">
+                    <string>Any of the above</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioButtonShareLimitsModeAll">
+                   <property name="text">
+                    <string>All the above</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="spacerShareLimitsMode">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="labelRatioLimitAct">
                  <property name="text">
                   <string>then</string>
                  </property>
@@ -3183,7 +3287,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
+               <item row="4" column="1">
                 <widget class="QComboBox" name="comboRatioLimitAct">
                  <property name="enabled">
                   <bool>false</bool>
@@ -3974,6 +4078,40 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     </item>
                     <item>
                      <spacer name="horizontalSpacer_11">
+                      <property name="orientation">
+                       <enum>Qt::Orientation::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="layoutWebUISessionsCountLimit">
+                    <item>
+                     <widget class="QLabel" name="labelWebUISessionsCountLimit">
+                      <property name="text">
+                       <string>Sessions count limit:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="spinBoxWebUISessionsCountLimit">
+                      <property name="specialValueText">
+                       <string>Unlimited</string>
+                      </property>
+                      <property name="maximum">
+                       <number>2147483647</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="spacerWebUISessionsCountLimit">
                       <property name="orientation">
                        <enum>Qt::Orientation::Horizontal</enum>
                       </property>

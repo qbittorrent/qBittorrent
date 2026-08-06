@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2019  Prince Gupta <jagannatharjun11@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -69,6 +69,7 @@ public:
     QByteArray readStyleSheet() override;
     QColor getColor(const QString &colorId, ColorMode colorMode) const override;
     Path getIconPath(const QString &iconId, ColorMode colorMode) const override;
+    Path getDefaultIconPath(const QString &iconId, ColorMode colorMode) const;
 
 private:
     void loadColors();

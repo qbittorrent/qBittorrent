@@ -28,11 +28,15 @@
 
 #pragma once
 
+#include <chrono>
+
 #include <QObject>
 
 #include "base/pathfwd.h"
 
-class QtLocalPeer;
+using namespace std::chrono_literals;
+
+class LocalPeer;
 
 class ApplicationInstanceManager final : public QObject
 {
@@ -45,12 +49,12 @@ public:
     bool isFirstInstance() const;
 
 public slots:
-    bool sendMessage(const QString &message, int timeout = 5000);
+    bool sendMessage(const QString &message, std::chrono::milliseconds timeout = 5000ms);
 
 signals:
     void messageReceived(const QString &message);
 
 private:
-    QtLocalPeer *m_peer = nullptr;
+    LocalPeer *m_peer = nullptr;
     const bool m_isFirstInstance;
 };

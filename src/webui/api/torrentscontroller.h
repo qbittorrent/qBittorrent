@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -118,6 +118,7 @@ private slots:
     void fetchMetadataAction();
     void parseMetadataAction();
     void saveMetadataAction();
+    void downloadFileAction();
 
 private:
     void onDownloadFinished(const Net::DownloadResult &result);
@@ -129,4 +130,5 @@ private:
     QHash<QString, BitTorrent::InfoHash> m_torrentSourceCache;
     QHash<BitTorrent::TorrentID, BitTorrent::TorrentDescriptor> m_torrentMetadataCache;
     QSet<QString> m_requestedTorrentSource;
+    QSet<QString> m_invalidTorrentSource;
 };

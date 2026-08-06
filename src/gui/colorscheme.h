@@ -36,7 +36,7 @@ inline namespace ColorSchemeNS
 
     enum class ColorScheme
     {
-        System ,
+        System,
         Light,
         Dark
     };

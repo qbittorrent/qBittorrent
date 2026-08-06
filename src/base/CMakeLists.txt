@@ -5,8 +5,6 @@ add_library(qbt_base STATIC
     algorithm.h
     applicationcomponent.h
     asyncfilestorage.h
-    bittorrent/abstractfilestorage.h
-    bittorrent/addtorrenterror.h
     bittorrent/addtorrentparams.h
     bittorrent/announcetimepoint.h
     bittorrent/bandwidthscheduler.h
@@ -66,12 +64,14 @@ add_library(qbt_base STATIC
     http/httperror.h
     http/irequesthandler.h
     http/request.h
-    http/response.h
     http/requestparser.h
-    http/responsegenerator.h
+    http/response.h
+    http/responsewriter.h
+    http/responsewriterimpl.h
     http/server.h
     indexrange.h
     interfaces/iapplication.h
+    keyvaluedatastorage.h
     logger.h
     net/dnsupdater.h
     net/downloadhandlerimpl.h
@@ -80,8 +80,10 @@ add_library(qbt_base STATIC
     net/geoipmanager.h
     net/portforwarder.h
     net/proxyconfigurationmanager.h
+    net/proxytype.h
     net/reverseresolution.h
-    net/smtp.h
+    net/smtpclient.h
+    net/smtpencryptiontype.h
     orderedset.h
     path.h
     pathfwd.h
@@ -115,6 +117,7 @@ add_library(qbt_base STATIC
     utils/foreignapps.h
     utils/fs.h
     utils/gzip.h
+    utils/hashvalue.h
     utils/io.h
     utils/misc.h
     utils/net.h
@@ -132,7 +135,6 @@ add_library(qbt_base STATIC
     addtorrentmanager.cpp
     applicationcomponent.cpp
     asyncfilestorage.cpp
-    bittorrent/abstractfilestorage.cpp
     bittorrent/addtorrentparams.cpp
     bittorrent/bandwidthscheduler.cpp
     bittorrent/bencoderesumedatastorage.cpp
@@ -171,8 +173,9 @@ add_library(qbt_base STATIC
     http/connection.cpp
     http/httperror.cpp
     http/requestparser.cpp
-    http/responsegenerator.cpp
+    http/responsewriterimpl.cpp
     http/server.cpp
+    keyvaluedatastorage.cpp
     logger.cpp
     net/dnsupdater.cpp
     net/downloadhandlerimpl.cpp
@@ -182,7 +185,7 @@ add_library(qbt_base STATIC
     net/portforwarder.cpp
     net/proxyconfigurationmanager.cpp
     net/reverseresolution.cpp
-    net/smtp.cpp
+    net/smtpclient.cpp
     path.cpp
     preferences.cpp
     profile.cpp
@@ -229,7 +232,9 @@ target_link_libraries(qbt_base
     PRIVATE
         OpenSSL::Crypto
         OpenSSL::SSL
-        ZLIB::ZLIB
+        # find whatever zlib target that exists while being compatible with both
+        # FindZLIB (from cmake) and zlib own scripts
+        $<IF:$<TARGET_EXISTS:ZLIB::ZLIB>,ZLIB::ZLIB,ZLIB::ZLIBSTATIC>
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
         Qt::Core
@@ -258,6 +263,10 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
         target_compile_definitions(qbt_base PUBLIC QBT_USES_GETRANDOM)
     endif()
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_sources(qbt_base PRIVATE
+        utils/reg.h
+        utils/reg.cpp
+    )
     target_link_libraries(qbt_base PRIVATE iphlpapi powrprof)
 endif()
 
@@ -271,4 +280,29 @@ endif()
 
 if (DBUS)
     target_link_libraries(qbt_base PUBLIC Qt::DBus)
+endif()
+
+if (PLUGINS)
+    add_subdirectory(3rdparty/lua)
+    set_target_properties(qbt_lua PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_lua,INTERFACE_INCLUDE_DIRECTORIES>)
+
+    add_subdirectory(3rdparty/luabridge)
+    set_target_properties(qbt_luabridge PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_luabridge,INTERFACE_INCLUDE_DIRECTORIES>)
+
+    target_compile_definitions(qbt_base PUBLIC ENABLE_PLUGINS)
+    target_link_libraries(qbt_base PRIVATE qbt_lua qbt_luabridge)
+
+    target_sources(qbt_base PRIVATE
+            plugins/luaclasses.h
+            plugins/luaclasses.cpp
+            plugins/luafunctions.h
+            plugins/luafunctions.cpp
+            plugins/luanamespace.h
+            plugins/luastack.h
+            plugins/plugin.h
+            plugins/plugin.cpp
+            plugins/pluginsengine.h
+            plugins/pluginsengine.cpp
+            plugins/pluginversion.h
+    )
 endif()

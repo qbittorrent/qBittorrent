@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2013  Mladen Milinkovic <max@smoothware.net>
  *
  * This program is free software; you can redistribute it and/or
@@ -37,9 +38,10 @@
 #include <QScrollBar>
 #include <QStyle>
 
-#include "base/global.h"
 #include "base/path.h"
 #include "base/profile.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 HtmlBrowser::HtmlBrowser(QWidget *parent)
     : QTextBrowser(parent)
@@ -48,7 +50,7 @@ HtmlBrowser::HtmlBrowser(QWidget *parent)
     m_diskCache = new QNetworkDiskCache(this);
     m_diskCache->setCacheDirectory((specialFolderLocation(SpecialFolder::Cache) / Path(u"rss"_s)).data());
     m_diskCache->setMaximumCacheSize(50 * 1024 * 1024);
-    qDebug() << "HtmlBrowser  cache path:" << m_diskCache->cacheDirectory() << " max size:" << m_diskCache->maximumCacheSize() / 1024 / 1024 << "MB";
+    qDebug() << "HtmlBrowser cache path:" << m_diskCache->cacheDirectory() << " max size:" << m_diskCache->maximumCacheSize() / 1024 / 1024 << "MB";
     m_netManager->setCache(m_diskCache);
 
     connect(m_netManager, &QNetworkAccessManager::finished, this, &HtmlBrowser::resourceLoaded);
@@ -58,7 +60,7 @@ QVariant HtmlBrowser::loadResource(int type, const QUrl &name)
 {
     if (type == QTextDocument::ImageResource)
     {
-        QUrl url(name);
+        QUrl url {name};
         if (url.scheme().isEmpty())
             url.setScheme(u"http"_s);
 
@@ -75,7 +77,7 @@ QVariant HtmlBrowser::loadResource(int type, const QUrl &name)
         {
             m_activeRequests.insert(url, true);
             qDebug() << "HtmlBrowser::loadResource() get " << url.toString();
-            QNetworkRequest req(url);
+            QNetworkRequest req {url};
             req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
             m_netManager->get(req);
         }
@@ -117,8 +119,8 @@ void HtmlBrowser::resourceLoaded(QNetworkReply *reply)
         m_diskCache->insert(dev);
     }
     // Refresh the document display and keep scrollbars where they are
-    int sx = horizontalScrollBar()->value();
-    int sy = verticalScrollBar()->value();
+    const int sx = horizontalScrollBar()->value();
+    const int sy = verticalScrollBar()->value();
     document()->setHtml(document()->toHtml());
     horizontalScrollBar()->setValue(sx);
     verticalScrollBar()->setValue(sy);
