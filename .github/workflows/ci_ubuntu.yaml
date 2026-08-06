@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: write
-      packages: write
       security-events: write
 
     strategy:
@@ -215,20 +214,3 @@ jobs:
         with:
           name: qBittorrent-CI_Ubuntu-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libtorrent.version }}_Qt-${{ matrix.qt_version }}
           path: upload
-
-      - name: Build and push Docker image
-        run: |
-          IMAGE_NAME="ghcr.io/$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')"
-          MATRIX_TAG="lt${{ matrix.libtorrent.version }}-qt${{ matrix.qt_version }}-${{ matrix.qbt_gui == 'GUI=ON' && 'gui' || 'nox' }}"
-
-          cp upload/qbittorrent-CI_Ubuntu_x86_64.AppImage qbittorrent.AppImage
-
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
-          docker build \
-            -t "${IMAGE_NAME}:${{ github.sha }}-${MATRIX_TAG}" \
-            .
-          docker push "${IMAGE_NAME}:${{ github.sha }}-${MATRIX_TAG}"
-          if [ "${{ github.ref }}" = "refs/heads/master" ]; then
-            docker tag "${IMAGE_NAME}:${{ github.sha }}-${MATRIX_TAG}" "${IMAGE_NAME}:latest-${MATRIX_TAG}"
-            docker push "${IMAGE_NAME}:latest-${MATRIX_TAG}"
-          fi
