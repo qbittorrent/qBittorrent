@@ -117,6 +117,7 @@ namespace LuaFunctions
 
         const QString exe = args.takeFirst();
         QProcess proc;
+        proc.setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
         proc.setProgram(exe);
         proc.setArguments(args);
 
