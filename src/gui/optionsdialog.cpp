@@ -1898,7 +1898,7 @@ void OptionsDialog::adjustProxyOptions()
 
         m_ui->checkProxyBitTorrent->setEnabled(true);
         m_ui->checkProxyPeerConnections->setEnabled(true);
-        m_ui->checkProxySendHostInConnect->setEnabled(true);
+        m_ui->checkProxySendHostInConnect->setEnabled(currentProxyType == Net::ProxyType::HTTP);
 
         if (currentProxyType == Net::ProxyType::SOCKS4)
         {
