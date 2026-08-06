@@ -211,6 +211,36 @@ private slots:
         QCOMPARE(plan.renames.size(), 1);
         QCOMPARE(plan.renames.at(0).to, Path(u"movie a19f83c275d1/movie.mkv"_s));
     }
+
+    void testNoSubfolderPlanIsRootlessWrapNotFolderRename() const
+    {
+        // NoSubfolder conversion uses scheduleRenameJob with an empty old root.
+        // That must not be treated as a real folder rename event (no folderRenamed("")).
+        // Successful moves are reported as individual file renames; layout finalizes only after
+        // the full job succeeds (finishUniqueSubfolderConversion), not in the plan itself.
+        const PathList current {Path(u"CD1/movie.mkv"_s), Path(u"CD2/movie.mkv"_s)};
+        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
+                current, sampleId, u"Show"_s, TorrentContentLayout::NoSubfolder);
+
+        QVERIFY(!plan.blocked);
+        QVERIFY(plan.folderRenameOldRoot.isEmpty());
+        QVERIFY(!plan.isFolderRename());
+        QCOMPARE(plan.renames.size(), 2);
+        QVERIFY(!plan.finalizeOnly);
+
+        // After applying renames, every path is under the unique folder (job success path).
+        PathList after = current;
+        for (const UniqueSubfolderRename &item : plan.renames)
+            after[item.fileIndex] = item.to;
+        for (const Path &path : after)
+            QVERIFY(path.hasAncestor(plan.uniqueRoot));
+
+        // Contrast: Subfolder has a real old root and uses folderRenamed(old, new).
+        const UniqueSubfolderMigrationPlan folderPlan = makeUniqueSubfolderMigrationPlan(
+                {Path(u"Show/ep.mkv"_s)}, sampleId, u"Show"_s, TorrentContentLayout::Subfolder);
+        QVERIFY(folderPlan.isFolderRename());
+        QVERIFY(!folderPlan.folderRenameOldRoot.isEmpty());
+    }
 };
 
 QTEST_APPLESS_MAIN(TestTopLevelPayload)

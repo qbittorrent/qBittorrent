@@ -320,6 +320,7 @@ namespace BitTorrent
                 , const QList<QPair<int, Path>> &fileRenames, bool uniqueSubfolderConversion = false);
         void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath) override;
         void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath, bool uniqueSubfolderConversion);
+        void completeRenameJob(const FolderRenameInfo &folderRenameInfo);
         void finishUniqueSubfolderConversion(bool success, const QList<int> &failedFileIndexes);
 
         Path makeActualPath(int index, const Path &path) const;
