@@ -31,6 +31,7 @@
 #include <algorithm>
 
 #include <QCoreApplication>
+#include <QSet>
 
 #include "base/global.h"
 #include "base/utils/fs.h"
@@ -109,16 +110,16 @@ namespace
         if (base.endsWith(tag))
             base.chop(tag.size());
 
-        return base;
-    }
+        // Match Subfolder naming for single-file torrents: folder uses name without extension
+        // (e.g. movie.mkv → "movie <hash>/movie.mkv"). Also keeps applyUniqueSubfolderLayout idempotent
+        // when paths are already under that folder.
+        if (filePaths.size() == 1)
+            base = Path(base).removedExtension().toString();
 
-    Path payloadRelativePath(const Path &path)
-    {
-        const QString s = path.data();
-        const qsizetype slash = s.indexOf(u'/');
-        if (slash < 0)
-            return path;
-        return Path(s.sliced(slash + 1));
+        if (base.isEmpty())
+            base = u"Torrent"_s;
+
+        return base;
     }
 
     bool isUnderUniqueRoot(const Path &path, const Path &uniqueRoot)
@@ -126,30 +127,71 @@ namespace
         return (path == uniqueRoot) || path.hasAncestor(uniqueRoot);
     }
 
-    // Map one path into uniqueRoot according to the torrent's current content layout.
-    Path mapPathIntoUniqueRoot(const Path &path, const Path &uniqueRoot, const TorrentContentLayout layout)
+    Path stripPathPrefix(const Path &path, const Path &prefix)
     {
-        if (isUnderUniqueRoot(path, uniqueRoot))
-            return path;
+        if (path == prefix)
+            return {};
 
-        // NoSubfolder (flat): keep the full relative path under the unique folder.
-        if (layout == TorrentContentLayout::NoSubfolder)
-            return uniqueRoot / path;
-
-        // Original / Subfolder: replace the existing top-level folder (if any).
-        const Path first = path.rootItem();
-        if (path == first)
-            return uniqueRoot / path;
-        return uniqueRoot / payloadRelativePath(path);
+        const QString pathStr = path.data();
+        const QString prefixStr = prefix.data();
+        if (pathStr.startsWith(prefixStr + u'/'))
+            return Path(pathStr.sliced(prefixStr.size() + 1));
+        return path;
     }
 
+    // Map paths into uniqueRoot without blindly dropping the first path component.
+    // - NoSubfolder: prepend uniqueRoot to the complete path.
+    // - Original/Subfolder: among paths not already under uniqueRoot, if they share one
+    //   top-level folder, replace that folder; otherwise prepend uniqueRoot to full paths.
+    // - Paths already under uniqueRoot are left unchanged.
     PathList mapPathsIntoUniqueRoot(const PathList &filePaths, const Path &uniqueRoot
             , const TorrentContentLayout layout)
     {
-        PathList out;
-        out.reserve(filePaths.size());
-        for (const Path &path : filePaths)
-            out.append(mapPathIntoUniqueRoot(path, uniqueRoot, layout));
+        PathList out = filePaths;
+        QList<int> remainingIndexes;
+        remainingIndexes.reserve(filePaths.size());
+
+        for (int i = 0; i < filePaths.size(); ++i)
+        {
+            if (isUnderUniqueRoot(filePaths.at(i), uniqueRoot))
+                out[i] = filePaths.at(i);
+            else
+                remainingIndexes.append(i);
+        }
+
+        if (remainingIndexes.isEmpty())
+            return out;
+
+        if (layout == TorrentContentLayout::NoSubfolder)
+        {
+            for (const int i : asConst(remainingIndexes))
+                out[i] = uniqueRoot / filePaths.at(i);
+            return out;
+        }
+
+        // Original / Subfolder / UniqueSubfolder: detect a shared top-level folder
+        // among the files that still need moving.
+        PathList remainingPaths;
+        remainingPaths.reserve(remainingIndexes.size());
+        for (const int i : asConst(remainingIndexes))
+            remainingPaths.append(filePaths.at(i));
+
+        const Path sharedRoot = Path::findRootFolder(remainingPaths);
+        if (!sharedRoot.isEmpty())
+        {
+            for (const int i : asConst(remainingIndexes))
+            {
+                const Path relative = stripPathPrefix(filePaths.at(i), sharedRoot);
+                out[i] = relative.isEmpty() ? uniqueRoot : (uniqueRoot / relative);
+            }
+        }
+        else
+        {
+            // No shared folder (e.g. Disc1/... + Disc2/...): keep full paths under uniqueRoot.
+            for (const int i : asConst(remainingIndexes))
+                out[i] = uniqueRoot / filePaths.at(i);
+        }
+
         return out;
     }
 
@@ -251,10 +293,25 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
         return plan;
     }
 
+    QSet<QString> plannedTargets;
+    plannedTargets.reserve(targetPaths.size());
+
     for (int i = 0; i < targetPaths.size(); ++i)
     {
         if (targetPaths.at(i) == currentPaths.at(i))
             continue;
+
+        const QString targetKey = targetPaths.at(i).data();
+        if (plannedTargets.contains(targetKey))
+        {
+            plan.blocked = true;
+            plan.blockReason = QCoreApplication::translate("BitTorrent"
+                    , "Migration cannot continue: two files map to the same destination: \"%1\".")
+                    .arg(targetPaths.at(i).toString());
+            plan.renames.clear();
+            return plan;
+        }
+        plannedTargets.insert(targetKey);
 
         const Path targetAbs = storageRoot / targetPaths.at(i);
         if (targetPathIsBlocked(targetAbs))
