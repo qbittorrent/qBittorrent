@@ -1842,26 +1842,39 @@ void TorrentImpl::resetTrackerEntryStatuses()
     m_announceStatus = TorrentAnnounceStatusFlag::HasNoProblem;
 }
 
-void TorrentImpl::doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath)
+void TorrentImpl::scheduleRenameJob(const Path &oldFolderPath, const Path &newFolderPath
+        , const QList<QPair<int, Path>> &fileRenames, const bool uniqueSubfolderConversion)
 {
+    if (fileRenames.isEmpty())
+        return;
+
     const int folderRenameJobID = m_nextFolderRenameJobID++;
     m_renamingFolders.enqueue(
     {
         .folderRenameJobID = folderRenameJobID,
         .oldFolderPath = oldFolderPath,
-        .newFolderPath = newFolderPath
+        .newFolderPath = newFolderPath,
+        .uniqueSubfolderConversion = uniqueSubfolderConversion
     });
 
+    for (const auto &[index, newFilePath] : fileRenames)
+        doRenameFile(index, makeActualPath(index, newFilePath), folderRenameJobID);
+}
+
+void TorrentImpl::doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath)
+{
+    QList<QPair<int, Path>> fileRenames;
     for (int i = 0; i < filesCount(); ++i)
     {
         const Path path = filePath(i);
         if (path.hasAncestor(oldFolderPath))
         {
             const Path newFilePath = newFolderPath / oldFolderPath.relativePathOf(path);
-            const Path newActualFilePath = makeActualPath(i, newFilePath);
-            doRenameFile(i, newActualFilePath, folderRenameJobID);
+            fileRenames.append({i, newFilePath});
         }
     }
+
+    scheduleRenameJob(oldFolderPath, newFolderPath, fileRenames);
 }
 
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const
@@ -2414,6 +2427,9 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
 
                     m_session->handleTorrentContentFolderRenamed(this, folderRenameInfo.newFolderPath
                             , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles);
+
+                    if (folderRenameInfo.uniqueSubfolderConversion)
+                        finishUniqueSubfolderConversion(true, {});
                 }
                 else
                 {
@@ -2422,6 +2438,9 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
 
                     m_session->handleTorrentContentFolderRenamingFailed(this, folderRenameInfo.newFolderPath
                             , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+
+                    if (folderRenameInfo.uniqueSubfolderConversion)
+                        finishUniqueSubfolderConversion(false, folderRenameInfo.failedFileIndexes);
                 }
             }
         }
@@ -2431,8 +2450,6 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
 
             m_session->handleTorrentContentFileRenamed(this, fileIndex, oldFilePath);
         }
-
-        noteUniqueSubfolderMigrationProgress(fileIndex, true);
     }
 
     while (!isMoveInProgress() && m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
@@ -2462,10 +2479,11 @@ void TorrentImpl::handleFileRenameFailed(const lt::file_index_t nativeFileIndex)
 
             m_session->handleTorrentContentFolderRenamingFailed(this, folderRenameInfo.newFolderPath
                     , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+
+            if (folderRenameInfo.uniqueSubfolderConversion)
+                finishUniqueSubfolderConversion(false, folderRenameInfo.failedFileIndexes);
         }
     }
-
-    noteUniqueSubfolderMigrationProgress(fileIndex, false);
 
     while (!isMoveInProgress() && m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
@@ -2900,8 +2918,7 @@ UniqueSubfolderMigrationPlan TorrentImpl::planUniqueSubfolderMigration() const
     if (!hasMetadata())
         return {};
 
-    return makeUniqueSubfolderMigrationPlan(filePaths(), id(), info().name()
-            , actualStorageLocation(), m_contentLayout);
+    return makeUniqueSubfolderMigrationPlan(filePaths(), id(), info().name(), m_contentLayout);
 }
 
 void TorrentImpl::startUniqueSubfolderMigration(const UniqueSubfolderMigrationPlan &plan)
@@ -2909,7 +2926,6 @@ void TorrentImpl::startUniqueSubfolderMigration(const UniqueSubfolderMigrationPl
     if (plan.blocked)
         return;
 
-    // Paths already under the unique folder: only fix the stored layout flag.
     if (plan.finalizeOnly)
     {
         m_contentLayout = TorrentContentLayout::UniqueSubfolder;
@@ -2918,49 +2934,40 @@ void TorrentImpl::startUniqueSubfolderMigration(const UniqueSubfolderMigrationPl
         return;
     }
 
-    if (plan.renames.isEmpty())
+    if (plan.isEmpty())
         return;
 
-    if (m_uniqueSubfolderMigration.has_value() || !m_renamingFiles.isEmpty() || isMoveInProgress())
+    if (!m_renamingFiles.isEmpty() || !m_renamingFolders.isEmpty() || isMoveInProgress())
     {
         emit uniqueSubfolderMigrationFinished(false, tr("Another rename is already in progress."));
         return;
     }
 
-    UniqueSubfolderMigrationJob job;
-    for (const UniqueSubfolderRename &item : asConst(plan.renames))
-        job.pendingFileIndexes.insert(item.fileIndex);
-    m_uniqueSubfolderMigration = std::move(job);
+    // Original/Subfolder with a shared root: same as renameFolder(oldRoot → uniqueRoot).
+    if (plan.isFolderRename())
+    {
+        QList<QPair<int, Path>> fileRenames;
+        for (int i = 0; i < filesCount(); ++i)
+        {
+            const Path path = filePath(i);
+            if (!path.hasAncestor(plan.folderRenameOldRoot))
+                continue;
+            fileRenames.append({i, plan.uniqueRoot / plan.folderRenameOldRoot.relativePathOf(path)});
+        }
+        scheduleRenameJob(plan.folderRenameOldRoot, plan.uniqueRoot, fileRenames, true);
+        return;
+    }
 
+    // NoSubfolder (or single-component wrap): one batch rename job, same machinery as folder rename.
+    QList<QPair<int, Path>> fileRenames;
+    fileRenames.reserve(plan.renames.size());
     for (const UniqueSubfolderRename &item : asConst(plan.renames))
-        renameFile(item.fileIndex, item.to);
+        fileRenames.append({item.fileIndex, item.to});
+    scheduleRenameJob({}, plan.uniqueRoot, fileRenames, true);
 }
 
-void TorrentImpl::noteUniqueSubfolderMigrationProgress(const int fileIndex, const bool success)
+void TorrentImpl::finishUniqueSubfolderConversion(const bool success, const QList<int> &failedFileIndexes)
 {
-    if (!m_uniqueSubfolderMigration)
-        return;
-
-    UniqueSubfolderMigrationJob &job = *m_uniqueSubfolderMigration;
-    if (!job.pendingFileIndexes.remove(fileIndex))
-        return;
-
-    if (!success)
-        job.failedFileIndexes.append(fileIndex);
-
-    if (job.pendingFileIndexes.isEmpty())
-        finishUniqueSubfolderMigration();
-}
-
-void TorrentImpl::finishUniqueSubfolderMigration()
-{
-    if (!m_uniqueSubfolderMigration)
-        return;
-
-    const UniqueSubfolderMigrationJob job = *m_uniqueSubfolderMigration;
-    m_uniqueSubfolderMigration.reset();
-
-    const bool success = job.failedFileIndexes.isEmpty();
     if (success)
         m_contentLayout = TorrentContentLayout::UniqueSubfolder;
 
@@ -2972,15 +2979,13 @@ void TorrentImpl::finishUniqueSubfolderMigration()
         return;
     }
 
-    forceRecheck();
-
     QStringList failed;
-    failed.reserve(job.failedFileIndexes.size());
-    for (const int index : asConst(job.failedFileIndexes))
+    failed.reserve(failedFileIndexes.size());
+    for (const int index : failedFileIndexes)
         failed.append(QString::number(index));
 
     emit uniqueSubfolderMigrationFinished(false
-            , tr("Rename failed for file index(es): %1. Layout was not updated. A recheck was started.")
+            , tr("Rename failed for file index(es): %1. Layout was not updated.")
             .arg(failed.join(u", "_s)));
 }
 

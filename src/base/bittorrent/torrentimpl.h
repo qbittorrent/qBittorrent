@@ -300,16 +300,9 @@ namespace BitTorrent
             Path newFolderPath {};
             QHash<int, Path> renamedFiles {};
             QList<int> failedFileIndexes {};
+            // When true, success/failure of this job finalizes unique-subfolder layout conversion.
+            bool uniqueSubfolderConversion = false;
         };
-
-        struct UniqueSubfolderMigrationJob
-        {
-            QSet<int> pendingFileIndexes;
-            QList<int> failedFileIndexes;
-        };
-
-        void noteUniqueSubfolderMigrationProgress(int fileIndex, bool success);
-        void finishUniqueSubfolderMigration();
 
         std::shared_ptr<const lt::torrent_info> nativeTorrentInfo() const;
 
@@ -322,7 +315,11 @@ namespace BitTorrent
         void setAutoManaged(bool enable);
 
         void doRenameFile(int index, const Path &path, int folderRenameJobID = -1);
+        // Shared batch-rename job used by doRenameFolder and unique-subfolder migration.
+        void scheduleRenameJob(const Path &oldFolderPath, const Path &newFolderPath
+                , const QList<QPair<int, Path>> &fileRenames, bool uniqueSubfolderConversion = false);
         void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath) override;
+        void finishUniqueSubfolderConversion(bool success, const QList<int> &failedFileIndexes);
 
         Path makeActualPath(int index, const Path &path) const;
         Path makeUserPath(const Path &path) const;
@@ -369,7 +366,6 @@ namespace BitTorrent
         QQueue<FileRenameInfo> m_renamingFiles;
         QQueue<FolderRenameInfo> m_renamingFolders;
         int m_nextFolderRenameJobID = 0;
-        std::optional<UniqueSubfolderMigrationJob> m_uniqueSubfolderMigration;
 
         QQueue<EventTrigger> m_statusUpdatedTriggers;
 

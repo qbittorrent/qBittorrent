@@ -28,8 +28,6 @@
 
 #include "toplevelpayload.h"
 
-#include <algorithm>
-
 #include <QCoreApplication>
 #include <QSet>
 
@@ -56,7 +54,6 @@ namespace
         return filePaths;
     }
 
-    // Same limits as Utils::Fs::isValidFileName (Win: 255 chars, else 255 UTF-8 bytes).
     bool exceedsFileNameLengthLimit(const QString &name)
     {
 #ifdef Q_OS_WIN
@@ -66,7 +63,6 @@ namespace
 #endif
     }
 
-    // Always keep full tag at the end; shorten the name until base+tag fits the platform limit.
     QString taggedComponent(const QString &name, const QString &tag)
     {
         QString base = Utils::Fs::toValidFileName(name.trimmed());
@@ -110,9 +106,7 @@ namespace
         if (base.endsWith(tag))
             base.chop(tag.size());
 
-        // Match Subfolder naming for single-file torrents: folder uses name without extension
-        // (e.g. movie.mkv → "movie <hash>/movie.mkv"). Also keeps applyUniqueSubfolderLayout idempotent
-        // when paths are already under that folder.
+        // Single-file: match Subfolder naming (extension stripped from folder base).
         if (filePaths.size() == 1)
             base = Path(base).removedExtension().toString();
 
@@ -137,91 +131,6 @@ namespace
         if (pathStr.startsWith(prefixStr + u'/'))
             return Path(pathStr.sliced(prefixStr.size() + 1));
         return path;
-    }
-
-    // Map paths into uniqueRoot.
-    // - NoSubfolder: prepend uniqueRoot to the complete path.
-    // - Original/Subfolder: among paths not already under uniqueRoot, require one shared
-    //   top-level folder and replace it; single-component remaining paths are prepended.
-    // - Paths already under uniqueRoot are left unchanged.
-    // Returns empty PathList if Original/Subfolder remaining paths are nested but share no root.
-    PathList mapPathsIntoUniqueRoot(const PathList &filePaths, const Path &uniqueRoot
-            , const TorrentContentLayout layout, bool *const mappingOk = nullptr)
-    {
-        if (mappingOk)
-            *mappingOk = true;
-
-        PathList out = filePaths;
-        QList<int> remainingIndexes;
-        remainingIndexes.reserve(filePaths.size());
-
-        for (int i = 0; i < filePaths.size(); ++i)
-        {
-            if (isUnderUniqueRoot(filePaths.at(i), uniqueRoot))
-                out[i] = filePaths.at(i);
-            else
-                remainingIndexes.append(i);
-        }
-
-        if (remainingIndexes.isEmpty())
-            return out;
-
-        if (layout == TorrentContentLayout::NoSubfolder)
-        {
-            for (const int i : asConst(remainingIndexes))
-                out[i] = uniqueRoot / filePaths.at(i);
-            return out;
-        }
-
-        PathList remainingPaths;
-        remainingPaths.reserve(remainingIndexes.size());
-        for (const int i : asConst(remainingIndexes))
-            remainingPaths.append(filePaths.at(i));
-
-        const Path sharedRoot = Path::findRootFolder(remainingPaths);
-        if (!sharedRoot.isEmpty())
-        {
-            for (const int i : asConst(remainingIndexes))
-            {
-                const Path relative = stripPathPrefix(filePaths.at(i), sharedRoot);
-                out[i] = relative.isEmpty() ? uniqueRoot : (uniqueRoot / relative);
-            }
-            return out;
-        }
-
-        // No shared root: only allow single-component paths (e.g. lone "movie.mkv").
-        // Nested paths with different first folders (Disc1/... + Disc2/...) are rejected.
-        for (const int i : asConst(remainingIndexes))
-        {
-            if (filePaths.at(i).data().contains(u'/'))
-            {
-                if (mappingOk)
-                    *mappingOk = false;
-                return {};
-            }
-            out[i] = uniqueRoot / filePaths.at(i);
-        }
-        return out;
-    }
-
-    // True if the exact target path exists, or any parent component is a regular file.
-    bool targetPathIsBlocked(const Path &targetAbs)
-    {
-        if (targetAbs.exists())
-            return true;
-
-        Path cursor = targetAbs.parentPath();
-        while (!cursor.isEmpty())
-        {
-            if (cursor.exists() && !Utils::Fs::isDir(cursor))
-                return true;
-
-            const Path parent = cursor.parentPath();
-            if (parent == cursor)
-                break;
-            cursor = parent;
-        }
-        return false;
     }
 }
 
@@ -249,100 +158,113 @@ PathList BitTorrent::applyUniqueSubfolderLayout(PathList filePaths, const Torren
     {
         if (rootFolder == uniqueRoot)
             return filePaths;
-        // Common top-level folder (Original/Subfolder style): rename the root only.
         return renameRootFolder(std::move(filePaths), rootFolder.toString(), folderName);
     }
 
-    // Rootless multi-file or single file: prepend unique folder to the full path.
-    // e.g. CD1/movie.mkv + CD2/movie.mkv → Unique/CD1/movie.mkv, Unique/CD2/movie.mkv
-    return mapPathsIntoUniqueRoot(filePaths, uniqueRoot, TorrentContentLayout::NoSubfolder);
+    // Rootless: prepend unique folder to each full path (CD1/…, CD2/…).
+    for (Path &path : filePaths)
+    {
+        if (!isUnderUniqueRoot(path, uniqueRoot))
+            path = uniqueRoot / path;
+    }
+    return filePaths;
 }
 
 BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigrationPlan(
         const PathList &currentPaths, const TorrentID &id, const QString &torrentName
-        , const Path &storageRoot, const TorrentContentLayout currentLayout)
+        , const TorrentContentLayout currentLayout)
 {
     UniqueSubfolderMigrationPlan plan;
     if (currentPaths.isEmpty())
         return plan;
 
-    if (storageRoot.isEmpty())
-    {
-        plan.blocked = true;
-        plan.blockReason = QCoreApplication::translate("BitTorrent", "Storage location is unknown.");
-        return plan;
-    }
-
     const QString tag = uniqueSubfolderTag(id);
-    const Path uniqueRoot {uniqueSubfolderName(id, originalNameForUniqueDir(currentPaths, torrentName, tag))};
-    if (uniqueRoot.isEmpty())
+    plan.uniqueRoot = Path(uniqueSubfolderName(id, originalNameForUniqueDir(currentPaths, torrentName, tag)));
+    if (plan.uniqueRoot.isEmpty())
     {
         plan.blocked = true;
         plan.blockReason = QCoreApplication::translate("BitTorrent", "Target unique subfolder is invalid.");
         return plan;
     }
 
-    bool allAlreadyUnderUnique = true;
-    for (const Path &path : currentPaths)
+    PathList remainingPaths;
+    QList<int> remainingIndexes;
+    remainingPaths.reserve(currentPaths.size());
+    remainingIndexes.reserve(currentPaths.size());
+
+    for (int i = 0; i < currentPaths.size(); ++i)
     {
-        if (!isUnderUniqueRoot(path, uniqueRoot))
-        {
-            allAlreadyUnderUnique = false;
-            break;
-        }
+        if (isUnderUniqueRoot(currentPaths.at(i), plan.uniqueRoot))
+            continue;
+        remainingPaths.append(currentPaths.at(i));
+        remainingIndexes.append(i);
     }
 
-    if (allAlreadyUnderUnique)
+    if (remainingIndexes.isEmpty())
     {
-        // Paths already converted; only the stored layout may still need updating.
         if (currentLayout != TorrentContentLayout::UniqueSubfolder)
             plan.finalizeOnly = true;
         return plan;
     }
 
-    bool mappingOk = true;
-    const PathList targetPaths = mapPathsIntoUniqueRoot(currentPaths, uniqueRoot, currentLayout, &mappingOk);
-    if (!mappingOk)
+    if (currentLayout == TorrentContentLayout::NoSubfolder)
     {
-        plan.blocked = true;
-        plan.blockReason = QCoreApplication::translate("BitTorrent"
-                , "Migration cannot continue: torrent files do not share one top-level folder.");
+        // Wrap every remaining full path under the unique folder (batch rename).
+        QSet<QString> targets;
+        for (int i = 0; i < remainingIndexes.size(); ++i)
+        {
+            const Path to = plan.uniqueRoot / remainingPaths.at(i);
+            if (targets.contains(to.data()))
+            {
+                plan.blocked = true;
+                plan.blockReason = QCoreApplication::translate("BitTorrent"
+                        , "Migration cannot continue: two files map to the same destination: \"%1\".")
+                        .arg(to.toString());
+                plan.renames.clear();
+                return plan;
+            }
+            targets.insert(to.data());
+            plan.renames.append({.fileIndex = remainingIndexes.at(i), .to = to});
+        }
         return plan;
     }
 
-    QSet<QString> plannedTargets;
-    plannedTargets.reserve(targetPaths.size());
-
-    for (int i = 0; i < targetPaths.size(); ++i)
+    // Original / Subfolder: require one shared top-level root among remaining nested paths.
+    const Path sharedRoot = Path::findRootFolder(remainingPaths);
+    if (!sharedRoot.isEmpty())
     {
-        if (targetPaths.at(i) == currentPaths.at(i))
-            continue;
+        // Same operation as renameFolder(sharedRoot, uniqueRoot).
+        plan.folderRenameOldRoot = sharedRoot;
+        return plan;
+    }
 
-        const QString targetKey = targetPaths.at(i).data();
-        if (plannedTargets.contains(targetKey))
+    // No shared root: allow only single-component paths (e.g. lone movie.mkv).
+    for (const Path &path : remainingPaths)
+    {
+        if (path.data().contains(u'/'))
+        {
+            plan.blocked = true;
+            plan.blockReason = QCoreApplication::translate("BitTorrent"
+                    , "Migration cannot continue: torrent files do not share one top-level folder.");
+            return plan;
+        }
+    }
+
+    QSet<QString> targets;
+    for (int i = 0; i < remainingIndexes.size(); ++i)
+    {
+        const Path to = plan.uniqueRoot / remainingPaths.at(i);
+        if (targets.contains(to.data()))
         {
             plan.blocked = true;
             plan.blockReason = QCoreApplication::translate("BitTorrent"
                     , "Migration cannot continue: two files map to the same destination: \"%1\".")
-                    .arg(targetPaths.at(i).toString());
+                    .arg(to.toString());
             plan.renames.clear();
             return plan;
         }
-        plannedTargets.insert(targetKey);
-
-        const Path targetAbs = storageRoot / targetPaths.at(i);
-        if (targetPathIsBlocked(targetAbs))
-        {
-            plan.blocked = true;
-            plan.blockReason = QCoreApplication::translate("BitTorrent"
-                    , "Migration cannot continue: destination path already exists or a parent is a file: \"%1\".")
-                    .arg(targetPaths.at(i).toString());
-            plan.renames.clear();
-            return plan;
-        }
-
-        plan.renames.append({.fileIndex = i, .to = targetPaths.at(i)});
+        targets.insert(to.data());
+        plan.renames.append({.fileIndex = remainingIndexes.at(i), .to = to});
     }
-
     return plan;
 }

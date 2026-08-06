@@ -47,23 +47,32 @@ namespace BitTorrent
         Path to;
     };
 
-    // Preflight only — no disk changes.
+    // Preflight for unique-subfolder conversion (no disk changes).
+    // Prefer folderRenameOldRoot → uniqueRoot (same as renameFolder).
+    // Otherwise renames lists per-file targets for a batch rename job
+    // (NoSubfolder wrap of multiple top-level paths).
     struct UniqueSubfolderMigrationPlan
     {
-        QList<UniqueSubfolderRename> renames;
+        Path uniqueRoot;
+        Path folderRenameOldRoot; // non-empty → doRenameFolder(old, uniqueRoot)
+        QList<UniqueSubfolderRename> renames; // used when folderRenameOldRoot is empty
+
         bool blocked = false;
         QString blockReason;
-        // All payload paths already under the unique folder; only the stored layout flag needs updating.
         bool finalizeOnly = false;
+
+        bool isFolderRename() const
+        {
+            return !folderRenameOldRoot.isEmpty();
+        }
 
         bool isEmpty() const
         {
-            return renames.isEmpty() && !blocked && !finalizeOnly;
+            return !finalizeOnly && !blocked && !isFolderRename() && renames.isEmpty();
         }
     };
 
-    // Pure preflight used by TorrentImpl and unit tests.
     UniqueSubfolderMigrationPlan makeUniqueSubfolderMigrationPlan(
             const PathList &currentPaths, const TorrentID &id, const QString &torrentName
-            , const Path &storageRoot, TorrentContentLayout currentLayout);
+            , TorrentContentLayout currentLayout);
 }
