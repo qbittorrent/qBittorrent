@@ -31,6 +31,7 @@
 #include <algorithm>
 #include <chrono>
 #include <concepts>
+#include <limits>
 
 #include <QBitArray>
 #include <QFileInfo>
@@ -1101,14 +1102,19 @@ namespace
             const QJsonValue v = obj.value(key);
             if (v.isUndefined() || v.isNull())
                 throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats.%1` is required").arg(key));
-            return v.toVariant().toLongLong();
+            if (!v.isDouble())
+                throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats.%1` must be a number").arg(key));
+            const qint64 value = v.toInteger(-1);
+            if (value < 0)
+                throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats.%1` must be a non-negative integer").arg(key));
+            return value;
         };
-        const auto readInt = [&obj](const QString &key) -> int
+        const auto readInt = [&readInt64](const QString &key) -> int
         {
-            const QJsonValue v = obj.value(key);
-            if (v.isUndefined() || v.isNull())
-                throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats.%1` is required").arg(key));
-            return v.toVariant().toInt();
+            const qint64 value = readInt64(key);
+            if (value > std::numeric_limits<int>::max())
+                throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats.%1` is out of range").arg(key));
+            return static_cast<int>(value);
         };
 
         BitTorrent::InitialTorrentStats stats;
