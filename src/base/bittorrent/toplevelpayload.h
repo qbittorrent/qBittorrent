@@ -47,25 +47,16 @@ namespace BitTorrent
     };
 
     // Preflight only — no disk changes.
-    // When existingUniqueFolder is set, the UI should confirm a merge before start.
+    // If any absolute target *file* already exists, blocked is set (directories are OK).
     struct UniqueSubfolderMigrationPlan
     {
         QList<UniqueSubfolderRename> renames;
-
-        // Absolute path of an existing unique destination (empty if none).
-        Path existingUniqueFolder;
-
         bool blocked = false;
         QString blockReason;
 
         bool isEmpty() const
         {
             return renames.isEmpty() && !blocked;
-        }
-
-        bool needsConfirmation() const
-        {
-            return !existingUniqueFolder.isEmpty();
         }
     };
 

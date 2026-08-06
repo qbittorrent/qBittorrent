@@ -285,10 +285,6 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     //                fromLTString(root.dict_find_string_value("qBt-contentLayout")), TorrentContentLayout::Default);
     // === END REPLACEMENT CODE === //
 
-    // Legacy flag from intermediate builds; content_layout is source of truth now.
-    if (resumeDataRoot.dict_find_int_value("qBt-appendHashToPayloadName"))
-        torrentParams.contentLayout = TorrentContentLayout::UniqueSubfolder;
-
     torrentParams.stopCondition = Utils::String::toEnum(
             fromLTString(resumeDataRoot.dict_find_string_value("qBt-stopCondition")), Torrent::StopCondition::None);
     torrentParams.sslParameters =

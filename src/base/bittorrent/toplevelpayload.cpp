@@ -111,6 +111,31 @@ namespace
 
         return base;
     }
+
+    // Path without its first component (or the path itself when single-component).
+    Path payloadRelativePath(const Path &path)
+    {
+        const QString s = path.data();
+        const qsizetype slash = s.indexOf(u'/');
+        if (slash < 0)
+            return path;
+        return Path(s.sliced(slash + 1));
+    }
+
+    // Map each path under uniqueRoot without double-wrapping paths already there.
+    PathList mapUnderUniqueRoot(const PathList &filePaths, const Path &uniqueRoot)
+    {
+        PathList out;
+        out.reserve(filePaths.size());
+        for (const Path &path : filePaths)
+        {
+            if ((path == uniqueRoot) || path.hasAncestor(uniqueRoot))
+                out.append(path);
+            else
+                out.append(uniqueRoot / payloadRelativePath(path));
+        }
+        return out;
+    }
 }
 
 QString BitTorrent::uniqueSubfolderTag(const TorrentID &id)
@@ -130,18 +155,20 @@ PathList BitTorrent::applyUniqueSubfolderLayout(PathList filePaths, const Torren
 
     const QString tag = uniqueSubfolderTag(id);
     const QString folderName = uniqueSubfolderName(id, originalNameForUniqueDir(filePaths, torrentName, tag));
+    const Path uniqueRoot {folderName};
 
+    // Uniform layout: common root rename, or wrap rootless/single-file.
+    // Mixed (partial migration) is handled by mapUnderUniqueRoot so paths already
+    // under uniqueRoot are left alone.
     const Path rootFolder = Path::findRootFolder(filePaths);
     if (!rootFolder.isEmpty())
     {
-        if (rootFolder.toString() == folderName)
+        if (rootFolder == uniqueRoot)
             return filePaths;
         return renameRootFolder(std::move(filePaths), rootFolder.toString(), folderName);
     }
 
-    // Single file or rootless multi-file: wrap under the unique folder.
-    Path::addRootFolder(filePaths, Path(folderName));
-    return filePaths;
+    return mapUnderUniqueRoot(filePaths, uniqueRoot);
 }
 
 BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigrationPlan(
@@ -152,10 +179,6 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
     if (currentPaths.isEmpty())
         return plan;
 
-    const PathList targetPaths = applyUniqueSubfolderLayout(currentPaths, id, torrentName);
-    if (targetPaths == currentPaths)
-        return plan;
-
     if (storageRoot.isEmpty())
     {
         plan.blocked = true;
@@ -163,26 +186,38 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
         return plan;
     }
 
-    const Path uniqueDir = Path::findRootFolder(targetPaths);
-    if (uniqueDir.isEmpty())
+    // Always derive the unique folder from the torrent name (stable across partial states).
+    const QString tag = uniqueSubfolderTag(id);
+    const Path uniqueRoot {uniqueSubfolderName(id, originalNameForUniqueDir(currentPaths, torrentName, tag))};
+    if (uniqueRoot.isEmpty())
     {
         plan.blocked = true;
         plan.blockReason = QCoreApplication::translate("BitTorrent", "Target unique subfolder is invalid.");
         return plan;
     }
 
+    const PathList targetPaths = mapUnderUniqueRoot(currentPaths, uniqueRoot);
+
     for (int i = 0; i < targetPaths.size(); ++i)
     {
-        if (targetPaths.at(i) != currentPaths.at(i))
-            plan.renames.append({.fileIndex = i, .to = targetPaths.at(i)});
-    }
-    if (plan.renames.isEmpty())
-        return plan;
+        if (targetPaths.at(i) == currentPaths.at(i))
+            continue;
 
-    // Existing destination: do not block. UI may confirm a merge (overwrite matching paths only).
-    const Path destAbs = storageRoot / uniqueDir;
-    if (destAbs.exists())
-        plan.existingUniqueFolder = destAbs;
+        // Refuse if the destination *file* already exists. Existing directories are fine.
+        // Unrelated files under the unique folder that are not rename targets are left alone.
+        const Path targetAbs = storageRoot / targetPaths.at(i);
+        if (targetAbs.exists() && !Utils::Fs::isDir(targetAbs))
+        {
+            plan.blocked = true;
+            plan.blockReason = QCoreApplication::translate("BitTorrent"
+                    , "Migration cannot continue: destination file already exists: \"%1\".")
+                    .arg(targetPaths.at(i).toString());
+            plan.renames.clear();
+            return plan;
+        }
+
+        plan.renames.append({.fileIndex = i, .to = targetPaths.at(i)});
+    }
 
     return plan;
 }

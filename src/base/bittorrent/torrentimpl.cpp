@@ -2949,12 +2949,7 @@ void TorrentImpl::finishUniqueSubfolderMigration()
 
     const bool success = job.failedFileIndexes.isEmpty();
     if (success)
-    {
         m_contentLayout = TorrentContentLayout::UniqueSubfolder;
-        const Path uniqueRoot = Path::findRootFolder(filePaths());
-        if (!uniqueRoot.isEmpty())
-            setName(uniqueRoot.toString());
-    }
 
     deferredRequestResumeData();
 

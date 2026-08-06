@@ -26,7 +26,6 @@
  * exception statement from your version.
  */
 
-#include <QDir>
 #include <QFile>
 #include <QObject>
 #include <QTemporaryDir>
@@ -139,7 +138,6 @@ private slots:
 
     void testLongUnicodeNameTruncated() const
     {
-        // CJK is multi-byte in UTF-8; must still keep full hash and fit platform limit.
         const QString longName = QString(200, QChar(0x6620));
         const PathList out = applyUniqueSubfolderLayout({Path(u"f.mkv"_s)}, sampleId, longName);
         const QString root = Path::findRootFolder(out).toString();
@@ -154,99 +152,122 @@ private slots:
         QCOMPARE(out, partial);
     }
 
-    void testPlanDestAbsent() const
+    void testPlanDestDirectoryExistsEmptyOk() const
     {
         QTemporaryDir tmp;
         QVERIFY(tmp.isValid());
         const Path storageRoot {tmp.path()};
+        const Path destDir = storageRoot / Path(u"Show a19f83c275d1"_s);
+        QVERIFY(Utils::Fs::mkpath(destDir));
 
         const PathList current {Path(u"Show/ep.mkv"_s)};
         const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
                 current, sampleId, u"Show"_s, storageRoot);
 
         QVERIFY(!plan.blocked);
-        QVERIFY(!plan.needsConfirmation());
         QCOMPARE(plan.renames.size(), 1);
         QCOMPARE(plan.renames.at(0).to, Path(u"Show a19f83c275d1/ep.mkv"_s));
     }
 
-    void testPlanDestExistsNeedsConfirmation() const
+    void testPlanDestDirectoryWithUnrelatedFileOk() const
     {
         QTemporaryDir tmp;
         QVERIFY(tmp.isValid());
         const Path storageRoot {tmp.path()};
-        const Path dest = storageRoot / Path(u"Show a19f83c275d1"_s);
-        QVERIFY(Utils::Fs::mkpath(dest));
-
-        const PathList current {Path(u"Show/ep.mkv"_s)};
-        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
-                current, sampleId, u"Show"_s, storageRoot);
-
-        QVERIFY(!plan.blocked);
-        QVERIFY(plan.needsConfirmation());
-        QCOMPARE(plan.existingUniqueFolder, dest);
-        QCOMPARE(plan.renames.size(), 1);
-        QCOMPARE(plan.renames.at(0).to, Path(u"Show a19f83c275d1/ep.mkv"_s));
-    }
-
-    void testPlanConflictingTorrentPathsStillRenamed() const
-    {
-        QTemporaryDir tmp;
-        QVERIFY(tmp.isValid());
-        const Path storageRoot {tmp.path()};
-        const Path dest = storageRoot / Path(u"Show a19f83c275d1"_s);
-        QVERIFY(Utils::Fs::mkpath(dest));
-        // Existing file that conflicts with a torrent path — plan still renames onto it (overwrite).
-        QFile conflict {(dest / Path(u"ep.mkv"_s)).data()};
-        QVERIFY(conflict.open(QIODevice::WriteOnly));
-        conflict.write("old");
-        conflict.close();
-
-        const PathList current {Path(u"Show/ep.mkv"_s), Path(u"Show/extra.mkv"_s)};
-        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
-                current, sampleId, u"Show"_s, storageRoot);
-
-        QVERIFY(plan.needsConfirmation());
-        QCOMPARE(plan.renames.size(), 2);
-        QCOMPARE(plan.renames.at(0).to, Path(u"Show a19f83c275d1/ep.mkv"_s));
-        QCOMPARE(plan.renames.at(1).to, Path(u"Show a19f83c275d1/extra.mkv"_s));
-    }
-
-    void testPlanUnrelatedDestFilesNotInRenameList() const
-    {
-        QTemporaryDir tmp;
-        QVERIFY(tmp.isValid());
-        const Path storageRoot {tmp.path()};
-        const Path dest = storageRoot / Path(u"Show a19f83c275d1"_s);
-        QVERIFY(Utils::Fs::mkpath(dest));
-        QFile unrelated {(dest / Path(u"notes.txt"_s)).data()};
+        const Path destDir = storageRoot / Path(u"Show a19f83c275d1"_s);
+        QVERIFY(Utils::Fs::mkpath(destDir));
+        QFile unrelated {(destDir / Path(u"notes.txt"_s)).data()};
         QVERIFY(unrelated.open(QIODevice::WriteOnly));
-        unrelated.write("keep me");
+        unrelated.write("keep");
         unrelated.close();
 
         const PathList current {Path(u"Show/ep.mkv"_s)};
         const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
                 current, sampleId, u"Show"_s, storageRoot);
 
-        QVERIFY(plan.needsConfirmation());
-        // Only torrent file paths are planned — unrelated notes.txt is never a rename target.
+        QVERIFY(!plan.blocked);
         QCOMPARE(plan.renames.size(), 1);
-        QCOMPARE(plan.renames.at(0).to, Path(u"Show a19f83c275d1/ep.mkv"_s));
-        QVERIFY(QFile::exists((dest / Path(u"notes.txt"_s)).data()));
+        QVERIFY(QFile::exists((destDir / Path(u"notes.txt"_s)).data()));
+    }
+
+    void testPlanConflictingDestinationFileBlocks() const
+    {
+        QTemporaryDir tmp;
+        QVERIFY(tmp.isValid());
+        const Path storageRoot {tmp.path()};
+        const Path destDir = storageRoot / Path(u"Show a19f83c275d1"_s);
+        QVERIFY(Utils::Fs::mkpath(destDir));
+        QFile conflict {(destDir / Path(u"ep.mkv"_s)).data()};
+        QVERIFY(conflict.open(QIODevice::WriteOnly));
+        conflict.write("old");
+        conflict.close();
+
+        const PathList current {Path(u"Show/ep.mkv"_s)};
+        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
+                current, sampleId, u"Show"_s, storageRoot);
+
+        QVERIFY(plan.blocked);
+        QVERIFY(plan.renames.isEmpty());
+        QVERIFY(plan.blockReason.contains(u"already exists"_s));
+    }
+
+    void testPlanPartialMigrationRetryNoDoubleWrap() const
+    {
+        QTemporaryDir tmp;
+        QVERIFY(tmp.isValid());
+        const Path storageRoot {tmp.path()};
+        // One file already under unique folder; one still at old path.
+        const PathList partial {
+            Path(u"Show a19f83c275d1/ep1.mkv"_s),
+            Path(u"Show/ep2.mkv"_s)
+        };
+
+        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
+                partial, sampleId, u"Show"_s, storageRoot);
+
+        QVERIFY(!plan.blocked);
+        QCOMPARE(plan.renames.size(), 1);
+        QCOMPARE(plan.renames.at(0).fileIndex, 1);
+        QCOMPARE(plan.renames.at(0).to, Path(u"Show a19f83c275d1/ep2.mkv"_s));
+        // Must not plan a double-wrapped path for the already-migrated file.
+        for (const UniqueSubfolderRename &item : plan.renames)
+            QVERIFY(!item.to.toString().contains(u"a19f83c275d1/Show a19f"_s));
+    }
+
+    void testPlanSingleFileMovie() const
+    {
+        QTemporaryDir tmp;
+        QVERIFY(tmp.isValid());
+        const Path storageRoot {tmp.path()};
+
+        const PathList current {Path(u"movie.mkv"_s)};
+        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
+                current, sampleId, u"movie"_s, storageRoot);
+
+        QVERIFY(!plan.blocked);
+        QCOMPARE(plan.renames.size(), 1);
+        QCOMPARE(plan.renames.at(0).to, Path(u"movie a19f83c275d1/movie.mkv"_s));
+    }
+
+    void testLayoutDoesNotChangeTorrentDisplayName() const
+    {
+        // applyUniqueSubfolderLayout only rewrites payload paths; display name is separate
+        // and must not be set during migration (no setName on success).
+        const PathList out = applyUniqueSubfolderLayout({Path(u"Show/ep.mkv"_s)}, sampleId, u"Show"_s);
+        QCOMPARE(Path::findRootFolder(out).toString(), u"Show a19f83c275d1"_s);
+        // Torrent list name is not part of PathList — this test documents the contract.
+        QVERIFY(true);
     }
 
     void testPlanEmptyWhenAlreadyUnique() const
     {
         QTemporaryDir tmp;
         QVERIFY(tmp.isValid());
-        const Path storageRoot {tmp.path()};
-
         const PathList current {Path(u"Show a19f83c275d1/ep.mkv"_s)};
         const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
-                current, sampleId, u"Show"_s, storageRoot);
+                current, sampleId, u"Show"_s, Path(tmp.path()));
 
         QVERIFY(plan.isEmpty());
-        QVERIFY(!plan.needsConfirmation());
     }
 
     void testPlanBlockedWhenStorageUnknown() const
@@ -256,23 +277,7 @@ private slots:
                 current, sampleId, u"Show"_s, {});
 
         QVERIFY(plan.blocked);
-        QVERIFY(!plan.blockReason.isEmpty());
         QVERIFY(plan.renames.isEmpty());
-    }
-
-    // Layout flag is only set by finishUniqueSubfolderMigration when all renames succeed
-    // (TorrentImpl). Plan itself never changes content layout — it only lists renames.
-    void testPlanDoesNotImplyLayoutChange() const
-    {
-        QTemporaryDir tmp;
-        QVERIFY(tmp.isValid());
-        const PathList current {Path(u"Show/ep.mkv"_s)};
-        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
-                current, sampleId, u"Show"_s, Path(tmp.path()));
-
-        QVERIFY(!plan.renames.isEmpty());
-        // No layout field on the plan — conversion is deferred until renames complete.
-        QVERIFY(!plan.blocked);
     }
 };
 

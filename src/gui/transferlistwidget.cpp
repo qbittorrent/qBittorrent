@@ -982,24 +982,6 @@ void TransferListWidget::createUniqueSubfolderForSelectedTorrents()
         if (plan.isEmpty())
             return;
 
-        // Merge if the unique folder already exists (overwrite matching paths only).
-        if (plan.needsConfirmation())
-        {
-            const QString text = tr(
-                    "Torrent: \"%1\"\n\n"
-                    "The unique subfolder already exists. Continuing will merge the torrent into it "
-                    "and replace files with matching paths. Other files will not be removed.")
-                    .arg(torrent->name());
-
-            const QMessageBox::StandardButton answer = QMessageBox::warning(this
-                    , tr("Create unique subfolder")
-                    , text
-                    , (QMessageBox::Ok | QMessageBox::Cancel)
-                    , QMessageBox::Cancel);
-            if (answer != QMessageBox::Ok)
-                return;
-        }
-
         connect(torrent, &BitTorrent::Torrent::uniqueSubfolderMigrationFinished, this
                 , [this](const bool success, const QString &message)
         {
@@ -1095,7 +1077,7 @@ void TransferListWidget::displayListMenu()
             , tr("Create &unique subfolder"), listMenu);
     actionCreateUniqueSubfolder->setToolTip(tr(
             "Move selected torrents into a unique folder (e.g. Show a19f83c275d1). "
-            "If that folder already exists, matching files may be overwritten after confirmation."));
+            "If matching destination files already exist, migration cannot continue."));
     connect(actionCreateUniqueSubfolder, &QAction::triggered, this, &TransferListWidget::createUniqueSubfolderForSelectedTorrents);
     auto *actionSequentialDownload = new TriStateAction(tr("Download in sequential order"), listMenu);
     connect(actionSequentialDownload, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSequentialDownload);
