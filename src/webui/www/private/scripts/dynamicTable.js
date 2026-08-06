@@ -1230,6 +1230,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["num_seeds"].dataProperties.push("num_complete");
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
             this.columns["time_active"].dataProperties.push("seeding_time");
+            this.columns["progress"].dataProperties.push("state");
 
             this.initColumnsFunctions();
         }
@@ -1483,6 +1484,40 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["category"].compareRows = compareNames;
             this.columns["tags"].compareRows = compareNames;
 
+            const getProgressColor = (state) => {
+                switch (state) {
+                    case "downloading":
+                    case "forcedDL":
+                    case "metaDL":
+                    case "forcedMetaDL":
+                        return "var(--color-progress-downloading)";
+                    case "uploading":
+                    case "forcedUP":
+                    case "stalledUP":
+                        return "var(--color-progress-seeding)";
+                    case "stalledDL":
+                        return "var(--color-progress-stalled)";
+                    case "stoppedDL":
+                    case "stoppedUP":
+                        return "var(--color-progress-stopped)";
+                    case "queuedDL":
+                    case "queuedUP":
+                        return "var(--color-progress-queued)";
+                    case "checkingDL":
+                    case "checkingUP":
+                    case "queuedForChecking":
+                    case "checkingResumeData":
+                    case "moving":
+                        return "var(--color-progress-checking)";
+                    case "error":
+                    case "unknown":
+                    case "missingFiles":
+                        return "var(--color-progress-error)";
+                }
+
+                return "var(--color-background-blue)";
+            };
+
             // size, total_size
             this.columns["size"].updateTd = displaySize;
             this.columns["total_size"].updateTd = displaySize;
@@ -1500,6 +1535,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                 else {
                     td.append(new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted));
                 }
+
+                const state = row.full_data.state;
+                td.firstElementChild.setDarkBackgroundColor(getProgressColor(state));
             };
             this.columns["progress"].staticWidth = 100;
 
