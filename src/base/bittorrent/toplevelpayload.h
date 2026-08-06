@@ -75,10 +75,4 @@ namespace BitTorrent
     UniqueSubfolderMigrationPlan makeUniqueSubfolderMigrationPlan(
             const PathList &currentPaths, const TorrentID &id, const QString &torrentName
             , TorrentContentLayout currentLayout);
-
-    // File renames that scheduleRenameJob() should receive for a plan (mirrors TorrentImpl).
-    // For folder renames, pairs are derived from currentPaths under folderRenameOldRoot.
-    // For NoSubfolder wraps, pairs come from plan.renames (old root path is empty).
-    QList<QPair<int, Path>> buildUniqueSubfolderRenamePairs(
-            const UniqueSubfolderMigrationPlan &plan, const PathList &currentPaths);
 }

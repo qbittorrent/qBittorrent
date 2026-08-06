@@ -29,7 +29,6 @@
 #include "toplevelpayload.h"
 
 #include <QCoreApplication>
-#include <QPair>
 #include <QSet>
 
 #include "base/global.h"
@@ -268,28 +267,4 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
         plan.renames.append({.fileIndex = remainingIndexes.at(i), .to = to});
     }
     return plan;
-}
-
-QList<QPair<int, Path>> BitTorrent::buildUniqueSubfolderRenamePairs(
-        const UniqueSubfolderMigrationPlan &plan, const PathList &currentPaths)
-{
-    QList<QPair<int, Path>> fileRenames;
-
-    if (plan.isFolderRename())
-    {
-        // Same mapping as doRenameFolder(oldRoot, uniqueRoot).
-        for (int i = 0; i < currentPaths.size(); ++i)
-        {
-            const Path &path = currentPaths.at(i);
-            if (!path.hasAncestor(plan.folderRenameOldRoot))
-                continue;
-            fileRenames.append({i, plan.uniqueRoot / plan.folderRenameOldRoot.relativePathOf(path)});
-        }
-        return fileRenames;
-    }
-
-    fileRenames.reserve(plan.renames.size());
-    for (const UniqueSubfolderRename &item : plan.renames)
-        fileRenames.append({item.fileIndex, item.to});
-    return fileRenames;
 }

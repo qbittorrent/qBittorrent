@@ -27,8 +27,6 @@
  */
 
 #include <QObject>
-#include <QPair>
-#include <QSet>
 #include <QTest>
 
 #include "base/bittorrent/toplevelpayload.h"
@@ -119,9 +117,8 @@ private slots:
         QVERIFY(folder.endsWith(u" a19f83c275d1"_s));
     }
 
-    void testPlanSubfolderIsFolderRenameLikeRenameFolder() const
+    void testPlanSubfolderIsFolderRootReplacement() const
     {
-        // Same operation as renameFolder("Show", "Show <hash>").
         const PathList current {Path(u"Show/ep1.mkv"_s), Path(u"Show/ep2.mkv"_s)};
         const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
                 current, sampleId, u"Show"_s, TorrentContentLayout::Subfolder);
@@ -133,7 +130,7 @@ private slots:
         QVERIFY(plan.renames.isEmpty());
     }
 
-    void testPlanOriginalIsFolderRenameLikeRenameFolder() const
+    void testPlanOriginalIsFolderRootReplacement() const
     {
         const PathList current {Path(u"Show/ep.mkv"_s)};
         const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
@@ -156,7 +153,7 @@ private slots:
         }
     }
 
-    void testPlanNoSubfolderCD1CD2() const
+    void testPlanNoSubfolderPathWrapping() const
     {
         const PathList current {Path(u"CD1/movie.mkv"_s), Path(u"CD2/movie.mkv"_s)};
         const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
@@ -169,9 +166,8 @@ private slots:
         QCOMPARE(plan.renames.at(1).to, Path(u"Show a19f83c275d1/CD2/movie.mkv"_s));
     }
 
-    void testPlanPartialMigrationFolderRenameRemainingRoot() const
+    void testPlanPartialMigrationRemainingRoot() const
     {
-        // One file already under unique root; remaining still under Show → folder rename Show → Unique.
         const PathList partial {
             Path(u"Show a19f83c275d1/ep1.mkv"_s),
             Path(u"Show/ep2.mkv"_s)
@@ -187,10 +183,7 @@ private slots:
 
     void testPlanDuplicateNoSubfolderTargetsRejected() const
     {
-        const PathList current {
-            Path(u"a.mkv"_s),
-            Path(u"a.mkv"_s)
-        };
+        const PathList current {Path(u"a.mkv"_s), Path(u"a.mkv"_s)};
         const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
                 current, sampleId, u"Show"_s, TorrentContentLayout::NoSubfolder);
 
@@ -217,121 +210,6 @@ private slots:
         QVERIFY(!plan.blocked);
         QCOMPARE(plan.renames.size(), 1);
         QCOMPARE(plan.renames.at(0).to, Path(u"movie a19f83c275d1/movie.mkv"_s));
-    }
-
-    void testFolderRenamePlanMatchesRenameFolderSemantics() const
-    {
-        // renameFolder(Show, Unique) renames every path under Show the same way as the plan.
-        const Path oldRoot {u"Show"_s};
-        const Path newRoot {u"Show a19f83c275d1"_s};
-        const PathList current {Path(u"Show/a/b.mkv"_s), Path(u"Show/c.mkv"_s)};
-
-        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
-                current, sampleId, u"Show"_s, TorrentContentLayout::Subfolder);
-        QVERIFY(plan.isFolderRename());
-        QCOMPARE(plan.folderRenameOldRoot, oldRoot);
-        QCOMPARE(plan.uniqueRoot, newRoot);
-
-        const QList<QPair<int, Path>> pairs = buildUniqueSubfolderRenamePairs(plan, current);
-        QCOMPARE(pairs.size(), 2);
-        QCOMPARE(pairs.at(0).second, Path(u"Show a19f83c275d1/a/b.mkv"_s));
-        QCOMPARE(pairs.at(1).second, Path(u"Show a19f83c275d1/c.mkv"_s));
-        // Same targets as doRenameFolder(oldRoot, newRoot):
-        QCOMPARE(pairs.at(0).second, newRoot / oldRoot.relativePathOf(current.at(0)));
-        QCOMPARE(pairs.at(1).second, newRoot / oldRoot.relativePathOf(current.at(1)));
-    }
-
-    void testNoSubfolderConversionUsesSharedRenameJobShape() const
-    {
-        // NoSubfolder wrap: scheduleRenameJob(empty old root, uniqueRoot, pairs).
-        const PathList current {Path(u"CD1/movie.mkv"_s), Path(u"CD2/movie.mkv"_s), Path(u"readme.txt"_s)};
-        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
-                current, sampleId, u"Show"_s, TorrentContentLayout::NoSubfolder);
-
-        QVERIFY(!plan.blocked);
-        QVERIFY(!plan.isFolderRename());
-        QVERIFY(plan.folderRenameOldRoot.isEmpty()); // empty old root accepted by scheduleRenameJob
-        QVERIFY(!plan.uniqueRoot.isAbsolute());
-        QVERIFY(!plan.uniqueRoot.isEmpty());
-
-        const QList<QPair<int, Path>> pairs = buildUniqueSubfolderRenamePairs(plan, current);
-        QCOMPARE(pairs.size(), 3);
-
-        // All files move under the unique folder; full relative paths preserved.
-        PathList after = current;
-        for (const auto &[index, to] : pairs)
-            after[index] = to;
-
-        QCOMPARE(after.at(0), Path(u"Show a19f83c275d1/CD1/movie.mkv"_s));
-        QCOMPARE(after.at(1), Path(u"Show a19f83c275d1/CD2/movie.mkv"_s));
-        QCOMPARE(after.at(2), Path(u"Show a19f83c275d1/readme.txt"_s));
-
-        for (const Path &path : after)
-            QVERIFY(path.hasAncestor(plan.uniqueRoot) || (path == plan.uniqueRoot));
-
-        // Plan never sets layout; UniqueSubfolder is applied only after the rename job succeeds.
-        QVERIFY(!plan.finalizeOnly);
-    }
-
-    void testFolderRenameAndNoSubfolderSharePairBuilder() const
-    {
-        // Both conversion modes produce pairs for the same scheduleRenameJob() entry point.
-        const PathList folded {Path(u"Show/ep.mkv"_s)};
-        const UniqueSubfolderMigrationPlan folderPlan = makeUniqueSubfolderMigrationPlan(
-                folded, sampleId, u"Show"_s, TorrentContentLayout::Subfolder);
-        const QList<QPair<int, Path>> folderPairs = buildUniqueSubfolderRenamePairs(folderPlan, folded);
-        QVERIFY(folderPlan.isFolderRename());
-        QCOMPARE(folderPairs.size(), 1);
-
-        const PathList flat {Path(u"ep.mkv"_s)};
-        const UniqueSubfolderMigrationPlan batchPlan = makeUniqueSubfolderMigrationPlan(
-                flat, sampleId, u"Show"_s, TorrentContentLayout::NoSubfolder);
-        const QList<QPair<int, Path>> batchPairs = buildUniqueSubfolderRenamePairs(batchPlan, flat);
-        QVERIFY(!batchPlan.isFolderRename());
-        QCOMPARE(batchPairs.size(), 1);
-
-        // Success path: after applying pairs, layout would be set; plan itself does not claim success.
-        QVERIFY(!folderPlan.finalizeOnly);
-        QVERIFY(!batchPlan.finalizeOnly);
-    }
-
-    void testPartialFailureDoesNotFinalizeLayoutInPlan() const
-    {
-        // Layout flag is only set in finishUniqueSubfolderConversion(success=true).
-        // A plan with renames never implies layout change by itself (failure keeps old layout).
-        const PathList current {Path(u"Show/ep.mkv"_s)};
-        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
-                current, sampleId, u"Show"_s, TorrentContentLayout::Subfolder);
-        QVERIFY(!plan.renames.isEmpty() || plan.isFolderRename());
-        QVERIFY(!plan.finalizeOnly);
-        // Simulated partial failure: some pairs applied, layout flag still not part of the plan.
-        const QList<QPair<int, Path>> pairs = buildUniqueSubfolderRenamePairs(plan, current);
-        QVERIFY(!pairs.isEmpty());
-    }
-
-    void testNoSubfolderDoesNotExposeInvalidFolderPaths() const
-    {
-        const PathList current {Path(u"CD1/movie.mkv"_s), Path(u"CD2/movie.mkv"_s)};
-        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
-                current, sampleId, u"Show"_s, TorrentContentLayout::NoSubfolder);
-
-        // Consumers see newFolderPath = uniqueRoot (relative, valid component name).
-        QVERIFY(Utils::Fs::isValidFileName(plan.uniqueRoot.toString()));
-        QVERIFY(plan.folderRenameOldRoot.isEmpty());
-
-        const QList<QPair<int, Path>> pairs = buildUniqueSubfolderRenamePairs(plan, current);
-        QSet<int> indexes;
-        for (const auto &[index, to] : pairs)
-        {
-            QVERIFY(index >= 0);
-            QVERIFY(index < current.size());
-            QVERIFY(!to.isAbsolute());
-            QVERIFY(!to.isEmpty());
-            // No double unique prefix
-            QVERIFY(!to.toString().contains(u"a19f83c275d1/Show a19f"_s));
-            QVERIFY(!indexes.contains(index));
-            indexes.insert(index);
-        }
     }
 };
 

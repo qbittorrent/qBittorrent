@@ -1865,6 +1865,12 @@ void TorrentImpl::scheduleRenameJob(const Path &oldFolderPath, const Path &newFo
 
 void TorrentImpl::doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath)
 {
+    doRenameFolder(oldFolderPath, newFolderPath, false);
+}
+
+void TorrentImpl::doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath
+        , const bool uniqueSubfolderConversion)
+{
     QList<QPair<int, Path>> fileRenames;
     for (int i = 0; i < filesCount(); ++i)
     {
@@ -1876,7 +1882,7 @@ void TorrentImpl::doRenameFolder(const Path &oldFolderPath, const Path &newFolde
         }
     }
 
-    scheduleRenameJob(oldFolderPath, newFolderPath, fileRenames);
+    scheduleRenameJob(oldFolderPath, newFolderPath, fileRenames, uniqueSubfolderConversion);
 }
 
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const
@@ -2945,9 +2951,18 @@ void TorrentImpl::startUniqueSubfolderMigration(const UniqueSubfolderMigrationPl
         return;
     }
 
-    // Shared rename-job path (same as doRenameFolder). Empty old root is valid for NoSubfolder wraps.
-    const QList<QPair<int, Path>> fileRenames = buildUniqueSubfolderRenamePairs(plan, filePaths());
-    scheduleRenameJob(plan.folderRenameOldRoot, plan.uniqueRoot, fileRenames, true);
+    if (plan.isFolderRename())
+    {
+        doRenameFolder(plan.folderRenameOldRoot, plan.uniqueRoot, true);
+        return;
+    }
+
+    // NoSubfolder (or single-component wrap): one batch rename job on the shared machinery.
+    QList<QPair<int, Path>> fileRenames;
+    fileRenames.reserve(plan.renames.size());
+    for (const UniqueSubfolderRename &item : asConst(plan.renames))
+        fileRenames.append({item.fileIndex, item.to});
+    scheduleRenameJob({}, plan.uniqueRoot, fileRenames, true);
 }
 
 void TorrentImpl::finishUniqueSubfolderConversion(const bool success, const QList<int> &failedFileIndexes)
