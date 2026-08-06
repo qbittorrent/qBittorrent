@@ -54,10 +54,12 @@ QString Utils::String::fromLatin1(const std::string_view string)
     return QString::fromLatin1(string.data(), string.size());
 }
 
+#if LIBTORRENT_VERSION_NUM < 20100
 QString Utils::String::fromLocal8Bit(const std::string_view string)
 {
     return QString::fromLocal8Bit(string.data(), string.size());
 }
+#endif
 
 QString Utils::String::wildcardToRegexPattern(const QString &pattern)
 {

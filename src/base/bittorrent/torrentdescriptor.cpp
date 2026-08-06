@@ -98,7 +98,11 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<BitTorrent::TorrentDescriptor, QString>
@@ -111,7 +115,11 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<BitTorrent::TorrentDescriptor, QString>
@@ -130,7 +138,11 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<void, QString> BitTorrent::TorrentDescriptor::saveToFile(const Path &path) const
@@ -145,7 +157,11 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<QByteArray, QString> BitTorrent::TorrentDescriptor::saveToBuffer() const
@@ -161,7 +177,11 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 BitTorrent::TorrentDescriptor::TorrentDescriptor(lt::add_torrent_params ltAddTorrentParams)

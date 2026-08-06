@@ -6215,7 +6215,11 @@ void SessionImpl::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *ale
 void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *alert)
 {
     const TorrentID torrentID = getInfoHash(*alert).toTorrentID();
+#if LIBTORRENT_VERSION_NUM >= 20100
+    const auto errorMessage = alert->error ? QString::fromStdString(alert->error.message()) : QString();
+#else
     const auto errorMessage = alert->error ? Utils::String::fromLocal8Bit(alert->error.message()) : QString();
+#endif
     handleRemovedTorrent(torrentID, errorMessage);
 }
 
@@ -6413,7 +6417,11 @@ void SessionImpl::handleListenFailedAlert(const lt::listen_failed_alert *alert)
     const QString proto {toString(alert->socket_type)};
     LogMsg(tr("Failed to listen on IP. IP: \"%1\". Port: \"%2/%3\". Reason: \"%4\"")
         .arg(toString(alert->address), proto, QString::number(alert->port)
+#if LIBTORRENT_VERSION_NUM >= 20100
+            , QString::fromStdString(alert->error.message())), Log::CRITICAL);
+#else
             , Utils::String::fromLocal8Bit(alert->error.message())), Log::CRITICAL);
+#endif
 }
 
 void SessionImpl::handleExternalIPAlert(const lt::external_ip_alert *alert)
@@ -6639,7 +6647,11 @@ void SessionImpl::handleSocks5Alert(const lt::socks5_alert *alert) const
         const QString endpoint = (addr.is_v6() ? u"[%1]:%2"_s : u"%1:%2"_s)
                 .arg(toString(addr), QString::number(alert->ip.port()));
         LogMsg(tr("SOCKS5 proxy error. Address: %1. Message: \"%2\".")
+#if LIBTORRENT_VERSION_NUM >= 20100
+                .arg(endpoint, QString::fromStdString(alert->error.message()))
+#else
                 .arg(endpoint, Utils::String::fromLocal8Bit(alert->error.message()))
+#endif
                 , Log::WARNING);
     }
 }
@@ -6778,7 +6790,11 @@ void SessionImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_fai
     if (alert->error != lt::errors::resume_data_not_modified)
     {
         LogMsg(tr("Generate resume data failed. Torrent: \"%1\". Reason: \"%2\"")
+#if LIBTORRENT_VERSION_NUM >= 20100
+                .arg(torrent->name(), QString::fromStdString(alert->error.message())), Log::CRITICAL);
+#else
                 .arg(torrent->name(), Utils::String::fromLocal8Bit(alert->error.message())), Log::CRITICAL);
+#endif
     }
 }
 
@@ -6818,7 +6834,11 @@ void SessionImpl::handleFileRenameFailedAlert(const lt::file_rename_failed_alert
 
     LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
             .arg(torrent->name(), torrent->filePath(torrent->fileIndexFromNative(alert->index)).toString()
+#if LIBTORRENT_VERSION_NUM >= 20100
+                    , QString::fromStdString(alert->error.message())), Log::WARNING);
+#else
                     , Utils::String::fromLocal8Bit(alert->error.message())), Log::WARNING);
+#endif
 }
 
 void SessionImpl::handleFileCompletedAlert(const lt::file_completed_alert *alert)
