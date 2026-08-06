@@ -106,9 +106,16 @@ namespace
         if (base.endsWith(tag))
             base.chop(tag.size());
 
-        // Single-file: match Subfolder naming (extension stripped from folder base).
+        // Single-file: strip only when the folder base is the payload filename itself
+        // (Subfolder parity, e.g. "movie.mkv" → "movie"). Keeps dotted folder identities
+        // such as "ubuntu-24.04" / "Series.Name" intact, and stays idempotent after the
+        // first wrap (path becomes "movie <hash>/movie.mkv" while the name is still the file).
         if (filePaths.size() == 1)
-            base = Path(base).removedExtension().toString();
+        {
+            const QString fileName = filePaths.at(0).filename();
+            if ((base == fileName) || (base == filePaths.at(0).toString()))
+                base = Path(fileName).removedExtension().toString();
+        }
 
         if (base.isEmpty())
             base = u"Torrent"_s;
@@ -119,18 +126,6 @@ namespace
     bool isUnderUniqueRoot(const Path &path, const Path &uniqueRoot)
     {
         return (path == uniqueRoot) || path.hasAncestor(uniqueRoot);
-    }
-
-    Path stripPathPrefix(const Path &path, const Path &prefix)
-    {
-        if (path == prefix)
-            return {};
-
-        const QString pathStr = path.data();
-        const QString prefixStr = prefix.data();
-        if (pathStr.startsWith(prefixStr + u'/'))
-            return Path(pathStr.sliced(prefixStr.size() + 1));
-        return path;
     }
 }
 

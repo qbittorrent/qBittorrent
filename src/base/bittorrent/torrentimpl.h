@@ -46,7 +46,6 @@
 #include <QMap>
 #include <QObject>
 #include <QQueue>
-#include <QSet>
 #include <QString>
 
 #include "base/path.h"

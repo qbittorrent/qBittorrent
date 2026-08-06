@@ -212,6 +212,39 @@ private slots:
         QCOMPARE(plan.renames.at(0).to, Path(u"movie a19f83c275d1/movie.mkv"_s));
     }
 
+    void testSingleFileWithDottedRootKeepsRootName() const
+    {
+        // Single payload under a versioned / dotted folder must not strip the root as an extension.
+        const PathList paths {Path(u"ubuntu-24.04/ubuntu.iso"_s)};
+        const PathList out = applyUniqueSubfolderLayout(paths, sampleId, u"ubuntu-24.04"_s);
+        QCOMPARE(Path::findRootFolder(out).toString(), u"ubuntu-24.04 a19f83c275d1"_s);
+        QCOMPARE(out.at(0), Path(u"ubuntu-24.04 a19f83c275d1/ubuntu.iso"_s));
+
+        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
+                paths, sampleId, u"ubuntu-24.04"_s, TorrentContentLayout::Original);
+        QVERIFY(!plan.blocked);
+        QVERIFY(plan.isFolderRename());
+        QCOMPARE(plan.folderRenameOldRoot, Path(u"ubuntu-24.04"_s));
+        QCOMPARE(plan.uniqueRoot, Path(u"ubuntu-24.04 a19f83c275d1"_s));
+    }
+
+    void testSingleFileWithDottedSeriesRootKeepsRootName() const
+    {
+        const PathList paths {Path(u"Series.Name/ep.mkv"_s)};
+        const PathList out = applyUniqueSubfolderLayout(paths, sampleId, u"Series.Name"_s);
+        QCOMPARE(Path::findRootFolder(out).toString(), u"Series.Name a19f83c275d1"_s);
+        QCOMPARE(out.at(0), Path(u"Series.Name a19f83c275d1/ep.mkv"_s));
+    }
+
+    void testRootlessSingleFileWithDisplayNameKeepsName() const
+    {
+        // Torrent display name is not the payload filename — do not strip version dots from it.
+        const PathList out = applyUniqueSubfolderLayout(
+                {Path(u"ubuntu.iso"_s)}, sampleId, u"ubuntu-24.04"_s);
+        QCOMPARE(Path::findRootFolder(out).toString(), u"ubuntu-24.04 a19f83c275d1"_s);
+        QCOMPARE(out.at(0), Path(u"ubuntu-24.04 a19f83c275d1/ubuntu.iso"_s));
+    }
+
     void testNoSubfolderPlanIsRootlessWrapNotFolderRename() const
     {
         // NoSubfolder conversion uses scheduleRenameJob with an empty old root.

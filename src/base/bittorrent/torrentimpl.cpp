@@ -1846,7 +1846,15 @@ void TorrentImpl::scheduleRenameJob(const Path &oldFolderPath, const Path &newFo
         , const QList<QPair<int, Path>> &fileRenames, const bool uniqueSubfolderConversion)
 {
     if (fileRenames.isEmpty())
+    {
+        // Conversion callers connect to uniqueSubfolderMigrationFinished; do not hang them.
+        if (uniqueSubfolderConversion)
+        {
+            emit uniqueSubfolderMigrationFinished(false
+                    , tr("No files matched the unique-subfolder conversion plan."));
+        }
         return;
+    }
 
     // oldFolderPath may be empty for NoSubfolder wraps (batch rename under newFolderPath only).
     // Job tracking, alerts, and success/failure handling are shared with doRenameFolder().
@@ -2904,7 +2912,10 @@ UniqueSubfolderMigrationPlan TorrentImpl::planUniqueSubfolderMigration() const
 void TorrentImpl::startUniqueSubfolderMigration(const UniqueSubfolderMigrationPlan &plan)
 {
     if (plan.blocked)
+    {
+        emit uniqueSubfolderMigrationFinished(false, plan.blockReason);
         return;
+    }
 
     if (plan.finalizeOnly)
     {
@@ -2915,7 +2926,10 @@ void TorrentImpl::startUniqueSubfolderMigration(const UniqueSubfolderMigrationPl
     }
 
     if (plan.isEmpty())
+    {
+        emit uniqueSubfolderMigrationFinished(true, {});
         return;
+    }
 
     if (!m_renamingFiles.isEmpty() || !m_renamingFolders.isEmpty() || isMoveInProgress())
     {
