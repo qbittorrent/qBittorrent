@@ -3073,7 +3073,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
     // Seed optional lifetime stats
     if (addTorrentParams.initialStats)
     {
-        const InitialTorrentStats &s = *addTorrentParams.initialStats;
+        const TorrentStats &s = *addTorrentParams.initialStats;
         p.total_uploaded = s.totalUploaded;
         p.total_downloaded = s.totalDownloaded;
         p.added_time = static_cast<std::time_t>(s.addedTime);

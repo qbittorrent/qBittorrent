@@ -1083,7 +1083,7 @@ void TorrentsController::pieceAvailabilityAction()
 
 namespace
 {
-    std::optional<BitTorrent::InitialTorrentStats> parseInitialStats(const QString &rawJson)
+    std::optional<BitTorrent::TorrentStats> parseInitialStats(const QString &rawJson)
     {
         if (rawJson.isEmpty())
             return std::nullopt;
@@ -1117,7 +1117,7 @@ namespace
             return static_cast<int>(value);
         };
 
-        BitTorrent::InitialTorrentStats stats;
+        BitTorrent::TorrentStats stats;
         stats.totalUploaded = readInt64(u"total_uploaded"_s);
         stats.totalDownloaded = readInt64(u"total_downloaded"_s);
         stats.addedTime = readInt64(u"added_time"_s);
@@ -1168,7 +1168,7 @@ void TorrentsController::addAction()
             ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
             : std::optional<BitTorrent::TorrentContentLayout> {});
 
-    const std::optional<BitTorrent::InitialTorrentStats> initialStats = parseInitialStats(params()[u"stats"_s]);
+    const std::optional<BitTorrent::TorrentStats> initialStats = parseInitialStats(params()[u"stats"_s]);
 
     const DataMap &torrents = data();
 
