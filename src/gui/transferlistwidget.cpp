@@ -316,6 +316,22 @@ void TransferListWidget::torrentDoubleClicked()
     }
 }
 
+bool TransferListWidget::selectTorrent(BitTorrent::Torrent *const torrent)
+{
+    const QModelIndex sourceIndex = m_listModel->torrentIndex(torrent);
+    if (!sourceIndex.isValid())
+        return false;
+
+    const QModelIndex proxyIndex = m_sortFilterModel->mapFromSource(sourceIndex);
+    if (!proxyIndex.isValid())
+        return false;  // the torrent is hidden by the current filters
+
+    const QModelIndex index = m_sortFilterModel->index(proxyIndex.row(), TransferListModel::TR_NAME);
+    selectionModel()->setCurrentIndex(index, (QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows));
+    scrollTo(index);
+    return true;
+}
+
 QList<BitTorrent::Torrent *> TransferListWidget::getSelectedTorrents() const
 {
     const QModelIndexList selectedRows = selectionModel()->selectedRows();
