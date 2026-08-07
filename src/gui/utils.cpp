@@ -65,9 +65,13 @@
 #include "base/tag.h"
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
+#ifdef Q_OS_MACOS
+#include "macutilities.h"
+#endif
 
 namespace
 {
+#if !defined(Q_OS_WIN) && !defined(Q_OS_MACOS)
     QUrl toURL(const Path &path)
     {
         // Hack to access samba shares with QDesktopServices::openUrl
@@ -75,6 +79,7 @@ namespace
             ? QUrl(u"file:" + path.data())
             : QUrl::fromLocalFile(path.data());
     }
+#endif
 
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     void startDetached(const QString &program, const QStringList &args)
@@ -209,8 +214,6 @@ QPoint Utils::Gui::screenCenter(const QWidget *w)
 // Open the given path with an appropriate application
 void Utils::Gui::openPath(const Path &path)
 {
-    const QUrl url = toURL(path);
-
 #ifdef Q_OS_WIN
     auto *thread = QThread::create([path]()
     {
@@ -226,8 +229,10 @@ void Utils::Gui::openPath(const Path &path)
     thread->setObjectName("Utils::Gui::openPath thread");
     QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
     thread->start();
+#elif defined(Q_OS_MACOS)
+    MacUtils::openPath(path);
 #else
-    QDesktopServices::openUrl(url);
+    QDesktopServices::openUrl(toURL(path));
 #endif
 }
 
