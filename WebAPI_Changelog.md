@@ -1,6 +1,26 @@
 # WebAPI Changelog
 
 ## 2.16.0
+
+* [#24724](https://github.com/qbittorrent/qBittorrent/pull/24724)
+  * `torrents/add` endpoint accepts `seedMode` (bool) parameter
+  * `torrents/add` endpoint no longer accepts `skip_checking` parameter
+* [#24720](https://github.com/qbittorrent/qBittorrent/pull/24720)
+  * `app/preferences` endpoint includes `web_ui_sessions_count_limit` (int) option
+  * `app/setPreferences` endpoint allows to set `web_ui_sessions_count_limit` (int) option
+* [#24641](https://github.com/qbittorrent/qBittorrent/pull/24641)
+  * `app/preferences` and `app/setPreferences` endpoints no longer include `export_dir` and `export_dir_fin` options as they are no longer supported by the core
+  * `app/preferences` and `app/setPreferences` endpoints include the following new options:
+    * `torrent_files_backup_enabled` (bool) - enable/disable saving backup copies of .torrent files
+    * `torrent_files_backup_dir` (string) - the folder path for saving backup copies of .torrent files
+    * `torrent_files_finished_backup_dir_enabled` (bool) - enable/disable moving backup copies of .torrent files to another folder when torrent is finished
+    * `torrent_files_finished_backup_dir` (string) - the folder path for moving backup copies of .torrent files when torrent is finished
+    * `remove_torrent_file_backup` (bool) - whether .torrent file backup should be removed when removing the torrent
+* [#24684](https://github.com/qbittorrent/qBittorrent/pull/24684)
+  * `app/preferences` endpoint includes `enable_multi_connections_from_same_peer_id` option
+  * `app/setPreferences` endpoint allows to set `enable_multi_connections_from_same_peer_id` option
+* [#23989](https://github.com/qbittorrent/qBittorrent/pull/23989)
+  * `sync/torrentPeers` endpoint now includes calculated `contribution` to a peer's progress
 * [#24346](https://github.com/qbittorrent/qBittorrent/pull/24346)
   * `torrentcreator/addTask` endpoint accepts a new bool option `ignoreDotfiles` to control whether dotfiles are ignored
   * `torrentcreator/status` endpoint returns a new bool field `ignoreDotfiles` for reporting whether dotfiles were ignored
@@ -28,10 +48,12 @@
     * `file` accepts either file index or path relative to content root
 
 ## 2.15.4
+
 * [#24056](https://github.com/qbittorrent/qBittorrent/pull/24056)
   * Add `rss/cloneRule` endpoint with `sourceName` and `cloneName` as parameters for cloning an existing RSS auto-download rule
 
 ## 2.15.3
+
 * [#24043](https://github.com/qbittorrent/qBittorrent/pull/24043)
   * `sync/maindata` endpoint includes `share_limits_mode` for torrents
   * `app/preferences` endpoint includes `share_limits_mode` option
@@ -43,6 +65,7 @@
   * Add `app/getFreeSpaceAtPathAction` endpoint with `path` as parameter returning the free space at the given path
 
 ## 2.15.1
+
 * [#23357](https://github.com/qbittorrent/qBittorrent/pull/23357)
   * Add `app/processInfo` endpoint returning `launch_time` (process launch time as UTC epoch seconds)
 * [#23708](https://github.com/qbittorrent/qBittorrent/pull/23708)
@@ -55,18 +78,21 @@
   * `torrents/editCategory` endpoint will throw a "Not Found" (404) error when editing category that does not exist
 
 ## 2.15.0
+
 * [#23585](https://github.com/qbittorrent/qBittorrent/pull/23585)
   * `sync/maindata` endpoint no longer includes the key `use_subcategories` as subcategories are now always enabled
 * [#23564](https://github.com/qbittorrent/qBittorrent/pull/23564)
   * WebAPI credentials can now be supplied via Basic auth
 
 ## 2.14.1
+
 * [#23212](https://github.com/qbittorrent/qBittorrent/pull/23212)
   * Add `app/rotateAPIKey` endpoint for generating, and rotating, the WebAPI API key
 * [#23388](https://github.com/qbittorrent/qBittorrent/pull/23388)
   * Add `app/deleteAPIKey` endpoint for deleting the existing WebAPI API key
 
 ## 2.14.0
+
 * [#23202](https://github.com/qbittorrent/qBittorrent/pull/23202)
   * WebAPI responds with the error message "Endpoint does not exist" when the endpoint does not exist, to better differentiate from unrelated Not Found (i.e. 404) responses
   * `auth/login` endpoint responds to invalid credentials with a 401
@@ -75,6 +101,7 @@
     * When all torrents fail to be added, response code 409 is used
 
 ## 2.13.1
+
 * [#23163](https://github.com/qbittorrent/qBittorrent/pull/23163)
   * `torrents/add` endpoint now supports downloading from a search plugin via the `downloader` parameter
   * `torrents/fetchMetadata` endpoint now supports fetching from a search plugin via the `downloader` parameter
@@ -82,10 +109,11 @@
   * Add `clientdata/load` and `clientdata/store` endpoints for managing WebUI-specific client settings and other shared data
 
 ## 2.13.0
+
 * [#23045](https://github.com/qbittorrent/qBittorrent/pull/23045)
   * `torrents/trackers` returns three new fields: `next_announce`, `min_announce` and `endpoints`
     * `endpoints` is an array of tracker endpoints, each with `name`, `updating`, `status`, `msg`, `bt_version`, `num_peers`, `num_peers`, `num_leeches`, `num_downloaded`, `next_announce` and `min_announce` fields
-  *  `torrents/trackers` now returns `5` and `6` in `status` field as possible values
+  * `torrents/trackers` now returns `5` and `6` in `status` field as possible values
     * `5` for `Tracker error` and `6` for `Unreachable`
 * [#22963](https://github.com/qbittorrent/qBittorrent/pull/22963)
   * `torrents/editTracker` endpoint now supports setting a tracker's tier via `tier` parameter
@@ -98,6 +126,7 @@
   * `torrents/parseMetadata` now responds with an array of metadata in the same order as the files in the request. It previously responded with an object keyed off of the submitted file name.
 
 ## 2.12.1
+
 * [#23031](https://github.com/qbittorrent/qBittorrent/pull/23031)
   * Add `torrents/setComment` endpoint with parameters `hashes` and `comment` for setting a new torrent comment
 

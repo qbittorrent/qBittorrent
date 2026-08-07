@@ -56,18 +56,19 @@ if ((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_CXX_COMPILER_ID STREQUAL "C
         -Wcast-qual
         -Wcast-align
         -Winvalid-pch
-        -Woverloaded-virtual
-        -Wold-style-cast
-        -Wnon-virtual-dtor
         -pedantic
         -pedantic-errors
+        $<$<COMPILE_LANGUAGE:CXX>:
+            -Woverloaded-virtual
+            -Wold-style-cast
+            -Wnon-virtual-dtor>
     )
 
     # Clang 11 still doesn't support -Wstrict-null-sentinel
     include(CheckCXXCompilerFlag)
     check_cxx_compiler_flag(-Wstrict-null-sentinel SNS_SUPPORT)
     if (SNS_SUPPORT)
-        target_compile_options(qbt_common_cfg INTERFACE -Wstrict-null-sentinel)
+        target_compile_options(qbt_common_cfg INTERFACE $<$<COMPILE_LANGUAGE:CXX>:-Wstrict-null-sentinel>)
     endif()
 endif()
 

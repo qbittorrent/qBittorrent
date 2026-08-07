@@ -20,9 +20,9 @@ qt_wrap_ui(UI_HEADERS
     rss/automatedrssdownloader.ui
     rss/rssfeeddialog.ui
     rss/rsswidget.ui
-    search/pluginselectdialog.ui
-    search/pluginsourcedialog.ui
     search/searchjobwidget.ui
+    search/searchpluginselectdialog.ui
+    search/searchpluginsourcedialog.ui
     search/searchwidget.ui
     shadowbanlistoptionsdialog.ui
     shutdownconfirmdialog.ui
@@ -94,9 +94,9 @@ add_library(qbt_gui STATIC
     rss/htmlbrowser.h
     rss/rssfeeddialog.h
     rss/rsswidget.h
-    search/pluginselectdialog.h
-    search/pluginsourcedialog.h
     search/searchjobwidget.h
+    search/searchpluginselectdialog.h
+    search/searchpluginsourcedialog.h
     search/searchsortmodel.h
     search/searchwidget.h
     shadowbanlistoptionsdialog.h
@@ -201,9 +201,9 @@ add_library(qbt_gui STATIC
     rss/htmlbrowser.cpp
     rss/rssfeeddialog.cpp
     rss/rsswidget.cpp
-    search/pluginselectdialog.cpp
-    search/pluginsourcedialog.cpp
     search/searchjobwidget.cpp
+    search/searchpluginselectdialog.cpp
+    search/searchpluginsourcedialog.cpp
     search/searchsortmodel.cpp
     search/searchwidget.cpp
     shadowbanlistoptionsdialog.cpp
@@ -270,7 +270,8 @@ target_link_libraries(qbt_gui
     PRIVATE
         qbt_base
     PUBLIC
-        Qt::Gui Qt::Widgets
+        Qt::Gui
+        Qt::Widgets
 )
 
 if (DBUS)
@@ -281,6 +282,16 @@ if (DBUS)
         notifications/dbusnotificationsinterface.cpp
         powermanagement/inhibitordbus.h
         powermanagement/inhibitordbus.cpp
+    )
+endif()
+
+if (PLUGINS)
+    qt_wrap_ui(PLUGINS_UI_HEADERS plugins/pluginsdialog.ui)
+
+    target_sources(qbt_gui PRIVATE
+        plugins/pluginsdialog.h
+        plugins/pluginsdialog.cpp
+        ${PLUGINS_UI_HEADERS}
     )
 endif()
 

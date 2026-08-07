@@ -71,6 +71,7 @@ public:
         RELEVANCE,
         DOWNLOADING_PIECE,
         SHADOWBANNED,
+        CONTRIBUTION,
         IP_HIDDEN,
 
         COL_COUNT

@@ -125,6 +125,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListColumns::TOT_UP, Qt::Horizontal, tr("Uploaded", "i.e: total data uploaded"));
     m_listModel->setHeaderData(PeerListColumns::RELEVANCE, Qt::Horizontal, tr("Relevance", "i.e: How relevant this peer is to us. How many pieces it has that we don't."));
     m_listModel->setHeaderData(PeerListColumns::SHADOWBANNED, Qt::Horizontal, tr("Shadowbanned", "i.e: Is this peer shadowbanned?"));
+    m_listModel->setHeaderData(PeerListColumns::CONTRIBUTION, Qt::Horizontal, tr("Contribution", "i.e: How much of this peer's current progress was provided by us"));
     m_listModel->setHeaderData(PeerListColumns::DOWNLOADING_PIECE, Qt::Horizontal, tr("Files", "i.e. files that are being downloaded right now"));
     // Set header text alignment
     m_listModel->setHeaderData(PeerListColumns::PORT, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
@@ -135,6 +136,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListColumns::TOT_UP, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     m_listModel->setHeaderData(PeerListColumns::RELEVANCE, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     m_listModel->setHeaderData(PeerListColumns::SHADOWBANNED, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListColumns::CONTRIBUTION, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     // Proxy model to support sorting without actually altering the underlying model
     m_proxyModel = new PeerListSortModel(this);
     m_proxyModel->setDynamicSortFilter(true);
@@ -504,7 +506,8 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
                 const bool useI2PSocket = peer.useI2PSocket();
 
                 const QString peerIPString = useI2PSocket ? peer.I2PAddress() : peerEndpoint.address.ip.toString();
-                setModelData(m_listModel, row, PeerListColumns::IP, peerIPString, peerIPString, {}, peerIPString);
+                const QVariant peerIPSortData = useI2PSocket ? QVariant(peerIPString) : QVariant::fromValue(peerEndpoint.address);
+                setModelData(m_listModel, row, PeerListColumns::IP, peerIPString, peerIPSortData, {}, peerIPString);
 
                 const QString peerIPHiddenString = useI2PSocket ? QString() : peerEndpoint.address.ip.toString();
                 setModelData(m_listModel, row, PeerListColumns::IP_HIDDEN, peerIPHiddenString, peerIPHiddenString);
@@ -583,6 +586,18 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
             , peer.relevance(), intDataTextAlignment);
     setModelData(m_listModel, row, PeerListColumns::SHADOWBANNED, peer.isShadowBanned() ? u"✓"_s : u""_s
             , peer.isShadowBanned(), intDataTextAlignment);
+
+    const qlonglong totalUpload = peer.totalUpload();
+    qreal contribution = 0;
+
+    if (totalUpload > 0)
+    {
+        const qlonglong totalSize = (torrent->totalSize() <= 0) ? totalUpload : torrent->totalSize();
+        const qreal progressBytes = peer.progress() * totalSize;
+        contribution = static_cast<qreal>(totalUpload) / ((progressBytes <= 0) ? totalSize : progressBytes);
+    }
+    setModelData(m_listModel, row, PeerListColumns::CONTRIBUTION, (Utils::String::fromDouble((contribution * 100), 1) + u'%')
+            , contribution, intDataTextAlignment);
 
     const PathList filePaths = torrent->info().filesForPiece(peer.downloadingPieceIndex());
     QStringList downloadingFiles;

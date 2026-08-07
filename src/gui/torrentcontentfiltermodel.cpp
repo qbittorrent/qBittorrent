@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -56,6 +56,11 @@ TorrentContentModelItem::ItemType TorrentContentFilterModel::itemType(const QMod
 int TorrentContentFilterModel::getFileIndex(const QModelIndex &index) const
 {
     return m_model->getFileIndex(mapToSource(index));
+}
+
+QSet<int> TorrentContentFilterModel::getFileIndexes(const QModelIndex &itemIndex) const
+{
+    return m_model->getFileIndexes(mapToSource(itemIndex));
 }
 
 QModelIndex TorrentContentFilterModel::parent(const QModelIndex &child) const

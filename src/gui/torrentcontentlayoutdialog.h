@@ -28,8 +28,10 @@
 
 #pragma once
 
+#include <QtContainerFwd>
 #include <QDialog>
 
+#include "base/path.h"
 #include "base/settingvalue.h"
 
 class TorrentContentLayoutModel;
@@ -51,9 +53,16 @@ class TorrentContentLayoutDialog final : public QDialog
 
 public:
     explicit TorrentContentLayoutDialog(BitTorrent::TorrentContentHandler *contentHandler, QWidget *parent = nullptr);
-    ~TorrentContentLayoutDialog();
+    TorrentContentLayoutDialog(BitTorrent::TorrentContentHandler *contentHandler, const QSet<int> &selectedIndexes, QWidget *parent = nullptr);
+    ~TorrentContentLayoutDialog() override;
+
+private slots:
+    void showColumnHeaderMenu();
 
 private:
+    PathList selectedPaths() const;
+    void populateCommonPath();
+    void onCommonPathEdited(const QString &pathStr);
     void apply();
 
     Ui::TorrentContentLayoutDialog *m_ui = nullptr;
@@ -62,4 +71,6 @@ private:
 
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QByteArray> m_storeViewState;
+
+    Path m_commonPath;
 };

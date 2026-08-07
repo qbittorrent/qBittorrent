@@ -30,6 +30,7 @@
 #include "path.h"
 
 #include <algorithm>
+#include <ranges>
 
 #include <QDataStream>
 #include <QDir>
@@ -312,12 +313,32 @@ Path Path::commonPath(const Path &left, const Path &right)
     return Path::createUnchecked(left.m_pathStr.first(commonPathSize));
 }
 
+Path Path::commonPath(const PathList &filePaths)
+{
+    if (filePaths.isEmpty())
+        return {};
+
+    Path commonPath = filePaths.at(0);
+    for (const Path &filePath : std::views::drop(filePaths, 1))
+    {
+        commonPath = Path::commonPath(commonPath, filePath);
+        if (commonPath.isEmpty())
+            return commonPath;
+    }
+
+    return commonPath;
+}
+
 Path Path::findRootFolder(const PathList &filePaths)
 {
+    // find the common first level path of all `filePaths`
+
     Path rootFolder;
     for (const Path &filePath : filePaths)
     {
-        const auto filePathElements = QStringView(filePath.m_pathStr).split(u'/');
+        Q_ASSERT(!filePath.m_pathStr.startsWith(u'/'));  // currently this function doesn't know how to handle absolute paths
+
+        const auto filePathElements = QStringView(filePath.m_pathStr).split(u'/', Qt::SkipEmptyParts);
         // if at least one file has no root folder, no common root folder exists
         if (filePathElements.count() <= 1)
             return {};

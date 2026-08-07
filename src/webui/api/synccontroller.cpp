@@ -78,6 +78,7 @@ namespace
     const QString KEY_PEER_PROGRESS = u"progress"_s;
     const QString KEY_PEER_RELEVANCE = u"relevance"_s;
     const QString KEY_PEER_SHADOWBANNED = u"shadowbanned"_s;
+    const QString KEY_PEER_CONTRIBUTION = u"contribution"_s;
     const QString KEY_PEER_TOT_DOWN = u"downloaded"_s;
     const QString KEY_PEER_TOT_UP = u"uploaded"_s;
     const QString KEY_PEER_UP_SPEED = u"up_speed"_s;
@@ -872,6 +873,18 @@ void SyncController::torrentPeersAction()
             {KEY_PEER_RELEVANCE, pi.relevance()},
             {KEY_PEER_SHADOWBANNED, pi.isShadowBanned()}
         };
+
+        const qlonglong totalUpload = pi.totalUpload();
+        qreal contribution = 0;
+
+        if (totalUpload > 0)
+        {
+            const qlonglong totalSize = (torrent->totalSize() <= 0) ? totalUpload : torrent->totalSize();
+            const qreal progressBytes = pi.progress() * totalSize;
+            contribution = static_cast<qreal>(totalUpload) / ((progressBytes <= 0) ? totalSize : progressBytes);
+        }
+
+        peer[KEY_PEER_CONTRIBUTION] = contribution;
 
         if (torrent->hasMetadata())
         {
