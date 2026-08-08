@@ -376,7 +376,7 @@ void WebApplication::processAPIRequest(const QString &endpoint, const Http::Head
 
     try
     {
-        const APIResult apiResult = controller->run(action, params, data);
+        const APIResult apiResult = controller->run(action, {.params = params, .data = data, .isJson = m_request.isJson, .jsonBody = m_request.jsonBody});
         if (std::holds_alternative<StreamFileAPIResult>(apiResult))
         {
             const auto result = std::get<StreamFileAPIResult>(apiResult);

@@ -38,11 +38,16 @@
 #include <QByteArrayList>
 #include <QByteArrayView>
 #include <QDebug>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonParseError>
+#include <QJsonValue>
 #include <QUrl>
 #include <QUrlQuery>
 
 #include "base/global.h"
 #include "base/utils/bytearray.h"
+#include "base/utils/json.h"
 #include "base/utils/string.h"
 #include "constants.h"
 
@@ -154,6 +159,10 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArrayView data)
                 qWarning() << Q_FUNC_INFO << "message body parsing error";
                 return {ParseStatus::BadRequest, Request(), 0};
             }
+        }
+        else if (m_request.headers.value(HEADER_CONTENT_TYPE).toLower().startsWith(CONTENT_TYPE_JSON))
+        {
+            m_request.isJson = true;
         }
 
         return {ParseStatus::OK, m_request, (headerLength + contentLength)};
@@ -321,6 +330,39 @@ bool RequestParser::parsePostMessage(const QByteArrayView data)
         {
             return this->parseFormData(part);
         });
+    }
+
+    // application/json
+    if (contentTypeLower.startsWith(CONTENT_TYPE_JSON))
+    {
+        QJsonParseError parseError;
+        const QJsonDocument doc = QJsonDocument::fromJson(QByteArray::fromRawData(data.constData(), data.size()), &parseError);
+        if (parseError.error != QJsonParseError::NoError)
+        {
+            qWarning() << Q_FUNC_INFO << "invalid JSON body:" << parseError.errorString();
+            return false;
+        }
+        if (!doc.isObject())
+        {
+            // params are name/value pairs, so the top-level JSON value must be an object
+            qWarning() << Q_FUNC_INFO << "JSON body must be an object";
+            return false;
+        }
+
+        m_request.isJson = true;
+
+        const QJsonObject object = doc.object();
+        m_request.jsonBody = object;
+        m_request.posts.reserve(object.size());
+        for (auto it = object.constBegin(); it != object.constEnd(); ++it)
+        {
+            // treat a JSON null as an omitted field
+            if (it.value().isNull())
+                continue;
+            m_request.posts[it.key()] = Utils::Json::flattenValue(it.value());
+        }
+
+        return true;
     }
 
     qWarning() << Q_FUNC_INFO << "unknown content type:" << contentType;

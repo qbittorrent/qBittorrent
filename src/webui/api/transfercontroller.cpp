@@ -180,7 +180,7 @@ void TransferController::banPeersAction()
 {
     requireParams({u"peers"_s});
 
-    const QStringList peers = params()[u"peers"_s].split(u'|');
+    const QStringList peers = parseList(u"peers"_s, u'|');
     for (const QString &peer : peers)
     {
         const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(peer.trimmed());
