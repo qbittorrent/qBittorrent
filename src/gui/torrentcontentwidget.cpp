@@ -217,14 +217,40 @@ void TorrentContentWidget::setFilterPattern(const QString &patternText, const Fi
 
 void TorrentContentWidget::checkAll()
 {
-    for (int i = 0; i < model()->rowCount(); ++i)
-        model()->setData(model()->index(i, TorrentContentModelItem::COL_NAME), Qt::Checked, Qt::CheckStateRole);
+    checkItemsIteratively(QModelIndex(), Qt::Checked);
 }
 
 void TorrentContentWidget::checkNone()
 {
-    for (int i = 0; i < model()->rowCount(); ++i)
-        model()->setData(model()->index(i, TorrentContentModelItem::COL_NAME), Qt::Unchecked, Qt::CheckStateRole);
+    checkItemsIteratively(QModelIndex(), Qt::Unchecked);
+}
+
+void TorrentContentWidget::checkItemsIteratively(const QModelIndex &parent, const Qt::CheckState state)
+{
+    QQueue<QModelIndex> pendingParents;
+    pendingParents.enqueue(parent);
+
+    while (!pendingParents.isEmpty())
+    {
+        const QModelIndex currentParent = pendingParents.dequeue();
+        const int childCount = model()->rowCount(currentParent);
+        for (int i = 0; i < childCount; ++i)
+        {
+            const QModelIndex childIndex = model()->index(i, TorrentContentModelItem::COL_NAME, currentParent);
+            if (!childIndex.isValid())
+                continue;
+
+            const TorrentContentModelItem::ItemType itemType = m_filterModel->itemType(childIndex);
+            if (itemType == TorrentContentModelItem::FileType)
+            {
+                model()->setData(childIndex, state, Qt::CheckStateRole);
+            }
+            else if (itemType == TorrentContentModelItem::FolderType)
+            {
+                pendingParents.enqueue(childIndex);
+            }
+        }
+    }
 }
 
 void TorrentContentWidget::setContentDragAllowed(const bool allowed)
