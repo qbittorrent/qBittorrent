@@ -227,6 +227,7 @@
         };
 
         const serverSyncRssDataInterval = 1500;
+        const blockedArticleUrlMessage = "QBT_TR(Blocked opening RSS article URL. Only http:// and https:// links can be opened.)QBT_TR[CONTEXT=RSSWidget]";
         let feedData = {};
         let pathByFeedId = new Map();
         let feedRefreshTimer = -1;
@@ -331,8 +332,21 @@
                         }
                     },
                     OpenNews: (el) => {
-                        for (const rowID of rssArticleTable.selectedRows)
-                            window.open(rssArticleTable.getRow(rowID).full_data.link);
+                        const blockedUrls = [];
+                        for (const rowID of rssArticleTable.selectedRows) {
+                            const { link, name } = rssArticleTable.getRow(rowID).full_data;
+                            if (window.qBittorrent.Misc.isHttpUrl(link)) {
+                                window.open(link);
+                            }
+                            else {
+                                console.error(`Blocked opening RSS article URL. Only http:// and https:// links can be opened. Article: "${name}". URL: "${link}".`);
+                                // collapse whitespace and cap the length so that a crafted URL can't pad the dialog with its own text
+                                blockedUrls.push(link.replace(/\s+/g, " ").slice(0, 256));
+                            }
+                        }
+
+                        if (blockedUrls.length > 0)
+                            alert(`${blockedArticleUrlMessage}\n\n${blockedUrls.join("\n")}`);
                     }
                 },
                 offsets: {
@@ -522,7 +536,10 @@
                 divElement.id = "rssTorrentDetailsLink";
 
                 const anchorElement = document.createElement("a");
-                anchorElement.href = articleLink;
+                if (window.qBittorrent.Misc.isHttpUrl(articleLink))
+                    anchorElement.href = articleLink;
+                else
+                    anchorElement.title = blockedArticleUrlMessage;
                 anchorElement.textContent = "QBT_TR(Open link)QBT_TR[CONTEXT=RSSWidget]";
                 anchorElement.target = "_blank";
                 anchorElement.style = "font-weight: bold;";
