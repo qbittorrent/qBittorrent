@@ -1369,11 +1369,13 @@ int TorrentImpl::queuePosition() const
 QString TorrentImpl::error() const
 {
     if (m_nativeStatus.errc)
+    {
 #if LIBTORRENT_VERSION_NUM >= 20100
         return QString::fromStdString(m_nativeStatus.errc.message());
 #else
         return Utils::String::fromLocal8Bit(m_nativeStatus.errc.message());
 #endif
+    }
 
     if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
     {
