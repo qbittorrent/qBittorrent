@@ -2169,7 +2169,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("peer_proxy_auth_checkbox").disabled = (isProxyDisabled || isProxySocks4);
             document.getElementById("proxy_bittorrent_checkbox").disabled = isProxyDisabled;
             document.getElementById("use_peer_proxy_checkbox").disabled = (isProxyDisabled || !document.getElementById("proxy_bittorrent_checkbox").checked);
-            document.getElementById("proxy_send_host_in_connect_checkbox").disabled = (isProxyDisabled || !document.getElementById("proxy_bittorrent_checkbox").checked);
+            document.getElementById("proxy_send_host_in_connect_checkbox").disabled = (isProxyDisabled || (proxyType !== "HTTP") || !document.getElementById("proxy_bittorrent_checkbox").checked);
             document.getElementById("proxyHostnameLookupCheckbox").disabled = (isProxyDisabled || isProxySocks4);
             document.getElementById("proxy_rss_checkbox").disabled = (isProxyDisabled || isProxySocks4);
             document.getElementById("proxy_misc_checkbox").disabled = (isProxyDisabled || isProxySocks4);
