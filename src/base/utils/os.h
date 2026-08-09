@@ -49,6 +49,8 @@ namespace Utils::OS
     void shutdownComputer(const ShutdownDialogAction &action);
 
 #ifdef Q_OS_WIN
+    bool isMagnetProtocolRegistered();
+    bool restoreMagnetProtocolRegistration();
     Path windowsSystemPath();
 
     template <typename T>
