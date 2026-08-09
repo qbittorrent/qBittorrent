@@ -102,29 +102,34 @@ StatusBar::StatusBar(QWidget *parent)
 
     m_externalIPsWidget = new QWidget(this);
     m_externalIPsWidget->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+
     auto *externalIPsLayout = new QHBoxLayout(m_externalIPsWidget);
     externalIPsLayout->setContentsMargins(0, 0, 0, 0);
     externalIPsLayout->setSpacing(0);
 
     m_externalIPPrefixLbl = new QLabel(tr("External IP: N/A"), m_externalIPsWidget);
+    externalIPsLayout->addWidget(m_externalIPPrefixLbl);
+
     m_ipv4FlagLbl = new QLabel(m_externalIPsWidget);
     m_ipv4FlagLbl->setContentsMargins(0, 0, 3, 0);
     m_ipv4FlagLbl->setVisible(false);
+    externalIPsLayout->addWidget(m_ipv4FlagLbl);
+
     m_ipv4AddressLbl = new QLabel(m_externalIPsWidget);
     m_ipv4AddressLbl->setVisible(false);
+    externalIPsLayout->addWidget(m_ipv4AddressLbl);
+
     m_ipSeparatorLbl = new QLabel(u", "_s, m_externalIPsWidget);
     m_ipSeparatorLbl->setVisible(false);
+    externalIPsLayout->addWidget(m_ipSeparatorLbl);
+
     m_ipv6FlagLbl = new QLabel(m_externalIPsWidget);
     m_ipv6FlagLbl->setContentsMargins(0, 0, 3, 0);
     m_ipv6FlagLbl->setVisible(false);
+    externalIPsLayout->addWidget(m_ipv6FlagLbl);
+
     m_ipv6AddressLbl = new QLabel(m_externalIPsWidget);
     m_ipv6AddressLbl->setVisible(false);
-
-    externalIPsLayout->addWidget(m_externalIPPrefixLbl);
-    externalIPsLayout->addWidget(m_ipv4FlagLbl);
-    externalIPsLayout->addWidget(m_ipv4AddressLbl);
-    externalIPsLayout->addWidget(m_ipSeparatorLbl);
-    externalIPsLayout->addWidget(m_ipv6FlagLbl);
     externalIPsLayout->addWidget(m_ipv6AddressLbl);
 
     m_lastExternalIPsSeparator = createSeparator(this);
@@ -255,7 +260,7 @@ void StatusBar::updateExternalAddressesLabel()
     const QString lastExternalIPv4Address = BitTorrent::Session::instance()->lastExternalIPv4Address();
     const QString lastExternalIPv6Address = BitTorrent::Session::instance()->lastExternalIPv6Address();
     const bool resolveCountries = Preferences::instance()->resolvePeerCountries();
-    Net::GeoIPManager *const geoIP = Net::GeoIPManager::instance();
+    const Net::GeoIPManager *geoIP = Net::GeoIPManager::instance();
 
     const bool hasIPv4Address = !lastExternalIPv4Address.isEmpty();
     const bool hasIPv6Address = !lastExternalIPv6Address.isEmpty();
@@ -268,31 +273,33 @@ void StatusBar::updateExternalAddressesLabel()
         m_externalIPPrefixLbl->setText(tr("External IP: "));
 
     const auto updateIPWidgets = [resolveCountries, geoIP]
-            (const QString &address, QLabel *flagLbl, QLabel *addressLbl)
+            (const QString &address, QLabel *flagLbl, QLabel *addressLbl) -> void
     {
         const bool hasAddress = !address.isEmpty();
         addressLbl->setVisible(hasAddress);
-        if (hasAddress)
-            addressLbl->setText(address);
+        if (!hasAddress)
+            return;
+
+        addressLbl->setText(address);
 
         bool hasFlag = false;
-        if (hasAddress && resolveCountries && geoIP)
+        if (resolveCountries && geoIP)
         {
             const QHostAddress hostAddr {address};
-            if (!hostAddr.isNull())
-            {
-                const QString countryCode = geoIP->lookup(hostAddr);
-                if (!countryCode.isEmpty())
-                {
-                    const QIcon flagIcon = UIThemeManager::instance()->getFlagIcon(countryCode.toLower());
-                    if (!flagIcon.isNull())
-                    {
-                        flagLbl->setPixmap(flagIcon.pixmap(Utils::Gui::smallIconSize()));
-                        flagLbl->setToolTip(Net::GeoIPManager::CountryName(countryCode));
-                        hasFlag = true;
-                    }
-                }
-            }
+            if (hostAddr.isNull())
+                return;
+
+            const QString countryCode = geoIP->lookup(hostAddr);
+            if (countryCode.isEmpty())
+                return;
+
+            const QIcon flagIcon = UIThemeManager::instance()->getFlagIcon(countryCode.toLower());
+            if (flagIcon.isNull())
+                return;
+
+            flagLbl->setPixmap(flagIcon.pixmap(Utils::Gui::smallIconSize()));
+            flagLbl->setToolTip(Net::GeoIPManager::CountryName(countryCode));
+            hasFlag = true;
         }
         flagLbl->setVisible(hasFlag);
     };
