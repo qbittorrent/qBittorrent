@@ -347,7 +347,7 @@ void OptionsDialog::loadBehaviorTabOptions()
 
 #if defined(Q_OS_WIN)
     if (!Utils::OS::isMagnetProtocolRegistered())
-        Utils::OS::restoreMagnetProtocolRegistration();
+        Utils::OS::registerMagnetProtocol();
 
     connect(m_ui->buttonOpenDefaultApps, &QPushButton::clicked, this, [](bool)
     {

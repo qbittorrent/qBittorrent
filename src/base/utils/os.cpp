@@ -240,7 +240,7 @@ bool Utils::OS::isMagnetProtocolRegistered()
         && hasUrlProtocol;
 }
 
-bool Utils::OS::restoreMagnetProtocolRegistration()
+bool Utils::OS::registerMagnetProtocol()
 {
     QSettings magnetProtocol {u"HKEY_CURRENT_USER\\Software\\Classes\\magnet"_s, QSettings::NativeFormat};
     magnetProtocol.setValue(u"."_s, u"URL:Magnet URI"_s);

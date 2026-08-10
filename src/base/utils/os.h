@@ -50,7 +50,7 @@ namespace Utils::OS
 
 #ifdef Q_OS_WIN
     bool isMagnetProtocolRegistered();
-    bool restoreMagnetProtocolRegistration();
+    bool registerMagnetProtocol();
     Path windowsSystemPath();
 
     template <typename T>
