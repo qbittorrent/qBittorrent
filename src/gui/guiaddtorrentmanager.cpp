@@ -210,6 +210,10 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
     // Prevent showing the dialog if download is already present
     if (BitTorrent::Torrent *torrent = btSession()->findTorrent(infoHash))
     {
+        // Point the user to the torrent that is already in the transfer list
+        if (MainWindow *mainWindow = app()->mainWindow())
+            mainWindow->selectTorrent(torrent);
+
         if (Preferences::instance()->confirmMergeTrackers())
         {
             if (hasMetadata)

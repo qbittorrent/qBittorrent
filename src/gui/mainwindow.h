@@ -110,6 +110,9 @@ public:
     void activate();
     void cleanup();
 
+    // Brings the transfer list to the front and makes `torrent` the selected one
+    void selectTorrent(BitTorrent::Torrent *torrent);
+
 private slots:
     void showFilterContextMenu();
     void desktopNotificationClicked();
