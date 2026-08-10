@@ -20,18 +20,21 @@ jobs:
       fail-fast: false
       matrix:
         libtorrent:
-          - version: "2.1.0-rc1"
+          - version: "2.1.0"
             boost_major_version: "1"
             boost_minor_version: "77"
             boost_patch_version: "0"
-          - version: "2.0.12"
+            libt_build_flags: "-Dwebtorrent=ON"
+          - version: "2.0.13"
             boost_major_version: "1"
             boost_minor_version: "77"
             boost_patch_version: "0"
+            libt_build_flags: ""
           - version: "1.2.20"
             boost_major_version: "1"
             boost_minor_version: "77"
             boost_patch_version: "0"
+            libt_build_flags: ""
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         qt_version: ["6.6.3"]
 
@@ -42,7 +45,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
 
@@ -94,6 +97,7 @@ jobs:
             https://github.com/arvidn/libtorrent.git \
             ${{ env.libtorrent_path }}
           cd ${{ env.libtorrent_path }}
+          CFLAGS="$CFLAGS ${{ env.harden_flags }}" \
           CXXFLAGS="$CXXFLAGS ${{ env.harden_flags }}" \
           cmake \
             -B build \
@@ -103,20 +107,22 @@ jobs:
             -DCMAKE_CXX_STANDARD=20 \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}/lib/cmake" \
-            -Ddeprecated-functions=OFF
+            -Ddeprecated-functions=OFF \
+            ${{ matrix.libtorrent.libt_build_flags }}
           cmake --build build
           sudo cmake --install build
 
       # to avoid scanning 3rdparty codebases, initialize it just before building qbt
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
-        if: startsWith(matrix.libtorrent.version, 2) && (matrix.qbt_gui == 'GUI=ON')
+        if: startsWith(matrix.libtorrent.version, '2.0') && (matrix.qbt_gui == 'GUI=ON')
         with:
           config-file: ./.github/workflows/helper/codeql/cpp.yaml
           languages: cpp
 
       - name: Build qBittorrent
         run: |
+          CFLAGS="$CFLAGS ${{ env.harden_flags }}" \
           CXXFLAGS="$CXXFLAGS ${{ env.harden_flags }} -DQT_FORCE_ASSERTS -Werror" \
           LDFLAGS="$LDFLAGS -gz" \
           cmake \
@@ -141,9 +147,27 @@ jobs:
 
       - name: Run CodeQL analysis
         uses: github/codeql-action/analyze@v4
-        if: startsWith(matrix.libtorrent.version, 2) && (matrix.qbt_gui == 'GUI=ON')
+        if: startsWith(matrix.libtorrent.version, '2.0') && (matrix.qbt_gui == 'GUI=ON')
         with:
           category: ${{ github.base_ref || github.ref_name }}
+          output: sarif-results
+          upload: failure-only
+
+      # Filter out results from 3rdparty codebases
+      - name: Filter CodeQL results
+        uses: advanced-security/filter-sarif@2da736ff05ef065cb2894ac6892e47b5eac2c3c0 # v1.1
+        if: startsWith(matrix.libtorrent.version, '2.0') && (matrix.qbt_gui == 'GUI=ON')
+        with:
+          patterns: |
+            -src/base/3rdparty/**
+          input: sarif-results/cpp.sarif
+          output: sarif-results/cpp.sarif
+
+      - name: Upload CodeQL SARIF
+        uses: github/codeql-action/upload-sarif@v4
+        if: startsWith(matrix.libtorrent.version, '2.0') && (matrix.qbt_gui == 'GUI=ON')
+        with:
+          sarif_file: sarif-results/cpp.sarif
 
       - name: Prepare build artifacts
         run: |

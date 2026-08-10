@@ -11,7 +11,7 @@ concurrency:
 jobs:
   ci:
     name: Check
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     permissions:
       security-events: write
 
@@ -21,18 +21,18 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
 
       - name: Setup nodejs
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 'lts/*'
 
       - name: Install tools
         run: |
-          npm install
+          npm install --allow-remote=root
           npm ls
           echo "::group::npm ls --all"
           npm ls --all

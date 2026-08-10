@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -58,6 +58,11 @@ int TorrentContentFilterModel::getFileIndex(const QModelIndex &index) const
     return m_model->getFileIndex(mapToSource(index));
 }
 
+QSet<int> TorrentContentFilterModel::getFileIndexes(const QModelIndex &itemIndex) const
+{
+    return m_model->getFileIndexes(mapToSource(itemIndex));
+}
+
 QModelIndex TorrentContentFilterModel::parent(const QModelIndex &child) const
 {
     if (!child.isValid())
@@ -72,7 +77,8 @@ QModelIndex TorrentContentFilterModel::parent(const QModelIndex &child) const
 
 bool TorrentContentFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    if (m_model->itemType(m_model->index(sourceRow, 0, sourceParent)) == TorrentContentModelItem::FolderType)
+    const QModelIndex sourceIndex = m_model->index(sourceRow, 0, sourceParent);
+    if (m_model->itemType(sourceIndex) == TorrentContentModelItem::FolderType)
     {
         // accept folders if they have at least one filtered item
         return hasFiltered(m_model->index(sourceRow, 0, sourceParent));
@@ -104,10 +110,9 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
 
             return false;
         }
+    }
 
-    default:
-        return QSortFilterProxyModel::lessThan(left, right);
-    };
+    return QSortFilterProxyModel::lessThan(left, right);
 }
 
 bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const

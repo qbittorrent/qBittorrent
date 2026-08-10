@@ -33,6 +33,7 @@
 #include <type_traits>
 
 #include <QList>
+#include <QMetaType>
 #include <QString>
 #include <QStringView>
 
@@ -179,3 +180,5 @@ namespace Utils
         return !(left < right);
     }
 }
+
+Q_DECLARE_METATYPE(Utils::Version<2>)

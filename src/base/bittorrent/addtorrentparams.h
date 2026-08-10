@@ -63,7 +63,7 @@ namespace BitTorrent
         std::optional<Torrent::StopCondition> stopCondition;
         PathList filePaths; // used if TorrentInfo is set
         QList<DownloadPriority> filePriorities; // used if TorrentInfo is set
-        bool skipChecking = false;
+        bool seedMode = false;
         std::optional<BitTorrent::TorrentContentLayout> contentLayout;
         std::optional<bool> useAutoTMM;
         int uploadLimit = -1;

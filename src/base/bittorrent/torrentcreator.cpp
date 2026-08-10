@@ -96,6 +96,8 @@ TorrentCreator::TorrentCreator(const TorrentCreatorParams &params, QObject *pare
 
 void TorrentCreator::sendProgressSignal(const int currentPieceIdx, const int totalPieces)
 {
+    Q_ASSERT(totalPieces > 0);
+
     emit progressUpdated(static_cast<int>((currentPieceIdx * 100.) / totalPieces));
 }
 
@@ -303,7 +305,11 @@ void TorrentCreator::run()
     }
     catch (const std::exception &err)
     {
+#if LIBTORRENT_VERSION_NUM >= 20100
+        emit creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(QString::fromStdString(err.what())));
+#else
         emit creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(QString::fromLocal8Bit(err.what())));
+#endif
     }
 }
 
@@ -324,9 +330,13 @@ int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceS
     const auto &filter = ignoreDotfiles ? fileFilter : noopFilter;
 #if LIBTORRENT_VERSION_NUM >= 20100
     const std::vector<lt::create_file_entry> files = lt::list_files(inputPath.toString().toStdString(), filter);
+    if (files.empty())
+        return 0;
 #else
     lt::file_storage files;
     lt::add_files(files, inputPath.toString().toStdString(), filter);
+    if (files.num_files() == 0)
+        return 0;
 #endif
 
 #ifdef QBT_USES_LIBTORRENT2

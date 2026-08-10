@@ -194,7 +194,11 @@ namespace
                 }
                 else if (ltAnnounceInfo.last_error)
                 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+                    trackerEndpointStatus.message = QString::fromStdString(ltAnnounceInfo.last_error.message());
+#else
                     trackerEndpointStatus.message = QString::fromLocal8Bit(ltAnnounceInfo.last_error.message());
+#endif
                 }
                 else
                 {
@@ -856,7 +860,11 @@ bool TorrentImpl::connectPeer(const PeerAddress &peerAddress)
     catch (const lt::system_error &err)
     {
         LogMsg(tr("Failed to add peer \"%1\" to torrent \"%2\". Reason: %3")
+#if LIBTORRENT_VERSION_NUM >= 20100
+            .arg(peerAddress.toString(), name(), QString::fromStdString(err.what())), Log::WARNING);
+#else
             .arg(peerAddress.toString(), name(), QString::fromLocal8Bit(err.what())), Log::WARNING);
+#endif
         return false;
     }
 
@@ -993,7 +1001,7 @@ bool TorrentImpl::removeTag(const Tag &tag)
     return false;
 }
 
-void TorrentImpl::removeAllTags()
+void TorrentImpl::clearTags()
 {
     for (const Tag &tag : asConst(tags()))
         removeTag(tag);
@@ -1361,12 +1369,22 @@ int TorrentImpl::queuePosition() const
 QString TorrentImpl::error() const
 {
     if (m_nativeStatus.errc)
+    {
+#if LIBTORRENT_VERSION_NUM >= 20100
+        return QString::fromStdString(m_nativeStatus.errc.message());
+#else
         return Utils::String::fromLocal8Bit(m_nativeStatus.errc.message());
+#endif
+    }
 
     if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
     {
         return tr("Couldn't write to file. Reason: \"%1\". Torrent is now in \"upload only\" mode.")
+#if LIBTORRENT_VERSION_NUM >= 20100
+            .arg(QString::fromStdString(m_lastFileError.error.message()));
+#else
             .arg(Utils::String::fromLocal8Bit(m_lastFileError.error.message()));
+#endif
     }
 
     return {};
@@ -1384,17 +1402,18 @@ qlonglong TorrentImpl::totalUpload() const
 
 qlonglong TorrentImpl::eta() const
 {
-    if (isStopped()) return MAX_ETA;
+    if (isStopped())
+        return MAX_ETA;
 
     const SpeedSampleAvg speedAverage = m_payloadRateMonitor.average();
 
     if (isFinished())
     {
-        const ShareLimits shareLimits = effectiveShareLimits();
-        if ((shareLimits.ratioLimit < 0) && (shareLimits.seedingTimeLimit < 0) && (shareLimits.inactiveSeedingTimeLimit < 0))
-            return MAX_ETA;
+        const qint64 ZERO_ETA = 0;
 
-        qlonglong ratioEta = MAX_ETA;
+        const ShareLimits shareLimits = effectiveShareLimits();
+        QList<qint64> etaList;
+
 
         const bool ignoreRatioLimit = (shareLimits.action == ShareLimitAction::Stop)
                 && shouldIgnoreShareRatioLimitForLonelyTorrent(
@@ -1402,35 +1421,50 @@ qlonglong TorrentImpl::eta() const
                     , m_session->lonelyTorrentsSeedersLimit(), totalSeedsCount());
 
         if ((speedAverage.upload > 0) && (shareLimits.ratioLimit >= 0) && !ignoreRatioLimit)
+
+        if (shareLimits.ratioLimit >= 0)
+
         {
-            qlonglong realDL = totalDownload();
+            qint64 realDL = totalDownload();
             if (realDL <= 0)
                 realDL = wantedSize();
 
-            ratioEta = ((realDL * shareLimits.ratioLimit) - totalUpload()) / speedAverage.upload;
+            const qreal uploadLimit = realDL * shareLimits.ratioLimit;
+            const qint64 uploaded = totalUpload();
+            qint64 ratioEta = ZERO_ETA;
+            if (uploadLimit > uploaded)
+            {
+                ratioEta = (speedAverage.upload > 0)
+                        ? (uploadLimit - uploaded) / speedAverage.upload
+                        : MAX_ETA;
+            }
+            etaList.append(ratioEta);
         }
-
-        qlonglong seedingTimeEta = MAX_ETA;
 
         if (shareLimits.seedingTimeLimit >= 0)
         {
-            seedingTimeEta = (shareLimits.seedingTimeLimit * 60) - finishedTime();
-            if (seedingTimeEta < 0)
-                seedingTimeEta = 0;
+            const qint64 seedingTimeEta = std::max(
+                    ((shareLimits.seedingTimeLimit * 60) - finishedTime()), ZERO_ETA);
+            etaList.append(seedingTimeEta);
         }
-
-        qlonglong inactiveSeedingTimeEta = MAX_ETA;
 
         if (shareLimits.inactiveSeedingTimeLimit >= 0)
         {
-            inactiveSeedingTimeEta = (shareLimits.inactiveSeedingTimeLimit * 60) - timeSinceActivity();
-            inactiveSeedingTimeEta = std::max<qlonglong>(inactiveSeedingTimeEta, 0);
+            const qint64 inactiveSeedingTimeEta = std::max(
+                    ((shareLimits.inactiveSeedingTimeLimit * 60) - timeSinceActivity()), ZERO_ETA);
+            etaList.append(inactiveSeedingTimeEta);
         }
 
-        return std::min({ratioEta, seedingTimeEta, inactiveSeedingTimeEta});
+        if (etaList.isEmpty())
+            return MAX_ETA;
+
+        return (shareLimits.mode == ShareLimitsMode::MatchAny)
+                ? std::ranges::min(etaList)
+                : std::ranges::max(etaList);
     }
 
-    if (!speedAverage.download) return MAX_ETA;
+    if (!speedAverage.download)
+        return MAX_ETA;
 
     return (wantedSize() - completedSize()) / speedAverage.download;
 }
@@ -1834,6 +1868,28 @@ void TorrentImpl::resetTrackerEntryStatuses()
     m_announceStatus = TorrentAnnounceStatusFlag::HasNoProblem;
 }
 
+void TorrentImpl::doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath)
+{
+    const int folderRenameJobID = m_nextFolderRenameJobID++;
+    m_renamingFolders.enqueue(
+    {
+        .folderRenameJobID = folderRenameJobID,
+        .oldFolderPath = oldFolderPath,
+        .newFolderPath = newFolderPath
+    });
+
+    for (int i = 0; i < filesCount(); ++i)
+    {
+        const Path path = filePath(i);
+        if (path.hasAncestor(oldFolderPath))
+        {
+            const Path newFilePath = newFolderPath / oldFolderPath.relativePathOf(path);
+            const Path newActualFilePath = makeActualPath(i, newFilePath);
+            doRenameFile(i, newActualFilePath, folderRenameJobID);
+        }
+    }
+}
+
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const
 {
     Q_ASSERT(!m_nativeStatus.torrent_file.expired());
@@ -1906,6 +1962,8 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     m_maintenanceJob = MaintenanceJob::None;
     prepareResumeData(std::move(p));
 
+    emit metadataReceived();
+
     m_session->handleTorrentMetadataReceived(this);
 }
 
@@ -1954,7 +2012,11 @@ void TorrentImpl::reload()
     catch (const lt::system_error &err)
     {
         throw RuntimeError(tr("Failed to reload torrent. Torrent: %1. Reason: %2")
-                .arg(id().toString(), QString::fromLocal8Bit(err.what())));
+#if LIBTORRENT_VERSION_NUM >= 20100
+                .arg(id().toString(),  QString::fromStdString(err.what())));
+#else
+                .arg(id().toString(),  QString::fromLocal8Bit(err.what())));
+#endif
     }
 }
 
@@ -2088,7 +2150,7 @@ void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const MoveStora
             reload();
         }
 
-        while ((m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
+        while (m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
             std::invoke(m_moveFinishedTriggers.dequeue());
     }
 }
@@ -2158,7 +2220,7 @@ void TorrentImpl::handleTorrentFinished()
         {
             m_hasFinishedStatus = true;
 
-            if (isMoveInProgress() || (m_renameCount > 0))
+            if (isMoveInProgress() || !m_renamingFiles.isEmpty())
                 m_moveFinishedTriggers.enqueue([this] { m_session->handleTorrentFinished(this); });
             else
                 m_session->handleTorrentFinished(this);
@@ -2326,7 +2388,8 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
 #ifdef Q_OS_WIN
                 const std::wstring winPath = (actualStorageLocation() / newActualParentPath).toString().toStdWString();
                 const DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
-                ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
+                if (dwAttrs != INVALID_FILE_ATTRIBUTES)
+                    ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
 #endif
             }
         }
@@ -2357,10 +2420,43 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
             Utils::Fs::rmdir(actualStorageLocation() / oldParentPath);
             oldParentPath = oldParentPath.parentPath();
         }
+
+        const FileRenameInfo currentFileRenameInfo = m_renamingFiles.dequeue();
+        if (currentFileRenameInfo.folderRenameJobID >= 0)
+        {
+            m_renamingFolders.head().renamedFiles.insert(fileIndex, oldFilePath);
+
+            const FileRenameInfo &nextFileRenameInfo = m_renamingFiles.isEmpty() ? FileRenameInfo() : m_renamingFiles.head();
+            if (currentFileRenameInfo.folderRenameJobID != nextFileRenameInfo.folderRenameJobID)
+            {
+                // last file from current folder rename job
+                const FolderRenameInfo folderRenameInfo = m_renamingFolders.dequeue();
+                if (folderRenameInfo.failedFileIndexes.isEmpty())
+                {
+                    emit folderRenamed(folderRenameInfo.newFolderPath, folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles);
+
+                    m_session->handleTorrentContentFolderRenamed(this, folderRenameInfo.newFolderPath
+                            , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles);
+                }
+                else
+                {
+                    emit folderRenamingFailed(folderRenameInfo.newFolderPath, folderRenameInfo.oldFolderPath
+                            , folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+
+                    m_session->handleTorrentContentFolderRenamingFailed(this, folderRenameInfo.newFolderPath
+                            , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+                }
+            }
+        }
+        else
+        {
+            emit fileRenamed(fileIndex, oldFilePath);
+
+            m_session->handleTorrentContentFileRenamed(this, fileIndex, oldFilePath);
+        }
     }
 
-    --m_renameCount;
-    while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
+    while (!isMoveInProgress() && m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
 
     deferredRequestResumeData();
@@ -2371,8 +2467,26 @@ void TorrentImpl::handleFileRenameFailed(const lt::file_index_t nativeFileIndex)
     const int fileIndex = fileIndexFromNative(nativeFileIndex);
     Q_ASSERT(fileIndex >= 0);
 
-    --m_renameCount;
-    while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
+    const FileRenameInfo currentFileRenameInfo = m_renamingFiles.dequeue();
+    if (currentFileRenameInfo.folderRenameJobID >= 0)
+    {
+        m_renamingFolders.head().failedFileIndexes.append(fileIndex);
+
+        const FileRenameInfo &nextFileRenameInfo = m_renamingFiles.isEmpty() ? FileRenameInfo() : m_renamingFiles.head();
+        if (currentFileRenameInfo.folderRenameJobID != nextFileRenameInfo.folderRenameJobID)
+        {
+            // last file from current folder rename job
+            const FolderRenameInfo folderRenameInfo = m_renamingFolders.dequeue();
+
+            emit folderRenamingFailed(folderRenameInfo.newFolderPath, folderRenameInfo.oldFolderPath
+                    , folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+
+            m_session->handleTorrentContentFolderRenamingFailed(this, folderRenameInfo.newFolderPath
+                    , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+        }
+    }
+
+    while (!isMoveInProgress() && m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
 
     deferredRequestResumeData();
@@ -2475,7 +2589,7 @@ void TorrentImpl::adjustStorageLocation()
         moveStorage(targetPath, MoveStorageContext::AdjustCurrentLocation);
 }
 
-void TorrentImpl::doRenameFile(const int index, const Path &path)
+void TorrentImpl::doRenameFile(const int index, const Path &path, const int folderRenameJobID)
 {
     const QList<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
 
@@ -2484,7 +2598,7 @@ void TorrentImpl::doRenameFile(const int index, const Path &path)
     if ((index < 0) || (index >= nativeIndexes.size())) [[unlikely]]
         return;
 
-    ++m_renameCount;
+    m_renamingFiles.enqueue({.index = index, .folderRenameJobID = folderRenameJobID});
     m_nativeHandle.rename_file(nativeIndexes[index], path.toString().toStdString());
 }
 
@@ -2751,7 +2865,7 @@ QString TorrentImpl::createMagnetURI() const
         ret += u"&tr=" + QString::fromLatin1(QUrl::toPercentEncoding(tracker.url));
 
     for (const QUrl &urlSeed : asConst(urlSeeds()))
-        ret += u"&ws=" + urlSeed.toString(QUrl::FullyEncoded);
+        ret += u"&ws=" + QString::fromLatin1(QUrl::toPercentEncoding(urlSeed.toString(QUrl::FullyEncoded)));
 
     return ret;
 }
@@ -2769,7 +2883,11 @@ nonstd::expected<lt::entry, QString> TorrentImpl::exportTorrent() const
     }
     catch (const lt::system_error &err)
     {
+#if LIBTORRENT_VERSION_NUM >= 20100
+        return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
         return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
     }
 }
 
