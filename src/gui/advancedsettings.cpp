@@ -992,7 +992,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxMaxOutstandingBlockRequests.setMinimum(1);
     m_spinBoxMaxOutstandingBlockRequests.setMaximum(std::numeric_limits<int>::max());
     m_spinBoxMaxOutstandingBlockRequests.setValue(session->maxOutstandingBlockRequests());
-    addRow(MAX_OUTSTANDING_BLOCK_REQUESTS, (tr("Maximum outstanding requests from a single peer") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_allowed_in_request_queue", u"(?)"))
+    addRow(MAX_OUTSTANDING_BLOCK_REQUESTS, (tr("Maximum outstanding block requests from a peer") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_allowed_in_request_queue", u"(?)"))
             , &m_spinBoxMaxOutstandingBlockRequests);
     // DHT bootstrap nodes
     m_lineEditDHTBootstrapNodes.setPlaceholderText(tr("Resets to default if empty"));
