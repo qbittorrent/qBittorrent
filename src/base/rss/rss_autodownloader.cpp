@@ -499,6 +499,18 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
                 .arg(job->articleData.value(Article::KeyTitle).toString(), rule.name()));
 
         const auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
+        if (!torrentURL.startsWith(u"http:"_s, Qt::CaseInsensitive)
+                && !torrentURL.startsWith(u"https:"_s, Qt::CaseInsensitive)
+                && !torrentURL.startsWith(u"magnet:"_s, Qt::CaseInsensitive)
+                && !BitTorrent::TorrentDescriptor::parse(torrentURL).has_value())
+        {
+            LogMsg(tr("Failed to add torrent from RSS article. Reason: unsupported torrent URL."
+                      " Only HTTP(S) URLs, magnet URIs and info hashes are supported."
+                      " Article: \"%1\". URL: \"%2\"")
+                    .arg(job->articleData.value(Article::KeyTitle).toString(), torrentURL), Log::WARNING);
+            return;
+        }
+
         app()->addTorrentManager()->addTorrent(torrentURL, rule.addTorrentParams());
 
         if (BitTorrent::TorrentDescriptor::parse(torrentURL))
