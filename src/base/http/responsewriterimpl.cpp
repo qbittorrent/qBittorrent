@@ -317,7 +317,7 @@ void Http::ResponseWriterImpl::streamFile(const Path &filePath, const HeaderMap 
     // neither the worker nor its thread is ever deleted manually, they self-delete when the thread finishes
     connect(m_workerThread, &QThread::finished, m_asyncWorker, &QObject::deleteLater);
 
-    connect(m_socket, &QAbstractSocket::bytesWritten, this, [this]
+    m_bytesWrittenConnection = connect(m_socket, &QAbstractSocket::bytesWritten, this, [this]
     {
         if (m_isFinished || !m_asyncWorker)
             return;
@@ -402,6 +402,10 @@ bool Http::ResponseWriterImpl::isFinished() const
 
 void Http::ResponseWriterImpl::destroyAsyncWorker()
 {
+    // the socket outlives the worker and is reused by subsequent requests,
+    // so this handler must be removed rather than left to short-circuit
+    disconnect(m_bytesWrittenConnection);
+
     // The members are cleared first, so nothing can reach the worker afterwards. Events posted
     // before `disconnect()` are still delivered, which is why every handler null-checks the worker.
     // It is not deleted here, it self-deletes together with its thread when the latter finishes.

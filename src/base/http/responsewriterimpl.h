@@ -74,6 +74,7 @@ namespace Http
         class Worker;
         Worker *m_asyncWorker = nullptr;
         QThread *m_workerThread = nullptr;
+        QMetaObject::Connection m_bytesWrittenConnection;
         bool m_isAsyncWorkerFinished = false;
 
         bool m_isWritingContent = false;
