@@ -30,6 +30,7 @@
 
 #include <algorithm>
 #include <optional>
+#include <utility>
 #include <variant>
 
 #include <QAbstractSocket>
@@ -279,8 +280,7 @@ Http::ResponseWriterImpl::ResponseWriterImpl(QAbstractSocket *socket, QObject *p
 
 Http::ResponseWriterImpl::~ResponseWriterImpl()
 {
-    if (m_isWritingContent)
-        m_asyncWorker->abort();
+    destroyAsyncWorker();
 }
 
 void Http::ResponseWriterImpl::prepare(const Request &request)
@@ -314,10 +314,12 @@ void Http::ResponseWriterImpl::streamFile(const Path &filePath, const HeaderMap 
     m_workerThread = new QThread;
     connect(m_workerThread, &QThread::finished, m_workerThread, &QObject::deleteLater);
     m_asyncWorker->moveToThread(m_workerThread);
+    // neither the worker nor its thread is ever deleted manually, they self-delete when the thread finishes
+    connect(m_workerThread, &QThread::finished, m_asyncWorker, &QObject::deleteLater);
 
     connect(m_socket, &QAbstractSocket::bytesWritten, this, [this]
     {
-        if (m_isFinished)
+        if (m_isFinished || !m_asyncWorker)
             return;
 
         const qint64 bufferedDataSize = m_socket->bytesToWrite();
@@ -332,8 +334,7 @@ void Http::ResponseWriterImpl::streamFile(const Path &filePath, const HeaderMap 
         }
         else if (m_isAsyncWorkerFinished)
         {
-            m_asyncWorker->deleteLater();
-            m_workerThread->quit();
+            destroyAsyncWorker();
             finish();
         }
     });
@@ -342,8 +343,9 @@ void Http::ResponseWriterImpl::streamFile(const Path &filePath, const HeaderMap 
     {
         // If a queued connection is disconnected, already scheduled events
         // may still be delivered, causing the receiver to be called after
-        // the connection is disconnected.
-        if (m_isAsyncWorkerFinished)
+        // the connection is disconnected. Unlike the `bytesWritten` handler,
+        // this one is not bound to the socket's lifetime, so it must be checked too.
+        if (m_isAsyncWorkerFinished || !m_asyncWorker || !m_socket)
             return;
 
         const qint64 bufferedDataSize = m_socket->bytesToWrite();
@@ -358,18 +360,24 @@ void Http::ResponseWriterImpl::streamFile(const Path &filePath, const HeaderMap 
 
     connect(m_asyncWorker, &Worker::finished, this, [this]
     {
+        if (!m_asyncWorker)
+            return;
+
         m_asyncWorker->disconnect(this);
         m_isAsyncWorkerFinished = true;
     });
 
     connect(m_asyncWorker, &Worker::failed, this, [this]
     {
-        m_asyncWorker->disconnect(this);
-        m_asyncWorker->deleteLater();
-        m_workerThread->quit();
+        if (!m_asyncWorker)
+            return;
+
+        destroyAsyncWorker();
 
         if (m_socket && m_socket->isOpen())
             m_socket->close();
+
+        finish();
     });
 
     m_workerThread->start();
@@ -392,6 +400,23 @@ bool Http::ResponseWriterImpl::isFinished() const
     return m_isFinished;
 }
 
+void Http::ResponseWriterImpl::destroyAsyncWorker()
+{
+    // The members are cleared first, so nothing can reach the worker afterwards. Events posted
+    // before `disconnect()` are still delivered, which is why every handler null-checks the worker.
+    // It is not deleted here, it self-deletes together with its thread when the latter finishes.
+    Worker *const worker = std::exchange(m_asyncWorker, nullptr);
+    QThread *const workerThread = std::exchange(m_workerThread, nullptr);
+    if (!worker)
+        return;
+
+    worker->disconnect(this);
+    worker->abort();
+
+    if (workerThread)
+        workerThread->quit();
+}
+
 void Http::ResponseWriterImpl::writeData(const QByteArray &data)
 {
     Q_ASSERT(!data.isEmpty());
@@ -403,7 +428,15 @@ void Http::ResponseWriterImpl::writeData(const QByteArray &data)
 
     const qint64 bytesWritten = m_socket->write(data);
     if (bytesWritten < 0)
-        m_asyncWorker->abort();
+    {
+        destroyAsyncWorker();
+
+        if (m_socket->isOpen())
+            m_socket->close();
+
+        finish();
+        return;
+    }
 
     const qint64 bytesToWrite = m_socket->bytesToWrite();
     if (bytesToWrite >= MAX_BUFFER_SIZE)
@@ -533,11 +566,15 @@ void Http::ResponseWriterImpl::Worker::run()
         const qint64 sizeToRead = std::min(CHUNK_SIZE, m_remainingSize);
 
         m_bufferSemaphore.acquire(CHUNK_SIZE);
+        if (isAborted())
+            return;
+
         const QByteArray chunk = m_file->read(sizeToRead);
         if (chunk.isEmpty())
         {
             m_bufferSemaphore.release(CHUNK_SIZE);
             abort();
+            emit failed();
             return;
         }
 
@@ -572,13 +609,17 @@ QByteArray Http::ResponseWriterImpl::Worker::fetchData(const qint64 maxSize)
 
 void Http::ResponseWriterImpl::Worker::abort()
 {
-    if (isAborted())
-        return;
+    {
+        const QWriteLocker locker {&m_abortedStateLock};
+        if (m_isAborted)
+            return;
 
-    const QWriteLocker locker {&m_abortedStateLock};
-    m_isAborted = true;
+        m_isAborted = true;
+    }
 
-    emit failed();
+    // the aborted state is published before the permits are released,
+    // so `run()` always observes it when it wakes up from `acquire()`
+    m_bufferSemaphore.release(MAX_BUFFER_SIZE);
 }
 
 bool Http::ResponseWriterImpl::Worker::isAborted()

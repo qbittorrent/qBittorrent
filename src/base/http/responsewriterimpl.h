@@ -66,6 +66,7 @@ namespace Http
     private:
         void writeData(const QByteArray &data);
         void finish();
+        void destroyAsyncWorker();
 
         QPointer<QAbstractSocket> m_socket;
         Request m_request;
