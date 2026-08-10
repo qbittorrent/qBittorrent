@@ -310,8 +310,18 @@ void Http::ResponseWriterImpl::streamFile(const Path &filePath, const HeaderMap 
     if (m_isFinished || m_isWritingContent) [[unlikely]]
         return;
 
+    auto *const workerThread = new QThread;
+    workerThread->start();
+    if (!workerThread->isRunning()) [[unlikely]]
+    {
+        // the thread never ran, so `QThread::finished` will never fire and nothing would delete it
+        delete workerThread;
+        setResponse({.status = {.code = 500, .text = u"Internal Server Error"_s}});
+        return;
+    }
+
+    m_workerThread = workerThread;
     m_asyncWorker = new Worker(filePath, m_request, headers);
-    m_workerThread = new QThread;
     connect(m_workerThread, &QThread::finished, m_workerThread, &QObject::deleteLater);
     m_asyncWorker->moveToThread(m_workerThread);
     // neither the worker nor its thread is ever deleted manually, they self-delete when the thread finishes
@@ -380,7 +390,6 @@ void Http::ResponseWriterImpl::streamFile(const Path &filePath, const HeaderMap 
         finish();
     });
 
-    m_workerThread->start();
     QMetaObject::invokeMethod(m_asyncWorker, &Worker::run);
     m_isWritingContent = true;
 }
