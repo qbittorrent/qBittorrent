@@ -2,6 +2,8 @@
 
 ## 2.16.0
 
+* [#24326](https://github.com/qbittorrent/qBittorrent/pull/24326)
+  * `torrents/add` endpoint accepts optional `stats` JSON object to seed lifetime statistics (`total_uploaded`, `total_downloaded`, `added_time`, `completed_time`, `last_seen_complete`, `last_upload`, `last_download`, `active_time`, `finished_time`, `seeding_time`)
 * [#24724](https://github.com/qbittorrent/qBittorrent/pull/24724)
   * `torrents/add` endpoint accepts `seedMode` (bool) parameter
   * `torrents/add` endpoint no longer accepts `skip_checking` parameter
