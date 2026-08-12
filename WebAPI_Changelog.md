@@ -2,6 +2,8 @@
 
 ## 2.16.0
 
+* [#24806](https://github.com/qbittorrent/qBittorrent/pull/24806)
+  * `app/setPreferences` endpoint now clamps `rss_max_articles_per_feed` (int) option to a minimum of `0`, so a negative value is no longer accepted and stored
 * [#24724](https://github.com/qbittorrent/qBittorrent/pull/24724)
   * `torrents/add` endpoint accepts `seedMode` (bool) parameter
   * `torrents/add` endpoint no longer accepts `skip_checking` parameter
