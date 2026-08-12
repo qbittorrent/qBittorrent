@@ -91,12 +91,18 @@ namespace Net
         Path destFileName() const;
         DownloadRequest &destFileName(const Path &value);
 
+        // when disabled, a redirection to a non-HTTPS URL makes the request fail
+        // instead of being followed
+        bool allowInsecureRedirect() const;
+        DownloadRequest &allowInsecureRedirect(bool value);
+
     private:
         QString m_url;
         QString m_userAgent;
         qint64 m_limit = 0;
         bool m_saveToFile = false;
         Path m_destFileName;
+        bool m_allowInsecureRedirect = true;
     };
 
     struct DownloadResult
