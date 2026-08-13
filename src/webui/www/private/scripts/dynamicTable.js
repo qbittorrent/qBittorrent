@@ -641,9 +641,15 @@ window.qBittorrent.DynamicTable ??= (() => {
                     columnsOrder.push(this.columns[i].name);
             }
 
-            for (let i = 0; i < this.columns.length; ++i)
-                this.columns[i] = this.columns[columnsOrder[i]];
-        }
+            const columnsCopy = [...this.columns];
+            for (let i = 0; i < this.columns.length; ++i) {
+                const idx = columnsOrder[i];
+                if (idx !== undefined && idx >= 0 && idx < this.columns.length)
+                    this.columns[i] = columnsCopy[idx];
+                else
+                    this.columns[i] = columnsCopy[i];
+             }
+         }
 
         saveColumnsOrder() {
             let val = "";
