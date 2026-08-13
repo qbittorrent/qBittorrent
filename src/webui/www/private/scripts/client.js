@@ -804,7 +804,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         categoriesFragment.appendChild(createLink(CATEGORIES_ALL, "QBT_TR(All)QBT_TR[CONTEXT=CategoryFilterModel]", torrentsTable.getRowSize()));
         categoriesFragment.appendChild(createLink(CATEGORIES_UNCATEGORIZED, "QBT_TR(Uncategorized)QBT_TR[CONTEXT=CategoryFilterModel]", uncategorized));
 
-        categoryList.classList.add("subcategories");
+        let hasAnySubcategory = false;
         for (let i = 0; i < sortedCategories.length; ++i) {
             const category = sortedCategories[i];
             for (let j = (i + 1);
@@ -819,7 +819,10 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                     category.children.push(subcategory);
                 }
             }
+            if (category.children.length > 0)
+                hasAnySubcategory = true;
         }
+        categoryList.classList.toggle("subcategories", hasAnySubcategory);
         for (const category of sortedCategories) {
             if (category.isRoot)
                 createCategoryTree(category);
