@@ -23,7 +23,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0alpha1
     - FEATURE: Support multiple recipients for email notifications (LewpyUK) #24304
     - FEATURE: Add support for magnet link 'so' parameter (glassez) #24336
     - FEATURE: Add 'Ignore dotfiles' option in Torrent Creator (Chocobo1) #24346
-    - FEATURE: Implement `max_allowed_in_request_queue` libtorrent setting (buroa) #24253
+    - FEATURE: Implement 'Maximum outstanding block requests from a peer' setting (buroa) #24253
     - FEATURE: Revamp .torrent files backup management (glassez) #24641
     - FEATURE: Make Torrent Options dialog scrollable (AgentCent) #24644
     - FEATURE: Add allow_multiple_connections_per_pid advanced setting (lzhzh1) #24684
@@ -70,7 +70,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0alpha1
     - WEBUI: Add secondary sort column (Piccirello) #24376
     - WEBUI: Add 'Copy path' action to torrent content menu (Chocobo1) #24678
     - WEBUI: Handle non-torrent RSS link (vafada) #24692
-    - WEBUI: Use enable/disable on torrent content menu items (Chocobo1) #24708
+    - WEBUI: Disable torrent content menu items instead of hiding them (Chocobo1) #24708
     - WEBUI: Suppress errors when clicking on column headers (Chocobo1) #24710
     - WEBUI: Add sessions count limit (glassez) #24720
     - WEBAPI: Construct WebAPI controller instances on demand (glassez) #24700
