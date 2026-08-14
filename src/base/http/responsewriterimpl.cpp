@@ -37,6 +37,8 @@
 #include <QFile>
 #include <QLocale>
 #include <QMimeDatabase>
+#include <QMutex>
+#include <QMutexLocker>
 #include <QReadWriteLock>
 #include <QRegularExpression>
 #include <QSemaphore>
@@ -266,7 +268,7 @@ private:
     QReadWriteLock m_abortedStateLock;
 
     QByteArray m_buffer;
-    QReadWriteLock m_bufferLock;
+    QMutex m_bufferMutex;
     QSemaphore m_bufferSemaphore;
     bool m_isBufferRead = false;
 };
@@ -429,7 +431,7 @@ void Http::ResponseWriterImpl::Worker::run()
         const std::optional<RangeRequest> parseRangeResult = parseRangeHeader(*it);
         if (!parseRangeResult)
         {
-            const QWriteLocker locker {&m_bufferLock};
+            const QMutexLocker locker {&m_bufferMutex};
             m_buffer = serializeResponse({.status = {.code = 400, .text = u"Bad Request"_s}}, {});
             emit dataReady();
             emit finished();
@@ -443,7 +445,7 @@ void Http::ResponseWriterImpl::Worker::run()
 
     if (!m_file->open(QIODevice::ReadOnly))
     {
-        const QWriteLocker locker {&m_bufferLock};
+        const QMutexLocker locker {&m_bufferMutex};
         m_buffer = serializeResponse({.status = {.code = 500, .text = u"Internal Server Error"_s}, .content = m_file->errorString().toUtf8()}, {});
         emit dataReady();
         emit finished();
@@ -483,7 +485,7 @@ void Http::ResponseWriterImpl::Worker::run()
 
         if ((offset < 0) || (m_remainingSize < 0) || ((offset + m_remainingSize) > fileSize))
         {
-            const QWriteLocker locker {&m_bufferLock};
+            const QMutexLocker locker {&m_bufferMutex};
             m_buffer = serializeResponse({
                     .status = {.code = 416, .text = u"Range Not Satisfiable"_s},
                     .headers = {{HEADER_CONTENT_RANGE, u"bytes */%1"_s.arg(QString::number(fileSize))}}}
@@ -498,7 +500,7 @@ void Http::ResponseWriterImpl::Worker::run()
 
         if ((offset > 0) && !m_file->seek(offset))
         {
-            const QWriteLocker locker {&m_bufferLock};
+            const QMutexLocker locker {&m_bufferMutex};
             m_buffer = serializeResponse({.status = {.code = 500, .text = u"Internal Server Error"_s}, .content = m_file->errorString().toUtf8()}, {});
             emit dataReady();
             emit finished();
@@ -516,7 +518,7 @@ void Http::ResponseWriterImpl::Worker::run()
     m_headers.insert(HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(m_filePath.filename()));
 
     {
-        const QWriteLocker locker {&m_bufferLock};
+        const QMutexLocker locker {&m_bufferMutex};
         m_buffer = serializeResponseHead(responseStatus, m_headers);
         m_bufferSemaphore.acquire(m_buffer.size());
         emit dataReady();
@@ -541,7 +543,7 @@ void Http::ResponseWriterImpl::Worker::run()
             return;
         }
 
-        const QWriteLocker locker {&m_bufferLock};
+        const QMutexLocker locker {&m_bufferMutex};
 
         const qint64 chunkSize = chunk.size();
         m_bufferSemaphore.release(CHUNK_SIZE - chunkSize);
@@ -561,7 +563,7 @@ void Http::ResponseWriterImpl::Worker::run()
 
 QByteArray Http::ResponseWriterImpl::Worker::fetchData(const qint64 maxSize)
 {
-    const QReadLocker locker {&m_bufferLock};
+    const QMutexLocker locker {&m_bufferMutex};
     const auto sizeToFetch = std::min<qint64>(maxSize, m_buffer.size());
     const QByteArray data = m_buffer.first(sizeToFetch);
     m_buffer.remove(0, sizeToFetch);
