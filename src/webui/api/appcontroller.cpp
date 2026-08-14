@@ -517,10 +517,11 @@ void AppController::preferencesAction()
     data[u"request_queue_size"_s] = session->requestQueueSize();
     // Maximum outstanding requests from a single peer
     data[u"max_outstanding_block_requests"_s] = session->maxOutstandingBlockRequests();
-    // DHT bootstrap nodes
-    data[u"dht_bootstrap_nodes"_s] = session->getDHTBootstrapNodes();
+     // DHT bootstrap nodes
+     data[u"dht_bootstrap_nodes"_s] = session->getDHTBootstrapNodes();
+     data[u"dht_enforce_node_id"_s] = session->isDhtEnforceNodeIDEnabled();
 
-    setResult(data);
+     setResult(data);
 }
 
 void AppController::setPreferencesAction()
@@ -1219,11 +1220,13 @@ void AppController::setPreferencesAction()
     // Maximum outstanding requests from a single peer
     if (hasKey(u"max_outstanding_block_requests"_s))
         session->setMaxOutstandingBlockRequests(it.value().toInt());
-    // DHT bootstrap nodes
-    if (hasKey(u"dht_bootstrap_nodes"_s))
-        session->setDHTBootstrapNodes(it.value().toString());
+      // DHT bootstrap nodes
+     if (hasKey(u"dht_bootstrap_nodes"_s))
+         session->setDHTBootstrapNodes(it.value().toString());
+     if (hasKey(u"dht_enforce_node_id"_s))
+         session->setDhtEnforceNodeID(it.value().toBool());
 
-    // Save preferences
+      // Save preferences
     pref->apply();
 
     setResult(QString());

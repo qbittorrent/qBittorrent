@@ -769,12 +769,16 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
             <input type="checkbox" id="pex_checkbox">
             <label for="pex_checkbox">QBT_TR(Enable Peer Exchange (PeX) to find more peers)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
-        <div class="formRow">
-            <input type="checkbox" id="lsd_checkbox">
-            <label for="lsd_checkbox">QBT_TR(Enable Local Peer Discovery to find more peers)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-        <div class="formRow">
-            <label for="encryption_select">QBT_TR(Encryption mode:)QBT_TR[CONTEXT=OptionsDialog]</label>
+          <div class="formRow">
+              <input type="checkbox" id="lsd_checkbox">
+              <label for="lsd_checkbox">QBT_TR(Enable Local Peer Discovery to find more peers)QBT_TR[CONTEXT=OptionsDialog]</label>
+          </div>
+          <div class="formRow">
+              <input type="checkbox" id="dht_enforce_node_id_checkbox">
+              <label for="dht_enforce_node_id_checkbox">QBT_TR(Enforce node ID)QBT_TR[CONTEXT=OptionsDialog]</label>
+          </div>
+          <div class="formRow">
+              <label for="encryption_select">QBT_TR(Encryption mode:)QBT_TR[CONTEXT=OptionsDialog]</label>
             <select id="encryption_select">
                 <option value="0">QBT_TR(Allow encryption)QBT_TR[CONTEXT=OptionsDialog]</option>
                 <option value="1">QBT_TR(Require encryption)QBT_TR[CONTEXT=OptionsDialog]</option>
@@ -2642,7 +2646,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("dht_checkbox").checked = pref.dht;
                     document.getElementById("pex_checkbox").checked = pref.pex;
                     document.getElementById("lsd_checkbox").checked = pref.lsd;
-                    const encryption = Number(pref.encryption);
+                     document.getElementById("dht_enforce_node_id_checkbox").checked = pref.dht_enforce_node_id;
+                     const encryption = Number(pref.encryption);
                     document.getElementById("encryption_select").getChildren("option")[encryption].selected = true;
                     document.getElementById("anonymous_mode_checkbox").checked = pref.anonymous_mode;
 
@@ -3065,8 +3070,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Privacy
             settings["dht"] = document.getElementById("dht_checkbox").checked;
             settings["pex"] = document.getElementById("pex_checkbox").checked;
-            settings["lsd"] = document.getElementById("lsd_checkbox").checked;
-            settings["encryption"] = Number(document.getElementById("encryption_select").getSelected()[0].value);
+             settings["lsd"] = document.getElementById("lsd_checkbox").checked;
+             settings["dht_enforce_node_id"] = document.getElementById("dht_enforce_node_id_checkbox").checked;
+             settings["encryption"] = Number(document.getElementById("encryption_select").getSelected()[0].value);
             settings["anonymous_mode"] = document.getElementById("anonymous_mode_checkbox").checked;
 
             settings["max_active_checking_torrents"] = Number(document.getElementById("maxActiveCheckingTorrents").value);
