@@ -210,6 +210,8 @@ namespace BitTorrent
         virtual void setDHTEnabled(bool enabled) = 0;
         virtual bool isLSDEnabled() const = 0;
         virtual void setLSDEnabled(bool enabled) = 0;
+        virtual bool isDhtEnforceNodeIDEnabled() const = 0;
+        virtual void setDhtEnforceNodeID(bool enabled) = 0;
         virtual bool isPeXEnabled() const = 0;
         virtual void setPeXEnabled(bool enabled) = 0;
         virtual bool isAddTorrentToQueueTop() const = 0;

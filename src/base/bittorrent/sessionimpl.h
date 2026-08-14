@@ -671,6 +671,7 @@ namespace BitTorrent
         CachedSettingValue<QString> m_DHTBootstrapNodes;
         CachedSettingValue<bool> m_isDHTEnabled;
         CachedSettingValue<bool> m_isLSDEnabled;
+        CachedSettingValue<bool> m_dhtEnforceNodeIDEnabled;
         CachedSettingValue<bool> m_isPeXEnabled;
         CachedSettingValue<bool> m_isIPFilteringEnabled;
         CachedSettingValue<bool> m_isTrackerFilteringEnabled;

@@ -178,7 +178,8 @@ namespace
         PEER_TURNOVER_INTERVAL,
         REQUEST_QUEUE_SIZE,
         MAX_OUTSTANDING_BLOCK_REQUESTS,
-        DHT_BOOTSTRAP_NODES,
+         DHT_BOOTSTRAP_NODES,
+         DHT_ENFORCE_NODE_ID,
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
         I2P_INBOUND_QUANTITY,
         I2P_OUTBOUND_QUANTITY,
@@ -1013,8 +1014,12 @@ void AdvancedSettings::loadAdvancedSettings()
     // DHT bootstrap nodes
     m_lineEditDHTBootstrapNodes.setPlaceholderText(tr("Resets to default if empty"));
     m_lineEditDHTBootstrapNodes.setText(session->getDHTBootstrapNodes());
-    addRow(DHT_BOOTSTRAP_NODES, (tr("DHT bootstrap nodes") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#dht_bootstrap_nodes", u"(?)"))
-        , &m_lineEditDHTBootstrapNodes);
+     addRow(DHT_BOOTSTRAP_NODES, (tr("DHT bootstrap nodes") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#dht_bootstrap_nodes", u"(?)"))
+         , &m_lineEditDHTBootstrapNodes);
+     m_checkBoxDHTEnforceNodeID.setChecked(session->isDhtEnforceNodeIDEnabled());
+     addRow(DHT_ENFORCE_NODE_ID, (tr("Enforce node ID") + u' '
+          + makeLink(u"https://www.libtorrent.org/reference-Settings.html#dht_enforce_node_id", u"(?)"))
+          , &m_checkBoxDHTEnforceNodeID);
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
     // I2P session options
     m_spinBoxI2PInboundQuantity.setMinimum(1);

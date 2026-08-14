@@ -480,8 +480,9 @@ SessionImpl::SessionImpl(QObject *parent)
     : Session(parent)
     , m_DHTBootstrapNodes(BITTORRENT_SESSION_KEY(u"DHTBootstrapNodes"_s), DEFAULT_DHT_BOOTSTRAP_NODES)
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY(u"DHTEnabled"_s), true)
-    , m_isLSDEnabled(BITTORRENT_SESSION_KEY(u"LSDEnabled"_s), true)
-    , m_isPeXEnabled(BITTORRENT_SESSION_KEY(u"PeXEnabled"_s), true)
+     , m_isLSDEnabled(BITTORRENT_SESSION_KEY(u"LSDEnabled"_s), true)
+     , m_dhtEnforceNodeIDEnabled(BITTORRENT_SESSION_KEY(u"DHTEnforceNodeID"_s), false)
+     , m_isPeXEnabled(BITTORRENT_SESSION_KEY(u"PeXEnabled"_s), true)
     , m_isIPFilteringEnabled(BITTORRENT_SESSION_KEY(u"IPFilteringEnabled"_s), false)
     , m_isTrackerFilteringEnabled(BITTORRENT_SESSION_KEY(u"TrackerFilteringEnabled"_s), false)
     , m_IPFilterFile(BITTORRENT_SESSION_KEY(u"IPFilter"_s))
@@ -842,12 +843,26 @@ bool SessionImpl::isLSDEnabled() const
 void SessionImpl::setLSDEnabled(const bool enabled)
 {
     if (enabled != m_isLSDEnabled)
-    {
+     {
         m_isLSDEnabled = enabled;
         configureDeferred();
         LogMsg(tr("Local Peer Discovery support: %1").arg(enabled ? tr("ON") : tr("OFF"))
-            , Log::INFO);
-    }
+             , Log::INFO);
+     }
+}
+
+bool SessionImpl::isDhtEnforceNodeIDEnabled() const
+{
+    return m_dhtEnforceNodeIDEnabled;
+}
+
+void SessionImpl::setDhtEnforceNodeID(const bool enabled)
+{
+    if (enabled != m_dhtEnforceNodeIDEnabled)
+     {
+        m_dhtEnforceNodeIDEnabled = enabled;
+        configureDeferred();
+     }
 }
 
 bool SessionImpl::isPeXEnabled() const
@@ -2232,6 +2247,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_str(lt::settings_pack::dht_bootstrap_nodes, getDHTBootstrapNodes().toStdString());
     settingsPack.set_bool(lt::settings_pack::enable_dht, isDHTEnabled());
     settingsPack.set_bool(lt::settings_pack::enable_lsd, isLSDEnabled());
+    settingsPack.set_bool(lt::settings_pack::dht_enforce_node_id, isDhtEnforceNodeIDEnabled());
 
     switch (chokingAlgorithm())
     {
@@ -3504,16 +3520,16 @@ QStringList SessionImpl::getListeningIPs() const
     }
 
     if (ifaceName.isEmpty())
-    {
+     {
         if (ifaceAddr.isEmpty())
-            return {u"0.0.0.0"_s, u"::"_s}; // Indicates all interfaces + all addresses (aka default)
+            return Utils::Net::filterNonLoopbackAddresses(QNetworkInterface::allAddresses());
 
         if (allIPv4)
             return {u"0.0.0.0"_s};
 
         if (allIPv6)
             return {u"::"_s};
-    }
+     }
 
     const auto checkAndAddIP = [allIPv4, allIPv6, &IPs](const QHostAddress &addr, const QHostAddress &match)
     {
