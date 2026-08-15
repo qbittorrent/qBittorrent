@@ -28,59 +28,24 @@
 
 #pragma once
 
-#include <QObject>
+#include <optional>
+#include <variant>
 
-#include "base/pathfwd.h"
-#include "headermap.h"
-#include "request.h"
-#include "response.h"
-#include "responsewriter.h"
-
-class QAbstractSocket;
+#include <QtTypes>
+#include <QStringView>
 
 namespace Http
 {
-    class AsyncFileSender;
-
-    class ResponseWriterImpl final : public ResponseWriter
+    struct Range
     {
-        Q_OBJECT
-        Q_DISABLE_COPY_MOVE(ResponseWriterImpl)
-
-    public:
-        enum class State
-        {
-            Ready,
-            Running,
-            Finished,
-            Failed
-        };
-
-        explicit ResponseWriterImpl(QAbstractSocket *socket, QObject *parent = nullptr);
-        ~ResponseWriterImpl() override;
-
-        void prepare(const Request &request);
-
-        // Send entire response at once.
-        // Allow response content to be gzip encoded.
-        void setResponse(const Response &response) override;
-
-        // Allow to stream file using separate IO thread for reading.
-        // Support Range requests.
-        void streamFile(const Path &filePath, const HeaderMap &headers) override;
-
-        bool isFinished() const override;
-        State state() const;
-
-    private:
-        void fail();
-        void finish();
-
-        QAbstractSocket *m_socket = nullptr;
-        Request m_request;
-
-        AsyncFileSender *m_asyncFileSender = nullptr;
-
-        State m_state = State::Ready;
+        qint64 start = 0;
+        qint64 end = -1;
     };
+
+    // RangeRequest is represented by one of the following:
+    // - Range: range [start, end (optional)]
+    // - qint64: suffix length
+    using RangeRequest = std::variant<Range, qint64>;
+
+    std::optional<RangeRequest> parseRangeHeader(QStringView rangeHeader);
 }
