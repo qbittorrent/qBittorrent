@@ -31,6 +31,7 @@
 #include <QHash>
 #include <QSet>
 
+#include "base/bittorrent/sharelimits.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "apicontroller.h"
 
@@ -126,6 +127,8 @@ private:
     void onSearchPluginTorrentDownloaded(const QString &source, const QString &data);
     void cacheTorrentFile(const QString &source, const QByteArray &data);
     void cacheMagnetURI(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr);
+
+    void applyShareLimitsParams(BitTorrent::ShareLimits &shareLimits);
 
     QHash<QString, BitTorrent::InfoHash> m_torrentSourceCache;
     QHash<BitTorrent::TorrentID, BitTorrent::TorrentDescriptor> m_torrentMetadataCache;

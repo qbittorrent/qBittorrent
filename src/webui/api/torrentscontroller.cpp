@@ -1588,6 +1588,24 @@ void TorrentsController::setShareLimitsAction()
     setResult(QString());
 }
 
+void TorrentsController::applyShareLimitsParams(BitTorrent::ShareLimits &shareLimits)
+{
+    if (!params()[u"ratioLimit"_s].isEmpty())
+        shareLimits.ratioLimit = parseDouble(params()[u"ratioLimit"_s]).value_or(BitTorrent::DEFAULT_RATIO_LIMIT);
+
+    if (!params()[u"seedingTimeLimit"_s].isEmpty())
+        shareLimits.seedingTimeLimit = parseInt(params()[u"seedingTimeLimit"_s]).value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
+
+    if (!params()[u"inactiveSeedingTimeLimit"_s].isEmpty())
+        shareLimits.inactiveSeedingTimeLimit = parseInt(params()[u"inactiveSeedingTimeLimit"_s]).value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
+
+    if (!params()[u"shareLimitAction"_s].isEmpty())
+        shareLimits.action = Utils::String::toEnum(params()[u"shareLimitAction"_s], BitTorrent::ShareLimitAction::Default);
+
+    if (!params()[u"shareLimitsMode"_s].isEmpty())
+        shareLimits.mode = Utils::String::toEnum(params()[u"shareLimitsMode"_s], BitTorrent::ShareLimitsMode::Default);
+}
+
 void TorrentsController::toggleSequentialDownloadAction()
 {
     requireParams({u"hashes"_s});
@@ -1908,6 +1926,8 @@ void TorrentsController::createCategoryAction()
         categoryOptions.downloadPath = {useDownloadPath.value(), downloadPath};
     }
 
+    applyShareLimitsParams(categoryOptions.shareLimits);
+
     if (!BitTorrent::Session::instance()->addCategory(category, categoryOptions))
         throw APIError(APIErrorType::Conflict, tr("Unable to create category"));
 
@@ -1922,17 +1942,20 @@ void TorrentsController::editCategoryAction()
     if (category.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Category cannot be empty"));
 
-    const Path savePath {params()[u"savePath"_s]};
+    auto *session = BitTorrent::Session::instance();
+    BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(category);
+
+    categoryOptions.savePath = Path {params()[u"savePath"_s]};
     const auto useDownloadPath = parseBool(params()[u"downloadPathEnabled"_s]);
-    BitTorrent::CategoryOptions categoryOptions;
-    categoryOptions.savePath = savePath;
     if (useDownloadPath.has_value())
     {
         const Path downloadPath {params()[u"downloadPath"_s]};
         categoryOptions.downloadPath = {useDownloadPath.value(), downloadPath};
     }
 
-    if (!BitTorrent::Session::instance()->setCategoryOptions(category, categoryOptions))
+    applyShareLimitsParams(categoryOptions.shareLimits);
+
+    if (!session->setCategoryOptions(category, categoryOptions))
         throw APIError(APIErrorType::NotFound, tr("Category does not exist"));
 
     setResult(QString());
