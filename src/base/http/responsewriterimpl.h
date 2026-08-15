@@ -38,7 +38,6 @@
 #include "responsewriter.h"
 
 class QAbstractSocket;
-class QThread;
 
 namespace Http
 {
@@ -63,8 +62,13 @@ namespace Http
 
         bool isFinished() const override;
 
+    signals:
+        void failed();
+
     private:
-        void writeData(const QByteArray &data);
+        void onSocketBytesWritten(qint64 bytes);
+        void processNextData();
+        void deleteAsyncWorker();
         void finish();
 
         QPointer<QAbstractSocket> m_socket;
@@ -72,10 +76,7 @@ namespace Http
 
         class Worker;
         Worker *m_asyncWorker = nullptr;
-        QThread *m_workerThread = nullptr;
-        bool m_isAsyncWorkerFinished = false;
 
-        bool m_isWritingContent = false;
         bool m_isFinished = false;
     };
 }

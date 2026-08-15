@@ -75,6 +75,8 @@ Http::Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler
         else if (m_isReadyRead)
             read();
     }, Qt::QueuedConnection); // need to use `Qt::QueuedConnection` to avoid possible recursion
+
+    connect(&m_responseWriter, &ResponseWriterImpl::failed, m_socket, &QAbstractSocket::abort);
 }
 
 void Http::Connection::read()

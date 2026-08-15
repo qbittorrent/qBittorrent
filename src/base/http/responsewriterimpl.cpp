@@ -39,7 +39,6 @@
 #include <QMimeDatabase>
 #include <QMutex>
 #include <QMutexLocker>
-#include <QReadWriteLock>
 #include <QRegularExpression>
 #include <QSemaphore>
 #include <QStringTokenizer>
@@ -236,7 +235,7 @@ namespace
     }
 }
 
-class Http::ResponseWriterImpl::Worker final : public QObject
+class Http::ResponseWriterImpl::Worker final : public QThread
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(Worker)
@@ -245,32 +244,33 @@ public:
     Worker(const Path &filePath, const Http::Request &request, const HeaderMap &headers);
 
 public:
-    void run();
-    QByteArray fetchData(qint64 maxSize);
-    void abort();
+    struct FetchDataResult
+    {
+        QByteArray data;
+        bool atEnd = false;
+    };
+
+    void run() override;
+    void requestInterruption();
+
+    FetchDataResult fetchData(qint64 maxSize);
 
 signals:
     void dataReady();
-    void finished();
     void failed();
 
 private:
-    bool isAborted();
+    bool putData(const QByteArray &data, qint64 remainingSize = 0);
 
     Path m_filePath;
     Http::Request m_request;
     Http::HeaderMap m_headers;
 
-    QFile *m_file = nullptr;
-    qint64 m_remainingSize = -1;
-
-    bool m_isAborted = false;
-    QReadWriteLock m_abortedStateLock;
-
     QByteArray m_buffer;
     QMutex m_bufferMutex;
     QSemaphore m_bufferSemaphore;
-    bool m_isBufferRead = false;
+    bool m_hasNewData = false;
+    bool m_isFinished = false;
 };
 
 Http::ResponseWriterImpl::ResponseWriterImpl(QAbstractSocket *socket, QObject *parent)
@@ -281,23 +281,25 @@ Http::ResponseWriterImpl::ResponseWriterImpl(QAbstractSocket *socket, QObject *p
 
 Http::ResponseWriterImpl::~ResponseWriterImpl()
 {
-    if (m_isWritingContent)
-        m_asyncWorker->abort();
+    if (m_asyncWorker)
+    {
+        m_asyncWorker->requestInterruption();
+        deleteAsyncWorker();
+    }
 }
 
 void Http::ResponseWriterImpl::prepare(const Request &request)
 {
-    Q_ASSERT(!m_isWritingContent);
+    Q_ASSERT(!m_asyncWorker);
 
-    m_isAsyncWorkerFinished = false;
     m_isFinished = false;
     m_request = request;
 }
 
 void Http::ResponseWriterImpl::setResponse(const Response &response)
 {
-    Q_ASSERT(!m_isFinished && !m_isWritingContent);
-    if (m_isFinished || m_isWritingContent) [[unlikely]]
+    Q_ASSERT(!m_isFinished && !m_asyncWorker);
+    if (m_isFinished || m_asyncWorker) [[unlikely]]
         return;
 
     const QByteArray data = serializeResponse(response, m_request);
@@ -308,75 +310,39 @@ void Http::ResponseWriterImpl::setResponse(const Response &response)
 
 void Http::ResponseWriterImpl::streamFile(const Path &filePath, const HeaderMap &headers)
 {
-    Q_ASSERT(!m_isFinished && !m_isWritingContent);
-    if (m_isFinished || m_isWritingContent) [[unlikely]]
+    Q_ASSERT(!m_isFinished && !m_asyncWorker);
+    if (m_isFinished || m_asyncWorker) [[unlikely]]
         return;
 
     m_asyncWorker = new Worker(filePath, m_request, headers);
-    m_workerThread = new QThread;
-    connect(m_workerThread, &QThread::finished, m_workerThread, &QObject::deleteLater);
-    m_asyncWorker->moveToThread(m_workerThread);
 
-    connect(m_socket, &QAbstractSocket::bytesWritten, this, [this]
-    {
-        if (m_isFinished)
-            return;
-
-        const qint64 bufferedDataSize = m_socket->bytesToWrite();
-        const qint64 allowedDataSizeToWrite = adjustDataSize(MAX_BUFFER_SIZE - bufferedDataSize);
-        if (allowedDataSizeToWrite <= 0)
-            return;
-
-        const QByteArray dataToWrite = m_asyncWorker->fetchData(allowedDataSizeToWrite);
-        if (!dataToWrite.isEmpty())
-        {
-            writeData(dataToWrite);
-        }
-        else if (m_isAsyncWorkerFinished)
-        {
-            m_asyncWorker->deleteLater();
-            m_workerThread->quit();
-            finish();
-        }
-    });
+    connect(m_socket, &QAbstractSocket::bytesWritten, this, &ResponseWriterImpl::onSocketBytesWritten);
 
     connect(m_asyncWorker, &Worker::dataReady, this, [this]
     {
-        // If a queued connection is disconnected, already scheduled events
-        // may still be delivered, causing the receiver to be called after
-        // the connection is disconnected.
-        if (m_isAsyncWorkerFinished)
+        // When a queued signal-to-slot connection was disconnected,
+        // already scheduled events may still be delivered, so this slot
+        // can be called after `m_asyncWorker` has already been deleted.
+        if (!m_asyncWorker)
             return;
 
-        const qint64 bufferedDataSize = m_socket->bytesToWrite();
-        const qint64 allowedDataSizeToWrite = adjustDataSize(MAX_BUFFER_SIZE - bufferedDataSize);
-        if (allowedDataSizeToWrite <= 0)
-            return;
-
-        const QByteArray dataToWrite = m_asyncWorker->fetchData(allowedDataSizeToWrite);
-        if (!dataToWrite.isEmpty())
-            writeData(dataToWrite);
-    });
-
-    connect(m_asyncWorker, &Worker::finished, this, [this]
-    {
-        m_asyncWorker->disconnect(this);
-        m_isAsyncWorkerFinished = true;
+        if (m_socket)
+            processNextData();
     });
 
     connect(m_asyncWorker, &Worker::failed, this, [this]
     {
-        m_asyncWorker->disconnect(this);
-        m_asyncWorker->deleteLater();
-        m_workerThread->quit();
+        // When a queued signal-to-slot connection was disconnected,
+        // already scheduled events may still be delivered, so this slot
+        // can be called after `m_asyncWorker` has already been deleted.
+        if (!m_asyncWorker)
+            return;
 
-        if (m_socket && m_socket->isOpen())
-            m_socket->close();
+        deleteAsyncWorker();
+        emit failed();
     });
 
-    m_workerThread->start();
-    QMetaObject::invokeMethod(m_asyncWorker, &Worker::run);
-    m_isWritingContent = true;
+    m_asyncWorker->start();
 }
 
 void Http::ResponseWriterImpl::finish()
@@ -384,7 +350,8 @@ void Http::ResponseWriterImpl::finish()
     if (m_isFinished)
         return;
 
-    m_isWritingContent = false;
+    Q_ASSERT(!m_asyncWorker);
+
     m_isFinished = true;
     emit finished();
 }
@@ -394,22 +361,55 @@ bool Http::ResponseWriterImpl::isFinished() const
     return m_isFinished;
 }
 
-void Http::ResponseWriterImpl::writeData(const QByteArray &data)
+void Http::ResponseWriterImpl::onSocketBytesWritten([[maybe_unused]] const qint64 bytes)
 {
-    Q_ASSERT(!data.isEmpty());
-    if (data.isEmpty()) [[unlikely]]
+    if (!m_isFinished && m_asyncWorker)
+        processNextData();
+}
+
+void Http::ResponseWriterImpl::processNextData()
+{
+    Q_ASSERT(m_asyncWorker);
+    if (!m_asyncWorker) [[unlikely]]
         return;
 
-    if (!m_socket)
+    const qint64 bufferedDataSize = m_socket->bytesToWrite();
+    const qint64 allowedDataSizeToWrite = adjustDataSize(MAX_BUFFER_SIZE - bufferedDataSize);
+    if (allowedDataSizeToWrite <= 0)
         return;
 
-    const qint64 bytesWritten = m_socket->write(data);
-    if (bytesWritten < 0)
-        m_asyncWorker->abort();
+    const auto [dataToWrite, atEnd] = m_asyncWorker->fetchData(allowedDataSizeToWrite);
+    if (!dataToWrite.isEmpty())
+    {
+        const qint64 bytesWritten = m_socket->write(dataToWrite);
+        if (bytesWritten < 0)
+        {
+            m_asyncWorker->requestInterruption();
+            deleteAsyncWorker();
+            emit failed();
+            return;
+        }
 
-    const qint64 bytesToWrite = m_socket->bytesToWrite();
-    if (bytesToWrite >= MAX_BUFFER_SIZE)
-        m_socket->flush();
+        const qint64 bytesToWrite = m_socket->bytesToWrite();
+        if (bytesToWrite >= MAX_BUFFER_SIZE)
+            m_socket->flush();
+    }
+
+    if (atEnd)
+    {
+        deleteAsyncWorker();
+        disconnect(m_socket, &QAbstractSocket::bytesWritten, this, &ResponseWriterImpl::onSocketBytesWritten);
+        finish();
+    }
+}
+
+void Http::ResponseWriterImpl::deleteAsyncWorker()
+{
+    Q_ASSERT(m_asyncWorker);
+
+    m_asyncWorker->wait();
+    delete m_asyncWorker;
+    m_asyncWorker = nullptr;
 }
 
 Http::ResponseWriterImpl::Worker::Worker(const Path &filePath, const Request &request, const HeaderMap &headers)
@@ -431,29 +431,25 @@ void Http::ResponseWriterImpl::Worker::run()
         const std::optional<RangeRequest> parseRangeResult = parseRangeHeader(*it);
         if (!parseRangeResult)
         {
-            const QMutexLocker locker {&m_bufferMutex};
-            m_buffer = serializeResponse({.status = {.code = 400, .text = u"Bad Request"_s}}, {});
-            emit dataReady();
-            emit finished();
+            const QByteArray data = serializeResponse({.status = {.code = 400, .text = u"Bad Request"_s}}, {});
+            putData(data);
             return;
         }
 
         rangeRequest = parseRangeResult;
     }
 
-    m_file = new QFile(m_filePath.data(), this);
+    QFile file {m_filePath.data()};
 
-    if (!m_file->open(QIODevice::ReadOnly))
+    if (!file.open(QIODevice::ReadOnly))
     {
-        const QMutexLocker locker {&m_bufferMutex};
-        m_buffer = serializeResponse({.status = {.code = 500, .text = u"Internal Server Error"_s}, .content = m_file->errorString().toUtf8()}, {});
-        emit dataReady();
-        emit finished();
+        const QByteArray data = serializeResponse({.status = {.code = 500, .text = u"Internal Server Error"_s}, .content = file.errorString().toUtf8()}, {});
+        putData(data);
         return;
     }
 
-    const qint64 fileSize = m_file->size();
-    m_remainingSize = fileSize;
+    const qint64 fileSize = file.size();
+    qint64 remainingSize = fileSize;
     qint64 offset = 0;
     if (rangeRequest)
     {
@@ -463,8 +459,8 @@ void Http::ResponseWriterImpl::Worker::run()
             const auto suffixLength = std::get<qint64>(*rangeRequest);
             Q_ASSERT(suffixLength >= 0); // `suffixLength` is actually unsigned
 
-            m_remainingSize -= suffixLength;
-            offset = fileSize - m_remainingSize;
+            remainingSize -= suffixLength;
+            offset = fileSize - remainingSize;
             rangeEnd = fileSize - 1;
         }
         else
@@ -474,119 +470,111 @@ void Http::ResponseWriterImpl::Worker::run()
             if (range.end >= 0)
             {
                 rangeEnd = range.end;
-                m_remainingSize = (rangeEnd + 1) - offset;
+                remainingSize = (rangeEnd + 1) - offset;
             }
             else
             {
                 rangeEnd = fileSize - 1;
-                m_remainingSize = fileSize - offset;
+                remainingSize = fileSize - offset;
             }
         }
 
-        if ((offset < 0) || (m_remainingSize < 0) || ((offset + m_remainingSize) > fileSize))
+        if ((offset < 0) || (remainingSize < 0) || ((offset + remainingSize) > fileSize))
         {
-            const QMutexLocker locker {&m_bufferMutex};
-            m_buffer = serializeResponse({
+            const QByteArray data = serializeResponse({
                     .status = {.code = 416, .text = u"Range Not Satisfiable"_s},
                     .headers = {{HEADER_CONTENT_RANGE, u"bytes */%1"_s.arg(QString::number(fileSize))}}}
                     , {});
-            emit dataReady();
-            emit finished();
+            putData(data);
             return;
         }
 
         m_headers.insert(HEADER_CONTENT_RANGE, u"bytes %1-%2/%3"_s
                 .arg(QString::number(offset), QString::number(rangeEnd), QString::number(fileSize)));
 
-        if ((offset > 0) && !m_file->seek(offset))
+        if ((offset > 0) && !file.seek(offset))
         {
-            const QMutexLocker locker {&m_bufferMutex};
-            m_buffer = serializeResponse({.status = {.code = 500, .text = u"Internal Server Error"_s}, .content = m_file->errorString().toUtf8()}, {});
-            emit dataReady();
-            emit finished();
+            const QByteArray data = serializeResponse({.status = {.code = 500, .text = u"Internal Server Error"_s}, .content = file.errorString().toUtf8()}, {});
+            putData(data);
             return;
         }
     }
 
-    const Http::ResponseStatus responseStatus = (fileSize > m_remainingSize)
+    const Http::ResponseStatus responseStatus = (fileSize > remainingSize)
             ? Http::ResponseStatus {.code = 206, .text = u"Partial Content"_s}
             : Http::ResponseStatus {.code = 200, .text = u"OK"_s};
 
-    m_headers.insert(HEADER_CONTENT_LENGTH, QString::number(m_remainingSize));
+    m_headers.insert(HEADER_CONTENT_LENGTH, QString::number(remainingSize));
     m_headers.insert(HEADER_ACCEPT_RANGES, u"bytes"_s);
     m_headers.insert(HEADER_CONTENT_TYPE, QMimeDatabase().mimeTypeForFile(m_filePath.data()).name());
     m_headers.insert(HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(m_filePath.filename()));
 
-    {
-        const QMutexLocker locker {&m_bufferMutex};
-        m_buffer = serializeResponseHead(responseStatus, m_headers);
-        m_bufferSemaphore.acquire(m_buffer.size());
-        emit dataReady();
-    }
-
+    const QByteArray headData = serializeResponseHead(responseStatus, m_headers);
     if (m_request.method == HEADER_REQUEST_METHOD_HEAD)
-    {
-        emit finished();
+        remainingSize = 0;
+    if (!putData(headData, remainingSize))
         return;
-    }
 
-    while (!isAborted() && (m_remainingSize > 0))
+    while ((remainingSize > 0) && !isInterruptionRequested())
     {
-        const qint64 sizeToRead = std::min(CHUNK_SIZE, m_remainingSize);
-
-        m_bufferSemaphore.acquire(CHUNK_SIZE);
-        const QByteArray chunk = m_file->read(sizeToRead);
+        const qint64 sizeToRead = std::min(CHUNK_SIZE, remainingSize);
+        const QByteArray chunk = file.read(sizeToRead);
         if (chunk.isEmpty())
         {
-            m_bufferSemaphore.release(CHUNK_SIZE);
-            abort();
+            emit failed();
             return;
         }
 
-        const QMutexLocker locker {&m_bufferMutex};
-
         const qint64 chunkSize = chunk.size();
-        m_bufferSemaphore.release(CHUNK_SIZE - chunkSize);
-        m_buffer.append(chunk);
-        if (m_isBufferRead)
-        {
-            m_isBufferRead = false;
-            emit dataReady();
-        }
-
-        m_remainingSize -= chunkSize;
+        remainingSize -= chunkSize;
+        if (!putData(chunk, remainingSize))
+            return;
     }
-
-    if (m_remainingSize == 0)
-        emit finished();
 }
 
-QByteArray Http::ResponseWriterImpl::Worker::fetchData(const qint64 maxSize)
+void Http::ResponseWriterImpl::Worker::requestInterruption()
+{
+    QThread::requestInterruption();
+
+    const QMutexLocker locker {&m_bufferMutex};
+    m_buffer.clear();
+    m_bufferSemaphore.release(MAX_BUFFER_SIZE - m_bufferSemaphore.available());
+}
+
+bool Http::ResponseWriterImpl::Worker::putData(const QByteArray &data, const qint64 remainingSize)
+{
+    const qsizetype dataSize = data.size();
+
+    Q_ASSERT(!m_isFinished);
+    Q_ASSERT(dataSize > 0);
+
+    m_bufferSemaphore.acquire(data.size());
+    if (isInterruptionRequested())
+        return false;
+
+    const QMutexLocker locker {&m_bufferMutex};
+    m_buffer.append(data);
+
+    m_isFinished = (remainingSize <= 0);
+
+    if (!m_hasNewData)
+    {
+        m_hasNewData = true;
+        emit dataReady();
+    }
+
+    return true;
+}
+
+Http::ResponseWriterImpl::Worker::FetchDataResult Http::ResponseWriterImpl::Worker::fetchData(const qint64 maxSize)
 {
     const QMutexLocker locker {&m_bufferMutex};
     const auto sizeToFetch = std::min<qint64>(maxSize, m_buffer.size());
     const QByteArray data = m_buffer.first(sizeToFetch);
     m_buffer.remove(0, sizeToFetch);
     m_bufferSemaphore.release(sizeToFetch);
-    m_isBufferRead = true;
-    return data;
-}
-
-void Http::ResponseWriterImpl::Worker::abort()
-{
-    if (isAborted())
-        return;
-
-    const QWriteLocker locker {&m_abortedStateLock};
-    m_isAborted = true;
-
-    emit failed();
-}
-
-bool Http::ResponseWriterImpl::Worker::isAborted()
-{
-    const QReadLocker locker {&m_abortedStateLock};
-    return m_isAborted;
+    m_hasNewData = false;
+    return {.data = data, .atEnd = (m_isFinished && m_buffer.isEmpty())};
 }
 
 #include "responsewriterimpl.moc"
