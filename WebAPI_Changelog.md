@@ -2,6 +2,8 @@
 
 ## 2.16.0
 
+* [#24791](https://github.com/qbittorrent/qBittorrent/pull/24791)
+  * `search/downloadTorrent` and `rss/setFeedRefreshInterval` endpoints now only accept `POST` requests
 * [#24724](https://github.com/qbittorrent/qBittorrent/pull/24724)
   * `torrents/add` endpoint accepts `seedMode` (bool) parameter
   * `torrents/add` endpoint no longer accepts `skip_checking` parameter
