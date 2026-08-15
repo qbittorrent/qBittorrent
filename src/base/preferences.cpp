@@ -1643,28 +1643,28 @@ void Preferences::setMainGeometry(const QByteArray &geometry)
     setValue(u"MainWindow/geometry"_s, geometry);
 }
 
-QByteArray Preferences::getToolbarState(const QString &toolbarId) const
+QByteArray Preferences::getToolbarState() const
 {
-    return value<QByteArray>(u"%1/toolbarState"_s.arg(toolbarId));
+    return value<QByteArray>(u"MainWindow/toolbarState"_s);
 }
 
-void Preferences::setToolbarState(const QByteArray &state, const QString &toolbarId)
+void Preferences::setToolbarState(const QByteArray &state)
 {
-    if (state == getToolbarState(toolbarId))
+    if (state == getToolbarState())
         return;
-    setValue(u"%1/toolbarState"_s.arg(toolbarId), state);
+    setValue(u"MainWindow/toolbarState"_s, state);
 }
 
-bool Preferences::isToolbarLocked(const QString &toolbarId) const
+bool Preferences::isToolbarLocked() const
 {
-    return value(u"%1/toolbarLocked"_s.arg(toolbarId), true);
+    return value(u"MainWindow/toolbarLocked"_s, true);
 }
 
-void Preferences::setToolbarLocked(const bool locked, const QString &toolbarId)
+void Preferences::setToolbarLocked(const bool locked)
 {
-    if (locked == isToolbarLocked(toolbarId))
+    if (locked == isToolbarLocked())
         return;
-    setValue(u"%1/toolbarLocked"_s.arg(toolbarId), locked);
+    setValue(u"MainWindow/toolbarLocked"_s, locked);
 }
 
 bool Preferences::isFiltersSidebarVisible() const
