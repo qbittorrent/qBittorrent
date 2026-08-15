@@ -2,6 +2,9 @@
 
 ## 2.16.0
 
+* [#24788](https://github.com/qbittorrent/qBittorrent/pull/24788)
+  * `torrents/createCategory` and `torrents/editCategory` endpoints now accept the `ratioLimit`, `seedingTimeLimit`, `inactiveSeedingTimeLimit`, `shareLimitAction`, and `shareLimitsMode` parameters to set a category's share limits
+  * `torrents/editCategory` endpoint no longer erases a category's share limits and download path when they are not part of the request
 * [#24724](https://github.com/qbittorrent/qBittorrent/pull/24724)
   * `torrents/add` endpoint accepts `seedMode` (bool) parameter
   * `torrents/add` endpoint no longer accepts `skip_checking` parameter
