@@ -66,6 +66,7 @@ namespace Http
     private:
         void writeData(const QByteArray &data);
         void finish();
+        void destroyAsyncWorker();
 
         QPointer<QAbstractSocket> m_socket;
         Request m_request;
@@ -73,6 +74,7 @@ namespace Http
         class Worker;
         Worker *m_asyncWorker = nullptr;
         QThread *m_workerThread = nullptr;
+        QMetaObject::Connection m_bytesWrittenConnection;
         bool m_isAsyncWorkerFinished = false;
 
         bool m_isWritingContent = false;
