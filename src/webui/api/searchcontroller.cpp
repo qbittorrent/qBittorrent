@@ -91,7 +91,7 @@ void SearchController::startAction()
 
     const QString pattern = params()[u"pattern"_s].trimmed();
     const QString category = params()[u"category"_s].trimmed();
-    const QStringList plugins = params()[u"plugins"_s].split(u'|');
+    const QStringList plugins = parseList(u"plugins"_s, u'|');
 
     QStringList pluginsToUse;
     if (plugins.size() == 1)
@@ -256,7 +256,7 @@ void SearchController::installPluginAction()
 {
     requireParams({u"sources"_s});
 
-    const QStringList sources = params()[u"sources"_s].split(u'|');
+    const QStringList sources = parseList(u"sources"_s, u'|');
     for (const QString &source : sources)
         SearchPluginManager::instance()->installPlugin(source);
 
@@ -267,7 +267,7 @@ void SearchController::uninstallPluginAction()
 {
     requireParams({u"names"_s});
 
-    const QStringList names = params()[u"names"_s].split(u'|');
+    const QStringList names = parseList(u"names"_s, u'|');
     for (const QString &name : names)
         SearchPluginManager::instance()->uninstallPlugin(name.trimmed());
 
@@ -278,7 +278,7 @@ void SearchController::enablePluginAction()
 {
     requireParams({u"names"_s, u"enable"_s});
 
-    const QStringList names = params()[u"names"_s].split(u'|');
+    const QStringList names = parseList(u"names"_s, u'|');
     const bool enable = Utils::String::parseBool(params()[u"enable"_s].trimmed()).value_or(false);
 
     for (const QString &name : names)

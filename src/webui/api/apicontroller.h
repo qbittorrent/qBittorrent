@@ -31,6 +31,7 @@
 #include <variant>
 
 #include <QtContainerFwd>
+#include <QJsonObject>
 #include <QObject>
 #include <QString>
 #include <QVariant>
@@ -41,6 +42,14 @@
 
 using DataMap = QHash<QString, QByteArray>;
 using StringMap = QHash<QString, QString>;
+
+struct APIRequest
+{
+    StringMap params {};
+    DataMap data {};
+    bool isJson = false;
+    QJsonObject jsonBody {};
+};
 
 struct RegularAPIResult
 {
@@ -65,12 +74,18 @@ class APIController : public ApplicationComponent<QObject>
 public:
     explicit APIController(IApplication *app, QObject *parent = nullptr);
 
-    APIResult run(const QString &action, const StringMap &params, const DataMap &data = {});
+    APIResult run(const QString &action, const APIRequest &request);
 
 protected:
     const StringMap &params() const;
     const DataMap &data() const;
+    bool isJsonRequest() const;
     void requireParams(const QList<QString> &requiredParams) const;
+    void rejectArrayParam(const QString &key) const;
+
+    QStringList parseList(const QString &key, QChar separator, Qt::SplitBehavior behavior = Qt::KeepEmptyParts) const;
+    QStringList parseUrlList(const QString &key, QChar separator, Qt::SplitBehavior behavior = Qt::SkipEmptyParts) const;
+    QString decodeUrl(const QString &value) const;
 
     void setResult(const QString &result);
     void setResult(const QJsonArray &result);
@@ -83,5 +98,7 @@ protected:
 private:
     StringMap m_params;
     DataMap m_data;
+    bool m_isJson = false;
+    QJsonObject m_jsonBody;
     APIResult m_result;
 };
