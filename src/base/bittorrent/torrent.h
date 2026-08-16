@@ -264,6 +264,9 @@ namespace BitTorrent
         virtual bool isPEXDisabled() const = 0;
         virtual bool isLSDDisabled() const = 0;
         virtual QBitArray pieces() const = 0;
+        virtual bool havePiece(int pieceIndex) const = 0;
+        virtual void setStreamingPieceDeadline(int pieceIndex, int deadline) = 0;
+        virtual void resetStreamingPieceDeadline(int pieceIndex) = 0;
         virtual qreal distributedCopies() const = 0;
         virtual qreal realRatio() const = 0;
         virtual qreal popularity() const = 0;

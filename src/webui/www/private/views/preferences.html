@@ -1211,6 +1211,36 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
     <fieldset class="settings">
         <legend>
+            <input type="checkbox" id="streamingEnabledCheckbox" onclick="qBittorrent.Preferences.updateStreamingSettings();">
+            <label for="streamingEnabledCheckbox">QBT_TR(Enable streaming playback (experimental))QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
+        <div id="streamingSettings">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label for="streamingAddressValue">QBT_TR(IP address:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td><input type="text" id="streamingAddressValue"></td>
+                        <td><label for="streamingPortValue">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td><input type="number" id="streamingPortValue" min="1" max="65535" style="width: 6em;"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="streamingReadAheadValue">QBT_TR(Read-ahead:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td><input type="number" id="streamingReadAheadValue" min="0" max="4096" style="width: 6em;"> QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]</td>
+                        <td><label for="streamingTimeoutValue">QBT_TR(Wait timeout:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td><input type="number" id="streamingTimeoutValue" min="1" max="3600" style="width: 6em;"> QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="formRow">
+                <input type="checkbox" id="streamingAllowLANCheckbox">
+                <label for="streamingAllowLANCheckbox">QBT_TR(Allow binding to non-loopback addresses)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+            <div class="formRow"><i>QBT_TR(Streaming uses token-authenticated plain HTTP. Keep the token secret.)QBT_TR[CONTEXT=OptionsDialog]</i></div>
+        </div>
+    </fieldset>
+
+    <fieldset class="settings">
+        <legend>
             <input type="checkbox" id="use_dyndns_checkbox" onclick="qBittorrent.Preferences.updateDynDnsSettings();">
             <label id="UseDyndnsLabel" for="use_dyndns_checkbox">QBT_TR(Update my dynamic domain name)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
@@ -1931,6 +1961,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateAddTrackersEnabled: updateAddTrackersEnabled,
                 updateAddTrackersFromURLEnabled: updateAddTrackersFromURLEnabled,
                 updateHttpsSettings: updateHttpsSettings,
+                updateStreamingSettings: updateStreamingSettings,
                 updateBypasssAuthSettings: updateBypasssAuthSettings,
                 updateAlternativeWebUISettings: updateAlternativeWebUISettings,
                 updateHostHeaderValidationSettings: updateHostHeaderValidationSettings,
@@ -2248,6 +2279,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const isUseHttpsEnabled = document.getElementById("use_https_checkbox").checked;
             document.getElementById("ssl_cert_text").disabled = !isUseHttpsEnabled;
             document.getElementById("ssl_key_text").disabled = !isUseHttpsEnabled;
+        };
+
+        const updateStreamingSettings = () => {
+            const enabled = document.getElementById("streamingEnabledCheckbox").checked;
+            for (const control of document.querySelectorAll("#streamingSettings input"))
+                control.disabled = !enabled;
         };
 
         const updateBypasssAuthSettings = () => {
@@ -2708,6 +2745,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("webuiAddressValue").value = pref.web_ui_address;
                     document.getElementById("webuiPortValue").value = pref.web_ui_port;
                     document.getElementById("webuiUpnpCheckbox").checked = pref.web_ui_upnp;
+                    document.getElementById("streamingEnabledCheckbox").checked = pref.streaming_enabled;
+                    document.getElementById("streamingAddressValue").value = pref.streaming_address;
+                    document.getElementById("streamingPortValue").value = pref.streaming_port;
+                    document.getElementById("streamingReadAheadValue").value = pref.streaming_read_ahead_mib;
+                    document.getElementById("streamingTimeoutValue").value = pref.streaming_wait_timeout;
+                    document.getElementById("streamingAllowLANCheckbox").checked = pref.streaming_allow_lan;
+                    updateStreamingSettings();
                     document.getElementById("use_https_checkbox").checked = pref.use_https;
                     document.getElementById("ssl_cert_text").value = pref.web_ui_https_cert_path;
                     document.getElementById("ssl_key_text").value = pref.web_ui_https_key_path;
@@ -3180,6 +3224,32 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["web_ui_address"] = webUIAddress;
             settings["web_ui_port"] = webUIPort;
             settings["web_ui_upnp"] = document.getElementById("webuiUpnpCheckbox").checked;
+
+            settings["streaming_enabled"] = document.getElementById("streamingEnabledCheckbox").checked;
+            settings["streaming_address"] = document.getElementById("streamingAddressValue").value.trim();
+            if (settings["streaming_enabled"] && (settings["streaming_address"].length === 0)) {
+                alert("QBT_TR(The streaming address must not be empty.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            const streamingPort = Number(document.getElementById("streamingPortValue").value);
+            if (Number.isNaN(streamingPort) || (streamingPort < 1) || (streamingPort > 65535)) {
+                alert("QBT_TR(The streaming port must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["streaming_port"] = streamingPort;
+            const streamingReadAhead = Number(document.getElementById("streamingReadAheadValue").value);
+            if (Number.isNaN(streamingReadAhead) || (streamingReadAhead < 0) || (streamingReadAhead > 4096)) {
+                alert("QBT_TR(The streaming read-ahead must be between 0 and 4096 MiB.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["streaming_read_ahead_mib"] = streamingReadAhead;
+            const streamingTimeout = Number(document.getElementById("streamingTimeoutValue").value);
+            if (Number.isNaN(streamingTimeout) || (streamingTimeout < 1) || (streamingTimeout > 3600)) {
+                alert("QBT_TR(The streaming wait timeout must be between 1 and 3600 seconds.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["streaming_wait_timeout"] = streamingTimeout;
+            settings["streaming_allow_lan"] = document.getElementById("streamingAllowLANCheckbox").checked;
 
             const useHTTPS = document.getElementById("use_https_checkbox").checked;
             settings["use_https"] = useHTTPS;

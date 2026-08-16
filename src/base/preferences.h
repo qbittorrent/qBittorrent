@@ -188,6 +188,22 @@ public:
     bool useUPnPForWebUIPort() const;
     void setUPnPForWebUIPort(bool enabled);
 
+    // Streaming HTTP server
+    bool isStreamingEnabled() const;
+    void setStreamingEnabled(bool enabled);
+    QString streamingAddress() const;
+    void setStreamingAddress(const QString &address);
+    quint16 streamingPort() const;
+    void setStreamingPort(quint16 port);
+    int streamingReadAheadMiB() const;
+    void setStreamingReadAheadMiB(int size);
+    int streamingWaitTimeout() const;
+    void setStreamingWaitTimeout(int timeout);
+    bool isStreamingLANAllowed() const;
+    void setStreamingLANAllowed(bool allowed);
+    QString streamingToken() const;
+    void setStreamingToken(const QString &token);
+
     // Authentication
     bool isWebUILocalAuthEnabled() const;
     void setWebUILocalAuthEnabled(bool enabled);
