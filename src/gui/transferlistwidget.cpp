@@ -967,6 +967,31 @@ void TransferListWidget::renameSelectedTorrent()
     }
 }
 
+void TransferListWidget::createUniqueSubfolderForSelectedTorrents()
+{
+    applyToSelectedTorrents([this](BitTorrent::Torrent *const torrent)
+    {
+        BitTorrent::UniqueSubfolderMigrationPlan plan = torrent->planUniqueSubfolderMigration();
+        if (plan.blocked)
+        {
+            QMessageBox::warning(this, tr("Create unique subfolder")
+                    , tr("Torrent: \"%1\"\n\n%2").arg(torrent->name(), plan.blockReason));
+            return;
+        }
+        if (plan.isEmpty())
+            return;
+
+        connect(torrent, &BitTorrent::Torrent::uniqueSubfolderMigrationFinished, this
+                , [this](const bool success, const QString &message)
+        {
+            if (!success)
+                QMessageBox::warning(this, tr("Create unique subfolder failed"), message);
+        }, Qt::SingleShotConnection);
+
+        torrent->startUniqueSubfolderMigration(plan);
+    });
+}
+
 void TransferListWidget::setSelectionCategory(const QString &category)
 {
     applyToSelectedTorrents([&category](BitTorrent::Torrent *torrent) { torrent->setCategory(category); });
@@ -1047,6 +1072,12 @@ void TransferListWidget::displayListMenu()
     connect(actionRename, &QAction::triggered, this, &TransferListWidget::renameSelectedTorrent);
     auto *actionManageContent = new QAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Manage content..."), listMenu);
     connect(actionManageContent, &QAction::triggered, this, &TransferListWidget::manageTorrentContent);
+    auto *actionCreateUniqueSubfolder = new QAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s)
+            , tr("Create &unique subfolder"), listMenu);
+    actionCreateUniqueSubfolder->setToolTip(tr(
+            "Move selected torrents into a unique folder (e.g. Show a19f83c275d1). "
+            "File conflicts are handled in the same way as normal content renaming."));
+    connect(actionCreateUniqueSubfolder, &QAction::triggered, this, &TransferListWidget::createUniqueSubfolderForSelectedTorrents);
     auto *actionSequentialDownload = new TriStateAction(tr("Download in sequential order"), listMenu);
     connect(actionSequentialDownload, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSequentialDownload);
     auto *actionFirstLastPiecePrio = new TriStateAction(tr("Download first and last pieces first"), listMenu);
@@ -1197,6 +1228,8 @@ void TransferListWidget::displayListMenu()
         listMenu->addAction(actionRename);
         listMenu->addAction(actionManageContent);
     }
+    actionCreateUniqueSubfolder->setEnabled(oneHasMetadata);
+    listMenu->addAction(actionCreateUniqueSubfolder);
     listMenu->addAction(actionEditTracker);
 
     // Category Menu
