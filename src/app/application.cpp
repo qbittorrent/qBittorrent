@@ -85,6 +85,7 @@
 #include "base/rss/rss_session.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
+#include "base/streaming/server.h"
 #include "base/torrentfileswatcher.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -904,6 +905,7 @@ int Application::exec()
     Net::DownloadManager::initInstance();
 
     BitTorrent::Session::initInstance();
+    Streaming::Server::initInstance();
 #ifndef DISABLE_GUI
     UIThemeManager::initInstance();
 
@@ -1484,6 +1486,7 @@ void Application::cleanup()
 #ifdef DISABLE_GUI
     delete m_addTorrentManager;
 #endif
+    Streaming::Server::freeInstance();
     BitTorrent::Session::freeInstance();
     Net::ReverseResolution::freeInstance();
     Net::GeoIPManager::freeInstance();

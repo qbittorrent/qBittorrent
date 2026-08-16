@@ -60,6 +60,7 @@
 #include "base/preferences.h"
 #include "base/search/searchdownloadhandler.h"
 #include "base/search/searchpluginmanager.h"
+#include "base/streaming/server.h"
 #include "base/torrentfilter.h"
 #include "base/utils/datetime.h"
 #include "base/utils/dict.h"
@@ -2383,6 +2384,48 @@ void TorrentsController::downloadFileAction()
 
     const Path filePath = torrent->actualStorageLocation() / torrent->actualFilePath(fileIndex);
     setResult(filePath);
+}
+
+void TorrentsController::streamUrlAction()
+{
+    requireParams({u"hash"_s, u"file"_s});
+
+    Streaming::Server *const server = Streaming::Server::instance();
+    if (!server || !server->isListening())
+        throw APIError(APIErrorType::Conflict, tr("Streaming is disabled or unavailable"));
+
+    const BitTorrent::TorrentID id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound, tr("Torrent not found"));
+    if (!torrent->hasMetadata())
+        throw APIError(APIErrorType::Conflict, tr("Torrent metadata not available"));
+
+    bool ok = false;
+    const int fileIndex = params()[u"file"_s].toInt(&ok);
+    if (!ok || (fileIndex < 0) || (fileIndex >= torrent->filesCount()))
+        throw APIError(APIErrorType::Conflict, tr("Invalid file index"));
+
+    const QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
+    if ((fileIndex >= priorities.size()) || (priorities[fileIndex] == BitTorrent::DownloadPriority::Ignored)
+            || torrent->isChecking() || torrent->isMoving()
+            || torrent->isErrored() || torrent->hasMissingFiles())
+        throw APIError(APIErrorType::Conflict, tr("Torrent file is not available for streaming"));
+
+    const QList<qreal> filesProgress = torrent->filesProgress();
+    if (torrent->isStopped() && ((fileIndex >= filesProgress.size()) || (filesProgress[fileIndex] < 1)))
+        torrent->start();
+
+    const Path filePath = torrent->actualStorageLocation() / torrent->actualFilePath(fileIndex);
+    const QFileInfo fileInfo(filePath.data());
+    if (!fileInfo.exists() || !fileInfo.isFile() || !fileInfo.isReadable())
+        throw APIError(APIErrorType::Conflict, tr("Torrent file is not accessible"));
+
+    const QUrl url = server->streamUrl(id, fileIndex);
+    if (!url.isValid())
+        throw APIError(APIErrorType::Conflict, tr("Unable to create streaming URL"));
+
+    setResult(QJsonObject {{u"url"_s, url.toString(QUrl::FullyEncoded)}});
 }
 
 void TorrentsController::onDownloadFinished(const Net::DownloadResult &result)

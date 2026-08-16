@@ -199,6 +199,9 @@ namespace BitTorrent
         bool isPEXDisabled() const override;
         bool isLSDDisabled() const override;
         QBitArray pieces() const override;
+        bool havePiece(int pieceIndex) const override;
+        void setStreamingPieceDeadline(int pieceIndex, int deadline) override;
+        void resetStreamingPieceDeadline(int pieceIndex) override;
         qreal distributedCopies() const override;
         qreal realRatio() const override;
         qreal popularity() const override;
