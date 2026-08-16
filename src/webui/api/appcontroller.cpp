@@ -156,6 +156,7 @@ void AppController::preferencesAction()
     data[u"status_bar_external_ip"_s] = pref->isStatusbarExternalIPDisplayed();
     // Transfer List
     data[u"confirm_torrent_deletion"_s] = pref->confirmTorrentDeletion();
+    data[u"relative_transfer_list_dates"_s] = pref->useRelativeDatesInTransferList();
     // Log file
     data[u"file_log_enabled"_s] = app()->isFileLoggerEnabled();
     data[u"file_log_path"_s] = app()->fileLoggerPath().toString();
@@ -555,6 +556,8 @@ void AppController::setPreferencesAction()
     // Transfer List
     if (hasKey(u"confirm_torrent_deletion"_s))
         pref->setConfirmTorrentDeletion(it.value().toBool());
+    if (hasKey(u"relative_transfer_list_dates"_s))
+        pref->setUseRelativeDatesInTransferList(it.value().toBool());
     // Log file
     if (hasKey(u"file_log_enabled"_s))
         app()->setFileLoggerEnabled(it.value().toBool());
