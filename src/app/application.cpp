@@ -1381,6 +1381,16 @@ void Application::adjustThreadPriority() const
 
 bool Application::loadTranslation(const QString &locale)
 {
+    // Remove translators before reloading them in place. m_qtTranslator
+    // and m_translator are reused across language switches (see #24456),
+    // so mutating them via load() while they remain installed opens a
+    // window where QCoreApplication::translate() can observe a partially
+    // loaded translator from another event-loop-driven UI update (e.g. the
+    // periodic transfer list / status bar refresh). This caused visible
+    // language flicker on live locale switches without a restart (#24666).
+    QCoreApplication::removeTranslator(&m_qtTranslator);
+    QCoreApplication::removeTranslator(&m_translator);
+
     // Load Qt translation
     const QString trPath = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
     if (m_qtTranslator.load((u"qtbase_" + locale), trPath) || m_qtTranslator.load((u"qt_" + locale), trPath))
@@ -1404,6 +1414,12 @@ bool Application::loadTranslation(const QString &locale)
         LogMsg(tr("Load qBittorrent translation failed. Temporarily falling back to English. Locale not found: %1.")
             .arg(locale), Log::WARNING);
     }
+
+    // Reinstall only after both translators are fully loaded, so any
+    // concurrent tr() lookup sees either the previous consistent state
+    // or the fully-loaded new one -- never a mid-load partial state.
+    QCoreApplication::installTranslator(&m_qtTranslator);
+    QCoreApplication::installTranslator(&m_translator);
 
     return success;
 }
