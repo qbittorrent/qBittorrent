@@ -61,6 +61,7 @@ public:
     TransferListWidget(IGUIApplication *app, QWidget *parent);
     ~TransferListWidget() override;
     TransferListModel *getSourceModel() const;
+    void scrollToAndSelect(const BitTorrent::Torrent *torrent);
 
 public slots:
     void setSelectionCategory(const QString &category);
