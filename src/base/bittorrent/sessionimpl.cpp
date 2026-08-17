@@ -479,6 +479,7 @@ QStringList Session::expandCategory(const QString &category)
 SessionImpl::SessionImpl(QObject *parent)
     : Session(parent)
     , m_DHTBootstrapNodes(BITTORRENT_SESSION_KEY(u"DHTBootstrapNodes"_s), DEFAULT_DHT_BOOTSTRAP_NODES)
+    , m_webTorrentSTUNServer(BITTORRENT_SESSION_KEY(u"WebTorrentSTUNServer"_s), u"stun.l.google.com:19302"_s)
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY(u"DHTEnabled"_s), true)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY(u"LSDEnabled"_s), true)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY(u"PeXEnabled"_s), true)
@@ -816,6 +817,20 @@ void SessionImpl::setDHTBootstrapNodes(const QString &nodes)
         return;
 
     m_DHTBootstrapNodes = nodes;
+    configureDeferred();
+}
+
+QString SessionImpl::getWebTorrentSTUNServer() const
+{
+    return m_webTorrentSTUNServer;
+}
+
+void SessionImpl::setWebTorrentSTUNServer(const QString &server)
+{
+    if (server == getWebTorrentSTUNServer())
+        return;
+
+    m_webTorrentSTUNServer = server;
     configureDeferred();
 }
 
@@ -2230,6 +2245,12 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_bool(lt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
 
     settingsPack.set_str(lt::settings_pack::dht_bootstrap_nodes, getDHTBootstrapNodes().toStdString());
+
+#if LIBTORRENT_VERSION_NUM >= 20100
+    // STUN server for WebTorrent NAT traversal
+    settingsPack.set_str(lt::settings_pack::webtorrent_stun_server, getWebTorrentSTUNServer().toStdString());
+#endif
+
     settingsPack.set_bool(lt::settings_pack::enable_dht, isDHTEnabled());
     settingsPack.set_bool(lt::settings_pack::enable_lsd, isLSDEnabled());
 
