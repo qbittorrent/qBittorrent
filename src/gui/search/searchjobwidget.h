@@ -109,6 +109,7 @@ private:
     void updateNameFilter();
     void updateSeedsFilter();
     void updateSizeFilter();
+    void saveFilters();
     void filterSearchResults(const QString &name);
     void showFilterContextMenu();
     void contextMenuEvent(QContextMenuEvent *event) override;
@@ -135,6 +136,13 @@ private:
     void copyField(int column) const;
 
     SettingValue<NameFilteringMode> m_nameFilteringMode;
+    SettingValue<bool> m_storeRememberFilters;
+    SettingValue<int> m_storeMinSeeds;
+    SettingValue<int> m_storeMaxSeeds;
+    SettingValue<double> m_storeMinSize;
+    SettingValue<int> m_storeMinSizeUnit;
+    SettingValue<double> m_storeMaxSize;
+    SettingValue<int> m_storeMaxSizeUnit;
 
     QString m_id;
     QString m_searchPattern;
