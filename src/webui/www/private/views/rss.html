@@ -189,7 +189,7 @@
     <li><a href="#update"><img src="images/view-refresh.svg" alt="QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]</a></li>
     <li><a href="#markRead"><img src="images/task-complete.svg" alt="QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</a></li>
     <li class="separator"><a href="#rename"><img src="images/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#edit"><img src="images/edit-rename.svg" alt="QBT_TR(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#edit"><img src="images/edit-rename.svg" alt="QBT_TR(Feed options...)QBT_TR[CONTEXT=RSSFeedDialog]"> QBT_TR(Feed options...)QBT_TR[CONTEXT=RSSFeedDialog]</a></li>
     <li><a href="#delete"><img src="images/edit-clear.svg" alt="QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]</a></li>
 
     <li class="separator"><a href="#newSubscription"><img src="images/list-add.svg" alt="QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]</a></li>
@@ -851,17 +851,17 @@
             });
         };
 
-        const editUrl = (path, url) => {
-            const contentURL = new URL("editfeedurl.html", window.location);
+        const editFeed = (path, url) => {
+            const contentURL = new URL("editfeed.html", window.location);
             contentURL.search = new URLSearchParams({
                 v: "${CACHEID}",
                 path: path,
                 url: url
             });
             new MochaUI.Window({
-                id: "editFeedURL",
+                id: "editFeed",
                 icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
+                title: "QBT_TR(RSS Feed Options)QBT_TR[CONTEXT=RSSFeedDialog]",
                 loadMethod: "iframe",
                 contentURL: contentURL.toString(),
                 scrollbars: false,
