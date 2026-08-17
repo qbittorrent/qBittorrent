@@ -42,7 +42,7 @@
        <item>
         <widget class="QGroupBox" name="groupBoxSavePath">
          <property name="title">
-          <string>Save at</string>
+          <string>Save At</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>

@@ -179,7 +179,7 @@
          <item>
           <widget class="QCheckBox" name="checkRegex">
            <property name="text">
-            <string>Use Regular Expressions</string>
+            <string>Use regular expressions</string>
            </property>
           </widget>
          </item>
@@ -188,7 +188,7 @@
            <item row="0" column="0">
             <widget class="QLabel" name="labelMustContain">
              <property name="text">
-              <string>Must Contain:</string>
+              <string>Must contain:</string>
              </property>
             </widget>
            </item>
@@ -208,7 +208,7 @@
            <item row="1" column="0">
             <widget class="QLabel" name="labelMustNotContain">
              <property name="text">
-              <string>Must Not Contain:</string>
+              <string>Must not contain:</string>
              </property>
             </widget>
            </item>
@@ -228,7 +228,7 @@
            <item row="2" column="0">
             <widget class="QLabel" name="lblEFilter">
              <property name="text">
-              <string>Episode Filter:</string>
+              <string>Episode filter:</string>
              </property>
             </widget>
            </item>
@@ -264,7 +264,7 @@
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</string>
            </property>
            <property name="text">
-            <string>Use Smart Episode Filter</string>
+            <string>Use smart episode filter</string>
            </property>
           </widget>
          </item>
@@ -273,7 +273,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
            <item>
             <widget class="QLabel" name="lblIgnoreDays">
              <property name="text">
-              <string extracomment="... X days">Ignore Subsequent Matches for (0 to Disable)</string>
+              <string extracomment="... X days">Ignore subsequent matches for (0 to disable)</string>
              </property>
             </widget>
            </item>
@@ -311,7 +311,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
          <item>
           <widget class="QGroupBox" name="torrentParametersGroupBox">
            <property name="title">
-            <string>Torrent parameters</string>
+            <string>Torrent Parameters</string>
            </property>
            <property name="flat">
             <bool>true</bool>

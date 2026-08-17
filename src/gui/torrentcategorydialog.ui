@@ -61,7 +61,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Save path for incomplete torrents:</string>
+      <string>Save Path for Incomplete Torrents:</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
@@ -143,7 +143,7 @@
    <item>
     <widget class="QGroupBox" name="torrentShareLimitsBox">
      <property name="title">
-      <string>Torrent share limits</string>
+      <string>Torrent Share Limits</string>
      </property>
      <layout class="QVBoxLayout" name="torrentShareLimitsBoxLayout">
       <item>

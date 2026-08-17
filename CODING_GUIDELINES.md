@@ -31,7 +31,8 @@ For programming languages other than C++ (e.g. JavaScript) used in this reposito
 * [8. Include guard](#8-include-guard)
 * [9. Misc](#9-misc)
 * [10. Git commit message](#10-git-commit-message)
-* [11. Not covered above](#11-not-covered-above)
+* [11. Text capitalization](#11-text-capitalization)
+* [12. Not covered above](#12-not-covered-above)
 
 ---
 
@@ -503,7 +504,11 @@ class ExampleWidget : public QWidget
 7. Use the body to explain what and why vs. how
 8. If commit fixes a reported issue, mention it in the message body (e.g. `Closes #4134.`)
 
-## 11. Not covered above
+## 11. Text capitalization
+
+We prefer Sentence Case for everything except proper nouns.
+
+## 12. Not covered above
 
 If something isn't covered above, just follow the same style the file you are editing has. \
 *This guide is not exhaustive and the style for a particular piece of code not specified here will be determined by project members on code review.*
