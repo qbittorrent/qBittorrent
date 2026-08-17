@@ -114,6 +114,7 @@ add_library(qbt_base STATIC
     utils/bytearray.h
     utils/compare.h
     utils/datetime.h
+    utils/dict.h
     utils/foreignapps.h
     utils/fs.h
     utils/gzip.h
