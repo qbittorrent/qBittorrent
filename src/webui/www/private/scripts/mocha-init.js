@@ -1308,18 +1308,16 @@ const initializeWindows = () => {
         e.preventDefault();
         e.stopPropagation();
 
-        if (confirm("QBT_TR(Would you like to pause bittorrent session?)QBT_TR[CONTEXT=MainWindow]")) {
+        if (confirm("QBT_TR(Would you like to pause bittorrent session?)QBT_TR[CONTEXT=MainWindow]"))
             pauseSessionFN();
-        }
     });
 
     addClickEvent("resumeSession", (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        if (confirm("QBT_TR(Would you like to resume bittorrent session?)QBT_TR[CONTEXT=MainWindow]")) {
+        if (confirm("QBT_TR(Would you like to resume bittorrent session?)QBT_TR[CONTEXT=MainWindow]"))
             resumeSessionFN();
-        }
     });
 
     addClickEvent("selectAll", (e) => {

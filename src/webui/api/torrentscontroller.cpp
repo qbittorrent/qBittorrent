@@ -2485,4 +2485,3 @@ void TorrentsController::cacheMagnetURI(const QString &source, const BitTorrent:
             m_torrentMetadataCache.insert(torrentID, torrentDescr);
     }
 }
-
