@@ -346,9 +346,6 @@ void OptionsDialog::loadBehaviorTabOptions()
 #endif
 
 #if defined(Q_OS_WIN)
-    if (!Utils::OS::isMagnetProtocolRegistered())
-        Utils::OS::registerMagnetProtocol();
-
     connect(m_ui->buttonOpenDefaultApps, &QPushButton::clicked, this, [](bool)
     {
         const Path explorer = Utils::OS::windowsSystemPath().parentPath() / Path(u"explorer.exe"_s);

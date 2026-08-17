@@ -896,6 +896,9 @@ int Application::exec()
 #endif
 
 #ifdef Q_OS_WIN
+    if (!Utils::OS::isMagnetProtocolRegistered())
+        Utils::OS::registerMagnetProtocol();
+
     applyMemoryPriority();
     adjustThreadPriority();
 #endif
