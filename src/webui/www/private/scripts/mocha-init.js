@@ -597,28 +597,27 @@ const initializeWindows = () => {
     };
 
     pauseSessionFN = () => {
-        fetch("api/v2/torrents/pauseSession", {
+        fetch("api/v2/transfer/pauseSession", {
             method: "POST",
         }).then((response) => {
             if (!response.ok) {
                 alert("QBT_TR(Unable to pause the session.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-
+            updateMainData();
         });
-        updateMainData();
     };
 
     resumeSessionFN = () => {
-        fetch("api/v2/torrents/resumeSession", {
+        fetch("api/v2/transfer/resumeSession", {
             method: "POST",
         }).then((response) => {
             if (!response.ok) {
                 alert("QBT_TR(Unable to resume the session.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
+            updateMainData();
         });
-        updateMainData();
     };
 
     autoTorrentManagementFN = () => {
@@ -1310,14 +1309,7 @@ const initializeWindows = () => {
         e.stopPropagation();
 
         if (confirm("QBT_TR(Would you like to pause bittorrent session?)QBT_TR[CONTEXT=MainWindow]")) {
-            fetch("api/v2/torrents/pauseSession", {
-                    method: "POST"
-                })
-                .then((response) => {
-                    if (!response.ok)
-                        return;
-                });
-            updateMainData();
+            pauseSessionFN();
         }
     });
 
@@ -1326,14 +1318,7 @@ const initializeWindows = () => {
         e.stopPropagation();
 
         if (confirm("QBT_TR(Would you like to resume bittorrent session?)QBT_TR[CONTEXT=MainWindow]")) {
-            fetch("api/v2/torrents/resumeSession", {
-                    method: "POST"
-                })
-                .then((response) => {
-                    if (!response.ok)
-                        return;
-                });
-            updateMainData();
+            resumeSessionFN();
         }
     });
 

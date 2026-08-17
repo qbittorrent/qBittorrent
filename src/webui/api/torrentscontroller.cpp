@@ -2486,14 +2486,3 @@ void TorrentsController::cacheMagnetURI(const QString &source, const BitTorrent:
     }
 }
 
-void TorrentsController::pauseSessionAction()
-{
-    BitTorrent::Session::instance()->pause();
-    setResult(QString());
-}
-
-void TorrentsController::resumeSessionAction()
-{
-    BitTorrent::Session::instance()->resume();
-    setResult(QString());
-}

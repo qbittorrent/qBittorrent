@@ -119,8 +119,6 @@ private slots:
     void parseMetadataAction();
     void saveMetadataAction();
     void downloadFileAction();
-    void pauseSessionAction();
-    void resumeSessionAction();
 
 private:
     void onDownloadFinished(const Net::DownloadResult &result);
