@@ -26,47 +26,95 @@
 
             const searchParams = new URLSearchParams(window.location.search);
             const currentUrl = searchParams.get("url");
+            const currentRefreshInterval = Number(searchParams.get("refreshInterval") ?? 0);
 
-            document.getElementById("url").value = currentUrl;
-            document.getElementById("url").focus();
-            document.getElementById("url").setSelectionRange(0, currentUrl.length);
+            const urlInput = document.getElementById("url");
+            const refreshIntervalInput = document.getElementById("newRefreshInterval");
+            const refreshIntervalSuffix = document.getElementById("refreshIntervalSuffix");
+            const refreshIntervalDefault = document.getElementById("refreshIntervalDefault");
+            const submitButton = document.getElementById("submitButton");
 
-            document.getElementById("submitButton").addEventListener("click", (e) => {
+            const postRssUpdate = (action, params, errorMessage) =>
+                fetch(`api/v2/rss/${action}`, {
+                    method: "POST",
+                    body: new URLSearchParams(params)
+                })
+                .then(async (response) => {
+                    if (!response.ok)
+                        throw new Error((response.status === 409) ? await response.text() : errorMessage);
+                });
+
+            const closeOnSuccess = () => {
+                window.parent.qBittorrent.Rss.updateRssFeedList();
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
+            };
+
+            const updateRefreshIntervalSuffix = () => {
+                if (Number(refreshIntervalInput.value) === 0) {
+                    refreshIntervalSuffix.style.display = "none";
+                    refreshIntervalDefault.style.display = "inline";
+                }
+                else {
+                    refreshIntervalSuffix.style.display = "inline";
+                    refreshIntervalDefault.style.display = "none";
+                }
+            };
+
+            urlInput.value = currentUrl;
+            urlInput.focus();
+            urlInput.setSelectionRange(0, currentUrl.length);
+
+            refreshIntervalInput.value = currentRefreshInterval;
+            refreshIntervalInput.addEventListener("input", updateRefreshIntervalSuffix);
+            updateRefreshIntervalSuffix();
+
+            submitButton.addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
 
-                // check field
-                const newUrl = document.getElementById("url").value.trim();
+                // check fields
+                const newUrl = urlInput.value.trim();
+
                 if (newUrl === "") {
-                    alert("QBT_TR(URL cannot be empty)QBT_TR[CONTEXT=RSSWidget]");
+                    alert("QBT_TR(URL cannot be empty)QBT_TR[CONTEXT=RSSFeedDialog]");
                     return;
                 }
 
-                if (newUrl === currentUrl) {
-                    alert("QBT_TR(URL is unchanged)QBT_TR[CONTEXT=RSSWidget]");
+                const newRefreshInterval = Number(refreshIntervalInput.value);
+                if (!Number.isInteger(newRefreshInterval) || (newRefreshInterval < 0)) {
+                    alert("QBT_TR(Refresh interval must be a non-negative integer in second(s))QBT_TR[CONTEXT=RSSFeedDialog]");
                     return;
                 }
 
-                document.getElementById("submitButton").disabled = true;
+                submitButton.disabled = true;
 
-                fetch("api/v2/rss/setFeedURL", {
-                        method: "POST",
-                        body: new URLSearchParams({
-                            path: searchParams.get("path"),
-                            url: newUrl
-                        })
-                    })
-                    .then(async (response) => {
-                        if (!response.ok) {
-                            alert((response.status === 409)
-                                ? await response.text()
-                                : "QBT_TR(Unable to update URL)QBT_TR[CONTEXT=RSSWidget]");
-                            document.getElementById("submitButton").disabled = false;
-                            return;
-                        }
+                const feedPath = searchParams.get("path");
 
-                        window.parent.qBittorrent.Rss.updateRssFeedList();
-                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                if ((newRefreshInterval === currentRefreshInterval) && (newUrl === currentUrl)) {
+                    closeOnSuccess();
+                    return;
+                }
+
+                let updatePromise = Promise.resolve();
+
+                if (newRefreshInterval !== currentRefreshInterval) {
+                    updatePromise = updatePromise.then(() =>
+                        postRssUpdate("setFeedRefreshInterval", { path: feedPath, refreshInterval: newRefreshInterval },
+                            "QBT_TR(Unable to update refresh interval)QBT_TR[CONTEXT=RSSFeedDialog]"));
+                }
+
+                if (newUrl !== currentUrl) {
+                    updatePromise = updatePromise.then(() =>
+                        postRssUpdate("setFeedURL", { path: feedPath, url: newUrl },
+                            "QBT_TR(Unable to update URL)QBT_TR[CONTEXT=RSSFeedDialog]"));
+                }
+
+                updatePromise
+                    .then(closeOnSuccess)
+                    .catch((error) => {
+                        submitButton.disabled = false;
+                        console.error(error);
+                        alert(error.message);
                     });
             });
         });
@@ -77,6 +125,8 @@
     <div style="padding: 10px 10px 0px 10px;">
         <label for="url" style="font-weight: bold;">QBT_TR(URL:)QBT_TR[CONTEXT=RSSFeedDialog]</label>
         <input type="text" id="url" style="width: 320px;">
+        <label for="newRefreshInterval" style="font-weight: bold;">QBT_TR(Refresh interval:)QBT_TR[CONTEXT=RSSFeedDialog]</label>
+        <input type="number" id="newRefreshInterval" min="0" step="1" value="0" style="width: 6em;">&nbsp;&nbsp;<span id="refreshIntervalSuffix" style="display: none;">QBT_TR( sec)QBT_TR[CONTEXT=RSSFeedDialog]</span><span id="refreshIntervalDefault">(QBT_TR(Default)QBT_TR[CONTEXT=RSSFeedDialog])</span>
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="submitButton">
         </div>
