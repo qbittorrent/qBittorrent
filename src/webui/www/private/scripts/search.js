@@ -597,8 +597,21 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const openSearchTorrentDescriptionUrl = () => {
-        for (const rowID of searchResultsTable.selectedRowsIds())
-            window.open(searchResultsTable.getRow(rowID).full_data.descrLink, "_blank");
+        const blockedUrls = [];
+        for (const rowID of searchResultsTable.selectedRowsIds()) {
+            const { descrLink, fileName } = searchResultsTable.getRow(rowID).full_data;
+            if (window.qBittorrent.Misc.isHttpUrl(descrLink)) {
+                window.open(descrLink, "_blank");
+            }
+            else {
+                console.error(`Blocked opening search result description page URL. Only http:// and https:// links can be opened. Name: "${fileName}". URL: "${descrLink}".`);
+                // collapse whitespace and cap the length so that a crafted URL can't pad the dialog with its own text
+                blockedUrls.push(descrLink.replace(/\s+/g, " ").slice(0, 256));
+            }
+        }
+
+        if (blockedUrls.length > 0)
+            alert(`QBT_TR(Blocked opening search result description page URL. Only http:// and https:// links can be opened.)QBT_TR[CONTEXT=SearchJobWidget]\n\n${blockedUrls.join("\n")}`);
     };
 
     const copySearchTorrentName = () => {

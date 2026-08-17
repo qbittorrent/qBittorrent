@@ -33,6 +33,7 @@ window.qBittorrent.Misc ??= (() => {
     const exports = () => {
         return {
             getHost: getHost,
+            isHttpUrl: isHttpUrl,
             createDebounceHandler: createDebounceHandler,
             filterInPlace: filterInPlace,
             friendlyUnit: friendlyUnit,
@@ -78,6 +79,22 @@ window.qBittorrent.Misc ??= (() => {
         }
         catch (error) {
             return url;
+        }
+    };
+
+    /**
+     * Whether the URL is safe to navigate to, i.e. it doesn't use a scheme such as `javascript:`
+     *
+     * @param {string} url a URL, possibly relative to the current document
+     * @returns {boolean}
+     */
+    const isHttpUrl = (url) => {
+        try {
+            const scheme = new URL(url, window.location).protocol;
+            return (scheme === "http:") || (scheme === "https:");
+        }
+        catch (error) {
+            return false;
         }
     };
 
