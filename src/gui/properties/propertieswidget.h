@@ -77,6 +77,9 @@ public:
     PropTabBar *tabBar() const;
     LineEdit *contentFilterLine() const;
 
+signals:
+    void openAdvancedSettingsLinkActivated();
+
 public slots:
     void setVisibility(bool visible);
     void loadTorrentInfos(BitTorrent::Torrent *torrent);
