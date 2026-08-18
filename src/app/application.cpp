@@ -897,7 +897,10 @@ int Application::exec()
 
 #ifdef Q_OS_WIN
     if (!Utils::OS::isMagnetProtocolRegistered())
-        Utils::OS::registerMagnetProtocol();
+    {
+        if (!Utils::OS::registerMagnetProtocol())
+            LogMsg(tr("Failed to restore magnet protocol registration."), Log::WARNING);
+    }
 
     applyMemoryPriority();
     adjustThreadPriority();
