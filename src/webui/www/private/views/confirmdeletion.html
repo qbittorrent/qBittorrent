@@ -86,8 +86,12 @@
         // Conditionally set up the dialog based on the preference flag
         if (alternativeDeletionDialog) {
             // Hide standard elements, show alternative buttons
-            for (const el of document.querySelectorAll(".standard-deletion-item")) el.style.display = "none";
-            for (const el of document.querySelectorAll(".alternative-deletion-item")) el.style.display = "inline-block";
+            for (const el of document.querySelectorAll(".standard-deletion-item")) {
+                el.style.display = "none";
+            }
+            for (const el of document.querySelectorAll(".alternative-deletion-item")) {
+                el.style.display = "inline-block";
+            }
 
             confirmAndFilesButton.addEventListener("click", () => executeDeletion(true));
             confirmAlternativeButton.addEventListener("click", () => executeDeletion(false));
