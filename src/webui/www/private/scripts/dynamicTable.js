@@ -627,29 +627,24 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         loadColumnsOrder() {
-            const columnsOrder = [];
             const val = localPreferences.get(`columns_order_${this.dynamicTableDivId}`);
             if ((val === null) || (val === undefined))
                 return;
+
+            const columnsOrder = new Set();
             for (const v of val.split(",")) {
-                if ((v in this.columns) && (!columnsOrder.contains(v)))
-                    columnsOrder.push(v);
+                if (v in this.columns)
+                    columnsOrder.add(v);
             }
 
-            for (let i = 0; i < this.columns.length; ++i) {
-                if (!columnsOrder.contains(this.columns[i].name))
-                    columnsOrder.push(this.columns[i].name);
-            }
+            for (let i = 0; i < this.columns.length; ++i)
+                columnsOrder.add(this.columns[i].name);
 
-            const columnsCopy = [...this.columns];
-            for (let i = 0; i < this.columns.length; ++i) {
-                const idx = columnsOrder[i];
-                if (idx !== undefined && idx >= 0 && idx < this.columns.length)
-                    this.columns[i] = columnsCopy[idx];
-                else
-                    this.columns[i] = columnsCopy[i];
-             }
-         }
+            const order = [...columnsOrder];
+            const byName = new Map(this.columns.map((col, i) => [col.name, col]));
+            for (let i = 0; i < this.columns.length; ++i)
+                this.columns[i] = byName.get(order[i]);
+        }
 
         saveColumnsOrder() {
             let val = "";
