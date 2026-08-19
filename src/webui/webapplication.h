@@ -58,13 +58,14 @@
 using namespace std::chrono_literals;
 using namespace Qt::Literals::StringLiterals;
 
-inline const Utils::Version<3, 2> API_VERSION {2, 16, 0};
+inline const Utils::Version<3, 2> API_VERSION {2, 16, 1};
 
 class QNetworkCookie;
 
 class APIController;
 class AuthController;
 class ClientDataStorage;
+class SearchJobManager;
 class WebSession;
 
 enum class WebSessionType : qint8;
@@ -119,7 +120,7 @@ private:
 
     bool isOriginTrustworthy() const;
     bool isCrossSiteRequest(const Http::Request &request) const;
-    bool validateHostHeader(const QStringList &domains) const;
+    bool validateHostHeader() const;
 
     bool validateCredentials(QStringView username, QStringView password) const override;
     bool validateBasicAuth(QStringView credentials) const;
@@ -146,7 +147,7 @@ private:
         End
     };
 
-    SessionStateChange m_sessionStateChange = SessionStateChange::None;
+    SessionStateChange m_cookieBasedSessionStateChange = SessionStateChange::None;
 
     QSet<QString> m_publicAPIs;
     const QHash<std::pair<QString, QString>, QString> m_allowedMethod =
@@ -170,9 +171,11 @@ private:
         {{u"rss"_s, u"removeItem"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"removeRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"renameRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"setFeedRefreshInterval"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"setFeedURL"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"setRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"search"_s, u"delete"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"search"_s, u"downloadTorrent"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"search"_s, u"enablePlugin"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"search"_s, u"installPlugin"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"search"_s, u"start"_s}, Http::HEADER_REQUEST_METHOD_POST},
@@ -243,6 +246,7 @@ private:
         QDateTime lastModified;
     };
     QHash<Path, TranslatedFile> m_translatedFiles;
+    const QRegularExpression m_trRegex;
     QString m_currentLocale;
     QTranslator m_translator;
     bool m_translationFileLoaded = false;
@@ -252,13 +256,14 @@ private:
     bool m_isAuthSubnetWhitelistEnabled = false;
     QList<Utils::Net::Subnet> m_authSubnetWhitelist;
     std::chrono::seconds m_sessionTimeout = 0s;
+    int m_sessionsCountLimit = 0;
     QString m_sessionCookieName;
     QString m_apiKey;
     QString m_username;
     QByteArray m_passwordHash;
 
     // security related
-    QStringList m_domainList;
+    QList<QRegularExpression> m_serverDomains;
     bool m_isCSRFProtectionEnabled = true;
     bool m_isSecureCookieEnabled = true;
     bool m_isHostHeaderValidationEnabled = true;
@@ -272,6 +277,7 @@ private:
     Http::HeaderMap m_prebuiltHeaders;
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
+    SearchJobManager *m_searchJobManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;
 
     struct FailedLogin

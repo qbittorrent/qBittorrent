@@ -33,6 +33,7 @@ window.qBittorrent.Misc ??= (() => {
     const exports = () => {
         return {
             getHost: getHost,
+            isHttpUrl: isHttpUrl,
             createDebounceHandler: createDebounceHandler,
             filterInPlace: filterInPlace,
             friendlyUnit: friendlyUnit,
@@ -78,6 +79,22 @@ window.qBittorrent.Misc ??= (() => {
         }
         catch (error) {
             return url;
+        }
+    };
+
+    /**
+     * Whether the URL is safe to navigate to, i.e. it doesn't use a scheme such as `javascript:`
+     *
+     * @param {string} url a URL, possibly relative to the current document
+     * @returns {boolean}
+     */
+    const isHttpUrl = (url) => {
+        try {
+            const scheme = new URL(url, window.location).protocol;
+            return (scheme === "http:") || (scheme === "https:");
+        }
+        catch (error) {
+            return false;
         }
     };
 
@@ -371,11 +388,16 @@ window.qBittorrent.Misc ??= (() => {
         }
     };
 
-    const downloadFileStream = async (url, errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]") => {
+    const downloadFileStream = async (url) => {
+        const errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]";
+
         try {
             // Pre-flight HEAD request to check for errors before triggering download
             // This avoids navigating to an error page on failure
-            const response = await fetch(url, { method: "HEAD" });
+            const response = await fetch(url, {
+                method: "HEAD",
+                cache: "no-store"
+            });
             if (!response.ok) {
                 alert(errorMessage);
                 return;
@@ -385,6 +407,7 @@ window.qBittorrent.Misc ??= (() => {
             const link = document.createElement("a");
             link.href = url;
             link.click();
+            link.remove();
         }
         catch (error) {
             alert(errorMessage);

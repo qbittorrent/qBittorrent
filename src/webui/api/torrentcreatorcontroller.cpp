@@ -45,6 +45,7 @@
 const QString KEY_COMMENT = u"comment"_s;
 const QString KEY_ERROR_MESSAGE = u"errorMessage"_s;
 const QString KEY_FORMAT = u"format"_s;
+const QString KEY_IGNORE_DOTFILES = u"ignoreDotfiles"_s;
 const QString KEY_OPTIMIZE_ALIGNMENT = u"optimizeAlignment"_s;
 const QString KEY_PADDED_FILE_SIZE_LIMIT = u"paddedFileSizeLimit"_s;
 const QString KEY_PIECE_SIZE = u"pieceSize"_s;
@@ -131,6 +132,7 @@ void TorrentCreatorController::addTaskAction()
 
     const BitTorrent::TorrentCreatorParams createTorrentParams
     {
+        .ignoreDotfiles = parseBool(params()[KEY_IGNORE_DOTFILES]).value_or(true),
         .isPrivate = parseBool(params()[KEY_PRIVATE]).value_or(false),
 #ifdef QBT_USES_LIBTORRENT2
         .torrentFormat = parseTorrentFormat(params()[KEY_FORMAT].toLower()),
@@ -147,9 +149,9 @@ void TorrentCreatorController::addTaskAction()
         .urlSeeds = parseUrls(params()[KEY_URL_SEEDS])
     };
 
-    bool const startSeeding = parseBool(params()[u"startSeeding"_s]).value_or(createTorrentParams.torrentFilePath.isEmpty());
+    const bool startSeeding = parseBool(params()[u"startSeeding"_s]).value_or(createTorrentParams.torrentFilePath.isEmpty());
 
-    auto task = m_torrentCreationManager->createTask(createTorrentParams, startSeeding);
+    const auto task = m_torrentCreationManager->createTask(createTorrentParams, startSeeding);
     if (!task)
         throw APIError(APIErrorType::Conflict, tr("Too many active tasks"));
 
@@ -174,6 +176,7 @@ void TorrentCreatorController::statusAction()
             {KEY_TASK_ID, task->id()},
             {KEY_SOURCE_PATH, task->params().sourcePath.toString()},
             {KEY_PIECE_SIZE, task->params().pieceSize},
+            {KEY_IGNORE_DOTFILES, task->params().ignoreDotfiles},
             {KEY_PRIVATE, task->params().isPrivate},
             {KEY_TIME_ADDED, Utils::DateTime::toSecsSinceEpoch(task->timeAdded())},
 #ifdef QBT_USES_LIBTORRENT2

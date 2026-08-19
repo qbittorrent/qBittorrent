@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Mike Tzou (Chocobo1)
+ * Copyright (C) 2018-2026  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

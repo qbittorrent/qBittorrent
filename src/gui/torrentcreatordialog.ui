@@ -226,6 +226,19 @@
            </layout>
           </item>
           <item>
+           <widget class="QCheckBox" name="checkIgnoreDotfiles">
+            <property name="toolTip">
+             <string>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</string>
+            </property>
+            <property name="text">
+             <string>Ignore dotfiles</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QCheckBox" name="checkPrivate">
             <property name="text">
              <string>Private torrent (Won't distribute on DHT network)</string>

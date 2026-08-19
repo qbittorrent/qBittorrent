@@ -32,6 +32,7 @@
 #include <QHostAddress>
 
 class QString;
+class QStringView;
 
 namespace BitTorrent
 {
@@ -42,8 +43,10 @@ namespace BitTorrent
 
         static PeerAddress parse(QStringView address);
         QString toString() const;
+
+        friend bool operator<(const PeerAddress &left, const PeerAddress &right);
+        friend bool operator==(const PeerAddress &left, const PeerAddress &right) = default;
     };
 
-    bool operator==(const PeerAddress &left, const PeerAddress &right);
     std::size_t qHash(const PeerAddress &addr, std::size_t seed = 0);
 }

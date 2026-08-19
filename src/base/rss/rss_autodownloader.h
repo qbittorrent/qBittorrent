@@ -47,11 +47,6 @@ class Application;
 class AsyncFileStorage;
 struct ProcessingJob;
 
-namespace BitTorrent
-{
-    struct AddTorrentError;
-}
-
 namespace RSS
 {
     class Article;
@@ -117,7 +112,7 @@ namespace RSS
     private slots:
         void process();
         void handleTorrentAdded(const QString &source);
-        void handleAddTorrentFailed(const QString &url, const BitTorrent::AddTorrentError &error);
+        void handleAddTorrentFailed(const QString &url, const QString &error);
         void handleNewArticle(const Article *article);
         void handleFeedURLChanged(Feed *feed, const QString &oldURL);
 

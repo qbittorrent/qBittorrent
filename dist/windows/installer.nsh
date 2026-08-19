@@ -129,13 +129,8 @@ Function .onInit
   ${EndIf}
 
   ; check installer and current system architecture
-  ${If} "${QBT_CPU_ARCH}" == "x64"
-  ${AndIf} ${IsNativeARM64}  ;x64 use arm64 installer
-    MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_arch_mismatch_x64_on_arm64) /SD IDOK
-    SetErrorLevel 1654 # WinError.h: `ERROR_INSTALL_REJECTED`
-    Abort
-  ${ElseIf} "${QBT_CPU_ARCH}" == "arm64"
-  ${AndIf} ${IsNativeAMD64}  ;arm64 use x64 installer
+  ${If} "${QBT_CPU_ARCH}" == "arm64"
+  ${AndIf} ${IsNativeAMD64}  ; installing arm64 binary on x64
     MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_arch_mismatch_arm64_on_x64) /SD IDOK
     SetErrorLevel 1654 # WinError.h: `ERROR_INSTALL_REJECTED`
     Abort

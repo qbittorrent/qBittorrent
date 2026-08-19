@@ -44,7 +44,10 @@
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QSystemTrayIcon>
-#include <QTranslator>
+
+#ifdef Q_OS_WIN
+#include <QProcess>
+#endif
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sharelimits.h"
@@ -52,9 +55,10 @@
 #include "base/global.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
-#include "base/net/smtp.h"
+#include "base/net/smtpclient.h"
 #include "base/path.h"
 #include "base/preferences.h"
+#include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
@@ -86,6 +90,10 @@
 
 #ifdef Q_OS_MACOS
 #include "macutilities.h"
+#endif
+
+#ifdef Q_OS_WIN
+#include "base/utils/os.h"
 #endif
 
 #define SETTINGS_KEY(name) u"OptionsDialog/" name
@@ -303,12 +311,13 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     m_ui->checkTorrentContentDrag->setChecked(pref->isTorrentContentDragEnabled());
 
-#ifndef Q_OS_WIN
+#ifdef Q_OS_WIN
+    m_ui->checkStartup->setChecked(pref->WinStartup());
+#else
     m_ui->checkStartup->setVisible(false);
 #endif
+
     m_ui->checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
-    m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
-    m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
     m_ui->windowStateComboBox->addItem(tr("Normal"), QVariant::fromValue(WindowState::Normal));
     m_ui->windowStateComboBox->addItem(tr("Minimized"), QVariant::fromValue(WindowState::Minimized));
@@ -317,12 +326,12 @@ void OptionsDialog::loadBehaviorTabOptions()
 #endif
     m_ui->windowStateComboBox->setCurrentIndex(m_ui->windowStateComboBox->findData(QVariant::fromValue(app()->startUpWindowState())));
 
-#if !(defined(Q_OS_WIN) || defined(Q_OS_MACOS))
-    m_ui->groupFileAssociation->setVisible(false);
-    m_ui->checkProgramUpdates->setVisible(false);
-#endif
+    m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
+    m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
-#ifndef Q_OS_MACOS
+#ifdef Q_OS_MACOS
+    m_ui->checkShowSystray->setVisible(false);
+#else
     // Disable systray integration if it is not supported by the system
     if (!QSystemTrayIcon::isSystemTrayAvailable())
     {
@@ -336,20 +345,26 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(UIThemeManager::instance()->trayIconStyle()));
 #endif
 
-#ifdef Q_OS_WIN
-    m_ui->checkStartup->setChecked(pref->WinStartup());
-#endif
-
-#ifdef Q_OS_MACOS
-    m_ui->checkShowSystray->setVisible(false);
+#if defined(Q_OS_WIN)
+    connect(m_ui->buttonOpenDefaultApps, &QPushButton::clicked, this, [](bool)
+    {
+        const Path explorer = Utils::OS::windowsSystemPath().parentPath() / Path(u"explorer.exe"_s);
+        QProcess::startDetached(explorer.data(), {u"ms-settings:defaultapps"_s});
+    });
+#elif defined(Q_OS_MACOS)
     m_ui->checkAssociateTorrents->setChecked(MacUtils::isTorrentFileAssocSet());
     m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
     m_ui->checkAssociateMagnetLinks->setChecked(MacUtils::isMagnetLinkAssocSet());
     m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
+    m_ui->defaultProgramPanel->hide();
+#else
+    m_ui->groupFileAssociation->setVisible(false);
 #endif
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     m_ui->checkProgramUpdates->setChecked(pref->isUpdateCheckEnabled());
+#else
+    m_ui->checkProgramUpdates->setVisible(false);
 #endif
 
     m_ui->checkPreventFromSuspendWhenDownloading->setChecked(pref->preventFromSuspendWhenDownloading());
@@ -358,6 +373,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->textFileLogPath->setDialogCaption(tr("Choose a save directory"));
     m_ui->textFileLogPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->textFileLogPath->setSelectedPath(app()->fileLoggerPath());
+    m_ui->textFileLogPath->setBasePath(specialFolderLocation(SpecialFolder::Data));
     const bool fileLogBackup = app()->isFileLoggerBackup();
     m_ui->checkFileLogBackup->setChecked(fileLogBackup);
     m_ui->spinFileLogSize->setEnabled(fileLogBackup);
@@ -442,10 +458,6 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->assocPanel->hide();
 #endif
 
-#ifdef Q_OS_MAC
-    m_ui->defaultProgramPanel->hide();
-#endif
-
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && !defined(QBT_USES_DBUS)
     m_ui->checkPreventFromSuspendWhenDownloading->setDisabled(true);
     m_ui->checkPreventFromSuspendWhenSeeding->setDisabled(true);
@@ -473,17 +485,11 @@ void OptionsDialog::saveBehaviorTabOptions() const
     auto *session = BitTorrent::Session::instance();
 
     // Load the translation
-    const QString locale = getLocale();
-    if (pref->getLocale() != locale)
+    if (const QString locale = getLocale(); locale != pref->getLocale())
     {
-        auto *translator = new QTranslator;
-        if (translator->load(u":/lang/qbittorrent_"_s + locale))
-            qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
-        else
-            qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));
-        qApp->installTranslator(translator);
+        pref->setLocale(locale);
+        app()->loadTranslation(locale);
     }
-    pref->setLocale(locale);
 
     pref->setStyle(m_ui->comboStyle->currentData().toString());
 
@@ -598,6 +604,20 @@ void OptionsDialog::loadDownloadsTabOptions()
         m_ui->checkConfirmMergeTrackers->setChecked(m_ui->checkConfirmMergeTrackers->isEnabled() ? pref->confirmMergeTrackers() : false);
     });
 
+    m_ui->backupDirCheckBox->setChecked(session->isTorrentFileBackupEnabled());
+    m_ui->backupDirPathEdit->setDialogCaption(tr("Choose backup directory"));
+    m_ui->backupDirPathEdit->setMode(FileSystemPathEdit::Mode::DirectorySave);
+    m_ui->backupDirPathEdit->setBasePath(specialFolderLocation(SpecialFolder::Data));
+    m_ui->backupDirPathEdit->setSelectedPath(session->torrentBackupDirectory());
+    m_ui->backupDirPathEdit->setEnabled(m_ui->backupDirCheckBox->isChecked());
+    m_ui->finishedBackupDirCheckBox->setChecked(session->isFinishedTorrentBackupDirectoryEnabled());
+    m_ui->finishedBackupDirPathEdit->setDialogCaption(tr("Choose backup directory"));
+    m_ui->finishedBackupDirPathEdit->setMode(FileSystemPathEdit::Mode::DirectorySave);
+    m_ui->finishedBackupDirPathEdit->setBasePath(specialFolderLocation(SpecialFolder::Data));
+    m_ui->finishedBackupDirPathEdit->setSelectedPath(session->finishedTorrentBackupDirectory());
+    m_ui->finishedBackupDirPathEdit->setEnabled(m_ui->finishedBackupDirCheckBox->isChecked());
+    m_ui->removeBackupTorrentFileCheckBox->setChecked(session->removeTorrentFileBackup());
+
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
@@ -639,22 +659,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->textDownloadPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->textDownloadPath->setSelectedPath(session->downloadPath());
 
-    const bool isExportDirEmpty = session->torrentExportDirectory().isEmpty();
-    m_ui->checkExportDir->setChecked(!isExportDirEmpty);
-    m_ui->textExportDir->setDialogCaption(tr("Choose export directory"));
-    m_ui->textExportDir->setEnabled(m_ui->checkExportDir->isChecked());
-    m_ui->textExportDir->setMode(FileSystemPathEdit::Mode::DirectorySave);
-    if (!isExportDirEmpty)
-        m_ui->textExportDir->setSelectedPath(session->torrentExportDirectory());
-
-    const bool isExportDirFinEmpty = session->finishedTorrentExportDirectory().isEmpty();
-    m_ui->checkExportDirFin->setChecked(!isExportDirFinEmpty);
-    m_ui->textExportDirFin->setDialogCaption(tr("Choose export directory"));
-    m_ui->textExportDirFin->setEnabled(m_ui->checkExportDirFin->isChecked());
-    m_ui->textExportDirFin->setMode(FileSystemPathEdit::Mode::DirectorySave);
-    if (!isExportDirFinEmpty)
-        m_ui->textExportDirFin->setSelectedPath(session->finishedTorrentExportDirectory());
-
     auto *watchedFoldersModel = new WatchedFoldersModel(TorrentFilesWatcher::instance(), this);
     connect(watchedFoldersModel, &QAbstractListModel::dataChanged, this, &ThisType::enableApplyButton);
     m_ui->scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -669,9 +673,17 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
     m_ui->senderEmailTxt->setToolTip(tr("Provide the sending email address."));
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
-    m_ui->lineEditDestEmail->setToolTip(tr("Provide the recipient email address.")
+    m_ui->lineEditDestEmail->setToolTip(tr("Provide the recipient email address or addresses.")
         + u"\n\n"
-        + tr("Note: only a single recipient email address can be specified."));
+        + tr("Separate multiple emails with a semicolon.")
+        + u"\n"
+        + tr("Separate multiple email addresses within each email with a comma.")
+        + u"\n\n"
+        + tr("Example:")
+        + u"\n"
+        + tr("a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com")
+        + u"\n\n"
+        + tr("Note: b@y.com & c@z.com will both see each other's email addresses, whereas a@x.com will not see them nor be seen."));
     m_ui->lineEditSMTPServer->setText(pref->getMailNotificationSMTP());
     m_ui->lineEditSMTPServer->setToolTip(tr("Provide the SMTP server address for sending email notifications.")
         + u"\n\n"
@@ -748,6 +760,15 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->stopConditionComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMergeTrackers, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkConfirmMergeTrackers, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+
+    connect(m_ui->backupDirCheckBox, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->backupDirCheckBox, &QAbstractButton::toggled, m_ui->backupDirPathEdit, &QWidget::setEnabled);
+    connect(m_ui->finishedBackupDirCheckBox, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->finishedBackupDirCheckBox, &QAbstractButton::toggled, m_ui->finishedBackupDirPathEdit, &QWidget::setEnabled);
+    connect(m_ui->backupDirPathEdit, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->finishedBackupDirPathEdit, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->removeBackupTorrentFileCheckBox, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+
     connect(m_ui->deleteTorrentBox, &QGroupBox::toggled, m_ui->deleteTorrentWarningIcon, &QWidget::setVisible);
     connect(m_ui->deleteTorrentBox, &QGroupBox::toggled, m_ui->deleteTorrentWarningLabel, &QWidget::setVisible);
     connect(m_ui->deleteTorrentBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
@@ -768,12 +789,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->textSavePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textDownloadPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
 
-    connect(m_ui->checkExportDir, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkExportDir, &QAbstractButton::toggled, m_ui->textExportDir, &QWidget::setEnabled);
-    connect(m_ui->checkExportDirFin, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkExportDirFin, &QAbstractButton::toggled, m_ui->textExportDirFin, &QWidget::setEnabled);
-    connect(m_ui->textExportDir, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textExportDirFin, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseDownloadPath, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseDownloadPath, &QAbstractButton::toggled, m_ui->textDownloadPath, &QWidget::setEnabled);
 
@@ -818,9 +833,17 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setAddTorrentToQueueTop(m_ui->checkAddToQueueTop->isChecked());
     session->setAddTorrentStopped(addTorrentsStopped());
     session->setTorrentStopCondition(m_ui->stopConditionComboBox->currentData().value<BitTorrent::Torrent::StopCondition>());
+
+    session->setTorrentFileBackupEnabled(m_ui->backupDirCheckBox->isChecked());
+    session->setTorrentBackupDirectory(m_ui->backupDirPathEdit->selectedPath());
+    session->setFinishedTorrentBackupDirectoryEnabled(m_ui->finishedBackupDirCheckBox->isChecked());
+    session->setFinishedTorrentBackupDirectory(m_ui->finishedBackupDirPathEdit->selectedPath());
+    session->setRemoveTorrentFileBackup(m_ui->removeBackupTorrentFileCheckBox->isChecked());
+
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
-                             : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
-                             : TorrentFileGuard::Always);
+            : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
+            : TorrentFileGuard::Always);
+
     session->setMergeTrackersEnabled(m_ui->checkMergeTrackers->isChecked());
     if (m_ui->checkConfirmMergeTrackers->isEnabled())
         pref->setConfirmMergeTrackers(m_ui->checkConfirmMergeTrackers->isChecked());
@@ -840,8 +863,6 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setSavePath(Path(m_ui->textSavePath->selectedPath()));
     session->setDownloadPathEnabled(m_ui->checkUseDownloadPath->isChecked());
     session->setDownloadPath(m_ui->textDownloadPath->selectedPath());
-    session->setTorrentExportDirectory(getTorrentExportDir());
-    session->setFinishedTorrentExportDirectory(getFinishedTorrentExportDir());
 
     auto *watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
     watchedFoldersModel->apply();
@@ -1363,12 +1384,12 @@ void OptionsDialog::loadSearchTabOptions()
 {
     const auto *pref = Preferences::instance();
 
-    m_ui->groupStoreOpenedTabs->setChecked(pref->storeOpenedSearchTabs());
-    m_ui->checkStoreTabsSearchResults->setChecked(pref->storeOpenedSearchTabResults());
+    m_ui->groupStoreSearchJobs->setChecked(pref->storeSearchJobs());
+    m_ui->checkStoreSearchJobResults->setChecked(pref->storeSearchJobResults());
     m_ui->searchHistoryLengthSpinBox->setValue(pref->searchHistoryLength());
 
-    connect(m_ui->groupStoreOpenedTabs, &QGroupBox::toggled, this, &OptionsDialog::enableApplyButton);
-    connect(m_ui->checkStoreTabsSearchResults, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->groupStoreSearchJobs, &QGroupBox::toggled, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->checkStoreSearchJobResults, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
     connect(m_ui->searchHistoryLengthSpinBox, qSpinBoxValueChanged, this, &OptionsDialog::enableApplyButton);
 }
 
@@ -1376,8 +1397,8 @@ void OptionsDialog::saveSearchTabOptions() const
 {
     auto *pref = Preferences::instance();
 
-    pref->setStoreOpenedSearchTabs(m_ui->groupStoreOpenedTabs->isChecked());
-    pref->setStoreOpenedSearchTabResults(m_ui->checkStoreTabsSearchResults->isChecked());
+    pref->setStoreSearchJobs(m_ui->groupStoreSearchJobs->isChecked());
+    pref->setStoreSearchJobResults(m_ui->checkStoreSearchJobResults->isChecked());
     pref->setSearchHistoryLength(m_ui->searchHistoryLengthSpinBox->value());
 }
 
@@ -1422,6 +1443,7 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->spinBanCounter->setValue(pref->getWebUIMaxAuthFailCount());
     m_ui->spinBanDuration->setValue(pref->getWebUIBanDuration().count());
     m_ui->spinSessionTimeout->setValue(pref->getWebUISessionTimeout());
+    m_ui->spinBoxWebUISessionsCountLimit->setValue(pref->getWebUISessionsCountLimit());
     // Alternative UI
     m_ui->groupAltWebUI->setChecked(pref->isAltWebUIEnabled());
     m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUIRootFolder());
@@ -1466,6 +1488,7 @@ void OptionsDialog::loadWebUITabOptions()
     connect(m_ui->spinBanCounter, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinBanDuration, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinSessionTimeout, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinBoxWebUISessionsCountLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->groupAltWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -1505,6 +1528,7 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setWebUIMaxAuthFailCount(m_ui->spinBanCounter->value());
     pref->setWebUIBanDuration(std::chrono::seconds {m_ui->spinBanDuration->value()});
     pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
+    pref->setWebUISessionsCountLimit(m_ui->spinBoxWebUISessionsCountLimit->value());
     // Authentication
     if (const QString username = webUIUsername(); isValidWebUIUsernameLength(username) && isValidWebUIUsernameCharacterSet(username))
         pref->setWebUIUsername(username);
@@ -2050,20 +2074,6 @@ void OptionsDialog::setLocale(const QString &localeStr)
         Q_ASSERT(index >= 0);
     }
     m_ui->comboLanguage->setCurrentIndex(index);
-}
-
-Path OptionsDialog::getTorrentExportDir() const
-{
-    if (m_ui->checkExportDir->isChecked())
-        return m_ui->textExportDir->selectedPath();
-    return {};
-}
-
-Path OptionsDialog::getFinishedTorrentExportDir() const
-{
-    if (m_ui->checkExportDirFin->isChecked())
-        return m_ui->textExportDirFin->selectedPath();
-    return {};
 }
 
 void OptionsDialog::on_addWatchedFolderButton_clicked()

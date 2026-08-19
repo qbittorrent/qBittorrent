@@ -467,7 +467,7 @@ void Session::addItem(Item *item, Folder *destFolder)
             if (feed->name() == oldURL)
             {
                 // If feed still use an URL as a name trying to rename it to match new URL...
-                moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->url()));
+                std::ignore = moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->url()));
             }
 
             emit feedURLChanged(feed, oldURL);
@@ -594,7 +594,7 @@ void Session::handleFeedTitleChanged(Feed *feed)
     {
         // Now we have something better than a URL.
         // Trying to rename feed...
-        moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->title()));
+        std::ignore = moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->title()));
     }
 }
 
@@ -633,7 +633,9 @@ void Session::refresh()
         Feed *feed = it.key();
         std::chrono::system_clock::time_point &timepoint = it.value();
 
-        if (timepoint <= currentTimepoint)
+        // Subtract 1 second from feed refresh timepoint to get more wiggle room and not end up with 0 "interval" below
+        // because currentTimepoint and timepoint have a difference of nanoseconds (~0 seconds)
+        if (currentTimepoint > (timepoint - 1s))
             timepoint = refreshFeed(feed, currentTimepoint);
 
         const auto interval = std::chrono::duration_cast<std::chrono::seconds>(timepoint - currentTimepoint);

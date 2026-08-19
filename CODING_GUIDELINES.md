@@ -6,7 +6,7 @@ If you make changes in a file that still uses another coding style, make sure th
 For programming languages other than C++ (e.g. JavaScript) used in this repository and submodules, unless otherwise specified, coding guidelines listed here applies as much as possible.
 
 **Note 1:** I will not take your head if you forget and use another style. However, most probably the request will be delayed until you fix your coding style. \
-**Note 2:** You can use the `uncrustify` program/tool to clean up any source file. Use it with the `uncrustify.cfg` configuration file found in the root folder. \
+**Note 2:** You can use [Uncrustify](https://uncrustify.sourceforge.net/) to clean up any source file by applying the `.uncrustify.cfg` configuration file found in the root folder. \
 **Note 3:** There is also a style for QtCreator but it doesn't cover all cases. In QtCreator `Tools->Options...->C++->Code Style->Import...` and choose the `codingStyleQtCreator.xml` file found in the root folder.
 
 ## Table Of Contents
@@ -453,6 +453,31 @@ class ExampleWidget : public QWidget
     {
     };
     ```
+
+* When to omit lambda return type
+
+  There are advantages to explicitly specifying the return type of a lambda. It helps the compiler (and especially the reader) easily understand
+  the return type and leaves no ambiguity. It also helps the compiler emit useful error messages when something goes wrong in the lambda body. \
+  You may omit the return type when the following conditions apply:
+  1. The lambda is defined inline as an input parameter for another function, which already restricts the lambda's return type.
+
+  Examples:
+
+  ```c++
+  // Cannot omit return type
+  const auto findMetricIndex = [](const char *name) -> int
+  {
+      const int index = lt::find_metric_idx(name);
+      assert(index >= 0);
+      return index;
+  };
+
+  // Return type omittable
+  std::ranges::all_of(strings, [](const std::string &url)
+  {
+      return url.starts_with("magnet:");
+  });
+  ```
 
 * Prefer pre-increment, pre-decrement operators
 

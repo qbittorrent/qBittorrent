@@ -46,7 +46,6 @@
 #include <QRegularExpression>
 #include <QStringList>
 #include <QTimer>
-#include <QTranslator>
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
@@ -157,6 +156,9 @@ void AppController::preferencesAction()
     data[u"status_bar_external_ip"_s] = pref->isStatusbarExternalIPDisplayed();
     // Transfer List
     data[u"confirm_torrent_deletion"_s] = pref->confirmTorrentDeletion();
+    // Search
+    data[u"store_search_jobs"_s] = pref->storeSearchJobs();
+    data[u"store_search_job_results"_s] = pref->storeSearchJobResults();
     // Log file
     data[u"file_log_enabled"_s] = app()->isFileLoggerEnabled();
     data[u"file_log_path"_s] = app()->fileLoggerPath().toString();
@@ -188,8 +190,12 @@ void AppController::preferencesAction()
     data[u"temp_path_enabled"_s] = session->isDownloadPathEnabled();
     data[u"temp_path"_s] = session->downloadPath().toString();
     data[u"use_category_paths_in_manual_mode"_s] = session->useCategoryPathsInManualMode();
-    data[u"export_dir"_s] = session->torrentExportDirectory().toString();
-    data[u"export_dir_fin"_s] = session->finishedTorrentExportDirectory().toString();
+    // .torrent files backup management
+    data[u"torrent_files_backup_enabled"_s] = session->isTorrentFileBackupEnabled();
+    data[u"torrent_files_backup_dir"_s] = session->torrentBackupDirectory().toString();
+    data[u"torrent_files_finished_backup_dir_enabled"_s] = session->isFinishedTorrentBackupDirectoryEnabled();
+    data[u"torrent_files_finished_backup_dir"_s] = session->finishedTorrentBackupDirectory().toString();
+    data[u"remove_torrent_file_backup"_s] = session->removeTorrentFileBackup();
 
     // TODO: The following code is deprecated. Delete it once replaced by updated API method.
     // === BEGIN DEPRECATED CODE === //
@@ -350,6 +356,7 @@ void AppController::preferencesAction()
     data[u"web_ui_max_auth_fail_count"_s] = pref->getWebUIMaxAuthFailCount();
     data[u"web_ui_ban_duration"_s] = static_cast<int>(pref->getWebUIBanDuration().count());
     data[u"web_ui_session_timeout"_s] = pref->getWebUISessionTimeout();
+    data[u"web_ui_sessions_count_limit"_s] = pref->getWebUISessionsCountLimit();
     // API key
     data[u"web_ui_api_key"_s] = pref->getWebUIApiKey();
     // Use alternative WebUI
@@ -486,6 +493,8 @@ void AppController::preferencesAction()
     data[u"idn_support_enabled"_s] = session->isIDNSupportEnabled();
     // Multiple connections per IP
     data[u"enable_multi_connections_from_same_ip"_s] = session->multiConnectionsPerIpEnabled();
+    // Multiple connections per Peer ID
+    data[u"enable_multi_connections_from_same_peer_id"_s] = session->multiConnectionsPerPeerIDEnabled();
     // Validate HTTPS tracker certificate
     data[u"validate_https_tracker_certificate"_s] = session->validateHTTPSTrackerCertificate();
     // SSRF mitigation
@@ -509,6 +518,8 @@ void AppController::preferencesAction()
     data[u"peer_turnover_interval"_s] = session->peerTurnoverInterval();
     // Maximum outstanding requests to a single peer
     data[u"request_queue_size"_s] = session->requestQueueSize();
+    // Maximum outstanding requests from a single peer
+    data[u"max_outstanding_block_requests"_s] = session->maxOutstandingBlockRequests();
     // DHT bootstrap nodes
     data[u"dht_bootstrap_nodes"_s] = session->getDHTBootstrapNodes();
 
@@ -534,21 +545,10 @@ void AppController::setPreferencesAction()
     // Language
     if (hasKey(u"locale"_s))
     {
-        QString locale = it.value().toString();
-        if (pref->getLocale() != locale)
+        if (const QString locale = it.value().toString(); locale != pref->getLocale())
         {
-            auto *translator = new QTranslator;
-            if (translator->load(u":/lang/qbittorrent_"_s + locale))
-            {
-                qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
-            }
-            else
-            {
-                qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));
-            }
-            qApp->installTranslator(translator);
-
             pref->setLocale(locale);
+            app()->loadTranslation(locale);
         }
     }
     if (hasKey(u"status_bar_external_ip"_s))
@@ -558,6 +558,11 @@ void AppController::setPreferencesAction()
     // Transfer List
     if (hasKey(u"confirm_torrent_deletion"_s))
         pref->setConfirmTorrentDeletion(it.value().toBool());
+    // Search
+    if (hasKey(u"store_search_jobs"_s))
+        pref->setStoreSearchJobs(it.value().toBool());
+    if (hasKey(u"store_search_job_results"_s))
+        pref->setStoreSearchJobResults(it.value().toBool());
     // Log file
     if (hasKey(u"file_log_enabled"_s))
         app()->setFileLoggerEnabled(it.value().toBool());
@@ -616,10 +621,18 @@ void AppController::setPreferencesAction()
         session->setDownloadPath(Path(it.value().toString()));
     if (hasKey(u"use_category_paths_in_manual_mode"_s))
         session->setUseCategoryPathsInManualMode(it.value().toBool());
-    if (hasKey(u"export_dir"_s))
-        session->setTorrentExportDirectory(Path(it.value().toString()));
-    if (hasKey(u"export_dir_fin"_s))
-        session->setFinishedTorrentExportDirectory(Path(it.value().toString()));
+
+    // .torrent files backup management
+    if (hasKey(u"torrent_files_backup_enabled"_s))
+        session->setTorrentFileBackupEnabled(it.value().toBool());
+    if (hasKey(u"torrent_files_backup_dir"_s))
+        session->setTorrentBackupDirectory(Path(it.value().toString()));
+    if (hasKey(u"torrent_files_finished_backup_dir_enabled"_s))
+        session->setFinishedTorrentBackupDirectoryEnabled(it.value().toBool());
+    if (hasKey(u"torrent_files_finished_backup_dir"_s))
+        session->setFinishedTorrentBackupDirectory(Path(it.value().toString()));
+    if (hasKey(u"remove_torrent_file_backup"_s))
+        session->setRemoveTorrentFileBackup(it.value().toBool());
 
     // TODO: The following code is deprecated. Delete it once replaced by updated API method.
     // === BEGIN DEPRECATED CODE === //
@@ -944,6 +957,8 @@ void AppController::setPreferencesAction()
         pref->setWebUIBanDuration(std::chrono::seconds {it.value().toInt()});
     if (hasKey(u"web_ui_session_timeout"_s))
         pref->setWebUISessionTimeout(it.value().toInt());
+    if (hasKey(u"web_ui_sessions_count_limit"_s))
+        pref->setWebUISessionsCountLimit(it.value().toInt());
     // Use alternative WebUI
     if (hasKey(u"alternative_webui_enabled"_s))
         pref->setAltWebUIEnabled(it.value().toBool());
@@ -1165,6 +1180,9 @@ void AppController::setPreferencesAction()
     // Multiple connections per IP
     if (hasKey(u"enable_multi_connections_from_same_ip"_s))
         session->setMultiConnectionsPerIpEnabled(it.value().toBool());
+    // Multiple connections per Peer ID
+    if (hasKey(u"enable_multi_connections_from_same_peer_id"_s))
+        session->setMultiConnectionsPerPeerIDEnabled(it.value().toBool());
     // Validate HTTPS tracker certificate
     if (hasKey(u"validate_https_tracker_certificate"_s))
         session->setValidateHTTPSTrackerCertificate(it.value().toBool());
@@ -1206,6 +1224,9 @@ void AppController::setPreferencesAction()
     // Maximum outstanding requests to a single peer
     if (hasKey(u"request_queue_size"_s))
         session->setRequestQueueSize(it.value().toInt());
+    // Maximum outstanding requests from a single peer
+    if (hasKey(u"max_outstanding_block_requests"_s))
+        session->setMaxOutstandingBlockRequests(it.value().toInt());
     // DHT bootstrap nodes
     if (hasKey(u"dht_bootstrap_nodes"_s))
         session->setDHTBootstrapNodes(it.value().toString());
