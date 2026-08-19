@@ -1562,6 +1562,19 @@ void Preferences::setConfirmTorrentDeletion(const bool enabled)
     setValue(u"Preferences/Advanced/confirmTorrentDeletion"_s, enabled);
 }
 
+bool Preferences::alternativeDeletionDialog() const
+{
+    return value(u"Preferences/Advanced/alternativeDeletionDialog"_s, false);
+}
+
+void Preferences::setAlternativeDeletionDialog(const bool enabled)
+{
+    if (enabled == alternativeDeletionDialog())
+        return;
+
+    setValue(u"Preferences/Advanced/alternativeDeletionDialog"_s, enabled);
+}
+
 bool Preferences::confirmTorrentRecheck() const
 {
     return value(u"Preferences/Advanced/confirmTorrentRecheck"_s, true);

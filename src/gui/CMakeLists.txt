@@ -9,6 +9,7 @@ qt_wrap_ui(UI_HEADERS
     banlistoptionsdialog.ui
     cookiesdialog.ui
     deletionconfirmationdialog.ui
+    deletionconfirmationdialogalternative.ui
     downloadfromurldialog.ui
     executionlogwidget.ui
     ipsubnetwhitelistoptionsdialog.ui
@@ -52,6 +53,7 @@ add_library(qbt_gui STATIC
     cookiesdialog.h
     cookiesmodel.h
     deletionconfirmationdialog.h
+    deletionconfirmationdialogalternative.h
     desktopintegration.h
     downloadfromurldialog.h
     executionlogwidget.h
@@ -161,6 +163,7 @@ add_library(qbt_gui STATIC
     cookiesdialog.cpp
     cookiesmodel.cpp
     deletionconfirmationdialog.cpp
+    deletionconfirmationdialogalternative.cpp
     desktopintegration.cpp
     downloadfromurldialog.cpp
     executionlogwidget.cpp

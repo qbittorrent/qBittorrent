@@ -156,6 +156,7 @@ void AppController::preferencesAction()
     data[u"status_bar_external_ip"_s] = pref->isStatusbarExternalIPDisplayed();
     // Transfer List
     data[u"confirm_torrent_deletion"_s] = pref->confirmTorrentDeletion();
+    data[u"alternative_deletion_dialog"_s] = pref->alternativeDeletionDialog();
     // Search
     data[u"store_search_jobs"_s] = pref->storeSearchJobs();
     data[u"store_search_job_results"_s] = pref->storeSearchJobResults();
@@ -558,6 +559,8 @@ void AppController::setPreferencesAction()
     // Transfer List
     if (hasKey(u"confirm_torrent_deletion"_s))
         pref->setConfirmTorrentDeletion(it.value().toBool());
+    if (hasKey(u"alternative_deletion_dialog"_s))
+        pref->setAlternativeDeletionDialog(it.value().toBool());
     // Search
     if (hasKey(u"store_search_jobs"_s))
         pref->setStoreSearchJobs(it.value().toBool());
