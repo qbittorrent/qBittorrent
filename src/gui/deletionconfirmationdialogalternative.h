@@ -44,7 +44,7 @@ class DeletionConfirmationDialogAlternative final : public QDialog
     Q_DISABLE_COPY_MOVE(DeletionConfirmationDialogAlternative)
 
 public:
-    DeletionConfirmationDialogAlternative(QWidget *parent, int torrentsCount, const QString &name, bool defaultDeleteFiles);
+    DeletionConfirmationDialogAlternative(QWidget *parent, int torrentsCount, const QString &name);
     ~DeletionConfirmationDialogAlternative() override;
 
     bool isRemoveContentSelected() const;

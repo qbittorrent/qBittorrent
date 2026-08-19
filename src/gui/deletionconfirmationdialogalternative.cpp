@@ -38,7 +38,7 @@
 
 using namespace Qt::Literals::StringLiterals;
 
-DeletionConfirmationDialogAlternative::DeletionConfirmationDialogAlternative(QWidget *parent, const int torrentsCount, const QString &name, const bool defaultDeleteFiles)
+DeletionConfirmationDialogAlternative::DeletionConfirmationDialogAlternative(QWidget *parent, const int torrentsCount, const QString &name)
     : QDialog(parent)
     , m_ui {new Ui::DeletionConfirmationDialogAlternative}
 {
