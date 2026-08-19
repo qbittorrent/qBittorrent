@@ -627,23 +627,31 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         loadColumnsOrder() {
-            const val = localPreferences.get(`columns_order_${this.dynamicTableDivId}`);
-            if ((val === null) || (val === undefined))
+            const savedOrder = localPreferences.get(`columns_order_${this.dynamicTableDivId}`);
+            if ((savedOrder === null) || (savedOrder === undefined))
                 return;
 
-            const columnsOrder = new Set();
-            for (const v of val.split(",")) {
-                if (v in this.columns)
-                    columnsOrder.add(v);
+            // Build the desired column order. A Set keeps names unique while
+            // preserving their saved order.
+            const order = new Set();
+            for (const name of savedOrder.split(",")) {
+                // skip names that no longer exist as columns
+                if (name in this.columns)
+                    order.add(name);
             }
 
-            for (let i = 0; i < this.columns.length; ++i)
-                columnsOrder.add(this.columns[i].name);
+            // Append columns that were added after the order was saved so that
+            // every column appears exactly once.
+            for (const column of this.columns)
+                order.add(column.name);
 
-            const order = [...columnsOrder];
-            const byName = new Map(this.columns.map((col, i) => [col.name, col]));
+            // Reorder the columns array in place to match the desired order.
+            // The array is mutated rather than replaced so its named properties
+            // are preserved.
+            const byName = new Map(this.columns.map(column => [column.name, column]));
+            const orderedNames = [...order];
             for (let i = 0; i < this.columns.length; ++i)
-                this.columns[i] = byName.get(order[i]);
+                this.columns[i] = byName.get(orderedNames[i]);
         }
 
         saveColumnsOrder() {
