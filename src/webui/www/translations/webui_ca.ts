@@ -384,8 +384,7 @@
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation>Nom de categoria no vàlid:
-Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
+        <translation>Nom de categoria no vàlid:\nSi us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
