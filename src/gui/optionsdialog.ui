@@ -518,6 +518,14 @@
                  </property>
                 </widget>
                </item>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxPortStatusBar">
+                 <property name="text">
+                  <string>Show listening port</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>

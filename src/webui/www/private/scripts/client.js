@@ -1259,6 +1259,21 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             externalIPsElement.previousElementSibling.classList.add("invisible");
         }
 
+        const portElement = document.getElementById("port");
+        if (window.qBittorrent.Cache.preferences.get().status_bar_port) {
+            const currentPort = serverState.port;
+            const portLabel = "QBT_TR(Port: %1)QBT_TR[CONTEXT=HttpServer]";
+            portElement.textContent = portLabel.replace("%1", currentPort);
+            portElement.classList.remove("invisible");
+            if (portElement.previousElementSibling)
+                portElement.previousElementSibling.classList.remove("invisible");
+        }
+        else {
+            portElement.classList.add("invisible");
+            if (portElement.previousElementSibling)
+                portElement.previousElementSibling.classList.add("invisible");
+        }
+
         const dhtElement = document.getElementById("DHTNodes");
         if (window.qBittorrent.Cache.preferences.get().dht) {
             dhtElement.textContent = "QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]".replace("%1", serverState.dht_nodes);
