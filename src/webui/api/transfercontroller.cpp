@@ -47,7 +47,6 @@ const QString KEY_TRANSFER_UPDATA = u"up_info_data"_s;
 const QString KEY_TRANSFER_UPRATELIMIT = u"up_rate_limit"_s;
 const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4 = u"last_external_address_v4"_s;
 const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6 = u"last_external_address_v6"_s;
-const QString KEY_TRANSFER_PORT = u"port"_s;
 const QString KEY_TRANSFER_DHT_NODES = u"dht_nodes"_s;
 const QString KEY_TRANSFER_CONNECTION_STATUS = u"connection_status"_s;
 const QString KEY_TRANSFER_UP_LIMIT = u"up_limit"_s;
@@ -66,7 +65,6 @@ const QString KEY_TRANSFER_ALT_DL_LIMIT = u"alt_dl_limit"_s;
 //   - "up_rate_limit": Upload rate limit
 //   - "last_external_address_v4": external IPv4 address
 //   - "last_external_address_v6": external IPv6 address
-//   - "port": listening port
 //   - "dht_nodes": DHT nodes connected to
 //   - "connection_status": Connection status
 void TransferController::infoAction()
@@ -84,7 +82,6 @@ void TransferController::infoAction()
     dict[KEY_TRANSFER_UPRATELIMIT] = btSession->uploadSpeedLimit();
     dict[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4] = btSession->lastExternalIPv4Address();
     dict[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6] = btSession->lastExternalIPv6Address();
-    dict[KEY_TRANSFER_PORT] = session->port();
     dict[KEY_TRANSFER_DHT_NODES] = static_cast<qint64>(sessionStatus.dhtNodes);
     if (!btSession->isListening())
         dict[KEY_TRANSFER_CONNECTION_STATUS] = u"disconnected"_s;

@@ -101,10 +101,6 @@ StatusBar::StatusBar(QWidget *parent)
     m_lastExternalIPsLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     m_lastExternalIPsSeparator = createSeparator(this);
 
-    m_portLbl = new QLabel(tr("Port: N/A"));
-    m_portLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
-    m_portSeparator = createSeparator(this);
-
     const bool isDHTVisible = session->isDHTEnabled();
     m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), this);
     m_DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
@@ -133,8 +129,6 @@ StatusBar::StatusBar(QWidget *parent)
     addPermanentWidget(m_freeDiskSpaceSeparator);
     addPermanentWidget(m_lastExternalIPsLbl);
     addPermanentWidget(m_lastExternalIPsSeparator);
-    addPermanentWidget(m_portLbl);
-    addPermanentWidget(m_portSeparator);
     addPermanentWidget(m_DHTLbl);
     addPermanentWidget(m_DHTSeparator);
     addPermanentWidget(m_connecStatusLblIcon);
@@ -250,20 +244,6 @@ void StatusBar::updateExternalAddressesVisibility()
     const bool isVisible = Preferences::instance()->isStatusbarExternalIPDisplayed();
     m_lastExternalIPsLbl->setVisible(isVisible);
     m_lastExternalIPsSeparator->setVisible(isVisible);
-}
-
-void StatusBar::updatePortLabel()
-{
-    const int port = BitTorrent::Session::instance()->port();
-    QString portText = tr("Port: %1").arg(port);
-    m_portLbl->setText(portText);
-}
-
-void StatusBar::updatePortVisibility()
-{
-    const bool isVisible = Preferences::instance()->isStatusbarPortDisplayed();
-    m_portLbl->setVisible(isVisible);
-    m_portSeparator->setVisible(isVisible);
 }
 
 void StatusBar::updateSpeedLabels()

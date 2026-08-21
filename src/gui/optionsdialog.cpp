@@ -390,7 +390,6 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     m_ui->checkBoxFreeDiskSpaceStatusBar->setChecked(pref->isStatusbarFreeDiskSpaceDisplayed());
     m_ui->checkBoxExternalIPStatusBar->setChecked(pref->isStatusbarExternalIPDisplayed());
-    m_ui->checkBoxPortStatusBar->setChecked(pref->isStatusbarPortDisplayed());
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
     connect(m_ui->comboLanguage, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -479,7 +478,6 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     connect(m_ui->checkBoxFreeDiskSpaceStatusBar, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBoxExternalIPStatusBar, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkBoxPortStatusBar, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBoxPerformanceWarning, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 }
 
@@ -572,7 +570,6 @@ void OptionsDialog::saveBehaviorTabOptions() const
 
     pref->setStatusbarFreeDiskSpaceDisplayed(m_ui->checkBoxFreeDiskSpaceStatusBar->isChecked());
     pref->setStatusbarExternalIPDisplayed(m_ui->checkBoxExternalIPStatusBar->isChecked());
-    pref->setStatusbarPortDisplayed(m_ui->checkBoxPortStatusBar->isChecked());
     session->setPerformanceWarningEnabled(m_ui->checkBoxPerformanceWarning->isChecked());
 }
 
