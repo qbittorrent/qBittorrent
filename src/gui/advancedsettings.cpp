@@ -179,6 +179,9 @@ namespace
         REQUEST_QUEUE_SIZE,
         MAX_OUTSTANDING_BLOCK_REQUESTS,
         DHT_BOOTSTRAP_NODES,
+#if LIBTORRENT_VERSION_NUM >= 20100
+        WEBTORRENT_STUN_SERVER,
+#endif
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
         I2P_INBOUND_QUANTITY,
         I2P_OUTBOUND_QUANTITY,
@@ -387,6 +390,10 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setMaxOutstandingBlockRequests(m_spinBoxMaxOutstandingBlockRequests.value());
     // DHT bootstrap nodes
     session->setDHTBootstrapNodes(m_lineEditDHTBootstrapNodes.text());
+#if LIBTORRENT_VERSION_NUM >= 20100
+    // STUN server for WebTorrent NAT traversal
+    session->setWebTorrentSTUNServer(m_lineEditWebTorrentSTUNServer.text());
+#endif
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
     // I2P session options
     session->setI2PInboundQuantity(m_spinBoxI2PInboundQuantity.value());
@@ -1015,6 +1022,12 @@ void AdvancedSettings::loadAdvancedSettings()
     m_lineEditDHTBootstrapNodes.setText(session->getDHTBootstrapNodes());
     addRow(DHT_BOOTSTRAP_NODES, (tr("DHT bootstrap nodes") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#dht_bootstrap_nodes", u"(?)"))
         , &m_lineEditDHTBootstrapNodes);
+#if LIBTORRENT_VERSION_NUM >= 20100
+    // STUN server for WebTorrent NAT traversal
+    m_lineEditWebTorrentSTUNServer.setText(session->getWebTorrentSTUNServer());
+    addRow(WEBTORRENT_STUN_SERVER, (tr("STUN server for WebTorrent NAT traversal") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#webtorrent_stun_server", u"(?)"))
+        , &m_lineEditWebTorrentSTUNServer);
+#endif
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
     // I2P session options
     m_spinBoxI2PInboundQuantity.setMinimum(1);
