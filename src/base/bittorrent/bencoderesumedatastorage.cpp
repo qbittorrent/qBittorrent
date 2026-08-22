@@ -56,6 +56,7 @@
 #include "base/utils/string.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
+#include "managededupedfilenames.h"
 
 using namespace Qt::Literals::StringLiterals;
 
@@ -350,6 +351,8 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
         {
             return nonstd::make_unexpected(tr("Mismatching info-hash detected in resume data"));
         }
+        if (pref->isFixMutatedFilenamesEnabled())
+            manageDedupedFilenames(p, DedupeAction::Revert);
     }
 
     p.save_path = Profile::instance()->fromPortablePath(
