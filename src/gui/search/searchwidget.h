@@ -63,6 +63,7 @@ signals:
     void searchFinished(bool failed);
 
 private:
+    bool event(QEvent *event) override;
     bool eventFilter(QObject *object, QEvent *event) override;
 
     void onPreferencesChanged();
