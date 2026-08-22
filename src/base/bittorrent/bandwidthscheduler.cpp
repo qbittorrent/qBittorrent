@@ -49,6 +49,7 @@ void BandwidthScheduler::start()
 {
     m_lastAlternative = isTimeForAlternative();
     emit bandwidthLimitRequested(m_lastAlternative);
+    emit sessionStateChangeRequested(Preferences::instance()->getSchedulerSessionState());
 
     // Timeout regularly to accommodate for external system clock changes
     // eg from the user or from a timesync utility
@@ -119,4 +120,8 @@ void BandwidthScheduler::onTimeout()
         m_lastAlternative = alternative;
         emit bandwidthLimitRequested(alternative);
     }
+
+    // Always emit pause state when schedule is active
+    if (alternative)
+        emit sessionStateChangeRequested(Preferences::instance()->getSchedulerSessionState());
 }
