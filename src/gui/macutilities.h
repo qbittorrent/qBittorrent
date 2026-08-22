@@ -43,6 +43,7 @@ namespace MacUtils
     void overrideDockClickHandler(bool (*dockClickHandler)(id, SEL, ...));
     void askForNotificationPermission();
     void displayNotification(const QString &title, const QString &message);
+    void openFile(const Path &path);
     void openFiles(const PathList &pathList);
 
     bool isMagnetLinkAssocSet();
