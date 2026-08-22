@@ -403,6 +403,17 @@ Net::DownloadRequest &Net::DownloadRequest::destFileName(const Path &value)
     return *this;
 }
 
+bool Net::DownloadRequest::allowInsecureRedirect() const
+{
+    return m_allowInsecureRedirect;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::allowInsecureRedirect(const bool value)
+{
+    m_allowInsecureRedirect = value;
+    return *this;
+}
+
 Net::ServiceID Net::ServiceID::fromURL(const QUrl &url)
 {
     return {url.host(), url.port(80)};
