@@ -164,6 +164,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
     , m_storeHSplitterSize {SETTINGS_KEY(u"HorizontalSplitterSizes"_s)}
     , m_storeLastViewedPage {SETTINGS_KEY(u"LastViewedPage"_s)}
+    , m_storeMinFreeDiskSpace {SETTINGS_KEY(u"MinFreeDiskSpaceMiB"_s)}
 {
     m_ui->setupUi(this);
     m_applyButton = m_ui->buttonBox->button(QDialogButtonBox::Apply);
@@ -642,6 +643,22 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->checkUnwantedFolder->setChecked(session->isUnwantedFolderEnabled());
     m_ui->checkRecursiveDownload->setChecked(pref->isRecursiveDownloadEnabled());
 
+    // The threshold value is persisted independently of the "enabled" checkbox,
+    // so a typed value is never lost when the option is disabled
+    m_ui->checkMinFreeSpaceEnabled->setChecked(session->minFreeDiskSpace() > 0);
+    m_ui->spinMinFreeSpace->setValue(m_storeMinFreeDiskSpace.get(100));
+    m_ui->spinMinFreeSpace->setEnabled(m_ui->checkMinFreeSpaceEnabled->isChecked());
+    connect(m_ui->checkMinFreeSpaceEnabled, &QCheckBox::toggled, this, [this](const bool enabled)
+    {
+        m_ui->spinMinFreeSpace->setEnabled(enabled);
+    });
+    connect(m_ui->checkMinFreeSpaceEnabled, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinMinFreeSpace, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinMinFreeSpace, qSpinBoxValueChanged, this, [this](const int value)
+    {
+        m_storeMinFreeDiskSpace = value;
+    });
+
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
     m_ui->comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
@@ -852,6 +869,11 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
     session->setUnwantedFolderEnabled(m_ui->checkUnwantedFolder->isChecked());
     pref->setRecursiveDownloadEnabled(m_ui->checkRecursiveDownload->isChecked());
+    // The spinbox value is already persisted continuously via the valueChanged handler,
+    // so only the session setting (which is gated by the "enabled" checkbox) needs saving here
+    session->setMinFreeDiskSpace(m_ui->checkMinFreeSpaceEnabled->isChecked()
+        ? (static_cast<qint64>(m_ui->spinMinFreeSpace->value()) * 1024 * 1024)
+        : 0);
 
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
     session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);

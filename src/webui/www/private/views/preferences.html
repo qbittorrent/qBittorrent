@@ -255,6 +255,11 @@
             <label for="unwantedfolder_checkbox">QBT_TR(Keep unselected files in ".unwanted" folder)QBT_TR[CONTEXT=OptionsDialog]</label>
         </span>
     </div>
+    <div class="formRow">
+        <input type="checkbox" id="minFreeDiskSpaceCheckbox" onclick="qBittorrent.Preferences.updateMinFreeDiskSpaceEnabled();">
+        <label id="minFreeDiskSpaceLabel" for="minFreeDiskSpaceCheckbox">QBT_TR(Switch to "upload only" mode when free disk space falls below:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        &nbsp;<input type="number" id="minFreeDiskSpaceValue" aria-labelledby="minFreeDiskSpaceLabel" style="width: 6em;" min="1" value="100">&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
+    </div>
 
     <fieldset class="settings">
         <legend>QBT_TR(Saving Management)QBT_TR[CONTEXT=HttpServer]</legend>
@@ -1929,6 +1934,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateAutoRun: updateAutoRun,
                 updateAutoRunOnTorrentAdded: updateAutoRunOnTorrentAdded,
                 generateRandomPort: generateRandomPort,
+                updateMinFreeDiskSpaceEnabled: updateMinFreeDiskSpaceEnabled,
                 updateMaxConnecEnabled: updateMaxConnecEnabled,
                 updateMaxConnecPerTorrentEnabled: updateMaxConnecPerTorrentEnabled,
                 updateMaxUploadsEnabled: updateMaxUploadsEnabled,
@@ -2149,6 +2155,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateAutoRun = () => {
             const isAutoRunEnabled = document.getElementById("autorun_checkbox").checked;
             document.getElementById("autorunProg_txt").disabled = !isAutoRunEnabled;
+        };
+
+        const updateMinFreeDiskSpaceEnabled = () => {
+            const isEnabled = document.getElementById("minFreeDiskSpaceCheckbox").checked;
+            document.getElementById("minFreeDiskSpaceValue").disabled = !isEnabled;
         };
 
         // Connection tab
@@ -2497,6 +2508,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("preallocateall_checkbox").checked = pref.preallocate_all;
                     document.getElementById("appendext_checkbox").checked = pref.incomplete_files_ext;
                     document.getElementById("unwantedfolder_checkbox").checked = pref.use_unwanted_folder;
+                    // The threshold value is only overwritten when it is enabled,
+                    // so the current input value is never lost when the option is disabled
+                    const minFreeDiskSpace = Number(pref.min_free_disk_space);
+                    document.getElementById("minFreeDiskSpaceCheckbox").checked = (minFreeDiskSpace > 0);
+                    if (minFreeDiskSpace > 0)
+                        document.getElementById("minFreeDiskSpaceValue").value = Math.round(minFreeDiskSpace / (1024 * 1024));
+                    updateMinFreeDiskSpaceEnabled();
 
                     // Saving Management
                     document.getElementById("default_tmm_combobox").value = pref.auto_tmm_enabled;
@@ -2919,6 +2937,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["preallocate_all"] = document.getElementById("preallocateall_checkbox").checked;
             settings["incomplete_files_ext"] = document.getElementById("appendext_checkbox").checked;
             settings["use_unwanted_folder"] = document.getElementById("unwantedfolder_checkbox").checked;
+            settings["min_free_disk_space"] = document.getElementById("minFreeDiskSpaceCheckbox").checked
+                ? (Number(document.getElementById("minFreeDiskSpaceValue").value) * 1024 * 1024)
+                : 0;
 
             // Saving Management
             settings["auto_tmm_enabled"] = (document.getElementById("default_tmm_combobox").value === "true");

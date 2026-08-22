@@ -470,6 +470,8 @@ namespace BitTorrent
         QString lastExternalIPv6Address() const override;
 
         qint64 freeDiskSpace() const override;
+        qint64 minFreeDiskSpace() const override;
+        void setMinFreeDiskSpace(qint64 minFree) override;
 
         // Torrent interface
         void handleTorrentResumeDataRequested(const TorrentImpl *torrent);
@@ -637,6 +639,23 @@ namespace BitTorrent
 
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, LoadTorrentParams params);
         TorrentImpl *getTorrent(const lt::torrent_handle &nativeHandle) const;
+
+        Path torrentStoragePath(const TorrentImpl *torrent) const;
+
+        struct VolumeDiskSpace
+        {
+            // Actual free space on the volume (-1 if it cannot be determined)
+            qint64 freeSize = -1;
+            // Sum of pending (not yet allocated) write footprints of torrents on the volume
+            qint64 pendingSize = 0;
+        };
+
+        bool isActiveIncompleteDownload(const TorrentImpl *torrent) const;
+        qint64 pendingWriteFootprint(const TorrentImpl *torrent) const;
+        QHash<QString, VolumeDiskSpace> computeVolumeDiskSpaces() const;
+        bool isBelowMinFreeDiskSpace(const VolumeDiskSpace &volumeDiskSpace) const;
+        bool isBelowMinFreeDiskSpace(const Path &path) const;
+        void enforceDiskSpaceThreshold();
         QList<TorrentImpl *> getQueuedTorrentsByID(const QList<TorrentID> &torrentIDs) const;
 
         void saveResumeData();
@@ -904,9 +923,13 @@ namespace BitTorrent
         QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
         qint64 m_freeDiskSpace = -1;
 
-        ShareLimits m_shareLimits;
-
         KeyValueDataStorage *m_backupTorrentFilesRegistry = nullptr;
+
+        CachedSettingValue<qint64> m_minFreeDiskSpace;
+        // Torrents currently switched to "upload mode" due to insufficient disk space
+        QSet<TorrentID> m_diskSpaceLimitedTorrents;
+
+        ShareLimits m_shareLimits;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();
