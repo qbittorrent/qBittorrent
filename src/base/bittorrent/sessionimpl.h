@@ -68,6 +68,7 @@ class BandwidthScheduler;
 class FileSearcher;
 class FilterParserThread;
 class FreeDiskSpaceChecker;
+class KeyValueDataStorage;
 class NativeSessionExtension;
 
 struct FileSearchResult;
@@ -212,10 +213,17 @@ namespace BitTorrent
         void setRefreshInterval(int value) override;
         bool isPreallocationEnabled() const override;
         void setPreallocationEnabled(bool enabled) override;
-        Path torrentExportDirectory() const override;
-        void setTorrentExportDirectory(const Path &path) override;
-        Path finishedTorrentExportDirectory() const override;
-        void setFinishedTorrentExportDirectory(const Path &path) override;
+
+        bool isTorrentFileBackupEnabled() const override;
+        void setTorrentFileBackupEnabled(bool enabled) override;
+        Path torrentBackupDirectory() const override;
+        void setTorrentBackupDirectory(const Path &path) override;
+        bool isFinishedTorrentBackupDirectoryEnabled() const override;
+        void setFinishedTorrentBackupDirectoryEnabled(bool enabled) override;
+        Path finishedTorrentBackupDirectory() const override;
+        void setFinishedTorrentBackupDirectory(const Path &path) override;
+        bool removeTorrentFileBackup() const override;
+        void setRemoveTorrentFileBackup(bool remove) override;
 
         int globalDownloadSpeedLimit() const override;
         void setGlobalDownloadSpeedLimit(int limit) override;
@@ -300,6 +308,8 @@ namespace BitTorrent
         void setPeerTurnoverInterval(int val) override;
         int requestQueueSize() const override;
         void setRequestQueueSize(int val) override;
+        int maxOutstandingBlockRequests() const override;
+        void setMaxOutstandingBlockRequests(int val) override;
         int asyncIOThreads() const override;
         void setAsyncIOThreads(int num) override;
         int hashingThreads() const override;
@@ -580,7 +590,8 @@ namespace BitTorrent
         bool addTorrent_impl(const TorrentDescriptor &source, const AddTorrentParams &addTorrentParams);
 
         void updateShareLimitsTimer();
-        void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
+        void backupTorrentFile(const Torrent *torrent, const TorrentDescriptor &torrentDescr);
+        void backupTorrentFile(const Torrent *torrent, const QString &magnetURI, const Path &backupDirPathConf);
 
         void handleAlert(lt::alert *alert);
         void handleAddTorrentAlert(const lt::add_torrent_alert *alert);
@@ -620,6 +631,9 @@ namespace BitTorrent
         void handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *alert);
         void handleTorrentCheckedAlert(const lt::torrent_checked_alert *alert);
         void handleTorrentFinishedAlert(const lt::torrent_finished_alert *alert);
+#if LIBTORRENT_VERSION_NUM >= 20101
+        void handleIPBanAlert(const lt::ip_ban_alert *alert);
+#endif
 
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, LoadTorrentParams params);
         TorrentImpl *getTorrent(const lt::torrent_handle &nativeHandle) const;
@@ -733,8 +747,11 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isUnwantedFolderEnabled;
         CachedSettingValue<int> m_refreshInterval;
         CachedSettingValue<bool> m_isPreallocationEnabled;
-        CachedSettingValue<Path> m_torrentExportDirectory;
-        CachedSettingValue<Path> m_finishedTorrentExportDirectory;
+        CachedSettingValue<bool> m_isTorrentFileBackupEnabled;
+        CachedSettingValue<Path> m_torrentBackupDirectory;
+        CachedSettingValue<bool> m_isFinishedTorrentBackupDirectoryEnabled;
+        CachedSettingValue<Path> m_finishedTorrentBackupDirectory;
+        CachedSettingValue<bool> m_removeTorrentFileBackup;
         CachedSettingValue<int> m_globalDownloadSpeedLimit;
         CachedSettingValue<int> m_globalUploadSpeedLimit;
         CachedSettingValue<int> m_altGlobalDownloadSpeedLimit;
@@ -772,6 +789,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_peerTurnoverCutoff;
         CachedSettingValue<int> m_peerTurnoverInterval;
         CachedSettingValue<int> m_requestQueueSize;
+        CachedSettingValue<int> m_maxOutstandingBlockRequests;
         CachedSettingValue<bool> m_isExcludedFileNamesEnabled;
         CachedSettingValue<QStringList> m_excludedFileNames;
         CachedSettingValue<QStringList> m_bannedIPs;
@@ -887,6 +905,8 @@ namespace BitTorrent
         qint64 m_freeDiskSpace = -1;
 
         ShareLimits m_shareLimits;
+
+        KeyValueDataStorage *m_backupTorrentFilesRegistry = nullptr;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

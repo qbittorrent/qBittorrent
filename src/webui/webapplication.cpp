@@ -70,6 +70,7 @@
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
 #include "clientdatastorage.h"
+#include "searchjobmanager.h"
 #include "websession.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
@@ -174,6 +175,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_trRegex {u"QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s}
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
+    , m_searchJobManager {new SearchJobManager(this)}
     , m_clientDataStorage {new ClientDataStorage(this)}
 {
     declarePublicAPI(u"auth/login"_s);
@@ -386,11 +388,11 @@ void WebApplication::processAPIRequest(const QString &endpoint, const Http::Head
 
         Http::Response response {.headers = commonHeaders};
 
-        if (m_sessionStateChange == SessionStateChange::Start)
+        if (m_cookieBasedSessionStateChange == SessionStateChange::Start)
         {
             setSessionCookie(response.headers);
         }
-        else if (m_sessionStateChange == SessionStateChange::End)
+        else if (m_cookieBasedSessionStateChange == SessionStateChange::End)
         {
             QNetworkCookie cookie {m_sessionCookieName.toLatin1()};
             cookie.setPath(u"/"_s);
@@ -503,6 +505,7 @@ void WebApplication::configure()
     m_isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
     m_authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
     m_sessionTimeout = std::chrono::seconds(pref->getWebUISessionTimeout());
+    m_sessionsCountLimit = std::max(0, pref->getWebUISessionsCountLimit());
     m_sessionCookieName = SESSION_COOKIE_NAME_PREFIX + QString::number(pref->getWebUIPort());
 
     // all sessions need to update the cookie expiration date
@@ -684,7 +687,7 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
     m_currentSession = nullptr;
     m_request = request;
     m_env = env;
-    m_sessionStateChange = SessionStateChange::None;
+    m_cookieBasedSessionStateChange = SessionStateChange::None;
 
     const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
     const auto [authScheme, authData] = parseAuthorizationHeader(authHeader);
@@ -708,12 +711,15 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
         m_clientAddress = resolveClientAddress();
 
         if (isUsingApiKey)
+        {
             apiKeySessionInitialize(authData);
+        }
         else
+        {
             cookieSessionInitialize(authScheme, authData);
-
-        if (!isUsingApiKey)
-            setSessionCookie(commonHeaders);
+            if (m_currentSession)
+                setSessionCookie(commonHeaders);
+        }
 
         if (request.path.startsWith(API_PATH))
         {
@@ -749,8 +755,10 @@ QString WebApplication::clientId() const
 
 void WebApplication::setSessionCookie(Http::HeaderMap &headers)
 {
+    Q_ASSERT(m_currentSession && (m_currentSession->type() == WebSessionType::CookieBased));
+
     auto *currentSession = static_cast<CookieBasedWebSession *>(m_currentSession);
-    if (currentSession && currentSession->shouldRefreshCookie())
+    if (currentSession->shouldRefreshCookie())
     {
         // 'Permanent Cookie' still require an expiration date so set it to a date in the distant future
         const std::chrono::seconds cookieExpireDuration = (m_sessionTimeout > 0s) ? m_sessionTimeout : std::chrono::years(1);
@@ -885,14 +893,28 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
         return false;
     });
 
+    if (m_sessionsCountLimit > 0)
+    {
+        while (m_sessions.size() >= m_sessionsCountLimit)
+        {
+            const auto coldSessionIter = std::ranges::min_element(m_sessions
+                    , [](const WebSession *lhs, const WebSession *rhs)
+            {
+                return lhs->timestamp() < rhs->timestamp();
+            });
+            delete *coldSessionIter;
+            m_sessions.erase(coldSessionIter);
+        }
+    }
+
     m_currentSession = WebSession::create(sessionType, sessionId);
     m_sessions[m_currentSession->id()] = m_currentSession;
-    m_sessionStateChange = SessionStateChange::Start;
+    if (sessionType == WebSessionType::CookieBased)
+        m_cookieBasedSessionStateChange = SessionStateChange::Start;
 
     m_currentSession->registerAPIController(u"app"_s, [app = app(), parent = m_currentSession] { return new AppController(app, parent); });
     m_currentSession->registerAPIController(u"log"_s, [app = app(), parent = m_currentSession] { return new LogController(app, parent); });
     m_currentSession->registerAPIController(u"rss"_s, [app = app(), parent = m_currentSession] { return new RSSController(app, parent); });
-    m_currentSession->registerAPIController(u"search"_s, [app = app(), parent = m_currentSession] { return new SearchController(app, parent); });
     m_currentSession->registerAPIController(u"torrents"_s, [app = app(), parent = m_currentSession] { return new TorrentsController(app, parent); });
     m_currentSession->registerAPIController(u"transfer"_s, [app = app(), parent = m_currentSession] { return new TransferController(app, parent); });
     m_currentSession->registerAPIController(u"clientdata"_s
@@ -904,6 +926,11 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
             , [app = app(), parent = m_currentSession, torrentCreationManager = m_torrentCreationManager]
     {
         return new TorrentCreatorController(torrentCreationManager, app, parent);
+    });
+    m_currentSession->registerAPIController(u"search"_s
+            , [app = app(), parent = m_currentSession, searchJobManager = m_searchJobManager]
+    {
+        return new SearchController(searchJobManager, app, parent);
     });
     m_currentSession->registerAPIController(u"sync"_s
             , [app = app(), parent = m_currentSession, btSession = BitTorrent::Session::instance()]
@@ -919,9 +946,10 @@ void WebApplication::sessionEnd()
 {
     Q_ASSERT(m_currentSession);
 
+    if (m_currentSession->type() == WebSessionType::CookieBased)
+        m_cookieBasedSessionStateChange = SessionStateChange::End;
     delete m_sessions.take(m_currentSession->id());
     m_currentSession = nullptr;
-    m_sessionStateChange = SessionStateChange::End;
 }
 
 bool WebApplication::isOriginTrustworthy() const

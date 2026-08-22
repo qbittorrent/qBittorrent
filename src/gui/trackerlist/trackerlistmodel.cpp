@@ -53,6 +53,7 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/bittorrent/trackerentrystatus.h"
 #include "base/global.h"
+#include "base/utils/hashvalue.h"
 #include "base/utils/misc.h"
 
 using namespace std::chrono_literals;
@@ -104,11 +105,6 @@ namespace
 
         return TrackerListModel::tr(STR_WORKING);
     }
-}
-
-std::size_t hash_value(const QString &string)
-{
-    return qHash(string);
 }
 
 struct TrackerListModel::Item final

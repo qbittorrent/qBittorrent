@@ -1,7 +1,29 @@
 # WebAPI Changelog
 
+## 2.16.1
+
+* [#23784](https://github.com/qbittorrent/qBittorrent/pull/23784)
+  * `search/status` endpoint now includes `pattern`, `category`, and `plugins` fields for each search job
+  * `app/preferences` endpoint now supports `store_search_jobs` and `store_search_job_results` preference keys
+
 ## 2.16.0
 
+* [#24791](https://github.com/qbittorrent/qBittorrent/pull/24791)
+  * `search/downloadTorrent` and `rss/setFeedRefreshInterval` endpoints now only accept `POST` requests
+* [#24724](https://github.com/qbittorrent/qBittorrent/pull/24724)
+  * `torrents/add` endpoint accepts `seedMode` (bool) parameter
+  * `torrents/add` endpoint no longer accepts `skip_checking` parameter
+* [#24720](https://github.com/qbittorrent/qBittorrent/pull/24720)
+  * `app/preferences` endpoint includes `web_ui_sessions_count_limit` (int) option
+  * `app/setPreferences` endpoint allows to set `web_ui_sessions_count_limit` (int) option
+* [#24641](https://github.com/qbittorrent/qBittorrent/pull/24641)
+  * `app/preferences` and `app/setPreferences` endpoints no longer include `export_dir` and `export_dir_fin` options as they are no longer supported by the core
+  * `app/preferences` and `app/setPreferences` endpoints include the following new options:
+    * `torrent_files_backup_enabled` (bool) - enable/disable saving backup copies of .torrent files
+    * `torrent_files_backup_dir` (string) - the folder path for saving backup copies of .torrent files
+    * `torrent_files_finished_backup_dir_enabled` (bool) - enable/disable moving backup copies of .torrent files to another folder when torrent is finished
+    * `torrent_files_finished_backup_dir` (string) - the folder path for moving backup copies of .torrent files when torrent is finished
+    * `remove_torrent_file_backup` (bool) - whether .torrent file backup should be removed when removing the torrent
 * [#24684](https://github.com/qbittorrent/qBittorrent/pull/24684)
   * `app/preferences` endpoint includes `enable_multi_connections_from_same_peer_id` option
   * `app/setPreferences` endpoint allows to set `enable_multi_connections_from_same_peer_id` option
@@ -29,6 +51,9 @@
 * [#24134](https://github.com/qbittorrent/qBittorrent/pull/24134)
   * `transfer/getSpeedLimits` endpoint was added to retrieve global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
   * `transfer/setSpeedLimits` endpoint was added to set global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
+* [#24253](https://github.com/qbittorrent/qBittorrent/pull/24253)
+  * `app/preferences` endpoint includes `max_outstanding_block_requests` option
+  * `app/setPreferences` endpoint allows to set `max_outstanding_block_requests` option
 * [#24135](https://github.com/qbittorrent/qBittorrent/pull/24135)
   * Add `torrents/downloadFile` endpoint with `hash` and `file` as parameters allowing to download a completed file from torrent content
     * `file` accepts either file index or path relative to content root

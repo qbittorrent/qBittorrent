@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -352,7 +352,7 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
             static_cast<int>(addTorrentParams.contentLayout.value_or(session->torrentContentLayout())));
     m_ui->sequentialCheckBox->setChecked(addTorrentParams.sequential);
     m_ui->firstLastCheckBox->setChecked(addTorrentParams.firstLastPiecePriority);
-    m_ui->skipCheckingCheckBox->setChecked(addTorrentParams.skipChecking);
+    m_ui->seedModeCheckBox->setChecked(addTorrentParams.seedMode);
     m_ui->tagsLineEdit->setText(Utils::String::joinIntoString(addTorrentParams.tags, u", "_s));
 
     // Load categories
@@ -434,7 +434,7 @@ void AddNewTorrentDialog::updateCurrentContext()
 
     BitTorrent::AddTorrentParams &addTorrentParams = m_currentContext->torrentParams;
 
-    addTorrentParams.skipChecking = m_ui->skipCheckingCheckBox->isChecked();
+    addTorrentParams.seedMode = m_ui->seedModeCheckBox->isChecked();
 
     // Category
     addTorrentParams.category = m_ui->categoryComboBox->currentText();
@@ -758,6 +758,9 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
         return;
 
     BitTorrent::TorrentDescriptor &torrentDescr = m_currentContext->torrentDescr;
+    if (torrentDescr.info())
+        return;
+
     Q_ASSERT(metadata.matchesInfoHash(torrentDescr.infoHash()));
     if (!metadata.matchesInfoHash(torrentDescr.infoHash())) [[unlikely]]
         return;

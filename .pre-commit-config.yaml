@@ -41,7 +41,7 @@ repos:
         - ts
 
   - repo: https://github.com/igorshubovych/markdownlint-cli.git
-    rev: v0.49.0
+    rev: v0.49.1
     hooks:
     - id: markdownlint
       name: Check Markdown files
@@ -59,7 +59,7 @@ repos:
       name: Check code formatting (EditorConfig)
 
   - repo: https://github.com/codespell-project/codespell.git
-    rev: v2.4.2
+    rev: v2.4.3
     hooks:
     - id: codespell
       name: Check spelling (codespell)

@@ -177,6 +177,7 @@ namespace
         PEER_TURNOVER_CUTOFF,
         PEER_TURNOVER_INTERVAL,
         REQUEST_QUEUE_SIZE,
+        MAX_OUTSTANDING_BLOCK_REQUESTS,
         DHT_BOOTSTRAP_NODES,
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
         I2P_INBOUND_QUANTITY,
@@ -359,7 +360,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Ignore SSL errors
     pref->setIgnoreSSLErrors(m_checkBoxIgnoreSSLErrors.isChecked());
     // Python executable path
-    pref->setPythonExecutablePath(Path(m_pythonExecutablePath.text().trimmed()));
+    pref->setPythonExecutablePath(m_pythonExecutablePath.selectedPath());
     // Start session paused
     session->setStartPaused(m_checkBoxStartSessionPaused.isChecked());
     // Session shutdown timeout
@@ -382,6 +383,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setPeerTurnoverInterval(m_spinBoxPeerTurnoverInterval.value());
     // Maximum outstanding requests to a single peer
     session->setRequestQueueSize(m_spinBoxRequestQueueSize.value());
+    // Maximum outstanding requests from a single peer
+    session->setMaxOutstandingBlockRequests(m_spinBoxMaxOutstandingBlockRequests.value());
     // DHT bootstrap nodes
     session->setDHTBootstrapNodes(m_lineEditDHTBootstrapNodes.text());
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
@@ -923,8 +926,10 @@ void AdvancedSettings::loadAdvancedSettings()
     m_checkBoxIgnoreSSLErrors.setToolTip(tr("Affects certificate validation and non-torrent protocol activities (e.g. RSS feeds, program updates, torrent files, geoip db, etc)"));
     addRow(IGNORE_SSL_ERRORS, tr("Ignore SSL errors"), &m_checkBoxIgnoreSSLErrors);
     // Python executable path
-    m_pythonExecutablePath.setPlaceholderText(tr("(Auto detect if empty)"));
-    m_pythonExecutablePath.setText(pref->getPythonExecutablePath().toString());
+    m_pythonExecutablePath.setMode(FileSystemPathEdit::Mode::FileOpen);
+    m_pythonExecutablePath.setDialogCaption(tr("Select Python Executable"));
+    m_pythonExecutablePath.setPlaceholder(tr("(Auto detect if empty)"));
+    m_pythonExecutablePath.setSelectedPath(pref->getPythonExecutablePath());
     addRow(PYTHON_EXECUTABLE_PATH, tr("Python executable path (may require restart)"), &m_pythonExecutablePath);
     // Start session paused
     m_checkBoxStartSessionPaused.setChecked(session->isStartPaused());
@@ -999,6 +1004,12 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxRequestQueueSize.setValue(session->requestQueueSize());
     addRow(REQUEST_QUEUE_SIZE, (tr("Maximum outstanding requests to a single peer") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_out_request_queue", u"(?)"))
             , &m_spinBoxRequestQueueSize);
+    // Maximum outstanding requests from a single peer
+    m_spinBoxMaxOutstandingBlockRequests.setMinimum(1);
+    m_spinBoxMaxOutstandingBlockRequests.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxMaxOutstandingBlockRequests.setValue(session->maxOutstandingBlockRequests());
+    addRow(MAX_OUTSTANDING_BLOCK_REQUESTS, (tr("Maximum outstanding block requests from a peer") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_allowed_in_request_queue", u"(?)"))
+            , &m_spinBoxMaxOutstandingBlockRequests);
     // DHT bootstrap nodes
     m_lineEditDHTBootstrapNodes.setPlaceholderText(tr("Resets to default if empty"));
     m_lineEditDHTBootstrapNodes.setText(session->getDHTBootstrapNodes());
@@ -1039,7 +1050,9 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
     setCellWidget(row, PROPERTY, label);
     setCellWidget(row, VALUE, widget);
 
-    if constexpr (std::is_same_v<T, QCheckBox>)
+    if constexpr (std::is_same_v<T, FileSystemPathLineEdit>)
+        connect(widget, &FileSystemPathEdit::selectedPathChanged, this, &AdvancedSettings::settingsChanged);
+    else if constexpr (std::is_same_v<T, QCheckBox>)
     {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
         connect(widget, &QCheckBox::checkStateChanged, this, &AdvancedSettings::settingsChanged);
@@ -1047,10 +1060,10 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
         connect(widget, &QCheckBox::stateChanged, this, &AdvancedSettings::settingsChanged);
 #endif
     }
-    else if constexpr (std::is_same_v<T, QSpinBox>)
-        connect(widget, qOverload<int>(&QSpinBox::valueChanged), this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QComboBox>)
         connect(widget, qOverload<int>(&QComboBox::currentIndexChanged), this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QLineEdit>)
         connect(widget, &QLineEdit::textChanged, this, &AdvancedSettings::settingsChanged);
+    else if constexpr (std::is_same_v<T, QSpinBox>)
+        connect(widget, qOverload<int>(&QSpinBox::valueChanged), this, &AdvancedSettings::settingsChanged);
 }

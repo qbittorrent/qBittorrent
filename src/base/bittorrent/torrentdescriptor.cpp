@@ -38,11 +38,13 @@
 #include <QRegularExpression>
 #include <QUrl>
 
-#include "base/global.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/utils/io.h"
 #include "infohash.h"
 #include "trackerentry.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -96,18 +98,28 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<BitTorrent::TorrentDescriptor, QString>
 BitTorrent::TorrentDescriptor::loadFromFile(const Path &path) noexcept
 try
 {
-    return TorrentDescriptor(lt::load_torrent_file(path.toString().toStdString(), loadTorrentLimits()));
+    TorrentDescriptor torrentDescriptor {lt::load_torrent_file(path.toString().toStdString(), loadTorrentLimits())};
+    torrentDescriptor.m_source = path.data();
+    return torrentDescriptor;
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<BitTorrent::TorrentDescriptor, QString>
@@ -120,11 +132,17 @@ try
     else if (isV1Hash(str))
         magnetURI = u"magnet:?xt=urn:btih:" + str;
 
-    return TorrentDescriptor(lt::parse_magnet_uri(magnetURI.toStdString()));
+    TorrentDescriptor torrentDescriptor {lt::parse_magnet_uri(magnetURI.toStdString())};
+    torrentDescriptor.m_source = magnetURI;
+    return torrentDescriptor;
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<void, QString> BitTorrent::TorrentDescriptor::saveToFile(const Path &path) const
@@ -139,7 +157,11 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<QByteArray, QString> BitTorrent::TorrentDescriptor::saveToBuffer() const
@@ -155,7 +177,11 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 BitTorrent::TorrentDescriptor::TorrentDescriptor(lt::add_torrent_params ltAddTorrentParams)
@@ -262,6 +288,11 @@ QList<QUrl> BitTorrent::TorrentDescriptor::urlSeeds() const
         urlSeeds.append(QUrl(QString::fromStdString(nativeURLSeed)));
 
     return urlSeeds;
+}
+
+QString BitTorrent::TorrentDescriptor::source() const
+{
+    return m_source;
 }
 
 const libtorrent::add_torrent_params &BitTorrent::TorrentDescriptor::ltAddTorrentParams() const

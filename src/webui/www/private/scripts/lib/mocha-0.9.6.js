@@ -111,7 +111,7 @@ MUI.extend({
 		}
 
 		var instance = element.retrieve('instance');
-		if (options.title) instance.titleEl.set('html', options.title);
+		if (options.title) instance.titleEl.set('text', options.title);
 
 		var contentEl = instance.contentEl;
 		args.contentContainer = options.childElement != null ? options.childElement : instance.contentEl;
@@ -1636,7 +1636,7 @@ MUI.Window = new Class({
 		this.insertWindowElements();
 
 		// Set title
-		this.titleEl.set('html', options.title);
+		this.titleEl.set('text', options.title);
 
 		this.contentWrapperEl.setStyle('overflow', 'hidden');
 
@@ -4909,7 +4909,7 @@ MUI.Panel = new Class({
 		}
 
 		if (options.tabsURL == null) {
-			this.titleEl.set('html', options.title);
+			this.titleEl.set('text', options.title);
 		} else {
 			this.panelHeaderContentEl.addClass('tabs');
 			MUI.updateContent({
@@ -5972,7 +5972,7 @@ MUI.Dock = {
 		var dockTabText = new Element('div', {
 			'id': instance.options.id + '_dockTabText',
 			'class': 'dockText'
-		}).set('html', titleText.substring(0,19) + (titleText.length > 19 ? '...' : '')).inject($(dockTab));
+		}).set('text', titleText.substring(0,19) + (titleText.length > 19 ? '...' : '')).inject($(dockTab));
 
 		// If I implement this again, will need to also adjust the titleText truncate and the tab's
 		// left padding.

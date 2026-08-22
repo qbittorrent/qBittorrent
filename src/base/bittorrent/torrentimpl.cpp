@@ -194,7 +194,11 @@ namespace
                 }
                 else if (ltAnnounceInfo.last_error)
                 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+                    trackerEndpointStatus.message = QString::fromStdString(ltAnnounceInfo.last_error.message());
+#else
                     trackerEndpointStatus.message = QString::fromLocal8Bit(ltAnnounceInfo.last_error.message());
+#endif
                 }
                 else
                 {
@@ -856,7 +860,11 @@ bool TorrentImpl::connectPeer(const PeerAddress &peerAddress)
     catch (const lt::system_error &err)
     {
         LogMsg(tr("Failed to add peer \"%1\" to torrent \"%2\". Reason: %3")
+#if LIBTORRENT_VERSION_NUM >= 20100
+            .arg(peerAddress.toString(), name(), QString::fromStdString(err.what())), Log::WARNING);
+#else
             .arg(peerAddress.toString(), name(), QString::fromLocal8Bit(err.what())), Log::WARNING);
+#endif
         return false;
     }
 
@@ -1361,12 +1369,22 @@ int TorrentImpl::queuePosition() const
 QString TorrentImpl::error() const
 {
     if (m_nativeStatus.errc)
+    {
+#if LIBTORRENT_VERSION_NUM >= 20100
+        return QString::fromStdString(m_nativeStatus.errc.message());
+#else
         return Utils::String::fromLocal8Bit(m_nativeStatus.errc.message());
+#endif
+    }
 
     if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
     {
         return tr("Couldn't write to file. Reason: \"%1\". Torrent is now in \"upload only\" mode.")
+#if LIBTORRENT_VERSION_NUM >= 20100
+            .arg(QString::fromStdString(m_lastFileError.error.message()));
+#else
             .arg(Utils::String::fromLocal8Bit(m_lastFileError.error.message()));
+#endif
     }
 
     return {};
@@ -1985,7 +2003,11 @@ void TorrentImpl::reload()
     catch (const lt::system_error &err)
     {
         throw RuntimeError(tr("Failed to reload torrent. Torrent: %1. Reason: %2")
-                .arg(id().toString(), QString::fromLocal8Bit(err.what())));
+#if LIBTORRENT_VERSION_NUM >= 20100
+                .arg(id().toString(),  QString::fromStdString(err.what())));
+#else
+                .arg(id().toString(),  QString::fromLocal8Bit(err.what())));
+#endif
     }
 }
 
@@ -2852,7 +2874,11 @@ nonstd::expected<lt::entry, QString> TorrentImpl::exportTorrent() const
     }
     catch (const lt::system_error &err)
     {
+#if LIBTORRENT_VERSION_NUM >= 20100
+        return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
         return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
     }
 }
 

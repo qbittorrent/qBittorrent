@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Thomas Piccirello <thomas@piccirello.com>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,43 +28,27 @@
 
 #pragma once
 
-#include <QtContainerFwd>
+#include <QFuture>
+#include <QObject>
+#include <QVariant>
 
-#include "base/search/searchpluginmanager.h"
-#include "apicontroller.h"
-
-class QJsonArray;
-class QJsonObject;
-
-class SearchJobManager;
-struct SearchResult;
-
-class SearchController : public APIController
+class KeyValueDataStorage final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(SearchController)
+    Q_DISABLE_COPY_MOVE(KeyValueDataStorage)
 
 public:
-    SearchController(SearchJobManager *searchJobManager, IApplication *app, QObject *parent = nullptr);
+    explicit KeyValueDataStorage(const QString &storageName, QObject *parent = nullptr);
+    ~KeyValueDataStorage() override;
 
-private slots:
-    void startAction();
-    void stopAction();
-    void statusAction();
-    void resultsAction();
-    void deleteAction();
-    void downloadTorrentAction();
-    void pluginsAction();
-    void installPluginAction();
-    void uninstallPluginAction();
-    void enablePluginAction();
-    void updatePluginsAction();
+    QFuture<QVariant> fetchValue(const QString &key) const;
+    void storeValue(const QString &key, const QVariant &value);
+    void storeValue(const QString &key, QVariant &&value);
+    void removeValue(const QString &key);
 
 private:
-    void checkForUpdatesFinished(const QHash<QString, SearchPluginVersion> &updateInfo);
-    void checkForUpdatesFailed(const QString &reason);
-    QJsonObject getResults(const QList<SearchResult> &searchResults, bool isSearchActive, int totalResults) const;
-    QJsonArray getPluginsInfo(const QStringList &plugins) const;
+    QString m_storageName;
 
-    SearchJobManager *m_searchJobManager = nullptr;
+    class Worker;
+    mutable Worker *m_asyncWorker = nullptr;
 };
