@@ -144,6 +144,37 @@ namespace MacUtils
         }
     }
 
+    void openFilesWithDefaultApplication(const PathList &pathList)
+    {
+        if (pathList.empty())
+            return;
+
+        @autoreleasepool
+        {
+            NSMutableArray *pathURLs = [NSMutableArray arrayWithCapacity:pathList.size()];
+
+            for (const auto &path : pathList)
+                [pathURLs addObject:[NSURL fileURLWithPath:path.toString().toNSString()]];
+
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
+            {
+                NSURL *firstURL = [pathURLs firstObject];
+                if (!firstURL)
+                    return;
+
+                NSURL *applicationURL = [[NSWorkspace sharedWorkspace] URLForApplicationToOpenURL:firstURL];
+                if (!applicationURL)
+                    return;
+
+                NSWorkspaceOpenConfiguration *configuration = [NSWorkspaceOpenConfiguration configuration];
+                [[NSWorkspace sharedWorkspace] openURLs:pathURLs
+                                   withApplicationAtURL:applicationURL
+                                          configuration:configuration
+                                      completionHandler:nil];
+            });
+        }
+    }
+
     bool isMagnetLinkAssocSet()
     {
         @autoreleasepool
