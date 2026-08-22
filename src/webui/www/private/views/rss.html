@@ -354,7 +354,7 @@
 
         const load = () => {
             feedRefreshTimer = setTimeout(async () => {
-                const hasChanges = await updateRssFeedList();
+                const hasChanges = await updateRssFeedList().catch(() => false);
 
                 if (hasChanges)
                     currentServerSyncRssDataInterval = serverSyncRssDataInterval;
