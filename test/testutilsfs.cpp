@@ -44,8 +44,8 @@ private slots:
     void testToValidFileName() const
     {
         QCOMPARE(Utils::Fs::toValidFileName(u"///"_s), u"_"_s);
-        QCOMPARE(Utils::Fs::toValidFileName(u"///"_s, {}), u""_s);
-        QCOMPARE(Utils::Fs::toValidFileName(u"."_s, {}), u""_s);
+        QCOMPARE(Utils::Fs::toValidFileName(u"///"_s, {}), QString());
+        QCOMPARE(Utils::Fs::toValidFileName(u"."_s, {}), QString());
         QCOMPARE(Utils::Fs::toValidFileName(u" a/b "_s, {}), u"ab"_s);
     }
 };
