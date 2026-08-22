@@ -190,3 +190,15 @@ void TransferController::banPeersAction()
 
     setResult(QString());
 }
+
+void TransferController::pauseSessionAction()
+{
+    BitTorrent::Session::instance()->pause();
+    setResult(QString());
+}
+
+void TransferController::resumeSessionAction()
+{
+    BitTorrent::Session::instance()->resume();
+    setResult(QString());
+}

@@ -1,5 +1,12 @@
 # WebAPI Changelog
 
+## 2.16.2
+
+* [#24269](https://github.com/qbittorrent/qBittorrent/pull/24269)
+  * Add `transfer/pauseSession` endpoint for pausing bittorrent session
+  * Add `transfer/resumeSession` endpoint for resuming bittorrent session
+  * `sync/maindata` endpoint includes `session_paused` in `server_state`
+
 ## 2.16.1
 
 * [#23784](https://github.com/qbittorrent/qBittorrent/pull/23784)
