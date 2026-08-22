@@ -527,7 +527,8 @@ const initializeWindows = () => {
                     title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
                     data: {
                         hashes: hashes,
-                        forceDeleteFiles: forceDeleteFiles
+                        forceDeleteFiles: forceDeleteFiles,
+                        alternativeDeletionDialog: window.qBittorrent.Cache.preferences.get().alternative_deletion_dialog
                     },
                     contentURL: "views/confirmdeletion.html?v=${CACHEID}",
                     onContentLoaded: (w) => {

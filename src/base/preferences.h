@@ -321,6 +321,8 @@ public:
 #endif
     bool confirmTorrentDeletion() const;
     void setConfirmTorrentDeletion(bool enabled);
+    bool alternativeDeletionDialog() const;
+    void setAlternativeDeletionDialog(bool enabled);
     bool confirmTorrentRecheck() const;
     void setConfirmTorrentRecheck(bool enabled);
     bool confirmRemoveAllTags() const;

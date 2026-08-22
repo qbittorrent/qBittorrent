@@ -48,6 +48,10 @@
             <input type="checkbox" id="confirmTorrentDeletion">
             <label for="confirmTorrentDeletion">QBT_TR(Confirm when deleting torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+        <div class="formRow" style="margin-bottom: 3px;" title="QBT_TR(Replaces the checkbox with dedicated buttons to keep or remove torrent content)QBT_TR[CONTEXT=OptionsDialog]">
+            <input type="checkbox" id="alternativeDeletionDialog">
+            <label for="alternativeDeletionDialog">QBT_TR(Alternative torrent deletion UI)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
         <div class="formRow" style="margin-bottom: 3px;">
             <input type="checkbox" id="useAltRowColorsInput">
             <label for="useAltRowColorsInput">QBT_TR(Use alternating row colors)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -2449,6 +2453,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("dblclickCompleteSelect").value = dblclickComplete;
                     document.getElementById("dblclickFiltersSelect").value = dblclickFilter;
                     document.getElementById("confirmTorrentDeletion").checked = pref.confirm_torrent_deletion;
+                    document.getElementById("alternativeDeletionDialog").checked = pref.alternative_deletion_dialog;
                     document.getElementById("storeSearchJobs").checked = pref.store_search_jobs;
                     document.getElementById("storeSearchJobResults").checked = pref.store_search_job_results;
                     qBittorrent.Preferences.updateStoreSearchJobsEnabled();
@@ -2896,6 +2901,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             clientData.dblclick_complete = document.getElementById("dblclickCompleteSelect").value;
             clientData.dblclick_filter = document.getElementById("dblclickFiltersSelect").value;
             settings["confirm_torrent_deletion"] = document.getElementById("confirmTorrentDeletion").checked;
+            settings["alternative_deletion_dialog"] = document.getElementById("alternativeDeletionDialog").checked;
             settings["store_search_jobs"] = document.getElementById("storeSearchJobs").checked;
             settings["store_search_job_results"] = document.getElementById("storeSearchJobResults").checked;
             clientData.use_alt_row_colors = document.getElementById("useAltRowColorsInput").checked;
