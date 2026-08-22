@@ -272,6 +272,7 @@ void AppController::preferencesAction()
 
     data[u"proxy_bittorrent"_s] = pref->useProxyForBT();
     data[u"proxy_peer_connections"_s] = session->isProxyPeerConnectionsEnabled();
+    data[u"proxy_send_host_in_connect"_s] = session->isProxySendHostInConnectEnabled();
     data[u"proxy_rss"_s] = pref->useProxyForRSS();
     data[u"proxy_misc"_s] = pref->useProxyForGeneralPurposes();
 
@@ -786,6 +787,8 @@ void AppController::setPreferencesAction()
         pref->setUseProxyForBT(it.value().toBool());
     if (hasKey(u"proxy_peer_connections"_s))
         session->setProxyPeerConnectionsEnabled(it.value().toBool());
+    if (hasKey(u"proxy_send_host_in_connect"_s))
+        session->setProxySendHostInConnectEnabled(it.value().toBool());
     if (hasKey(u"proxy_rss"_s))
         pref->setUseProxyForRSS(it.value().toBool());
     if (hasKey(u"proxy_misc"_s))

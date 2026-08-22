@@ -2311,6 +2311,16 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                     </property>
                    </widget>
                   </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkProxySendHostInConnect">
+                    <property name="toolTip">
+                     <string>Send the hostname in the CONNECT request when using an HTTP proxy (requires libtorrent 2.0.12 or later)</string>
+                    </property>
+                    <property name="text">
+                     <string>Send hostname in CONNECT request</string>
+                    </property>
+                   </widget>
+                  </item>
                  </layout>
                 </widget>
                </item>

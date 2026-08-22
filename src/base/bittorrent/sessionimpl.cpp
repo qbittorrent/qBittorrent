@@ -593,6 +593,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_encryption(BITTORRENT_SESSION_KEY(u"Encryption"_s), 0)
     , m_maxActiveCheckingTorrents(BITTORRENT_SESSION_KEY(u"MaxActiveCheckingTorrents"_s), 1)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY(u"ProxyPeerConnections"_s), false)
+    , m_isProxySendHostInConnectEnabled(BITTORRENT_SESSION_KEY(u"ProxySendHostInConnect"_s), false)
     , m_chokingAlgorithm(BITTORRENT_SESSION_KEY(u"ChokingAlgorithm"_s), ChokingAlgorithm::FixedSlots
         , clampValue(ChokingAlgorithm::FixedSlots, ChokingAlgorithm::RateBased))
     , m_seedChokingAlgorithm(BITTORRENT_SESSION_KEY(u"SeedChokingAlgorithm"_s), SeedChokingAlgorithm::FastestUpload
@@ -2052,6 +2053,9 @@ lt::settings_pack SessionImpl::loadLTSettings() const
 
         settingsPack.set_bool(lt::settings_pack::proxy_peer_connections, isProxyPeerConnectionsEnabled());
         settingsPack.set_bool(lt::settings_pack::proxy_hostnames, proxyConfig.hostnameLookupEnabled);
+#if LIBTORRENT_VERSION_NUM >= 20012
+        settingsPack.set_bool(lt::settings_pack::proxy_send_host_in_connect, isProxySendHostInConnectEnabled());
+#endif
     }
 
     settingsPack.set_bool(lt::settings_pack::announce_to_all_trackers, announceToAllTrackers());
@@ -4038,6 +4042,20 @@ void SessionImpl::setProxyPeerConnectionsEnabled(const bool enabled)
     if (enabled != isProxyPeerConnectionsEnabled())
     {
         m_isProxyPeerConnectionsEnabled = enabled;
+        configureDeferred();
+    }
+}
+
+bool SessionImpl::isProxySendHostInConnectEnabled() const
+{
+    return m_isProxySendHostInConnectEnabled;
+}
+
+void SessionImpl::setProxySendHostInConnectEnabled(const bool enabled)
+{
+    if (enabled != isProxySendHostInConnectEnabled())
+    {
+        m_isProxySendHostInConnectEnabled = enabled;
         configureDeferred();
     }
 }
