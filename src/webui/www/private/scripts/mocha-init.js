@@ -679,11 +679,16 @@ const initializeWindows = () => {
         if (hashes.length <= 0)
             return;
 
+        const row = torrentsTable.getRow(hashes[0]);
+        if (!row)
+            return;
+
         const contentURL = new URL("setlocation.html", window.location);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             hashes: hashes.join("|"),
-            path: encodeURIComponent(torrentsTable.getRow(hashes[0]).full_data.save_path)
+            path: encodeURIComponent(row.full_data.save_path),
+            downloadPath: encodeURIComponent(row.full_data.download_path ?? "")
         });
         new MochaUI.Window({
             id: "setLocationPage",
@@ -697,7 +702,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 130
+            height: 220
         });
     };
 
