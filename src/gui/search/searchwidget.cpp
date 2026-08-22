@@ -63,8 +63,8 @@
 #include "base/utils/bytearray.h"
 #include "base/utils/compare.h"
 #include "base/utils/datetime.h"
-#include "base/utils/fs.h"
 #include "base/utils/foreignapps.h"
+#include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "gui/desktopintegration.h"
 #include "gui/interfaces/iguiapplication.h"
@@ -467,7 +467,9 @@ bool SearchWidget::eventFilter(QObject *object, QEvent *event)
         {
             if (mouseEvent->button() == Qt::MiddleButton)
             {
-                closeTab(tabIndex);
+                if (Preferences::instance()->closeSearchTabWithMiddleClick())
+                    closeTab(tabIndex);
+
                 return true;
             }
 
