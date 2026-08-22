@@ -989,9 +989,26 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
 
     if (originValue.isEmpty() && refererValue.isEmpty())
     {
-        // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
-        // so lets be permissive here
-        return false;
+        // A page can suppress both 'Origin' and 'Referer', so fall back to 'Sec-Fetch-Site', which is
+        // set by the browser itself and cannot be tampered with by the requesting page.
+        const QString secFetchSiteValue = request.headers.value(Http::HEADER_SEC_FETCH_SITE);
+        if (secFetchSiteValue.isEmpty())
+        {
+            // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
+            // so let's be permissive here (Web API clients don't send 'Sec-Fetch-Site' at all)
+            return false;
+        }
+
+        // "none" means the request wasn't initiated by a page (typed URL, bookmark, etc.)
+        const bool isValid = (secFetchSiteValue.compare(u"same-origin", Qt::CaseInsensitive) == 0)
+                || (secFetchSiteValue.compare(u"none", Qt::CaseInsensitive) == 0);
+        if (!isValid)
+        {
+            LogMsg(tr("WebUI: Cross-site request blocked. Source IP: '%1'. Sec-Fetch-Site header: '%2'. Target origin: '%3'")
+                   .arg(m_env.clientAddress.toString(), secFetchSiteValue, targetOrigin)
+                   , Log::WARNING);
+        }
+        return !isValid;
     }
 
     // sent with CORS requests, as well as with POST requests
