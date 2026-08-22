@@ -123,6 +123,21 @@ namespace MacUtils
         }
     }
 
+    void openFile(const Path &path)
+    {
+        @autoreleasepool
+        {
+            NSURL *pathURL = [NSURL fileURLWithPath:path.toString().toNSString()];
+
+            // Opening a file through the workspace can affect Qt's main loop.
+            // Dispatch the request in the background, as done for revealing files in Finder.
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
+            {
+                [[NSWorkspace sharedWorkspace] openURL:pathURL];
+            });
+        }
+    }
+
     void openFiles(const PathList &pathList)
     {
         @autoreleasepool
