@@ -38,6 +38,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QDirIterator>
+#include <QHostAddress>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -342,6 +343,12 @@ void AppController::preferencesAction()
     data[u"web_ui_address"_s] = pref->getWebUIAddress();
     data[u"web_ui_port"_s] = pref->getWebUIPort();
     data[u"web_ui_upnp"_s] = pref->useUPnPForWebUIPort();
+    data[u"streaming_enabled"_s] = pref->isStreamingEnabled();
+    data[u"streaming_address"_s] = pref->streamingAddress();
+    data[u"streaming_port"_s] = pref->streamingPort();
+    data[u"streaming_read_ahead_mib"_s] = pref->streamingReadAheadMiB();
+    data[u"streaming_wait_timeout"_s] = pref->streamingWaitTimeout();
+    data[u"streaming_allow_lan"_s] = pref->isStreamingLANAllowed();
     data[u"use_https"_s] = pref->isWebUIHttpsEnabled();
     data[u"web_ui_https_cert_path"_s] = pref->getWebUIHttpsCertificatePath().toString();
     data[u"web_ui_https_key_path"_s] = pref->getWebUIHttpsKeyPath().toString();
@@ -911,6 +918,27 @@ void AppController::setPreferencesAction()
 
     // WebUI
     // HTTP Server
+    if (m.contains(u"streaming_port"_s))
+    {
+        const int port = m.value(u"streaming_port"_s).toInt();
+        if ((port < 1) || (port > 65535))
+            throw APIError(APIErrorType::BadParams, tr("Streaming port must be between 1 and 65535"));
+    }
+
+    const bool streamingEnabled = m.value(u"streaming_enabled"_s, pref->isStreamingEnabled()).toBool();
+    if (streamingEnabled)
+    {
+        QHostAddress streamingAddress;
+        const QString address = m.value(u"streaming_address"_s, pref->streamingAddress()).toString().trimmed();
+        if (address.isEmpty() || !streamingAddress.setAddress(address)
+                || streamingAddress.isEqual(QHostAddress::Any, QHostAddress::ConvertUnspecifiedAddress))
+            throw APIError(APIErrorType::BadParams, tr("Streaming requires an explicit valid IP address"));
+
+        const bool allowLAN = m.value(u"streaming_allow_lan"_s, pref->isStreamingLANAllowed()).toBool();
+        if (!streamingAddress.isLoopback() && !allowLAN)
+            throw APIError(APIErrorType::BadParams, tr("Streaming LAN access must be enabled for non-loopback addresses"));
+    }
+
     if (hasKey(u"web_ui_domain_list"_s))
         pref->setServerDomains(it.value().toString());
     if (hasKey(u"web_ui_address"_s))
@@ -919,6 +947,18 @@ void AppController::setPreferencesAction()
         pref->setWebUIPort(it.value().value<quint16>());
     if (hasKey(u"web_ui_upnp"_s))
         pref->setUPnPForWebUIPort(it.value().toBool());
+    if (hasKey(u"streaming_enabled"_s))
+        pref->setStreamingEnabled(it.value().toBool());
+    if (hasKey(u"streaming_address"_s))
+        pref->setStreamingAddress(it.value().toString());
+    if (hasKey(u"streaming_port"_s))
+        pref->setStreamingPort(static_cast<quint16>(it.value().toInt()));
+    if (hasKey(u"streaming_read_ahead_mib"_s))
+        pref->setStreamingReadAheadMiB(it.value().toInt());
+    if (hasKey(u"streaming_wait_timeout"_s))
+        pref->setStreamingWaitTimeout(it.value().toInt());
+    if (hasKey(u"streaming_allow_lan"_s))
+        pref->setStreamingLANAllowed(it.value().toBool());
     if (hasKey(u"use_https"_s))
         pref->setWebUIHttpsEnabled(it.value().toBool());
     if (hasKey(u"web_ui_https_cert_path"_s))

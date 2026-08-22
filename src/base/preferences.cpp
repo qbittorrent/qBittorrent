@@ -877,6 +877,100 @@ void Preferences::setUPnPForWebUIPort(const bool enabled)
     setValue(u"WebUI/UseUPnP"_s, enabled);
 }
 
+bool Preferences::isStreamingEnabled() const
+{
+    return value(u"Streaming/Enabled"_s, false);
+}
+
+void Preferences::setStreamingEnabled(const bool enabled)
+{
+    if (enabled == isStreamingEnabled())
+        return;
+
+    setValue(u"Streaming/Enabled"_s, enabled);
+}
+
+QString Preferences::streamingAddress() const
+{
+    return value<QString>(u"Streaming/Address"_s, u"127.0.0.1"_s).trimmed();
+}
+
+void Preferences::setStreamingAddress(const QString &address)
+{
+    const QString trimmedAddress = address.trimmed();
+    if (trimmedAddress == streamingAddress())
+        return;
+
+    setValue(u"Streaming/Address"_s, trimmedAddress);
+}
+
+quint16 Preferences::streamingPort() const
+{
+    return value<quint16>(u"Streaming/Port"_s, 8081);
+}
+
+void Preferences::setStreamingPort(const quint16 port)
+{
+    if (port == streamingPort())
+        return;
+
+    setValue(u"Streaming/Port"_s, static_cast<int>(port));
+}
+
+int Preferences::streamingReadAheadMiB() const
+{
+    return value<int>(u"Streaming/ReadAheadMiB"_s, 128);
+}
+
+void Preferences::setStreamingReadAheadMiB(const int size)
+{
+    const int clampedSize = std::clamp(size, 0, 4096);
+    if (clampedSize == streamingReadAheadMiB())
+        return;
+
+    setValue(u"Streaming/ReadAheadMiB"_s, clampedSize);
+}
+
+int Preferences::streamingWaitTimeout() const
+{
+    return value<int>(u"Streaming/WaitTimeout"_s, 30);
+}
+
+void Preferences::setStreamingWaitTimeout(const int timeout)
+{
+    const int clampedTimeout = std::clamp(timeout, 1, 3600);
+    if (clampedTimeout == streamingWaitTimeout())
+        return;
+
+    setValue(u"Streaming/WaitTimeout"_s, clampedTimeout);
+}
+
+bool Preferences::isStreamingLANAllowed() const
+{
+    return value(u"Streaming/AllowLAN"_s, false);
+}
+
+void Preferences::setStreamingLANAllowed(const bool allowed)
+{
+    if (allowed == isStreamingLANAllowed())
+        return;
+
+    setValue(u"Streaming/AllowLAN"_s, allowed);
+}
+
+QString Preferences::streamingToken() const
+{
+    return value<QString>(u"Streaming/Token"_s);
+}
+
+void Preferences::setStreamingToken(const QString &token)
+{
+    if (token == streamingToken())
+        return;
+
+    setValue(u"Streaming/Token"_s, token);
+}
+
 QString Preferences::getWebUIUsername() const
 {
     return value<QString>(u"WebUI/Username"_s, u"admin"_s);

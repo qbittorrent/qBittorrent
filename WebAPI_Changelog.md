@@ -8,6 +8,8 @@
 
 ## 2.16.0
 
+* Add `torrents/streamUrl` endpoint with `hash` and numeric `file` parameters to create a tokenized streaming URL
+* `app/preferences` and `app/setPreferences` include streaming enabled, address, port, read-ahead, timeout, and LAN opt-in options
 * [#24791](https://github.com/qbittorrent/qBittorrent/pull/24791)
   * `search/downloadTorrent` and `rss/setFeedRefreshInterval` endpoints now only accept `POST` requests
 * [#24724](https://github.com/qbittorrent/qBittorrent/pull/24724)

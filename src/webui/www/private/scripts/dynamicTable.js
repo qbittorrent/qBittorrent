@@ -2395,6 +2395,22 @@ window.qBittorrent.DynamicTable ??= (() => {
         fileNameColumn = "name";
         headerCheckboxClickHandler = null;
         headerCheckboxId = "tristateCb";
+        streamingEnabled = false;
+
+        setStreamingEnabled(enabled) {
+            this.streamingEnabled = enabled;
+
+            const playColumn = this.columns["play"];
+            if (playColumn === undefined)
+                return;
+
+            const forceHide = !enabled;
+            if (playColumn.force_hide === forceHide)
+                return;
+
+            playColumn.force_hide = forceHide;
+            this.updateColumn("play", true);
+        }
 
         updateHeaderCheckbox() {
             const checkbox = document.getElementById(this.headerCheckboxId);
@@ -2643,6 +2659,8 @@ window.qBittorrent.DynamicTable ??= (() => {
         initColumns() {
             this.newColumn("checked", "", "", 50, true);
             this.newColumn("name", "", "QBT_TR(Name)QBT_TR[CONTEXT=TrackerListWidget]", 300, true);
+            this.newColumn("play", "text-align: center;", "QBT_TR(Play)QBT_TR[CONTEXT=TorrentContent]", 70, true);
+            this.columns["play"].force_hide = true;
             this.newColumn("size", "", "QBT_TR(Total Size)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("progress", "", "QBT_TR(Progress)QBT_TR[CONTEXT=TrackerListWidget]", 100, true);
             this.newColumn("priority", "", "QBT_TR(Download Priority)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
@@ -2752,6 +2770,57 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const folderBuffer = node.isFolder ? 35 : 0;
                 return (node.depth * 20) + folderBuffer;
             };
+
+            // play
+            if (this.columns["play"] !== undefined) {
+                this.columns["play"].dataProperties = ["rowId"];
+                this.columns["play"].updateTd = (td, row) => {
+                    const node = that.getNode(row.rowId);
+                    const canStream = that.streamingEnabled
+                        && window.qBittorrent.TorrentContent.isStreamableFile(node);
+                    if (!canStream) {
+                        td.replaceChildren();
+                        td.title = "";
+                        return;
+                    }
+
+                    let button = td.firstElementChild;
+                    if (button === null) {
+                        button = document.createElement("button");
+                        button.type = "button";
+                        button.className = "streamPlayButton";
+                        button.title = "QBT_TR(Play)QBT_TR[CONTEXT=TorrentContent]";
+                        button.setAttribute("aria-label", button.title);
+
+                        const image = document.createElement("img");
+                        image.src = "images/torrent-start.svg";
+                        image.alt = "";
+                        button.append(image);
+
+                        button.addEventListener("mousedown", (event) => event.stopPropagation());
+                        button.addEventListener("click", async (event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            if (button.disabled)
+                                return;
+
+                            button.disabled = true;
+                            try {
+                                await window.qBittorrent.TorrentContent.streamFile(button.dataset.fileId);
+                            }
+                            finally {
+                                button.disabled = false;
+                            }
+                        });
+                        td.append(button);
+                    }
+
+                    button.dataset.fileId = node.fileId;
+                    td.title = button.title;
+                };
+                this.columns["play"].compareRows = () => 0;
+                this.columns["play"].staticWidth = 70;
+            }
 
             // size
             this.columns["size"].updateTd = displaySize;
