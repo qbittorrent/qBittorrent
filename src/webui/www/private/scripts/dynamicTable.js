@@ -631,12 +631,16 @@ window.qBittorrent.DynamicTable ??= (() => {
             if ((savedOrder === null) || (savedOrder === undefined))
                 return;
 
+            // Map of column name to column object. Used both to validate the
+            // saved names and to reorder the columns array below.
+            const byName = new Map(this.columns.map(column => [column.name, column]));
+
             // Build the desired column order. A Set keeps names unique while
             // preserving their saved order.
             const order = new Set();
             for (const name of savedOrder.split(",")) {
                 // skip names that no longer exist as columns
-                if (name in this.columns)
+                if (byName.has(name))
                     order.add(name);
             }
 
@@ -648,7 +652,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             // Reorder the columns array in place to match the desired order.
             // The array is mutated rather than replaced so its named properties
             // are preserved.
-            const byName = new Map(this.columns.map(column => [column.name, column]));
             const orderedNames = [...order];
             for (let i = 0; i < this.columns.length; ++i)
                 this.columns[i] = byName.get(orderedNames[i]);
