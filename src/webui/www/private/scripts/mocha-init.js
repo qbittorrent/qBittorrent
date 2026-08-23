@@ -1308,16 +1308,14 @@ const initializeWindows = () => {
         e.preventDefault();
         e.stopPropagation();
 
-        if (confirm("QBT_TR(Would you like to pause the session?)QBT_TR[CONTEXT=MainWindow]"))
-            pauseSessionFN();
+        pauseSessionFN();
     });
 
     addClickEvent("resumeSession", (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        if (confirm("QBT_TR(Would you like to resume the session?)QBT_TR[CONTEXT=MainWindow]"))
-            resumeSessionFN();
+        resumeSessionFN();
     });
 
     addClickEvent("selectAll", (e) => {
