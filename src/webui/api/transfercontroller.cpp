@@ -194,11 +194,9 @@ void TransferController::banPeersAction()
 void TransferController::pauseSessionAction()
 {
     BitTorrent::Session::instance()->pause();
-    setResult(QString());
 }
 
 void TransferController::resumeSessionAction()
 {
     BitTorrent::Session::instance()->resume();
-    setResult(QString());
 }
