@@ -34,6 +34,9 @@
        <property name="text">
         <string>Common path:</string>
        </property>
+       <property name="buddy">
+        <cstring>commonPathEdit</cstring>
+       </property>
       </widget>
      </item>
      <item>

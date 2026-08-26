@@ -38,6 +38,9 @@
        <property name="text">
         <string>Search in:</string>
        </property>
+       <property name="buddy">
+        <cstring>filterMode</cstring>
+       </property>
       </widget>
      </item>
      <item>
@@ -71,6 +74,9 @@
        <property name="text">
         <string>Seeds:</string>
        </property>
+       <property name="buddy">
+        <cstring>minSeeds</cstring>
+       </property>
       </widget>
      </item>
      <item>
@@ -87,6 +93,9 @@
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>to</string>
+       </property>
+       <property name="buddy">
+        <cstring>maxSeeds</cstring>
        </property>
       </widget>
      </item>
@@ -127,6 +136,9 @@
        <property name="text">
         <string>Size:</string>
        </property>
+       <property name="buddy">
+        <cstring>minSize</cstring>
+       </property>
       </widget>
      </item>
      <item>
@@ -142,7 +154,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="minSizeUnit"/>
+        <widget class="QComboBox" name="minSizeUnit">
+         <property name="accessibleName">
+          <string>Size:</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -150,6 +166,9 @@
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>to</string>
+       </property>
+       <property name="buddy">
+        <cstring>maxSize</cstring>
        </property>
       </widget>
      </item>
@@ -169,7 +188,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="maxSizeUnit"/>
+        <widget class="QComboBox" name="maxSizeUnit">
+         <property name="accessibleName">
+          <string>to</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
