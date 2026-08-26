@@ -45,12 +45,6 @@
 
 using namespace Qt::Literals::StringLiterals;
 
-#if defined(Q_OS_WIN)
-const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseInsensitive;
-#else
-const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseSensitive;
-#endif
-
 const int PATHLIST_TYPEID = qRegisterMetaType<PathList>("PathList");
 
 namespace
@@ -207,13 +201,13 @@ bool Path::hasExtension(const QStringView ext) const
     return m_pathStr.endsWith(ext, Qt::CaseInsensitive);
 }
 
-bool Path::hasAncestor(const Path &other) const
+bool Path::hasAncestor(const Path &other, const Qt::CaseSensitivity caseSensitivity) const
 {
     if (other.isEmpty() || (m_pathStr.size() <= other.m_pathStr.size()))
         return false;
 
     return (m_pathStr[other.m_pathStr.size()] == u'/')
-            && m_pathStr.startsWith(other.m_pathStr, CASE_SENSITIVITY);
+            && m_pathStr.startsWith(other.m_pathStr, caseSensitivity);
 }
 
 Path Path::relativePathOf(const Path &childPath) const
@@ -386,7 +380,7 @@ Path Path::createUnchecked(const QString &pathStr)
 
 bool operator==(const Path &lhs, const Path &rhs)
 {
-    return (lhs.data().compare(rhs.data(), CASE_SENSITIVITY) == 0);
+    return (lhs.data().compare(rhs.data(), Path::CASE_SENSITIVITY) == 0);
 }
 
 Path operator/(const Path &lhs, const Path &rhs)

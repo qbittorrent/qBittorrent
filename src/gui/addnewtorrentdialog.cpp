@@ -984,7 +984,9 @@ void AddNewTorrentDialog::TorrentContentAdaptor::renameFile(const int index, con
         return;
 
     const Path oldFilePath = filePath(index);
-    if (oldFilePath == newFilePath)
+    // We should compare path in a case sensitive manner even on case insensitive
+    // platforms since it can be renamed by only changing case of some character(s)
+    if (oldFilePath.data() == newFilePath.data())
         return;
 
     doRenameFile(index, newFilePath);
