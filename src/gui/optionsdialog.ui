@@ -157,6 +157,9 @@
                    <property name="text">
                     <string>Language:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>comboLanguage</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -184,6 +187,9 @@
                    <property name="text">
                     <string>Style:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>comboStyle</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item row="0" column="1">
@@ -202,6 +208,9 @@
                   <widget class="QLabel" name="labelColorScheme">
                    <property name="text">
                     <string>Color scheme:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>comboColorScheme</cstring>
                    </property>
                   </widget>
                  </item>
@@ -236,6 +245,9 @@
                    <widget class="QLabel" name="label_16">
                     <property name="text">
                      <string>UI Theme file:</string>
+                    </property>
+                    <property name="buddy">
+                     <cstring>customThemeFilePath</cstring>
                     </property>
                    </widget>
                   </item>
@@ -325,6 +337,9 @@
                  </item>
                  <item>
                   <widget class="QComboBox" name="comboHideZero">
+                   <property name="accessibleName">
+                    <string>Hide zero and infinity values</string>
+                   </property>
                    <item>
                     <property name="text">
                      <string>Always</string>
@@ -362,6 +377,9 @@
                    <widget class="QLabel" name="lblDlList_2">
                     <property name="text">
                      <string>Downloading torrents:</string>
+                    </property>
+                    <property name="buddy">
+                     <cstring>actionTorrentDlOnDblClBox</cstring>
                     </property>
                    </widget>
                   </item>
@@ -414,6 +432,9 @@
                    <widget class="QLabel" name="lblUploadList">
                     <property name="text">
                      <string>Completed torrents:</string>
+                    </property>
+                    <property name="buddy">
+                     <cstring>actionTorrentFnOnDblClBox</cstring>
                     </property>
                    </widget>
                   </item>
@@ -541,6 +562,9 @@
                    <property name="text">
                     <string>Window state on start up:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>windowStateComboBox</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -626,6 +650,9 @@
                      <widget class="QLabel" name="labelTrayIconStyle">
                       <property name="text">
                        <string>Tray icon style:</string>
+                      </property>
+                      <property name="buddy">
+                       <cstring>comboTrayIcon</cstring>
                       </property>
                      </widget>
                     </item>
@@ -815,6 +842,9 @@
                    <property name="text">
                     <string>Save path:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>textFileLogPath</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -847,6 +877,9 @@
                    </property>
                    <property name="value">
                     <number>65</number>
+                   </property>
+                   <property name="accessibleName">
+                    <string>Backup the log file after:</string>
                    </property>
                   </widget>
                  </item>
@@ -885,12 +918,18 @@
                    <property name="value">
                     <number>6</number>
                    </property>
+                   <property name="accessibleName">
+                    <string>Delete backup logs older than:</string>
+                   </property>
                   </widget>
                  </item>
                  <item>
                   <widget class="QComboBox" name="comboFileLogAgeType">
                    <property name="currentIndex">
                     <number>1</number>
+                   </property>
+                   <property name="accessibleName">
+                    <string>Delete backup logs older than:</string>
                    </property>
                    <item>
                     <property name="text">
@@ -1017,6 +1056,9 @@
                    <property name="text">
                     <string>Torrent content layout:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>contentLayoutComboBox</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -1082,6 +1124,9 @@
                   <widget class="QLabel" name="stopConditionLabel">
                    <property name="text">
                     <string>Torrent stop condition:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>stopConditionComboBox</cstring>
                    </property>
                   </widget>
                  </item>
@@ -1165,7 +1210,11 @@
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="FileSystemPathLineEdit" name="backupDirPathEdit" native="true"/>
+                   <widget class="FileSystemPathLineEdit" name="backupDirPathEdit" native="true">
+                    <property name="accessibleName">
+                     <string>Store backup in:</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="1" column="0">
                    <widget class="QCheckBox" name="finishedBackupDirCheckBox">
@@ -1175,7 +1224,11 @@
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="FileSystemPathLineEdit" name="finishedBackupDirPathEdit" native="true"/>
+                   <widget class="FileSystemPathLineEdit" name="finishedBackupDirPathEdit" native="true">
+                    <property name="accessibleName">
+                     <string>When torrent finished move backup to:</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="2" column="0" colspan="2">
                    <widget class="QCheckBox" name="removeBackupTorrentFileCheckBox">
@@ -1289,6 +1342,9 @@
                    <property name="text">
                     <string>Default Torrent Management Mode:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>comboSavingMode</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item row="0" column="1">
@@ -1334,6 +1390,9 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                    <property name="text">
                     <string>When Torrent Category changed:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>comboTorrentCategoryChanged</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item row="1" column="1">
@@ -1371,6 +1430,9 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                   <widget class="QLabel" name="labelCategoryDefaultPathChanged">
                    <property name="text">
                     <string>When Default Save/Incomplete Path changed:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>comboCategoryDefaultPathChanged</cstring>
                    </property>
                   </widget>
                  </item>
@@ -1412,6 +1474,9 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                   <widget class="QLabel" name="labelCategoryChanged">
                    <property name="text">
                     <string>When Category Save Path changed:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>comboCategoryChanged</cstring>
                    </property>
                   </widget>
                  </item>
@@ -1468,6 +1533,9 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                    <property name="text">
                     <string>Default Save Path:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>textSavePath</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item row="0" column="1">
@@ -1481,7 +1549,11 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                   </widget>
                  </item>
                  <item row="1" column="1">
-                  <widget class="FileSystemPathLineEdit" name="textDownloadPath" native="true"/>
+                  <widget class="FileSystemPathLineEdit" name="textDownloadPath" native="true">
+                   <property name="accessibleName">
+                    <string>Use another path for incomplete torrents:</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -1644,6 +1716,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    <property name="text">
                     <string comment="From sender">From:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>senderEmailTxt</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item row="0" column="1">
@@ -1661,6 +1736,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    <property name="text">
                     <string comment="To receiver">To:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>lineEditDestEmail</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item row="1" column="1">
@@ -1670,6 +1748,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <widget class="QLabel" name="label_3">
                    <property name="text">
                     <string>SMTP server:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>lineEditSMTPServer</cstring>
                    </property>
                   </widget>
                  </item>
@@ -1684,6 +1765,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <widget class="QLabel" name="labelSMTPEncryption">
                    <property name="text">
                     <string>SMTP encryption:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>comboSMTPEncryption</cstring>
                    </property>
                   </widget>
                  </item>
@@ -1733,6 +1817,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                     <property name="text">
                      <string>Username:</string>
                     </property>
+                    <property name="buddy">
+                     <cstring>mailNotifUsername</cstring>
+                    </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
@@ -1742,6 +1829,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    <widget class="QLabel" name="label_8">
                     <property name="text">
                      <string>Password:</string>
+                    </property>
+                    <property name="buddy">
+                     <cstring>mailNotifPassword</cstring>
                     </property>
                    </widget>
                   </item>
@@ -1872,6 +1962,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                 <property name="text">
                  <string>Peer connection protocol:</string>
                 </property>
+                <property name="buddy">
+                 <cstring>comboProtocol</cstring>
+                </property>
                </widget>
               </item>
               <item>
@@ -1920,6 +2013,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <widget class="QLabel" name="lbl_ports">
                    <property name="text">
                     <string>Port used for incoming connections:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>spinPort</cstring>
                    </property>
                   </widget>
                  </item>
@@ -2001,6 +2097,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <property name="value">
                   <number>500</number>
                  </property>
+                 <property name="accessibleName">
+                  <string>Global maximum number of connections:</string>
+                 </property>
                 </widget>
                </item>
                <item row="0" column="2">
@@ -2037,6 +2136,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <property name="value">
                   <number>100</number>
                  </property>
+                 <property name="accessibleName">
+                  <string>Maximum number of connections per torrent:</string>
+                 </property>
                 </widget>
                </item>
                <item row="2" column="0">
@@ -2054,6 +2156,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <property name="value">
                   <number>8</number>
                  </property>
+                 <property name="accessibleName">
+                  <string>Global maximum number of upload slots:</string>
+                 </property>
                 </widget>
                </item>
                <item row="3" column="0">
@@ -2070,6 +2175,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                  <property name="value">
                   <number>4</number>
+                 </property>
+                 <property name="accessibleName">
+                  <string>Maximum number of upload slots per torrent:</string>
                  </property>
                 </widget>
                </item>
@@ -2095,6 +2203,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    <property name="text">
                     <string>Host:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>textI2PHost</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -2104,6 +2215,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <widget class="QLabel" name="labelI2PPort">
                    <property name="text">
                     <string>Port:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>spinI2PPort</cstring>
                    </property>
                   </widget>
                  </item>
@@ -2164,6 +2278,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    <property name="text">
                     <string>Type:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>comboProxyType</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -2174,6 +2291,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    <property name="text">
                     <string>Host:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>textProxyIP</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -2183,6 +2303,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <widget class="QLabel" name="lblProxyPort">
                    <property name="text">
                     <string>Port:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>spinProxyPort</cstring>
                    </property>
                   </widget>
                  </item>
@@ -2258,6 +2381,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                       <property name="text">
                        <string>Username:</string>
                       </property>
+                      <property name="buddy">
+                       <cstring>textProxyUsername</cstring>
+                      </property>
                      </widget>
                     </item>
                     <item row="0" column="1">
@@ -2267,6 +2393,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                      <widget class="QLabel" name="lblProxyPassword">
                       <property name="text">
                        <string>Password:</string>
+                      </property>
+                      <property name="buddy">
+                       <cstring>textProxyPassword</cstring>
                       </property>
                      </widget>
                     </item>
@@ -2359,11 +2488,18 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   </widget>
                  </item>
                  <item>
-                  <widget class="FileSystemPathLineEdit" name="textFilterPath" native="true"/>
+                  <widget class="FileSystemPathLineEdit" name="textFilterPath" native="true">
+                   <property name="accessibleName">
+                    <string>Filter path (.dat, .p2p, .p2b):</string>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <widget class="QToolButton" name="IpFilterRefreshBtn">
                    <property name="toolTip">
+                    <string>Reload the filter</string>
+                   </property>
+                   <property name="accessibleName">
                     <string>Reload the filter</string>
                    </property>
                   </widget>
@@ -2455,6 +2591,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <property name="text">
                   <string>Upload:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>spinUploadLimit</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="0" column="2">
@@ -2494,6 +2633,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <property name="text">
                   <string>Download:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>spinDownloadLimit</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="1" column="2">
@@ -2531,6 +2673,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                 <widget class="QLabel" name="label_13">
                  <property name="text">
                   <string>Upload:</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>spinUploadLimitAlt</cstring>
                  </property>
                 </widget>
                </item>
@@ -2570,6 +2715,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                 <widget class="QLabel" name="label_14">
                  <property name="text">
                   <string>Download:</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>spinDownloadLimitAlt</cstring>
                  </property>
                 </widget>
                </item>
@@ -2612,6 +2760,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                     <property name="text">
                      <string comment="From start time">From:</string>
                     </property>
+                    <property name="buddy">
+                     <cstring>timeEditScheduleFrom</cstring>
+                    </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
@@ -2641,6 +2792,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                     </property>
                     <property name="text">
                      <string comment="To end time">To:</string>
+                    </property>
+                    <property name="buddy">
+                     <cstring>timeEditScheduleTo</cstring>
                     </property>
                    </widget>
                   </item>
@@ -2678,6 +2832,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    <widget class="QLabel" name="label_18">
                     <property name="text">
                      <string>When:</string>
+                    </property>
+                    <property name="buddy">
+                     <cstring>comboBoxScheduleDays</cstring>
                     </property>
                    </widget>
                   </item>
@@ -2842,6 +2999,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    <property name="text">
                     <string>Encryption mode:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>comboEncryption</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -2933,6 +3093,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                 <property name="text">
                  <string>Maximum active checking torrents:</string>
                 </property>
+                <property name="buddy">
+                 <cstring>spinBoxMaxActiveCheckingTorrents</cstring>
+                </property>
                </widget>
               </item>
               <item>
@@ -2980,6 +3143,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <property name="text">
                   <string>Maximum active downloads:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>spinMaxActiveDownloads</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="0" column="1">
@@ -3013,6 +3179,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <property name="text">
                   <string>Maximum active uploads:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>spinMaxActiveUploads</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="1" column="1">
@@ -3032,6 +3201,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                 <widget class="QLabel" name="maxActiveTorrents_lbl">
                  <property name="text">
                   <string>Maximum active torrents:</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>spinMaxActiveTorrents</cstring>
                  </property>
                 </widget>
                </item>
@@ -3064,6 +3236,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                    <widget class="QLabel" name="labelDownloadRateForSlowTorrents">
                     <property name="text">
                      <string>Download rate threshold:</string>
+                    </property>
+                    <property name="buddy">
+                     <cstring>spinDownloadRateForSlowTorrents</cstring>
                     </property>
                    </widget>
                   </item>
@@ -3101,6 +3276,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                     <property name="text">
                      <string>Upload rate threshold:</string>
                     </property>
+                    <property name="buddy">
+                     <cstring>spinUploadRateForSlowTorrents</cstring>
+                    </property>
                    </widget>
                   </item>
                   <item row="1" column="1">
@@ -3123,6 +3301,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                    <widget class="QLabel" name="labelSlowTorrentInactivityTimer">
                     <property name="text">
                      <string>Torrent inactivity timer:</string>
+                    </property>
+                    <property name="buddy">
+                     <cstring>spinSlowTorrentsInactivityTimer</cstring>
                     </property>
                    </widget>
                   </item>
@@ -3172,6 +3353,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <property name="value">
                   <double>1.000000000000000</double>
                  </property>
+                 <property name="accessibleName">
+                  <string>When ratio reaches</string>
+                 </property>
                 </widget>
                </item>
                <item row="0" column="2">
@@ -3208,6 +3392,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <property name="value">
                   <number>1440</number>
                  </property>
+                 <property name="accessibleName">
+                  <string>When total seeding time reaches</string>
+                 </property>
                 </widget>
                </item>
                <item row="2" column="0">
@@ -3230,6 +3417,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                  <property name="value">
                   <number>1440</number>
+                 </property>
+                 <property name="accessibleName">
+                  <string>When inactive seeding time reaches</string>
                  </property>
                 </widget>
                </item>
@@ -3274,6 +3464,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+                 </property>
+                 <property name="buddy">
+                  <cstring>comboRatioLimitAct</cstring>
                  </property>
                 </widget>
                </item>
@@ -3348,6 +3541,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                    <property name="text">
                     <string>URL:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>textTrackersURL</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -3359,6 +3555,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                 <widget class="QLabel" name="labeltrackersFromURL">
                  <property name="text">
                   <string>Fetched trackers</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>textTrackersFromURL</cstring>
                  </property>
                 </widget>
                </item>
@@ -3454,6 +3653,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <widget class="QLabel" name="searchHistoryLengthLabel">
                    <property name="text">
                     <string>History length</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>searchHistoryLengthSpinBox</cstring>
                    </property>
                   </widget>
                  </item>
@@ -3557,6 +3759,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                    <property name="text">
                     <string>Feeds refresh interval:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>spinRSSRefreshInterval</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item row="0" column="1">
@@ -3593,6 +3798,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                    <property name="text">
                     <string>Same host request delay:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>spinRSSFetchDelay</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item row="1" column="1">
@@ -3612,6 +3820,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <widget class="QLabel" name="label_12">
                    <property name="text">
                     <string>Maximum number of articles per feed:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>spinRSSMaxArticlesPerFeed</cstring>
                    </property>
                   </widget>
                  </item>
@@ -3670,6 +3881,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                 <widget class="QLabel" name="label_5">
                  <property name="text">
                   <string>Filters:</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>textSmartEpisodeFilters</cstring>
                  </property>
                 </widget>
                </item>
@@ -3762,6 +3976,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                    <property name="text">
                     <string>IP address:</string>
                    </property>
+                   <property name="buddy">
+                    <cstring>textWebUIAddress</cstring>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -3777,6 +3994,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                   <widget class="QLabel" name="lblWebUIPort">
                    <property name="text">
                     <string>Port:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>spinWebUIPort</cstring>
                    </property>
                   </widget>
                  </item>
@@ -3825,6 +4045,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     <property name="text">
                      <string>Certificate:</string>
                     </property>
+                    <property name="buddy">
+                     <cstring>textWebUIHttpsCert</cstring>
+                    </property>
                    </widget>
                   </item>
                   <item row="0" column="2">
@@ -3837,6 +4060,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                    <widget class="QLabel" name="lblWebUIKey">
                     <property name="text">
                      <string>Key:</string>
+                    </property>
+                    <property name="buddy">
+                     <cstring>textWebUIHttpsKey</cstring>
                     </property>
                    </widget>
                   </item>
@@ -3876,6 +4102,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                        <property name="text">
                         <string>Username:</string>
                        </property>
+                       <property name="buddy">
+                        <cstring>textWebUIUsername</cstring>
+                       </property>
                       </widget>
                      </item>
                      <item row="0" column="1">
@@ -3885,6 +4114,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                       <widget class="QLabel" name="lblWebUIPassword">
                        <property name="text">
                         <string>Password:</string>
+                       </property>
+                       <property name="buddy">
+                        <cstring>textWebUIPassword</cstring>
                        </property>
                       </widget>
                      </item>
@@ -3912,6 +4144,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                        <property name="text">
                         <string>Key:</string>
                        </property>
+                       <property name="buddy">
+                        <cstring>textWebUIAPIKey</cstring>
+                       </property>
                       </widget>
                      </item>
                      <item row="0" column="1">
@@ -3938,6 +4173,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                           <iconset>
                            <normaloff>:/icons/edit-copy.svg</normaloff>:/icons/edit-copy.svg</iconset>
                          </property>
+                         <property name="accessibleName">
+                          <string>Copy API key</string>
+                         </property>
                         </widget>
                        </item>
                        <item>
@@ -3949,6 +4187,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                           <iconset>
                            <normaloff>:/icons/view-refresh.svg</normaloff>:/icons/view-refresh.svg</iconset>
                          </property>
+                         <property name="accessibleName">
+                          <string>Generate API key</string>
+                         </property>
                         </widget>
                        </item>
                        <item>
@@ -3959,6 +4200,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                          <property name="icon">
                           <iconset>
                            <normaloff>:/icons/list-remove.svg</normaloff>:/icons/list-remove.svg</iconset>
+                         </property>
+                         <property name="accessibleName">
+                          <string>Delete API key</string>
                          </property>
                         </widget>
                        </item>
@@ -4001,6 +4245,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                       <property name="text">
                        <string>Ban client after consecutive failures:</string>
                       </property>
+                      <property name="buddy">
+                       <cstring>spinBanCounter</cstring>
+                      </property>
                      </widget>
                     </item>
                     <item row="0" column="1">
@@ -4034,6 +4281,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                       <property name="alignment">
                        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                       </property>
+                      <property name="buddy">
+                       <cstring>spinBanDuration</cstring>
+                      </property>
                      </widget>
                     </item>
                     <item row="1" column="1">
@@ -4057,6 +4307,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                      <widget class="QLabel" name="lblSessionTimeout">
                       <property name="text">
                        <string>Session timeout:</string>
+                      </property>
+                      <property name="buddy">
+                       <cstring>spinSessionTimeout</cstring>
                       </property>
                      </widget>
                     </item>
@@ -4094,6 +4347,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                      <widget class="QLabel" name="labelWebUISessionsCountLimit">
                       <property name="text">
                        <string>Sessions count limit:</string>
+                      </property>
+                      <property name="buddy">
+                       <cstring>spinBoxWebUISessionsCountLimit</cstring>
                       </property>
                      </widget>
                     </item>
@@ -4143,6 +4399,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                      <widget class="QLabel" name="labelWebUIRootFolder">
                       <property name="text">
                        <string>Files location:</string>
+                      </property>
+                      <property name="buddy">
+                       <cstring>textWebUIRootFolder</cstring>
                       </property>
                      </widget>
                     </item>
@@ -4210,6 +4469,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                          <property name="text">
                           <string>Server domains:</string>
                          </property>
+                         <property name="buddy">
+                          <cstring>textServerDomains</cstring>
+                         </property>
                         </widget>
                        </item>
                        <item>
@@ -4272,6 +4534,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                       <property name="text">
                        <string>Trusted proxies list:</string>
                       </property>
+                      <property name="buddy">
+                       <cstring>textTrustedReverseProxiesList</cstring>
+                      </property>
                      </widget>
                     </item>
                     <item>
@@ -4316,6 +4581,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                     <property name="text">
                      <string>Service:</string>
                     </property>
+                    <property name="buddy">
+                     <cstring>comboDNSService</cstring>
+                    </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
@@ -4348,6 +4616,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                     <property name="text">
                      <string>Domain name:</string>
                     </property>
+                    <property name="buddy">
+                     <cstring>domainNameTxt</cstring>
+                    </property>
                    </widget>
                   </item>
                   <item row="1" column="1">
@@ -4362,6 +4633,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                     <property name="text">
                      <string>Username:</string>
                     </property>
+                    <property name="buddy">
+                     <cstring>DNSUsernameTxt</cstring>
+                    </property>
                    </widget>
                   </item>
                   <item row="2" column="1">
@@ -4371,6 +4645,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                    <widget class="QLabel" name="label_22">
                     <property name="text">
                      <string>Password:</string>
+                    </property>
+                    <property name="buddy">
+                     <cstring>DNSPasswordTxt</cstring>
                     </property>
                    </widget>
                   </item>

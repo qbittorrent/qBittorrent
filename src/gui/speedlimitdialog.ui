@@ -32,12 +32,18 @@
         <property name="text">
          <string>Upload:</string>
         </property>
+        <property name="buddy">
+         <cstring>spinUploadLimit</cstring>
+        </property>
        </widget>
       </item>
       <item row="0" column="2">
        <widget class="QSlider" name="sliderUploadLimit">
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="accessibleName">
+         <string>Upload:</string>
         </property>
        </widget>
       </item>
@@ -62,12 +68,18 @@
         <property name="text">
          <string>Download:</string>
         </property>
+        <property name="buddy">
+         <cstring>spinDownloadLimit</cstring>
+        </property>
        </widget>
       </item>
       <item row="1" column="2">
        <widget class="QSlider" name="sliderDownloadLimit">
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="accessibleName">
+         <string>Download:</string>
         </property>
        </widget>
       </item>
@@ -108,12 +120,18 @@
         <property name="text">
          <string>Upload:</string>
         </property>
+        <property name="buddy">
+         <cstring>spinAltUploadLimit</cstring>
+        </property>
        </widget>
       </item>
       <item row="0" column="2">
        <widget class="QSlider" name="sliderAltUploadLimit">
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="accessibleName">
+         <string>Upload:</string>
         </property>
        </widget>
       </item>
@@ -138,12 +156,18 @@
         <property name="text">
          <string>Download:</string>
         </property>
+        <property name="buddy">
+         <cstring>spinAltDownloadLimit</cstring>
+        </property>
        </widget>
       </item>
       <item row="1" column="2">
        <widget class="QSlider" name="sliderAltDownloadLimit">
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="accessibleName">
+         <string>Download:</string>
         </property>
        </widget>
       </item>

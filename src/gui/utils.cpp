@@ -39,6 +39,7 @@
 
 #include <QApplication>
 #include <QDesktopServices>
+#include <QGroupBox>
 #include <QPixmap>
 #include <QPixmapCache>
 #include <QPoint>
@@ -312,4 +313,15 @@ Tag Utils::Gui::widgetTextToTag(const QString &text)
     }
 
     return Tag(cleanedText);
+}
+
+void Utils::Gui::nameNestedGroupBoxes(QWidget *widget)
+{
+    // a nested group box would otherwise be named after the group box that contains it
+    const QList<QGroupBox *> groupBoxes = widget->findChildren<QGroupBox *>();
+    for (QGroupBox *groupBox : groupBoxes)
+    {
+        if (groupBox->accessibleName().isEmpty() && qobject_cast<QGroupBox *>(groupBox->parentWidget()))
+            groupBox->setAccessibleName(groupBox->title().remove(u'&'));
+    }
 }

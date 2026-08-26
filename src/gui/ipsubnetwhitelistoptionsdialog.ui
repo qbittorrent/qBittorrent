@@ -52,6 +52,9 @@
           <property name="placeholderText">
            <string>Example: 172.17.32.0/24, fdff:ffff:c8::/40</string>
           </property>
+          <property name="accessibleName">
+           <string>IP subnet</string>
+          </property>
          </widget>
         </item>
        </layout>
