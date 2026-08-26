@@ -839,7 +839,7 @@ void SearchWidget::showTabMenu(const int index)
             searchJobWidget->status() != SearchJobWidget::Status::Ongoing)
     {
         menu->addAction(tr("Refresh tab"), this, [this, searchJobWidget] { refreshTab(searchJobWidget); });
-        menu->addAction(tr("Refrfesh all tabs"), this, &SearchWidget::refreshAllTabs);
+        menu->addAction(tr("Refresh all tabs"), this, &SearchWidget::refreshAllTabs);
     }
     else
     {
