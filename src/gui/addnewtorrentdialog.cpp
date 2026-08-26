@@ -70,6 +70,7 @@
 #include "filterpatternformatmenu.h"
 #include "lineedit.h"
 #include "torrenttagsdialog.h"
+#include "utils.h"
 
 #include "ui_addnewtorrentdialog.h"
 
@@ -197,6 +198,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     , m_storeFilterPatternFormat {u"GUI/" SETTINGS_KEY(u"FilterPatternFormat"_s)}
 {
     m_ui->setupUi(this);
+    Utils::Gui::nameNestedGroupBoxes(this);
 
     m_ui->scrollArea->viewport()->setAutoFillBackground(false);
     m_ui->scrollAreaWidgetContents->setAutoFillBackground(false);

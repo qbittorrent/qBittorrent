@@ -19,6 +19,9 @@
      <property name="wordWrap">
       <bool>true</bool>
      </property>
+     <property name="buddy">
+      <cstring>previewList</cstring>
+     </property>
     </widget>
    </item>
    <item>

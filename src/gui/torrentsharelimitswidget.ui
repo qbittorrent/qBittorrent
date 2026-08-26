@@ -18,6 +18,9 @@
        <property name="text">
         <string>Ratio:</string>
        </property>
+       <property name="buddy">
+        <cstring>comboBoxRatioMode</cstring>
+       </property>
       </widget>
      </item>
      <item row="0" column="1">
@@ -34,12 +37,18 @@
        <property name="value">
         <double>1.000000000000000</double>
        </property>
+       <property name="accessibleName">
+        <string>Ratio:</string>
+       </property>
       </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="labelSeedingTime">
        <property name="text">
         <string>Seeding time:</string>
+       </property>
+       <property name="buddy">
+        <cstring>comboBoxSeedingTimeMode</cstring>
        </property>
       </widget>
      </item>
@@ -60,12 +69,18 @@
        <property name="value">
         <number>1440</number>
        </property>
+       <property name="accessibleName">
+        <string>Seeding time:</string>
+       </property>
       </widget>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="labelInactiveSeedingTime">
        <property name="text">
         <string>Inactive seeding time:</string>
+       </property>
+       <property name="buddy">
+        <cstring>comboBoxInactiveSeedingTimeMode</cstring>
        </property>
       </widget>
      </item>
@@ -86,6 +101,9 @@
        <property name="value">
         <number>1440</number>
        </property>
+       <property name="accessibleName">
+        <string>Inactive seeding time:</string>
+       </property>
       </widget>
      </item>
     </layout>
@@ -96,6 +114,9 @@
       <widget class="QLabel" name="labelMode">
        <property name="text">
         <string>Mode:</string>
+       </property>
+       <property name="buddy">
+        <cstring>comboBoxMode</cstring>
        </property>
       </widget>
      </item>
@@ -123,6 +144,9 @@
       <widget class="QLabel" name="labelAction">
        <property name="text">
         <string>Action when the limit is reached:</string>
+       </property>
+       <property name="buddy">
+        <cstring>comboBoxAction</cstring>
        </property>
       </widget>
      </item>
