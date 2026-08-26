@@ -986,7 +986,7 @@ void SearchWidget::refreshAllTabs()
 
     for (int tabIndex = (m_ui->tabWidget->count() - 1); tabIndex >= 0; --tabIndex)
     {
-        if (auto *searchJobWidget = static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(index));
+        if (auto *searchJobWidget = static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(tabIndex));
                 searchJobWidget->status() != SearchJobWidget::Status::Ongoing)
         {
             auto *searchHandler = SearchPluginManager::instance()->startSearch(searchJobWidget->searchPattern(), selectedCategory(), selectedPlugins());
