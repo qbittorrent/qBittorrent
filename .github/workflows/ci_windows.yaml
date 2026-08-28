@@ -38,6 +38,9 @@ jobs:
         - os: windows-latest
           arch: x64
           qt_arch: win64_msvc2022_64
+        - os: windows-11-arm
+          arch: arm64
+          qt_arch: win64_msvc2022_arm64
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -124,6 +127,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: "6.10.3"
+          host: ${{ matrix.config.arch == 'arm64' && 'windows_arm64' || 'windows' }}
           arch: ${{ matrix.config.qt_arch }}
           archives: qtbase qtsvg qttools
           modules: qtimageformats
@@ -222,6 +226,34 @@ jobs:
           mkdir upload/cmake/libtorrent
           copy ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
+      - name: Verify binary architecture
+        run: |
+          if ("${{ matrix.config.arch }}" -eq "arm64") { $expected = "AA64"; $label = "ARM64" }
+          else { $expected = "8664"; $label = "x64" }
+          Write-Output "Expected machine type: $expected ($label)"
+          $files = Get-ChildItem -Path upload/qBittorrent -Recurse -Include *.exe,*.dll
+          if ($files.Count -eq 0) { throw "No .exe/.dll files found in upload/qBittorrent" }
+          $failed = @()
+          foreach ($f in $files) {
+            $rel = $f.FullName -replace [regex]::Escape((Resolve-Path upload/qBittorrent).Path + '\'), ''
+            $hit = & dumpbin /headers $f.FullName | Select-String "machine" | Select-Object -First 1
+            if (-not $hit) {
+              Write-Output "FAIL $rel -- no machine header found"
+              $failed += $rel
+            }
+            elseif ($hit.Line -match $expected) {
+              Write-Output "OK   $rel -- $($hit.Line.Trim())"
+            }
+            else {
+              Write-Output "FAIL $rel -- $($hit.Line.Trim())"
+              $failed += $rel
+            }
+          }
+          Write-Output "`nChecked $($files.Count) binaries, expected: $expected ($label)"
+          if ($failed.Count -gt 0) {
+            throw "$($failed.Count) file(s) have wrong architecture: $($failed -join ', ')"
+          }
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v7
         with:
@@ -229,9 +261,19 @@ jobs:
           path: upload
 
       - name: Install NSIS
+        if: matrix.config.arch != 'arm64'
         uses: repolevedavaj/install-nsis@1ab2f7ba2fe9408db612029be0bb3c0088b0d3e9 # v1.2.1
         with:
           nsis-version: '3.12'
+
+      - name: Install NSIS (ARM64)
+        if: matrix.config.arch == 'arm64'
+        run: |
+          choco install nsis --version=3.12 -y
+          $nsisPath = Join-Path ${env:ProgramFiles(x86)} 'NSIS\Bin'
+          if (-not (Test-Path $nsisPath)) { $nsisPath = Join-Path $env:ProgramFiles 'NSIS\Bin' }
+          Write-Output $nsisPath >> $env:GITHUB_PATH
+          makensis /VERSION
 
       - name: Create installer
         run: |
