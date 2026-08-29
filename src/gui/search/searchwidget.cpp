@@ -984,7 +984,7 @@ void SearchWidget::refreshAllTabs()
         return;
     }
 
-    for (int tabIndex = (m_ui->tabWidget->count() - 1); tabIndex >= 0; --tabIndex)
+    for (int tabIndex = 0; tabIndex < m_ui->tabWidget->count(); ++tabIndex)
     {
         if (auto *searchJobWidget = static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(tabIndex));
                 searchJobWidget->status() != SearchJobWidget::Status::Ongoing)
