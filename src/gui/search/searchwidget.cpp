@@ -989,8 +989,7 @@ void SearchWidget::refreshAllTabs()
         if (auto *searchJobWidget = static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(tabIndex));
                 searchJobWidget->status() != SearchJobWidget::Status::Ongoing)
         {
-            auto *searchHandler = SearchPluginManager::instance()->startSearch(searchJobWidget->searchPattern(), selectedCategory(), selectedPlugins());
-            searchJobWidget->assignSearchHandler(searchHandler);
+             refreshTab(searchJobWidget);
         }
     }
 }
