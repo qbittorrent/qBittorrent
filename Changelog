@@ -1,3 +1,19 @@
+Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.4
+    - BUGFIX: Enable links in add torrent comments (TurboTheTurtle) #24604
+    - BUGFIX: Resolve relative UI theme paths against config folder (vrubleg) #24658
+    - BUGFIX: Fix redefined signal (glassez) #24679
+    - BUGFIX: Skip processing of already being added torrent source (glassez) #24743
+    - BUGFIX: Close file descriptors when starting file manager (ValdikSS) #24761
+    - BUGFIX: Fix case-only renaming isn't applied (glassez) #24852
+	- BUGFIX: Fix crash when second instance is started during legal notice (glassez) #24877
+    - WEBUI: Add shared dialog for adding multiple torrents (Piccirello) #24386
+    - WEBUI: Do not select invisible rows in dynamicTable.js (vafada) #24725
+    - WEBUI: Escape add-torrent window title (RealFakeAccount) #24726
+    - WEBUI: Use safe property for setting element title (Chocobo1) #24766
+    - WEBUI: Only open http(s) URLs from RSS articles and search results (Piccirello) #24790
+    - WEBUI: Prevent in-place corruption in DynamicTable.loadColumnsOrder() (UgurGumushan) #24809
+    - OTHER: Suppress useless compiler warning (Chocobo1) #24814
+
 Tue Jul 07th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.3
     - BUGFIX: Fix MIME header encoding in email to require ASCII (quinot) #24382
     - BUGFIX: Fix potential invalid migration procedure (Chocobo1) #24502
