@@ -189,6 +189,8 @@ namespace BitTorrent
 
         QString getDHTBootstrapNodes() const override;
         void setDHTBootstrapNodes(const QString &nodes) override;
+        QString getWebTorrentSTUNServer() const override;
+        void setWebTorrentSTUNServer(const QString &server) override;
         bool isDHTEnabled() const override;
         void setDHTEnabled(bool enabled) override;
         bool isLSDEnabled() const override;
@@ -669,6 +671,7 @@ namespace BitTorrent
         void updateTrackersFromFile();
 
         CachedSettingValue<QString> m_DHTBootstrapNodes;
+        CachedSettingValue<QString> m_webTorrentSTUNServer;
         CachedSettingValue<bool> m_isDHTEnabled;
         CachedSettingValue<bool> m_isLSDEnabled;
         CachedSettingValue<bool> m_isPeXEnabled;

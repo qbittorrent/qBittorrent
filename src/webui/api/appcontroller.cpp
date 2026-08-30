@@ -522,6 +522,8 @@ void AppController::preferencesAction()
     data[u"max_outstanding_block_requests"_s] = session->maxOutstandingBlockRequests();
     // DHT bootstrap nodes
     data[u"dht_bootstrap_nodes"_s] = session->getDHTBootstrapNodes();
+    // STUN server for WebTorrent NAT traversal
+    data[u"webtorrent_stun_server"_s] = session->getWebTorrentSTUNServer();
 
     setResult(data);
 }
@@ -1230,6 +1232,9 @@ void AppController::setPreferencesAction()
     // DHT bootstrap nodes
     if (hasKey(u"dht_bootstrap_nodes"_s))
         session->setDHTBootstrapNodes(it.value().toString());
+    // STUN server for WebTorrent NAT traversal
+    if (hasKey(u"webtorrent_stun_server"_s))
+        session->setWebTorrentSTUNServer(it.value().toString());
 
     // Save preferences
     pref->apply();

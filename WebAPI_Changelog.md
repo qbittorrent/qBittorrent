@@ -2,6 +2,9 @@
 
 ## 2.16.1
 
+* [#24837](https://github.com/qbittorrent/qBittorrent/pull/24837)
+  * `app/preferences` endpoint includes `webtorrent_stun_server` (string) option
+  * `app/setPreferences` endpoint allows to set `webtorrent_stun_server` (string) option
 * [#23784](https://github.com/qbittorrent/qBittorrent/pull/23784)
   * `search/status` endpoint now includes `pattern`, `category`, and `plugins` fields for each search job
   * `app/preferences` endpoint now supports `store_search_jobs` and `store_search_job_results` preference keys

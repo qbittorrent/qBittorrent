@@ -206,6 +206,8 @@ namespace BitTorrent
 
         virtual QString getDHTBootstrapNodes() const = 0;
         virtual void setDHTBootstrapNodes(const QString &nodes) = 0;
+        virtual QString getWebTorrentSTUNServer() const = 0;
+        virtual void setWebTorrentSTUNServer(const QString &server) = 0;
         virtual bool isDHTEnabled() const = 0;
         virtual void setDHTEnabled(bool enabled) = 0;
         virtual bool isLSDEnabled() const = 0;
