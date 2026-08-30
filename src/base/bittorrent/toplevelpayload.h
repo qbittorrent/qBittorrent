@@ -48,9 +48,6 @@ namespace BitTorrent
     };
 
     // Preflight for unique-subfolder conversion (no disk changes).
-    // Prefer folderRenameOldRoot → uniqueRoot (same as renameFolder).
-    // Otherwise renames lists per-file targets for a batch rename job
-    // (NoSubfolder wrap of multiple top-level paths).
     struct UniqueSubfolderMigrationPlan
     {
         Path uniqueRoot;

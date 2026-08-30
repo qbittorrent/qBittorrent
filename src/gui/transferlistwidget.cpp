@@ -985,7 +985,7 @@ void TransferListWidget::createUniqueSubfolderForSelectedTorrents()
                 , [this](const bool success, const QString &message)
         {
             if (!success)
-                QMessageBox::warning(this, tr("Create unique subfolder failed"), message);
+                QMessageBox::warning(this, tr("Create unique subfolder"), message);
         }, Qt::SingleShotConnection);
 
         torrent->startUniqueSubfolderMigration(plan);

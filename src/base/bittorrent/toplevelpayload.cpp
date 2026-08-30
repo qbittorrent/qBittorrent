@@ -113,7 +113,7 @@ namespace
         if (filePaths.size() == 1)
         {
             const QString fileName = filePaths.at(0).filename();
-            if ((base == fileName) || (base == filePaths.at(0).toString()))
+            if ((base == fileName) || (base == filePaths.at(0).data()))
                 base = Path(fileName).removedExtension().toString();
         }
 
@@ -126,6 +126,26 @@ namespace
     bool isUnderUniqueRoot(const Path &path, const Path &uniqueRoot)
     {
         return (path == uniqueRoot) || path.hasAncestor(uniqueRoot);
+    }
+
+    // Like TorrentContentHandler::renameFile: dest already used by another torrent path.
+    bool destinationTaken(const Path &from, const Path &to
+            , const QSet<QString> &occupiedPaths, const QSet<QString> &newTargets)
+    {
+        if (newTargets.contains(to.data()))
+            return true;
+        if (!occupiedPaths.contains(to.data()))
+            return false;
+        return (to != from);
+    }
+
+    void blockExistingDestination(BitTorrent::UniqueSubfolderMigrationPlan &plan, const Path &to)
+    {
+        plan.blocked = true;
+        plan.blockReason = QCoreApplication::translate("BitTorrent"
+                , "The file already exists: '%1'.").arg(to.toString());
+        plan.renames.clear();
+        plan.folderRenameOldRoot = {};
     }
 }
 
@@ -182,6 +202,11 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
         return plan;
     }
 
+    QSet<QString> occupiedPaths;
+    occupiedPaths.reserve(currentPaths.size());
+    for (const Path &path : currentPaths)
+        occupiedPaths.insert(path.data());
+
     PathList remainingPaths;
     QList<int> remainingIndexes;
     remainingPaths.reserve(currentPaths.size());
@@ -205,20 +230,17 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
     if (currentLayout == TorrentContentLayout::NoSubfolder)
     {
         // Wrap every remaining full path under the unique folder (batch rename).
-        QSet<QString> targets;
+        QSet<QString> newTargets;
         for (int i = 0; i < remainingIndexes.size(); ++i)
         {
-            const Path to = plan.uniqueRoot / remainingPaths.at(i);
-            if (targets.contains(to.data()))
+            const Path &from = remainingPaths.at(i);
+            const Path to = plan.uniqueRoot / from;
+            if (destinationTaken(from, to, occupiedPaths, newTargets))
             {
-                plan.blocked = true;
-                plan.blockReason = QCoreApplication::translate("BitTorrent"
-                        , "Migration cannot continue: two files map to the same destination: \"%1\".")
-                        .arg(to.toString());
-                plan.renames.clear();
+                blockExistingDestination(plan, to);
                 return plan;
             }
-            targets.insert(to.data());
+            newTargets.insert(to.data());
             plan.renames.append({.fileIndex = remainingIndexes.at(i), .to = to});
         }
         return plan;
@@ -228,7 +250,18 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
     const Path sharedRoot = Path::findRootFolder(remainingPaths);
     if (!sharedRoot.isEmpty())
     {
-        // Same operation as renameFolder(sharedRoot, uniqueRoot).
+        QSet<QString> newTargets;
+        for (const Path &from : asConst(remainingPaths))
+        {
+            const Path to = plan.uniqueRoot / sharedRoot.relativePathOf(from);
+            if (destinationTaken(from, to, occupiedPaths, newTargets))
+            {
+                blockExistingDestination(plan, to);
+                return plan;
+            }
+            newTargets.insert(to.data());
+        }
+
         plan.folderRenameOldRoot = sharedRoot;
         return plan;
     }
@@ -245,20 +278,17 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
         }
     }
 
-    QSet<QString> targets;
+    QSet<QString> newTargets;
     for (int i = 0; i < remainingIndexes.size(); ++i)
     {
-        const Path to = plan.uniqueRoot / remainingPaths.at(i);
-        if (targets.contains(to.data()))
+        const Path &from = remainingPaths.at(i);
+        const Path to = plan.uniqueRoot / from;
+        if (destinationTaken(from, to, occupiedPaths, newTargets))
         {
-            plan.blocked = true;
-            plan.blockReason = QCoreApplication::translate("BitTorrent"
-                    , "Migration cannot continue: two files map to the same destination: \"%1\".")
-                    .arg(to.toString());
-            plan.renames.clear();
+            blockExistingDestination(plan, to);
             return plan;
         }
-        targets.insert(to.data());
+        newTargets.insert(to.data());
         plan.renames.append({.fileIndex = remainingIndexes.at(i), .to = to});
     }
     return plan;

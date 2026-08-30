@@ -3035,11 +3035,16 @@ void TorrentImpl::finishUniqueSubfolderConversion(const bool success, const QLis
     QStringList failed;
     failed.reserve(failedFileIndexes.size());
     for (const int index : failedFileIndexes)
-        failed.append(QString::number(index));
+    {
+        if ((index >= 0) && (index < filesCount()))
+            failed.append(filePath(index).toString());
+        else
+            failed.append(QString::number(index));
+    }
 
     emit uniqueSubfolderMigrationFinished(false
-            , tr("Rename failed for file index(es): %1. Layout was not updated.")
-            .arg(failed.join(u", "_s)));
+            , tr("Torrent: \"%1\"\n\nRename failed for: %2\nLayout was not updated.")
+            .arg(name(), failed.join(u", "_s)));
 }
 
 QFuture<QList<PeerInfo>> TorrentImpl::fetchPeerInfo() const

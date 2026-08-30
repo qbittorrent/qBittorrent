@@ -587,8 +587,9 @@ void OptionsDialog::loadDownloadsTabOptions()
             + u"</p><p><b>" + tr("Create unique subfolder") + u"</b> - "
             + tr("Put content in a unique folder with a short hash suffix (e.g. Show a19f83c275d1). "
                  "Avoids name collisions; breaks path-based cross-seeding. "
-                 "Existing torrents stay as-is until converted via right-click "
-                 "(migration stops if matching destination files already exist).")
+                 "Existing torrents stay as-is until converted from the transfer list. "
+                 "Conflicts are handled like normal content renaming; "
+                 "layout updates only if the whole conversion succeeds.")
             + u"</p><p><b>" + tr("Don't create subfolder") + u"</b> - "
             + tr("Put files directly in the save path.")
             + u"</p></body></html>");

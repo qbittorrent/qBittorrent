@@ -188,7 +188,37 @@ private slots:
                 current, sampleId, u"Show"_s, TorrentContentLayout::NoSubfolder);
 
         QVERIFY(plan.blocked);
-        QVERIFY(plan.blockReason.contains(u"same destination"_s));
+        QVERIFY(plan.blockReason.contains(u"already exists"_s));
+    }
+
+    void testPlanBlocksWhenDestAlreadyUnderUniqueRoot() const
+    {
+        // Partial retry where the remaining file would overwrite a path already under the unique root.
+        const PathList partial {
+            Path(u"Show a19f83c275d1/ep1.mkv"_s),
+            Path(u"Show/ep1.mkv"_s)
+        };
+        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
+                partial, sampleId, u"Show"_s, TorrentContentLayout::Subfolder);
+
+        QVERIFY(plan.blocked);
+        QVERIFY(plan.blockReason.contains(u"already exists"_s));
+        QVERIFY(plan.blockReason.contains(u"Show a19f83c275d1/ep1.mkv"_s));
+        QVERIFY(!plan.isFolderRename());
+    }
+
+    void testPlanBlocksNoSubfolderWhenDestAlreadyUnderUniqueRoot() const
+    {
+        const PathList partial {
+            Path(u"Show a19f83c275d1/a.mkv"_s),
+            Path(u"a.mkv"_s)
+        };
+        const UniqueSubfolderMigrationPlan plan = makeUniqueSubfolderMigrationPlan(
+                partial, sampleId, u"Show"_s, TorrentContentLayout::NoSubfolder);
+
+        QVERIFY(plan.blocked);
+        QVERIFY(plan.blockReason.contains(u"already exists"_s));
+        QVERIFY(plan.renames.isEmpty());
     }
 
     void testPlanFinalizeOnlyWhenAlreadyUnderUnique() const
