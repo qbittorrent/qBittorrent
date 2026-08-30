@@ -31,6 +31,7 @@
 
 #include <algorithm>
 #include <memory>
+#include <ranges>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -1865,7 +1866,6 @@ void TorrentImpl::scheduleRenameJob(const Path &oldFolderPath, const Path &newFo
 {
     if (fileRenames.isEmpty())
     {
-        // Conversion callers connect to uniqueSubfolderMigrationFinished; do not hang them.
         if (uniqueSubfolderConversion)
         {
             emit uniqueSubfolderMigrationFinished(false
@@ -1874,8 +1874,6 @@ void TorrentImpl::scheduleRenameJob(const Path &oldFolderPath, const Path &newFo
         return;
     }
 
-    // oldFolderPath may be empty for NoSubfolder wraps (batch rename under newFolderPath only).
-    // Job tracking, alerts, and success/failure handling are shared with doRenameFolder().
     const int folderRenameJobID = m_nextFolderRenameJobID++;
     m_renamingFolders.enqueue(
     {
@@ -2937,29 +2935,30 @@ UniqueSubfolderMigrationPlan TorrentImpl::planUniqueSubfolderMigration() const
 
 void TorrentImpl::startUniqueSubfolderMigration(const UniqueSubfolderMigrationPlan &plan)
 {
-    if (plan.blocked)
-    {
-        emit uniqueSubfolderMigrationFinished(false, plan.blockReason);
+    // Callers handle blocked/empty before connecting to uniqueSubfolderMigrationFinished.
+    if (plan.blocked || plan.isEmpty())
         return;
-    }
 
     if (plan.finalizeOnly)
     {
         m_contentLayout = TorrentContentLayout::UniqueSubfolder;
         deferredRequestResumeData();
-        emit uniqueSubfolderMigrationFinished(true, {});
-        return;
-    }
-
-    if (plan.isEmpty())
-    {
-        emit uniqueSubfolderMigrationFinished(true, {});
         return;
     }
 
     if (!m_renamingFiles.isEmpty() || !m_renamingFolders.isEmpty() || isMoveInProgress())
     {
-        emit uniqueSubfolderMigrationFinished(false, tr("Another rename is already in progress."));
+        // Avoid emitting if a unique conversion is already running (would steal its waiter).
+        const bool uniqueConversionInFlight = std::ranges::any_of(asConst(m_renamingFolders)
+                , [](const FolderRenameInfo &job)
+        {
+            return job.uniqueSubfolderConversion;
+        });
+        if (!uniqueConversionInFlight)
+        {
+            emit uniqueSubfolderMigrationFinished(false
+                    , tr("Another rename is already in progress."));
+        }
         return;
     }
 
@@ -2969,7 +2968,6 @@ void TorrentImpl::startUniqueSubfolderMigration(const UniqueSubfolderMigrationPl
         return;
     }
 
-    // NoSubfolder (or single-component wrap): one batch rename job on the shared machinery.
     QList<QPair<int, Path>> fileRenames;
     fileRenames.reserve(plan.renames.size());
     for (const UniqueSubfolderRename &item : asConst(plan.renames))
@@ -2981,7 +2979,7 @@ void TorrentImpl::completeRenameJob(const FolderRenameInfo &folderRenameInfo)
 {
     const bool success = folderRenameInfo.failedFileIndexes.isEmpty();
 
-    // NoSubfolder unique wrap: empty old root — notify each file rename, not folderRenamed("").
+    // Empty old root: report fileRenamed, not folderRenamed("").
     if (folderRenameInfo.uniqueSubfolderConversion && folderRenameInfo.oldFolderPath.isEmpty())
     {
         for (auto it = folderRenameInfo.renamedFiles.cbegin(); it != folderRenameInfo.renamedFiles.cend(); ++it)

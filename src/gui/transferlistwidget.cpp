@@ -971,15 +971,18 @@ void TransferListWidget::createUniqueSubfolderForSelectedTorrents()
 {
     applyToSelectedTorrents([this](BitTorrent::Torrent *const torrent)
     {
-        BitTorrent::UniqueSubfolderMigrationPlan plan = torrent->planUniqueSubfolderMigration();
+        const BitTorrent::UniqueSubfolderMigrationPlan plan = torrent->planUniqueSubfolderMigration();
         if (plan.blocked)
         {
             QMessageBox::warning(this, tr("Create unique subfolder")
                     , tr("Torrent: \"%1\"\n\n%2").arg(torrent->name(), plan.blockReason));
             return;
         }
-        if (plan.isEmpty())
+        if (plan.isEmpty() || plan.finalizeOnly)
+        {
+            torrent->startUniqueSubfolderMigration(plan);
             return;
+        }
 
         connect(torrent, &BitTorrent::Torrent::uniqueSubfolderMigrationFinished, this
                 , [this](const bool success, const QString &message)

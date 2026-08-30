@@ -28,8 +28,9 @@
 
 #include "toplevelpayload.h"
 
+#include <ranges>
+
 #include <QCoreApplication>
-#include <QSet>
 
 #include "base/global.h"
 #include "base/utils/fs.h"
@@ -106,10 +107,7 @@ namespace
         if (base.endsWith(tag))
             base.chop(tag.size());
 
-        // Single-file: strip only when the folder base is the payload filename itself
-        // (Subfolder parity, e.g. "movie.mkv" → "movie"). Keeps dotted folder identities
-        // such as "ubuntu-24.04" / "Series.Name" intact, and stays idempotent after the
-        // first wrap (path becomes "movie <hash>/movie.mkv" while the name is still the file).
+        // Strip extension only when the base is the payload filename (e.g. movie.mkv → movie).
         if (filePaths.size() == 1)
         {
             const QString fileName = filePaths.at(0).filename();
@@ -128,15 +126,21 @@ namespace
         return (path == uniqueRoot) || path.hasAncestor(uniqueRoot);
     }
 
-    // Like TorrentContentHandler::renameFile: dest already used by another torrent path.
-    bool destinationTaken(const Path &from, const Path &to
-            , const QSet<QString> &occupiedPaths, const QSet<QString> &newTargets)
+    // Same rule as TorrentContentHandler::renameFile (Path::operator==).
+    bool pathListContains(const PathList &paths, const Path &path)
     {
-        if (newTargets.contains(to.data()))
+        return std::ranges::any_of(paths, [&path](const Path &candidate)
+        {
+            return (candidate == path);
+        });
+    }
+
+    bool destinationTaken(const Path &from, const Path &to
+            , const PathList &occupiedPaths, const PathList &newTargets)
+    {
+        if (pathListContains(newTargets, to))
             return true;
-        if (!occupiedPaths.contains(to.data()))
-            return false;
-        return (to != from);
+        return pathListContains(occupiedPaths, to) && (to != from);
     }
 
     void blockExistingDestination(BitTorrent::UniqueSubfolderMigrationPlan &plan, const Path &to)
@@ -202,11 +206,6 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
         return plan;
     }
 
-    QSet<QString> occupiedPaths;
-    occupiedPaths.reserve(currentPaths.size());
-    for (const Path &path : currentPaths)
-        occupiedPaths.insert(path.data());
-
     PathList remainingPaths;
     QList<int> remainingIndexes;
     remainingPaths.reserve(currentPaths.size());
@@ -229,18 +228,17 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
 
     if (currentLayout == TorrentContentLayout::NoSubfolder)
     {
-        // Wrap every remaining full path under the unique folder (batch rename).
-        QSet<QString> newTargets;
+        PathList newTargets;
         for (int i = 0; i < remainingIndexes.size(); ++i)
         {
             const Path &from = remainingPaths.at(i);
             const Path to = plan.uniqueRoot / from;
-            if (destinationTaken(from, to, occupiedPaths, newTargets))
+            if (destinationTaken(from, to, currentPaths, newTargets))
             {
                 blockExistingDestination(plan, to);
                 return plan;
             }
-            newTargets.insert(to.data());
+            newTargets.append(to);
             plan.renames.append({.fileIndex = remainingIndexes.at(i), .to = to});
         }
         return plan;
@@ -250,16 +248,16 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
     const Path sharedRoot = Path::findRootFolder(remainingPaths);
     if (!sharedRoot.isEmpty())
     {
-        QSet<QString> newTargets;
+        PathList newTargets;
         for (const Path &from : asConst(remainingPaths))
         {
             const Path to = plan.uniqueRoot / sharedRoot.relativePathOf(from);
-            if (destinationTaken(from, to, occupiedPaths, newTargets))
+            if (destinationTaken(from, to, currentPaths, newTargets))
             {
                 blockExistingDestination(plan, to);
                 return plan;
             }
-            newTargets.insert(to.data());
+            newTargets.append(to);
         }
 
         plan.folderRenameOldRoot = sharedRoot;
@@ -278,17 +276,17 @@ BitTorrent::UniqueSubfolderMigrationPlan BitTorrent::makeUniqueSubfolderMigratio
         }
     }
 
-    QSet<QString> newTargets;
+    PathList newTargets;
     for (int i = 0; i < remainingIndexes.size(); ++i)
     {
         const Path &from = remainingPaths.at(i);
         const Path to = plan.uniqueRoot / from;
-        if (destinationTaken(from, to, occupiedPaths, newTargets))
+        if (destinationTaken(from, to, currentPaths, newTargets))
         {
             blockExistingDestination(plan, to);
             return plan;
         }
-        newTargets.insert(to.data());
+        newTargets.append(to);
         plan.renames.append({.fileIndex = remainingIndexes.at(i), .to = to});
     }
     return plan;
