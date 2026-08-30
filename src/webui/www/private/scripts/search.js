@@ -42,11 +42,8 @@ window.qBittorrent.Search ??= (() => {
             searchSeedsFilterChanged: searchSeedsFilterChanged,
             searchSizeFilterChanged: searchSizeFilterChanged,
             searchSizeFilterPrefixChanged: searchSizeFilterPrefixChanged,
-            closeSearchTab: closeSearchTab,
         };
     };
-
-    const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
 
     const searchTabIdPrefix = "Search-";
     let loadSearchPluginsTimer = -1;
@@ -59,6 +56,8 @@ window.qBittorrent.Search ??= (() => {
     let searchResultsTable;
     /** @type Map<number, {
      * searchPattern: string,
+     * category: string,
+     * plugins: string,
      * filterPattern: string,
      * seedsFilter: {min: number, max: number},
      * sizeFilter: {min: number, minUnit: number, max: number, maxUnit: number},
@@ -195,10 +194,25 @@ window.qBittorrent.Search ??= (() => {
             }
         });
 
-        // restore search tabs
-        const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
-        for (const { id, pattern, category, plugins } of searchJobs)
-            createSearchTab(id, pattern, category, plugins);
+        restoreSearchJobs();
+    };
+
+    const restoreSearchJobs = () => {
+        fetch("api/v2/search/status", {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                if (!response.ok)
+                    return;
+
+                const serverJobs = await response.json();
+
+                for (const job of serverJobs) {
+                    if (!document.getElementById(`${searchTabIdPrefix}${job.id}`))
+                        createSearchTab(job.id, job.pattern, job.category, job.plugins);
+                }
+            });
     };
 
     const numSearchTabs = () => {
@@ -273,7 +287,7 @@ window.qBittorrent.Search ??= (() => {
         searchState.set(searchId, {
             searchPattern: pattern,
             category: category,
-            plugins: plugins,
+            plugins: Array.isArray(plugins) ? plugins.join("|") : plugins,
             filterPattern: searchText.filterPattern,
             seedsFilter: { min: searchSeedsFilter.min, max: searchSeedsFilter.max },
             sizeFilter: { min: searchSizeFilter.min, minUnit: searchSizeFilter.minUnit, max: searchSizeFilter.max, maxUnit: searchSizeFilter.maxUnit },
@@ -286,6 +300,7 @@ window.qBittorrent.Search ??= (() => {
             sort: { column: searchResultsTable.sortedColumn, reverse: searchResultsTable.reverseSort },
             lastSeenCount: 0,
         });
+        searchText.pattern = pattern;
         updateSearchResultsData(searchId);
     };
 
@@ -296,13 +311,6 @@ window.qBittorrent.Search ??= (() => {
                 id: oldSearchId
             })
         });
-
-        const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
-        const jobIndex = searchJobs.findIndex((job) => job.id === oldSearchId);
-        if (jobIndex >= 0) {
-            searchJobs[jobIndex].id = searchId;
-            localPreferences.set("search_jobs", JSON.stringify(searchJobs));
-        }
 
         // update existing tab w/ new search id
         const tab = document.getElementById(`${searchTabIdPrefix}${oldSearchId}`);
@@ -350,13 +358,6 @@ window.qBittorrent.Search ??= (() => {
                 id: searchId
             })
         });
-
-        const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
-        const jobIndex = searchJobs.findIndex((job) => job.id === searchId);
-        if (jobIndex >= 0) {
-            searchJobs.splice(jobIndex, 1);
-            localPreferences.set("search_jobs", JSON.stringify(searchJobs));
-        }
 
         searchState.delete(searchId);
 
@@ -504,10 +505,6 @@ window.qBittorrent.Search ??= (() => {
                 const responseJSON = await response.json();
                 const searchId = responseJSON.id;
                 createSearchTab(searchId, pattern, category, plugins);
-
-                const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
-                searchJobs.push({ id: searchId, pattern: pattern, category: category, plugins: plugins });
-                localPreferences.set("search_jobs", JSON.stringify(searchJobs));
                 updateSearchButtonState();
             });
     };
@@ -525,8 +522,8 @@ window.qBittorrent.Search ??= (() => {
                 method: "POST",
                 body: new URLSearchParams({
                     pattern: state.searchPattern,
-                    category: state.category ?? document.getElementById("categorySelect").value,
-                    plugins: state.plugins ?? document.getElementById("pluginsSelect").value
+                    category: state.category,
+                    plugins: state.plugins
                 })
             })
             .then(async (response) => {
@@ -597,8 +594,21 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const openSearchTorrentDescriptionUrl = () => {
-        for (const rowID of searchResultsTable.selectedRowsIds())
-            window.open(searchResultsTable.getRow(rowID).full_data.descrLink, "_blank");
+        const blockedUrls = [];
+        for (const rowID of searchResultsTable.selectedRowsIds()) {
+            const { descrLink, fileName } = searchResultsTable.getRow(rowID).full_data;
+            if (window.qBittorrent.Misc.isHttpUrl(descrLink)) {
+                window.open(descrLink, "_blank");
+            }
+            else {
+                console.error(`Blocked opening search result description page URL. Only http:// and https:// links can be opened. Name: "${fileName}". URL: "${descrLink}".`);
+                // collapse whitespace and cap the length so that a crafted URL can't pad the dialog with its own text
+                blockedUrls.push(descrLink.replace(/\s+/g, " ").slice(0, 256));
+            }
+        }
+
+        if (blockedUrls.length > 0)
+            alert(`QBT_TR(Blocked opening search result description page URL. Only http:// and https:// links can be opened.)QBT_TR[CONTEXT=SearchJobWidget]\n\n${blockedUrls.join("\n")}`);
     };
 
     const copySearchTorrentName = () => {
@@ -951,6 +961,11 @@ window.qBittorrent.Search ??= (() => {
                         // bad params. search id is invalid
                         resetSearchState(searchId);
                         updateStatusIconElement(searchId, "QBT_TR(An error occurred during search...)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
+                    }
+                    else if (response.status === 409) {
+                        // offset out of range, the server no longer has the results
+                        updateStatusIconElement(searchId, "QBT_TR(Search results are no longer available)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
+                        resetSearchState(searchId);
                     }
                     else if (state) {
                         clearTimeout(state.loadResultsTimer);

@@ -74,7 +74,9 @@ void BitTorrent::TorrentContentHandler::renameFolder(const Path &oldFolderPath, 
     for (int i = 0; i < filesCount(); ++i)
     {
         const Path path = filePath(i);
-        if (path.hasAncestor(newFolderPath))
+        // We should compare path in a case sensitive manner even on case insensitive
+        // platforms since it can be renamed by only changing case of some character(s)
+        if (path.hasAncestor(newFolderPath, Qt::CaseSensitive))
             throw RuntimeError(tr("The folder already exists: '%1'.").arg(newFolderPath.toString()));
 
         if (!oldFolderExists && path.hasAncestor(oldFolderPath))

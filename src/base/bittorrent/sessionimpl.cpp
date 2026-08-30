@@ -480,6 +480,7 @@ QStringList Session::expandCategory(const QString &category)
 SessionImpl::SessionImpl(QObject *parent)
     : Session(parent)
     , m_DHTBootstrapNodes(BITTORRENT_SESSION_KEY(u"DHTBootstrapNodes"_s), DEFAULT_DHT_BOOTSTRAP_NODES)
+    , m_webTorrentSTUNServer(BITTORRENT_SESSION_KEY(u"WebTorrentSTUNServer"_s), u"stun.l.google.com:19302"_s)
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY(u"DHTEnabled"_s), true)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY(u"LSDEnabled"_s), true)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY(u"PeXEnabled"_s), true)
@@ -616,6 +617,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY(u"PeerTurnoverCutOff"_s), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY(u"PeerTurnoverInterval"_s), 300)
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_s), 500)
+    , m_maxOutstandingBlockRequests(BITTORRENT_SESSION_KEY(u"MaxOutstandingBlockRequests"_s), 2000)
     , m_isExcludedFileNamesEnabled(BITTORRENT_KEY(u"ExcludedFileNamesEnabled"_s), false)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_s))
     , m_bannedIPs(u"State/BannedIPs"_s, QStringList(), Algorithm::sorted<QStringList>)
@@ -816,6 +818,20 @@ void SessionImpl::setDHTBootstrapNodes(const QString &nodes)
         return;
 
     m_DHTBootstrapNodes = nodes;
+    configureDeferred();
+}
+
+QString SessionImpl::getWebTorrentSTUNServer() const
+{
+    return m_webTorrentSTUNServer;
+}
+
+void SessionImpl::setWebTorrentSTUNServer(const QString &server)
+{
+    if (server == getWebTorrentSTUNServer())
+        return;
+
+    m_webTorrentSTUNServer = server;
     configureDeferred();
 }
 
@@ -2062,6 +2078,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::peer_turnover_interval, peerTurnoverInterval());
 
     settingsPack.set_int(lt::settings_pack::max_out_request_queue, requestQueueSize());
+    settingsPack.set_int(lt::settings_pack::max_allowed_in_request_queue, maxOutstandingBlockRequests());
 
 #ifdef QBT_USES_LIBTORRENT2
     settingsPack.set_int(lt::settings_pack::metadata_token_limit, Preferences::instance()->getBdecodeTokenLimit());
@@ -2229,6 +2246,12 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_bool(lt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
 
     settingsPack.set_str(lt::settings_pack::dht_bootstrap_nodes, getDHTBootstrapNodes().toStdString());
+
+#if LIBTORRENT_VERSION_NUM >= 20100
+    // STUN server for WebTorrent NAT traversal
+    settingsPack.set_str(lt::settings_pack::webtorrent_stun_server, getWebTorrentSTUNServer().toStdString());
+#endif
+
     settingsPack.set_bool(lt::settings_pack::enable_dht, isDHTEnabled());
     settingsPack.set_bool(lt::settings_pack::enable_lsd, isLSDEnabled());
 
@@ -4557,6 +4580,20 @@ void SessionImpl::setRequestQueueSize(const int val)
     configureDeferred();
 }
 
+int SessionImpl::maxOutstandingBlockRequests() const
+{
+    return m_maxOutstandingBlockRequests;
+}
+
+void SessionImpl::setMaxOutstandingBlockRequests(const int val)
+{
+    if (val == m_maxOutstandingBlockRequests)
+        return;
+
+    m_maxOutstandingBlockRequests = val;
+    configureDeferred();
+}
+
 int SessionImpl::asyncIOThreads() const
 {
     return std::clamp(m_asyncIOThreads.get(), 1, 1024);
@@ -6221,7 +6258,11 @@ void SessionImpl::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *ale
 void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *alert)
 {
     const TorrentID torrentID = getInfoHash(*alert).toTorrentID();
+#if LIBTORRENT_VERSION_NUM >= 20100
+    const auto errorMessage = alert->error ? QString::fromStdString(alert->error.message()) : QString();
+#else
     const auto errorMessage = alert->error ? Utils::String::fromLocal8Bit(alert->error.message()) : QString();
+#endif
     handleRemovedTorrent(torrentID, errorMessage);
 }
 
@@ -6419,7 +6460,11 @@ void SessionImpl::handleListenFailedAlert(const lt::listen_failed_alert *alert)
     const QString proto {toString(alert->socket_type)};
     LogMsg(tr("Failed to listen on IP. IP: \"%1\". Port: \"%2/%3\". Reason: \"%4\"")
         .arg(toString(alert->address), proto, QString::number(alert->port)
+#if LIBTORRENT_VERSION_NUM >= 20100
+            , QString::fromStdString(alert->error.message())), Log::CRITICAL);
+#else
             , Utils::String::fromLocal8Bit(alert->error.message())), Log::CRITICAL);
+#endif
 }
 
 void SessionImpl::handleExternalIPAlert(const lt::external_ip_alert *alert)
@@ -6645,7 +6690,11 @@ void SessionImpl::handleSocks5Alert(const lt::socks5_alert *alert) const
         const QString endpoint = (addr.is_v6() ? u"[%1]:%2"_s : u"%1:%2"_s)
                 .arg(toString(addr), QString::number(alert->ip.port()));
         LogMsg(tr("SOCKS5 proxy error. Address: %1. Message: \"%2\".")
+#if LIBTORRENT_VERSION_NUM >= 20100
+                .arg(endpoint, QString::fromStdString(alert->error.message()))
+#else
                 .arg(endpoint, Utils::String::fromLocal8Bit(alert->error.message()))
+#endif
                 , Log::WARNING);
     }
 }
@@ -6784,7 +6833,11 @@ void SessionImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_fai
     if (alert->error != lt::errors::resume_data_not_modified)
     {
         LogMsg(tr("Generate resume data failed. Torrent: \"%1\". Reason: \"%2\"")
+#if LIBTORRENT_VERSION_NUM >= 20100
+                .arg(torrent->name(), QString::fromStdString(alert->error.message())), Log::CRITICAL);
+#else
                 .arg(torrent->name(), Utils::String::fromLocal8Bit(alert->error.message())), Log::CRITICAL);
+#endif
     }
 }
 
@@ -6824,7 +6877,11 @@ void SessionImpl::handleFileRenameFailedAlert(const lt::file_rename_failed_alert
 
     LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
             .arg(torrent->name(), torrent->filePath(torrent->fileIndexFromNative(alert->index)).toString()
+#if LIBTORRENT_VERSION_NUM >= 20100
+                    , QString::fromStdString(alert->error.message())), Log::WARNING);
+#else
                     , Utils::String::fromLocal8Bit(alert->error.message())), Log::WARNING);
+#endif
 }
 
 void SessionImpl::handleFileCompletedAlert(const lt::file_completed_alert *alert)

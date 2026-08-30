@@ -101,6 +101,18 @@
     </fieldset>
 
     <fieldset class="settings">
+        <legend>QBT_TR(Search)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="storeSearchJobs" onclick="qBittorrent.Preferences.updateStoreSearchJobsEnabled();">
+            <label for="storeSearchJobs">QBT_TR(Save search tabs)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow" style="margin-bottom: 3px; margin-left: 30px;">
+            <input type="checkbox" id="storeSearchJobResults">
+            <label for="storeSearchJobResults">QBT_TR(Also save search results)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>
             <input type="checkbox" id="filelog_checkbox" onclick="qBittorrent.Preferences.updateFileLogEnabled();">
             <label for="filelog_checkbox">QBT_TR(Log Files)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -1840,10 +1852,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="maxOutstandingBlockRequests">QBT_TR(Maximum outstanding block requests from a peer:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#max_allowed_in_request_queue" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="text" id="maxOutstandingBlockRequests" style="width: 15em;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="dhtBootstrapNodes">QBT_TR(DHT bootstrap nodes:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#dht_bootstrap_nodes" target="_blank">(?)</a></label>
                     </td>
                     <td>
                         <input type="text" id="dhtBootstrapNodes" placeholder="QBT_TR(Resets to default if empty)QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;">
+                    </td>
+                </tr>
+                <tr id="rowWebTorrentSTUNServer">
+                    <td>
+                        <label for="webTorrentSTUNServer">QBT_TR(STUN server for WebTorrent NAT traversal:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#webtorrent_stun_server" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="text" id="webTorrentSTUNServer" style="width: 15em;">
                     </td>
                 </tr>
                 <tr id="rowI2pInboundQuantity">
@@ -1897,6 +1925,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateFileLogEnabled: updateFileLogEnabled,
                 updateFileLogBackupEnabled: updateFileLogBackupEnabled,
                 updateFileLogDeleteEnabled: updateFileLogDeleteEnabled,
+                updateStoreSearchJobsEnabled: updateStoreSearchJobsEnabled,
                 updateTempDirEnabled: updateTempDirEnabled,
                 updateTorrentBackupControls: updateTorrentBackupControls,
                 updateFinishedTorrentBackupControls: updateFinishedTorrentBackupControls,
@@ -1970,6 +1999,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const pros = document.getElementById("filelog_delete_old_checkbox").getProperties("disabled", "checked");
             document.getElementById("filelog_age_input").disabled = pros.disabled || !pros.checked;
             document.getElementById("filelog_age_type_select").disabled = pros.disabled || !pros.checked;
+        };
+
+        const updateStoreSearchJobsEnabled = () => {
+            const enabled = document.getElementById("storeSearchJobs").checked;
+            document.getElementById("storeSearchJobResults").disabled = !enabled;
         };
 
         // Downloads tab
@@ -2424,6 +2458,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("dblclickCompleteSelect").value = dblclickComplete;
                     document.getElementById("dblclickFiltersSelect").value = dblclickFilter;
                     document.getElementById("confirmTorrentDeletion").checked = pref.confirm_torrent_deletion;
+                    document.getElementById("storeSearchJobs").checked = pref.store_search_jobs;
+                    document.getElementById("storeSearchJobResults").checked = pref.store_search_job_results;
+                    qBittorrent.Preferences.updateStoreSearchJobsEnabled();
                     document.getElementById("useAltRowColorsInput").checked = useAltRowColors === true;
                     document.getElementById("filelog_checkbox").checked = pref.file_log_enabled;
                     document.getElementById("filelog_save_path_input").value = pref.file_log_path;
@@ -2831,7 +2868,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("peerTurnoverCutoff").value = pref.peer_turnover_cutoff;
                     document.getElementById("peerTurnoverInterval").value = pref.peer_turnover_interval;
                     document.getElementById("requestQueueSize").value = pref.request_queue_size;
+                    document.getElementById("maxOutstandingBlockRequests").value = pref.max_outstanding_block_requests;
                     document.getElementById("dhtBootstrapNodes").value = pref.dht_bootstrap_nodes;
+                    document.getElementById("webTorrentSTUNServer").value = pref.webtorrent_stun_server;
                     document.getElementById("i2pInboundQuantity").value = pref.i2p_inbound_quantity;
                     document.getElementById("i2pOutboundQuantity").value = pref.i2p_outbound_quantity;
                     document.getElementById("i2pInboundLength").value = pref.i2p_inbound_length;
@@ -2870,6 +2909,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             clientData.dblclick_complete = document.getElementById("dblclickCompleteSelect").value;
             clientData.dblclick_filter = document.getElementById("dblclickFiltersSelect").value;
             settings["confirm_torrent_deletion"] = document.getElementById("confirmTorrentDeletion").checked;
+            settings["store_search_jobs"] = document.getElementById("storeSearchJobs").checked;
+            settings["store_search_job_results"] = document.getElementById("storeSearchJobResults").checked;
             clientData.use_alt_row_colors = document.getElementById("useAltRowColorsInput").checked;
             settings["file_log_enabled"] = document.getElementById("filelog_checkbox").checked;
             settings["file_log_path"] = document.getElementById("filelog_save_path_input").value;
@@ -3369,7 +3410,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["peer_turnover_interval"] = peerTurnoverInterval;
 
             settings["request_queue_size"] = Number(document.getElementById("requestQueueSize").value);
+            settings["max_outstanding_block_requests"] = Number(document.getElementById("maxOutstandingBlockRequests").value);
             settings["dht_bootstrap_nodes"] = document.getElementById("dhtBootstrapNodes").value;
+            settings["webtorrent_stun_server"] = document.getElementById("webTorrentSTUNServer").value;
             settings["i2p_inbound_quantity"] = Number(document.getElementById("i2pInboundQuantity").value);
             settings["i2p_outbound_quantity"] = Number(document.getElementById("i2pOutboundQuantity").value);
             settings["i2p_inbound_length"] = Number(document.getElementById("i2pInboundLength").value);
@@ -3423,8 +3466,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.13") < 0)
                 document.getElementById("rowMultiConnectionsPerPeerID").style.display = "none";
 
-            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.1") < 0)
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.1") < 0) {
                 document.getElementById("diskIOTypePreadPwrite").hidden = true;
+                document.getElementById("rowWebTorrentSTUNServer").hidden = true;
+            }
 
             if ((buildInfo.platform === "linux") || (buildInfo.platform === "macos"))
                 document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";

@@ -56,6 +56,7 @@ namespace
     // Sync main data keys
     const QString KEY_SYNC_MAINDATA_QUEUEING = u"queueing"_s;
     const QString KEY_SYNC_MAINDATA_REFRESH_INTERVAL = u"refresh_interval"_s;
+    const QString KEY_SYNC_MAINDATA_SESSION_STATE = u"session_state"_s;
     const QString KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS = u"use_alt_speed_limits"_s;
 
     // Sync torrent peers keys
@@ -618,8 +619,9 @@ void SyncController::makeMaindataSnapshot()
     m_maindataSnapshot.serverState = getTransferInfo();
     m_maindataSnapshot.serverState[KEY_TRANSFER_FREESPACEONDISK] = m_freeDiskSpace;
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
-    m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
+    m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_SESSION_STATE] = session->isPaused();
+    m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
 }
 
 QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fullUpdate)
@@ -771,8 +773,9 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     QVariantMap serverState = getTransferInfo();
     serverState[KEY_TRANSFER_FREESPACEONDISK] = m_freeDiskSpace;
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
-    serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
     serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
+    serverState[KEY_SYNC_MAINDATA_SESSION_STATE] = session->isPaused();
+    serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
     if (const QVariantMap syncData = processMap(m_maindataSnapshot.serverState, serverState); !syncData.isEmpty())
     {
         m_maindataSyncBuf.serverState = syncData;

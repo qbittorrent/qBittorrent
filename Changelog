@@ -23,6 +23,15 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0alpha1
     - FEATURE: Support multiple recipients for email notifications (LewpyUK) #24304
     - FEATURE: Add support for magnet link 'so' parameter (glassez) #24336
     - FEATURE: Add 'Ignore dotfiles' option in Torrent Creator (Chocobo1) #24346
+    - FEATURE: Implement 'Maximum outstanding block requests from a peer' setting (buroa) #24253
+    - FEATURE: Revamp .torrent files backup management (glassez) #24641
+    - FEATURE: Make Torrent Options dialog scrollable (AgentCent) #24644
+    - FEATURE: Add allow_multiple_connections_per_pid advanced setting (lzhzh1) #24684
+    - FEATURE: Add button to open Default Apps settings on Windows (Chocobo1) #24707
+    - FEATURE: Reference torrent "seed mode" by its exact name (glassez) #24724
+    - FEATURE: Add logging of IP ban alerts (Chocobo1) #24734
+    - FEATURE: Add 'Resize columns' action to 'Torrent Content Layout' dialog header (Chocobo1) #24735
+    - FEATURE: Detect redundant quotes from Python executable path (Chocobo1) #24740
     - BUGFIX: Fix Comment area background mismatch in Add New Torrent dialog (M-Hassan-Raza) #23916
     - BUGFIX: Rename FYR Macedonia to North Macedonia (alphanumericcharter) #23825
     - BUGFIX: Fix LineEdit dark corner artifacts on macOS (M-Hassan-Raza) #23909
@@ -40,6 +49,8 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0alpha1
     - BUGFIX: Avoid failed add result after tracker merge (TurboTheTurtle) #24605
     - BUGFIX: Properly handle relative path of logs folder (glassez) #24671
     - BUGFIX: Fix wrong comparison between IP addresses (Chocobo1) #24675
+    - BUGFIX: Update share limits timer when share limits change  (Kononkov1998) #24670
+    - BUGFIX: Fix P2P filter parsing for IPv6 (Arisa-Snowbell) #24680
     - WEBUI: Add "Select All" and "Invert Selection" (aaron-kruse) #23975
     - WEBUI: Enable virtual list by default (tehcneko) #23887
     - WEBUI: Improve folder collapse behavior (Piccirello) #23878
@@ -58,18 +69,27 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0alpha1
     - WEBUI: Make 'server domain' matching anchored (Chocobo1) #24458
     - WEBUI: Add secondary sort column (Piccirello) #24376
     - WEBUI: Add 'Copy path' action to torrent content menu (Chocobo1) #24678
+    - WEBUI: Handle non-torrent RSS link (vafada) #24692
+    - WEBUI: Disable torrent content menu items instead of hiding them (Chocobo1) #24708
+    - WEBUI: Suppress errors when clicking on column headers (Chocobo1) #24710
+    - WEBUI: Add sessions count limit (glassez) #24720
+    - WEBAPI: Construct WebAPI controller instances on demand (glassez) #24700
     - RSS: Fix the added RSS rule item doesn't follow "enabled" state (glassez) #24082
     - RSS: Add "All" sticky RSS item (glassez) #23963
     - RSS: Add "Clone Rule" feature to RSS AutoDownloader (LewpyUK) #24056
     - RSS: Allow adding torrents from links in RSS content viewer (glassez) #24120
     - RSS: Persist feed list sort order (TurboTheTurtle) #24519
     - SEARCH: Clean up documentation format (Chocobo1) #23911
+    - WINDOWS: NSIS: Update Thai translation (cybercat39-droid) #24673
     - OTHER: Support build against latest version of libtorrent (arvidn) #23953
     - OTHER: Don't use deprecated libtorrent features (glassez) #24007
     - OTHER: Remove outdated setting keys (Chocobo1) #23952
     - OTHER: Bump Python version minimum requirement (Chocobo1) #24279
     - OTHER: Support installing Python on ARM64 Windows properly (Chocobo1) #24280
     - OTHER: Disable "Resolve peer countries" by default in new installations (Chocobo1) #24505
+    - OTHER: Remove FOSSHub site for program updates (vafada) #24611
+    - OTHER: Align default DiskQueueSize with libtorrent 2.1 (database64128) #24711
+    - OTHER: Update man pages to document all command-line options (preston176) #24771
 
 Tue Jul 07th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.3
     - BUGFIX: Fix MIME header encoding in email to require ASCII (quinot) #24382

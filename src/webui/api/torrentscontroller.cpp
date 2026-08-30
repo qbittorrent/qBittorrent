@@ -62,6 +62,7 @@
 #include "base/search/searchpluginmanager.h"
 #include "base/torrentfilter.h"
 #include "base/utils/datetime.h"
+#include "base/utils/dict.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/sslkey.h"
@@ -185,22 +186,13 @@ namespace
         }
     }
 
-    std::optional<QString> getOptionalString(const StringMap &params, const QString &name)
-    {
-        const auto it = params.constFind(name);
-        if (it == params.cend())
-            return std::nullopt;
-
-        return it.value();
-    }
-
     std::optional<Tag> getOptionalTag(const StringMap &params, const QString &name)
     {
-        const auto it = params.constFind(name);
-        if (it == params.cend())
-            return std::nullopt;
+        const std::optional<QString> optionalValue = Utils::Dict::get(params, name);
+        if (optionalValue)
+            return Tag(*optionalValue);
 
-        return Tag(it.value());
+        return std::nullopt;
     }
 
     QJsonArray getStickyTrackers(const BitTorrent::Torrent *const torrent)
@@ -607,7 +599,7 @@ void TorrentsController::countAction()
 void TorrentsController::infoAction()
 {
     const QString filter {params()[u"filter"_s]};
-    const std::optional<QString> category = getOptionalString(params(), u"category"_s);
+    const std::optional<QString> category = Utils::Dict::get(params(), u"category"_s);
     const std::optional<Tag> tag = getOptionalTag(params(), u"tag"_s);
     const QString sortedColumn {params()[u"sort"_s]};
     const bool reverse {parseBool(params()[u"reverse"_s]).value_or(false)};
@@ -1310,8 +1302,8 @@ void TorrentsController::editTrackerAction()
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
     const QString origUrl = params()[u"url"_s];
-    const std::optional<QString> newUrlParam = getOptionalString(params(), u"newUrl"_s);
-    const std::optional<QString> newTierParam = getOptionalString(params(), u"tier"_s);
+    const std::optional<QString> newUrlParam = Utils::Dict::get(params(), u"newUrl"_s);
+    const std::optional<QString> newTierParam = Utils::Dict::get(params(), u"tier"_s);
 
     BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
@@ -1898,14 +1890,23 @@ void TorrentsController::createCategoryAction()
     if (!BitTorrent::Session::isValidCategoryName(category))
         throw APIError(APIErrorType::Conflict, tr("Incorrect category name"));
 
-    const Path savePath {params()[u"savePath"_s]};
-    const auto useDownloadPath = parseBool(params()[u"downloadPathEnabled"_s]);
     BitTorrent::CategoryOptions categoryOptions;
+
+    const Path savePath {params()[u"savePath"_s]};
     categoryOptions.savePath = savePath;
-    if (useDownloadPath.has_value())
+
+    const std::optional<QString> useDownloadPathParam = Utils::Dict::get(params(), u"downloadPathEnabled"_s);
+    if (useDownloadPathParam && !useDownloadPathParam->isEmpty())
     {
-        const Path downloadPath {params()[u"downloadPath"_s]};
-        categoryOptions.downloadPath = {useDownloadPath.value(), downloadPath};
+        if (const std::optional<bool> useDownloadPath = parseBool(*useDownloadPathParam))
+        {
+            const Path downloadPath {params()[u"downloadPath"_s]};
+            categoryOptions.downloadPath = {*useDownloadPath, downloadPath};
+        }
+        else
+        {
+            throw APIError(APIErrorType::BadParams, tr("'downloadPathEnabled' parameter has invalid value"));
+        }
     }
 
     if (!BitTorrent::Session::instance()->addCategory(category, categoryOptions))
@@ -1922,14 +1923,27 @@ void TorrentsController::editCategoryAction()
     if (category.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Category cannot be empty"));
 
+    BitTorrent::CategoryOptions categoryOptions = BitTorrent::Session::instance()->categoryOptions(category);
+
     const Path savePath {params()[u"savePath"_s]};
-    const auto useDownloadPath = parseBool(params()[u"downloadPathEnabled"_s]);
-    BitTorrent::CategoryOptions categoryOptions;
     categoryOptions.savePath = savePath;
-    if (useDownloadPath.has_value())
+
+    const std::optional<QString> useDownloadPathParam = Utils::Dict::get(params(), u"downloadPathEnabled"_s);
+    if (useDownloadPathParam)
     {
-        const Path downloadPath {params()[u"downloadPath"_s]};
-        categoryOptions.downloadPath = {useDownloadPath.value(), downloadPath};
+        if (useDownloadPathParam->isEmpty())
+        {
+            categoryOptions.downloadPath = std::nullopt;
+        }
+        else if (const std::optional<bool> useDownloadPath = parseBool(*useDownloadPathParam))
+        {
+            const Path downloadPath {params()[u"downloadPath"_s]};
+            categoryOptions.downloadPath = {*useDownloadPath, downloadPath};
+        }
+        else
+        {
+            throw APIError(APIErrorType::BadParams, tr("'downloadPathEnabled' parameter has invalid value"));
+        }
     }
 
     if (!BitTorrent::Session::instance()->setCategoryOptions(category, categoryOptions))

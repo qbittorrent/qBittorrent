@@ -18,6 +18,7 @@ set(testFiles
     testutilsbytearray.cpp
     testutilscompare.cpp
     testutilsdatetime.cpp
+    testutilsdict.cpp
     testutilsgzip.cpp
     testutilshashvalue.cpp
     testutilsio.cpp

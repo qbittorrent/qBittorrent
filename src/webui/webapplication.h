@@ -58,13 +58,14 @@
 using namespace std::chrono_literals;
 using namespace Qt::Literals::StringLiterals;
 
-inline const Utils::Version<3, 2> API_VERSION {2, 16, 0};
+inline const Utils::Version<3, 2> API_VERSION {2, 16, 2};
 
 class QNetworkCookie;
 
 class APIController;
 class AuthController;
 class ClientDataStorage;
+class SearchJobManager;
 class WebSession;
 
 enum class WebSessionType : qint8;
@@ -170,9 +171,11 @@ private:
         {{u"rss"_s, u"removeItem"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"removeRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"renameRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"setFeedRefreshInterval"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"setFeedURL"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"setRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"search"_s, u"delete"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"search"_s, u"downloadTorrent"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"search"_s, u"enablePlugin"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"search"_s, u"installPlugin"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"search"_s, u"start"_s}, Http::HEADER_REQUEST_METHOD_POST},
@@ -227,6 +230,8 @@ private:
         {{u"torrents"_s, u"toggleSequentialDownload"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"topPrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"transfer"_s, u"banPeers"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"transfer"_s, u"pauseSession"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"transfer"_s, u"resumeSession"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"transfer"_s, u"setDownloadLimit"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"transfer"_s, u"setSpeedLimits"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"transfer"_s, u"setSpeedLimitsMode"_s}, Http::HEADER_REQUEST_METHOD_POST},
@@ -274,6 +279,7 @@ private:
     Http::HeaderMap m_prebuiltHeaders;
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
+    SearchJobManager *m_searchJobManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;
 
     struct FailedLogin

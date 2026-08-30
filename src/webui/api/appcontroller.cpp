@@ -156,6 +156,9 @@ void AppController::preferencesAction()
     data[u"status_bar_external_ip"_s] = pref->isStatusbarExternalIPDisplayed();
     // Transfer List
     data[u"confirm_torrent_deletion"_s] = pref->confirmTorrentDeletion();
+    // Search
+    data[u"store_search_jobs"_s] = pref->storeSearchJobs();
+    data[u"store_search_job_results"_s] = pref->storeSearchJobResults();
     // Log file
     data[u"file_log_enabled"_s] = app()->isFileLoggerEnabled();
     data[u"file_log_path"_s] = app()->fileLoggerPath().toString();
@@ -515,8 +518,12 @@ void AppController::preferencesAction()
     data[u"peer_turnover_interval"_s] = session->peerTurnoverInterval();
     // Maximum outstanding requests to a single peer
     data[u"request_queue_size"_s] = session->requestQueueSize();
+    // Maximum outstanding requests from a single peer
+    data[u"max_outstanding_block_requests"_s] = session->maxOutstandingBlockRequests();
     // DHT bootstrap nodes
     data[u"dht_bootstrap_nodes"_s] = session->getDHTBootstrapNodes();
+    // STUN server for WebTorrent NAT traversal
+    data[u"webtorrent_stun_server"_s] = session->getWebTorrentSTUNServer();
 
     setResult(data);
 }
@@ -553,6 +560,11 @@ void AppController::setPreferencesAction()
     // Transfer List
     if (hasKey(u"confirm_torrent_deletion"_s))
         pref->setConfirmTorrentDeletion(it.value().toBool());
+    // Search
+    if (hasKey(u"store_search_jobs"_s))
+        pref->setStoreSearchJobs(it.value().toBool());
+    if (hasKey(u"store_search_job_results"_s))
+        pref->setStoreSearchJobResults(it.value().toBool());
     // Log file
     if (hasKey(u"file_log_enabled"_s))
         app()->setFileLoggerEnabled(it.value().toBool());
@@ -1214,9 +1226,15 @@ void AppController::setPreferencesAction()
     // Maximum outstanding requests to a single peer
     if (hasKey(u"request_queue_size"_s))
         session->setRequestQueueSize(it.value().toInt());
+    // Maximum outstanding requests from a single peer
+    if (hasKey(u"max_outstanding_block_requests"_s))
+        session->setMaxOutstandingBlockRequests(it.value().toInt());
     // DHT bootstrap nodes
     if (hasKey(u"dht_bootstrap_nodes"_s))
         session->setDHTBootstrapNodes(it.value().toString());
+    // STUN server for WebTorrent NAT traversal
+    if (hasKey(u"webtorrent_stun_server"_s))
+        session->setWebTorrentSTUNServer(it.value().toString());
 
     // Save preferences
     pref->apply();

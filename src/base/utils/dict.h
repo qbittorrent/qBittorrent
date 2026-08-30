@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,28 +28,45 @@
 
 #pragma once
 
-#include "apicontroller.h"
+#include <concepts>
+#include <iterator>
+#include <optional>
+#include <utility>
 
-class TransferController : public APIController
+namespace Utils::Dict
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(TransferController)
+    // Qt associative containers, whose iterators return
+    // a value of the mapped type when dereferencing.
+    template <typename T>
+    concept Dict = requires
+    {
+        typename T::key_type;
+        typename T::mapped_type;
+        typename T::iterator;
+        requires std::same_as<std::iter_value_t<typename T::iterator>, typename T::mapped_type>;
+    };
 
-public:
-    using APIController::APIController;
+    template <Dict T>
+    std::optional<typename T::mapped_type> get(const T &dict, const typename T::key_type &key)
+    {
+        const auto it = dict.find(key);
+        if (it != dict.cend())
+            return *it;
 
-private slots:
-    void infoAction();
-    void speedLimitsModeAction();
-    void setSpeedLimitsModeAction();
-    void toggleSpeedLimitsModeAction();
-    void uploadLimitAction();
-    void downloadLimitAction();
-    void setUploadLimitAction();
-    void setDownloadLimitAction();
-    void getSpeedLimitsAction();
-    void setSpeedLimitsAction();
-    void banPeersAction();
-    void pauseSessionAction();
-    void resumeSessionAction();
-};
+        return std::nullopt;
+    }
+
+    template <Dict T>
+    std::optional<typename T::mapped_type> take(T &dict, const typename T::key_type &key)
+    {
+        auto it = dict.find(key);
+        if (it != dict.end())
+        {
+            const typename T::mapped_type result = std::move(*it);
+            dict.erase(it);
+            return result;
+        }
+
+        return std::nullopt;
+    }
+}

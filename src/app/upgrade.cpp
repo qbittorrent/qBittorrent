@@ -48,7 +48,7 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
-    const int MIGRATION_VERSION = 11;
+    const int MIGRATION_VERSION = 12;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()
@@ -616,6 +616,27 @@ namespace
         doMigrate(u"Preferences/WebUI/ReverseProxySupportEnabled"_s, u"WebUI/ReverseProxySupportEnabled"_s);
         doMigrate(u"Preferences/WebUI/TrustedReverseProxiesList"_s, u"WebUI/TrustedReverseProxiesList"_s);
     }
+
+    void migrateSearchSettingKeys()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+
+        const auto oldKey1 = u"Search/StoreOpenedSearchTabs"_s;
+        const auto newKey1 = u"Search/StoreSearchJobs"_s;
+        if (settingsStorage->hasKey(oldKey1))
+        {
+            settingsStorage->storeValue(newKey1, settingsStorage->loadValue<bool>(oldKey1));
+            settingsStorage->removeValue(oldKey1);
+        }
+
+        const auto oldKey2 = u"Search/StoreOpenedSearchTabResults"_s;
+        const auto newKey2 = u"Search/StoreSearchJobResults"_s;
+        if (settingsStorage->hasKey(oldKey2))
+        {
+            settingsStorage->storeValue(newKey2, settingsStorage->loadValue<bool>(oldKey2));
+            settingsStorage->removeValue(oldKey2);
+        }
+    }
 }
 
 bool upgrade()
@@ -673,6 +694,9 @@ bool upgrade()
             migrateTorrentExportFolderSettings();
             migrateWebUISettings();
         }
+
+        if (version < 12)
+            migrateSearchSettingKeys();
 
         version = MIGRATION_VERSION;
     }

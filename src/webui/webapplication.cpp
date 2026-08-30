@@ -70,6 +70,7 @@
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
 #include "clientdatastorage.h"
+#include "searchjobmanager.h"
 #include "websession.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
@@ -174,6 +175,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_trRegex {u"QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s}
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
+    , m_searchJobManager {new SearchJobManager(this)}
     , m_clientDataStorage {new ClientDataStorage(this)}
 {
     declarePublicAPI(u"auth/login"_s);
@@ -913,7 +915,6 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
     m_currentSession->registerAPIController(u"app"_s, [app = app(), parent = m_currentSession] { return new AppController(app, parent); });
     m_currentSession->registerAPIController(u"log"_s, [app = app(), parent = m_currentSession] { return new LogController(app, parent); });
     m_currentSession->registerAPIController(u"rss"_s, [app = app(), parent = m_currentSession] { return new RSSController(app, parent); });
-    m_currentSession->registerAPIController(u"search"_s, [app = app(), parent = m_currentSession] { return new SearchController(app, parent); });
     m_currentSession->registerAPIController(u"torrents"_s, [app = app(), parent = m_currentSession] { return new TorrentsController(app, parent); });
     m_currentSession->registerAPIController(u"transfer"_s, [app = app(), parent = m_currentSession] { return new TransferController(app, parent); });
     m_currentSession->registerAPIController(u"clientdata"_s
@@ -925,6 +926,11 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
             , [app = app(), parent = m_currentSession, torrentCreationManager = m_torrentCreationManager]
     {
         return new TorrentCreatorController(torrentCreationManager, app, parent);
+    });
+    m_currentSession->registerAPIController(u"search"_s
+            , [app = app(), parent = m_currentSession, searchJobManager = m_searchJobManager]
+    {
+        return new SearchController(searchJobManager, app, parent);
     });
     m_currentSession->registerAPIController(u"sync"_s
             , [app = app(), parent = m_currentSession, btSession = BitTorrent::Session::instance()]
@@ -983,9 +989,26 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
 
     if (originValue.isEmpty() && refererValue.isEmpty())
     {
-        // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
-        // so lets be permissive here
-        return false;
+        // A page can suppress both 'Origin' and 'Referer', so fall back to 'Sec-Fetch-Site', which is
+        // set by the browser itself and cannot be tampered with by the requesting page.
+        const QString secFetchSiteValue = request.headers.value(Http::HEADER_SEC_FETCH_SITE);
+        if (secFetchSiteValue.isEmpty())
+        {
+            // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
+            // so let's be permissive here (Web API clients don't send 'Sec-Fetch-Site' at all)
+            return false;
+        }
+
+        // "none" means the request wasn't initiated by a page (typed URL, bookmark, etc.)
+        const bool isValid = (secFetchSiteValue.compare(u"same-origin", Qt::CaseInsensitive) == 0)
+                || (secFetchSiteValue.compare(u"none", Qt::CaseInsensitive) == 0);
+        if (!isValid)
+        {
+            LogMsg(tr("WebUI: Cross-site request blocked. Source IP: '%1'. Sec-Fetch-Site header: '%2'. Target origin: '%3'")
+                   .arg(m_env.clientAddress.toString(), secFetchSiteValue, targetOrigin)
+                   , Log::WARNING);
+        }
+        return !isValid;
     }
 
     // sent with CORS requests, as well as with POST requests

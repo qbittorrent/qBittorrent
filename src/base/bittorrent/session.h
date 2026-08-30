@@ -206,6 +206,8 @@ namespace BitTorrent
 
         virtual QString getDHTBootstrapNodes() const = 0;
         virtual void setDHTBootstrapNodes(const QString &nodes) = 0;
+        virtual QString getWebTorrentSTUNServer() const = 0;
+        virtual void setWebTorrentSTUNServer(const QString &server) = 0;
         virtual bool isDHTEnabled() const = 0;
         virtual void setDHTEnabled(bool enabled) = 0;
         virtual bool isLSDEnabled() const = 0;
@@ -331,6 +333,8 @@ namespace BitTorrent
         virtual void setPeerTurnoverInterval(int val) = 0;
         virtual int requestQueueSize() const = 0;
         virtual void setRequestQueueSize(int val) = 0;
+        virtual int maxOutstandingBlockRequests() const = 0;
+        virtual void setMaxOutstandingBlockRequests(int val) = 0;
         virtual int asyncIOThreads() const = 0;
         virtual void setAsyncIOThreads(int num) = 0;
         virtual int hashingThreads() const = 0;
