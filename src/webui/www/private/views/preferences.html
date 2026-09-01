@@ -573,6 +573,10 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
             <input type="checkbox" id="i2pMixedMode" title="QBT_TR(If &quot;mixed mode&quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.)QBT_TR[CONTEXT=OptionsDialog]">
             <label for="i2pMixedMode">QBT_TR(Mixed mode)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+        <div class="formRow" id="i2pPeXDiv">
+            <input type="checkbox" id="i2pPeXEnabled">
+            <label for="i2pPeXEnabled">QBT_TR(Enable I2P Peer Exchange (I2P PeX) to find more peers (requires restart))QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -2186,6 +2190,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("i2pAddress").disabled = !isI2PEnabled;
             document.getElementById("i2pPort").disabled = !isI2PEnabled;
             document.getElementById("i2pMixedMode").disabled = !isI2PEnabled;
+            document.getElementById("i2pPeXEnabled").disabled = !isI2PEnabled;
         };
 
         const updatePeerProxySettings = () => {
@@ -2621,6 +2626,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("i2pAddress").value = pref.i2p_address;
                     document.getElementById("i2pPort").value = pref.i2p_port;
                     document.getElementById("i2pMixedMode").checked = pref.i2p_mixed_mode;
+                    document.getElementById("i2pPeXEnabled").checked = pref.i2p_pex_enabled;
                     updateI2PSettingsEnabled();
 
                     // Proxy Server
@@ -3026,6 +3032,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["i2p_address"] = document.getElementById("i2pAddress").value;
             settings["i2p_port"] = Number(document.getElementById("i2pPort").value);
             settings["i2p_mixed_mode"] = document.getElementById("i2pMixedMode").checked;
+            settings["i2p_pex_enabled"] = document.getElementById("i2pPeXEnabled").checked;
 
             // Proxy Server
             settings["proxy_type"] = document.getElementById("peer_proxy_type_select").value;
@@ -3464,6 +3471,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.1") < 0) {
                 document.getElementById("diskIOTypePreadPwrite").hidden = true;
+                document.getElementById("i2pPeXDiv").style.display = "none";
                 document.getElementById("rowWebTorrentSTUNServer").hidden = true;
             }
 

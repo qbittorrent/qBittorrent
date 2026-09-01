@@ -59,6 +59,10 @@
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
 
+#if (LIBTORRENT_VERSION_NUM >= 20100) && TORRENT_USE_I2P
+#include <libtorrent/extensions/i2p_pex.hpp>
+#endif
+
 #include <QDateTime>
 #include <QDeadlineTimer>
 #include <QDebug>
@@ -626,6 +630,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_I2PAddress {BITTORRENT_SESSION_KEY(u"I2P/Address"_s), u"127.0.0.1"_s}
     , m_I2PPort {BITTORRENT_SESSION_KEY(u"I2P/Port"_s), 7656}
     , m_I2PMixedMode {BITTORRENT_SESSION_KEY(u"I2P/MixedMode"_s), false}
+    , m_isI2PPeXEnabled {BITTORRENT_SESSION_KEY(u"I2P/PeXEnabled"_s), true}
     , m_I2PInboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/InboundQuantity"_s), 3}
     , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_s), 3}
     , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_s), 3}
@@ -1870,6 +1875,10 @@ void SessionImpl::initializeNativeSession()
     m_nativeSession->add_extension(&lt::create_ut_metadata_plugin);
     if (isPeXEnabled())
         m_nativeSession->add_extension(&lt::create_ut_pex_plugin);
+#if (LIBTORRENT_VERSION_NUM >= 20100) && TORRENT_USE_I2P
+    if (isI2PPeXEnabled())
+        m_nativeSession->add_extension(&lt::create_i2p_pex_plugin);
+#endif
 
     auto nativeSessionExtension = std::make_shared<NativeSessionExtension>();
     m_nativeSession->add_extension(nativeSessionExtension);
@@ -3991,6 +4000,17 @@ void SessionImpl::setI2PMixedMode(const bool enabled)
         m_I2PMixedMode = enabled;
         configureDeferred();
     }
+}
+
+bool SessionImpl::isI2PPeXEnabled() const
+{
+    return m_isI2PPeXEnabled;
+}
+
+void SessionImpl::setI2PPeXEnabled(const bool enabled)
+{
+    if (m_isI2PPeXEnabled != enabled)
+        m_isI2PPeXEnabled = enabled;
 }
 
 int SessionImpl::I2PInboundQuantity() const
