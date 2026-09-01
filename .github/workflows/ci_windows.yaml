@@ -229,7 +229,7 @@ jobs:
           path: upload
 
       - name: Install NSIS
-        uses: repolevedavaj/install-nsis@1ab2f7ba2fe9408db612029be0bb3c0088b0d3e9 # v1.2.1
+        uses: repolevedavaj/install-nsis@65a75ea79c3d1ddde868e98b7f9447e2e623401c # v1.3.0
         with:
           nsis-version: '3.12'
 
