@@ -53,7 +53,7 @@ repos:
         )$
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python.git
-    rev: 3.6.1
+    rev: 3.11.1
     hooks:
     - id: editorconfig-checker
       name: Check code formatting (EditorConfig)
@@ -78,7 +78,7 @@ repos:
         - ts
 
   - repo: https://github.com/crate-ci/typos.git
-    rev: v1.48.0
+    rev: v1.50.0
     hooks:
     - id: typos
       name: Check spelling (typos)
