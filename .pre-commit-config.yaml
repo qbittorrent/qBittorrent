@@ -40,12 +40,12 @@ repos:
         - svg
         - ts
 
-  - repo: https://github.com/igorshubovych/markdownlint-cli.git
-    rev: v0.49.1
+  - repo: https://github.com/rvben/rumdl-pre-commit.git
+    rev: v0.2.64
     hooks:
-    - id: markdownlint
+    - id: rumdl
       name: Check Markdown files
-      args: ["--config", ".github/workflows/helper/pre-commit/.markdownlint.yaml"]
+      args: ["--config", ".github/workflows/helper/pre-commit/.rumdl.toml", "--fix"]
       exclude: |
         (?x)^(
           doc/.*/qbittorrent\.1\.md |
