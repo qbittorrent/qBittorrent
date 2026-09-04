@@ -4553,6 +4553,9 @@ MUI.Column = new Class({
 				var sortables = new Sortables(this.columnEl, {
 					opacity: 1,
 					handle: '.panel-header',
+					dragOptions: {
+						unDraggableTags: []
+					},
 					constrain: false,
 					revert: false,
 					onSort: function(){
