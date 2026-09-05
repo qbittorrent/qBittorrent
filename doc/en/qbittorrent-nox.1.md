@@ -42,6 +42,8 @@ password in the program preferences.
 
 **`--torrenting-port=<port>`** Change the torrenting port.
 
+**`--announce-port=<port>`** Change the announce port.
+
 **`-d | --daemon`** Run in daemon-mode (background).
 
 **`--profile=<dir>`** Store configuration files in `<dir>`.
