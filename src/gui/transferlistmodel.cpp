@@ -32,6 +32,7 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QRegularExpression>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
@@ -86,9 +87,46 @@ namespace
         }
         return colors;
     }
+
+    QString cleanTorrentName(const QString &rawName)
+    {
+        QString name = rawName;
+        static const QRegularExpression leadingBracket(u"^\\s*\\[[^\\]]*\\]\\s*"_s);
+        name.remove(leadingBracket);
+        static const QRegularExpression dotSep(u"(?<=[\\w)])\\."
+                                               "(?=[\\w(])"_s);
+        name.replace(dotSep, u" "_s);
+        name.replace(u'_', u' ');
+        static const QRegularExpression bracketTech(
+            u"\\s*\\[[^\\]]*(?:\\d{3,4}[pi]|x26[45]|HEVC|AVC|Hi10|Hi8|"
+            u"AAC|AC3|FLAC|DTS|MP3|Opus|[0-9A-Fa-f]{8})[^\\]]*\\]"_s,
+            QRegularExpression::CaseInsensitiveOption
+        );
+        name.remove(bracketTech);
+        static const QRegularExpression techToken(
+            u"(?:^|\\s)(?:2160[pi]?|1080[pi]?|720[pi]?|480[pi]?|4[Kk](?:[Hh][Dd][Rr])?|8[Kk]|"
+            u"Blu-?Ray|BDRip|BRRip|WEB-?(?:DL|Rip)?|HDTV|PDTV|DVDRip|DVD|"
+            u"CAM(?:Rip)?|HDCAM|R5|SCR|DVDSCR|"
+            u"x26[45]|[Hh]\\.?26[45]|HEVC|AVC|XviD|DivX|VP9|AV1|"
+            u"DD[P+]?(?:\\s*5\\.1)?|DTS(?:-HD|-X|-MA)?|TrueHD|Atmos|AC-?3|AAC|FLAC|MP3|Opus|"
+            u"HDR(?:10\\+?)?|SDR|DV|DoVi|Dolby(?:\\s+Vision)?|"
+            u"REMUX|REPACK|PROPER|EXTENDED|THEATRICAL|UNRATED|DC|COMPLETE|INTERNAL|"
+            u"(?:10|8)[Bb]it)(?=\\b|\\s|-|$).*$"_s,
+            QRegularExpression::CaseInsensitiveOption
+        );
+        name.remove(techToken);
+        static const QRegularExpression trailingGroup(u"\\s+-\\w+\\s*$"_s);
+        name.remove(trailingGroup);
+        return name.simplified();
+    }
 }
 
 // TransferListModel
+
+QString TransferListModel::cleanName(const QString &rawName)
+{
+    return cleanTorrentName(rawName);
+}
 
 TransferListModel::TransferListModel(QObject *parent)
     : QAbstractListModel {parent}
