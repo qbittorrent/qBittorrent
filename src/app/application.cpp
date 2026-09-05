@@ -1027,11 +1027,20 @@ int Application::exec()
         }
         else if (m_webui->isEnabled())
         {
-            const QHostAddress address = m_webui->hostAddress();
-            const QString url = u"%1://%2:%3"_s.arg((m_webui->isHttps() ? u"https"_s : u"http"_s)
-                    , (address.isEqual(QHostAddress::Any, QHostAddress::ConvertUnspecifiedAddress) ? u"localhost"_s : address.toString())
-                    , QString::number(m_webui->port()));
-            printf("%s\n", qUtf8Printable(tr("To control qBittorrent, access the WebUI at: %1").arg(url)));
+            const QString socketPath = m_webui->unixSocketPath();
+            if (!socketPath.isEmpty())
+            {
+                const QString msg = tr("To control qBittorrent, access the WebUI via Unix socket: %1").arg(socketPath);
+                printf("%s\n", qUtf8Printable(msg));
+            }
+            else
+            {
+                const QHostAddress address = m_webui->hostAddress();
+                const QString url = u"%1://%2:%3"_s.arg((m_webui->isHttps() ? u"https"_s : u"http"_s)
+                        , (address.isEqual(QHostAddress::Any, QHostAddress::ConvertUnspecifiedAddress) ? u"localhost"_s : address.toString())
+                        , QString::number(m_webui->port()));
+                printf("%s\n", qUtf8Printable(tr("To control qBittorrent, access the WebUI at: %1").arg(url)));
+            }
 
             if (!tempPassword.isEmpty())
             {
