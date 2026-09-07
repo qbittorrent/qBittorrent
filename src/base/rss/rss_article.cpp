@@ -32,6 +32,7 @@
 
 #include <QVariant>
 
+#include "base/bittorrent/torrentdescriptor.h"
 #include "base/global.h"
 #include "rss_feed.h"
 
@@ -119,6 +120,14 @@ void Article::markAsRead()
 bool Article::articleDateRecentThan(const Article *article, const QDateTime &date)
 {
     return article->date() > date;
+}
+
+bool Article::isSupportedTorrentURL(const QString &url)
+{
+    return url.startsWith(u"http:"_s, Qt::CaseInsensitive)
+            || url.startsWith(u"https:"_s, Qt::CaseInsensitive)
+            || url.startsWith(u"magnet:"_s, Qt::CaseInsensitive)
+            || BitTorrent::TorrentDescriptor::parse(url).has_value();
 }
 
 Feed *Article::feed() const
