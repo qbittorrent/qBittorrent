@@ -958,6 +958,11 @@ void OptionsDialog::loadConnectionTabOptions()
     m_ui->spinI2PPort->setValue(session->I2PPort());
     m_ui->checkI2PMixed->setChecked(session->I2PMixedMode());
     m_ui->groupI2P->setChecked(session->isI2PEnabled());
+#if LIBTORRENT_VERSION_NUM >= 20100
+    m_ui->checkI2PPeX->setChecked(session->isI2PPeXEnabled());
+#else
+    m_ui->checkI2PPeX->hide();
+#endif // LIBTORRENT_VERSION_NUM >= 20100
 #else
     m_ui->groupI2P->hide();
 #endif
@@ -1020,6 +1025,9 @@ void OptionsDialog::loadConnectionTabOptions()
     connect(m_ui->textI2PHost, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinI2PPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkI2PMixed, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
+#if LIBTORRENT_VERSION_NUM >= 20100
+    connect(m_ui->checkI2PPeX, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
+#endif // LIBTORRENT_VERSION_NUM >= 20100
     connect(m_ui->groupI2P, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
 #endif
 
@@ -1059,6 +1067,9 @@ void OptionsDialog::saveConnectionTabOptions() const
     session->setI2PAddress(m_ui->textI2PHost->text().trimmed());
     session->setI2PPort(m_ui->spinI2PPort->value());
     session->setI2PMixedMode(m_ui->checkI2PMixed->isChecked());
+#if LIBTORRENT_VERSION_NUM >= 20100
+    session->setI2PPeXEnabled(m_ui->checkI2PPeX->isChecked());
+#endif // LIBTORRENT_VERSION_NUM >= 20100
 #endif
 
     auto *proxyConfigManager = Net::ProxyConfigurationManager::instance();

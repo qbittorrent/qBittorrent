@@ -2,6 +2,9 @@
 
 ## 2.16.2
 
+* [#24870](https://github.com/qbittorrent/qBittorrent/pull/24870)
+  * `app/preferences` endpoint includes `i2p_pex_enabled` (bool) option
+  * `app/setPreferences` endpoint allows to set `i2p_pex_enabled` (bool) option
 * [#24842](https://github.com/qbittorrent/qBittorrent/pull/24842)
   * Add JSON `rss/exportRules` and `rss/importRules` endpoints for RSS auto-download rules (`rss/importRules` accepts `POST` requests only)
 * [#24269](https://github.com/qbittorrent/qBittorrent/pull/24269)

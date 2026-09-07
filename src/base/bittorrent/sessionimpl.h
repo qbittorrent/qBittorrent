@@ -276,6 +276,8 @@ namespace BitTorrent
         void setI2PPort(int port) override;
         bool I2PMixedMode() const override;
         void setI2PMixedMode(bool enabled) override;
+        bool isI2PPeXEnabled() const override;
+        void setI2PPeXEnabled(bool enabled) override;
         int I2PInboundQuantity() const override;
         void setI2PInboundQuantity(int value) override;
         int I2POutboundQuantity() const override;
@@ -802,6 +804,7 @@ namespace BitTorrent
         CachedSettingValue<QString> m_I2PAddress;
         CachedSettingValue<int> m_I2PPort;
         CachedSettingValue<bool> m_I2PMixedMode;
+        CachedSettingValue<bool> m_isI2PPeXEnabled;
         CachedSettingValue<int> m_I2PInboundQuantity;
         CachedSettingValue<int> m_I2POutboundQuantity;
         CachedSettingValue<int> m_I2PInboundLength;

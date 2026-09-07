@@ -254,6 +254,7 @@ void AppController::preferencesAction()
     data[u"i2p_address"_s] = session->I2PAddress();
     data[u"i2p_port"_s] = session->I2PPort();
     data[u"i2p_mixed_mode"_s] = session->I2PMixedMode();
+    data[u"i2p_pex_enabled"_s] = session->isI2PPeXEnabled();
     data[u"i2p_inbound_quantity"_s] = session->I2PInboundQuantity();
     data[u"i2p_outbound_quantity"_s] = session->I2POutboundQuantity();
     data[u"i2p_inbound_length"_s] = session->I2PInboundLength();
@@ -756,6 +757,8 @@ void AppController::setPreferencesAction()
         session->setI2PPort(it.value().toInt());
     if (hasKey(u"i2p_mixed_mode"_s))
         session->setI2PMixedMode(it.value().toBool());
+    if (hasKey(u"i2p_pex_enabled"_s))
+        session->setI2PPeXEnabled(it.value().toBool());
     if (hasKey(u"i2p_inbound_quantity"_s))
         session->setI2PInboundQuantity(it.value().toInt());
     if (hasKey(u"i2p_outbound_quantity"_s))

@@ -299,6 +299,8 @@ namespace BitTorrent
         virtual void setI2PPort(int port) = 0;
         virtual bool I2PMixedMode() const = 0;
         virtual void setI2PMixedMode(bool enabled) = 0;
+        virtual bool isI2PPeXEnabled() const = 0;
+        virtual void setI2PPeXEnabled(bool enabled) = 0;
         virtual int I2PInboundQuantity() const = 0;
         virtual void setI2PInboundQuantity(int value) = 0;
         virtual int I2POutboundQuantity() const = 0;
