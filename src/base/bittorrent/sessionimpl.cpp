@@ -530,6 +530,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_downloadRateForSlowTorrents(BITTORRENT_SESSION_KEY(u"SlowTorrentsDownloadRate"_s), 2)
     , m_uploadRateForSlowTorrents(BITTORRENT_SESSION_KEY(u"SlowTorrentsUploadRate"_s), 2)
     , m_slowTorrentsInactivityTimer(BITTORRENT_SESSION_KEY(u"SlowTorrentsInactivityTimer"_s), 60)
+    , m_metadataStalledTimeout(BITTORRENT_SESSION_KEY(u"MetadataStalledTimeout"_s), 300)
     , m_outgoingPortsMin(BITTORRENT_SESSION_KEY(u"OutgoingPortsMin"_s), 0)
     , m_outgoingPortsMax(BITTORRENT_SESSION_KEY(u"OutgoingPortsMax"_s), 0)
     , m_UPnPLeaseDuration(BITTORRENT_SESSION_KEY(u"UPnPLeaseDuration"_s), 0)
@@ -5030,6 +5031,16 @@ void SessionImpl::setSlowTorrentsInactivityTimer(const int timeInSeconds)
 
     m_slowTorrentsInactivityTimer = timeInSeconds;
     configureDeferred();
+}
+
+int SessionImpl::metadataStalledTimeout() const
+{
+    return m_metadataStalledTimeout;
+}
+
+void SessionImpl::setMetadataStalledTimeout(const int timeInSeconds)
+{
+    m_metadataStalledTimeout = timeInSeconds;
 }
 
 int SessionImpl::outgoingPortsMin() const

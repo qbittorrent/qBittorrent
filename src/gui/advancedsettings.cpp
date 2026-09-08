@@ -113,6 +113,7 @@ namespace
         PYTHON_EXECUTABLE_PATH,
         START_SESSION_PAUSED,
         SESSION_SHUTDOWN_TIMEOUT,
+        METADATA_STALLED_TIMEOUT,
 
         // libtorrent section
         LIBTORRENT_HEADER,
@@ -368,6 +369,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setStartPaused(m_checkBoxStartSessionPaused.isChecked());
     // Session shutdown timeout
     session->setShutdownTimeout(m_spinBoxSessionShutdownTimeout.value());
+    // Metadata stalled timeout
+    session->setMetadataStalledTimeout(m_spinBoxMetadataStalledTimeout.value());
     // Choking algorithm
     session->setChokingAlgorithm(m_comboBoxChokingAlgorithm.currentData().value<BitTorrent::ChokingAlgorithm>());
     // Seed choking algorithm
@@ -949,6 +952,14 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxSessionShutdownTimeout.setSpecialValueText(tr("-1 (unlimited)"));
     m_spinBoxSessionShutdownTimeout.setToolTip(u"Sets the timeout for the session to be shut down gracefully, at which point it will be forcibly terminated.<br>Note that this does not apply to the saving resume data time."_s);
     addRow(SESSION_SHUTDOWN_TIMEOUT, tr("BitTorrent session shutdown timeout [-1: unlimited]"), &m_spinBoxSessionShutdownTimeout);
+    // Metadata stalled timeout
+    m_spinBoxMetadataStalledTimeout.setMinimum(0);
+    m_spinBoxMetadataStalledTimeout.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxMetadataStalledTimeout.setValue(session->metadataStalledTimeout());
+    m_spinBoxMetadataStalledTimeout.setSuffix(tr(" sec", " seconds"));
+    m_spinBoxMetadataStalledTimeout.setSpecialValueText(tr("0 (disabled)"));
+    m_spinBoxMetadataStalledTimeout.setToolTip(tr("A torrent that has been running for this long without receiving any of its metadata is reported as stalled instead of \"Downloading metadata\"."));
+    addRow(METADATA_STALLED_TIMEOUT, tr("Magnet link stalled timeout [0: disabled]"), &m_spinBoxMetadataStalledTimeout);
     // Choking algorithm
     m_comboBoxChokingAlgorithm.addItem(tr("Fixed slots"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::FixedSlots));
     m_comboBoxChokingAlgorithm.addItem(tr("Upload rate based"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::RateBased));

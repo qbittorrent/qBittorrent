@@ -1263,6 +1263,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                         stateClass = "stateStalledUP";
                         break;
                     case "stalledDL":
+                    case "stalledMetaDL":
                         stateClass = "stateStalledDL";
                         break;
                     case "stoppedDL":
@@ -1412,6 +1413,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                         break;
                     case "forcedMetaDL":
                         status = "QBT_TR([F] Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
+                        break;
+                    case "stalledMetaDL":
+                        status = "QBT_TR(Stalled (metadata))QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
                     case "forcedDL":
                         status = "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
@@ -1660,7 +1664,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                         return false;
                     break;
                 case "stalled":
-                    if ((state !== "stalledUP") && (state !== "stalledDL"))
+                    if ((state !== "stalledUP") && (state !== "stalledDL") && (state !== "stalledMetaDL"))
                         return false;
                     break;
                 case "stalled_uploading":
@@ -1668,7 +1672,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                         return false;
                     break;
                 case "stalled_downloading":
-                    if (state !== "stalledDL")
+                    if ((state !== "stalledDL") && (state !== "stalledMetaDL"))
                         return false;
                     break;
                 case "inactive":

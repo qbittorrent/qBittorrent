@@ -67,6 +67,8 @@ namespace
             return u"metaDL"_s;
         case BitTorrent::TorrentState::ForcedDownloadingMetadata:
             return u"forcedMetaDL"_s;
+        case BitTorrent::TorrentState::StalledDownloadingMetadata:
+            return u"stalledMetaDL"_s;
         case BitTorrent::TorrentState::StoppedDownloading:
             return u"stoppedDL"_s;
         case BitTorrent::TorrentState::QueuedDownloading:

@@ -303,6 +303,8 @@ namespace BitTorrent
         void updateStatus(const lt::torrent_status &nativeStatus);
         void updateProgress();
         void updateState();
+        void updateMetadataProgress();
+        bool isMetadataStalled() const;
 
         bool isMoveInProgress() const;
 
@@ -337,6 +339,11 @@ namespace BitTorrent
         QList<DownloadPriority> m_filePriorities;
         QBitArray m_completedFiles;
         SpeedMonitor m_payloadRateMonitor;
+
+        // Used to detect a metadata download that makes no progress.
+        // `m_metadataDownloadedBytes` is negative until the state is updated for the first time.
+        qlonglong m_metadataDownloadedBytes = -1;
+        lt::time_duration m_metadataProgressTime {};
 
         InfoHash m_infoHash;
 

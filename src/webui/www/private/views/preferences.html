@@ -1303,6 +1303,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="metadataStalledTimeout">QBT_TR(Magnet link stalled timeout [0: disabled]:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="metadataStalledTimeout" style="width: 15em;">&nbsp;&nbsp;QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="networkInterface">QBT_TR(Network interface:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
@@ -2692,6 +2700,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("dlRateThresholdValue").value = Number(pref.slow_torrent_dl_rate_threshold);
                     document.getElementById("ulRateThresholdValue").value = Number(pref.slow_torrent_ul_rate_threshold);
                     document.getElementById("torrentInactiveTimerValue").value = Number(pref.slow_torrent_inactive_timer);
+                    document.getElementById("metadataStalledTimeout").value = Number(pref.metadata_stalled_timeout);
                     updateQueueingSystem();
 
                     // Share Limiting
@@ -3300,6 +3309,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["resume_data_storage_type"] = document.getElementById("resumeDataStorageType").value;
             settings["torrent_content_remove_option"] = document.getElementById("torrentContentRemoveOption").value;
             settings["memory_working_set_limit"] = Number(document.getElementById("memoryWorkingSetLimit").value);
+            settings["metadata_stalled_timeout"] = Number(document.getElementById("metadataStalledTimeout").value);
             settings["current_network_interface"] = document.getElementById("networkInterface").value;
             settings["current_interface_address"] = document.getElementById("optionalIPAddressToBind").value;
             settings["save_resume_data_interval"] = Number(document.getElementById("saveResumeDataInterval").value);
