@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020-2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  The qBittorrent project
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,28 +28,48 @@
 
 #pragma once
 
-#include <QtContainerFwd>
-#include <QMetaEnum>
+#include <QList>
+#include <QString>
 
 #include "base/path.h"
+#include "infohash.h"
+#include "torrentcontentlayout.h"
 
 namespace BitTorrent
 {
-    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
-    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
-    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
-    inline namespace TorrentContentLayoutNS
+    QString uniqueSubfolderTag(const TorrentID &id);
+    QString uniqueSubfolderName(const TorrentID &id, const QString &originalName);
+    PathList applyUniqueSubfolderLayout(PathList filePaths, const TorrentID &id, const QString &torrentName);
+
+    struct UniqueSubfolderRename
     {
-        Q_NAMESPACE
+        int fileIndex = -1;
+        Path to;
+    };
 
-        enum class TorrentContentLayout
+    // Preflight for unique-subfolder conversion (no disk changes).
+    struct UniqueSubfolderMigrationPlan
+    {
+        Path uniqueRoot;
+        Path folderRenameOldRoot; // non-empty → doRenameFolder(old, uniqueRoot)
+        QList<UniqueSubfolderRename> renames; // used when folderRenameOldRoot is empty
+
+        bool blocked = false;
+        QString blockReason;
+        bool finalizeOnly = false;
+
+        bool isFolderRename() const
         {
-            Original,
-            Subfolder,
-            UniqueSubfolder, // top-level "Name <12-hex-hash>" directory
-            NoSubfolder
-        };
+            return !folderRenameOldRoot.isEmpty();
+        }
 
-        Q_ENUM_NS(TorrentContentLayout)
-    }
+        bool isEmpty() const
+        {
+            return !finalizeOnly && !blocked && !isFolderRename() && renames.isEmpty();
+        }
+    };
+
+    UniqueSubfolderMigrationPlan makeUniqueSubfolderMigrationPlan(
+            const PathList &currentPaths, const TorrentID &id, const QString &torrentName
+            , TorrentContentLayout currentLayout);
 }
