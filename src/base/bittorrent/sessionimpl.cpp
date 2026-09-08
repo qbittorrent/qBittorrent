@@ -635,6 +635,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_s), 3}
     , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_s), 3}
     , m_I2POutboundLength {BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_s), 3}
+    , m_I2PInboundLengthVariance {BITTORRENT_SESSION_KEY(u"I2P/InboundLengthVariance"_s), 0}
+    , m_I2POutboundLengthVariance {BITTORRENT_SESSION_KEY(u"I2P/OutboundLengthVariance"_s), 0}
     , m_torrentContentRemoveOption {BITTORRENT_SESSION_KEY(u"TorrentContentRemoveOption"_s), TorrentContentRemoveOption::Delete}
     , m_startPaused {BITTORRENT_SESSION_KEY(u"StartPaused"_s)}
     , m_seedingLimitTimer {new QTimer(this)}
@@ -2033,6 +2035,10 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::i2p_outbound_quantity, I2POutboundQuantity());
     settingsPack.set_int(lt::settings_pack::i2p_inbound_length, I2PInboundLength());
     settingsPack.set_int(lt::settings_pack::i2p_outbound_length, I2POutboundLength());
+#if LIBTORRENT_VERSION_NUM >= 20012
+    settingsPack.set_int(lt::settings_pack::i2p_inbound_length_variance, I2PInboundLengthVariance());
+    settingsPack.set_int(lt::settings_pack::i2p_outbound_length_variance, I2POutboundLengthVariance());
+#endif // LIBTORRENT_VERSION_NUM >= 20012
 #endif
 
     // proxy
@@ -4066,6 +4072,34 @@ void SessionImpl::setI2POutboundLength(const int value)
         return;
 
     m_I2POutboundLength = value;
+    configureDeferred();
+}
+
+int SessionImpl::I2PInboundLengthVariance() const
+{
+    return m_I2PInboundLengthVariance;
+}
+
+void SessionImpl::setI2PInboundLengthVariance(const int value)
+{
+    if (value == m_I2PInboundLengthVariance)
+        return;
+
+    m_I2PInboundLengthVariance = value;
+    configureDeferred();
+}
+
+int SessionImpl::I2POutboundLengthVariance() const
+{
+    return m_I2POutboundLengthVariance;
+}
+
+void SessionImpl::setI2POutboundLengthVariance(const int value)
+{
+    if (value == m_I2POutboundLengthVariance)
+        return;
+
+    m_I2POutboundLengthVariance = value;
     configureDeferred();
 }
 

@@ -1909,6 +1909,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <input id="i2pOutboundLength" type="number" min="0" max="7" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;">
                     </td>
                 </tr>
+                <tr id="rowI2pInboundLengthVariance">
+                    <td>
+                        <label for="i2pInboundLengthVariance">QBT_TR(I2P inbound length variance:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_inbound_length_variance" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input id="i2pInboundLengthVariance" type="number" min="-7" max="7" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;">
+                    </td>
+                </tr>
+                <tr id="rowI2pOutboundLengthVariance">
+                    <td>
+                        <label for="i2pOutboundLengthVariance">QBT_TR(I2P outbound length variance:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_outbound_length_variance" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input id="i2pOutboundLengthVariance" type="number" min="-7" max="7" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;">
+                    </td>
+                </tr>
             </tbody>
         </table>
     </fieldset>
@@ -2877,6 +2893,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("i2pOutboundQuantity").value = pref.i2p_outbound_quantity;
                     document.getElementById("i2pInboundLength").value = pref.i2p_inbound_length;
                     document.getElementById("i2pOutboundLength").value = pref.i2p_outbound_length;
+                    document.getElementById("i2pInboundLengthVariance").value = pref.i2p_inbound_length_variance;
+                    document.getElementById("i2pOutboundLengthVariance").value = pref.i2p_outbound_length_variance;
                 }).catch((error) => {
                     console.error(error);
                     alert("QBT_TR(Unable to load program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
@@ -3420,6 +3438,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["i2p_outbound_quantity"] = Number(document.getElementById("i2pOutboundQuantity").value);
             settings["i2p_inbound_length"] = Number(document.getElementById("i2pInboundLength").value);
             settings["i2p_outbound_length"] = Number(document.getElementById("i2pOutboundLength").value);
+            settings["i2p_inbound_length_variance"] = Number(document.getElementById("i2pInboundLengthVariance").value);
+            settings["i2p_outbound_length_variance"] = Number(document.getElementById("i2pOutboundLengthVariance").value);
 
             // Send data to qBT
             Promise.allSettled([
@@ -3465,6 +3485,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.6") < 0)
                 document.getElementById("diskIOWriteModeWriteThrough").hidden = true;
+
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.12") < 0) {
+                document.getElementById("rowI2pInboundLengthVariance").style.display = "none";
+                document.getElementById("rowI2pOutboundLengthVariance").style.display = "none";
+            }
 
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.13") < 0)
                 document.getElementById("rowMultiConnectionsPerPeerID").style.display = "none";

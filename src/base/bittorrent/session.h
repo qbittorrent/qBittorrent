@@ -309,6 +309,10 @@ namespace BitTorrent
         virtual void setI2PInboundLength(int value) = 0;
         virtual int I2POutboundLength() const = 0;
         virtual void setI2POutboundLength(int value) = 0;
+        virtual int I2PInboundLengthVariance() const = 0;
+        virtual void setI2PInboundLengthVariance(int value) = 0;
+        virtual int I2POutboundLengthVariance() const = 0;
+        virtual void setI2POutboundLengthVariance(int value) = 0;
         virtual bool isProxyPeerConnectionsEnabled() const = 0;
         virtual void setProxyPeerConnectionsEnabled(bool enabled) = 0;
         virtual ChokingAlgorithm chokingAlgorithm() const = 0;

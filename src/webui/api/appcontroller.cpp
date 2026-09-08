@@ -259,6 +259,8 @@ void AppController::preferencesAction()
     data[u"i2p_outbound_quantity"_s] = session->I2POutboundQuantity();
     data[u"i2p_inbound_length"_s] = session->I2PInboundLength();
     data[u"i2p_outbound_length"_s] = session->I2POutboundLength();
+    data[u"i2p_inbound_length_variance"_s] = session->I2PInboundLengthVariance();
+    data[u"i2p_outbound_length_variance"_s] = session->I2POutboundLengthVariance();
 
     // Proxy Server
     const auto *proxyManager = Net::ProxyConfigurationManager::instance();
@@ -767,6 +769,10 @@ void AppController::setPreferencesAction()
         session->setI2PInboundLength(it.value().toInt());
     if (hasKey(u"i2p_outbound_length"_s))
         session->setI2POutboundLength(it.value().toInt());
+    if (hasKey(u"i2p_inbound_length_variance"_s))
+        session->setI2PInboundLengthVariance(it.value().toInt());
+    if (hasKey(u"i2p_outbound_length_variance"_s))
+        session->setI2POutboundLengthVariance(it.value().toInt());
 
     // Proxy Server
     auto *proxyManager = Net::ProxyConfigurationManager::instance();
