@@ -40,12 +40,12 @@ repos:
         - svg
         - ts
 
-  - repo: https://github.com/igorshubovych/markdownlint-cli.git
-    rev: v0.49.0
+  - repo: https://github.com/rvben/rumdl-pre-commit.git
+    rev: v0.2.64
     hooks:
-    - id: markdownlint
+    - id: rumdl
       name: Check Markdown files
-      args: ["--config", ".github/workflows/helper/pre-commit/.markdownlint.yaml"]
+      args: ["--config", ".github/workflows/helper/pre-commit/.rumdl.toml", "--fix"]
       exclude: |
         (?x)^(
           doc/.*/qbittorrent\.1\.md |
@@ -53,13 +53,13 @@ repos:
         )$
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python.git
-    rev: 3.6.1
+    rev: 3.11.1
     hooks:
     - id: editorconfig-checker
       name: Check code formatting (EditorConfig)
 
   - repo: https://github.com/codespell-project/codespell.git
-    rev: v2.4.2
+    rev: v2.4.3
     hooks:
     - id: codespell
       name: Check spelling (codespell)
@@ -78,7 +78,7 @@ repos:
         - ts
 
   - repo: https://github.com/crate-ci/typos.git
-    rev: v1.48.0
+    rev: v1.50.0
     hooks:
     - id: typos
       name: Check spelling (typos)

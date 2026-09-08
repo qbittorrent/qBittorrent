@@ -36,7 +36,6 @@
 #include <QString>
 #include <QUrl>
 
-#include "base/bittorrent/addtorrenterror.h"
 #include "base/bittorrent/sharelimits.h"
 #include "base/bittorrent/trackerentrystatus.h"
 #include "base/path.h"
@@ -304,11 +303,4 @@ namespace luabridge
     {
     };
 
-    template <>
-    struct Stack<BitTorrent::AddTorrentError::Kind>
-        : Enum<BitTorrent::AddTorrentError::Kind
-            , BitTorrent::AddTorrentError::Kind::DuplicateTorrent
-            , BitTorrent::AddTorrentError::Kind::Other>
-    {
-    };
 }

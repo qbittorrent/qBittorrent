@@ -183,7 +183,7 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
 TrackersFilterWidget::~TrackersFilterWidget()
 {
     for (const Path &iconPath : asConst(m_iconPaths))
-        Utils::Fs::removeFile(iconPath);
+        std::ignore = Utils::Fs::removeFile(iconPath);
 }
 
 void TrackersFilterWidget::handleTorrentTrackersAdded(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers)
@@ -494,7 +494,7 @@ void TrackersFilterWidget::handleFavicoDownloadFinished(const Net::DownloadResul
         const bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
         if (invalid)
         {
-            Utils::Fs::removeFile(result.filePath);
+            std::ignore = Utils::Fs::removeFile(result.filePath);
             failed = true;
         }
     }
@@ -533,7 +533,7 @@ void TrackersFilterWidget::handleFavicoDownloadFinished(const Net::DownloadResul
     if (matchedTrackerFound)
         m_iconPaths.append(result.filePath);
     else
-        Utils::Fs::removeFile(result.filePath);
+        std::ignore = Utils::Fs::removeFile(result.filePath);
 }
 
 void TrackersFilterWidget::showMenu()

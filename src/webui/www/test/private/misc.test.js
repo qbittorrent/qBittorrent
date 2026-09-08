@@ -30,6 +30,32 @@ import { expect, test, vi } from "vitest";
 
 import "../../private/scripts/misc.js";
 
+test("Test isHttpUrl()", () => {
+    const isHttpUrl = window.qBittorrent.Misc.isHttpUrl;
+
+    expect(isHttpUrl("http://example.com")).toBe(true);
+    expect(isHttpUrl("https://example.com/path?a=b#c")).toBe(true);
+    expect(isHttpUrl("HTTPS://EXAMPLE.COM")).toBe(true);
+    expect(isHttpUrl("  https://example.com  ")).toBe(true);
+    // relative URLs are resolved against the document URL
+    expect(isHttpUrl("")).toBe(true);
+    expect(isHttpUrl("/foo")).toBe(true);
+
+    expect(isHttpUrl("javascript:alert(1)")).toBe(false);
+    expect(isHttpUrl("JavaScript:alert(1)")).toBe(false);
+    expect(isHttpUrl("  javascript:alert(1)")).toBe(false);
+    expect(isHttpUrl("java\tscript:alert(1)")).toBe(false);
+    expect(isHttpUrl("java\nscript:alert(1)")).toBe(false);
+    expect(isHttpUrl("java\rscript:alert(1)")).toBe(false);
+    expect(isHttpUrl("vbscript:msgbox(1)")).toBe(false);
+    expect(isHttpUrl("data:text/html,<script>alert(1)</script>")).toBe(false);
+    expect(isHttpUrl("blob:https://example.com/1234")).toBe(false);
+    expect(isHttpUrl("file:///etc/passwd")).toBe(false);
+    expect(isHttpUrl("ftp://example.com")).toBe(false);
+    expect(isHttpUrl("mailto:someone@example.com")).toBe(false);
+    expect(isHttpUrl("magnet:?xt=urn:btih:0000000000000000000000000000000000000000")).toBe(false);
+});
+
 test("Test filterInPlace()", () => {
     const filterInPlace = (array, predicate) => {
         window.qBittorrent.Misc.filterInPlace(array, predicate);

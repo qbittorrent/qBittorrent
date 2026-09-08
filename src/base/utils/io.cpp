@@ -140,6 +140,9 @@ nonstd::expected<void, QString> Utils::IO::saveToFile(const Path &path, const QB
 
 nonstd::expected<void, QString> Utils::IO::saveToFile(const Path &path, const lt::entry &data)
 {
+    if (const Path parentPath = path.parentPath(); !parentPath.isEmpty())
+        Utils::Fs::mkpath(parentPath);
+
     QSaveFile file {path.data()};
     if (!file.open(QIODevice::WriteOnly))
         return nonstd::make_unexpected(file.errorString());

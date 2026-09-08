@@ -31,6 +31,7 @@
 
 #include "rss_session.h"
 
+#include <algorithm>
 #include <chrono>
 
 #include <QDebug>
@@ -65,7 +66,7 @@ Session::Session()
     : m_storeProcessingEnabled(u"RSS/Session/EnableProcessing"_s)
     , m_storeRefreshInterval(u"RSS/Session/RefreshInterval"_s, 30)
     , m_storeFetchDelay(u"RSS/Session/FetchDelay"_s, 2)
-    , m_storeMaxArticlesPerFeed(u"RSS/Session/MaxArticlesPerFeed"_s, 50)
+    , m_storeMaxArticlesPerFeed(u"RSS/Session/MaxArticlesPerFeed"_s, 50, [](const int n) { return std::max(n, 0); })
     , m_workingThread(new QThread)
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
@@ -467,7 +468,7 @@ void Session::addItem(Item *item, Folder *destFolder)
             if (feed->name() == oldURL)
             {
                 // If feed still use an URL as a name trying to rename it to match new URL...
-                moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->url()));
+                std::ignore = moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->url()));
             }
 
             emit feedURLChanged(feed, oldURL);
@@ -594,7 +595,7 @@ void Session::handleFeedTitleChanged(Feed *feed)
     {
         // Now we have something better than a URL.
         // Trying to rename feed...
-        moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->title()));
+        std::ignore = moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->title()));
     }
 }
 
@@ -614,10 +615,11 @@ int Session::maxArticlesPerFeed() const
 
 void Session::setMaxArticlesPerFeed(const int n)
 {
-    if (m_storeMaxArticlesPerFeed != n)
+    const int maxArticles = std::max(n, 0);
+    if (m_storeMaxArticlesPerFeed != maxArticles)
     {
-        m_storeMaxArticlesPerFeed = n;
-        emit maxArticlesPerFeedChanged(n);
+        m_storeMaxArticlesPerFeed = maxArticles;
+        emit maxArticlesPerFeedChanged(maxArticles);
     }
 }
 

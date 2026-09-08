@@ -168,7 +168,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.dynamicTableDiv.addEventListener("click", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr) {
+                if ((tr === null) || (tr.rowId === undefined)) {
                     // clicking on the table body deselects all rows
                     this.deselectAll();
                     this.setRowClass();
@@ -655,22 +655,32 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         loadColumnsOrder() {
-            const columnsOrder = [];
-            const val = localPreferences.get(`columns_order_${this.dynamicTableDivId}`);
-            if ((val === null) || (val === undefined))
+            const savedOrder = localPreferences.get(`columns_order_${this.dynamicTableDivId}`);
+            if ((savedOrder === null) || (savedOrder === undefined))
                 return;
-            for (const v of val.split(",")) {
-                if ((v in this.columns) && (!columnsOrder.contains(v)))
-                    columnsOrder.push(v);
+
+            const byName = new Map(this.columns.map(column => [column.name, column]));
+
+            // Build the desired column order. A Set keeps names unique while
+            // preserving their saved order.
+            const order = new Set();
+            for (const name of savedOrder.split(",")) {
+                // skip names that no longer exist as columns
+                if (byName.has(name))
+                    order.add(name);
             }
 
-            for (let i = 0; i < this.columns.length; ++i) {
-                if (!columnsOrder.contains(this.columns[i].name))
-                    columnsOrder.push(this.columns[i].name);
-            }
+            // Append columns that were added after the order was saved so that
+            // every column appears exactly once.
+            for (const column of this.columns)
+                order.add(column.name);
 
+            // Reorder the columns array in place to match the desired order.
+            // The array is mutated rather than replaced so its named properties
+            // are preserved.
+            const orderedNames = [...order];
             for (let i = 0; i < this.columns.length; ++i)
-                this.columns[i] = this.columns[columnsOrder[i]];
+                this.columns[i] = byName.get(orderedNames[i]);
         }
 
         saveColumnsOrder() {
@@ -857,7 +867,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                     this.selectedRows.push(row.rowId);
                 }
                 else if (select) {
-                    this.selectedRows.push(row.rowId);
+                    if (this.useVirtualList) {
+                        this.selectedRows.push(row.rowId);
+                    }
+                    else {
+                        const tr = this.getTrByRowId(row.rowId);
+                        if ((tr !== null) && !tr.classList.contains("invisible"))
+                            this.selectedRows.push(row.rowId);
+                    }
                 }
             }
             this.setRowClass();
@@ -1870,7 +1887,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             super.setupCommonEvents();
             this.dynamicTableDiv.addEventListener("dblclick", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr)
+                if ((tr === null) || (tr.rowId === undefined))
                     return;
 
                 this.deselectAll();

@@ -13,7 +13,7 @@
 #define NONSTD_EXPECTED_LITE_HPP
 
 #define expected_lite_MAJOR  0
-#define expected_lite_MINOR  9
+#define expected_lite_MINOR  10
 #define expected_lite_PATCH  0
 
 #define expected_lite_VERSION  expected_STRINGIFY(expected_lite_MAJOR) "." expected_STRINGIFY(expected_lite_MINOR) "." expected_STRINGIFY(expected_lite_PATCH)
@@ -2730,7 +2730,7 @@ private:
 /// class expected, void specialization
 
 template< typename E >
-class expected< void, E >
+class nsel_NODISCARD expected< void, E >
 {
 private:
     template< typename, typename > friend class expected;

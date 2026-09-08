@@ -162,7 +162,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
             continue;
 
         for (const QString &f : tmpFileList)
-            removeFile(Path(p + f));
+            std::ignore = removeFile(Path(p + f));
 
         // remove directory if empty
         dir.rmdir(p);
@@ -404,6 +404,12 @@ bool Utils::Fs::copyFile(const Path &from, const Path &to)
 
 bool Utils::Fs::renameFile(const Path &from, const Path &to)
 {
+    if (!from.exists())
+        return false;
+
+    if (!mkpath(to.parentPath()))
+        return false;
+
     return QFile::rename(from.data(), to.data());
 }
 

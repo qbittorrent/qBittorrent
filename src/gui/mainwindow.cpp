@@ -289,7 +289,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         m_columnFilterComboBox->addItem(typeName, type);
     }
     connect(m_columnFilterComboBox, &QComboBox::currentIndexChanged, this, &MainWindow::applyTransferListFilter);
-    connect(m_columnFilterEdit, &LineEdit::textChanged, this, &MainWindow::applyTransferListFilter);
+    connect(m_columnFilterEdit, &LineEdit::textUpdated, this, &MainWindow::applyTransferListFilter);
     connect(hSplitter, &QSplitter::splitterMoved, this, &MainWindow::saveSettings);
     connect(m_splitter, &QSplitter::splitterMoved, this, &MainWindow::saveSplitterSettings);
 
@@ -2019,7 +2019,7 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
             LogMsg(tr("Python installation success."), Log::INFO);
 
             // Delete installer
-            Utils::Fs::removeFile(exePath);
+            std::ignore = Utils::Fs::removeFile(exePath);
 
             // Reload search engine
             if (Utils::ForeignApps::pythonInfo().isSupportedVersion())

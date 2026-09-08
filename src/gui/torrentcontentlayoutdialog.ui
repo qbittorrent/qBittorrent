@@ -13,21 +13,31 @@
   <property name="windowTitle">
    <string>Manage Torrent Content</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="dialogLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <widget class="QTreeView" name="pathListView">
+     <property name="editTriggers">
+      <set>QAbstractItemView::EditTrigger::AllEditTriggers</set>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="commonPathLayout">
      <item>
-      <widget class="QTreeView" name="treeView">
-       <property name="editTriggers">
-        <set>QAbstractItemView::EditTrigger::AllEditTriggers</set>
-       </property>
-       <property name="alternatingRowColors">
-        <bool>true</bool>
-       </property>
-       <property name="selectionMode">
-        <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
+      <widget class="QLabel" name="commonPathLabel">
+       <property name="text">
+        <string>Common path:</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="commonPathEdit"/>
      </item>
     </layout>
    </item>

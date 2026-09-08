@@ -79,7 +79,7 @@ namespace
             while (it.hasNext())
             {
                 const QString filePath = it.next();
-                Utils::Fs::removeFile(Path(filePath));
+                std::ignore = Utils::Fs::removeFile(Path(filePath));
             }
         }
     }
@@ -267,21 +267,21 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const Path &sr
         if (hasExistingPlugin)
         {
             hasBackup = Utils::Fs::copyFile(destPath, backupPath);
-            Utils::Fs::removeFile(destPath);
+            std::ignore = Utils::Fs::removeFile(destPath);
         }
 
         // Copy the plugin to dest path
         if (!Utils::Fs::copyFile(srcPath, destPath))
         {
             // Roll back
-            Utils::Fs::removeFile(destPath);
+            std::ignore = Utils::Fs::removeFile(destPath);
             if (hasBackup)
             {
                 // restore backup
                 if (Utils::Fs::copyFile(backupPath, destPath))
-                    Utils::Fs::removeFile(backupPath);
+                    std::ignore = Utils::Fs::removeFile(backupPath);
                 else
-                    Utils::Fs::removeFile(destPath);
+                    std::ignore = Utils::Fs::removeFile(destPath);
             }
 
             const QString errMsg = tr("Search plugin installation failed.");
@@ -304,25 +304,25 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const Path &sr
         LogMsg(tr("Search plugin has been updated. Plugin name: \"%1\". Version: %2.").arg(name, incomingVersion.toString()), Log::INFO);
 
         if (hasBackup)
-            Utils::Fs::removeFile(backupPath);
+            std::ignore = Utils::Fs::removeFile(backupPath);
     }
     else
     {
         LogMsg(tr("Search plugin installation failed. Plugin name: \"%1\"").arg(name), Log::INFO);
 
         // Roll back
-        Utils::Fs::removeFile(destPath);
+        std::ignore = Utils::Fs::removeFile(destPath);
         if (hasBackup)
         {
             // restore backup
             if (Utils::Fs::copyFile(backupPath, destPath))
             {
-                Utils::Fs::removeFile(backupPath);
+                std::ignore = Utils::Fs::removeFile(backupPath);
                 update();  // Update supported plugins
             }
             else
             {
-                Utils::Fs::removeFile(destPath);
+                std::ignore = Utils::Fs::removeFile(destPath);
             }
         }
 
@@ -343,7 +343,7 @@ bool SearchPluginManager::uninstallPlugin(const QString &name)
     while (iter.hasNext())
     {
         const QString filePath = iter.next();
-        Utils::Fs::removeFile(Path(filePath));
+        std::ignore = Utils::Fs::removeFile(Path(filePath));
     }
 
     // Remove it from supported engines
@@ -521,7 +521,7 @@ void SearchPluginManager::pluginDownloadFinished(const Net::DownloadResult &resu
 
         const auto pluginPath = Path(QUrl(result.url).path()).removedExtension();
         installPlugin_impl(pluginPath.filename(), filePath);
-        Utils::Fs::removeFile(filePath);
+        std::ignore = Utils::Fs::removeFile(filePath);
     }
     else
     {
@@ -561,8 +561,8 @@ void SearchPluginManager::updateNova()
         if (getPluginVersion(filePathBundled) <= getPluginVersion(filePathDisk))
             return;
 
-        Utils::Fs::removeFile(filePathDisk);
-        Utils::Fs::copyFile(filePathBundled, filePathDisk);
+        if (Utils::Fs::removeFile(filePathDisk))
+            Utils::Fs::copyFile(filePathBundled, filePathDisk);
     };
 
     updateFile(Path(u"helpers.py"_s));

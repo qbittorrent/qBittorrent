@@ -44,6 +44,12 @@ class Path final
 public:
     class Iterator;
 
+#if defined(Q_OS_WIN)
+    static const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseInsensitive;
+#else
+    static const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseSensitive;
+#endif
+
     Path() = default;
 
     explicit Path(const QString &pathStr);
@@ -68,7 +74,7 @@ public:
     void removeExtension(QStringView ext);
     Path removedExtension(QStringView ext) const;
 
-    bool hasAncestor(const Path &other) const;
+    bool hasAncestor(const Path &other, Qt::CaseSensitivity caseSensitivity = CASE_SENSITIVITY) const;
     Path relativePathOf(const Path &childPath) const;
 
     QString data() const;
@@ -82,6 +88,7 @@ public:
     Iterator end() const;
 
     static Path commonPath(const Path &left, const Path &right);
+    static Path commonPath(const PathList &filePaths);
 
     static Path findRootFolder(const PathList &filePaths);
     static void stripRootFolder(PathList &filePaths);

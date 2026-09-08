@@ -34,7 +34,6 @@
 #include <QDateTime>
 #include <QString>
 
-#include "base/bittorrent/addtorrenterror.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/sharelimits.h"
 #include "base/bittorrent/torrent.h"
@@ -241,25 +240,6 @@ namespace
         cls.addProperty("action", &ShareLimits::action);
     }
 
-    void registerLuaEnumAddTorrentErrorKind(lua_State *luaState)
-    {
-        auto qBittorrentNS = luabridge::getGlobalNamespace(luaState).beginNamespace(QBT_NAMESPACE);
-        qBittorrentNS.beginNamespace("AddTorrentErrorKind")
-            .addProperty("DuplicateTorrent", +[] { return BitTorrent::AddTorrentError::Kind::DuplicateTorrent; })
-            .addProperty("Other", +[] { return BitTorrent::AddTorrentError::Kind::Other; })
-            .endNamespace();
-    }
-
-    void registerLuaClassAddTorrentError(lua_State *luaState)
-    {
-        using AddTorrentError = BitTorrent::AddTorrentError;
-
-        auto qBittorrentNS = luabridge::getGlobalNamespace(luaState).beginNamespace(QBT_NAMESPACE);
-        auto cls = qBittorrentNS.beginClass<AddTorrentError>("AddTorrentError");
-
-        cls.addProperty("kind", &AddTorrentError::kind);
-        cls.addProperty("message", &AddTorrentError::message);
-    }
 }
 
 void registerLuaClasses(lua_State *luaState)
@@ -276,6 +256,4 @@ void registerLuaClasses(lua_State *luaState)
     registerLuaEnumShareLimitsMode(luaState);
     registerLuaClassShareLimits(luaState);
 
-    registerLuaEnumAddTorrentErrorKind(luaState);
-    registerLuaClassAddTorrentError(luaState);
 }

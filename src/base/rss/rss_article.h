@@ -72,6 +72,7 @@ namespace RSS
         void markAsRead();
 
         static bool articleDateRecentThan(const Article *article, const QDateTime &date);
+        static bool isSupportedTorrentURL(const QString &url);
 
     signals:
         void read(Article *article = nullptr);

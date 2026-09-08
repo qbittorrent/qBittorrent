@@ -36,7 +36,6 @@
 
 #include "base/pathfwd.h"
 #include "base/tagset.h"
-#include "addtorrenterror.h"
 #include "addtorrentparams.h"
 #include "categoryoptions.h"
 #include "sharelimits.h"
@@ -207,6 +206,8 @@ namespace BitTorrent
 
         virtual QString getDHTBootstrapNodes() const = 0;
         virtual void setDHTBootstrapNodes(const QString &nodes) = 0;
+        virtual QString getWebTorrentSTUNServer() const = 0;
+        virtual void setWebTorrentSTUNServer(const QString &server) = 0;
         virtual bool isDHTEnabled() const = 0;
         virtual void setDHTEnabled(bool enabled) = 0;
         virtual bool isLSDEnabled() const = 0;
@@ -231,10 +232,17 @@ namespace BitTorrent
         virtual void setRefreshInterval(int value) = 0;
         virtual bool isPreallocationEnabled() const = 0;
         virtual void setPreallocationEnabled(bool enabled) = 0;
-        virtual Path torrentExportDirectory() const = 0;
-        virtual void setTorrentExportDirectory(const Path &path) = 0;
-        virtual Path finishedTorrentExportDirectory() const = 0;
-        virtual void setFinishedTorrentExportDirectory(const Path &path) = 0;
+
+        virtual bool isTorrentFileBackupEnabled() const = 0;
+        virtual void setTorrentFileBackupEnabled(bool enabled) = 0;
+        virtual Path torrentBackupDirectory() const = 0;
+        virtual void setTorrentBackupDirectory(const Path &path) = 0;
+        virtual bool isFinishedTorrentBackupDirectoryEnabled() const = 0;
+        virtual void setFinishedTorrentBackupDirectoryEnabled(bool enabled) = 0;
+        virtual Path finishedTorrentBackupDirectory() const = 0;
+        virtual void setFinishedTorrentBackupDirectory(const Path &path) = 0;
+        virtual bool removeTorrentFileBackup() const = 0;
+        virtual void setRemoveTorrentFileBackup(bool remove) = 0;
 
         virtual bool isAddTrackersFromURLEnabled() const = 0;
         virtual void setAddTrackersFromURLEnabled(bool enabled) = 0;
@@ -291,6 +299,8 @@ namespace BitTorrent
         virtual void setI2PPort(int port) = 0;
         virtual bool I2PMixedMode() const = 0;
         virtual void setI2PMixedMode(bool enabled) = 0;
+        virtual bool isI2PPeXEnabled() const = 0;
+        virtual void setI2PPeXEnabled(bool enabled) = 0;
         virtual int I2PInboundQuantity() const = 0;
         virtual void setI2PInboundQuantity(int value) = 0;
         virtual int I2POutboundQuantity() const = 0;
@@ -325,6 +335,8 @@ namespace BitTorrent
         virtual void setPeerTurnoverInterval(int val) = 0;
         virtual int requestQueueSize() const = 0;
         virtual void setRequestQueueSize(int val) = 0;
+        virtual int maxOutstandingBlockRequests() const = 0;
+        virtual void setMaxOutstandingBlockRequests(int val) = 0;
         virtual int asyncIOThreads() const = 0;
         virtual void setAsyncIOThreads(int num) = 0;
         virtual int hashingThreads() const = 0;
@@ -428,6 +440,8 @@ namespace BitTorrent
         virtual void setIDNSupportEnabled(bool enabled) = 0;
         virtual bool multiConnectionsPerIpEnabled() const = 0;
         virtual void setMultiConnectionsPerIpEnabled(bool enabled) = 0;
+        virtual bool multiConnectionsPerPeerIDEnabled() const = 0;
+        virtual void setMultiConnectionsPerPeerIDEnabled(bool enabled) = 0;
         virtual bool validateHTTPSTrackerCertificate() const = 0;
         virtual void setValidateHTTPSTrackerCertificate(bool enabled) = 0;
         virtual bool isSSRFMitigationEnabled() const = 0;
@@ -486,7 +500,7 @@ namespace BitTorrent
 
     signals:
         void startupProgressUpdated(int progress);
-        void addTorrentFailed(const InfoHash &infoHash, const AddTorrentError &reason);
+        void addTorrentFailed(const InfoHash &infoHash, const QString &reason);
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
@@ -507,6 +521,7 @@ namespace BitTorrent
 
         void torrentAboutToBeRemoved(Torrent *torrent);
         void torrentAdded(Torrent *torrent);
+        void duplicateTorrentDetected(const InfoHash &infoHash, Torrent *torrent, const QString &message);
         void torrentCategoryChanged(Torrent *torrent, const QString &oldCategory);
         void torrentFinished(Torrent *torrent);
         void torrentFinishedChecking(Torrent *torrent);

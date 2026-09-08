@@ -72,6 +72,12 @@ if ((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_CXX_COMPILER_ID STREQUAL "C
     endif()
 endif()
 
+if ((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") AND (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL "16"))
+    target_compile_options(qbt_common_cfg INTERFACE
+        $<$<COMPILE_LANGUAGE:CXX>:-Wno-sfinae-incomplete>
+    )
+endif()
+
 if ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang"))
     target_compile_options(qbt_common_cfg INTERFACE
         -Wno-range-loop-analysis

@@ -138,7 +138,7 @@ namespace
     const QString PARAM_FIRSTLASTPIECEPRIORITY = u"@firstLastPiecePriority"_s;
     const QString PARAM_SAVEPATH = u"@savePath"_s;
     const QString PARAM_SEQUENTIAL = u"@sequential"_s;
-    const QString PARAM_SKIPCHECKING = u"@skipChecking"_s;
+    const QString PARAM_SEEDMODE = u"@seedMode"_s;
     const QString PARAM_SKIPDIALOG = u"@skipDialog"_s;
 
 #if !defined(DISABLE_GUI) && defined(Q_OS_WIN)
@@ -209,8 +209,8 @@ namespace
         if (addTorrentParams.addStopped.has_value())
             result.append(bindParamValue(PARAM_ADDSTOPPED, (*addTorrentParams.addStopped ? u"1" : u"0")));
 
-        if (addTorrentParams.skipChecking)
-            result.append(PARAM_SKIPCHECKING);
+        if (addTorrentParams.seedMode)
+            result.append(PARAM_SEEDMODE);
 
         if (!addTorrentParams.category.isEmpty())
             result.append(bindParamValue(PARAM_CATEGORY, addTorrentParams.category));
@@ -253,9 +253,9 @@ namespace
                 continue;
             }
 
-            if (paramName == PARAM_SKIPCHECKING)
+            if (paramName == PARAM_SEEDMODE)
             {
-                addTorrentParams.skipChecking = true;
+                addTorrentParams.seedMode = true;
                 continue;
             }
 
@@ -477,13 +477,13 @@ void Application::setFileLoggerEnabled(const bool value)
 
 Path Application::fileLoggerPath() const
 {
-    return m_storeFileLoggerPath.get(specialFolderLocation(SpecialFolder::Data) / Path(LOG_FOLDER));
+    return m_storeFileLoggerPath.get(Path(LOG_FOLDER));
 }
 
 void Application::setFileLoggerPath(const Path &path)
 {
     if (m_fileLogger)
-        m_fileLogger->changePath(path);
+        m_fileLogger->setPath(path);
     m_storeFileLoggerPath = path;
 }
 
@@ -552,7 +552,8 @@ void Application::processMessage(const QString &message)
 #ifndef DISABLE_GUI
     if (message.isEmpty())
     {
-        if (BitTorrent::Session::instance()->isRestored()) [[likely]]
+        if (const auto *btSession = BitTorrent::Session::instance();
+                btSession && btSession->isRestored()) [[likely]]
         {
             m_window->activate(); // show UI
         }
@@ -562,7 +563,7 @@ void Application::processMessage(const QString &message)
             m_startupProgressDialog->activateWindow();
             m_startupProgressDialog->raise();
         }
-        else
+        else if (m_desktopIntegration)
         {
             createStartupProgressDialog();
         }
@@ -983,10 +984,10 @@ int Application::exec()
                 m_desktopIntegration->showNotification(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
         });
         connect(m_addTorrentManager, &AddTorrentManager::addTorrentFailed, this
-                , [this](const QString &source, const BitTorrent::AddTorrentError &reason)
+                , [this](const QString &source, const QString &reason)
         {
             m_desktopIntegration->showNotification(tr("Add torrent failed")
-                    , tr("Couldn't add torrent '%1', reason: %2.").arg(source, reason.message));
+                    , tr("Couldn't add torrent '%1', reason: %2.").arg(source, reason));
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);

@@ -65,7 +65,7 @@ LineEdit::LineEdit(QWidget *parent)
     m_delayedTextChangedTimer->setSingleShot(true);
     connect(m_delayedTextChangedTimer, &QTimer::timeout, this, [this]
     {
-        emit textChanged(text());
+        emit textUpdated(text());
     });
     connect(this, &QLineEdit::textChanged, this, [this]
     {

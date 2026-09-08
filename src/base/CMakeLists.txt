@@ -5,7 +5,6 @@ add_library(qbt_base STATIC
     algorithm.h
     applicationcomponent.h
     asyncfilestorage.h
-    bittorrent/addtorrenterror.h
     bittorrent/addtorrentparams.h
     bittorrent/announcetimepoint.h
     bittorrent/bandwidthscheduler.h
@@ -57,6 +56,7 @@ add_library(qbt_base STATIC
     exceptions.h
     freediskspacechecker.h
     global.h
+    http/asyncfilesender.h
     http/connection.h
     http/constants.h
     http/environment.h
@@ -64,14 +64,17 @@ add_library(qbt_base STATIC
     http/headermap.h
     http/httperror.h
     http/irequesthandler.h
+    http/rangerequest.h
     http/request.h
     http/requestparser.h
     http/response.h
+    http/responseserialization.h
     http/responsewriter.h
     http/responsewriterimpl.h
     http/server.h
     indexrange.h
     interfaces/iapplication.h
+    keyvaluedatastorage.h
     logger.h
     net/dnsupdater.h
     net/downloadhandlerimpl.h
@@ -114,6 +117,7 @@ add_library(qbt_base STATIC
     utils/bytearray.h
     utils/compare.h
     utils/datetime.h
+    utils/dict.h
     utils/foreignapps.h
     utils/fs.h
     utils/gzip.h
@@ -170,11 +174,15 @@ add_library(qbt_base STATIC
     bittorrent/trackerentrystatus.cpp
     exceptions.cpp
     freediskspacechecker.cpp
+    http/asyncfilesender.cpp
     http/connection.cpp
     http/httperror.cpp
+    http/rangerequest.cpp
     http/requestparser.cpp
+    http/responseserialization.cpp
     http/responsewriterimpl.cpp
     http/server.cpp
+    keyvaluedatastorage.cpp
     logger.cpp
     net/dnsupdater.cpp
     net/downloadhandlerimpl.cpp
@@ -289,7 +297,7 @@ if (PLUGINS)
     set_target_properties(qbt_luabridge PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_luabridge,INTERFACE_INCLUDE_DIRECTORIES>)
 
     target_compile_definitions(qbt_base PUBLIC ENABLE_PLUGINS)
-    target_link_libraries(qbt_base PUBLIC qbt_lua qbt_luabridge)
+    target_link_libraries(qbt_base PRIVATE qbt_lua qbt_luabridge)
 
     target_sources(qbt_base PRIVATE
             plugins/luaclasses.h
