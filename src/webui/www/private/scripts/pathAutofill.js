@@ -59,7 +59,18 @@ window.qBittorrent.pathAutofill ??= (() => {
         }
     };
 
+    // Dialogs run in iframes and read the client data of the main window.
+    const isEnabled = () => {
+        const clientData = window.qBittorrent.ClientData ?? window.parent.qBittorrent?.ClientData;
+        return clientData?.get("path_autocomplete_enabled") ?? true;
+    };
+
     const showPathSuggestions = (element, mode) => {
+        if (!isEnabled()) {
+            document.getElementById(`${element.id}Suggestions`)?.remove();
+            return;
+        }
+
         const partialPath = element.value;
         if (partialPath === "")
             return;
@@ -69,7 +80,11 @@ window.qBittorrent.pathAutofill ??= (() => {
                 cache: "no-store"
             })
             .then(response => response.json())
-            .then(filesList => { showInputSuggestions(element, filesList); })
+            .then(filesList => {
+                // the setting may have been turned off while the request was in flight
+                if (isEnabled())
+                    showInputSuggestions(element, filesList);
+            })
             .catch(error => {});
     };
 

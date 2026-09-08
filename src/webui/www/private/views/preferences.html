@@ -163,6 +163,10 @@
             <input type="checkbox" id="useVirtualList">
             <label for="useVirtualList">QBT_TR(Enable optimized table rendering)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="pathAutocompleteEnabled">
+            <label for="pathAutocompleteEnabled">QBT_TR(Suggest existing paths while typing)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 </div>
 
@@ -2435,6 +2439,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const dblclickFilter = clientData.get("dblclick_filter") ?? "1";
                     const useAltRowColors = clientData.get("use_alt_row_colors");
                     const addTorrentWindowEnabled = clientData.get("add_new_torrent_dialog_enabled") ?? true;
+                    const pathAutocompleteEnabled = clientData.get("path_autocomplete_enabled") ?? true;
 
                     // Behavior tab
                     // Localization
@@ -2457,6 +2462,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
                     document.getElementById("displayFullURLTrackerColumn").checked = fullUrlTrackerColumn === true;
                     document.getElementById("useVirtualList").checked = useVirtualList === true;
+                    document.getElementById("pathAutocompleteEnabled").checked = pathAutocompleteEnabled === true;
                     document.getElementById("hideZeroFiltersCheckbox").checked = hideZeroStatusFilters === true;
                     document.getElementById("dblclickDownloadSelect").value = dblclickDownload;
                     document.getElementById("dblclickCompleteSelect").value = dblclickComplete;
@@ -2905,6 +2911,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
             clientData.full_url_tracker_column = document.getElementById("displayFullURLTrackerColumn").checked;
             clientData.use_virtual_list = document.getElementById("useVirtualList").checked;
+            clientData.path_autocomplete_enabled = document.getElementById("pathAutocompleteEnabled").checked;
             clientData.add_new_torrent_dialog_enabled = document.getElementById("addTorrentWindowEnabled").checked;
             clientData.hide_zero_status_filters = document.getElementById("hideZeroFiltersCheckbox").checked;
             clientData.dblclick_download = document.getElementById("dblclickDownloadSelect").value;
