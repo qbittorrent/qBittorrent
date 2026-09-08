@@ -30,6 +30,7 @@
 
 #include <limits>
 
+#include "base/utils/number.h"
 #include "ui_torrentsharelimitswidget.h"
 
 namespace
@@ -324,7 +325,7 @@ std::optional<qreal> TorrentShareLimitsWidget::ratioLimit() const
     case UnlimitedComboModeIndex:
         return BitTorrent::NO_RATIO_LIMIT;
     case AssignedComboModeIndex:
-        return m_ui->spinBoxRatioValue->value();
+        return ratioLimitValue();
     default:
         return std::nullopt;
     }
@@ -399,7 +400,7 @@ void TorrentShareLimitsWidget::onRatioLimitModeChanged(const int currentIndex, c
     m_ui->spinBoxRatioValue->setEnabled(currentIndex == AssignedComboModeIndex);
 
     if (previousIndex == AssignedComboModeIndex)
-        m_ratioLimit = m_ui->spinBoxRatioValue->value();
+        m_ratioLimit = ratioLimitValue();
 
     if (currentIndex == AssignedComboModeIndex)
     {
@@ -497,4 +498,11 @@ void TorrentShareLimitsWidget::resetDefaultItemsText()
                         ? tr("From category")
                         : tr("From category (%1)", "From category (share limits mode)").arg(shareLimitsModeName(m_defaultShareLimitsMode)));
     }
+}
+
+qreal TorrentShareLimitsWidget::ratioLimitValue() const
+{
+    // stepping the spin box accumulates a rounding error, so its value drifts away from
+    // the number it displays. Take the value the user actually sees.
+    return Utils::Number::roundToPrecision(m_ui->spinBoxRatioValue->value(), m_ui->spinBoxRatioValue->decimals());
 }
