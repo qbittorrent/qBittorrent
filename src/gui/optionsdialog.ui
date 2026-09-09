@@ -288,6 +288,16 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="alternativeDeletionUI">
+                 <property name="toolTip">
+                  <string>Replaces the checkbox with dedicated buttons to keep or remove torrent content</string>
+                 </property>
+                 <property name="text">
+                  <string>Alternative torrent deletion UI</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkAltRowColors">
                  <property name="text">
                   <string extracomment="In table elements, every other row will have a grey background.">Use alternating row colors</string>

@@ -58,6 +58,7 @@
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "deletionconfirmationdialog.h"
+#include "deletionconfirmationdialogalternative.h"
 #include "interfaces/iguiapplication.h"
 #include "mainwindow.h"
 #include "optionsdialog.h"
@@ -436,15 +437,27 @@ void TransferListWidget::deleteSelectedTorrents(const bool deleteLocalFiles)
 
     if (Preferences::instance()->confirmTorrentDeletion())
     {
-        auto *dialog = new DeletionConfirmationDialog(this, torrents.size(), torrents[0]->name(), deleteLocalFiles);
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-        connect(dialog, &DeletionConfirmationDialog::accepted, this, [this, dialog]()
+        if (Preferences::instance()->alternativeDeletionDialog())
         {
-            // Some torrents might be removed when waiting for user input, so refetch the torrent list
-            // NOTE: this will only work when dialog is modal
-            removeTorrents(getSelectedTorrents(), dialog->isRemoveContentSelected());
-        });
-        dialog->open();
+            auto *dialog = new DeletionConfirmationDialogAlternative(this, torrents.size(), torrents[0]->name());
+            dialog->setAttribute(Qt::WA_DeleteOnClose);
+            connect(dialog, &DeletionConfirmationDialogAlternative::accepted, this, [this, dialog]()
+            {
+                // Refetch torrents to prevent operating on deleted/invalid pointers
+                removeTorrents(getSelectedTorrents(), dialog->isRemoveContentSelected());
+            });
+            dialog->open();
+        }
+        else
+        {
+            auto *dialog = new DeletionConfirmationDialog(this, torrents.size(), torrents[0]->name(), deleteLocalFiles);
+            dialog->setAttribute(Qt::WA_DeleteOnClose);
+            connect(dialog, &DeletionConfirmationDialog::accepted, this, [this, dialog]()
+            {
+                removeTorrents(getSelectedTorrents(), dialog->isRemoveContentSelected());
+            });
+            dialog->open();
+        }
     }
     else
     {
