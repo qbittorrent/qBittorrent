@@ -234,8 +234,12 @@
             </table>
         </fieldset>
         <div class="formRow">
-            <input type="checkbox" id="deletetorrentfileafter_checkbox">
+            <input type="checkbox" id="deletetorrentfileafter_checkbox" onclick="qBittorrent.Preferences.updateDeleteCancelledTorrentEnabled();">
             <label for="deletetorrentfileafter_checkbox">QBT_TR(Delete .torrent files afterwards)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow" style="margin-left: 30px;" title="QBT_TR(Also delete .torrent files whose addition was cancelled)QBT_TR[CONTEXT=OptionsDialog]">
+            <input type="checkbox" id="deletecancelledtorrentfile_checkbox">
+            <label for="deletecancelledtorrentfile_checkbox">QBT_TR(Also when addition is cancelled)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
 
@@ -1961,6 +1965,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateFileLogBackupEnabled: updateFileLogBackupEnabled,
                 updateFileLogDeleteEnabled: updateFileLogDeleteEnabled,
                 updateStoreSearchJobsEnabled: updateStoreSearchJobsEnabled,
+                updateDeleteCancelledTorrentEnabled: updateDeleteCancelledTorrentEnabled,
                 updateTempDirEnabled: updateTempDirEnabled,
                 updateTorrentBackupControls: updateTorrentBackupControls,
                 updateFinishedTorrentBackupControls: updateFinishedTorrentBackupControls,
@@ -2039,6 +2044,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateStoreSearchJobsEnabled = () => {
             const enabled = document.getElementById("storeSearchJobs").checked;
             document.getElementById("storeSearchJobResults").disabled = !enabled;
+        };
+
+        const updateDeleteCancelledTorrentEnabled = () => {
+            const enabled = document.getElementById("deletetorrentfileafter_checkbox").checked;
+            document.getElementById("deletecancelledtorrentfile_checkbox").disabled = !enabled;
         };
 
         // Downloads tab
@@ -2537,7 +2547,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     }
                     document.getElementById("stopConditionSelect").getChildren("option")[index].selected = true;
                     document.getElementById("mergeTrackersInput").checked = pref.merge_trackers;
-                    document.getElementById("deletetorrentfileafter_checkbox").checked = pref.auto_delete_mode;
+                    document.getElementById("deletetorrentfileafter_checkbox").checked = (pref.auto_delete_mode > 0);
+                    document.getElementById("deletecancelledtorrentfile_checkbox").checked = (pref.auto_delete_mode === 2);
+                    updateDeleteCancelledTorrentEnabled();
 
                     document.getElementById("preallocateall_checkbox").checked = pref.preallocate_all;
                     document.getElementById("appendext_checkbox").checked = pref.incomplete_files_ext;
@@ -2965,7 +2977,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["add_stopped_enabled"] = document.getElementById("dontstartdownloads_checkbox").checked;
             settings["torrent_stop_condition"] = document.getElementById("stopConditionSelect").getSelected()[0].value;
             settings["merge_trackers"] = document.getElementById("mergeTrackersInput").checked;
-            settings["auto_delete_mode"] = Number(document.getElementById("deletetorrentfileafter_checkbox").checked);
+            settings["auto_delete_mode"] = !document.getElementById("deletetorrentfileafter_checkbox").checked
+                ? 0
+                : (document.getElementById("deletecancelledtorrentfile_checkbox").checked ? 2 : 1);
 
             settings["preallocate_all"] = document.getElementById("preallocateall_checkbox").checked;
             settings["incomplete_files_ext"] = document.getElementById("appendext_checkbox").checked;
