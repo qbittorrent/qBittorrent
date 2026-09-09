@@ -1,0 +1,13 @@
+# https://rumdl.dev/global-settings/
+# https://rumdl.dev/rules/
+
+[global]
+enable = ["ALL"]
+disable = [
+    "MD013",
+    "MD063",
+    "MD082"
+]
+
+[MD046]
+style = "fenced"

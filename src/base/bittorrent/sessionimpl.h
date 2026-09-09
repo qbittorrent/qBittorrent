@@ -189,6 +189,8 @@ namespace BitTorrent
 
         QString getDHTBootstrapNodes() const override;
         void setDHTBootstrapNodes(const QString &nodes) override;
+        QString getWebTorrentSTUNServer() const override;
+        void setWebTorrentSTUNServer(const QString &server) override;
         bool isDHTEnabled() const override;
         void setDHTEnabled(bool enabled) override;
         bool isLSDEnabled() const override;
@@ -274,6 +276,8 @@ namespace BitTorrent
         void setI2PPort(int port) override;
         bool I2PMixedMode() const override;
         void setI2PMixedMode(bool enabled) override;
+        bool isI2PPeXEnabled() const override;
+        void setI2PPeXEnabled(bool enabled) override;
         int I2PInboundQuantity() const override;
         void setI2PInboundQuantity(int value) override;
         int I2POutboundQuantity() const override;
@@ -669,6 +673,7 @@ namespace BitTorrent
         void updateTrackersFromFile();
 
         CachedSettingValue<QString> m_DHTBootstrapNodes;
+        CachedSettingValue<QString> m_webTorrentSTUNServer;
         CachedSettingValue<bool> m_isDHTEnabled;
         CachedSettingValue<bool> m_isLSDEnabled;
         CachedSettingValue<bool> m_isPeXEnabled;
@@ -799,6 +804,7 @@ namespace BitTorrent
         CachedSettingValue<QString> m_I2PAddress;
         CachedSettingValue<int> m_I2PPort;
         CachedSettingValue<bool> m_I2PMixedMode;
+        CachedSettingValue<bool> m_isI2PPeXEnabled;
         CachedSettingValue<int> m_I2PInboundQuantity;
         CachedSettingValue<int> m_I2POutboundQuantity;
         CachedSettingValue<int> m_I2PInboundLength;

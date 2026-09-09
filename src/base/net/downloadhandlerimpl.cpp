@@ -238,6 +238,14 @@ void Net::DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
         return;
     }
 
+    if (!m_downloadRequest.allowInsecureRedirect()
+        && (m_reply->url().scheme() == u"https") && (scheme != u"https"))
+    {
+        setError(tr("Redirect from a secure to an insecure protocol: '%1'.").arg(scheme));
+        finish();
+        return;
+    }
+
     m_redirectionHandler = static_cast<DownloadHandlerImpl *>(
             m_manager->download(DownloadRequest(m_downloadRequest).url(newUrlString), useProxy()));
     m_redirectionHandler->m_redirectionCount = m_redirectionCount + 1;

@@ -124,6 +124,8 @@ let downloadLimitFN = () => {};
 let deleteSelectedTorrentsFN = () => {};
 let stopFN = () => {};
 let startFN = () => {};
+let pauseSessionFN = () => {};
+let resumeSessionFN = () => {};
 let autoTorrentManagementFN = () => {};
 let recheckFN = () => {};
 let reannounceFN = () => {};
@@ -592,6 +594,30 @@ const initializeWindows = () => {
             });
             updateMainData();
         }
+    };
+
+    pauseSessionFN = () => {
+        fetch("api/v2/transfer/pauseSession", {
+            method: "POST",
+        }).then((response) => {
+            if (!response.ok) {
+                alert("QBT_TR(Unable to pause the session.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            updateMainData();
+        });
+    };
+
+    resumeSessionFN = () => {
+        fetch("api/v2/transfer/resumeSession", {
+            method: "POST",
+        }).then((response) => {
+            if (!response.ok) {
+                alert("QBT_TR(Unable to resume the session.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            updateMainData();
+        });
     };
 
     autoTorrentManagementFN = () => {
@@ -1276,6 +1302,20 @@ const initializeWindows = () => {
             });
             updateMainData();
         }
+    });
+
+    addClickEvent("pauseSession", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        pauseSessionFN();
+    });
+
+    addClickEvent("resumeSession", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        resumeSessionFN();
     });
 
     addClickEvent("selectAll", (e) => {

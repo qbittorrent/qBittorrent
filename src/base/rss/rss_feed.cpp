@@ -207,6 +207,8 @@ Article *Feed::articleByGUID(const QString &guid) const
 
 void Feed::handleMaxArticlesPerFeedChanged(const int n)
 {
+    Q_ASSERT(n >= 0);
+
     while (m_articlesByDate.size() > n)
         removeOldestArticle();
     // We don't need store articles here
@@ -356,6 +358,8 @@ bool Feed::addArticle(const QVariantHash &articleData)
 
 void Feed::removeOldestArticle()
 {
+    Q_ASSERT(!m_articlesByDate.isEmpty());
+
     auto *oldestArticle = m_articlesByDate.last();
     emit articleAboutToBeRemoved(oldestArticle);
 

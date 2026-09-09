@@ -4,12 +4,12 @@
 
 The upper bound will always be the latest stable release.
 
-| Browser           | Lower bound                                            |
-| ----------------- | ------------------------------------------------------ |
-| Chrome            | [The release from 1 year ago][Chrome-lower-bound-link] |
-| Firefox           | [Latest active ESR release][Firefox-ESR-link]          |
-| Microsoft Edge    | [The release from 1 year ago][MSEdge-lower-bound-link] |
-| Safari            | [The release from 1 year ago][Safari-lower-bound-link] |
+| Browser        | Lower bound                                            |
+| -------------- | ------------------------------------------------------ |
+| Chrome         | [The release from 1 year ago][Chrome-lower-bound-link] |
+| Firefox        | [Latest active ESR release][Firefox-ESR-link]          |
+| Microsoft Edge | [The release from 1 year ago][MSEdge-lower-bound-link] |
+| Safari         | [The release from 1 year ago][Safari-lower-bound-link] |
 
 [Supported browsers table](https://browsersl.ist/?results#q=Chrome+%3E+0+and+last+1+year%0AEdge+%3E+0+and+last+1+year%0AFirefox+ESR%0ASafari+%3E+0+and+last+1+year)
 

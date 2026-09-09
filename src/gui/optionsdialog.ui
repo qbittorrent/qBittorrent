@@ -2145,6 +2145,13 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkI2PPeX">
+                 <property name="text">
+                  <string>Enable I2P Peer Exchange (I2P PeX) to find more peers (requires restart)</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>

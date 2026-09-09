@@ -67,7 +67,8 @@ Http::Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler
         m_idleTimer.start();
     });
 
-    connect(&m_responseWriter, &ResponseWriterImpl::finished, this, [this]
+    connect(&m_responseWriter, &ResponseWriter::failed, m_socket, &QAbstractSocket::abort);
+    connect(&m_responseWriter, &ResponseWriter::finished, this, [this]
     {
         m_isProcessingRequest = false;
         if (!m_receivedData.isEmpty())

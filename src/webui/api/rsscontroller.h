@@ -49,6 +49,8 @@ private slots:
     void markAsReadAction();
     void refreshItemAction();
     void setRuleAction();
+    void exportRulesAction();
+    void importRulesAction();
     void renameRuleAction();
     void removeRuleAction();
     void cloneRuleAction();
