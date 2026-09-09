@@ -59,6 +59,58 @@ QString Utils::String::fromLocal8Bit(const std::string_view string)
     return QString::fromLocal8Bit(string.data(), string.size());
 }
 
+// Escape a translation for safe embedding in a JavaScript string literal (`"` is escaped by the caller).
+QString Utils::String::escapeJSStringHazards(const QString &str)
+{
+    QString result;
+    result.reserve(str.size());
+    for (qsizetype i = 0; i < str.size(); ++i)
+    {
+        const char16_t c = str[i].unicode();
+        switch (c)
+        {
+        case u'\\':
+            // keep `\n`/`\t` (source strings rely on them), escape any other backslash
+            if (((i + 1) < str.size()) && ((str[i + 1] == u'n') || (str[i + 1] == u't')))
+                result += u'\\';
+            else
+                result += u"\\\\"_s;
+            break;
+        case u'\'':
+            result += u"\\'"_s;
+            break;
+        case u'\n':
+            result += u"\\n"_s;
+            break;
+        case u'\r':
+            result += u"\\r"_s;
+            break;
+        case u'\u2028': // line separator
+            result += u"\\u2028"_s;
+            break;
+        case u'\u2029': // paragraph separator
+            result += u"\\u2029"_s;
+            break;
+        case u'<':
+            result += u"\\u003C"_s;
+            break;
+        case u'`':
+            result += u"\\`"_s;
+            break;
+        case u'$':
+            if (((i + 1) < str.size()) && (str[i + 1] == u'{'))
+                result += u"\\$"_s;
+            else
+                result += u'$';
+            break;
+        default:
+            result += str[i];
+            break;
+        }
+    }
+    return result;
+}
+
 QString Utils::String::wildcardToRegexPattern(const QString &pattern)
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 6, 1))
