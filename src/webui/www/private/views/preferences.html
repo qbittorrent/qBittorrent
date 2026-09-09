@@ -2168,15 +2168,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("mailNotificationEncryptionCombobox").disabled = !isMailNotificationEnabled;
             document.getElementById("mail_auth_checkbox").disabled = !isMailNotificationEnabled;
             document.getElementById("mail_test_button").disabled = !isMailNotificationEnabled;
-
-            if (!isMailNotificationEnabled) {
-                document.getElementById("mail_auth_checkbox").checked = !isMailNotificationEnabled;
-                updateMailAuthSettings();
-            }
+            updateMailAuthSettings();
         };
 
         const updateMailAuthSettings = () => {
-            const isMailAuthEnabled = document.getElementById("mail_auth_checkbox").checked;
+            // the stored setting is left alone when notifications are off, so that saving the
+            // preferences does not silently turn authentication off
+            const isMailAuthEnabled = document.getElementById("mail_notification_checkbox").checked
+                && document.getElementById("mail_auth_checkbox").checked;
             document.getElementById("mail_username_text").disabled = !isMailAuthEnabled;
             document.getElementById("mail_password_text").disabled = !isMailAuthEnabled;
         };
