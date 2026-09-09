@@ -195,6 +195,56 @@ namespace
         return std::nullopt;
     }
 
+    void applyShareLimitsParams(BitTorrent::ShareLimits &shareLimits, const StringMap &params)
+    {
+        if (const std::optional<QString> value = Utils::Dict::get(params, u"ratioLimit"_s))
+        {
+            const std::optional<double> ratioLimit = parseDouble(*value);
+            if (!ratioLimit || (*ratioLimit < BitTorrent::DEFAULT_RATIO_LIMIT))
+                throw APIError(APIErrorType::BadParams, TorrentsController::tr("'ratioLimit' parameter has invalid value"));
+
+            shareLimits.ratioLimit = *ratioLimit;
+        }
+
+        if (const std::optional<QString> value = Utils::Dict::get(params, u"seedingTimeLimit"_s))
+        {
+            const std::optional<int> seedingTimeLimit = parseInt(*value);
+            if (!seedingTimeLimit || (*seedingTimeLimit < BitTorrent::DEFAULT_SEEDING_TIME_LIMIT))
+                throw APIError(APIErrorType::BadParams, TorrentsController::tr("'seedingTimeLimit' parameter has invalid value"));
+
+            shareLimits.seedingTimeLimit = *seedingTimeLimit;
+        }
+
+        if (const std::optional<QString> value = Utils::Dict::get(params, u"inactiveSeedingTimeLimit"_s))
+        {
+            const std::optional<int> inactiveSeedingTimeLimit = parseInt(*value);
+            if (!inactiveSeedingTimeLimit || (*inactiveSeedingTimeLimit < BitTorrent::DEFAULT_SEEDING_TIME_LIMIT))
+                throw APIError(APIErrorType::BadParams, TorrentsController::tr("'inactiveSeedingTimeLimit' parameter has invalid value"));
+
+            shareLimits.inactiveSeedingTimeLimit = *inactiveSeedingTimeLimit;
+        }
+
+        // an unrecognized value must not silently fall back to `Default`, which would reset
+        // a setting that the caller did not intend to change
+        if (const std::optional<QString> value = Utils::Dict::get(params, u"shareLimitsMode"_s))
+        {
+            const auto mode = Utils::String::toEnum(*value, BitTorrent::ShareLimitsMode::Default);
+            if (Utils::String::fromEnum(mode) != *value)
+                throw APIError(APIErrorType::BadParams, TorrentsController::tr("'shareLimitsMode' parameter has invalid value"));
+
+            shareLimits.mode = mode;
+        }
+
+        if (const std::optional<QString> value = Utils::Dict::get(params, u"shareLimitAction"_s))
+        {
+            const auto action = Utils::String::toEnum(*value, BitTorrent::ShareLimitAction::Default);
+            if (Utils::String::fromEnum(action) != *value)
+                throw APIError(APIErrorType::BadParams, TorrentsController::tr("'shareLimitAction' parameter has invalid value"));
+
+            shareLimits.action = action;
+        }
+    }
+
     QJsonArray getStickyTrackers(const BitTorrent::Torrent *const torrent)
     {
         int seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, leechesDHT = 0, leechesPeX = 0, leechesLSD = 0;
@@ -1909,6 +1959,8 @@ void TorrentsController::createCategoryAction()
         }
     }
 
+    applyShareLimitsParams(categoryOptions.shareLimits, params());
+
     if (!BitTorrent::Session::instance()->addCategory(category, categoryOptions))
         throw APIError(APIErrorType::Conflict, tr("Unable to create category"));
 
@@ -1917,7 +1969,7 @@ void TorrentsController::createCategoryAction()
 
 void TorrentsController::editCategoryAction()
 {
-    requireParams({u"category"_s, u"savePath"_s});
+    requireParams({u"category"_s});
 
     const QString category = params()[u"category"_s];
     if (category.isEmpty())
@@ -1925,8 +1977,8 @@ void TorrentsController::editCategoryAction()
 
     BitTorrent::CategoryOptions categoryOptions = BitTorrent::Session::instance()->categoryOptions(category);
 
-    const Path savePath {params()[u"savePath"_s]};
-    categoryOptions.savePath = savePath;
+    if (const std::optional<QString> savePathParam = Utils::Dict::get(params(), u"savePath"_s))
+        categoryOptions.savePath = Path(*savePathParam);
 
     const std::optional<QString> useDownloadPathParam = Utils::Dict::get(params(), u"downloadPathEnabled"_s);
     if (useDownloadPathParam)
@@ -1945,6 +1997,8 @@ void TorrentsController::editCategoryAction()
             throw APIError(APIErrorType::BadParams, tr("'downloadPathEnabled' parameter has invalid value"));
         }
     }
+
+    applyShareLimitsParams(categoryOptions.shareLimits, params());
 
     if (!BitTorrent::Session::instance()->setCategoryOptions(category, categoryOptions))
         throw APIError(APIErrorType::NotFound, tr("Category does not exist"));
