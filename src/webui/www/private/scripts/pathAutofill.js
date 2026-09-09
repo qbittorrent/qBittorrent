@@ -40,51 +40,138 @@ window.qBittorrent.pathAutofill ??= (() => {
         };
     };
 
-    const showInputSuggestions = (inputElement, names) => {
-        const datalist = document.createElement("datalist");
-        datalist.id = `${inputElement.id}Suggestions`;
+    // Safari on iOS blocks input for about 18 ms per option whenever the
+    // suggestions of the focused input change, so the list is kept short and
+    // is only refreshed once typing pauses.
+    const MAX_SUGGESTIONS = 10;
+    const REFRESH_DELAY_MS = 400;
+
+    // Per-input state: the datalist, the loaded directory listing and the pending refresh.
+    const states = new WeakMap();
+
+    // Returns the directory part of `path` including its trailing separator,
+    // or an empty string when `path` contains no separator.
+    const parentDirectory = (path) => {
+        const index = Math.max(path.lastIndexOf("/"), path.lastIndexOf("\\"));
+        return (index === -1) ? "" : path.substring(0, index + 1);
+    };
+
+    // Returns up to MAX_SUGGESTIONS entries that start with `prefix`.
+    // The match is case-insensitive, like the browser's own datalist filtering.
+    const filterSuggestions = (entries, prefix) => {
+        const lowerCasePrefix = prefix.toLowerCase();
+        const matches = [];
+        for (const entry of entries) {
+            if (!entry.toLowerCase().startsWith(lowerCasePrefix))
+                continue;
+            matches.push(entry);
+            if (matches.length >= MAX_SUGGESTIONS)
+                break;
+        }
+        return matches;
+    };
+
+    const refreshSuggestions = (inputElement, state) => {
+        const names = filterSuggestions(state.entries, inputElement.value);
+        const shown = names.join("\n");
+        if (shown === state.shown)
+            return;
+        state.shown = shown;
+
+        const fragment = document.createDocumentFragment();
         for (const name of names) {
             const option = document.createElement("option");
             option.value = name;
-            datalist.appendChild(option);
+            fragment.appendChild(option);
         }
-
-        const oldDatalist = document.getElementById(`${inputElement.id}Suggestions`);
-        if (oldDatalist !== null) {
-            oldDatalist.replaceWith(datalist);
-        }
-        else {
-            inputElement.appendChild(datalist);
-            inputElement.setAttribute("list", datalist.id);
-        }
+        state.datalist.replaceChildren(fragment);
     };
 
-    const showPathSuggestions = (element, mode) => {
-        const partialPath = element.value;
-        if (partialPath === "")
-            return;
+    const scheduleRefresh = (inputElement, state) => {
+        clearTimeout(state.refreshTimer);
+        state.refreshTimer = setTimeout(() => {
+            state.refreshTimer = null;
+            refreshSuggestions(inputElement, state);
+        }, REFRESH_DELAY_MS);
+    };
 
-        fetch(`api/v2/app/getDirectoryContent?dirPath=${partialPath}&mode=${mode}`, {
+    const loadDirectory = (inputElement, state, dirPath, mode) => {
+        state.abortController?.abort();
+        const abortController = new AbortController();
+        state.abortController = abortController;
+        state.dirPath = dirPath;
+        state.entries = [];
+
+        fetch(`api/v2/app/getDirectoryContent?dirPath=${encodeURIComponent(dirPath)}&mode=${mode}`, {
                 method: "GET",
-                cache: "no-store"
+                cache: "no-store",
+                signal: abortController.signal
             })
-            .then(response => response.json())
-            .then(filesList => { showInputSuggestions(element, filesList); })
-            .catch(error => {});
+            .then(response => {
+                if (response.ok)
+                    return response.json();
+                // client errors are final, e.g. the directory does not exist
+                if (response.status < 500)
+                    return [];
+                throw new Error(response.statusText);
+            })
+            .then(entries => {
+                // a newer request replaced this one
+                if (state.abortController !== abortController)
+                    return;
+                state.entries = entries.sort((a, b) => a.localeCompare(b));
+                // while typing continues, the pending refresh picks the entries up
+                if (state.refreshTimer === null)
+                    refreshSuggestions(inputElement, state);
+            })
+            .catch(error => {
+                // forget the failed request so the next keystroke retries it
+                if (state.abortController === abortController)
+                    state.dirPath = null;
+            });
+    };
+
+    const onInput = (inputElement, mode) => {
+        const state = states.get(inputElement);
+        const dirPath = parentDirectory(inputElement.value);
+        if (dirPath !== state.dirPath) {
+            if (dirPath === "") {
+                state.abortController?.abort();
+                state.abortController = null;
+                state.dirPath = dirPath;
+                state.entries = [];
+            }
+            else {
+                loadDirectory(inputElement, state, dirPath, mode);
+            }
+        }
+        scheduleRefresh(inputElement, state);
+    };
+
+    const attach = (inputElement, mode) => {
+        // <input> is a void element, so the datalist goes next to it
+        const datalist = document.createElement("datalist");
+        datalist.id = `${inputElement.id}Suggestions`;
+        inputElement.insertAdjacentElement("afterend", datalist);
+        inputElement.setAttribute("list", datalist.id);
+
+        states.set(inputElement, {
+            datalist: datalist,
+            dirPath: "",
+            entries: [],
+            abortController: null,
+            refreshTimer: null,
+            shown: ""
+        });
+        inputElement.addEventListener("input", () => { onInput(inputElement, mode); });
+        inputElement.classList.add("pathAutoFillInitialized");
     };
 
     const attachPathAutofill = () => {
-        const directoryInputs = document.querySelectorAll(".pathDirectory:not(.pathAutoFillInitialized)");
-        for (const input of directoryInputs) {
-            input.addEventListener("input", function(event) { showPathSuggestions(this, "dirs"); });
-            input.classList.add("pathAutoFillInitialized");
-        }
-
-        const fileInputs = document.querySelectorAll(".pathFile:not(.pathAutoFillInitialized)");
-        for (const input of fileInputs) {
-            input.addEventListener("input", function(event) { showPathSuggestions(this, "all"); });
-            input.classList.add("pathAutoFillInitialized");
-        }
+        for (const input of document.querySelectorAll(".pathDirectory:not(.pathAutoFillInitialized)"))
+            attach(input, "dirs");
+        for (const input of document.querySelectorAll(".pathFile:not(.pathAutoFillInitialized)"))
+            attach(input, "all");
     };
 
     return exports();
