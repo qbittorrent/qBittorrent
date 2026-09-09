@@ -414,6 +414,10 @@ void AppController::preferencesAction()
     data[u"torrent_file_size_limit"_s] = pref->getTorrentFileSizeLimit();
     // Confirm torrent recheck
     data[u"confirm_torrent_recheck"_s] = pref->confirmTorrentRecheck();
+    // Confirm removing all tags
+    data[u"confirm_remove_all_tags"_s] = pref->confirmRemoveAllTags();
+    // Confirm removing a tracker from all torrents
+    data[u"confirm_remove_tracker_from_all_torrents"_s] = pref->confirmRemoveTrackerFromAllTorrents();
     // Recheck completed torrents
     data[u"recheck_completed_torrents"_s] = pref->recheckTorrentsOnCompletion();
     // Customize application instance name
@@ -1070,6 +1074,12 @@ void AppController::setPreferencesAction()
     // Confirm torrent recheck
     if (hasKey(u"confirm_torrent_recheck"_s))
         pref->setConfirmTorrentRecheck(it.value().toBool());
+    // Confirm removing all tags
+    if (hasKey(u"confirm_remove_all_tags"_s))
+        pref->setConfirmRemoveAllTags(it.value().toBool());
+    // Confirm removing a tracker from all torrents
+    if (hasKey(u"confirm_remove_tracker_from_all_torrents"_s))
+        pref->setConfirmRemoveTrackerFromAllTorrents(it.value().toBool());
     // Recheck completed torrents
     if (hasKey(u"recheck_completed_torrents"_s))
         pref->recheckTorrentsOnCompletion(it.value().toBool());

@@ -1397,6 +1397,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="confirmRemoveAllTags">QBT_TR(Confirm removal of all tags:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="confirmRemoveAllTags">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="confirmRemoveTrackerFromAllTorrents">QBT_TR(Confirm removal of tracker from all torrents:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="confirmRemoveTrackerFromAllTorrents">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="reannounceWhenAddressChanged">QBT_TR(Reannounce to all trackers when IP or port changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
@@ -2859,6 +2875,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("refreshInterval").value = pref.refresh_interval;
                     document.getElementById("resolvePeerHostNames").checked = pref.resolve_peer_host_names;
                     document.getElementById("resolvePeerCountries").checked = pref.resolve_peer_countries;
+                    document.getElementById("confirmRemoveAllTags").checked = pref.confirm_remove_all_tags;
+                    document.getElementById("confirmRemoveTrackerFromAllTorrents").checked = pref.confirm_remove_tracker_from_all_torrents;
                     document.getElementById("reannounceWhenAddressChanged").checked = pref.reannounce_when_address_changed;
                     document.getElementById("enableEmbeddedTracker").checked = pref.enable_embedded_tracker;
                     document.getElementById("embeddedTrackerPort").value = pref.embedded_tracker_port;
@@ -3361,6 +3379,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["refresh_interval"] = Number(document.getElementById("refreshInterval").value);
             settings["resolve_peer_host_names"] = document.getElementById("resolvePeerHostNames").checked;
             settings["resolve_peer_countries"] = document.getElementById("resolvePeerCountries").checked;
+            settings["confirm_remove_all_tags"] = document.getElementById("confirmRemoveAllTags").checked;
+            settings["confirm_remove_tracker_from_all_torrents"] = document.getElementById("confirmRemoveTrackerFromAllTorrents").checked;
             settings["reannounce_when_address_changed"] = document.getElementById("reannounceWhenAddressChanged").checked;
             settings["enable_embedded_tracker"] = document.getElementById("enableEmbeddedTracker").checked;
             settings["embedded_tracker_port"] = Number(document.getElementById("embeddedTrackerPort").value);
