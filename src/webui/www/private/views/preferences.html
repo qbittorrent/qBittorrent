@@ -3339,8 +3339,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["python_executable_path"] = pyPath;
 
             settings["start_paused"] = document.getElementById("startPaused").checked;
-            settings["shutdown_timeout"] = Number(document.getElementById("sessionShutdownTimeout").value);
-
+            const shutdownTimeoutStr = document.getElementById("sessionShutdownTimeout").value.trim();
+            const shutdownTimeout = (shutdownTimeoutStr === "") ? -1 : Number(shutdownTimeoutStr);
+            if (!Number.isInteger(shutdownTimeout) || (shutdownTimeout < -1) || (shutdownTimeout > 2147483647)) {
+                alert("QBT_TR(BitTorrent session shutdown timeout must be between -1 and 2147483647.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["shutdown_timeout"] = shutdownTimeout;
             // libtorrent section
             settings["bdecode_depth_limit"] = Number(document.getElementById("bdecodeDepthLimit").value);
             settings["bdecode_token_limit"] = Number(document.getElementById("bdecodeTokenLimit").value);
