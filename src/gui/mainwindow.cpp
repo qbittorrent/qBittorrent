@@ -90,6 +90,7 @@
 #include "properties/peerlistwidget.h"
 #include "properties/propertieswidget.h"
 #include "properties/proptabbar.h"
+#include "rss/automatedrssdownloader.h"
 #include "rss/rsswidget.h"
 #include "search/searchwidget.h"
 #include "speedlimitdialog.h"
@@ -188,6 +189,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_ui->actionDonateMoney->setIcon(UIThemeManager::instance()->getIcon(u"wallet-open"_s));
     m_ui->actionExit->setIcon(UIThemeManager::instance()->getIcon(u"application-exit"_s));
     m_ui->actionLock->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_s));
+    m_ui->actionRSSDownloader->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_s));
     m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon(u"configure"_s, u"preferences-system"_s));
     m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
     m_ui->actionStop->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s));
@@ -1125,6 +1127,13 @@ void MainWindow::on_actionAbout_triggered()
         m_aboutDlg->setAttribute(Qt::WA_DeleteOnClose);
         m_aboutDlg->show();
     }
+}
+
+void MainWindow::on_actionRSSDownloader_triggered()
+{
+    auto *downloader = new AutomatedRssDownloader(this);
+    downloader->setAttribute(Qt::WA_DeleteOnClose);
+    downloader->open();
 }
 
 void MainWindow::on_actionStatistics_triggered()
