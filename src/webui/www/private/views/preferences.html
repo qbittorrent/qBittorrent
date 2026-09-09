@@ -2608,6 +2608,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Excluded file names
                     document.getElementById("excludedFileNamesCheckbox").checked = pref.excluded_file_names_enabled;
                     document.getElementById("excludedFileNamesTextarea").value = pref.excluded_file_names;
+                    updateExcludedFileNamesEnabled();
 
                     // Email notification upon download completion
                     document.getElementById("mail_notification_checkbox").checked = pref.mail_notification_enabled;
