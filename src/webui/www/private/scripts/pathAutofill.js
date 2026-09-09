@@ -40,12 +40,24 @@ window.qBittorrent.pathAutofill ??= (() => {
         };
     };
 
+    // Safari shows only the first line of a wrapped suggestion. For a long
+    // name that line ends at the directory, so a label gives it a line that
+    // starts with the name itself. Touch devices skip the label: the keyboard
+    // bar cuts it off and it doubles the time Safari on iOS blocks input.
+    const showLabels = () => (window.matchMedia?.("(pointer: fine)").matches === true);
+
     const showInputSuggestions = (inputElement, names) => {
         const datalist = document.createElement("datalist");
         datalist.id = `${inputElement.id}Suggestions`;
+        const withLabels = showLabels();
         for (const name of names) {
             const option = document.createElement("option");
             option.value = name;
+            if (withLabels) {
+                const label = name.substring(Math.max(name.lastIndexOf("/"), name.lastIndexOf("\\")) + 1);
+                if (label !== "")
+                    option.setAttribute("label", label);
+            }
             datalist.appendChild(option);
         }
 
