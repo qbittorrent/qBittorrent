@@ -20,7 +20,7 @@ using the **libtorrent-rasterbar** library by Arvid Norberg.
 qBittorrent-nox aims to be a good alternative to other command line bittorrent
 clients and provides features similar to popular graphical clients.
 
-qBittorrent-nox is fast, stable, light and it supports unicode. It also comes with
+qBittorrent-nox is fast, stable, light and it supports Unicode. It also comes with
 UPnP port forwarding / NAT-PMP, encryption (Vuze compatible), FAST extension (mainline)
 and PeX support (utorrent compatible).
 

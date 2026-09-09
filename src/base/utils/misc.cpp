@@ -65,7 +65,7 @@ namespace
         QT_TRANSLATE_NOOP3("misc", "EiB", "exbibytes (1024 pebibytes)")
     };
 
-    // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB, ...)
+    // return best user-friendly storage unit (B, KiB, MiB, GiB, TiB, ...)
     // use Binary prefix standards from IEC 60027-2
     // see http://en.wikipedia.org/wiki/Kilobyte
     // value must be given in bytes
