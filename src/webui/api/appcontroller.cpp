@@ -1101,13 +1101,11 @@ void AppController::setPreferencesAction()
     // Session shutdown timeout
     if (hasKey(u"shutdown_timeout"_s))
     {
-        //validate shutdown timeout, range -1 to INT_MAX, else set it unlimited timeout (-1)
+        // validate shutdown timeout, range -1 to INT_MAX
         bool ok;
         int timeout = it.value().toInt(&ok);
-        if (ok && (timeout == -1 || (timeout >= 0 && timeout <= INT_MAX)))
+        if (ok && (timeout >= -1))
             session->setShutdownTimeout(timeout);
-        else
-            session->setShutdownTimeout(-1);
     }
 
     // libtorrent preferences
