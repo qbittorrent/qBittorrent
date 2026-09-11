@@ -839,6 +839,10 @@ void SearchWidget::showTabMenu(const int index)
             searchJobWidget->status() != SearchJobWidget::Status::Ongoing)
     {
         menu->addAction(tr("Refresh tab"), this, [this, searchJobWidget] { refreshTab(searchJobWidget); });
+        if (m_ui->tabWidget->count() <= 100)
+        {
+            menu->addAction(tr("Refresh all tabs"), this, &SearchWidget::refreshAllTabs);
+        }
     }
     else
     {
@@ -973,6 +977,24 @@ void SearchWidget::refreshTab(SearchJobWidget *searchJobWidget)
     // Re-launch search
     auto *searchHandler = SearchPluginManager::instance()->startSearch(searchJobWidget->searchPattern(), selectedCategory(), selectedPlugins());
     searchJobWidget->assignSearchHandler(searchHandler);
+}
+
+void SearchWidget::refreshAllTabs()
+{
+    if (!Utils::ForeignApps::pythonInfo().isValid())
+    {
+        app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
+        return;
+    }
+
+    for (int tabIndex = 0; tabIndex < m_ui->tabWidget->count(); ++tabIndex)
+    {
+        if (auto *searchJobWidget = static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(tabIndex));
+                searchJobWidget->status() != SearchJobWidget::Status::Ongoing)
+        {
+             refreshTab(searchJobWidget);
+        }
+    }
 }
 
 void SearchWidget::DataStorage::loadSession(const bool withSearchResults)
