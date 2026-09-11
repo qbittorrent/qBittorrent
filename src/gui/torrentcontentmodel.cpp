@@ -242,6 +242,11 @@ bool TorrentContentModel::setItemPriority(const QModelIndex &index, BitTorrent::
     if (currentPriority == priority)
         return false;
 
+#ifdef Q_OS_MACOS
+    emit priorityUpdateStarted();
+    [[maybe_unused]] const auto priorityUpdateGuard = qScopeGuard([this] { emit priorityUpdateFinished(); });
+#endif
+
     item->setPriority(priority);
     m_contentHandler->prioritizeFiles(getFilePriorities());
 
