@@ -949,6 +949,8 @@ void MainWindow::createKeyboardShortcuts()
     const auto *switchSearchFilterShortcutAlternative = new QShortcut((Qt::CTRL | Qt::Key_E), m_transferListWidget);
     connect(switchSearchFilterShortcutAlternative, &QShortcut::activated, this, &MainWindow::toggleFocusBetweenLineEdits);
 
+    updateMinimizeOnEscShortcut();
+
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
     m_ui->actionOptions->setShortcut(Qt::ALT | Qt::Key_O);
     m_ui->actionStatistics->setShortcut(Qt::CTRL | Qt::Key_I);
@@ -1416,6 +1418,8 @@ void MainWindow::loadPreferences()
 {
     const Preferences *pref = Preferences::instance();
 
+    updateMinimizeOnEscShortcut();
+
     // General
     if (pref->isToolbarDisplayed())
     {
@@ -1493,6 +1497,24 @@ void MainWindow::loadPreferences()
 #endif
 
     qDebug("GUI settings loaded");
+}
+
+void MainWindow::updateMinimizeOnEscShortcut()
+{
+    if (Preferences::instance()->isMinimizeOnEscEnabled())
+    {
+        // Intentionally separate if-statement so it doesn't call the else condition if m_minimizeOnEscShortcut is not null
+        if (!m_minimizeOnEscShortcut)
+        {
+            m_minimizeOnEscShortcut = new QShortcut(Qt::Key_Escape, this);
+            connect(m_minimizeOnEscShortcut, &QShortcut::activated, this, &MainWindow::showMinimized);
+        }
+    }
+    else
+    {
+        delete m_minimizeOnEscShortcut;
+        m_minimizeOnEscShortcut = nullptr;
+    }
 }
 
 void MainWindow::loadSessionStats()
