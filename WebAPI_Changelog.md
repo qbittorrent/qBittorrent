@@ -2,6 +2,11 @@
 
 ## 2.16.2
 
+* [#24891](https://github.com/qbittorrent/qBittorrent/pull/24891)
+  * `app/preferences` endpoint includes `i2p_inbound_length_variance` (int) option
+  * `app/preferences` endpoint includes `i2p_outbound_length_variance` (int) option
+  * `app/setPreferences` endpoint allows to set `i2p_inbound_length_variance` (int) option
+  * `app/setPreferences` endpoint allows to set `i2p_outbound_length_variance` (int) option
 * [#24870](https://github.com/qbittorrent/qBittorrent/pull/24870)
   * `app/preferences` endpoint includes `i2p_pex_enabled` (bool) option
   * `app/setPreferences` endpoint allows to set `i2p_pex_enabled` (bool) option

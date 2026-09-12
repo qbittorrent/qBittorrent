@@ -286,6 +286,10 @@ namespace BitTorrent
         void setI2PInboundLength(int value) override;
         int I2POutboundLength() const override;
         void setI2POutboundLength(int value) override;
+        int I2PInboundLengthVariance() const override;
+        void setI2PInboundLengthVariance(int value) override;
+        int I2POutboundLengthVariance() const override;
+        void setI2POutboundLengthVariance(int value) override;
         bool isProxyPeerConnectionsEnabled() const override;
         void setProxyPeerConnectionsEnabled(bool enabled) override;
         ChokingAlgorithm chokingAlgorithm() const override;
@@ -809,6 +813,8 @@ namespace BitTorrent
         CachedSettingValue<int> m_I2POutboundQuantity;
         CachedSettingValue<int> m_I2PInboundLength;
         CachedSettingValue<int> m_I2POutboundLength;
+        CachedSettingValue<int> m_I2PInboundLengthVariance;
+        CachedSettingValue<int> m_I2POutboundLengthVariance;
         CachedSettingValue<TorrentContentRemoveOption> m_torrentContentRemoveOption;
         SettingValue<bool> m_startPaused;
 

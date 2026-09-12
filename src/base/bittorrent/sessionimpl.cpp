@@ -631,10 +631,12 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_I2PPort {BITTORRENT_SESSION_KEY(u"I2P/Port"_s), 7656}
     , m_I2PMixedMode {BITTORRENT_SESSION_KEY(u"I2P/MixedMode"_s), false}
     , m_isI2PPeXEnabled {BITTORRENT_SESSION_KEY(u"I2P/PeXEnabled"_s), true}
-    , m_I2PInboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/InboundQuantity"_s), 3}
-    , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_s), 3}
-    , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_s), 3}
-    , m_I2POutboundLength {BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_s), 3}
+    , m_I2PInboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/InboundQuantity"_s), 3, clampValue(1, 16)}
+    , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_s), 3, clampValue(1, 16)}
+    , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_s), 3, clampValue(0, 7)}
+    , m_I2POutboundLength {BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_s), 3, clampValue(0, 7)}
+    , m_I2PInboundLengthVariance {BITTORRENT_SESSION_KEY(u"I2P/InboundLengthVariance"_s), 0, clampValue(-7, 7)}
+    , m_I2POutboundLengthVariance {BITTORRENT_SESSION_KEY(u"I2P/OutboundLengthVariance"_s), 0, clampValue(-7, 7)}
     , m_torrentContentRemoveOption {BITTORRENT_SESSION_KEY(u"TorrentContentRemoveOption"_s), TorrentContentRemoveOption::Delete}
     , m_startPaused {BITTORRENT_SESSION_KEY(u"StartPaused"_s)}
     , m_seedingLimitTimer {new QTimer(this)}
@@ -2033,6 +2035,10 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::i2p_outbound_quantity, I2POutboundQuantity());
     settingsPack.set_int(lt::settings_pack::i2p_inbound_length, I2PInboundLength());
     settingsPack.set_int(lt::settings_pack::i2p_outbound_length, I2POutboundLength());
+#if LIBTORRENT_VERSION_NUM >= 20012
+    settingsPack.set_int(lt::settings_pack::i2p_inbound_length_variance, I2PInboundLengthVariance());
+    settingsPack.set_int(lt::settings_pack::i2p_outbound_length_variance, I2POutboundLengthVariance());
+#endif // LIBTORRENT_VERSION_NUM >= 20012
 #endif
 
     // proxy
@@ -4020,10 +4026,11 @@ int SessionImpl::I2PInboundQuantity() const
 
 void SessionImpl::setI2PInboundQuantity(const int value)
 {
-    if (value == m_I2PInboundQuantity)
+    const int clampedValue = std::clamp(value, 1, 16);
+    if (clampedValue == m_I2PInboundQuantity)
         return;
 
-    m_I2PInboundQuantity = value;
+    m_I2PInboundQuantity = clampedValue;
     configureDeferred();
 }
 
@@ -4034,10 +4041,11 @@ int SessionImpl::I2POutboundQuantity() const
 
 void SessionImpl::setI2POutboundQuantity(const int value)
 {
-    if (value == m_I2POutboundQuantity)
+    const int clampedValue = std::clamp(value, 1, 16);
+    if (clampedValue == m_I2POutboundQuantity)
         return;
 
-    m_I2POutboundQuantity = value;
+    m_I2POutboundQuantity = clampedValue;
     configureDeferred();
 }
 
@@ -4048,10 +4056,11 @@ int SessionImpl::I2PInboundLength() const
 
 void SessionImpl::setI2PInboundLength(const int value)
 {
-    if (value == m_I2PInboundLength)
+    const int clampedValue = std::clamp(value, 0, 7);
+    if (clampedValue == m_I2PInboundLength)
         return;
 
-    m_I2PInboundLength = value;
+    m_I2PInboundLength = clampedValue;
     configureDeferred();
 }
 
@@ -4062,10 +4071,41 @@ int SessionImpl::I2POutboundLength() const
 
 void SessionImpl::setI2POutboundLength(const int value)
 {
-    if (value == m_I2POutboundLength)
+    const int clampedValue = std::clamp(value, 0, 7);
+    if (clampedValue == m_I2POutboundLength)
         return;
 
-    m_I2POutboundLength = value;
+    m_I2POutboundLength = clampedValue;
+    configureDeferred();
+}
+
+int SessionImpl::I2PInboundLengthVariance() const
+{
+    return m_I2PInboundLengthVariance;
+}
+
+void SessionImpl::setI2PInboundLengthVariance(const int value)
+{
+    const int clampedValue = std::clamp(value, -7, 7);
+    if (clampedValue == m_I2PInboundLengthVariance)
+        return;
+
+    m_I2PInboundLengthVariance = clampedValue;
+    configureDeferred();
+}
+
+int SessionImpl::I2POutboundLengthVariance() const
+{
+    return m_I2POutboundLengthVariance;
+}
+
+void SessionImpl::setI2POutboundLengthVariance(const int value)
+{
+    const int clampedValue = std::clamp(value, -7, 7);
+    if (clampedValue == m_I2POutboundLengthVariance)
+        return;
+
+    m_I2POutboundLengthVariance = clampedValue;
     configureDeferred();
 }
 
