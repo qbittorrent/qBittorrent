@@ -116,6 +116,9 @@ private:
     void cookieSessionInitialize(const QString &authScheme, const QString &authData);
     void apiKeySessionInitialize(const QString &apiKey);
     bool isAuthNeeded();
+    void logUntrustedReverseProxy();
+    void logAuthBypassMiss();
+    bool shouldLogClientDiagnostic(QSet<QHostAddress> &reported);
     bool isPublicAPI(const QString &scope, const QString &action) const;
 
     bool isOriginTrustworthy() const;
@@ -258,6 +261,8 @@ private:
     bool m_isLocalAuthEnabled = false;
     bool m_isAuthSubnetWhitelistEnabled = false;
     QList<Utils::Net::Subnet> m_authSubnetWhitelist;
+    QSet<QHostAddress> m_loggedAuthBypassMisses;
+    QSet<QHostAddress> m_loggedUntrustedReverseProxies;
     std::chrono::seconds m_sessionTimeout = 0s;
     int m_sessionsCountLimit = 0;
     QString m_sessionCookieName;
