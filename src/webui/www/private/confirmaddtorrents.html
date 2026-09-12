@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="${LANG}" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QBT_TR(Add Torrents)QBT_TR[CONTEXT=DownloadFromURLDialog]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
+    <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css">
+    <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
+    <script>
+        "use strict";
+
+        window.addEventListener("DOMContentLoaded", (event) => {
+            window.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") {
+                    event.preventDefault();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
+                }
+            });
+
+            const count = new URLSearchParams(window.location.search).get("count");
+            const heading = document.getElementById("heading");
+            heading.textContent = heading.textContent.replace("%1", count);
+
+            const clientData = window.parent.qBittorrent.ClientData;
+            const separateDialogCheckbox = document.getElementById("separateDialogPerTorrent");
+            separateDialogCheckbox.checked = clientData.get("add_torrent_separate_dialog_per_torrent") ?? false;
+            separateDialogCheckbox.addEventListener("change", (e) => {
+                clientData.set({ add_torrent_separate_dialog_per_torrent: e.target.checked }).catch(console.error);
+            });
+
+            document.getElementById("addButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                window.parent.qBittorrent.Client.confirmAddTorrents(separateDialogCheckbox.checked);
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="text-align: center; padding: 10px;">
+        <h2 class="vcenter" id="heading">QBT_TR(Add %1 torrents)QBT_TR[CONTEXT=DownloadFromURLDialog]</h2>
+        <p><i>QBT_TR(All torrents will use a single options dialog. Check below to configure each one separately.)QBT_TR[CONTEXT=DownloadFromURLDialog]</i></p>
+        <div style="margin-top: 8px;">
+            <input type="checkbox" id="separateDialogPerTorrent">
+            <label for="separateDialogPerTorrent">QBT_TR(Open separate dialog for each torrent)QBT_TR[CONTEXT=DownloadFromURLDialog]</label>
+        </div>
+        <div style="margin-top: 12px;">
+            <button type="button" id="addButton">QBT_TR(Continue)QBT_TR[CONTEXT=DownloadFromURLDialog]</button>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -54,7 +54,7 @@ enum class AddTorrentOption
     SkipDialog,
 };
 
-class GUIAddTorrentManager : public GUIApplicationComponent<AddTorrentManager>
+class GUIAddTorrentManager final : public GUIApplicationComponent<AddTorrentManager>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(GUIAddTorrentManager)

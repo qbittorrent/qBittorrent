@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -60,6 +60,9 @@ bool AddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddT
 
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
+        if (m_downloadedTorrents.contains(source))
+            return true;
+
         LogMsg(tr("Downloading torrent... Source: \"%1\"").arg(source));
         const auto *pref = Preferences::instance();
         // Launch downloader

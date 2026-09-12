@@ -41,6 +41,12 @@ class QStringView;
 class Path final
 {
 public:
+#if defined(Q_OS_WIN)
+    static const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseInsensitive;
+#else
+    static const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseSensitive;
+#endif
+
     Path() = default;
 
     explicit Path(const QString &pathStr);
@@ -65,7 +71,7 @@ public:
     void removeExtension(QStringView ext);
     Path removedExtension(QStringView ext) const;
 
-    bool hasAncestor(const Path &other) const;
+    bool hasAncestor(const Path &other, Qt::CaseSensitivity caseSensitivity = CASE_SENSITIVITY) const;
     Path relativePathOf(const Path &childPath) const;
 
     QString data() const;
