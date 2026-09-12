@@ -2,6 +2,10 @@
 
 ## 2.16.2
 
+* [#24896](https://github.com/qbittorrent/qBittorrent/pull/24896)
+  * Torrent `state` can be `stalledMetaDL`, reported for a torrent that has been running for `metadata_stalled_timeout` seconds without receiving any of its metadata. Clients matching on `metaDL`/`forcedMetaDL` to detect a metadata download should also match `stalledMetaDL`
+  * `app/preferences` endpoint includes `metadata_stalled_timeout` (int) option
+  * `app/setPreferences` endpoint allows to set `metadata_stalled_timeout` (int) option
 * [#24870](https://github.com/qbittorrent/qBittorrent/pull/24870)
   * `app/preferences` endpoint includes `i2p_pex_enabled` (bool) option
   * `app/setPreferences` endpoint allows to set `i2p_pex_enabled` (bool) option

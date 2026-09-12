@@ -62,6 +62,7 @@ namespace
             {BitTorrent::TorrentState::StalledDownloading, u"TransferList.StalledDownloading"_s},
             {BitTorrent::TorrentState::DownloadingMetadata, u"TransferList.DownloadingMetadata"_s},
             {BitTorrent::TorrentState::ForcedDownloadingMetadata, u"TransferList.ForcedDownloadingMetadata"_s},
+            {BitTorrent::TorrentState::StalledDownloadingMetadata, u"TransferList.StalledDownloadingMetadata"_s},
             {BitTorrent::TorrentState::ForcedDownloading, u"TransferList.ForcedDownloading"_s},
             {BitTorrent::TorrentState::Uploading, u"TransferList.Uploading"_s},
             {BitTorrent::TorrentState::StalledUploading, u"TransferList.StalledUploading"_s},
@@ -97,6 +98,7 @@ TransferListModel::TransferListModel(QObject *parent)
         {BitTorrent::TorrentState::StalledDownloading, tr("Stalled", "Torrent is waiting for download to begin")},
         {BitTorrent::TorrentState::DownloadingMetadata, tr("Downloading metadata", "Used when loading a magnet link")},
         {BitTorrent::TorrentState::ForcedDownloadingMetadata, tr("[F] Downloading metadata", "Used when forced to load a magnet link. You probably shouldn't translate the F.")},
+        {BitTorrent::TorrentState::StalledDownloadingMetadata, tr("Stalled (metadata)", "Torrent is not receiving the metadata of a magnet link")},
         {BitTorrent::TorrentState::ForcedDownloading, tr("[F] Downloading", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
         {BitTorrent::TorrentState::Uploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
         {BitTorrent::TorrentState::StalledUploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
@@ -782,6 +784,7 @@ QIcon TransferListModel::getIconByState(const BitTorrent::TorrentState state) co
     case BitTorrent::TorrentState::ForcedDownloadingMetadata:
         return m_downloadingIcon;
     case BitTorrent::TorrentState::StalledDownloading:
+    case BitTorrent::TorrentState::StalledDownloadingMetadata:
         return m_stalledDLIcon;
     case BitTorrent::TorrentState::StalledUploading:
         return m_stalledUPIcon;

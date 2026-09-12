@@ -391,6 +391,8 @@ namespace BitTorrent
         virtual void setUploadRateForSlowTorrents(int rateInKibiBytes) = 0;
         virtual int slowTorrentsInactivityTimer() const = 0;
         virtual void setSlowTorrentsInactivityTimer(int timeInSeconds) = 0;
+        virtual int metadataStalledTimeout() const = 0;
+        virtual void setMetadataStalledTimeout(int timeInSeconds) = 0;
         virtual int outgoingPortsMin() const = 0;
         virtual void setOutgoingPortsMin(int min) = 0;
         virtual int outgoingPortsMax() const = 0;

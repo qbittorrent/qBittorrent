@@ -67,6 +67,7 @@ inline QHash<QString, UIThemeColor> defaultUIThemeColors()
         {u"TransferList.StalledDownloading"_s, {Color::Primer::Light::successEmphasis, Color::Primer::Dark::successEmphasis}},
         {u"TransferList.DownloadingMetadata"_s, {Color::Primer::Light::successFg, Color::Primer::Dark::successFg}},
         {u"TransferList.ForcedDownloadingMetadata"_s, {Color::Primer::Light::successFg, Color::Primer::Dark::successFg}},
+        {u"TransferList.StalledDownloadingMetadata"_s, {Color::Primer::Light::successEmphasis, Color::Primer::Dark::successEmphasis}},
         {u"TransferList.ForcedDownloading"_s, {Color::Primer::Light::successFg, Color::Primer::Dark::successFg}},
         {u"TransferList.Uploading"_s, {Color::Primer::Light::accentFg, Color::Primer::Dark::accentFg}},
         {u"TransferList.StalledUploading"_s, {Color::Primer::Light::accentEmphasis, Color::Primer::Dark::accentEmphasis}},

@@ -368,6 +368,8 @@ namespace BitTorrent
         void setUploadRateForSlowTorrents(int rateInKibiBytes) override;
         int slowTorrentsInactivityTimer() const override;
         void setSlowTorrentsInactivityTimer(int timeInSeconds) override;
+        int metadataStalledTimeout() const override;
+        void setMetadataStalledTimeout(int timeInSeconds) override;
         int outgoingPortsMin() const override;
         void setOutgoingPortsMin(int min) override;
         int outgoingPortsMax() const override;
@@ -712,6 +714,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_downloadRateForSlowTorrents;
         CachedSettingValue<int> m_uploadRateForSlowTorrents;
         CachedSettingValue<int> m_slowTorrentsInactivityTimer;
+        CachedSettingValue<int> m_metadataStalledTimeout;
         CachedSettingValue<int> m_outgoingPortsMin;
         CachedSettingValue<int> m_outgoingPortsMax;
         CachedSettingValue<int> m_UPnPLeaseDuration;

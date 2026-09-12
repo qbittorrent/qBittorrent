@@ -179,11 +179,13 @@ bool TorrentFilter::matchStatus(const Torrent *const torrent) const
         return torrent->isInactive();
     case Stalled:
         return (state == TorrentState::StalledUploading)
-                || (state == TorrentState::StalledDownloading);
+                || (state == TorrentState::StalledDownloading)
+                || (state == TorrentState::StalledDownloadingMetadata);
     case StalledUploading:
         return state == TorrentState::StalledUploading;
     case StalledDownloading:
-        return state == TorrentState::StalledDownloading;
+        return (state == TorrentState::StalledDownloading)
+                || (state == TorrentState::StalledDownloadingMetadata);
     case Checking:
         return (state == TorrentState::CheckingUploading)
                 || (state == TorrentState::CheckingDownloading)

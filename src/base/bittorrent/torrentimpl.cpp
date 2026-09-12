@@ -90,6 +90,13 @@ using namespace BitTorrent;
 
 namespace
 {
+    // Metadata is exchanged in 16 KiB pieces (BEP 9), so receiving at least that much data
+    // counts as progress. The signal is deliberately coarse: `total_download` includes
+    // protocol overhead, so a swarm that keeps connecting without ever serving the metadata
+    // can accumulate a piece worth of handshakes and PEX messages over a long timeout and
+    // reset the timer. It errs towards keeping the pre-existing "Downloading metadata".
+    const qlonglong METADATA_PROGRESS_THRESHOLD = 16 * 1024;
+
     lt::announce_entry makeNativeAnnounceEntry(const QString &url, const int tier)
     {
         lt::announce_entry entry {url.toStdString()};
@@ -1191,6 +1198,7 @@ bool TorrentImpl::isDownloading() const
     case TorrentState::Downloading:
     case TorrentState::DownloadingMetadata:
     case TorrentState::ForcedDownloadingMetadata:
+    case TorrentState::StalledDownloadingMetadata:
     case TorrentState::StalledDownloading:
     case TorrentState::CheckingDownloading:
     case TorrentState::StoppedDownloading:
@@ -1288,6 +1296,8 @@ TorrentState TorrentImpl::state() const
 
 void TorrentImpl::updateState()
 {
+    updateMetadataProgress();
+
     if (m_nativeStatus.state == lt::torrent_status::checking_resume_data)
     {
         m_state = TorrentState::CheckingResumeData;
@@ -1310,8 +1320,12 @@ void TorrentImpl::updateState()
             m_state = TorrentState::StoppedDownloading;
         else if (isQueued())
             m_state = TorrentState::QueuedDownloading;
+        else if (isForced())
+            m_state = TorrentState::ForcedDownloadingMetadata;
+        else if (isMetadataStalled())
+            m_state = TorrentState::StalledDownloadingMetadata;
         else
-            m_state = isForced() ? TorrentState::ForcedDownloadingMetadata : TorrentState::DownloadingMetadata;
+            m_state = TorrentState::DownloadingMetadata;
     }
     else if ((m_nativeStatus.state == lt::torrent_status::checking_files) && !isStopped())
     {
@@ -1344,6 +1358,39 @@ void TorrentImpl::updateState()
         else
             m_state = TorrentState::StalledDownloading;
     }
+}
+
+void TorrentImpl::updateMetadataProgress()
+{
+    if (hasMetadata())
+        return;
+
+    const auto downloaded = static_cast<qlonglong>(m_nativeStatus.total_download);
+    const lt::time_duration activeDuration = m_nativeStatus.active_duration;
+    // libtorrent resets `total_download` whenever the torrent is paused or reloaded, and
+    // `active_duration` is restored from the resume data on reload, so it can move backwards
+    // as well. Treat either counter going backwards as a fresh start rather than as a lack
+    // of progress, otherwise the torrent is held in the previous state until the elapsed
+    // time catches up with the stale mark.
+    const bool hasRestarted = (m_metadataDownloadedBytes < 0)
+            || (downloaded < m_metadataDownloadedBytes)
+            || (activeDuration < m_metadataProgressTime);
+    if (hasRestarted || ((downloaded - m_metadataDownloadedBytes) >= METADATA_PROGRESS_THRESHOLD))
+    {
+        m_metadataDownloadedBytes = downloaded;
+        m_metadataProgressTime = activeDuration;
+    }
+}
+
+bool TorrentImpl::isMetadataStalled() const
+{
+    const int timeout = m_session->metadataStalledTimeout();
+    if (timeout <= 0)
+        return false;
+
+    // `active_duration` does not advance while the torrent is stopped or queued, so time
+    // spent not running is not counted towards the timeout.
+    return lt::total_seconds(m_nativeStatus.active_duration - m_metadataProgressTime) >= timeout;
 }
 
 bool TorrentImpl::hasMetadata() const

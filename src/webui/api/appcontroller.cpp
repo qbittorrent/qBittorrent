@@ -320,6 +320,7 @@ void AppController::preferencesAction()
     data[u"slow_torrent_dl_rate_threshold"_s] = session->downloadRateForSlowTorrents();
     data[u"slow_torrent_ul_rate_threshold"_s] = session->uploadRateForSlowTorrents();
     data[u"slow_torrent_inactive_timer"_s] = session->slowTorrentsInactivityTimer();
+    data[u"metadata_stalled_timeout"_s] = session->metadataStalledTimeout();
     // Share Ratio Limiting
     const BitTorrent::ShareLimits &shareLimits = session->shareLimits();
     data[u"max_ratio_enabled"_s] = (shareLimits.ratioLimit >= 0.);
@@ -868,6 +869,8 @@ void AppController::setPreferencesAction()
         session->setUploadRateForSlowTorrents(it.value().toInt());
     if (hasKey(u"slow_torrent_inactive_timer"_s))
         session->setSlowTorrentsInactivityTimer(it.value().toInt());
+    if (hasKey(u"metadata_stalled_timeout"_s))
+        session->setMetadataStalledTimeout(it.value().toInt());
     // Share Ratio Limiting
     BitTorrent::ShareLimits shareLimits = session->shareLimits();
     if (hasKey(u"max_ratio_enabled"_s) && !it.value().toBool())
