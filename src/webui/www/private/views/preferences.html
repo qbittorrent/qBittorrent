@@ -1447,6 +1447,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <input type="text" id="pythonExecutablePath" class="pathFile" placeholder="QBT_TR((Auto detect if empty))QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;">
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <label for="startPaused">QBT_TR(Start BitTorrent session in paused state:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="startPaused">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="sessionShutdownTimeout">QBT_TR(BitTorrent session shutdown timeout [-1: unlimited]:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="sessionShutdownTimeout" style="width: 15em;">&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]
+                    </td>
+                </tr>
             </tbody>
         </table>
     </fieldset>
@@ -2822,6 +2838,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("markOfTheWeb").checked = pref.mark_of_the_web;
                     document.getElementById("ignoreSSLErrors").checked = pref.ignore_ssl_errors;
                     document.getElementById("pythonExecutablePath").value = pref.python_executable_path;
+                    document.getElementById("startPaused").checked = pref.start_paused;
+                    document.getElementById("sessionShutdownTimeout").value = pref.shutdown_timeout;
                     // libtorrent section
                     document.getElementById("bdecodeDepthLimit").value = pref.bdecode_depth_limit;
                     document.getElementById("bdecodeTokenLimit").value = pref.bdecode_token_limit;
@@ -3327,6 +3345,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }
             settings["python_executable_path"] = pyPath;
 
+            settings["start_paused"] = document.getElementById("startPaused").checked;
+            const shutdownTimeoutStr = document.getElementById("sessionShutdownTimeout").value.trim();
+            const shutdownTimeout = (shutdownTimeoutStr === "") ? -1 : Number.parseInt(shutdownTimeoutStr, 10);
+            if (!Number.isInteger(shutdownTimeout) || (shutdownTimeout < -1) || (shutdownTimeout > 2147483647)) {
+                alert("QBT_TR(BitTorrent session shutdown timeout must be between -1 and 2147483647.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["shutdown_timeout"] = shutdownTimeout;
             // libtorrent section
             settings["bdecode_depth_limit"] = Number(document.getElementById("bdecodeDepthLimit").value);
             settings["bdecode_token_limit"] = Number(document.getElementById("bdecodeTokenLimit").value);
