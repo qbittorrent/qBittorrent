@@ -31,6 +31,7 @@
 
 #include <QObject>
 #include <QTimer>
+#include "base/preferences.h"
 
 class BandwidthScheduler : public QObject
 {
@@ -43,6 +44,7 @@ public:
 
 signals:
     void bandwidthLimitRequested(bool alternative);
+    void sessionStateChangeRequested(Scheduler::AlternativeSessionState requestedState);
 
 private:
     bool isTimeForAlternative() const;
