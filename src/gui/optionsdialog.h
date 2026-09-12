@@ -203,6 +203,7 @@ private:
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QStringList> m_storeHSplitterSize;
     SettingValue<int> m_storeLastViewedPage;
+    SettingValue<int> m_storeMinFreeDiskSpace;
 
     QPushButton *m_applyButton = nullptr;
 
