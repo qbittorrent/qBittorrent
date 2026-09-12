@@ -35,6 +35,8 @@
 #include <QHostAddress>
 #include <QLabel>
 #include <QNetworkInterface>
+#include <QRegularExpression>
+#include <QTextDocumentFragment>
 
 #include <libtorrent/version.hpp>
 
@@ -51,6 +53,25 @@ namespace
     QString makeLink(const QStringView url, const QStringView linkLabel)
     {
          return u"<a href=\"%1\">%2</a>"_s.arg(url, linkLabel);
+    }
+
+    // the "(?)" documentation links are visual decoration, not something to spell out
+    QString toSpokenText(const QString &richText)
+    {
+        static const QRegularExpression linkPattern {uR"(<a\s[^>]*>[^<]*</a>)"_s};
+
+        QString text = richText;
+        text.remove(linkPattern);
+        return QTextDocumentFragment::fromHtml(text).toPlainText().simplified();
+    }
+
+    // the cells only hold widgets, so the model itself has to supply the text to announce
+    QTableWidgetItem *createAccessibleItem(const QString &name, const QString &description)
+    {
+        auto *item = new QTableWidgetItem;
+        item->setData(Qt::AccessibleTextRole, name);
+        item->setData(Qt::AccessibleDescriptionRole, description);
+        return item;
     }
 
     enum AdvSettingsCols
@@ -1060,8 +1081,16 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
     label->setOpenExternalLinks(true);
     label->setToolTip(widget->toolTip());
 
+    const QString spokenName = toSpokenText(text);
+    // section headers are labels that already name themselves
+    if constexpr (!std::is_same_v<T, QLabel>)
+        widget->setAccessibleName(spokenName);
+
     setCellWidget(row, PROPERTY, label);
     setCellWidget(row, VALUE, widget);
+
+    setItem(row, PROPERTY, createAccessibleItem(spokenName, widget->toolTip()));
+    setItem(row, VALUE, createAccessibleItem(spokenName, widget->toolTip()));
 
     if constexpr (std::is_same_v<T, FileSystemPathLineEdit>)
         connect(widget, &FileSystemPathEdit::selectedPathChanged, this, &AdvancedSettings::settingsChanged);

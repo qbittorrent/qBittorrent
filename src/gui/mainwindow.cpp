@@ -249,11 +249,14 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     m_columnFilterComboBox = new QComboBox;
 
+    auto *columnFilterLabel = new QLabel(tr("Filter by:"));
+    columnFilterLabel->setBuddy(m_columnFilterComboBox);
+
     QHBoxLayout *columnFilterLayout = new QHBoxLayout;
     columnFilterLayout->setContentsMargins(0, 0, 0, 0);
     columnFilterLayout->addWidget(columnFilterSpacer);
     columnFilterLayout->addWidget(m_columnFilterEdit);
-    columnFilterLayout->addWidget(new QLabel(tr("Filter by:")), 0);
+    columnFilterLayout->addWidget(columnFilterLabel, 0);
     columnFilterLayout->addWidget(m_columnFilterComboBox, 0);
 
     m_columnFilterWidget = new QWidget(this);
@@ -266,6 +269,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     // Transfer List tab
     m_transferListWidget = new TransferListWidget(app, this);
+    m_transferListWidget->setAccessibleName(tr("Transfers"));
     m_propertiesWidget = new PropertiesWidget(hSplitter);
     connect(m_transferListWidget, &TransferListWidget::currentTorrentChanged, m_propertiesWidget, &PropertiesWidget::loadTorrentInfos);
     hSplitter->addWidget(m_transferListWidget);
