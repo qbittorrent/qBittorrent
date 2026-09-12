@@ -48,6 +48,7 @@ class TransferListFiltersWidget final : public QWidget
 
 public:
     TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
+    void clearFilters() const;
     void setDownloadTrackerFavicon(bool value);
 
 private:
