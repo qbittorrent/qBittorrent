@@ -7,7 +7,7 @@ qBittorrent is a [BitTorrent] client programmed in C++ / Qt that uses
 [libtorrent] (sometimes called libtorrent-rasterbar) by Arvid Norberg.
 
 It aims to be a good alternative to all other BitTorrent clients
-out there. qBittorrent is fast, stable and provides unicode
+out there. qBittorrent is fast, stable and provides Unicode
 support as well as many features.
 
 The free [IP to Country Lite database] by [DB-IP] is used for resolving the countries of peers.

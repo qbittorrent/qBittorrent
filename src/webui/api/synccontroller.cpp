@@ -450,7 +450,7 @@ void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
 //  - "state": Torrent state
 //  - "seq_dl": Torrent sequential download state
 //  - "f_l_piece_prio": Torrent first last piece priority state
-//  - "completion_on": Torrent copletion time
+//  - "completion_on": Torrent completion time
 //  - "tracker": Torrent tracker
 //  - "dl_limit": Torrent download limit
 //  - "up_limit": Torrent upload limit

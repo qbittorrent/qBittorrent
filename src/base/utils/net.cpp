@@ -180,7 +180,7 @@ namespace Utils
         {
             // Link-local IPv6 textual address always contains a scope id (or zone index)
             // The scope id is appended to the IPv6 address using the '%' character
-            // The scope id can be either a interface name or an interface number
+            // The scope id can be either an interface name or an interface number
             // Examples:
             // fe80::1%ethernet_17
             // fe80::1%13
