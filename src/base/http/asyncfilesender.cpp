@@ -42,6 +42,7 @@
 #include <QThread>
 
 #include "constants.h"
+#include "header.h"
 #include "rangerequest.h"
 #include "response.h"
 #include "responseserialization.h"
@@ -243,7 +244,7 @@ private:
         m_responseHeaders.insert(HEADER_CONTENT_LENGTH, QString::number(remainingSize));
         m_responseHeaders.insert(HEADER_ACCEPT_RANGES, u"bytes"_s);
         m_responseHeaders.insert(HEADER_CONTENT_TYPE, QMimeDatabase().mimeTypeForFile(m_filePath.data()).name());
-        m_responseHeaders.insert(HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(m_filePath.filename()));
+        m_responseHeaders.insert(HEADER_CONTENT_DISPOSITION, attachmentContentDisposition(m_filePath.filename()));
 
         const QByteArray headData = serializeResponseHead(responseStatus, m_responseHeaders);
         if (m_request.method == HEADER_REQUEST_METHOD_HEAD)
