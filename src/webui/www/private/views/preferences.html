@@ -3340,7 +3340,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             settings["start_paused"] = document.getElementById("startPaused").checked;
             const shutdownTimeoutStr = document.getElementById("sessionShutdownTimeout").value.trim();
-            const shutdownTimeout = (shutdownTimeoutStr === "") ? -1 : Number(shutdownTimeoutStr);
+            const shutdownTimeout = (shutdownTimeoutStr === "") ? -1 : Number.parseInt(shutdownTimeoutStr, 10);
             if (!Number.isInteger(shutdownTimeout) || (shutdownTimeout < -1) || (shutdownTimeout > 2147483647)) {
                 alert("QBT_TR(BitTorrent session shutdown timeout must be between -1 and 2147483647.)QBT_TR[CONTEXT=HttpServer]");
                 return;

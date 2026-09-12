@@ -1102,8 +1102,8 @@ void AppController::setPreferencesAction()
     if (hasKey(u"shutdown_timeout"_s))
     {
         // validate shutdown timeout, range -1 to INT_MAX
-        bool ok;
-        int timeout = it.value().toInt(&ok);
+        bool ok = false;
+        const int timeout = it.value().toInt(&ok);
         if (ok && (timeout >= -1))
             session->setShutdownTimeout(timeout);
     }
