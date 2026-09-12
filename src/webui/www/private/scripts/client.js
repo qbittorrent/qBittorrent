@@ -481,6 +481,12 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     buildSearchTab();
     buildRssTab();
     buildLogTab();
+    // Allow header links to complete the Sortables drag lifecycle.
+    MochaUI.Desktop.pageWrapper.retrieve("sortables").setOptions({
+        dragOptions: {
+            unDraggableTags: []
+        }
+    });
     MochaUI.initializeTabs("mainWindowTabsList");
 
     const handleFilterSelectionChange = (prevSelectedTorrent, currSelectedTorrent) => {
@@ -1808,7 +1814,12 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             }
         },
         tabsURL: "views/propertiesToolbar.html?v=${CACHEID}",
-        tabsOnload: () => {}, // must be included, otherwise panel won't load properly
+        tabsOnload: () => {
+            // Keep editing the file filter from starting a panel drag.
+            document.getElementById("torrentFilesFilterInput").addEventListener("mousedown", (event) => {
+                event.stopPropagation();
+            });
+        },
         onContentLoaded: function() {
             this.panelHeaderCollapseBoxEl.addEvent("click", (event) => {
                 localPreferences.set("properties_panel_collapsed", this.isCollapsed.toString());
