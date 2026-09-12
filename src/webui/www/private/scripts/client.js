@@ -1813,7 +1813,16 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             }
         },
         tabsURL: "views/propertiesToolbar.html?v=${CACHEID}",
-        tabsOnload: () => {}, // must be included, otherwise panel won't load properly
+        tabsOnload: () => {
+            // Keep tab clicks and file filter editing from starting a panel drag.
+            for (const element of document.querySelectorAll("#propertiesTabs li, #torrentFilesFilterInput")) {
+                element.addEventListener("mousedown", (event) => {
+                    event.stopPropagation();
+                    // Preserve the document handler's window deactivation.
+                    setTimeout(() => { MochaUI.blurAll(); }, 50);
+                });
+            }
+        },
         onContentLoaded: function() {
             this.panelHeaderCollapseBoxEl.addEvent("click", (event) => {
                 localPreferences.set("properties_panel_collapsed", this.isCollapsed.toString());
