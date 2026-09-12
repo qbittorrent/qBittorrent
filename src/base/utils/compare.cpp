@@ -81,7 +81,7 @@ int Utils::Compare::naturalCompare(const QString &left, const QString &right, co
             if (numViewL.length() != numViewR.length())
                 return (numViewL.length() - numViewR.length());
 
-            // both string views have the same length
+            // both numbers have the same length
             for (qsizetype i = 0; i < numViewL.length(); ++i)
             {
                 const QChar numL = numViewL[i];
@@ -92,7 +92,7 @@ int Utils::Compare::naturalCompare(const QString &left, const QString &right, co
             }
 
             // String + digits do match and we haven't hit the end of both strings
-            // then continue to consume the remainder
+            // then continue to consume the rest
         }
         else
         {

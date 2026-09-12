@@ -60,7 +60,7 @@ private:
 
     // incomplete piece color
     QColor m_dlPieceColor;
-    // last used bitfields, used to better resize redraw
+    // last used bitfields, used to improve redraw on resize
     // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
     QBitArray m_pieces;
     QBitArray m_downloadedPieces;
