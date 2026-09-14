@@ -698,6 +698,20 @@ void Preferences::setSchedulerDays(const Scheduler::Days days)
     setValue(u"Preferences/Scheduler/days"_s, days);
 }
 
+Scheduler::AlternativeSessionState Preferences::getSchedulerSessionState() const
+{
+    return value(u"Preferences/Scheduler/alt_session_state"_s, Scheduler::AlternativeSessionState::Limited);
+}
+
+void Preferences::setSchedulerSessionState(const Scheduler::AlternativeSessionState state)
+{
+    if (state == getSchedulerSessionState())
+        return;
+
+    setValue(u"Preferences/Scheduler/alt_session_state"_s, state);
+}
+
+
 // Search
 bool Preferences::isSearchEnabled() const
 {
