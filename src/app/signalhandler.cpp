@@ -48,10 +48,6 @@
 
 #ifdef STACKTRACE
 #include "stacktrace.h"
-
-#ifndef DISABLE_GUI
-#include "gui/stacktracedialog.h"
-#endif
 #endif //STACKTRACE
 
 namespace
@@ -104,12 +100,6 @@ namespace
 
         const char *msgs[] = {msg, sigName, "\n```\n", stacktrace.c_str(), "```\n\n"};
         std::ranges::for_each(msgs, safePrint);
-
-#ifndef DISABLE_GUI
-        StacktraceDialog dlg;  // unsafe
-        dlg.setText(QString::fromLatin1(sigName), QString::fromStdString(stacktrace));
-        dlg.exec();
-#endif
 
         signal(signum, SIG_DFL);
         raise(signum);
