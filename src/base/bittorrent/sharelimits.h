@@ -65,7 +65,8 @@ namespace BitTorrent
             Default = -1, // special value
 
             MatchAny = 0,
-            MatchAll = 1
+            MatchAll = 1,
+            Layered = 2
         };
 
         Q_ENUM_NS(ShareLimitsMode)
