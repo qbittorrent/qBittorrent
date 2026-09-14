@@ -192,6 +192,8 @@ bool TorrentFilter::matchStatus(const Torrent *const torrent) const
         return torrent->isMoving();
     case Errored:
         return torrent->isErrored();
+    case InsufficientDiskSpace:
+        return state == TorrentState::InsufficientDiskSpace;
     default:
         Q_UNREACHABLE();
         break;
