@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <QPersistentModelIndex>
 #include <QTreeView>
 
 #include "base/bittorrent/downloadpriority.h"
@@ -124,6 +125,10 @@ private:
     void applyPrioritiesByOrder();
     Path getFullPath(const QModelIndex &index) const;
     void onItemDoubleClicked(const QModelIndex &index);
+#ifdef Q_OS_MACOS
+    void beginPriorityUpdate();
+    void endPriorityUpdate();
+#endif
     // Expand single-item folders recursively.
     // This will trigger sorting and filtering so do it after all relevant data is loaded.
     void expandRecursively();
@@ -137,4 +142,8 @@ private:
 
     bool m_contentDragAllowed = false;
     bool m_contentDragEnabled = false;
+
+#ifdef Q_OS_MACOS
+    QList<QPersistentModelIndex> m_selectionBeforePriorityUpdate;
+#endif
 };

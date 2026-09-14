@@ -38,3 +38,11 @@ foreach(testFile ${testFiles})
 
     add_dependencies(check "${testFilename}")
 endforeach()
+
+if (GUI AND CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    add_executable(testtorrentcontentwidget testtorrentcontentwidget.cpp)
+    target_link_libraries(testtorrentcontentwidget PRIVATE Qt::Test Qt::Network Qt::Sql qbt_gui qbt_webui)
+    target_compile_features(testtorrentcontentwidget PRIVATE cxx_std_20)
+    add_test(NAME testtorrentcontentwidget COMMAND testtorrentcontentwidget)
+    add_dependencies(check testtorrentcontentwidget)
+endif()
