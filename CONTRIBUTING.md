@@ -168,7 +168,7 @@ Following these guidelines helps maintainers and the community understand your s
 
 * Check the [wiki][wiki-url] and [forum][forum-url] for tips — you might discover that the enhancement is already available.
 * Most importantly, check if you're using the latest version of qBittorrent and if you can get the desired behavior by changing qBittorrent's settings.
-* Check in the [releases][releases-url] page or on the [forum][forum-url], see if there's already a alpha/beta version with that enhancement.
+* Check in the [releases][releases-url] page or on the [forum][forum-url], see if there's already an alpha/beta version with that enhancement.
 * Perform a cursory search to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
 
 ## Steps to ensure a good enhancement/feature suggestion
