@@ -288,6 +288,8 @@ namespace BitTorrent
         void setI2POutboundLength(int value) override;
         bool isProxyPeerConnectionsEnabled() const override;
         void setProxyPeerConnectionsEnabled(bool enabled) override;
+        bool isProxySendHostInConnectEnabled() const override;
+        void setProxySendHostInConnectEnabled(bool enabled) override;
         ChokingAlgorithm chokingAlgorithm() const override;
         void setChokingAlgorithm(ChokingAlgorithm mode) override;
         SeedChokingAlgorithm seedChokingAlgorithm() const override;
@@ -776,6 +778,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_encryption;
         CachedSettingValue<int> m_maxActiveCheckingTorrents;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;
+        CachedSettingValue<bool> m_isProxySendHostInConnectEnabled;
         CachedSettingValue<ChokingAlgorithm> m_chokingAlgorithm;
         CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;
         CachedSettingValue<QStringList> m_storedTags;

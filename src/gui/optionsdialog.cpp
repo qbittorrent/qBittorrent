@@ -985,6 +985,7 @@ void OptionsDialog::loadConnectionTabOptions()
     m_ui->checkProxyHostnameLookup->setChecked(proxyConf.hostnameLookupEnabled);
 
     m_ui->checkProxyPeerConnections->setChecked(session->isProxyPeerConnectionsEnabled());
+    m_ui->checkProxySendHostInConnect->setChecked(session->isProxySendHostInConnectEnabled());
     m_ui->checkProxyBitTorrent->setChecked(Preferences::instance()->useProxyForBT());
     m_ui->checkProxyRSS->setChecked(Preferences::instance()->useProxyForRSS());
     m_ui->checkProxyMisc->setChecked(Preferences::instance()->useProxyForGeneralPurposes());
@@ -1034,6 +1035,7 @@ void OptionsDialog::loadConnectionTabOptions()
     connect(m_ui->checkProxyBitTorrent, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProxyBitTorrent, &QGroupBox::toggled, this, &ThisType::adjustProxyOptions);
     connect(m_ui->checkProxyPeerConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkProxySendHostInConnect, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProxyHostnameLookup, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProxyRSS, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProxyMisc, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1088,6 +1090,7 @@ void OptionsDialog::saveConnectionTabOptions() const
     Preferences::instance()->setUseProxyForGeneralPurposes(m_ui->checkProxyMisc->isChecked());
 
     session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnections->isChecked());
+    session->setProxySendHostInConnectEnabled(m_ui->checkProxySendHostInConnect->isChecked());
 
     // IPFilter
     session->setIPFilteringEnabled(isIPFilteringEnabled());
@@ -1898,6 +1901,7 @@ void OptionsDialog::adjustProxyOptions()
         m_ui->checkProxyMisc->setEnabled(false);
         m_ui->checkProxyBitTorrent->setEnabled(false);
         m_ui->checkProxyPeerConnections->setEnabled(false);
+        m_ui->checkProxySendHostInConnect->setEnabled(false);
     }
     else
     {
@@ -1908,6 +1912,7 @@ void OptionsDialog::adjustProxyOptions()
 
         m_ui->checkProxyBitTorrent->setEnabled(true);
         m_ui->checkProxyPeerConnections->setEnabled(true);
+        m_ui->checkProxySendHostInConnect->setEnabled(currentProxyType == Net::ProxyType::HTTP);
 
         if (currentProxyType == Net::ProxyType::SOCKS4)
         {
