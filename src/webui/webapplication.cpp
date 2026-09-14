@@ -74,6 +74,7 @@
 #include "websession.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
+const int MAX_LOGGED_CLIENT_DIAGNOSTICS = 128;  // distinct client addresses reported per diagnostic before further reports are suppressed
 const QString SESSION_COOKIE_NAME_PREFIX = u"QBT_SID_"_s;
 
 const QString WWW_FOLDER = u":/www"_s;
@@ -504,6 +505,8 @@ void WebApplication::configure()
     m_isLocalAuthEnabled = pref->isWebUILocalAuthEnabled();
     m_isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
     m_authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
+    m_loggedAuthBypassMisses.clear();
+    m_loggedUntrustedReverseProxies.clear();
     m_sessionTimeout = std::chrono::seconds(pref->getWebUISessionTimeout());
     m_sessionsCountLimit = std::max(0, pref->getWebUISessionsCountLimit());
     m_sessionCookieName = SESSION_COOKIE_NAME_PREFIX + QString::number(pref->getWebUIPort());
@@ -709,6 +712,8 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
 
         // reverse proxy resolve client address
         m_clientAddress = resolveClientAddress();
+        if (m_isReverseProxySupportEnabled)
+            logUntrustedReverseProxy();
 
         if (isUsingApiKey)
         {
@@ -864,6 +869,48 @@ bool WebApplication::isAuthNeeded()
         return false;
     if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInSubnets(m_clientAddress, m_authSubnetWhitelist))
         return false;
+
+    if (m_isAuthSubnetWhitelistEnabled)
+        logAuthBypassMiss();
+    return true;
+}
+
+void WebApplication::logUntrustedReverseProxy()
+{
+    if (Utils::Net::isIPInSubnets(m_env.clientAddress, m_trustedReverseProxyList))
+        return;
+
+    if (!shouldLogClientDiagnostic(m_loggedUntrustedReverseProxies))
+        return;
+
+    LogMsg(tr("WebUI: The forwarded client address was ignored. Request source IP: '%1'. Reason: Request source IP is not in the trusted reverse proxy list.")
+            .arg(m_env.clientAddress.toString()), Log::WARNING);
+}
+
+void WebApplication::logAuthBypassMiss()
+{
+    if (!shouldLogClientDiagnostic(m_loggedAuthBypassMisses))
+        return;
+
+    const QString msg = m_clientAddress.isEqual(m_env.clientAddress)
+        ? tr("WebUI: Authentication is required. Client address: '%1'. Reason: Client address does not match any whitelisted IP subnet.").arg(clientId())
+        : tr("WebUI: Authentication is required. Client address: '%1'. Reverse proxy: '%2'. Reason: Client address does not match any whitelisted IP subnet.")
+            .arg(clientId(), m_env.clientAddress.toString());
+    LogMsg(msg);
+}
+
+bool WebApplication::shouldLogClientDiagnostic(QSet<QHostAddress> &reported)
+{
+    if ((reported.size() >= MAX_LOGGED_CLIENT_DIAGNOSTICS) || reported.contains(m_clientAddress))
+        return false;
+
+    reported.insert(m_clientAddress);
+    if (reported.size() == MAX_LOGGED_CLIENT_DIAGNOSTICS)
+    {
+        LogMsg(tr("WebUI: Further reports of this kind are suppressed until settings are next applied, because too many distinct client addresses have been reported.")
+                , Log::WARNING);
+    }
+
     return true;
 }
 
