@@ -30,6 +30,7 @@
 #include "string.h"
 
 #include <cmath>
+#include <limits>
 
 #include <QList>
 #include <QLocale>
@@ -46,7 +47,22 @@ QString Utils::String::fromDouble(const double n, const int precision)
     ** precision we add an extra 0 behind 1 in the below algorithm. */
 
     const double prec = std::pow(10.0, precision);
-    return QLocale::system().toString(std::floor(n * prec) / prec, 'f', precision);
+    const double scaled = (n * prec);
+
+    /* `scaled` may land just below a whole number solely because of the rounding error of
+    ** the multiplication above and of representing `n` itself, in which case truncating it
+    ** loses a digit the number actually has, e.g. 2.30 would be shown as "2.29". Compensate
+    ** for that error only: a number that really does have more digits is still truncated.
+    ** The multiplication alone accounts for one unit in the last place, a few more leave
+    ** room for callers that pass a value which already accumulated some error of its own,
+    ** e.g. `peer.progress() * 100` or `100. * diskWriteQueue / peersCount`. Truncation
+    ** still holds out to 64 of them, so this sits well inside a safe range. */
+    const int TOLERANCE_ULP = 4;
+    const double nearestWhole = std::round(scaled);
+    const double tolerance = (std::abs(scaled) * std::numeric_limits<double>::epsilon() * TOLERANCE_ULP);
+    const double truncated = (std::abs(scaled - nearestWhole) <= tolerance) ? nearestWhole : std::floor(scaled);
+
+    return QLocale::system().toString((truncated / prec), 'f', precision);
 }
 
 QString Utils::String::fromLatin1(const std::string_view string)
