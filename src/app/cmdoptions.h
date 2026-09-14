@@ -56,6 +56,7 @@ struct QBtCommandLineParameters
 #endif
     int webUIPort = -1;
     int torrentingPort = -1;
+    int announcePort = -1;
     std::optional<bool> skipDialog;
     Path profileDir;
     QString configurationName;

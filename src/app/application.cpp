@@ -382,6 +382,12 @@ Application::Application(int &argc, char **argv)
         SettingValue<int> port {u"BitTorrent/Session/Port"_s};
         port = m_commandLineArgs.torrentingPort;
     }
+
+    if (m_commandLineArgs.announcePort > 0) // it will be -1 when user did not set any value
+    {
+        SettingValue<int> port {u"BitTorrent/Session/AnnouncePort"_s};
+        port = m_commandLineArgs.announcePort;
+    }
 }
 
 Application::~Application()
