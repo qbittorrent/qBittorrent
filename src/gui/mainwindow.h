@@ -109,6 +109,9 @@ public:
 
     void activate();
     void cleanup();
+    // Triggers a real application exit (honoring the UI lock). On macOS this is
+    // also used to handle quitting via Cmd+Q, the Dock menu or the app menu.
+    void forceExit();
 
 private slots:
     void showFilterContextMenu();
