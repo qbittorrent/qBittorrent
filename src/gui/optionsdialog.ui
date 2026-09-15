@@ -1277,6 +1277,31 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupFindLocation">
+              <property name="title">
+               <string>Find location</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <layout class="QVBoxLayout" name="groupFindLocationLayout">
+               <item>
+                <widget class="QCheckBox" name="checkFindLocationOnAdd">
+                 <property name="text">
+                  <string>Find location automatically</string>
+                 </property>
+                 <property name="toolTip">
+                  <string>When a torrent is added in Manual mode, or its metadata is received, look for its files in its save path, its download path and the save paths of the watched folders, and use the location holding the most of them.</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="groupSavingManagement">
               <property name="title">
                <string>Saving Management</string>

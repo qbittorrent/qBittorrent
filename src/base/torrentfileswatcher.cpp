@@ -29,6 +29,7 @@
 
 #include "torrentfileswatcher.h"
 
+#include <algorithm>
 #include <chrono>
 
 #include <QtAssert>
@@ -285,6 +286,8 @@ void TorrentFilesWatcher::doSetWatchedFolder(const Path &path, const WatchedFold
         m_asyncWorker->setWatchedFolder(path, options);
     });
 
+    updateSessionWatchedFolderSavePaths();
+
     emit watchedFolderSet(path, options);
 }
 
@@ -300,10 +303,25 @@ void TorrentFilesWatcher::removeWatchedFolder(const Path &path)
             });
         }
 
+        updateSessionWatchedFolderSavePaths();
+
         emit watchedFolderRemoved(path);
 
         store();
     }
+}
+
+void TorrentFilesWatcher::updateSessionWatchedFolderSavePaths() const
+{
+    QList<Path> folders = m_watchedFolders.keys();
+    std::ranges::sort(folders, {}, &Path::data);
+
+    PathList savePaths;
+    savePaths.reserve(folders.size());
+    for (const Path &folder : folders)
+        savePaths << m_watchedFolders.value(folder).addTorrentParams.savePath;
+
+    BitTorrent::Session::instance()->setWatchedFolderSavePaths(savePaths);
 }
 
 void TorrentFilesWatcher::onTorrentFound(const BitTorrent::TorrentDescriptor &torrentDescr

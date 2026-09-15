@@ -2,6 +2,9 @@
 
 ## 2.16.2
 
+* [#<24923>](https://github.com/qbittorrent/qBittorrent/pull/<24923>)
+  * `app/preferences` endpoint includes `find_location_enabled` (bool) and `find_location_on_add_enabled` (bool) options
+  * `app/setPreferences` endpoint allows to set `find_location_enabled` (bool) and `find_location_on_add_enabled` (bool) options
 * [#24891](https://github.com/qbittorrent/qBittorrent/pull/24891)
   * `app/preferences` endpoint includes `i2p_inbound_length_variance` (int) option
   * `app/preferences` endpoint includes `i2p_outbound_length_variance` (int) option
