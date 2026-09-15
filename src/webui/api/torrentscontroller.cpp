@@ -30,6 +30,7 @@
 
 #include <algorithm>
 #include <chrono>
+#include <cmath>
 #include <concepts>
 
 #include <QBitArray>
@@ -211,7 +212,10 @@ namespace
         if (const std::optional<QString> value = Utils::Dict::get(params, PARAM_RATIO_LIMIT))
         {
             const std::optional<double> ratioLimit = parseDouble(*value);
-            if (!ratioLimit || (*ratioLimit < BitTorrent::DEFAULT_RATIO_LIMIT))
+            if (!ratioLimit || !std::isfinite(*ratioLimit)
+                    || ((*ratioLimit < 0)
+                        && (*ratioLimit != BitTorrent::DEFAULT_RATIO_LIMIT)
+                        && (*ratioLimit != BitTorrent::NO_RATIO_LIMIT)))
                 throw APIError(APIErrorType::BadParams, TorrentsController::tr("'%1' parameter has invalid value").arg(PARAM_RATIO_LIMIT));
 
             shareLimits.ratioLimit = *ratioLimit;

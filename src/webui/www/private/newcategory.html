@@ -215,9 +215,9 @@
                     dlPathParams.downloadPath = document.getElementById("downloadPath").value.trim();
                 }
 
-                // a negative custom limit is taken by the server as the "unlimited" or "use global"
-                // sentinel, quietly replacing the mode that was picked. An empty one the server does
-                // reject, naming the field, so catching it here only saves the round-trip
+                // typing -1 or -2 into a custom limit is taken by the server as the "unlimited" or
+                // "use global" sentinel, quietly replacing the mode that was picked. Anything else
+                // invalid the server rejects by name, so catching it here only saves the round-trip
                 for (const [, valueID] of shareLimitFields) {
                     const valueElem = document.getElementById(valueID);
                     const value = valueElem.value.trim();
