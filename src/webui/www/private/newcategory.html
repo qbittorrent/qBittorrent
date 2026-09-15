@@ -45,6 +45,9 @@
         const UseDefaultLimit = -2;
         const NoLimit = -1;
 
+        // `app/preferences` reports the global share limit action as the raw enum value
+        const ShareLimitActionNames = ["Stop", "Remove", "EnableSuperSeeding", "RemoveWithContent"];
+
         window.addEventListener("DOMContentLoaded", (event) => {
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
@@ -145,6 +148,29 @@
 
             const pref = window.parent.qBittorrent.Cache.preferences.get();
             const categoryData = window.parent.qBittorrent.Client.categoryMap.get(uriCategoryName);
+
+            // a limit left unset is inherited from the parent category when there is one and from
+            // the global settings otherwise, so name the source the way the GUI does. The mode and
+            // the action also report the value they inherit, which only the global side knows here
+            const separatorIndex = uriCategoryName.lastIndexOf("/");
+            const inheritsFromParentCategory = (separatorIndex >= 0);
+            const inheritedFromLabel = inheritsFromParentCategory
+                ? "QBT_TR(From category)QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
+                : "QBT_TR(Default)QBT_TR[CONTEXT=TorrentShareLimitsWidget]";
+
+            for (const [modeID] of shareLimitFields)
+                document.getElementById(modeID).options[0].textContent = inheritedFromLabel;
+
+            const setInheritedLabel = (selectID, inheritedValue) => {
+                const selectElem = document.getElementById(selectID);
+                const inheritedOption = [...selectElem.options].find((option) => option.value === inheritedValue);
+                selectElem.options[0].textContent = (inheritsFromParentCategory || !inheritedOption || (inheritedValue === "Default"))
+                    ? inheritedFromLabel
+                    : "QBT_TR(Default (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]".replace("%1", inheritedOption.textContent);
+            };
+
+            setInheritedLabel("categoryShareLimitsMode", pref.share_limits_mode);
+            setInheritedLabel("categoryShareLimitAction", ShareLimitActionNames[Number(pref.max_ratio_act)]);
 
             const useDownloadPathElem = document.getElementById("useDownloadPath");
             const categoryNameElem = document.getElementById("categoryName");
@@ -341,7 +367,7 @@
 
 <body>
     <div style="padding: 10px 10px 0px 10px;">
-        <div style="display: flex; align-items: center;">
+        <div style="display: flex; align-items: center; margin-bottom: 6px;">
             <label for="categoryName">QBT_TR(Category:)QBT_TR[CONTEXT=Category]</label>
             <input type="text" id="categoryName" style="flex-grow: 1; margin-left: 10px;">
         </div>
