@@ -12,7 +12,11 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="textLabel"/>
+    <widget class="QLabel" name="textLabel">
+     <property name="buddy">
+      <cstring>textEdit</cstring>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLineEdit" name="textEdit"/>

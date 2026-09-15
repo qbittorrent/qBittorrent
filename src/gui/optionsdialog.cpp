@@ -166,6 +166,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     , m_storeLastViewedPage {SETTINGS_KEY(u"LastViewedPage"_s)}
 {
     m_ui->setupUi(this);
+    Utils::Gui::nameNestedGroupBoxes(this);
     m_applyButton = m_ui->buttonBox->button(QDialogButtonBox::Apply);
 
 #ifdef Q_OS_UNIX

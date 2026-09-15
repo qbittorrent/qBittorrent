@@ -17,7 +17,11 @@
    <item>
     <layout class="QHBoxLayout" name="searchBarLayout">
      <item>
-      <widget class="LineEdit" name="lineEditSearchPattern"/>
+      <widget class="LineEdit" name="lineEditSearchPattern">
+       <property name="accessibleName">
+        <string>Search pattern</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QComboBox" name="comboCategory">
@@ -26,6 +30,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="accessibleName">
+        <string>Category</string>
        </property>
       </widget>
      </item>
@@ -36,6 +43,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="accessibleName">
+        <string>Plugins</string>
        </property>
       </widget>
      </item>

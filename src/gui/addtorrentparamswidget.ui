@@ -21,6 +21,9 @@
        <property name="text">
         <string>Torrent Management Mode:</string>
        </property>
+       <property name="buddy">
+        <cstring>comboTTM</cstring>
+       </property>
       </widget>
      </item>
      <item>
@@ -73,6 +76,9 @@
           <property name="text">
            <string>Use another path for incomplete torrents:</string>
           </property>
+          <property name="buddy">
+           <cstring>useDownloadPathComboBox</cstring>
+          </property>
          </widget>
         </item>
         <item>
@@ -94,7 +100,11 @@
        </layout>
       </item>
       <item>
-       <widget class="FileSystemPathLineEdit" name="downloadPathEdit" native="true"/>
+       <widget class="FileSystemPathLineEdit" name="downloadPathEdit" native="true">
+        <property name="accessibleName">
+         <string>Use another path for incomplete torrents:</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -105,6 +115,9 @@
       <widget class="QLabel" name="labelCategory">
        <property name="text">
         <string>Category:</string>
+       </property>
+       <property name="buddy">
+        <cstring>categoryComboBox</cstring>
        </property>
       </widget>
      </item>
@@ -145,6 +158,9 @@
       <widget class="QLabel" name="tagsLabel">
        <property name="text">
         <string>Tags:</string>
+       </property>
+       <property name="buddy">
+        <cstring>tagsLineEdit</cstring>
        </property>
       </widget>
      </item>
@@ -208,6 +224,9 @@
          <property name="text">
           <string>Start torrent:</string>
          </property>
+         <property name="buddy">
+          <cstring>startTorrentComboBox</cstring>
+         </property>
         </widget>
        </item>
        <item>
@@ -245,6 +264,9 @@
         <widget class="QLabel" name="contentLayoutLabel">
          <property name="text">
           <string>Content layout:</string>
+         </property>
+         <property name="buddy">
+          <cstring>contentLayoutComboBox</cstring>
          </property>
         </widget>
        </item>
@@ -284,6 +306,9 @@
          <property name="text">
           <string>Stop condition:</string>
          </property>
+         <property name="buddy">
+          <cstring>stopConditionComboBox</cstring>
+         </property>
         </widget>
        </item>
        <item>
@@ -321,6 +346,9 @@
         <widget class="QLabel" name="addToQueueTopLabel">
          <property name="text">
           <string>Add to top of queue:</string>
+         </property>
+         <property name="buddy">
+          <cstring>addToQueueTopComboBox</cstring>
          </property>
         </widget>
        </item>

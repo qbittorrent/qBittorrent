@@ -1036,10 +1036,18 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="trackerUpButton"/>
+          <widget class="QPushButton" name="trackerUpButton">
+           <property name="accessibleName">
+            <string>Move tracker up</string>
+           </property>
+          </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="trackerDownButton"/>
+          <widget class="QPushButton" name="trackerDownButton">
+           <property name="accessibleName">
+            <string>Move tracker down</string>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="verticalSpacer_3">

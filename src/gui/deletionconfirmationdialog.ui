@@ -72,6 +72,9 @@
          <height>24</height>
         </size>
        </property>
+       <property name="accessibleName">
+        <string>Remember choice</string>
+       </property>
       </widget>
      </item>
      <item>

@@ -73,6 +73,9 @@
                <property name="text">
                 <string>Torrent Management Mode:</string>
                </property>
+               <property name="buddy">
+                <cstring>comboTMM</cstring>
+               </property>
               </widget>
              </item>
              <item>
@@ -174,6 +177,9 @@
                   <property name="text">
                    <string>Category:</string>
                   </property>
+                  <property name="buddy">
+                   <cstring>categoryComboBox</cstring>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -207,6 +213,9 @@
                  <widget class="QLabel" name="tagsLabel">
                   <property name="text">
                    <string>Tags:</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>tagsLineEdit</cstring>
                   </property>
                  </widget>
                 </item>
@@ -256,6 +265,9 @@
                    <widget class="QLabel" name="stopConditionLabel">
                     <property name="text">
                      <string>Stop condition:</string>
+                    </property>
+                    <property name="buddy">
+                     <cstring>stopConditionComboBox</cstring>
                     </property>
                    </widget>
                   </item>
@@ -326,6 +338,9 @@
                  <widget class="QLabel" name="contentLayoutLabel">
                   <property name="text">
                    <string>Content layout:</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>contentLayoutComboBox</cstring>
                   </property>
                  </widget>
                 </item>
