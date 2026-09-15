@@ -278,6 +278,7 @@ void OptionsDialog::loadBehaviorTabOptions()
 #endif
 
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
+    m_ui->alternativeDeletionUI->setChecked(pref->alternativeDeletionDialog());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
     m_ui->checkUseTorrentStatesColors->setChecked(pref->useTorrentStatesColors());
     m_ui->checkProgressBarFollowsTextColor->setChecked(pref->getProgressBarFollowsTextColor());
@@ -416,6 +417,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     });
 
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->alternativeDeletionUI, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAltRowColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseTorrentStatesColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseTorrentStatesColors, &QAbstractButton::toggled, m_ui->checkProgressBarFollowsTextColor, &QWidget::setEnabled);
@@ -504,6 +506,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setCustomUIThemePath(m_ui->customThemeFilePath->selectedPath());
 
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
+    pref->setAlternativeDeletionDialog(m_ui->alternativeDeletionUI->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
     pref->setUseTorrentStatesColors(m_ui->checkUseTorrentStatesColors->isChecked());
     pref->setProgressBarFollowsTextColor(m_ui->checkProgressBarFollowsTextColor->isChecked());
