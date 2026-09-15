@@ -257,6 +257,17 @@
     </div>
 
     <fieldset class="settings">
+        <legend>
+            <input type="checkbox" id="findLocationCheckbox" onclick="qBittorrent.Preferences.updateFindLocationEnabled();">
+            <label id="findLocationLabel" for="findLocationCheckbox">QBT_TR(Find location)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
+        <div class="formRow">
+            <input type="checkbox" id="findLocationOnAddCheckbox" title="QBT_TR(When a torrent is added in Manual mode, or its metadata is received, look for its files in its save path, its download path and the save paths of the watched folders, and use the location holding the most of them.)QBT_TR[CONTEXT=OptionsDialog]">
+            <label for="findLocationOnAddCheckbox">QBT_TR(Find location automatically)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>QBT_TR(Saving Management)QBT_TR[CONTEXT=HttpServer]</legend>
         <table>
             <tbody>
@@ -1966,6 +1977,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateFinishedTorrentBackupControls: updateFinishedTorrentBackupControls,
                 addWatchFolder: addWatchFolder,
                 updateExcludedFileNamesEnabled: updateExcludedFileNamesEnabled,
+                updateFindLocationEnabled: updateFindLocationEnabled,
                 changeWatchFolderSelect: changeWatchFolderSelect,
                 updateMailNotification: updateMailNotification,
                 updateMailAuthSettings: updateMailAuthSettings,
@@ -2122,6 +2134,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateExcludedFileNamesEnabled = () => {
             const isAExcludedFileNamesEnabled = document.getElementById("excludedFileNamesCheckbox").checked;
             document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
+        };
+
+        const updateFindLocationEnabled = () => {
+            document.getElementById("findLocationOnAddCheckbox").disabled = !document.getElementById("findLocationCheckbox").checked;
         };
 
         const updateTorrentBackupControls = () => {
@@ -2542,6 +2558,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("preallocateall_checkbox").checked = pref.preallocate_all;
                     document.getElementById("appendext_checkbox").checked = pref.incomplete_files_ext;
                     document.getElementById("unwantedfolder_checkbox").checked = pref.use_unwanted_folder;
+                    document.getElementById("findLocationCheckbox").checked = pref.find_location_enabled;
+                    document.getElementById("findLocationOnAddCheckbox").checked = pref.find_location_on_add_enabled;
+                    updateFindLocationEnabled();
 
                     // Saving Management
                     document.getElementById("default_tmm_combobox").value = pref.auto_tmm_enabled;
@@ -2970,6 +2989,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["preallocate_all"] = document.getElementById("preallocateall_checkbox").checked;
             settings["incomplete_files_ext"] = document.getElementById("appendext_checkbox").checked;
             settings["use_unwanted_folder"] = document.getElementById("unwantedfolder_checkbox").checked;
+            settings["find_location_enabled"] = document.getElementById("findLocationCheckbox").checked;
+            settings["find_location_on_add_enabled"] = document.getElementById("findLocationOnAddCheckbox").checked;
 
             // Saving Management
             settings["auto_tmm_enabled"] = (document.getElementById("default_tmm_combobox").value === "true");

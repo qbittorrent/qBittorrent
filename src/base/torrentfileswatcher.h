@@ -76,6 +76,7 @@ private:
     void store() const;
 
     void doSetWatchedFolder(const Path &path, const WatchedFolderOptions &options);
+    void updateSessionWatchedFolderSavePaths() const;
 
     static TorrentFilesWatcher *m_instance;
 

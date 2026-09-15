@@ -153,6 +153,7 @@ namespace BitTorrent
         void setDownloadPath(const Path &path) override;
         bool isDownloadPathEnabled() const override;
         void setDownloadPathEnabled(bool enabled) override;
+        void setWatchedFolderSavePaths(const PathList &paths) override;
 
         QStringList categories() const override;
         CategoryOptions categoryOptions(const QString &categoryName) const override;
@@ -211,6 +212,10 @@ namespace BitTorrent
         void setAppendExtensionEnabled(bool enabled) override;
         bool isUnwantedFolderEnabled() const override;
         void setUnwantedFolderEnabled(bool enabled) override;
+        bool isFindLocationEnabled() const override;
+        void setFindLocationEnabled(bool enabled) override;
+        bool isFindLocationOnAddEnabled() const override;
+        void setFindLocationOnAddEnabled(bool enabled) override;
         int refreshInterval() const override;
         void setRefreshInterval(int value) override;
         bool isPreallocationEnabled() const override;
@@ -512,6 +517,7 @@ namespace BitTorrent
         lt::torrent_handle reloadTorrent(const lt::torrent_handle &currentHandle, lt::add_torrent_params params);
 
         QFuture<FileSearchResult> findIncompleteFiles(const Path &savePath, const Path &downloadPath, const PathList &filePaths = {}) const;
+        QFuture<FileSearchResult> findExistingContent(const Path &torrentSavePath, const Path &torrentDownloadPath, const PathList &filePaths, const QString &torrentName, const QString &sourceFileName);
 
         void enablePortMapping();
         void disablePortMapping();
@@ -754,6 +760,8 @@ namespace BitTorrent
         CachedSettingValue<TorrentContentLayout> m_torrentContentLayout;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
         CachedSettingValue<bool> m_isUnwantedFolderEnabled;
+        CachedSettingValue<bool> m_isFindLocationEnabled;
+        CachedSettingValue<bool> m_isFindLocationOnAddEnabled;
         CachedSettingValue<int> m_refreshInterval;
         CachedSettingValue<bool> m_isPreallocationEnabled;
         CachedSettingValue<bool> m_isTorrentFileBackupEnabled;
@@ -862,6 +870,7 @@ namespace BitTorrent
         QThreadPool *m_asyncWorker = nullptr;
         ResumeDataStorage *m_resumeDataStorage = nullptr;
         FileSearcher *m_fileSearcher = nullptr;
+        PathList m_watchedFolderSavePaths;
         TorrentContentRemover *m_torrentContentRemover = nullptr;
 
         using AddTorrentAlertHandler = std::function<void (const lt::add_torrent_alert *alert)>;

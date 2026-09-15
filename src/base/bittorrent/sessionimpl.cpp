@@ -572,6 +572,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY(u"TorrentContentLayout"_s), TorrentContentLayout::Original)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY(u"AddExtensionToIncompleteFiles"_s), false)
     , m_isUnwantedFolderEnabled(BITTORRENT_SESSION_KEY(u"UseUnwantedFolder"_s), false)
+    , m_isFindLocationEnabled(BITTORRENT_SESSION_KEY(u"FindLocation/Enabled"_s), true)
+    , m_isFindLocationOnAddEnabled(BITTORRENT_SESSION_KEY(u"FindLocation/OnAddEnabled"_s), true)
     , m_refreshInterval(BITTORRENT_SESSION_KEY(u"RefreshInterval"_s), 1500)
     , m_isPreallocationEnabled(BITTORRENT_SESSION_KEY(u"Preallocation"_s), false)
     , m_isTorrentFileBackupEnabled(BITTORRENT_SESSION_KEY(u"TorrentBackupEnabled"_s), false)
@@ -899,6 +901,11 @@ void SessionImpl::setDownloadPathEnabled(const bool enabled)
     }
 }
 
+void SessionImpl::setWatchedFolderSavePaths(const PathList &paths)
+{
+    m_watchedFolderSavePaths = paths;
+}
+
 bool SessionImpl::isAppendExtensionEnabled() const
 {
     return m_isAppendExtensionEnabled;
@@ -931,6 +938,28 @@ void SessionImpl::setUnwantedFolderEnabled(const bool enabled)
         for (TorrentImpl *const torrent : asConst(m_torrents))
             torrent->handleUnwantedFolderToggled();
     }
+}
+
+bool SessionImpl::isFindLocationEnabled() const
+{
+    return m_isFindLocationEnabled;
+}
+
+void SessionImpl::setFindLocationEnabled(const bool enabled)
+{
+    if (m_isFindLocationEnabled != enabled)
+        m_isFindLocationEnabled = enabled;
+}
+
+bool SessionImpl::isFindLocationOnAddEnabled() const
+{
+    return m_isFindLocationOnAddEnabled;
+}
+
+void SessionImpl::setFindLocationOnAddEnabled(const bool enabled)
+{
+    if (m_isFindLocationOnAddEnabled != enabled)
+        m_isFindLocationOnAddEnabled = enabled;
 }
 
 int SessionImpl::refreshInterval() const
@@ -3117,7 +3146,14 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
 
         const Path actualDownloadPath = loadTorrentParams.useAutoTMM
                 ? categoryDownloadPath(loadTorrentParams.category) : loadTorrentParams.downloadPath;
-        return findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths);
+        if (loadTorrentParams.useAutoTMM)
+            return findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths);
+
+        const QString source = torrentDescr.source();
+        const Path sourcePath {source};
+        const QString sourceFileName = (!source.startsWith(u"magnet:"_s, Qt::CaseInsensitive) && sourcePath.hasExtension(TORRENT_FILE_EXTENSION))
+                ? sourcePath.filename() : QString();
+        return findExistingContent(actualSavePath, actualDownloadPath, filePaths, torrentDescr.info()->name(), sourceFileName);
     };
 
     resolveFileNames().then(this
@@ -3126,6 +3162,11 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
         lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
 
         p.save_path = result.savePath.toString().toStdString();
+        if (!loadTorrentParams.useAutoTMM && (result.savePath != loadTorrentParams.savePath) && (result.savePath != loadTorrentParams.downloadPath))
+        {
+            loadTorrentParams.savePath = result.savePath;
+            loadTorrentParams.downloadPath = Path();
+        }
         if (p.ti)
         {
             const TorrentInfo torrentInfo {*p.ti};
@@ -3188,6 +3229,60 @@ QFuture<FileSearchResult> SessionImpl::findIncompleteFiles(const Path &savePath,
     });
 
     return future;
+}
+
+QFuture<FileSearchResult> SessionImpl::findExistingContent(const Path &torrentSavePath, const Path &torrentDownloadPath, const PathList &filePaths, const QString &torrentName, const QString &sourceFileName)
+{
+    if (!isFindLocationEnabled() || !isFindLocationOnAddEnabled())
+        return findIncompleteFiles(torrentSavePath, torrentDownloadPath, filePaths);
+
+    const QString nameFormName = ((filePaths.size() == 1) && Path::findRootFolder(filePaths).isEmpty())
+            ? filePaths.at(0).removedExtension().toString() : torrentName;
+
+    PathList searchRoots;
+    for (const Path &entry : m_watchedFolderSavePaths)
+    {
+        if (!entry.isEmpty() && entry.isRelative())
+            searchRoots.append(savePath() / entry);
+        else
+            searchRoots.append(entry);
+    }
+
+    const PathList candidates = candidateRoots(torrentSavePath, torrentDownloadPath, searchRoots, savePath(), nameFormName, sourceFileName);
+
+    const bool appendExtension = isAppendExtensionEnabled();
+    QPromise<SearchRootsResult> promise;
+    QFuture<SearchRootsResult> future = promise.future();
+    promise.start();
+    QMetaObject::invokeMethod(m_fileSearcher, [=, this, promise = std::move(promise)]() mutable
+    {
+        m_fileSearcher->searchRoots(filePaths, torrentSavePath, torrentDownloadPath, candidates, appendExtension, promise);
+        promise.finish();
+    });
+
+    return future.then(this, [this, searchRoots, defaultSavePath = savePath(), nameFormName, torrentName, sourceFileName](const SearchRootsResult &result)
+    {
+        if (!result.foundAtOwnPath && (result.matchCount > 0))
+        {
+            Path root;
+            for (const Path &entry : searchRoots)
+            {
+                if (candidateRoots({}, {}, {entry}, defaultSavePath, nameFormName, sourceFileName).contains(result.savePath))
+                {
+                    root = entry.isEmpty() ? defaultSavePath : entry;
+                    break;
+                }
+            }
+            LogMsg(tr("Found existing torrent content. Torrent: \"%1\". Location: \"%2\". Found in: %3. Files found: %4")
+                    .arg(torrentName, result.savePath.toString(), tr("watched folder save path \"%1\"").arg(root.toString()), QString::number(result.matchCount)), Log::INFO);
+        }
+        else if ((result.matchCount == 0) && result.searchedCandidates)
+        {
+            LogMsg(tr("Existing torrent content not found. Torrent: \"%1\". Location: \"%2\"").arg(torrentName, result.savePath.toString()), Log::INFO);
+        }
+
+        return FileSearchResult {.savePath = result.savePath, .fileNames = result.fileNames};
+    });
 }
 
 void SessionImpl::enablePortMapping()

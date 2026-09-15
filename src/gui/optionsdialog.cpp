@@ -641,6 +641,8 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
     m_ui->checkUnwantedFolder->setChecked(session->isUnwantedFolderEnabled());
     m_ui->checkRecursiveDownload->setChecked(pref->isRecursiveDownloadEnabled());
+    m_ui->groupFindLocation->setChecked(session->isFindLocationEnabled());
+    m_ui->checkFindLocationOnAdd->setChecked(session->isFindLocationOnAddEnabled());
 
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
@@ -778,6 +780,8 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->checkAppendqB, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUnwantedFolder, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkRecursiveDownload, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupFindLocation, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFindLocationOnAdd, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->comboSavingMode, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboTorrentCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -852,6 +856,8 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
     session->setUnwantedFolderEnabled(m_ui->checkUnwantedFolder->isChecked());
     pref->setRecursiveDownloadEnabled(m_ui->checkRecursiveDownload->isChecked());
+    session->setFindLocationEnabled(m_ui->groupFindLocation->isChecked());
+    session->setFindLocationOnAddEnabled(m_ui->checkFindLocationOnAdd->isChecked());
 
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
     session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);

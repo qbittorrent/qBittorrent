@@ -29,6 +29,7 @@
 #pragma once
 
 #include <QObject>
+#include <QString>
 
 #include "base/path.h"
 
@@ -38,6 +39,15 @@ struct FileSearchResult
 {
     Path savePath;
     PathList fileNames;
+};
+
+struct SearchRootsResult
+{
+    Path savePath;
+    PathList fileNames;
+    qsizetype matchCount = 0;
+    bool searchedCandidates = false;
+    bool foundAtOwnPath = false;
 };
 
 class FileSearcher final : public QObject
@@ -50,4 +60,9 @@ public:
 
     void search(const PathList &originalFileNames, const Path &savePath
             , const Path &downloadPath, bool forceAppendExt, QPromise<FileSearchResult> &promise);
+    void searchRoots(const PathList &originalFileNames, const Path &savePath
+            , const Path &downloadPath, const PathList &candidates, bool forceAppendExt, QPromise<SearchRootsResult> &promise);
 };
+
+PathList candidateRoots(const Path &savePath, const Path &downloadPath, const PathList &searchRoots
+        , const Path &defaultSavePath, const QString &torrentName, const QString &sourceFileName);
