@@ -1554,6 +1554,31 @@ QBitArray TorrentImpl::pieces() const
     return m_pieces;
 }
 
+bool TorrentImpl::havePiece(const int pieceIndex) const
+{
+    if (!isValid() || (pieceIndex < 0) || (pieceIndex >= piecesCount()))
+        return false;
+
+    return m_nativeHandle.have_piece(lt::piece_index_t {pieceIndex});
+}
+
+void TorrentImpl::setStreamingPieceDeadline(const int pieceIndex, const int deadline)
+{
+    if (!isValid() || (pieceIndex < 0) || (pieceIndex >= piecesCount()))
+        return;
+
+    m_nativeHandle.set_piece_deadline(lt::piece_index_t {pieceIndex}, deadline
+            , lt::torrent_handle::alert_when_available);
+}
+
+void TorrentImpl::resetStreamingPieceDeadline(const int pieceIndex)
+{
+    if (!isValid() || (pieceIndex < 0) || (pieceIndex >= piecesCount()))
+        return;
+
+    m_nativeHandle.reset_piece_deadline(lt::piece_index_t {pieceIndex});
+}
+
 qreal TorrentImpl::distributedCopies() const
 {
     return m_nativeStatus.distributed_copies;

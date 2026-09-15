@@ -710,6 +710,26 @@ td.noWrap {
     transform: rotate(270deg);
 }
 
+.streamPlayButton {
+    align-items: center;
+    cursor: pointer;
+    display: inline-flex;
+    height: 24px;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 2px;
+    width: 32px;
+}
+
+.streamPlayButton:disabled {
+    cursor: wait;
+}
+
+.streamPlayButton img {
+    height: 16px;
+    width: 16px;
+}
+
 .unselectable {
     -webkit-touch-callout: none;
     user-select: none;
