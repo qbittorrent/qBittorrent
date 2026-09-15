@@ -113,6 +113,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const override;
 
     BitTorrent::Torrent *torrentHandle(const QModelIndex &index) const;
+    QModelIndex torrentIndex(const BitTorrent::Torrent *torrent) const;
 
 private slots:
     void addTorrents(const QList<BitTorrent::Torrent *> &torrents);
@@ -121,7 +122,7 @@ private slots:
     void handleTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
 
 private:
-    int getTorrentRow(BitTorrent::Torrent *torrent) const;
+    int getTorrentRow(const BitTorrent::Torrent *torrent) const;
 
     void configure();
     void loadUIThemeResources();
