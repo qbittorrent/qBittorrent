@@ -2,6 +2,10 @@
 
 ## 2.16.2
 
+* [#24920](https://github.com/qbittorrent/qBittorrent/pull/24920)
+  * `app/preferences` endpoint includes `confirm_remove_all_tags` (bool) option
+  * `app/preferences` endpoint includes `confirm_remove_tracker_from_all_torrents` (bool) option
+  * `app/setPreferences` endpoint allows to set all of the above
 * [#24891](https://github.com/qbittorrent/qBittorrent/pull/24891)
   * `app/preferences` endpoint includes `i2p_inbound_length_variance` (int) option
   * `app/preferences` endpoint includes `i2p_outbound_length_variance` (int) option
