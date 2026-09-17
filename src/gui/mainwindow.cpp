@@ -51,6 +51,7 @@
 #include <QMimeData>
 #include <QProcess>
 #include <QPushButton>
+#include <QScreen>
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
@@ -124,6 +125,26 @@ namespace
 {
 #define SETTINGS_KEY(name) u"GUI/" name
 #define EXECUTIONLOG_SETTINGS_KEY(name) (SETTINGS_KEY(u"Log/"_s) name)
+
+    QRect constrainWindowGeometry(QRect geometry, const QRect &availableGeometry)
+    {
+        if (!geometry.isValid() || !availableGeometry.isValid())
+            return geometry;
+
+        geometry.setWidth(std::min(geometry.width(), availableGeometry.width()));
+        geometry.setHeight(std::min(geometry.height(), availableGeometry.height()));
+
+        if (geometry.left() < availableGeometry.left())
+            geometry.moveLeft(availableGeometry.left());
+        if (geometry.top() < availableGeometry.top())
+            geometry.moveTop(availableGeometry.top());
+        if (geometry.right() > availableGeometry.right())
+            geometry.moveLeft(availableGeometry.right() - geometry.width() + 1);
+        if (geometry.bottom() > availableGeometry.bottom())
+            geometry.moveTop(availableGeometry.bottom() - geometry.height() + 1);
+
+        return geometry;
+    }
 
     const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
 
@@ -899,6 +920,14 @@ void MainWindow::loadSettings()
     if (const QByteArray mainGeo = pref->getMainGeometry();
         !mainGeo.isEmpty() && restoreGeometry(mainGeo))
     {
+        if (!isMinimized() && !isMaximized() && !isFullScreen())
+        {
+            const QRect availableGeometry = screen() ? screen()->availableGeometry() : QRect {};
+            const QRect restoredGeometry = normalGeometry();
+            const QRect correctedGeometry = constrainWindowGeometry(restoredGeometry, availableGeometry);
+            setGeometry(correctedGeometry);
+        }
+
         m_posInitialized = true;
     }
 }
