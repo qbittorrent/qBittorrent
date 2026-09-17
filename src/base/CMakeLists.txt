@@ -176,6 +176,7 @@ add_library(qbt_base STATIC
     freediskspacechecker.cpp
     http/asyncfilesender.cpp
     http/connection.cpp
+    http/header.cpp
     http/httperror.cpp
     http/rangerequest.cpp
     http/requestparser.cpp
