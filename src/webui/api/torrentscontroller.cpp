@@ -158,6 +158,12 @@ const QString KEY_TORRENTINFO_PIECE_LENGTH = u"piece_length"_s;
 const QString KEY_TORRENTINFO_TRACKERS = u"trackers"_s;
 const QString KEY_TORRENTINFO_WEBSEEDS = u"webseeds"_s;
 
+// Parameter names
+const QString PARAM_CATEGORY = u"category"_s;
+const QString PARAM_SAVE_PATH = u"savePath"_s;
+const QString PARAM_DOWNLOAD_PATH = u"downloadPath"_s;
+const QString PARAM_DOWNLOAD_PATH_ENABLED = u"downloadPathEnabled"_s;
+
 namespace
 {
     using Utils::String::parseBool;
@@ -165,17 +171,6 @@ namespace
     using Utils::String::parseDouble;
 
     const QSet<QString> SUPPORTED_WEB_SEED_SCHEMES {u"http"_s, u"https"_s, u"ftp"_s};
-
-    // Parameter names
-    const QString PARAM_CATEGORY = u"category"_s;
-    const QString PARAM_SAVE_PATH = u"savePath"_s;
-    const QString PARAM_DOWNLOAD_PATH = u"downloadPath"_s;
-    const QString PARAM_DOWNLOAD_PATH_ENABLED = u"downloadPathEnabled"_s;
-    const QString PARAM_RATIO_LIMIT = u"ratioLimit"_s;
-    const QString PARAM_SEEDING_TIME_LIMIT = u"seedingTimeLimit"_s;
-    const QString PARAM_INACTIVE_SEEDING_TIME_LIMIT = u"inactiveSeedingTimeLimit"_s;
-    const QString PARAM_SHARE_LIMITS_MODE = u"shareLimitsMode"_s;
-    const QString PARAM_SHARE_LIMIT_ACTION = u"shareLimitAction"_s;
 
     template <typename Func>
     void applyToTorrents(const QStringList &idList, Func func)
@@ -209,6 +204,12 @@ namespace
 
     void applyShareLimitsParams(BitTorrent::ShareLimits &shareLimits, const StringMap &params)
     {
+        const QString PARAM_RATIO_LIMIT = u"ratioLimit"_s;
+        const QString PARAM_SEEDING_TIME_LIMIT = u"seedingTimeLimit"_s;
+        const QString PARAM_INACTIVE_SEEDING_TIME_LIMIT = u"inactiveSeedingTimeLimit"_s;
+        const QString PARAM_SHARE_LIMITS_MODE = u"shareLimitsMode"_s;
+        const QString PARAM_SHARE_LIMIT_ACTION = u"shareLimitAction"_s;
+
         if (const std::optional<QString> value = Utils::Dict::get(params, PARAM_RATIO_LIMIT))
         {
             const std::optional<double> ratioLimit = parseDouble(*value);

@@ -42,12 +42,6 @@
     <script>
         "use strict";
 
-        const UseDefaultLimit = -2;
-        const NoLimit = -1;
-
-        // `app/preferences` reports the global share limit action as the raw enum value
-        const ShareLimitActionNames = ["Stop", "Remove", "EnableSuperSeeding", "RemoveWithContent"];
-
         window.addEventListener("DOMContentLoaded", (event) => {
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
@@ -91,6 +85,12 @@
                         break;
                 }
             };
+
+            const UseDefaultLimit = -2;
+            const NoLimit = -1;
+
+            // `app/preferences` reports the global share limit action as the raw enum value
+            const ShareLimitActionNames = ["Stop", "Remove", "EnableSuperSeeding", "RemoveWithContent"];
 
             const shareLimitFields = [
                 ["categoryRatioLimitMode", "categoryRatioLimit"],
@@ -136,9 +136,8 @@
                         return UseDefaultLimit;
                     case "unlimited":
                         return NoLimit;
-                    default:
-                        return document.getElementById(valueID).value;
                 }
+                return document.getElementById(valueID).value;
             };
 
             const searchParams = new URLSearchParams(window.location.search);
@@ -152,8 +151,7 @@
             // a limit left unset is inherited from the parent category when there is one and from
             // the global settings otherwise, so name the source the way the GUI does. The mode and
             // the action also report the value they inherit, which only the global side knows here
-            const separatorIndex = uriCategoryName.lastIndexOf("/");
-            const inheritsFromParentCategory = (separatorIndex >= 0);
+            const inheritsFromParentCategory = (uriCategoryName.lastIndexOf("/") >= 0);
             const inheritedFromLabel = inheritsFromParentCategory
                 ? "QBT_TR(From category)QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
                 : "QBT_TR(Default)QBT_TR[CONTEXT=TorrentShareLimitsWidget]";
@@ -163,7 +161,7 @@
 
             const setInheritedLabel = (selectID, inheritedValue) => {
                 const selectElem = document.getElementById(selectID);
-                const inheritedOption = [...selectElem.options].find((option) => option.value === inheritedValue);
+                const inheritedOption = Array.prototype.find.call(selectElem.options, (option) => option.value === inheritedValue);
                 selectElem.options[0].textContent = (inheritsFromParentCategory || !inheritedOption || (inheritedValue === "Default"))
                     ? inheritedFromLabel
                     : "QBT_TR(Default (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]".replace("%1", inheritedOption.textContent);
@@ -244,7 +242,7 @@
                 // typing -1 or -2 into a custom limit is taken by the server as the "unlimited" or
                 // "use global" sentinel, quietly replacing the mode that was picked. Anything else
                 // invalid the server rejects by name, so catching it here only saves the round-trip
-                for (const [, valueID] of shareLimitFields) {
+                for (const [_, valueID] of shareLimitFields) {
                     const valueElem = document.getElementById(valueID);
                     const value = valueElem.value.trim();
                     if (!valueElem.disabled && ((value === "") || (Number(value) < 0))) {
@@ -277,8 +275,10 @@
                             })
                             .then(async (response) => {
                                 if (!response.ok) {
-                                    alert((await response.text())
-                                        || `QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category] ${window.qBittorrent.Misc.escapeHtml(categoryName)}`);
+                                    const errorMessage = await response.text();
+                                    alert((errorMessage !== "")
+                                        ? errorMessage
+                                        : `QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category] ${window.qBittorrent.Misc.escapeHtml(categoryName)}`);
                                     return;
                                 }
 
@@ -316,7 +316,10 @@
                             })
                             .then(async (response) => {
                                 if (!response.ok) {
-                                    alert((await response.text()) || "QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category]");
+                                    const errorMessage = await response.text();
+                                    alert((errorMessage !== "")
+                                        ? errorMessage
+                                        : "QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category]");
                                     return;
                                 }
 
@@ -337,9 +340,15 @@
                             })
                             .then(async (response) => {
                                 if (!response.ok) {
-                                    alert((response.status === 404)
-                                        ? "QBT_TR(Category does not exist)QBT_TR[CONTEXT=Category]"
-                                        : ((await response.text()) || "QBT_TR(Unable to edit category)QBT_TR[CONTEXT=Category]"));
+                                    if (response.status === 404) {
+                                        alert("QBT_TR(Category does not exist)QBT_TR[CONTEXT=Category]");
+                                    }
+                                    else {
+                                        const errorMessage = await response.text();
+                                        alert((errorMessage !== "")
+                                            ? errorMessage
+                                            : "QBT_TR(Unable to edit category)QBT_TR[CONTEXT=Category]");
+                                    }
                                     return;
                                 }
 
@@ -355,7 +364,7 @@
             });
 
             for (const [modeID, valueID] of shareLimitFields) {
-                document.getElementById(modeID).addEventListener("change", () => {
+                document.getElementById(modeID).addEventListener("change", (e) => {
                     updateShareLimitInput(modeID, valueID);
                 });
             }
