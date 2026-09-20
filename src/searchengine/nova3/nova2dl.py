@@ -56,7 +56,7 @@ if __name__ == '__main__':
         module = importlib.import_module(f"engines.{engine_name}")
         engine_class = getattr(module, engine_name)
         engine = engine_class()
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(repr(e), file=sys.stderr)
         raise SystemExit(f'{prog_name}: `engine_name` was not recognized: {engine_name}')
 

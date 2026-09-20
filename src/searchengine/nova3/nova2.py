@@ -137,7 +137,7 @@ def import_engine(engine_module_name: EngineModuleName) -> Optional[type[Engine]
         # import engines.[engine_module_name]
         engine_module = importlib.import_module(f"engines.{engine_module_name}")
         engine_class = getattr(engine_module, engine_module_name)
-    except Exception:
+    except Exception:  # noqa: BLE001, S110
         pass
 
     engine_dict[engine_module_name] = engine_class
@@ -202,7 +202,7 @@ def run_search(search_params: tuple[type[Engine], str, Category]) -> bool:
         else:
             engine.search(what)
         return True
-    except Exception:
+    except Exception:  # noqa: BLE001
         traceback.print_exc()
         return False
 

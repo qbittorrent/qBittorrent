@@ -72,7 +72,7 @@ def prettyPrinter(dictionary: SearchResults) -> None:
 _sizeUnitRegex: re.Pattern[str] = re.compile(r"^(?P<size>\d*\.?\d+) *(?P<unit>[a-z]+)?", re.IGNORECASE)
 
 
-def anySizeToBytes(size_string: float | int | str) -> int:
+def anySizeToBytes(size_string: float | int | str) -> int:  # noqa: PYI041
     """
     Convert a string like '1 KB' to '1024' (bytes)
 
