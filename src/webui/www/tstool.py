@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 # TSTool - script for update qBittorrent WebUI translation files
 # Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
