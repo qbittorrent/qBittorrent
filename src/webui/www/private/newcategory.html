@@ -157,7 +157,8 @@
             // the action also report the value they inherit, which only the global side knows here.
             // The parent follows the name as it is typed, as `categoryNameChanged()` does in the GUI
             const updateInheritedLabels = (categoryName) => {
-                const inheritsFromParentCategory = (categoryName.lastIndexOf("/") >= 0);
+                // a leading separator leaves no parent name, which the GUI treats as no parent at all
+                const inheritsFromParentCategory = (categoryName.lastIndexOf("/") > 0);
                 const inheritedFromLabel = inheritsFromParentCategory
                     ? "QBT_TR(From category)QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
                     : "QBT_TR(Default)QBT_TR[CONTEXT=TorrentShareLimitsWidget]";
