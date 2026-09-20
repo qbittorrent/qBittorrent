@@ -2,6 +2,8 @@
 
 ## 2.16.2
 
+* [#24955](https://github.com/qbittorrent/qBittorrent/pull/24955)
+  * `search/results` endpoint includes `engineFullName` (string) data as the display name of the engine
 * [#24918](https://github.com/qbittorrent/qBittorrent/pull/24918)
   * `torrents/createCategory` and `torrents/editCategory` endpoints accept the following new parameters:
     * `ratioLimit` (float) - the category share ratio limit; `-2` means use the global limit, `-1` means unlimited
