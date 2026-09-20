@@ -2,6 +2,8 @@
 
 ## 2.16.2
 
+* [#24955](https://github.com/qbittorrent/qBittorrent/pull/24955)
+  * `search/results` endpoint includes `engineFullName` (string) data as the display name of the engine
 * [#24920](https://github.com/qbittorrent/qBittorrent/pull/24920)
   * `app/preferences` endpoint includes `confirm_remove_all_tags` (bool) option
   * `app/preferences` endpoint includes `confirm_remove_tracker_from_all_torrents` (bool) option

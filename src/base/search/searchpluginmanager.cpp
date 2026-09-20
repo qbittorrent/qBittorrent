@@ -40,6 +40,7 @@
 #include <QFile>
 #include <QPointer>
 #include <QProcess>
+#include <QSet>
 #include <QUrl>
 
 #include "base/global.h"
@@ -51,6 +52,7 @@
 #include "base/utils/bytearray.h"
 #include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
+#include "base/utils/hashvalue.h"
 #include "searchdownloadhandler.h"
 #include "searchhandler.h"
 
@@ -106,7 +108,7 @@ SearchPluginManager::SearchPluginManager()
 
 SearchPluginManager::~SearchPluginManager()
 {
-    qDeleteAll(m_plugins);
+    qDeleteAll(m_plugins.get<ByName>());
 }
 
 SearchPluginManager *SearchPluginManager::instance()
@@ -123,37 +125,40 @@ void SearchPluginManager::freeInstance()
 
 QStringList SearchPluginManager::allPlugins() const
 {
-    return m_plugins.keys();
+    QStringList names;
+    names.reserve(m_plugins.size());
+    for (const SearchPluginInfo *plugin : m_plugins.get<ByName>())
+        names.append(plugin->name);
+
+    return names;
 }
 
 QStringList SearchPluginManager::enabledPlugins() const
 {
-    QStringList plugins;
-    for (const SearchPluginInfo *plugin : asConst(m_plugins))
+    QStringList names;
+    names.reserve(m_plugins.size());
+    for (const SearchPluginInfo *plugin : m_plugins.get<ByName>())
     {
         if (plugin->enabled)
-            plugins << plugin->name;
+            names.append(plugin->name);
     }
 
-    return plugins;
+    return names;
 }
 
 QStringList SearchPluginManager::supportedCategories() const
 {
-    QStringList result;
-    for (const SearchPluginInfo *plugin : asConst(m_plugins))
+    QSet<QString> categories;
+    for (const SearchPluginInfo *plugin : m_plugins.get<ByName>())
     {
         if (plugin->enabled)
         {
-            for (const QString &cat : plugin->supportedCategories)
-            {
-                if (!result.contains(cat))
-                    result << cat;
-            }
+            for (const QString &category : asConst(plugin->supportedCategories))
+                categories.insert(category);
         }
     }
 
-    return result;
+    return categories.values();
 }
 
 QStringList SearchPluginManager::getPluginCategories(const QString &pluginName) const
@@ -180,37 +185,45 @@ QStringList SearchPluginManager::getPluginCategories(const QString &pluginName) 
 
 SearchPluginInfo *SearchPluginManager::pluginInfo(const QString &name) const
 {
-    return m_plugins.value(name);
+    const auto &byName = m_plugins.get<ByName>();
+    const auto iter = byName.find(name);
+    return (iter != byName.end()) ? *iter : nullptr;
 }
 
-QString SearchPluginManager::pluginNameBySiteURL(const QString &siteURL) const
+SearchPluginInfo *SearchPluginManager::pluginInfoBySiteURL(const QString &siteURL) const
 {
-    for (const SearchPluginInfo *plugin : asConst(m_plugins))
-    {
-        if (plugin->url == siteURL)
-            return plugin->name;
-    }
-
-    return {};
+    const auto &bySiteURL = m_plugins.get<BySiteURL>();
+    const auto iter = bySiteURL.find(siteURL);
+    return (iter != bySiteURL.end()) ? *iter : nullptr;
 }
 
 void SearchPluginManager::enablePlugin(const QString &name, const bool enabled)
 {
-    SearchPluginInfo *plugin = m_plugins.value(name, nullptr);
-    if (plugin)
-    {
-        plugin->enabled = enabled;
-        // Save to Hard disk
-        Preferences *const pref = Preferences::instance();
-        QStringList disabledPlugins = pref->getSearchEngDisabled();
-        if (enabled)
-            disabledPlugins.removeAll(name);
-        else if (!disabledPlugins.contains(name))
-            disabledPlugins.append(name);
-        pref->setSearchEngDisabled(disabledPlugins);
+    const auto &byName = m_plugins.get<ByName>();
+    const auto iter = byName.find(name);
+    if (iter == byName.end())
+        return;
 
-        emit pluginEnabled(name, enabled);
+    SearchPluginInfo &plugin = **iter;
+    plugin.enabled = enabled;
+
+    // Save to Hard disk
+    auto *pref = Preferences::instance();
+    QStringList disabledPlugins = pref->getSearchEngDisabled();
+    const qsizetype index = disabledPlugins.indexOf(name);
+    if (enabled)
+    {
+        if (index >= 0)
+            disabledPlugins.remove(index);
     }
+    else
+    {
+        if (index < 0)
+            disabledPlugins.append(name);
+    }
+    pref->setSearchEngDisabled(disabledPlugins);
+
+    emit pluginEnabled(name, enabled);
 }
 
 // Updates shipped plugin
@@ -298,7 +311,7 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const Path &sr
     update();
 
     // Check if it was correctly installed
-    if (m_plugins.contains(name))
+    if (const auto &byName = m_plugins.get<ByName>(); byName.find(name) != byName.end())
     {
         // installation successful
         LogMsg(tr("Search plugin has been updated. Plugin name: \"%1\". Version: %2.").arg(name, incomingVersion.toString()), Log::INFO);
@@ -336,6 +349,12 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const Path &sr
 
 bool SearchPluginManager::uninstallPlugin(const QString &name)
 {
+    const auto pluginNode = m_plugins.get<ByName>().extract(name);
+    if (pluginNode.empty())  // does not exist in our record
+        return false;
+
+    delete pluginNode.value();
+
     clearPythonCache(engineLocation());
 
     // remove it from hard drive
@@ -345,9 +364,6 @@ bool SearchPluginManager::uninstallPlugin(const QString &name)
         const QString filePath = iter.next();
         std::ignore = Utils::Fs::removeFile(Path(filePath));
     }
-
-    // Remove it from supported engines
-    delete m_plugins.take(name);
 
     emit pluginUninstalled(name);
     return true;
@@ -622,43 +638,37 @@ void SearchPluginManager::update()
         return;
     }
 
+    const QStringList disabledEngines = Preferences::instance()->getSearchEngDisabled();
+
     for (QDomNode engineNode = root.firstChild(); !engineNode.isNull(); engineNode = engineNode.nextSibling())
     {
         const QDomElement engineElem = engineNode.toElement();
-        if (!engineElem.isNull())
+        if (engineElem.isNull())
+            continue;
+
+        const QString pluginName = engineElem.tagName();
+
+        auto plugin = std::make_unique<SearchPluginInfo>();
+        plugin->name = pluginName;
+        plugin->version = getPluginVersion(pluginPath(pluginName));
+        plugin->fullName = engineElem.elementsByTagName(u"name"_s).at(0).toElement().text();
+        plugin->url = engineElem.elementsByTagName(u"url"_s).at(0).toElement().text();
+        plugin->supportedCategories = engineElem.elementsByTagName(u"categories"_s).at(0).toElement().text().split(u' ', Qt::SkipEmptyParts);
+        plugin->enabled = !disabledEngines.contains(pluginName);
+
+        updateIconPath(plugin.get());
+
+        auto &byName = m_plugins.get<ByName>();
+        if (const auto iter = byName.find(pluginName); iter == byName.end())
         {
-            const QString pluginName = engineElem.tagName();
-
-            auto plugin = std::make_unique<SearchPluginInfo>();
-            plugin->name = pluginName;
-            plugin->version = getPluginVersion(pluginPath(pluginName));
-            plugin->fullName = engineElem.elementsByTagName(u"name"_s).at(0).toElement().text();
-            plugin->url = engineElem.elementsByTagName(u"url"_s).at(0).toElement().text();
-
-            const QStringList categories = engineElem.elementsByTagName(u"categories"_s).at(0).toElement().text().split(u' ');
-            for (QString cat : categories)
-            {
-                cat = cat.trimmed();
-                if (!cat.isEmpty())
-                    plugin->supportedCategories << cat;
-            }
-
-            const QStringList disabledEngines = Preferences::instance()->getSearchEngDisabled();
-            plugin->enabled = !disabledEngines.contains(pluginName);
-
-            updateIconPath(plugin.get());
-
-            if (!m_plugins.contains(pluginName))
-            {
-                m_plugins[pluginName] = plugin.release();
-                emit pluginInstalled(pluginName);
-            }
-            else if (m_plugins[pluginName]->version != plugin->version)
-            {
-                delete m_plugins.take(pluginName);
-                m_plugins[pluginName] = plugin.release();
-                emit pluginUpdated(pluginName);
-            }
+            byName.insert(plugin.release());
+            emit pluginInstalled(pluginName);
+        }
+        else if ((*iter)->version != plugin->version)
+        {
+            delete byName.extract(iter).value();
+            byName.insert(plugin.release());
+            emit pluginUpdated(pluginName);
         }
     }
 }

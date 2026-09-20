@@ -68,6 +68,7 @@ const QString KEY_RESULT_FILE_SIZE = u"FileSize"_s;
 const QString KEY_RESULT_SEEDERS_COUNT = u"SeedersCount"_s;
 const QString KEY_RESULT_LEECHERS_COUNT = u"LeechersCount"_s;
 const QString KEY_RESULT_ENGINE_NAME = u"EngineName"_s;
+const QString KEY_RESULT_ENGINE_FULL_NAME = u"EngineFullName"_s;
 const QString KEY_RESULT_SITE_URL = u"SiteURL"_s;
 const QString KEY_RESULT_DESCR_LINK = u"DescrLink"_s;
 const QString KEY_RESULT_PUB_DATE = u"PubDate"_s;
@@ -102,13 +103,21 @@ namespace
         for (const QJsonValue &resultValue : resultsArray)
         {
             const QJsonObject resultObj = resultValue.toObject();
+
+            const QString engineName = resultObj[KEY_RESULT_ENGINE_NAME].toString();
+
+            // this key may not exist when upgrading from a previous qbt version, so reuse the short engine name instead
+            const QJsonValue engineFullNameValue = resultObj.value(KEY_RESULT_ENGINE_FULL_NAME);
+            const QString engineFullName = engineFullNameValue.isString() ? engineFullNameValue.toString() : engineName;
+
             const SearchResult result {
                 .fileName = resultObj[KEY_RESULT_FILE_NAME].toString(),
                 .fileUrl = resultObj[KEY_RESULT_FILE_URL].toString(),
                 .fileSize = resultObj[KEY_RESULT_FILE_SIZE].toInteger(),
                 .nbSeeders = resultObj[KEY_RESULT_SEEDERS_COUNT].toInteger(),
                 .nbLeechers = resultObj[KEY_RESULT_LEECHERS_COUNT].toInteger(),
-                .engineName = resultObj[KEY_RESULT_ENGINE_NAME].toString(),
+                .engineName = engineName,
+                .engineFullName = engineFullName,
                 .siteUrl = resultObj[KEY_RESULT_SITE_URL].toString(),
                 .descrLink = resultObj[KEY_RESULT_DESCR_LINK].toString(),
                 .pubDate = QDateTime::fromSecsSinceEpoch(resultObj[KEY_RESULT_PUB_DATE].toInteger())
@@ -349,6 +358,7 @@ void SearchJobManager::saveSearchResults(const int searchId) const
             {KEY_RESULT_SEEDERS_COUNT, result.nbSeeders},
             {KEY_RESULT_LEECHERS_COUNT, result.nbLeechers},
             {KEY_RESULT_ENGINE_NAME, result.engineName},
+            {KEY_RESULT_ENGINE_FULL_NAME, result.engineFullName},
             {KEY_RESULT_SITE_URL, result.siteUrl},
             {KEY_RESULT_DESCR_LINK, result.descrLink},
             {KEY_RESULT_PUB_DATE, result.pubDate.toSecsSinceEpoch()}
