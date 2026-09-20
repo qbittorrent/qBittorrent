@@ -41,7 +41,7 @@ SearchResults = TypedDict('SearchResults', {
 
 
 # these fields contain untrusted values as they are unescaped or not encoded
-_unescapedFields = tuple(field for field in get_type_hints(SearchResults).keys() if field not in {'name'})
+_unescapedFields = tuple(field for field in get_type_hints(SearchResults) if field not in {'name'})
 
 
 def prettyPrinter(dictionary: SearchResults) -> None:

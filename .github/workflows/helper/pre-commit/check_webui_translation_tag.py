@@ -29,9 +29,9 @@
 import argparse
 import re
 import sys
-import xml.etree.ElementTree as ElementTree
 from collections.abc import Sequence
 from typing import Optional
+from xml.etree import ElementTree
 
 
 def escapeNewlineCharacters(element: ElementTree.Element) -> None:
