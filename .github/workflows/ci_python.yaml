@@ -25,7 +25,7 @@ jobs:
           python-version: '3'  # use default version
 
       - name: Install tools (auxiliary scripts)
-        run: pip install bandit isort pycodestyle pyflakes
+        run: pip install bandit pycodestyle pyflakes ruff
 
       - name: Gather files (auxiliary scripts)
         run: |
@@ -35,18 +35,21 @@ jobs:
 
       - name: Lint code (auxiliary scripts)
         run: |
-          pyflakes $PY_FILES
-          bandit --skip B101,B314,B405 $PY_FILES
+          ruff \
+            check \
+            --ignore "BLE001,UP045" \
+            $PY_FILES
+          pyflakes \
+            $PY_FILES
+          bandit \
+            --skip B101,B314,B405 \
+            $PY_FILES
 
       - name: Format code (auxiliary scripts)
         run: |
           pycodestyle \
             --max-line-length=1000 \
             --statistics \
-            $PY_FILES
-          isort \
-            --check \
-            --diff \
             $PY_FILES
 
       - name: Build code (auxiliary scripts)

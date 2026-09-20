@@ -32,15 +32,15 @@ format files=PY_FILES:
         --max-line-length=1000 \
         --statistics \
         {{ files }}
-    isort \
-        --line-length 1000 \
-        {{ files }}
     just \
         --fmt \
         --unstable
 
 # Run static analyzer
 lint files=PY_FILES:
+    ruff \
+        check \
+        {{ files }}
     pyflakes \
         {{ files }}
     bandit \

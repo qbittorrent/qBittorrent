@@ -8,13 +8,13 @@ dynamic = ["version"]
 [dependency-groups]
 dev = [
     "bandit",
-    "isort",
     "mypy",
     "pycodestyle",
     "pydoclint",
     "pyflakes",
     "pyright",
     "pytest",
+    "ruff",
     "rust-just",
 ]
 
@@ -29,6 +29,12 @@ check-return-types = false
 
 [tool.pyright]
 typeCheckingMode = "strict"
+
+[tool.ruff]
+line-length = 1000
+
+[tool.ruff.lint]
+ignore = ["FA100", "FA102", "UP045"]
 
 [tool.setuptools.packages.find]
 where = ["./"]
