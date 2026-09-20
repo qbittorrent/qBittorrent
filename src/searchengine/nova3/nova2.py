@@ -175,9 +175,9 @@ def get_capabilities(engines: Iterable[EngineModuleName]) -> str:
 
         supported_categories = ""
         if hasattr(engine_class, "supported_categories"):
-            supported_categories = " ".join((key
-                                             for key in sorted(engine_class.supported_categories.keys())
-                                             if key != Category.all.name))
+            supported_categories = " ".join(key
+                                            for key in sorted(engine_class.supported_categories.keys())
+                                            if key != Category.all.name)
         ET.SubElement(engine_module_element, 'categories').text = supported_categories
 
     ET.indent(capabilities_element)
@@ -224,7 +224,7 @@ if __name__ == "__main__":
 
         if "--capabilities" in sys.argv:
             if "--names" in sys.argv:
-                print(",".join((e for e in found_engines if import_engine(e) is not None)))
+                print(",".join(e for e in found_engines if import_engine(e) is not None))
                 return ExitCode.OK.value
 
             print(get_capabilities(found_engines))
