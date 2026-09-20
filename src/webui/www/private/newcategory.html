@@ -117,15 +117,19 @@
 
             const setShareLimit = (modeID, valueID, limit) => {
                 const modeElem = document.getElementById(modeID);
-                if ((limit === UseDefaultLimit) || (limit === undefined) || (limit === null)) {
-                    modeElem.value = "default";
-                }
-                else if (limit === NoLimit) {
-                    modeElem.value = "unlimited";
-                }
-                else {
-                    modeElem.value = "custom";
-                    rememberedShareLimit[valueID] = limit;
+                switch (limit) {
+                    case UseDefaultLimit:
+                    case null:
+                    case undefined:
+                        modeElem.value = "default";
+                        break;
+                    case NoLimit:
+                        modeElem.value = "unlimited";
+                        break;
+                    default:
+                        modeElem.value = "custom";
+                        rememberedShareLimit[valueID] = limit;
+                        break;
                 }
                 updateShareLimitInput(modeID, valueID);
             };
@@ -150,25 +154,30 @@
 
             // a limit left unset is inherited from the parent category when there is one and from
             // the global settings otherwise, so name the source the way the GUI does. The mode and
-            // the action also report the value they inherit, which only the global side knows here
-            const inheritsFromParentCategory = (uriCategoryName.lastIndexOf("/") >= 0);
-            const inheritedFromLabel = inheritsFromParentCategory
-                ? "QBT_TR(From category)QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
-                : "QBT_TR(Default)QBT_TR[CONTEXT=TorrentShareLimitsWidget]";
+            // the action also report the value they inherit, which only the global side knows here.
+            // The parent follows the name as it is typed, as `categoryNameChanged()` does in the GUI
+            const updateInheritedLabels = (categoryName) => {
+                const inheritsFromParentCategory = (categoryName.lastIndexOf("/") >= 0);
+                const inheritedFromLabel = inheritsFromParentCategory
+                    ? "QBT_TR(From category)QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
+                    : "QBT_TR(Default)QBT_TR[CONTEXT=TorrentShareLimitsWidget]";
 
-            for (const [modeID] of shareLimitFields)
-                document.getElementById(modeID).options[0].textContent = inheritedFromLabel;
+                for (const [modeID] of shareLimitFields)
+                    document.getElementById(modeID).options[0].textContent = inheritedFromLabel;
 
-            const setInheritedLabel = (selectID, inheritedValue) => {
-                const selectElem = document.getElementById(selectID);
-                const inheritedOption = Array.prototype.find.call(selectElem.options, (option) => option.value === inheritedValue);
-                selectElem.options[0].textContent = (inheritsFromParentCategory || !inheritedOption || (inheritedValue === "Default"))
-                    ? inheritedFromLabel
-                    : "QBT_TR(Default (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]".replace("%1", inheritedOption.textContent);
+                const setInheritedLabel = (selectID, inheritedValue) => {
+                    const selectElem = document.getElementById(selectID);
+                    const inheritedOption = Array.prototype.find.call(selectElem.options, (option) => option.value === inheritedValue);
+                    selectElem.options[0].textContent = (inheritsFromParentCategory || (inheritedOption === undefined) || (inheritedValue === "Default"))
+                        ? inheritedFromLabel
+                        : "QBT_TR(Default (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]".replace("%1", inheritedOption.textContent);
+                };
+
+                setInheritedLabel("categoryShareLimitsMode", pref.share_limits_mode);
+                setInheritedLabel("categoryShareLimitAction", ShareLimitActionNames[Number(pref.max_ratio_act)]);
             };
 
-            setInheritedLabel("categoryShareLimitsMode", pref.share_limits_mode);
-            setInheritedLabel("categoryShareLimitAction", ShareLimitActionNames[Number(pref.max_ratio_act)]);
+            updateInheritedLabels(uriCategoryName);
 
             const useDownloadPathElem = document.getElementById("useDownloadPath");
             const categoryNameElem = document.getElementById("categoryName");
@@ -361,6 +370,10 @@
 
             useDownloadPathElem.addEventListener("change", (e) => {
                 setDownloadPath(e.target.value);
+            });
+
+            categoryNameElem.addEventListener("input", (e) => {
+                updateInheritedLabels(e.target.value.trim());
             });
 
             for (const [modeID, valueID] of shareLimitFields) {
