@@ -44,7 +44,7 @@ lint files=PY_FILES:
     pyflakes \
         {{ files }}
     bandit \
-        --skip B110,B310,B314,B405 \
+        --configfile pyproject.toml \
         {{ files }}
     pydoclint \
         {{ files }}
@@ -52,5 +52,4 @@ lint files=PY_FILES:
 # Run tests
 test files='tests/*.py': fetch_aux
     pytest \
-        --showlocals \
         {{ files }}

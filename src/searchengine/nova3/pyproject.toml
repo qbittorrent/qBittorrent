@@ -18,6 +18,9 @@ dev = [
     "rust-just",
 ]
 
+[tool.bandit]
+skips = ["B110", "B310", "B314", "B405"]
+
 [tool.mypy]
 explicit_package_bases = true
 strict = true
@@ -29,6 +32,9 @@ check-return-types = false
 
 [tool.pyright]
 typeCheckingMode = "strict"
+
+[tool.pytest]
+addopts = ["--showlocals"]
 
 [tool.ruff]
 line-length = 1000
