@@ -93,9 +93,9 @@
             const ShareLimitActionNames = ["Stop", "Remove", "EnableSuperSeeding", "RemoveWithContent"];
 
             const shareLimitFields = [
-                ["categoryRatioLimitMode", "categoryRatioLimit"],
-                ["categorySeedingTimeLimitMode", "categorySeedingTimeLimit"],
-                ["categoryInactiveSeedingTimeLimitMode", "categoryInactiveSeedingTimeLimit"]
+                ["categoryRatioLimitMode", "categoryRatioLimit", "ratioLimit"],
+                ["categorySeedingTimeLimitMode", "categorySeedingTimeLimit", "seedingTimeLimit"],
+                ["categoryInactiveSeedingTimeLimitMode", "categoryInactiveSeedingTimeLimit", "inactiveSeedingTimeLimit"]
             ];
 
             const rememberedShareLimit = {
@@ -104,18 +104,41 @@
                 categoryInactiveSeedingTimeLimit: "1440"
             };
 
-            const updateShareLimitInput = (modeID, valueID) => {
+            // what an unset limit resolves to, so that a disabled box can show the value it
+            // inherits the way the GUI does. Refreshed whenever the parent category changes
+            let inheritsFromParentCategory = false;
+            let inheritedShareLimits = {};
+
+            const inheritedValueText = (limitKey) => {
+                const limit = inheritedShareLimits[limitKey];
+                if (!(limit >= 0))
+                    return "";
+                return (limitKey === "ratioLimit") ? limit.toFixed(2) : String(limit);
+            };
+
+            const updateShareLimitInput = (modeID, valueID, limitKey) => {
                 const valueElem = document.getElementById(valueID);
-                const isCustom = (document.getElementById(modeID).value === "custom");
+                const mode = document.getElementById(modeID).value;
+                const isCustom = (mode === "custom");
 
                 if (!isCustom && !valueElem.disabled && (valueElem.value !== ""))
                     rememberedShareLimit[valueID] = valueElem.value;
 
                 valueElem.disabled = !isCustom;
-                valueElem.value = isCustom ? rememberedShareLimit[valueID] : "";
+                switch (mode) {
+                    case "custom":
+                        valueElem.value = rememberedShareLimit[valueID];
+                        break;
+                    case "default":
+                        valueElem.value = inheritedValueText(limitKey);
+                        break;
+                    default:
+                        valueElem.value = "";
+                        break;
+                }
             };
 
-            const setShareLimit = (modeID, valueID, limit) => {
+            const setShareLimit = (modeID, valueID, limitKey, limit) => {
                 const modeElem = document.getElementById(modeID);
                 switch (limit) {
                     case UseDefaultLimit:
@@ -131,7 +154,7 @@
                         rememberedShareLimit[valueID] = limit;
                         break;
                 }
-                updateShareLimitInput(modeID, valueID);
+                updateShareLimitInput(modeID, valueID, limitKey);
             };
 
             const getShareLimit = (modeID, valueID) => {
@@ -152,30 +175,77 @@
             const pref = window.parent.qBittorrent.Cache.preferences.get();
             const categoryData = window.parent.qBittorrent.Client.categoryMap.get(uriCategoryName);
 
+            // `Session::parentCategoryName()`: the text before the last separator, so a name whose
+            // only separator is the first character has no parent name
+            const parentCategoryName = (categoryName) => {
+                const separatorIndex = categoryName.lastIndexOf("/");
+                return (separatorIndex >= 0) ? categoryName.substring(0, separatorIndex) : "";
+            };
+
+            const globalShareLimits = () => ({
+                ratioLimit: pref.max_ratio,
+                seedingTimeLimit: pref.max_seeding_time,
+                inactiveSeedingTimeLimit: pref.max_inactive_seeding_time,
+                shareLimitsMode: pref.share_limits_mode,
+                // `app/preferences` reports the global share limit action as the raw enum value
+                shareLimitAction: ShareLimitActionNames[Number(pref.max_ratio_act)]
+            });
+
+            // `SessionImpl::categoryShareLimits()`: each limit a category leaves unset is taken from
+            // its parent category, and from the global settings once the chain runs out
+            const categoryShareLimits = (categoryName) => {
+                if (categoryName === "")
+                    return globalShareLimits();
+
+                const own = window.parent.qBittorrent.Client.categoryMap.get(categoryName) ?? {};
+                const parent = categoryShareLimits(parentCategoryName(categoryName));
+                const resolve = (limit, unset, parentLimit) => (((limit === undefined) || (limit === null) || (limit === unset)) ? parentLimit : limit);
+                return {
+                    ratioLimit: resolve(own.ratioLimit, UseDefaultLimit, parent.ratioLimit),
+                    seedingTimeLimit: resolve(own.seedingTimeLimit, UseDefaultLimit, parent.seedingTimeLimit),
+                    inactiveSeedingTimeLimit: resolve(own.inactiveSeedingTimeLimit, UseDefaultLimit, parent.inactiveSeedingTimeLimit),
+                    shareLimitsMode: resolve(own.shareLimitsMode, "Default", parent.shareLimitsMode),
+                    shareLimitAction: resolve(own.shareLimitAction, "Default", parent.shareLimitAction)
+                };
+            };
+
             // a limit left unset is inherited from the parent category when there is one and from
-            // the global settings otherwise, so name the source the way the GUI does. The mode and
-            // the action also report the value they inherit, which only the global side knows here.
-            // The parent follows the name as it is typed, as `categoryNameChanged()` does in the GUI
+            // the global settings otherwise, so name the source the way the GUI does and show the
+            // value that will be used. The parent follows the name as it is typed, as
+            // `categoryNameChanged()` does in the GUI
             const updateInheritedLabels = (categoryName) => {
-                // a leading separator leaves no parent name, which the GUI treats as no parent at all
-                const inheritsFromParentCategory = (categoryName.lastIndexOf("/") > 0);
+                const parentName = parentCategoryName(categoryName);
+                inheritsFromParentCategory = (parentName !== "");
+                inheritedShareLimits = categoryShareLimits(parentName);
+
                 const inheritedFromLabel = inheritsFromParentCategory
                     ? "QBT_TR(From category)QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
                     : "QBT_TR(Default)QBT_TR[CONTEXT=TorrentShareLimitsWidget]";
 
-                for (const [modeID] of shareLimitFields)
-                    document.getElementById(modeID).options[0].textContent = inheritedFromLabel;
+                for (const [modeID, valueID, limitKey] of shareLimitFields) {
+                    const modeElem = document.getElementById(modeID);
+                    modeElem.options[0].textContent = inheritedFromLabel;
+                    // only a box that is showing an inherited value needs refreshing, so that a
+                    // value being typed survives a change to the name. `setDefaults()` in the GUI
+                    // guards each box the same way
+                    if (modeElem.value === "default")
+                        document.getElementById(valueID).value = inheritedValueText(limitKey);
+                }
 
                 const setInheritedLabel = (selectID, inheritedValue) => {
                     const selectElem = document.getElementById(selectID);
                     const inheritedOption = Array.prototype.find.call(selectElem.options, (option) => option.value === inheritedValue);
-                    selectElem.options[0].textContent = (inheritsFromParentCategory || (inheritedOption === undefined) || (inheritedValue === "Default"))
-                        ? inheritedFromLabel
-                        : "QBT_TR(Default (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]".replace("%1", inheritedOption.textContent);
+                    if ((inheritedOption === undefined) || (inheritedValue === "Default")) {
+                        selectElem.options[0].textContent = inheritedFromLabel;
+                        return;
+                    }
+                    selectElem.options[0].textContent = (inheritsFromParentCategory
+                        ? "QBT_TR(From category (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
+                        : "QBT_TR(Default (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]").replace("%1", inheritedOption.textContent);
                 };
 
-                setInheritedLabel("categoryShareLimitsMode", pref.share_limits_mode);
-                setInheritedLabel("categoryShareLimitAction", ShareLimitActionNames[Number(pref.max_ratio_act)]);
+                setInheritedLabel("categoryShareLimitsMode", inheritedShareLimits.shareLimitsMode);
+                setInheritedLabel("categoryShareLimitAction", inheritedShareLimits.shareLimitAction);
             };
 
             updateInheritedLabels(uriCategoryName);
@@ -208,9 +278,9 @@
                         break;
                 }
 
-                setShareLimit("categoryRatioLimitMode", "categoryRatioLimit", categoryData.ratioLimit);
-                setShareLimit("categorySeedingTimeLimitMode", "categorySeedingTimeLimit", categoryData.seedingTimeLimit);
-                setShareLimit("categoryInactiveSeedingTimeLimitMode", "categoryInactiveSeedingTimeLimit", categoryData.inactiveSeedingTimeLimit);
+                setShareLimit("categoryRatioLimitMode", "categoryRatioLimit", "ratioLimit", categoryData.ratioLimit);
+                setShareLimit("categorySeedingTimeLimitMode", "categorySeedingTimeLimit", "seedingTimeLimit", categoryData.seedingTimeLimit);
+                setShareLimit("categoryInactiveSeedingTimeLimitMode", "categoryInactiveSeedingTimeLimit", "inactiveSeedingTimeLimit", categoryData.inactiveSeedingTimeLimit);
                 document.getElementById("categoryShareLimitsMode").value = categoryData.shareLimitsMode ?? "Default";
                 document.getElementById("categoryShareLimitAction").value = categoryData.shareLimitAction ?? "Default";
             }
@@ -377,9 +447,9 @@
                 updateInheritedLabels(e.target.value.trim());
             });
 
-            for (const [modeID, valueID] of shareLimitFields) {
+            for (const [modeID, valueID, limitKey] of shareLimitFields) {
                 document.getElementById(modeID).addEventListener("change", (e) => {
-                    updateShareLimitInput(modeID, valueID);
+                    updateShareLimitInput(modeID, valueID, limitKey);
                 });
             }
 
