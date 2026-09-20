@@ -234,7 +234,7 @@ if __name__ == "__main__":
             return ExitCode.ArgError.value
 
         # get unique engines
-        engs = set(arg.strip().lower() for arg in sys.argv[1].split(','))
+        engs = {arg.strip().lower() for arg in sys.argv[1].split(',')}
         engines = found_engines if 'all' in engs else [e for e in found_engines if e in engs]
 
         cat = sys.argv[2].lower()
