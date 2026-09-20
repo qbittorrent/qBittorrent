@@ -42,7 +42,7 @@ ts_folder = os.path.join(www_folder, "translations")
 
 
 def parseSource(filename, sources):
-    print("Parsing %s..." % (os.path.normpath(filename)))
+    print(f"Parsing {os.path.normpath(filename)}...")
     with open(filename, mode='r', encoding='utf-8') as file:
         regex = re.compile(
             r"QBT_TR\((([^\)]|\)(?!QBT_TR))+)\)QBT_TR\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\]")
@@ -56,12 +56,12 @@ def parseSource(filename, sources):
 
 
 def processTranslation(filename, sources):
-    print('Processing %s...' % (os.path.normpath(filename)))
+    print(f'Processing {os.path.normpath(filename)}...')
 
     try:
         tree = ET.ElementTree(file=filename)
     except Exception:
-        print('\tFailed to parse %s!' % (os.path.normpath(filename)))
+        print(f'\tFailed to parse {os.path.normpath(filename)}!')
         return
 
     root = tree.getroot()
@@ -121,7 +121,7 @@ def processTranslation(filename, sources):
                        '<!DOCTYPE TS>\n')
             tree.write(file, encoding='unicode')
     except Exception:
-        print('\tFailed to write %s!' % (os.path.normpath(filename)))
+        print(f'\tFailed to write {os.path.normpath(filename)}!')
 
 
 argp = argparse.ArgumentParser(
@@ -131,10 +131,10 @@ argp.add_argument('--no-obsolete', dest='no_obsolete', action='store_true',
                   help='remove obsolete messages (default: mark them as obsolete)')
 argp.add_argument('--www-folder', dest='www_folder', action='store',
                   default=www_folder,
-                  help='folder with WebUI source files (default: "%s")' % (www_folder))
+                  help=f'folder with WebUI source files (default: "{www_folder}")')
 argp.add_argument('--ts-folder', dest='ts_folder', action='store',
                   default=ts_folder,
-                  help='folder with WebUI translation files (default: "%s")' % (ts_folder))
+                  help=f'folder with WebUI translation files (default: "{ts_folder}")')
 
 args = argp.parse_args()
 no_obsolete = args.no_obsolete
@@ -155,8 +155,7 @@ if nfiles == 0:
     sys.exit()
 
 nstrings = sum(len(sublist) for sublist in source_ts)
-print("Found %d strings within %d contexts." % (nstrings, len(source_ts)))
-print("")
+print(f"Found {nstrings} strings within {len(source_ts)} contexts.\n")
 
 print("Processing translation files...")
 for entry in os.scandir(ts_folder):
