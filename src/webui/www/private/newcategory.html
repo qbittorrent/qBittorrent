@@ -111,7 +111,7 @@
 
             const inheritedValueText = (limitKey) => {
                 const limit = inheritedShareLimits[limitKey];
-                if (!(limit >= 0))
+                if (limit < 0)
                     return "";
                 return (limitKey === "ratioLimit") ? limit.toFixed(2) : String(limit);
             };
@@ -125,15 +125,13 @@
                     rememberedShareLimit[valueID] = valueElem.value;
 
                 valueElem.disabled = !isCustom;
+                valueElem.value = "";
                 switch (mode) {
                     case "custom":
                         valueElem.value = rememberedShareLimit[valueID];
                         break;
                     case "default":
                         valueElem.value = inheritedValueText(limitKey);
-                        break;
-                    default:
-                        valueElem.value = "";
                         break;
                 }
             };
