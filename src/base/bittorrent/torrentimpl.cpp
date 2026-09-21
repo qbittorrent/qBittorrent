@@ -2273,11 +2273,19 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
                 filePaths[i] = Path(it->second);
         }
 
-        m_session->findIncompleteFiles(savePath(), downloadPath(), filePaths).then(this
+        (isAutoTMMEnabled() ? m_session->findIncompleteFiles(savePath(), downloadPath(), filePaths)
+                : m_session->findExistingContent(savePath(), downloadPath(), filePaths, metadata.name(), {})).then(this
                 , [this](const FileSearchResult &result)
         {
             if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
+            {
+                if (!isAutoTMMEnabled() && (result.savePath != savePath()) && (result.savePath != downloadPath()))
+                {
+                    m_downloadPath = Path();
+                    setSavePath(result.savePath);
+                }
                 endReceivedMetadataHandling(result.savePath, result.fileNames);
+            }
         });
     }
     else

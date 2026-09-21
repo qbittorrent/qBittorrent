@@ -153,6 +153,7 @@ namespace BitTorrent
         virtual void setDownloadPath(const Path &path) = 0;
         virtual bool isDownloadPathEnabled() const = 0;
         virtual void setDownloadPathEnabled(bool enabled) = 0;
+        virtual void setWatchedFolderSavePaths(const PathList &paths) = 0;
 
         static bool isValidCategoryName(const QString &name);
         static QString subcategoryName(const QString &category);
@@ -228,6 +229,10 @@ namespace BitTorrent
         virtual void setAppendExtensionEnabled(bool enabled) = 0;
         virtual bool isUnwantedFolderEnabled() const = 0;
         virtual void setUnwantedFolderEnabled(bool enabled) = 0;
+        virtual bool isFindLocationEnabled() const = 0;
+        virtual void setFindLocationEnabled(bool enabled) = 0;
+        virtual bool isFindLocationOnAddEnabled() const = 0;
+        virtual void setFindLocationOnAddEnabled(bool enabled) = 0;
         virtual int refreshInterval() const = 0;
         virtual void setRefreshInterval(int value) = 0;
         virtual bool isPreallocationEnabled() const = 0;
