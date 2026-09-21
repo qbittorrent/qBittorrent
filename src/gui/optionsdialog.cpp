@@ -641,6 +641,14 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
     m_ui->checkUnwantedFolder->setChecked(session->isUnwantedFolderEnabled());
     m_ui->checkRecursiveDownload->setChecked(pref->isRecursiveDownloadEnabled());
+    m_ui->checkFindLocationOnStart->setChecked(session->isFindLocationOnStartEnabled());
+    m_ui->checkFindLocationRecheck->setChecked(session->isFindLocationRecheckEnabled());
+    m_ui->checkFindLocationSeed->setChecked(session->isFindLocationSeedEnabled());
+    m_ui->checkFindLocationLeech->setChecked(session->isFindLocationLeechEnabled());
+    m_ui->checkFindLocationSeed->setEnabled(m_ui->checkFindLocationRecheck->isChecked());
+    m_ui->checkFindLocationLeech->setEnabled(m_ui->checkFindLocationRecheck->isChecked());
+    m_ui->groupFindLocation->setChecked(session->isFindLocationEnabled());
+    m_ui->checkFindLocationOnAdd->setChecked(session->isFindLocationOnAddEnabled());
 
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
@@ -778,6 +786,14 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->checkAppendqB, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUnwantedFolder, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkRecursiveDownload, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupFindLocation, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFindLocationOnAdd, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFindLocationOnStart, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFindLocationRecheck, &QAbstractButton::toggled, m_ui->checkFindLocationSeed, &QWidget::setEnabled);
+    connect(m_ui->checkFindLocationRecheck, &QAbstractButton::toggled, m_ui->checkFindLocationLeech, &QWidget::setEnabled);
+    connect(m_ui->checkFindLocationRecheck, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFindLocationSeed, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFindLocationLeech, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->comboSavingMode, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboTorrentCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -852,6 +868,12 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
     session->setUnwantedFolderEnabled(m_ui->checkUnwantedFolder->isChecked());
     pref->setRecursiveDownloadEnabled(m_ui->checkRecursiveDownload->isChecked());
+    session->setFindLocationEnabled(m_ui->groupFindLocation->isChecked());
+    session->setFindLocationOnAddEnabled(m_ui->checkFindLocationOnAdd->isChecked());
+    session->setFindLocationOnStartEnabled(m_ui->checkFindLocationOnStart->isChecked());
+    session->setFindLocationRecheckEnabled(m_ui->checkFindLocationRecheck->isChecked());
+    session->setFindLocationSeedEnabled(m_ui->checkFindLocationSeed->isChecked());
+    session->setFindLocationLeechEnabled(m_ui->checkFindLocationLeech->isChecked());
 
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
     session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);

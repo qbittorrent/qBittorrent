@@ -556,6 +556,7 @@ TorrentsController::TorrentsController(IApplication *app, QObject *parent)
     : APIController(app, parent)
 {
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &TorrentsController::onMetadataDownloaded);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentLocationFound, this, &TorrentsController::onTorrentLocationFound);
 }
 
 void TorrentsController::countAction()
@@ -1717,6 +1718,82 @@ void TorrentsController::setLocationAction()
     setResult(QString());
 }
 
+void TorrentsController::findLocationAction()
+{
+    if (!BitTorrent::Session::instance()->isFindLocationEnabled())
+        throw APIError(APIErrorType::Conflict, tr("Find location is disabled"));
+
+    QList<BitTorrent::TorrentID> submitted;
+    const QString hashesParam = params()[u"hashes"_s];
+    if (!hashesParam.isEmpty())
+    {
+        applyToTorrents(hashesParam.split(u'|'), [this, &submitted](BitTorrent::Torrent *const torrent)
+        {
+            if (!torrent->hasMetadata())
+                return;
+
+            const BitTorrent::TorrentID id = torrent->id();
+            if (m_findLocationOperation.contains(id))
+                return;
+
+            m_findLocationOperation.insert(id, FindLocationEntry {});
+            submitted.append(id);
+        });
+    }
+
+    for (const BitTorrent::TorrentID &id : asConst(submitted))
+        BitTorrent::Session::instance()->findTorrentLocation(id);
+
+    QJsonArray pending;
+    QJsonArray matched;
+    QJsonArray unmatched;
+    for (auto iter = m_findLocationOperation.cbegin(); iter != m_findLocationOperation.cend(); ++iter)
+    {
+        const QString idString = iter.key().toString();
+        switch (iter->state)
+        {
+        case FindLocationState::Pending:
+            pending.append(idString);
+            break;
+        case FindLocationState::Matched:
+            matched.append(QJsonObject {{u"hash"_s, idString}, {u"location"_s, iter->location.toString()}});
+            break;
+        case FindLocationState::Unmatched:
+            if (BitTorrent::Session::instance()->getTorrent(iter.key()))
+                unmatched.append(idString);
+            break;
+        }
+    }
+
+    setResult(QJsonObject {{u"pending"_s, pending}, {u"matched"_s, matched}, {u"unmatched"_s, unmatched}});
+
+    if (!pending.isEmpty())
+        setStatus(APIStatus::Async);
+    else
+        m_findLocationOperation.clear();
+}
+
+void TorrentsController::assignLocationAction()
+{
+    requireParams({u"hashes"_s, u"location"_s});
+
+    const QStringList hashes {params()[u"hashes"_s].split(u'|')};
+    const Path location {params()[u"location"_s].trimmed()};
+
+    if (location.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Save path cannot be empty"));
+
+    if (!Utils::Fs::isDir(location))
+        throw APIError(APIErrorType::Conflict, tr("Location does not exist"));
+
+    applyToTorrents(hashes, [location](BitTorrent::Torrent *const torrent)
+    {
+        BitTorrent::Session::instance()->assignTorrentLocation(torrent->id(), location);
+    });
+
+    setResult(QString());
+}
+
 void TorrentsController::setSavePathAction()
 {
     requireParams({u"id"_s, u"path"_s});
@@ -2431,6 +2508,24 @@ void TorrentsController::onMetadataDownloaded(const BitTorrent::TorrentInfo &inf
         const BitTorrent::TorrentID v1TorrentID = BitTorrent::TorrentID::fromSHA1Hash(info.infoHash().v1());
         if (auto iter = m_torrentMetadataCache.find(v1TorrentID); iter != m_torrentMetadataCache.end())
             iter.value().setTorrentInfo(info);
+    }
+}
+
+void TorrentsController::onTorrentLocationFound(const BitTorrent::TorrentID &id, const Path &location, const bool found)
+{
+    const auto iter = m_findLocationOperation.find(id);
+    if ((iter == m_findLocationOperation.end()) || (iter->state != FindLocationState::Pending))
+        return;
+
+    if (found)
+    {
+        iter->state = FindLocationState::Matched;
+        iter->location = location;
+        BitTorrent::Session::instance()->assignTorrentLocation(id, location);
+    }
+    else
+    {
+        iter->state = FindLocationState::Unmatched;
     }
 }
 

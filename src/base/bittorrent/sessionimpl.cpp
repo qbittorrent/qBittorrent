@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026 Tim Sylvester <t.j.sylvester@gmail.com>
  * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -572,6 +573,12 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY(u"TorrentContentLayout"_s), TorrentContentLayout::Original)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY(u"AddExtensionToIncompleteFiles"_s), false)
     , m_isUnwantedFolderEnabled(BITTORRENT_SESSION_KEY(u"UseUnwantedFolder"_s), false)
+    , m_isFindLocationEnabled(BITTORRENT_SESSION_KEY(u"FindLocation/Enabled"_s), true)
+    , m_isFindLocationOnAddEnabled(BITTORRENT_SESSION_KEY(u"FindLocation/OnAddEnabled"_s), true)
+    , m_isFindLocationOnStartEnabled(BITTORRENT_SESSION_KEY(u"FindLocation/OnStartEnabled"_s), true)
+    , m_isFindLocationRecheckEnabled(BITTORRENT_SESSION_KEY(u"FindLocation/RecheckEnabled"_s), true)
+    , m_isFindLocationSeedEnabled(BITTORRENT_SESSION_KEY(u"FindLocation/SeedEnabled"_s), true)
+    , m_isFindLocationLeechEnabled(BITTORRENT_SESSION_KEY(u"FindLocation/LeechEnabled"_s), true)
     , m_refreshInterval(BITTORRENT_SESSION_KEY(u"RefreshInterval"_s), 1500)
     , m_isPreallocationEnabled(BITTORRENT_SESSION_KEY(u"Preallocation"_s), false)
     , m_isTorrentFileBackupEnabled(BITTORRENT_SESSION_KEY(u"TorrentBackupEnabled"_s), false)
@@ -760,6 +767,15 @@ SessionImpl::SessionImpl(QObject *parent)
 
 SessionImpl::~SessionImpl()
 {
+    for (auto it = m_locationAssignments.cbegin(); it != m_locationAssignments.cend(); ++it)
+    {
+        if (!it->startMode.has_value())
+            continue;
+        if (TorrentImpl *torrent = m_torrents.value(it.key()))
+            LogMsg(tr("Find location Start cancelled. Torrent: \"%1\"").arg(torrent->name()), Log::INFO);
+    }
+    m_locationAssignments.clear();
+
     m_nativeSession->pause();
 
     const auto timeout = (m_shutdownTimeout >= 0) ? (static_cast<qint64>(m_shutdownTimeout) * 1000) : -1;
@@ -899,6 +915,11 @@ void SessionImpl::setDownloadPathEnabled(const bool enabled)
     }
 }
 
+void SessionImpl::setWatchedFolderSavePaths(const PathList &paths)
+{
+    m_watchedFolderSavePaths = paths;
+}
+
 bool SessionImpl::isAppendExtensionEnabled() const
 {
     return m_isAppendExtensionEnabled;
@@ -931,6 +952,72 @@ void SessionImpl::setUnwantedFolderEnabled(const bool enabled)
         for (TorrentImpl *const torrent : asConst(m_torrents))
             torrent->handleUnwantedFolderToggled();
     }
+}
+
+bool SessionImpl::isFindLocationEnabled() const
+{
+    return m_isFindLocationEnabled;
+}
+
+void SessionImpl::setFindLocationEnabled(const bool enabled)
+{
+    if (m_isFindLocationEnabled != enabled)
+        m_isFindLocationEnabled = enabled;
+}
+
+bool SessionImpl::isFindLocationOnAddEnabled() const
+{
+    return m_isFindLocationOnAddEnabled;
+}
+
+void SessionImpl::setFindLocationOnAddEnabled(const bool enabled)
+{
+    if (m_isFindLocationOnAddEnabled != enabled)
+        m_isFindLocationOnAddEnabled = enabled;
+}
+
+bool SessionImpl::isFindLocationOnStartEnabled() const
+{
+    return m_isFindLocationOnStartEnabled;
+}
+
+void SessionImpl::setFindLocationOnStartEnabled(const bool enabled)
+{
+    if (m_isFindLocationOnStartEnabled != enabled)
+        m_isFindLocationOnStartEnabled = enabled;
+}
+
+bool SessionImpl::isFindLocationRecheckEnabled() const
+{
+    return m_isFindLocationRecheckEnabled;
+}
+
+void SessionImpl::setFindLocationRecheckEnabled(const bool enabled)
+{
+    if (m_isFindLocationRecheckEnabled != enabled)
+        m_isFindLocationRecheckEnabled = enabled;
+}
+
+bool SessionImpl::isFindLocationSeedEnabled() const
+{
+    return m_isFindLocationSeedEnabled;
+}
+
+void SessionImpl::setFindLocationSeedEnabled(const bool enabled)
+{
+    if (m_isFindLocationSeedEnabled != enabled)
+        m_isFindLocationSeedEnabled = enabled;
+}
+
+bool SessionImpl::isFindLocationLeechEnabled() const
+{
+    return m_isFindLocationLeechEnabled;
+}
+
+void SessionImpl::setFindLocationLeechEnabled(const bool enabled)
+{
+    if (m_isFindLocationLeechEnabled != enabled)
+        m_isFindLocationLeechEnabled = enabled;
 }
 
 int SessionImpl::refreshInterval() const
@@ -2645,6 +2732,8 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
         return false;
 
     const TorrentID torrentID = torrent->id();
+    cancelFindLocationStart(torrent);
+    m_locationAssignments.remove(torrentID);
     const QString torrentName = torrent->name();
 
     qDebug("Deleting torrent with ID: %s", qUtf8Printable(torrentID.toString()));
@@ -2791,6 +2880,246 @@ void SessionImpl::bottomTorrentsQueuePos(const QList<TorrentID> &ids)
         torrentQueuePositionBottom(torrentHandle);
 
     m_torrentsQueueChanged = true;
+}
+
+void SessionImpl::findTorrentLocation(const TorrentID &id)
+{
+    TorrentImpl *const torrent = m_torrents.value(id);
+    if (!torrent || !torrent->hasMetadata())
+    {
+        emit torrentLocationFound(id, {}, false);
+        return;
+    }
+
+    searchExistingContent(torrent->savePath(), torrent->downloadPath(), torrent->filePaths(), torrent->info().name(), {})
+            .then(this, [this, id](const SearchRootsResult &result)
+    {
+        emit torrentLocationFound(id, result.savePath, ((result.matchCount > 0) || result.foundAtOwnPath));
+    });
+}
+
+void SessionImpl::assignTorrentLocation(const TorrentID &id, const Path &location)
+{
+    auto it = m_locationAssignments.find(id);
+    if (it != m_locationAssignments.end())
+    {
+        if (it->location == location)
+            return;
+        m_locationAssignments.erase(it);
+    }
+
+    TorrentImpl *const torrent = m_torrents.value(id);
+    if (!torrent || !torrent->hasMetadata() || (location == torrent->savePath()) || (location == torrent->downloadPath()))
+        return;
+
+    torrent->setAutoTMMEnabled(false);
+    torrent->setSavePath(location);
+
+    if (!isFindLocationRecheckEnabled())
+        return;
+
+    if (isTorrentStorageMoving(torrent))
+    {
+        torrent->stop();
+        m_locationAssignments.insert(id, {.location = location, .phase = LocationAssignmentPhase::WaitingForMove});
+        return;
+    }
+
+    if (torrent->actualStorageLocation() != location)
+        return;
+
+    torrent->stop();
+    m_locationAssignments.insert(id, {.location = location, .phase = LocationAssignmentPhase::WaitingForCheck});
+    forceLocationAssignmentRecheck(torrent);
+}
+
+void SessionImpl::forceLocationAssignmentRecheck(TorrentImpl *torrent)
+{
+    auto it = m_locationAssignments.find(torrent->id());
+    if (it == m_locationAssignments.end())
+        return;
+
+    it->phase = LocationAssignmentPhase::WaitingForCheck;
+    it->startPass = LocationStartPass::Recheck;
+    torrent->forceRecheck();
+}
+
+bool SessionImpl::isTorrentStorageMoving(const TorrentImpl *torrent) const
+{
+    const lt::torrent_handle torrentHandle = torrent->nativeHandle();
+    return std::ranges::any_of(m_moveStorageQueue, [&torrentHandle](const MoveStorageJob &job)
+    {
+        return job.torrentHandle == torrentHandle;
+    });
+}
+
+void SessionImpl::searchStartedTorrentLocation(TorrentImpl *torrent, const quint64 token)
+{
+    const TorrentID id = torrent->id();
+    searchExistingContent(torrent->savePath(), torrent->downloadPath(), torrent->filePaths(), torrent->info().name(), {})
+            .then(this, [this, id, token](const SearchRootsResult &result)
+    {
+        TorrentImpl *const currentTorrent = m_torrents.value(id);
+        if (!currentTorrent)
+            return;
+        auto it = m_locationAssignments.find(id);
+        if (it == m_locationAssignments.end() || (it->token != token)
+                || (it->phase != LocationAssignmentPhase::Searching) || !it->startMode.has_value())
+            return;
+
+        const bool found = result.foundAtOwnPath || (result.matchCount > 0);
+        if (!found)
+        {
+            releaseFindLocationStart(currentTorrent, false);
+            return;
+        }
+
+        it->location = result.savePath;
+        assignStartedTorrentLocation(currentTorrent, result.savePath);
+    }).onFailed(this, [this, id, token]()
+    {
+        TorrentImpl *const currentTorrent = m_torrents.value(id);
+        if (!currentTorrent)
+            return;
+        auto it = m_locationAssignments.find(id);
+        if (it == m_locationAssignments.end() || (it->token != token)
+                || (it->phase != LocationAssignmentPhase::Searching) || !it->startMode.has_value())
+            return;
+
+        failFindLocationStart(currentTorrent, u"search"_s, tr("the asynchronous search did not complete"));
+    });
+}
+
+void SessionImpl::assignStartedTorrentLocation(TorrentImpl *torrent, const Path &location)
+{
+    if (torrent->actualStorageLocation() == location)
+    {
+        forceLocationAssignmentRecheck(torrent);
+        return;
+    }
+
+    torrent->setAutoTMMEnabled(false);
+    if (location != torrent->savePath())
+        torrent->setSavePath(location);
+
+    if (!torrent->isFinished() && !torrent->downloadPath().isEmpty() && (torrent->actualStorageLocation() != location))
+        torrent->setDownloadPath({});
+
+    auto it = m_locationAssignments.find(torrent->id());
+    if (it == m_locationAssignments.end())
+        return;
+
+    if (isTorrentStorageMoving(torrent))
+    {
+        it->phase = LocationAssignmentPhase::WaitingForMove;
+        return;
+    }
+
+    if (torrent->actualStorageLocation() == location)
+        forceLocationAssignmentRecheck(torrent);
+    else
+        failFindLocationStart(torrent, u"assignment"_s, tr("the selected location did not become the torrent's storage location"));
+}
+
+void SessionImpl::releaseFindLocationStart(TorrentImpl *torrent, const bool matched)
+{
+    auto it = m_locationAssignments.find(torrent->id());
+    if (it == m_locationAssignments.end() || !it->startMode.has_value())
+        return;
+
+    const TorrentOperatingMode copiedMode = *it->startMode;
+    it->startPass = LocationStartPass::Terminal;
+
+    if (matched)
+    {
+        LogMsg(tr("Find location Start continued after a match. Torrent: \"%1\". Location: \"%2\"")
+                .arg(torrent->name(), it->location.toString()), Log::INFO);
+    }
+    else
+    {
+        LogMsg(tr("Find location Start continued after no match. Torrent: \"%1\"").arg(torrent->name()), Log::INFO);
+    }
+
+    torrent->start(copiedMode);
+}
+
+void SessionImpl::cancelFindLocationStart(TorrentImpl *torrent)
+{
+    auto it = m_locationAssignments.find(torrent->id());
+    if (it == m_locationAssignments.end() || !it->startMode.has_value())
+        return;
+
+    m_locationAssignments.erase(it);
+    LogMsg(tr("Find location Start cancelled. Torrent: \"%1\"").arg(torrent->name()), Log::INFO);
+}
+
+void SessionImpl::failFindLocationStart(TorrentImpl *torrent, const QString &phase, const QString &reason)
+{
+    auto it = m_locationAssignments.find(torrent->id());
+    if (it == m_locationAssignments.end())
+        return;
+
+    if (!it->startMode.has_value())
+    {
+        m_locationAssignments.erase(it);
+        return;
+    }
+
+    m_locationAssignments.erase(it);
+    LogMsg(tr("Find location Start failed. Torrent: \"%1\". Phase: %2. Reason: \"%3\"")
+            .arg(torrent->name(), phase, reason), Log::WARNING);
+    torrent->stop();
+}
+
+bool SessionImpl::interceptFindLocationStart(TorrentImpl *torrent, const TorrentOperatingMode mode)
+{
+    const TorrentID id = torrent->id();
+    auto it = m_locationAssignments.find(id);
+
+    if (it != m_locationAssignments.end() && (it->startPass != LocationStartPass::None))
+    {
+        const LocationStartPass pass = it->startPass;
+        it->startPass = LocationStartPass::None;
+        if (pass == LocationStartPass::Terminal)
+            m_locationAssignments.erase(it);
+        return false;
+    }
+
+    if (it != m_locationAssignments.end() && it->startMode.has_value())
+    {
+        it->startMode = mode;
+        return true;
+    }
+
+    if (!isFindLocationEnabled() || !isFindLocationOnStartEnabled()
+            || !torrent->isStopped() || torrent->isAutoTMMEnabled() || torrent->isChecking())
+    {
+        return false;
+    }
+
+    if (it != m_locationAssignments.end())
+    {
+        it->startMode = mode;
+        return true;
+    }
+
+    const quint64 token = ++m_nextLocationAssignmentToken;
+    it = m_locationAssignments.insert(id, {.startMode = mode, .token = token});
+
+    if (torrent->hasMetadata())
+    {
+        it->phase = LocationAssignmentPhase::Searching;
+        searchStartedTorrentLocation(torrent, token);
+    }
+    else
+    {
+        it->phase = LocationAssignmentPhase::WaitingForMetadata;
+        it->startPass = LocationStartPass::MetadataOnly;
+        torrent->start(mode);
+        torrent->setStopCondition(Torrent::StopCondition::MetadataReceived);
+    }
+
+    return true;
 }
 
 void SessionImpl::handleTorrentResumeDataRequested(const TorrentImpl *torrent)
@@ -3117,7 +3446,14 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
 
         const Path actualDownloadPath = loadTorrentParams.useAutoTMM
                 ? categoryDownloadPath(loadTorrentParams.category) : loadTorrentParams.downloadPath;
-        return findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths);
+        if (loadTorrentParams.useAutoTMM)
+            return findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths);
+
+        const QString source = torrentDescr.source();
+        const Path sourcePath {source};
+        const QString sourceFileName = (!source.startsWith(u"magnet:"_s, Qt::CaseInsensitive) && sourcePath.hasExtension(TORRENT_FILE_EXTENSION))
+                ? sourcePath.filename() : QString();
+        return findExistingContent(actualSavePath, actualDownloadPath, filePaths, torrentDescr.info()->name(), sourceFileName);
     };
 
     resolveFileNames().then(this
@@ -3126,6 +3462,11 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
         lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
 
         p.save_path = result.savePath.toString().toStdString();
+        if (!loadTorrentParams.useAutoTMM && (result.savePath != loadTorrentParams.savePath) && (result.savePath != loadTorrentParams.downloadPath))
+        {
+            loadTorrentParams.savePath = result.savePath;
+            loadTorrentParams.downloadPath = Path();
+        }
         if (p.ti)
         {
             const TorrentInfo torrentInfo {*p.ti};
@@ -3188,6 +3529,68 @@ QFuture<FileSearchResult> SessionImpl::findIncompleteFiles(const Path &savePath,
     });
 
     return future;
+}
+
+QFuture<FileSearchResult> SessionImpl::findExistingContent(const Path &torrentSavePath, const Path &torrentDownloadPath, const PathList &filePaths, const QString &torrentName, const QString &sourceFileName)
+{
+    if (!isFindLocationEnabled() || !isFindLocationOnAddEnabled())
+        return findIncompleteFiles(torrentSavePath, torrentDownloadPath, filePaths);
+
+    return searchExistingContent(torrentSavePath, torrentDownloadPath, filePaths, torrentName, sourceFileName).then(this, [](const SearchRootsResult &result)
+    {
+        return FileSearchResult {.savePath = result.savePath, .fileNames = result.fileNames};
+    });
+}
+
+QFuture<SearchRootsResult> SessionImpl::searchExistingContent(const Path &torrentSavePath, const Path &torrentDownloadPath, const PathList &filePaths, const QString &torrentName, const QString &sourceFileName)
+{
+    const QString nameFormName = ((filePaths.size() == 1) && Path::findRootFolder(filePaths).isEmpty())
+            ? filePaths.at(0).removedExtension().toString() : torrentName;
+
+    PathList searchRoots;
+    for (const Path &entry : m_watchedFolderSavePaths)
+    {
+        if (!entry.isEmpty() && entry.isRelative())
+            searchRoots.append(savePath() / entry);
+        else
+            searchRoots.append(entry);
+    }
+
+    const PathList candidates = candidateRoots(torrentSavePath, torrentDownloadPath, searchRoots, savePath(), nameFormName, sourceFileName);
+
+    const bool appendExtension = isAppendExtensionEnabled();
+    QPromise<SearchRootsResult> promise;
+    QFuture<SearchRootsResult> future = promise.future();
+    promise.start();
+    QMetaObject::invokeMethod(m_fileSearcher, [=, this, promise = std::move(promise)]() mutable
+    {
+        m_fileSearcher->searchRoots(filePaths, torrentSavePath, torrentDownloadPath, candidates, appendExtension, promise);
+        promise.finish();
+    });
+
+    return future.then(this, [this, searchRoots, defaultSavePath = savePath(), nameFormName, torrentName, sourceFileName](const SearchRootsResult &result)
+    {
+        if (!result.foundAtOwnPath && (result.matchCount > 0))
+        {
+            Path root;
+            for (const Path &entry : searchRoots)
+            {
+                if (candidateRoots({}, {}, {entry}, defaultSavePath, nameFormName, sourceFileName).contains(result.savePath))
+                {
+                    root = entry.isEmpty() ? defaultSavePath : entry;
+                    break;
+                }
+            }
+            LogMsg(tr("Found existing torrent content. Torrent: \"%1\". Location: \"%2\". Found in: %3. Files found: %4")
+                    .arg(torrentName, result.savePath.toString(), tr("watched folder save path \"%1\"").arg(root.toString()), QString::number(result.matchCount)), Log::INFO);
+        }
+        else if ((result.matchCount == 0) && result.searchedCandidates)
+        {
+            LogMsg(tr("Existing torrent content not found. Torrent: \"%1\". Location: \"%2\"").arg(torrentName, result.savePath.toString()), Log::INFO);
+        }
+
+        return result;
+    });
 }
 
 void SessionImpl::enablePortMapping()
@@ -5610,6 +6013,13 @@ void SessionImpl::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 {
     emit torrentMetadataReceived(torrent);
 
+    if (const auto it = m_locationAssignments.find(torrent->id());
+            it != m_locationAssignments.end() && (it->phase == LocationAssignmentPhase::WaitingForMetadata) && it->startMode.has_value())
+    {
+        it->phase = LocationAssignmentPhase::Searching;
+        searchStartedTorrentLocation(torrent, it->token);
+    }
+
     if (!isTorrentFileBackupEnabled() || torrent->infoHash().v2().isValid())
         return;
 
@@ -5642,6 +6052,47 @@ void SessionImpl::handleTorrentStarted(TorrentImpl *const torrent)
 
 void SessionImpl::handleTorrentChecked(TorrentImpl *const torrent)
 {
+    if (const auto it = m_locationAssignments.find(torrent->id());
+            it != m_locationAssignments.end() && (it->phase == LocationAssignmentPhase::WaitingForCheck) && torrent->isStopped())
+    {
+        const Path &location = it->location;
+        const bool hasStartIntent = it->startMode.has_value();
+        const bool locationMismatch = isTorrentStorageMoving(torrent) || (torrent->actualStorageLocation() != location);
+
+        if (torrent->hasError())
+        {
+            if (hasStartIntent)
+                failFindLocationStart(torrent, u"recheck"_s, torrent->error());
+            else
+                m_locationAssignments.erase(it);
+        }
+        else if (locationMismatch)
+        {
+            if (hasStartIntent)
+                failFindLocationStart(torrent, u"recheck"_s, tr("the completed check did not report the selected location"));
+            else
+                m_locationAssignments.erase(it);
+        }
+        else if (hasStartIntent)
+        {
+            releaseFindLocationStart(torrent, true);
+        }
+        else
+        {
+            const bool canSeed = torrent->isFinished() && isFindLocationSeedEnabled();
+            const bool canLeech = !torrent->isFinished() && isFindLocationLeechEnabled();
+            if (canSeed || canLeech)
+            {
+                it->startPass = LocationStartPass::Terminal;
+                torrent->start(TorrentOperatingMode::AutoManaged);
+            }
+            else
+            {
+                m_locationAssignments.erase(it);
+            }
+        }
+    }
+
     emit torrentFinishedChecking(torrent);
 }
 
@@ -5708,6 +6159,9 @@ void SessionImpl::handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoH
     {
         m_torrents[torrent->id()] = m_torrents.take(prevID);
         m_changedTorrentIDs[torrent->id()] = prevID;
+
+        if (m_locationAssignments.contains(prevID))
+            m_locationAssignments.insert(currentID, m_locationAssignments.take(prevID));
     }
 }
 
@@ -5731,6 +6185,17 @@ void SessionImpl::handleTorrentContentFolderRenamingFailed(TorrentImpl *torrent,
 void SessionImpl::handleTorrentStorageMovingStateChanged(TorrentImpl *torrent)
 {
     emit torrentsUpdated({torrent});
+
+    if (const auto it = m_locationAssignments.find(torrent->id());
+            it != m_locationAssignments.end() && (it->phase == LocationAssignmentPhase::WaitingForMove) && !isTorrentStorageMoving(torrent))
+    {
+        if (torrent->actualStorageLocation() == it->location)
+            forceLocationAssignmentRecheck(torrent);
+        else if (it->startMode.has_value())
+            failFindLocationStart(torrent, u"movement"_s, tr("the storage move did not reach the selected location"));
+        else
+            m_locationAssignments.erase(it);
+    }
 }
 
 bool SessionImpl::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, const MoveStorageMode mode, const MoveStorageContext context)
@@ -6386,19 +6851,26 @@ void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *alert)
 
     torrent->handleFileError({.error = alert->error, .operation = alert->op});
 
+    const QString errorMessage = QString::fromStdString(alert->message());
+
     const TorrentID id = torrent->id();
     if (!m_recentErroredTorrents.contains(id))
     {
         m_recentErroredTorrents.insert(id);
 
-        const QString msg = QString::fromStdString(alert->message());
         LogMsg(tr("File error alert. Torrent: \"%1\". File: \"%2\". Reason: \"%3\"")
-                .arg(torrent->name(), QString::fromUtf8(alert->filename()), msg)
+                .arg(torrent->name(), QString::fromUtf8(alert->filename()), errorMessage)
             , Log::WARNING);
-        emit torrentIOError(torrent, msg);
+        emit torrentIOError(torrent, errorMessage);
     }
 
     m_recentErroredTorrentsTimer->start();
+
+    if (const auto it = m_locationAssignments.find(torrent->id());
+            it != m_locationAssignments.end() && (it->phase == LocationAssignmentPhase::WaitingForCheck) && it->startMode.has_value())
+    {
+        failFindLocationStart(torrent, u"recheck"_s, errorMessage);
+    }
 }
 
 void SessionImpl::handlePortmapWarningAlert(const lt::portmap_error_alert *alert)
@@ -6706,6 +7178,15 @@ void SessionImpl::handleStorageMovedFailedAlert(const lt::storage_moved_failed_a
     LogMsg(tr("Failed to move torrent. Torrent: \"%1\". Source: \"%2\". Destination: \"%3\". Reason: \"%4\"")
            .arg(torrentName, currentLocation.toString(), currentJob.path.toString(), errorMessage), Log::WARNING);
 
+    if (torrent)
+    {
+        if (const auto it = m_locationAssignments.find(torrent->id());
+                it != m_locationAssignments.end() && (it->phase == LocationAssignmentPhase::WaitingForMove) && it->startMode.has_value())
+        {
+            failFindLocationStart(torrent, u"movement"_s, errorMessage);
+        }
+    }
+
     handleMoveTorrentStorageJobFinished(currentLocation);
 }
 
@@ -6886,12 +7367,20 @@ void SessionImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_fai
 
     if (alert->error != lt::errors::resume_data_not_modified)
     {
-        LogMsg(tr("Generate resume data failed. Torrent: \"%1\". Reason: \"%2\"")
+        const QString errorMessage =
 #if LIBTORRENT_VERSION_NUM >= 20100
-                .arg(torrent->name(), QString::fromStdString(alert->error.message())), Log::CRITICAL);
+                QString::fromStdString(alert->error.message());
 #else
-                .arg(torrent->name(), Utils::String::fromLocal8Bit(alert->error.message())), Log::CRITICAL);
+                Utils::String::fromLocal8Bit(alert->error.message());
 #endif
+        LogMsg(tr("Generate resume data failed. Torrent: \"%1\". Reason: \"%2\"")
+                .arg(torrent->name(), errorMessage), Log::CRITICAL);
+
+        if (const auto it = m_locationAssignments.find(torrent->id());
+                it != m_locationAssignments.end() && (it->phase == LocationAssignmentPhase::WaitingForMetadata) && it->startMode.has_value())
+        {
+            failFindLocationStart(torrent, u"metadata"_s, errorMessage);
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026 Tim Sylvester <t.j.sylvester@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,41 +28,31 @@
 
 #pragma once
 
-#include <QObject>
-#include <QString>
+#include <QDialog>
+#include <QList>
 
-#include "base/path.h"
+#include "base/bittorrent/infohash.h"
 
-template <typename T> class QPromise;
-
-struct FileSearchResult
+namespace Ui
 {
-    Path savePath;
-    PathList fileNames;
-};
+    class UnmatchedTorrentsDialog;
+}
 
-struct SearchRootsResult
-{
-    Path savePath;
-    PathList fileNames;
-    qsizetype matchCount = 0;
-    bool searchedCandidates = false;
-    bool foundAtOwnPath = false;
-};
-
-class FileSearcher final : public QObject
+class UnmatchedTorrentsDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(FileSearcher)
+    Q_DISABLE_COPY_MOVE(UnmatchedTorrentsDialog)
 
 public:
-    using QObject::QObject;
+    explicit UnmatchedTorrentsDialog(QWidget *parent, const QList<BitTorrent::TorrentID> &torrentIDs);
+    ~UnmatchedTorrentsDialog() override;
 
-    void search(const PathList &originalFileNames, const Path &savePath
-            , const Path &downloadPath, bool forceAppendExt, QPromise<FileSearchResult> &promise);
-    void searchRoots(const PathList &originalFileNames, const Path &savePath
-            , const Path &downloadPath, const PathList &candidates, bool forceAppendExt, QPromise<SearchRootsResult> &promise);
+    bool isEmpty() const;
+
+private:
+    void setCurrentTorrentLocation();
+    void removeTorrent(const BitTorrent::TorrentID &id);
+
+    Ui::UnmatchedTorrentsDialog *m_ui = nullptr;
+    QList<BitTorrent::TorrentID> m_torrentIDs;
 };
-
-PathList candidateRoots(const Path &savePath, const Path &downloadPath, const PathList &searchRoots
-        , const Path &defaultSavePath, const QString &torrentName, const QString &sourceFileName);

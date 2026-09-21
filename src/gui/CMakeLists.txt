@@ -36,6 +36,7 @@ qt_wrap_ui(UI_HEADERS
     trackerentriesdialog.ui
     trackersadditiondialog.ui
     uithemedialog.ui
+    unmatchedtorrentsdialog.ui
     watchedfolderoptionsdialog.ui
 )
 
@@ -145,6 +146,7 @@ add_library(qbt_gui STATIC
     uithemedialog.h
     uithememanager.h
     uithemesource.h
+    unmatchedtorrentsdialog.h
     utils.h
     utils/keysequence.h
     watchedfolderoptionsdialog.h
@@ -249,6 +251,7 @@ add_library(qbt_gui STATIC
     uithemedialog.cpp
     uithememanager.cpp
     uithemesource.cpp
+    unmatchedtorrentsdialog.cpp
     utils.cpp
     utils/keysequence.cpp
     watchedfolderoptionsdialog.cpp

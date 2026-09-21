@@ -44,7 +44,7 @@
                     return;
                 }
 
-                fetch("api/v2/torrents/setLocation", {
+                fetch(((searchParams.get("assign") === "true") ? "api/v2/torrents/assignLocation" : "api/v2/torrents/setLocation"), {
                         method: "POST",
                         body: new URLSearchParams({
                             hashes: searchParams.get("hashes"),

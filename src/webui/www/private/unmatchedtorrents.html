@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="${LANG}" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QBT_TR(Find location)QBT_TR[CONTEXT=UnmatchedTorrentsDialog]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
+    <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
+    <script defer src="scripts/pathAutofill.js?v=${CACHEID}"></script>
+    <script>
+        "use strict";
+
+        window.addEventListener("DOMContentLoaded", (event) => {
+            const unmatchedTorrents = document.getElementById("unmatchedTorrents");
+            const unmatchedLocation = document.getElementById("unmatchedLocation");
+            const setLocationButton = document.getElementById("setLocationButton");
+
+            const selectFirstOption = () => {
+                unmatchedTorrents.selectedIndex = 0;
+                unmatchedLocation.value = unmatchedTorrents.selectedOptions[0].dataset.savePath;
+            };
+
+            window.addEventListener("keydown", (event) => {
+                switch (event.key) {
+                    case "Enter":
+                        if (event.target.type === "button")
+                            break;
+                        event.preventDefault();
+                        setLocationButton.click();
+                        break;
+                    case "Escape":
+                        event.preventDefault();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                        break;
+                }
+            });
+
+            const searchParams = new URLSearchParams(window.location.search);
+            const hashes = searchParams.get("hashes");
+
+            fetch(`api/v2/torrents/info?${new URLSearchParams({ hashes: hashes })}`, {
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok)
+                        return;
+
+                    const torrents = await response.json();
+                    for (const torrent of torrents) {
+                        const option = document.createElement("option");
+                        option.value = torrent.hash;
+                        option.textContent = torrent.name;
+                        option.dataset.savePath = torrent.save_path;
+                        unmatchedTorrents.appendChild(option);
+                    }
+
+                    if (unmatchedTorrents.options.length === 0) {
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                        return;
+                    }
+
+                    selectFirstOption();
+                });
+
+            unmatchedTorrents.addEventListener("change", (event) => {
+                unmatchedLocation.value = unmatchedTorrents.selectedOptions[0].dataset.savePath;
+                document.getElementById("error_div").textContent = "";
+            });
+
+            setLocationButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const option = unmatchedTorrents.selectedOptions[0];
+                if (!option)
+                    return;
+
+                const location = unmatchedLocation.value.trim();
+                if (location === "") {
+                    document.getElementById("error_div").textContent = "QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]";
+                    return;
+                }
+
+                fetch("api/v2/torrents/assignLocation", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            hashes: option.value,
+                            location: location
+                        })
+                    })
+                    .then(async (response) => {
+                        if (!response.ok) {
+                            document.getElementById("error_div").textContent = await response.text();
+                            return;
+                        }
+
+                        option.remove();
+                        document.getElementById("error_div").textContent = "";
+
+                        if (unmatchedTorrents.options.length === 0) {
+                            window.parent.qBittorrent.Client.closeFrameWindow(window);
+                            return;
+                        }
+
+                        selectFirstOption();
+                    });
+            });
+
+            document.getElementById("closeButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
+            });
+
+            window.qBittorrent.pathAutofill.attachPathAutofill();
+        });
+    </script>
+</head>
+
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <p id="unmatchedLabel">QBT_TR(No existing content was found for these torrents. Set a location for each, or close to leave them where they are.)QBT_TR[CONTEXT=UnmatchedTorrentsDialog]</p>
+        <select id="unmatchedTorrents" size="6" style="width: 99%;" aria-labelledby="unmatchedLabel"></select>
+        <label for="unmatchedLocation" style="font-weight: bold;">QBT_TR(Location:)QBT_TR[CONTEXT=TransferListWidget]</label>
+        <input type="text" id="unmatchedLocation" class="pathDirectory" autocorrect="off" autocapitalize="none" style="width: 99%;">
+        <div style="float: none; width: 99%;" id="error_div">&nbsp;</div>
+        <div style="text-align: center; padding-top: 10px;">
+            <input type="button" value="QBT_TR(Set location...)QBT_TR[CONTEXT=UnmatchedTorrentsDialog]" id="setLocationButton">
+            <input type="button" value="QBT_TR(Close)QBT_TR[CONTEXT=UnmatchedTorrentsDialog]" id="closeButton">
+        </div>
+    </div>
+</body>
+
+</html>

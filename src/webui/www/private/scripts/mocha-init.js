@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Tim Sylvester <t.j.sylvester@gmail.com>
  * Copyright (C) 2008  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -130,6 +131,7 @@ let autoTorrentManagementFN = () => {};
 let recheckFN = () => {};
 let reannounceFN = () => {};
 let setLocationFN = () => {};
+let findLocationFN = () => {};
 let renameFN = () => {};
 let renameFilesFN = () => {};
 let startVisibleTorrentsFN = () => {};
@@ -700,17 +702,16 @@ const initializeWindows = () => {
         }
     };
 
-    setLocationFN = () => {
-        const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length <= 0)
-            return;
-
+    const openSetLocationWindow = (hashes, assign) => {
         const contentURL = new URL("setlocation.html", window.location);
-        contentURL.search = new URLSearchParams({
+        const searchParams = new URLSearchParams({
             v: "${CACHEID}",
             hashes: hashes.join("|"),
             path: encodeURIComponent(torrentsTable.getRow(hashes[0]).full_data.save_path)
         });
+        if (assign)
+            searchParams.set("assign", "true");
+        contentURL.search = searchParams;
         new MochaUI.Window({
             id: "setLocationPage",
             icon: "images/qbittorrent-tray.svg",
@@ -725,6 +726,79 @@ const initializeWindows = () => {
             width: window.qBittorrent.Dialog.limitWidthToViewport(400),
             height: 130
         });
+    };
+
+    setLocationFN = () => {
+        const hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length <= 0)
+            return;
+
+        openSetLocationWindow(hashes, false);
+    };
+
+    let findLocationPollTimer = 0;
+
+    const scheduleFindLocationPoll = () => {
+        findLocationPollTimer = setTimeout(() => {
+            fetch("api/v2/torrents/findLocation", {
+                    method: "POST"
+                })
+                .then(handleFindLocationResponse, scheduleFindLocationPoll);
+        }, 1000);
+    };
+
+    const handleFindLocationResponse = async (response) => {
+        if (!response.ok) {
+            alert(await response.text());
+            return;
+        }
+
+        if (response.status === 202) {
+            scheduleFindLocationPoll();
+            return;
+        }
+
+        const unmatched = (await response.json()).unmatched;
+        if (unmatched.length === 1) {
+            openSetLocationWindow(unmatched, true);
+        }
+        else if (unmatched.length > 1) {
+            const contentURL = new URL("unmatchedtorrents.html", window.location);
+            contentURL.search = new URLSearchParams({
+                v: "${CACHEID}",
+                hashes: unmatched.join("|")
+            });
+            new MochaUI.Window({
+                id: "unmatchedTorrentsPage",
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Find location)QBT_TR[CONTEXT=UnmatchedTorrentsDialog]",
+                loadMethod: "iframe",
+                contentURL: contentURL.toString(),
+                scrollbars: false,
+                resizable: true,
+                maximizable: false,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(480),
+                height: 320
+            });
+        }
+    };
+
+    findLocationFN = () => {
+        const hashes = torrentsTable.selectedRowsIds()
+            .filter((id) => torrentsTable.getRow(id).full_data.has_metadata === true);
+        if (hashes.length <= 0)
+            return;
+
+        clearTimeout(findLocationPollTimer);
+        fetch("api/v2/torrents/findLocation", {
+                method: "POST",
+                body: new URLSearchParams({
+                    hashes: hashes.join("|")
+                })
+            })
+            .then(handleFindLocationResponse, scheduleFindLocationPoll);
     };
 
     renameFN = () => {

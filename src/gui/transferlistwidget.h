@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Tim Sylvester <t.j.sylvester@gmail.com>
  * Copyright (C) 2023-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -32,6 +33,7 @@
 #include <functional>
 
 #include <QtContainerFwd>
+#include <QHash>
 #include <QTreeView>
 
 #include "base/bittorrent/infohash.h"
@@ -68,6 +70,7 @@ public slots:
     void removeSelectionTag(const Tag &tag);
     void clearSelectionTags();
     void setSelectedTorrentsLocation();
+    void findSelectedTorrentsLocation();
     void pauseSession();
     void resumeSession();
     void startSelectedTorrents();
@@ -122,6 +125,8 @@ private slots:
     void saveSettings();
 
 private:
+    enum class FindLocationState { Pending, Matched, Unmatched };
+
     void dragEnterEvent(QDragEnterEvent *event) override;
     void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
@@ -136,6 +141,8 @@ private:
     void editTorrentTrackers();
     void manageTorrentContent();
     void exportTorrent();
+    void handleTorrentLocationFound(const BitTorrent::TorrentID &id, const Path &location, bool found);
+    void askTorrentLocation(const BitTorrent::TorrentID &id);
     void confirmRemoveAllTagsForSelection();
     TagSet askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
@@ -144,4 +151,5 @@ private:
 
     TransferListModel *m_listModel = nullptr;
     TransferListSortModel *m_sortFilterModel = nullptr;
+    QHash<BitTorrent::TorrentID, FindLocationState> m_findLocationOperation;
 };

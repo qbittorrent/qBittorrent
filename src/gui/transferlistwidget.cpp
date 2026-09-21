@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Tim Sylvester <t.j.sylvester@gmail.com>
  * Copyright (C) 2023-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -72,6 +73,7 @@
 #include "transferlistsortmodel.h"
 #include "tristateaction.h"
 #include "uithememanager.h"
+#include "unmatchedtorrentsdialog.h"
 #include "utils.h"
 #include "utils/keysequence.h"
 
@@ -214,6 +216,7 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     connect(header(), &QHeaderView::sectionMoved, this, &TransferListWidget::saveSettings);
     connect(header(), &QHeaderView::sectionResized, this, &TransferListWidget::saveSettings);
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &TransferListWidget::saveSettings);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentLocationFound, this, &TransferListWidget::handleTorrentLocationFound);
 
     const auto *editHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(editHotkey, &QShortcut::activated, this, &TransferListWidget::renameSelectedTorrent);
@@ -366,6 +369,97 @@ void TransferListWidget::setSelectedTorrentsLocation()
             torrent->setAutoTMMEnabled(false);
             torrent->setSavePath(newLocation);
         }
+    });
+
+    fileDialog->open();
+}
+
+void TransferListWidget::findSelectedTorrentsLocation()
+{
+    QList<BitTorrent::TorrentID> submitted;
+    for (BitTorrent::Torrent *const torrent : getSelectedTorrents())
+    {
+        if (!torrent->hasMetadata())
+            continue;
+        const BitTorrent::TorrentID id = torrent->id();
+        if (m_findLocationOperation.contains(id))
+            continue;
+        m_findLocationOperation.insert(id, FindLocationState::Pending);
+        submitted.append(id);
+    }
+
+    for (const BitTorrent::TorrentID &id : submitted)
+        BitTorrent::Session::instance()->findTorrentLocation(id);
+}
+
+void TransferListWidget::handleTorrentLocationFound(const BitTorrent::TorrentID &id, const Path &location, const bool found)
+{
+    const auto it = m_findLocationOperation.find(id);
+    if ((it == m_findLocationOperation.end()) || (*it != FindLocationState::Pending))
+        return;
+
+    if (found)
+    {
+        *it = FindLocationState::Matched;
+        BitTorrent::Session::instance()->assignTorrentLocation(id, location);
+    }
+    else
+    {
+        *it = FindLocationState::Unmatched;
+    }
+
+    for (const auto &state : m_findLocationOperation)
+    {
+        if (state == FindLocationState::Pending)
+            return;
+    }
+
+    QList<BitTorrent::TorrentID> unmatched;
+    for (auto itState = m_findLocationOperation.constBegin(); itState != m_findLocationOperation.constEnd(); ++itState)
+    {
+        if (itState.value() != FindLocationState::Unmatched)
+            continue;
+        if (BitTorrent::Session::instance()->getTorrent(itState.key()))
+            unmatched.append(itState.key());
+    }
+    m_findLocationOperation.clear();
+
+    if (unmatched.isEmpty())
+        return;
+
+    if (unmatched.size() == 1)
+    {
+        askTorrentLocation(unmatched.first());
+        return;
+    }
+
+    auto *dialog = new UnmatchedTorrentsDialog(this, unmatched);
+    if (dialog->isEmpty())
+    {
+        delete dialog;
+        return;
+    }
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->open();
+}
+
+void TransferListWidget::askTorrentLocation(const BitTorrent::TorrentID &id)
+{
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        return;
+
+    auto *fileDialog = new QFileDialog(this, tr("Choose save path"), torrent->savePath().data());
+    fileDialog->setAttribute(Qt::WA_DeleteOnClose);
+    fileDialog->setFileMode(QFileDialog::Directory);
+    fileDialog->setOptions(QFileDialog::DontConfirmOverwrite | QFileDialog::ShowDirsOnly | QFileDialog::HideNameFilterDetails);
+    connect(fileDialog, &QDialog::accepted, this, [this, fileDialog, id]()
+    {
+        const Path newLocation {fileDialog->selectedFiles().constFirst()};
+        if (!newLocation.exists())
+            return;
+
+        BitTorrent::Session::instance()->assignTorrentLocation(id, newLocation);
     });
 
     fileDialog->open();
@@ -1023,6 +1117,8 @@ void TransferListWidget::displayListMenu()
     connect(actionBottomQueuePos, &QAction::triggered, this, &TransferListWidget::bottomQueuePosSelectedTorrents);
     auto *actionSetTorrentPath = new QAction(UIThemeManager::instance()->getIcon(u"set-location"_s, u"inode-directory"_s), tr("Set loc&ation..."), listMenu);
     connect(actionSetTorrentPath, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsLocation);
+    auto *actionFindLocation = new QAction(UIThemeManager::instance()->getIcon(u"edit-find"_s), tr("F&ind location"), listMenu);
+    connect(actionFindLocation, &QAction::triggered, this, &TransferListWidget::findSelectedTorrentsLocation);
     auto *actionForceRecheck = new QAction(UIThemeManager::instance()->getIcon(u"force-recheck"_s, u"document-edit-verify"_s), tr("Force rec&heck"), listMenu);
     connect(actionForceRecheck, &QAction::triggered, this, &TransferListWidget::recheckSelectedTorrents);
     auto *actionForceReannounce = new QAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"document-edit-verify"_s), tr("Force r&eannounce"), listMenu);
@@ -1192,6 +1288,8 @@ void TransferListWidget::displayListMenu()
     listMenu->addAction(actionDelete);
     listMenu->addSeparator();
     listMenu->addAction(actionSetTorrentPath);
+    if (oneHasMetadata && BitTorrent::Session::instance()->isFindLocationEnabled())
+        listMenu->addAction(actionFindLocation);
     if (selectedIndexes.size() == 1)
     {
         listMenu->addAction(actionRename);

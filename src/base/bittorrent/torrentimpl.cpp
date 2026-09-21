@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026 Tim Sylvester <t.j.sylvester@gmail.com>
  * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -2013,6 +2014,14 @@ void TorrentImpl::reload()
 
 void TorrentImpl::stop()
 {
+    stop(true);
+}
+
+void TorrentImpl::stop(const bool cancelPendingFindLocationStart)
+{
+    if (cancelPendingFindLocationStart)
+        m_session->cancelFindLocationStart(this);
+
     if (!m_isStopped)
     {
         m_stopCondition = StopCondition::None;
@@ -2039,6 +2048,9 @@ void TorrentImpl::start(const TorrentOperatingMode mode)
     }
 
     m_operatingMode = mode;
+
+    if (m_session->interceptFindLocationStart(this, mode))
+        return;
 
     if (m_hasMissingFiles)
     {
@@ -2156,7 +2168,7 @@ void TorrentImpl::handleTorrentChecked()
     }
 
     if (stopCondition() == StopCondition::FilesChecked)
-        stop();
+        stop(false);
 
     m_statusUpdatedTriggers.enqueue([this]()
     {
@@ -2273,11 +2285,19 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
                 filePaths[i] = Path(it->second);
         }
 
-        m_session->findIncompleteFiles(savePath(), downloadPath(), filePaths).then(this
+        (isAutoTMMEnabled() ? m_session->findIncompleteFiles(savePath(), downloadPath(), filePaths)
+                : m_session->findExistingContent(savePath(), downloadPath(), filePaths, metadata.name(), {})).then(this
                 , [this](const FileSearchResult &result)
         {
             if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
+            {
+                if (!isAutoTMMEnabled() && (result.savePath != savePath()) && (result.savePath != downloadPath()))
+                {
+                    m_downloadPath = Path();
+                    setSavePath(result.savePath);
+                }
                 endReceivedMetadataHandling(result.savePath, result.fileNames);
+            }
         });
     }
     else

@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026 Tim Sylvester <t.j.sylvester@gmail.com>
  * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -72,6 +73,7 @@ class KeyValueDataStorage;
 class NativeSessionExtension;
 
 struct FileSearchResult;
+struct SearchRootsResult;
 
 namespace BitTorrent
 {
@@ -153,6 +155,7 @@ namespace BitTorrent
         void setDownloadPath(const Path &path) override;
         bool isDownloadPathEnabled() const override;
         void setDownloadPathEnabled(bool enabled) override;
+        void setWatchedFolderSavePaths(const PathList &paths) override;
 
         QStringList categories() const override;
         CategoryOptions categoryOptions(const QString &categoryName) const override;
@@ -211,6 +214,18 @@ namespace BitTorrent
         void setAppendExtensionEnabled(bool enabled) override;
         bool isUnwantedFolderEnabled() const override;
         void setUnwantedFolderEnabled(bool enabled) override;
+        bool isFindLocationEnabled() const override;
+        void setFindLocationEnabled(bool enabled) override;
+        bool isFindLocationOnAddEnabled() const override;
+        void setFindLocationOnAddEnabled(bool enabled) override;
+        bool isFindLocationOnStartEnabled() const override;
+        void setFindLocationOnStartEnabled(bool enabled) override;
+        bool isFindLocationRecheckEnabled() const override;
+        void setFindLocationRecheckEnabled(bool enabled) override;
+        bool isFindLocationSeedEnabled() const override;
+        void setFindLocationSeedEnabled(bool enabled) override;
+        bool isFindLocationLeechEnabled() const override;
+        void setFindLocationLeechEnabled(bool enabled) override;
         int refreshInterval() const override;
         void setRefreshInterval(int value) override;
         bool isPreallocationEnabled() const override;
@@ -474,12 +489,17 @@ namespace BitTorrent
         void topTorrentsQueuePos(const QList<TorrentID> &ids) override;
         void bottomTorrentsQueuePos(const QList<TorrentID> &ids) override;
 
+        void findTorrentLocation(const TorrentID &id) override;
+        void assignTorrentLocation(const TorrentID &id, const Path &location) override;
+
         QString lastExternalIPv4Address() const override;
         QString lastExternalIPv6Address() const override;
 
         qint64 freeDiskSpace() const override;
 
         // Torrent interface
+        bool interceptFindLocationStart(TorrentImpl *torrent, TorrentOperatingMode mode);
+        void cancelFindLocationStart(TorrentImpl *torrent);
         void handleTorrentResumeDataRequested(const TorrentImpl *torrent);
         void handleTorrentShareLimitChanged(TorrentImpl *torrent);
         void handleTorrentNameChanged(TorrentImpl *torrent);
@@ -512,6 +532,7 @@ namespace BitTorrent
         lt::torrent_handle reloadTorrent(const lt::torrent_handle &currentHandle, lt::add_torrent_params params);
 
         QFuture<FileSearchResult> findIncompleteFiles(const Path &savePath, const Path &downloadPath, const PathList &filePaths = {}) const;
+        QFuture<FileSearchResult> findExistingContent(const Path &torrentSavePath, const Path &torrentDownloadPath, const PathList &filePaths, const QString &torrentName, const QString &sourceFileName);
 
         void enablePortMapping();
         void disablePortMapping();
@@ -550,6 +571,17 @@ namespace BitTorrent
 
     private:
         struct ResumeSessionContext;
+
+        enum class LocationAssignmentPhase { WaitingForMetadata, Searching, WaitingForMove, WaitingForCheck };
+        enum class LocationStartPass { None, MetadataOnly, Recheck, Terminal };
+        struct LocationAssignmentState
+        {
+            Path location;
+            LocationAssignmentPhase phase = LocationAssignmentPhase::Searching;
+            std::optional<TorrentOperatingMode> startMode;
+            LocationStartPass startPass = LocationStartPass::None;
+            quint64 token = 0;
+        };
 
         struct MoveStorageJob
         {
@@ -639,6 +671,13 @@ namespace BitTorrent
         void handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *alert);
         void handleTorrentCheckedAlert(const lt::torrent_checked_alert *alert);
         void handleTorrentFinishedAlert(const lt::torrent_finished_alert *alert);
+        QFuture<SearchRootsResult> searchExistingContent(const Path &torrentSavePath, const Path &torrentDownloadPath, const PathList &filePaths, const QString &torrentName, const QString &sourceFileName);
+        void searchStartedTorrentLocation(TorrentImpl *torrent, quint64 token);
+        void assignStartedTorrentLocation(TorrentImpl *torrent, const Path &location);
+        void forceLocationAssignmentRecheck(TorrentImpl *torrent);
+        void releaseFindLocationStart(TorrentImpl *torrent, bool matched);
+        void failFindLocationStart(TorrentImpl *torrent, const QString &phase, const QString &reason);
+        bool isTorrentStorageMoving(const TorrentImpl *torrent) const;
 #if LIBTORRENT_VERSION_NUM >= 20101
         void handleIPBanAlert(const lt::ip_ban_alert *alert);
 #endif
@@ -754,6 +793,12 @@ namespace BitTorrent
         CachedSettingValue<TorrentContentLayout> m_torrentContentLayout;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
         CachedSettingValue<bool> m_isUnwantedFolderEnabled;
+        CachedSettingValue<bool> m_isFindLocationEnabled;
+        CachedSettingValue<bool> m_isFindLocationOnAddEnabled;
+        CachedSettingValue<bool> m_isFindLocationOnStartEnabled;
+        CachedSettingValue<bool> m_isFindLocationRecheckEnabled;
+        CachedSettingValue<bool> m_isFindLocationSeedEnabled;
+        CachedSettingValue<bool> m_isFindLocationLeechEnabled;
         CachedSettingValue<int> m_refreshInterval;
         CachedSettingValue<bool> m_isPreallocationEnabled;
         CachedSettingValue<bool> m_isTorrentFileBackupEnabled;
@@ -862,6 +907,9 @@ namespace BitTorrent
         QThreadPool *m_asyncWorker = nullptr;
         ResumeDataStorage *m_resumeDataStorage = nullptr;
         FileSearcher *m_fileSearcher = nullptr;
+        PathList m_watchedFolderSavePaths;
+        QHash<TorrentID, LocationAssignmentState> m_locationAssignments;
+        quint64 m_nextLocationAssignmentToken = 0;
         TorrentContentRemover *m_torrentContentRemover = nullptr;
 
         using AddTorrentAlertHandler = std::function<void (const lt::add_torrent_alert *alert)>;
