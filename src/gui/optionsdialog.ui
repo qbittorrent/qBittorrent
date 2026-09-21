@@ -1277,6 +1277,160 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupFindLocation">
+              <property name="title">
+               <string>Find location</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <layout class="QVBoxLayout" name="groupFindLocationLayout">
+               <item>
+                <widget class="QCheckBox" name="checkFindLocationOnAdd">
+                 <property name="text">
+                  <string>Find location automatically</string>
+                 </property>
+                 <property name="toolTip">
+                  <string>When a torrent is added in Manual mode, or its metadata is received, look for its files in its save path, its download path and the save paths of the watched folders, and use the location holding the most of them.</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkFindLocationOnStart">
+                 <property name="text">
+                  <string>Find location when starting stopped torrents</string>
+                 </property>
+                 <property name="toolTip">
+                  <string>Search for existing content before starting a stopped torrent.</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkFindLocationRecheck">
+                 <property name="text">
+                  <string>Recheck automatically</string>
+                 </property>
+                 <property name="toolTip">
+                  <string>When a location is assigned by Find location, recheck the torrent's files there.</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkFindLocationSeed">
+                 <property name="text">
+                  <string>Seed automatically</string>
+                 </property>
+                 <property name="toolTip">
+                  <string>When that recheck finds the torrent's content complete, start the torrent.</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkFindLocationLeech">
+                 <property name="text">
+                  <string>Leech automatically</string>
+                 </property>
+                 <property name="toolTip">
+                  <string>When that recheck finds the torrent's content incomplete, start the torrent.</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="labelDiscoveryRoots">
+                 <property name="text">
+                  <string>Also search these folders:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="discoveryRootsLayout">
+                 <item>
+                  <widget class="QTreeView" name="discoveryRootsView">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>1</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>100</height>
+                    </size>
+                   </property>
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+                   </property>
+                   <property name="selectionBehavior">
+                    <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+                   </property>
+                   <property name="textElideMode">
+                    <enum>Qt::TextElideMode::ElideNone</enum>
+                   </property>
+                   <property name="rootIsDecorated">
+                    <bool>false</bool>
+                   </property>
+                   <attribute name="headerDefaultSectionSize">
+                    <number>80</number>
+                   </attribute>
+                   <attribute name="headerStretchLastSection">
+                    <bool>false</bool>
+                   </attribute>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="discoveryRootsButtonsLayout">
+                   <item>
+                    <widget class="QPushButton" name="addDiscoveryRootButton">
+                     <property name="text">
+                      <string>Add...</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="editDiscoveryRootButton">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string>Options..</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="removeDiscoveryRootButton">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string>Remove</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="discoveryRootsSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="groupSavingManagement">
               <property name="title">
                <string>Saving Management</string>

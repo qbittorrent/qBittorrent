@@ -257,6 +257,43 @@
     </div>
 
     <fieldset class="settings">
+        <legend>
+            <input type="checkbox" id="findLocationCheckbox" onclick="qBittorrent.Preferences.updateFindLocationEnabled();">
+            <label id="findLocationLabel" for="findLocationCheckbox">QBT_TR(Find location)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
+        <div class="formRow">
+            <input type="checkbox" id="findLocationOnAddCheckbox" title="QBT_TR(When a torrent is added in Manual mode, or its metadata is received, look for its files in its save path, its download path and the save paths of the watched folders, and use the location holding the most of them.)QBT_TR[CONTEXT=OptionsDialog]">
+            <label for="findLocationOnAddCheckbox">QBT_TR(Find location automatically)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="findLocationOnStartCheckbox" title="QBT_TR(Search for existing content before starting a stopped torrent.)QBT_TR[CONTEXT=OptionsDialog]">
+            <label for="findLocationOnStartCheckbox">QBT_TR(Find location when starting stopped torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="findLocationRecheckCheckbox" title="QBT_TR(When a location is assigned by Find location, recheck the torrent's files there.)QBT_TR[CONTEXT=OptionsDialog]" onclick="qBittorrent.Preferences.updateFindLocationEnabled();">
+            <label for="findLocationRecheckCheckbox">QBT_TR(Recheck automatically)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="findLocationSeedCheckbox" title="QBT_TR(When that recheck finds the torrent's content complete, start the torrent.)QBT_TR[CONTEXT=OptionsDialog]">
+            <label for="findLocationSeedCheckbox">QBT_TR(Seed automatically)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="findLocationLeechCheckbox" title="QBT_TR(When that recheck finds the torrent's content incomplete, start the torrent.)QBT_TR[CONTEXT=OptionsDialog]">
+            <label for="findLocationLeechCheckbox">QBT_TR(Leech automatically)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <table id="discovery_roots_tab" style="border: 1px solid black;">
+            <thead>
+                <tr>
+                    <th scope="col">QBT_TR(Discovery root)QBT_TR[CONTEXT=DiscoveryRootsModel]</th>
+                    <th scope="col">QBT_TR(Recursive mode)QBT_TR[CONTEXT=DiscoveryRootOptionsDialog]</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button type="button" id="addDiscoveryRootButton" onclick="qBittorrent.Preferences.addEmptyDiscoveryRoot();">QBT_TR(Add...)QBT_TR[CONTEXT=OptionsDialog]</button>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>QBT_TR(Saving Management)QBT_TR[CONTEXT=HttpServer]</legend>
         <table>
             <tbody>
@@ -1965,7 +2002,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateTorrentBackupControls: updateTorrentBackupControls,
                 updateFinishedTorrentBackupControls: updateFinishedTorrentBackupControls,
                 addWatchFolder: addWatchFolder,
+                addEmptyDiscoveryRoot: addEmptyDiscoveryRoot,
                 updateExcludedFileNamesEnabled: updateExcludedFileNamesEnabled,
+                updateFindLocationEnabled: updateFindLocationEnabled,
                 changeWatchFolderSelect: changeWatchFolderSelect,
                 updateMailNotification: updateMailNotification,
                 updateMailAuthSettings: updateMailAuthSettings,
@@ -2119,9 +2158,79 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             return folders;
         };
 
+        const addDiscoveryRoot = (path = "", recursive = false) => {
+            const enabled = document.getElementById("findLocationCheckbox").checked;
+            const tbody = document.getElementById("discovery_roots_tab").tBodies[0];
+            const row = document.createElement("tr");
+
+            const pathCell = document.createElement("td");
+            const pathInput = document.createElement("input");
+            pathInput.type = "text";
+            pathInput.setAttribute("aria-label", "QBT_TR(Discovery root)QBT_TR[CONTEXT=DiscoveryRootsModel]");
+            pathInput.value = path;
+            pathInput.disabled = !enabled;
+            pathCell.appendChild(pathInput);
+            row.appendChild(pathCell);
+
+            const recursiveCell = document.createElement("td");
+            const recursiveInput = document.createElement("input");
+            recursiveInput.type = "checkbox";
+            recursiveInput.setAttribute("aria-label", "QBT_TR(Recursive mode)QBT_TR[CONTEXT=DiscoveryRootOptionsDialog]");
+            recursiveInput.checked = recursive;
+            recursiveInput.disabled = !enabled;
+            recursiveCell.appendChild(recursiveInput);
+            row.appendChild(recursiveCell);
+
+            const removeCell = document.createElement("td");
+            const removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.textContent = "QBT_TR(Remove)QBT_TR[CONTEXT=OptionsDialog]";
+            removeButton.disabled = !enabled;
+            removeButton.addEventListener("click", () => {
+                row.remove();
+                document.getElementById("addDiscoveryRootButton").focus();
+            });
+            removeCell.appendChild(removeButton);
+            row.appendChild(removeCell);
+
+            tbody.appendChild(row);
+            return pathInput;
+        };
+
+        const addEmptyDiscoveryRoot = () => {
+            addDiscoveryRoot().focus();
+        };
+
+        const getDiscoveryRoots = () => {
+            const roots = [];
+            const tbody = document.getElementById("discovery_roots_tab").tBodies[0];
+            for (const row of tbody.rows) {
+                const pathInput = row.getElementsByTagName("input")[0];
+                const path = pathInput.value.trim();
+                if (path === "")
+                    continue;
+
+                const recursiveInput = row.getElementsByTagName("input")[1];
+                roots.push({ path: path, recursive: recursiveInput.checked });
+            }
+            return roots;
+        };
+
         const updateExcludedFileNamesEnabled = () => {
             const isAExcludedFileNamesEnabled = document.getElementById("excludedFileNamesCheckbox").checked;
             document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
+        };
+
+        const updateFindLocationEnabled = () => {
+            const groupEnabled = document.getElementById("findLocationCheckbox").checked;
+            const recheckEnabled = document.getElementById("findLocationRecheckCheckbox").checked;
+            document.getElementById("findLocationOnAddCheckbox").disabled = !groupEnabled;
+            document.getElementById("findLocationOnStartCheckbox").disabled = !groupEnabled;
+            document.getElementById("findLocationRecheckCheckbox").disabled = !groupEnabled;
+            document.getElementById("findLocationSeedCheckbox").disabled = !(groupEnabled && recheckEnabled);
+            document.getElementById("findLocationLeechCheckbox").disabled = !(groupEnabled && recheckEnabled);
+            for (const element of document.querySelectorAll("#discovery_roots_tab input, #discovery_roots_tab button, #addDiscoveryRootButton"))
+                element.disabled = !groupEnabled;
         };
 
         const updateTorrentBackupControls = () => {
@@ -2542,6 +2651,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("preallocateall_checkbox").checked = pref.preallocate_all;
                     document.getElementById("appendext_checkbox").checked = pref.incomplete_files_ext;
                     document.getElementById("unwantedfolder_checkbox").checked = pref.use_unwanted_folder;
+                    document.getElementById("findLocationCheckbox").checked = pref.find_location_enabled;
+                    document.getElementById("findLocationOnAddCheckbox").checked = pref.find_location_on_add_enabled;
+                    document.getElementById("findLocationOnStartCheckbox").checked = pref.find_location_on_start_enabled;
+                    document.getElementById("findLocationRecheckCheckbox").checked = pref.find_location_recheck_enabled;
+                    document.getElementById("findLocationSeedCheckbox").checked = pref.find_location_seed_enabled;
+                    document.getElementById("findLocationLeechCheckbox").checked = pref.find_location_leech_enabled;
+                    for (const root of pref.find_location_discovery_roots)
+                        addDiscoveryRoot(root.path, root.recursive);
+                    updateFindLocationEnabled();
 
                     // Saving Management
                     document.getElementById("default_tmm_combobox").value = pref.auto_tmm_enabled;
@@ -2970,6 +3088,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["preallocate_all"] = document.getElementById("preallocateall_checkbox").checked;
             settings["incomplete_files_ext"] = document.getElementById("appendext_checkbox").checked;
             settings["use_unwanted_folder"] = document.getElementById("unwantedfolder_checkbox").checked;
+            settings["find_location_enabled"] = document.getElementById("findLocationCheckbox").checked;
+            settings["find_location_on_add_enabled"] = document.getElementById("findLocationOnAddCheckbox").checked;
+            settings["find_location_on_start_enabled"] = document.getElementById("findLocationOnStartCheckbox").checked;
+            settings["find_location_recheck_enabled"] = document.getElementById("findLocationRecheckCheckbox").checked;
+            settings["find_location_seed_enabled"] = document.getElementById("findLocationSeedCheckbox").checked;
+            settings["find_location_leech_enabled"] = document.getElementById("findLocationLeechCheckbox").checked;
+            settings["find_location_discovery_roots"] = getDiscoveryRoots();
 
             // Saving Management
             settings["auto_tmm_enabled"] = (document.getElementById("default_tmm_combobox").value === "true");

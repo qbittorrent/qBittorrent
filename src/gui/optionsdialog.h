@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Tim Sylvester <t.j.sylvester@gmail.com>
  * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -93,6 +94,8 @@ private slots:
     void loadSplitterState();
     void handleWatchedFolderViewSelectionChanged();
     void editWatchedFolderOptions(const QModelIndex &index);
+    void handleDiscoveryRootViewSelectionChanged();
+    void editDiscoveryRootOptions(const QModelIndex &index);
     void on_IpFilterRefreshBtn_clicked();
     void handleIPFilterParsed(bool error, int ruleCount);
     void on_banListButton_clicked();
@@ -101,6 +104,9 @@ private slots:
     void on_addWatchedFolderButton_clicked();
     void on_editWatchedFolderButton_clicked();
     void on_removeWatchedFolderButton_clicked();
+    void on_addDiscoveryRootButton_clicked();
+    void on_editDiscoveryRootButton_clicked();
+    void on_removeDiscoveryRootButton_clicked();
     void setLocale(const QString &localeStr);
 
 #ifndef DISABLE_WEBUI

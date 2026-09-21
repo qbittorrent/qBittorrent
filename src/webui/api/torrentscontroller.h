@@ -32,6 +32,7 @@
 #include <QSet>
 
 #include "base/bittorrent/torrentdescriptor.h"
+#include "base/path.h"
 #include "apicontroller.h"
 
 class QByteArray;
@@ -103,6 +104,8 @@ private slots:
     void topPrioAction();
     void bottomPrioAction();
     void setLocationAction();
+    void findLocationAction();
+    void assignLocationAction();
     void setSavePathAction();
     void setDownloadPathAction();
     void setAutoManagementAction();
@@ -121,9 +124,13 @@ private slots:
     void downloadFileAction();
 
 private:
+    enum class FindLocationState { Pending, Matched, Unmatched };
+    struct FindLocationEntry { FindLocationState state = FindLocationState::Pending; Path location; };
+
     void onDownloadFinished(const Net::DownloadResult &result);
     void onMetadataDownloaded(const BitTorrent::TorrentInfo &info);
     void onSearchPluginTorrentDownloaded(const QString &source, const QString &data);
+    void onTorrentLocationFound(const BitTorrent::TorrentID &id, const Path &location, bool found);
     void cacheTorrentFile(const QString &source, const QByteArray &data);
     void cacheMagnetURI(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr);
 
@@ -131,4 +138,5 @@ private:
     QHash<BitTorrent::TorrentID, BitTorrent::TorrentDescriptor> m_torrentMetadataCache;
     QSet<QString> m_requestedTorrentSource;
     QSet<QString> m_invalidTorrentSource;
+    QHash<BitTorrent::TorrentID, FindLocationEntry> m_findLocationOperation;
 };

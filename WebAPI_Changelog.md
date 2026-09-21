@@ -2,6 +2,18 @@
 
 ## 2.16.2
 
+* [#24931](https://github.com/qbittorrent/qBittorrent/pull/24931)
+  * `app/preferences` endpoint includes `find_location_discovery_roots` (array of objects with `path` (string) and `recursive` (bool)) option
+  * `app/setPreferences` endpoint allows to set `find_location_discovery_roots` (array of objects with `path` (string) and `recursive` (bool)) option
+  * `torrents/findLocation` endpoint accepts optional parameter `root` (string), an existing directory searched ahead of every other root for the torrents that request registers
+* [#24928](https://github.com/qbittorrent/qBittorrent/pull/24928)
+  * `app/preferences` endpoint includes `find_location_on_start_enabled` (bool), `find_location_recheck_enabled` (bool), `find_location_seed_enabled` (bool) and `find_location_leech_enabled` (bool) options
+  * `app/setPreferences` endpoint allows to set `find_location_on_start_enabled` (bool), `find_location_recheck_enabled` (bool), `find_location_seed_enabled` (bool) and `find_location_leech_enabled` (bool) options
+  * Add `torrents/findLocation` endpoint with optional parameter `hashes` for finding the existing content of torrents and assigning each location found, answering HTTP 202 with `pending`, `matched` and `unmatched` while any torrent is pending and HTTP 200 once none is
+  * Add `torrents/assignLocation` endpoint with parameters `hashes` and `location` for assigning an existing directory as the location of torrents
+* [#24923](https://github.com/qbittorrent/qBittorrent/pull/24923)
+  * `app/preferences` endpoint includes `find_location_enabled` (bool) and `find_location_on_add_enabled` (bool) options
+  * `app/setPreferences` endpoint allows to set `find_location_enabled` (bool) and `find_location_on_add_enabled` (bool) options
 * [#24891](https://github.com/qbittorrent/qBittorrent/pull/24891)
   * `app/preferences` endpoint includes `i2p_inbound_length_variance` (int) option
   * `app/preferences` endpoint includes `i2p_outbound_length_variance` (int) option

@@ -53,6 +53,7 @@ add_library(qbt_base STATIC
     concepts/explicitlyconvertibleto.h
     concepts/stringable.h
     digest32.h
+    discoveryroots.h
     exceptions.h
     freediskspacechecker.h
     global.h
@@ -172,6 +173,7 @@ add_library(qbt_base STATIC
     bittorrent/tracker.cpp
     bittorrent/trackerentry.cpp
     bittorrent/trackerentrystatus.cpp
+    discoveryroots.cpp
     exceptions.cpp
     freediskspacechecker.cpp
     http/asyncfilesender.cpp

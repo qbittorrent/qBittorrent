@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026 Tim Sylvester <t.j.sylvester@gmail.com>
  * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -321,6 +322,7 @@ namespace BitTorrent
         void prepareResumeData(lt::add_torrent_params resumeData);
         void endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames);
         void reload();
+        void stop(bool cancelPendingFindLocationStart);
 
         nonstd::expected<lt::entry, QString> exportTorrent() const;
 

@@ -9,6 +9,7 @@ qt_wrap_ui(UI_HEADERS
     banlistoptionsdialog.ui
     cookiesdialog.ui
     deletionconfirmationdialog.ui
+    discoveryrootoptionsdialog.ui
     downloadfromurldialog.ui
     executionlogwidget.ui
     ipsubnetwhitelistoptionsdialog.ui
@@ -36,6 +37,7 @@ qt_wrap_ui(UI_HEADERS
     trackerentriesdialog.ui
     trackersadditiondialog.ui
     uithemedialog.ui
+    unmatchedtorrentsdialog.ui
     watchedfolderoptionsdialog.ui
 )
 
@@ -53,6 +55,8 @@ add_library(qbt_gui STATIC
     cookiesmodel.h
     deletionconfirmationdialog.h
     desktopintegration.h
+    discoveryrootoptionsdialog.h
+    discoveryrootsmodel.h
     downloadfromurldialog.h
     executionlogwidget.h
     filterpatternformat.h
@@ -145,6 +149,7 @@ add_library(qbt_gui STATIC
     uithemedialog.h
     uithememanager.h
     uithemesource.h
+    unmatchedtorrentsdialog.h
     utils.h
     utils/keysequence.h
     watchedfolderoptionsdialog.h
@@ -162,6 +167,8 @@ add_library(qbt_gui STATIC
     cookiesmodel.cpp
     deletionconfirmationdialog.cpp
     desktopintegration.cpp
+    discoveryrootoptionsdialog.cpp
+    discoveryrootsmodel.cpp
     downloadfromurldialog.cpp
     executionlogwidget.cpp
     filterpatternformatmenu.cpp
@@ -249,6 +256,7 @@ add_library(qbt_gui STATIC
     uithemedialog.cpp
     uithememanager.cpp
     uithemesource.cpp
+    unmatchedtorrentsdialog.cpp
     utils.cpp
     utils/keysequence.cpp
     watchedfolderoptionsdialog.cpp

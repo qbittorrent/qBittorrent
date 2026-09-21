@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Tim Sylvester <t.j.sylvester@gmail.com>
  * Copyright (C) 2023-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
@@ -51,6 +52,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sharelimits.h"
+#include "base/discoveryroots.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/net/portforwarder.h"
@@ -73,6 +75,8 @@
 #include "base/utils/sslkey.h"
 #include "advancedsettings.h"
 #include "banlistoptionsdialog.h"
+#include "discoveryrootoptionsdialog.h"
+#include "discoveryrootsmodel.h"
 #include "interfaces/iguiapplication.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
@@ -641,6 +645,14 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
     m_ui->checkUnwantedFolder->setChecked(session->isUnwantedFolderEnabled());
     m_ui->checkRecursiveDownload->setChecked(pref->isRecursiveDownloadEnabled());
+    m_ui->checkFindLocationOnStart->setChecked(session->isFindLocationOnStartEnabled());
+    m_ui->checkFindLocationRecheck->setChecked(session->isFindLocationRecheckEnabled());
+    m_ui->checkFindLocationSeed->setChecked(session->isFindLocationSeedEnabled());
+    m_ui->checkFindLocationLeech->setChecked(session->isFindLocationLeechEnabled());
+    m_ui->checkFindLocationSeed->setEnabled(m_ui->checkFindLocationRecheck->isChecked());
+    m_ui->checkFindLocationLeech->setEnabled(m_ui->checkFindLocationRecheck->isChecked());
+    m_ui->groupFindLocation->setChecked(session->isFindLocationEnabled());
+    m_ui->checkFindLocationOnAdd->setChecked(session->isFindLocationOnAddEnabled());
 
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
@@ -665,6 +677,13 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->scanFoldersView->setModel(watchedFoldersModel);
     connect(m_ui->scanFoldersView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ThisType::handleWatchedFolderViewSelectionChanged);
     connect(m_ui->scanFoldersView, &QTreeView::doubleClicked, this, &ThisType::editWatchedFolderOptions);
+
+    auto *discoveryRootsModel = new DiscoveryRootsModel(DiscoveryRoots::instance(), this);
+    connect(discoveryRootsModel, &QAbstractListModel::dataChanged, this, &ThisType::enableApplyButton);
+    m_ui->discoveryRootsView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    m_ui->discoveryRootsView->setModel(discoveryRootsModel);
+    connect(m_ui->discoveryRootsView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ThisType::handleDiscoveryRootViewSelectionChanged);
+    connect(m_ui->discoveryRootsView, &QTreeView::doubleClicked, this, &ThisType::editDiscoveryRootOptions);
 
     m_ui->groupExcludedFileNames->setChecked(session->isExcludedFileNamesEnabled());
     m_ui->textExcludedFileNames->setPlainText(session->excludedFileNames().join(u'\n'));
@@ -778,6 +797,14 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->checkAppendqB, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUnwantedFolder, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkRecursiveDownload, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupFindLocation, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFindLocationOnAdd, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFindLocationOnStart, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFindLocationRecheck, &QAbstractButton::toggled, m_ui->checkFindLocationSeed, &QWidget::setEnabled);
+    connect(m_ui->checkFindLocationRecheck, &QAbstractButton::toggled, m_ui->checkFindLocationLeech, &QWidget::setEnabled);
+    connect(m_ui->checkFindLocationRecheck, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFindLocationSeed, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFindLocationLeech, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->comboSavingMode, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboTorrentCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -793,6 +820,8 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->checkUseDownloadPath, &QAbstractButton::toggled, m_ui->textDownloadPath, &QWidget::setEnabled);
 
     connect(m_ui->addWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
+    connect(m_ui->addDiscoveryRootButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
+    connect(m_ui->removeDiscoveryRootButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
 
     connect(m_ui->groupExcludedFileNames, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textExcludedFileNames, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -852,6 +881,12 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
     session->setUnwantedFolderEnabled(m_ui->checkUnwantedFolder->isChecked());
     pref->setRecursiveDownloadEnabled(m_ui->checkRecursiveDownload->isChecked());
+    session->setFindLocationEnabled(m_ui->groupFindLocation->isChecked());
+    session->setFindLocationOnAddEnabled(m_ui->checkFindLocationOnAdd->isChecked());
+    session->setFindLocationOnStartEnabled(m_ui->checkFindLocationOnStart->isChecked());
+    session->setFindLocationRecheckEnabled(m_ui->checkFindLocationRecheck->isChecked());
+    session->setFindLocationSeedEnabled(m_ui->checkFindLocationSeed->isChecked());
+    session->setFindLocationLeechEnabled(m_ui->checkFindLocationLeech->isChecked());
 
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
     session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);
@@ -866,6 +901,9 @@ void OptionsDialog::saveDownloadsTabOptions() const
 
     auto *watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
     watchedFoldersModel->apply();
+
+    auto *discoveryRootsModel = static_cast<DiscoveryRootsModel *>(m_ui->discoveryRootsView->model());
+    discoveryRootsModel->apply();
 
     session->setExcludedFileNamesEnabled(m_ui->groupExcludedFileNames->isChecked());
     session->setExcludedFileNames(m_ui->textExcludedFileNames->toPlainText().split(u'\n', Qt::SkipEmptyParts));
@@ -2162,6 +2200,79 @@ void OptionsDialog::editWatchedFolderOptions(const QModelIndex &index)
             // The index could be invalidated while the dialog was displayed,
             // for example, if you deleted the folder using the Web API.
             watchedFoldersModel->setFolderOptions(index.row(), dialog->watchedFolderOptions());
+            enableApplyButton();
+        }
+    });
+
+    dialog->open();
+}
+
+void OptionsDialog::on_addDiscoveryRootButton_clicked()
+{
+    const Path dir {QFileDialog::getExistingDirectory(this, tr("Select folder to search"))};
+    if (dir.isEmpty())
+        return;
+
+    auto *dialog = new DiscoveryRootOptionsDialog({}, this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(dialog, &QDialog::accepted, this, [this, dialog, dir]()
+    {
+        try
+        {
+            auto *discoveryRootsModel = static_cast<DiscoveryRootsModel *>(m_ui->discoveryRootsView->model());
+            discoveryRootsModel->addRoot(dir, dialog->discoveryRootOptions());
+
+            for (int i = 0; i < discoveryRootsModel->columnCount(); ++i)
+                m_ui->discoveryRootsView->resizeColumnToContents(i);
+
+            enableApplyButton();
+        }
+        catch (const RuntimeError &err)
+        {
+            QMessageBox::critical(this, tr("Adding entry failed"), err.message());
+        }
+    });
+
+    dialog->open();
+}
+
+void OptionsDialog::on_editDiscoveryRootButton_clicked()
+{
+    const QModelIndex selected
+        = m_ui->discoveryRootsView->selectionModel()->selectedIndexes().at(0);
+
+    editDiscoveryRootOptions(selected);
+}
+
+void OptionsDialog::on_removeDiscoveryRootButton_clicked()
+{
+    const QModelIndexList selected
+        = m_ui->discoveryRootsView->selectionModel()->selectedIndexes();
+
+    for (const QModelIndex &index : selected)
+        m_ui->discoveryRootsView->model()->removeRow(index.row());
+}
+
+void OptionsDialog::handleDiscoveryRootViewSelectionChanged()
+{
+    const QModelIndexList selectedIndexes = m_ui->discoveryRootsView->selectionModel()->selectedIndexes();
+    m_ui->removeDiscoveryRootButton->setEnabled(!selectedIndexes.isEmpty());
+    m_ui->editDiscoveryRootButton->setEnabled(selectedIndexes.count() == 1);
+}
+
+void OptionsDialog::editDiscoveryRootOptions(const QModelIndex &index)
+{
+    if (!index.isValid())
+        return;
+
+    auto *discoveryRootsModel = static_cast<DiscoveryRootsModel *>(m_ui->discoveryRootsView->model());
+    auto *dialog = new DiscoveryRootOptionsDialog(discoveryRootsModel->rootOptions(index.row()), this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(dialog, &QDialog::accepted, this, [this, dialog, index, discoveryRootsModel]()
+    {
+        if (index.isValid())
+        {
+            discoveryRootsModel->setRootOptions(index.row(), dialog->discoveryRootOptions());
             enableApplyButton();
         }
     });
