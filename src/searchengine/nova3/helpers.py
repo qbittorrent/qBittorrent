@@ -1,4 +1,4 @@
-# VERSION: 1.58
+# VERSION: 1.59
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
