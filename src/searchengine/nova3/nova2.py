@@ -173,12 +173,15 @@ def get_capabilities(engines: Iterable[EngineModuleName]) -> str:
         ET.SubElement(engine_module_element, 'name').text = engine_class.name
         ET.SubElement(engine_module_element, 'url').text = engine_class.url
 
-        supported_categories = ""
+        supported_categories: set[str] = set()
         if hasattr(engine_class, "supported_categories"):
-            supported_categories = " ".join(key
-                                            for key in sorted(engine_class.supported_categories.keys())
-                                            if key != Category.all.name)
-        ET.SubElement(engine_module_element, 'categories').text = supported_categories
+            for cat in engine_class.supported_categories:
+                if cat in Category.__members__:
+                    if cat != Category.all.name:
+                        supported_categories.add(cat)
+                else:
+                    print(f"Search engine has invalid category. Search engine: '{engine_class.name}'. Invalid category: '{cat}'", file=sys.stderr)
+        ET.SubElement(engine_module_element, 'categories').text = " ".join(sorted(supported_categories))
 
     ET.indent(capabilities_element)
     return ET.tostring(capabilities_element, 'unicode')
