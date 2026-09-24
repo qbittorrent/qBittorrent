@@ -1283,7 +1283,7 @@ void TorrentsController::addAction()
     }
     else
     {
-        throw APIError(APIErrorType::Conflict);
+        throw APIError(APIErrorType::Conflict, tr("Torrent was not added: it may be a duplicate (already in the download list)"));
     }
 }
 
