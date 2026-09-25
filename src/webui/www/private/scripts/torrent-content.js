@@ -39,6 +39,8 @@ window.qBittorrent.TorrentContent ??= (() => {
             updateDownloadCheckbox: updateDownloadCheckbox,
             createPriorityCombo: createPriorityCombo,
             updatePriorityCombo: updatePriorityCombo,
+            isStreamableFile: isStreamableFile,
+            streamFile: streamFile,
             updateData: updateData,
             clearFilterInputTimer: clearFilterInputTimer
         };
@@ -49,6 +51,12 @@ window.qBittorrent.TorrentContent ??= (() => {
     const TriState = window.qBittorrent.FileTree.TriState;
     let torrentFilesFilterInputTimer = -1;
     let onFilePriorityChanged = null;
+
+    const STREAMABLE_EXTENSIONS = new Set([
+        ".3g2", ".3gp", ".asf", ".avi", ".divx", ".flv", ".m2ts", ".m4v",
+        ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".ogm", ".ogv",
+        ".ts", ".vob", ".webm", ".wmv"
+    ]);
 
     const normalizePriority = (priority) => {
         priority = Number(priority);
@@ -80,6 +88,58 @@ window.qBittorrent.TorrentContent ??= (() => {
 
     const isFolder = (fileId) => {
         return fileId === -1;
+    };
+
+    const isStreamableFile = (node) => {
+        if (!node || node.isFolder || (normalizePriority(node.priority) === FilePriority.Ignored))
+            return false;
+
+        const filePath = String(node.path ?? node.name ?? "").toLowerCase();
+        const dotPosition = filePath.lastIndexOf(".");
+        if (dotPosition < 0)
+            return false;
+
+        return STREAMABLE_EXTENSIONS.has(filePath.slice(dotPosition));
+    };
+
+    const streamFile = async (fileId) => {
+        const torrentID = torrentsTable.getCurrentTorrentID();
+        const numericFileId = Number(fileId);
+        if ((torrentID.length === 0) || !Number.isInteger(numericFileId) || (numericFileId < 0))
+            return false;
+
+        const playbackWindow = window.open("about:blank", "_blank");
+
+        try {
+            const response = await fetch("api/v2/torrents/streamUrl", {
+                method: "POST",
+                body: new URLSearchParams({
+                    hash: torrentID,
+                    file: numericFileId
+                })
+            });
+            if (!response.ok)
+                throw new Error((await response.text()) || "QBT_TR(Unable to start streaming playback.)QBT_TR[CONTEXT=TorrentContent]");
+
+            const data = await response.json();
+            if ((typeof data.url !== "string") || (data.url.length === 0))
+                throw new Error("QBT_TR(Unable to create streaming URL.)QBT_TR[CONTEXT=TorrentContent]");
+
+            if (playbackWindow) {
+                playbackWindow.opener = null;
+                playbackWindow.location.href = data.url;
+            }
+            else {
+                window.location.href = data.url;
+            }
+
+            return true;
+        }
+        catch (error) {
+            playbackWindow?.close();
+            alert(error.message || "QBT_TR(Unable to start streaming playback.)QBT_TR[CONTEXT=TorrentContent]");
+            return false;
+        }
     };
 
     const getAllChildren = (id, fileId) => {
@@ -276,6 +336,8 @@ window.qBittorrent.TorrentContent ??= (() => {
     };
 
     const updateData = (files) => {
+        torrentFilesTable.setStreamingEnabled(window.qBittorrent.Cache.preferences.get()?.streaming_enabled === true);
+
         const rows = files.map((file, index) => {
             const ignore = (file.priority === FilePriority.Ignored);
             const row = {
@@ -498,6 +560,11 @@ window.qBittorrent.TorrentContent ??= (() => {
                     const url = getSelectedFilesURL().join("\n");
                     await clipboardCopy(url);
                 },
+                Stream: async (element, ref) => {
+                    const selectedRow = torrentFilesTable.selectedRowsIds()[0];
+                    const node = torrentFilesTable.getNode(selectedRow);
+                    await streamFile(node.fileId);
+                },
                 FilePrioIgnore: (element, ref) => {
                     filesPriorityMenuClicked(FilePriority.Ignored);
                 },
@@ -526,6 +593,16 @@ window.qBittorrent.TorrentContent ??= (() => {
                         hasFolder = true;
                     if (!isFullyDownloaded)
                         isAllComplete = false;
+                }
+
+                const streamingEnabled = window.qBittorrent.Cache.preferences.get()?.streaming_enabled === true;
+                const selectedRows = torrentFilesTable.selectedRowsIds();
+                const selectedNode = (selectedRows.length === 1) ? torrentFilesTable.getNode(selectedRows[0]) : null;
+                if (this.menu.querySelector('a[href$="Stream"]') !== null) {
+                    if (streamingEnabled && isStreamableFile(selectedNode))
+                        this.showItem("Stream");
+                    else
+                        this.hideItem("Stream");
                 }
 
                 const fileOnlyActions = ["CopyDownloadURL", "Download"];
