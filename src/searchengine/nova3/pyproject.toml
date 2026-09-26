@@ -2,7 +2,7 @@
 name = "qBittorrent-search-engine"
 description = "Search engine for qBittorrent search feature"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.13"
 dynamic = ["version"]
 
 [dependency-groups]
