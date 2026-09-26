@@ -56,8 +56,8 @@ namespace BitTorrent
         /**
          * @brief fraction of file pieces that are available at least from one peer
          *
-         * This is not the same as torrrent availability, it is just a fraction of pieces
-         * that can be downloaded right now. It varies between 0 to 1.
+         * This is not the same as torrent availability, it is just a fraction of pieces
+         * that can be downloaded right now. It varies between 0 and 1.
          */
         virtual QFuture<QList<qreal>> fetchAvailableFileFractions() const = 0;
 

@@ -91,12 +91,20 @@ namespace Net
         Path destFileName() const;
         DownloadRequest &destFileName(const Path &value);
 
+        // when disabled, a redirection that downgrades HTTPS to a non-HTTPS scheme
+        // makes the request fail instead of being followed, matching the policy
+        // Qt applies by default (QNetworkRequest::NoLessSafeRedirectPolicy) but
+        // that we opt out of by handling redirections manually
+        bool allowInsecureRedirect() const;
+        DownloadRequest &allowInsecureRedirect(bool value);
+
     private:
         QString m_url;
         QString m_userAgent;
         qint64 m_limit = 0;
         bool m_saveToFile = false;
         Path m_destFileName;
+        bool m_allowInsecureRedirect = false;
     };
 
     struct DownloadResult

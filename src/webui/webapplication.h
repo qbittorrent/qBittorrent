@@ -165,6 +165,7 @@ private:
         {{u"rss"_s, u"addFeed"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"addFolder"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"cloneRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"importRules"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"markAsRead"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"moveItem"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"rss"_s, u"refreshItem"_s}, Http::HEADER_REQUEST_METHOD_POST},

@@ -28,24 +28,24 @@
 
 #pragma once
 
-#include <QObject>
+#include <memory>
 
-#include "base/pathfwd.h"
+#include <QObject>
+#include <QPointer>
+
+#include "base/path.h"
 #include "headermap.h"
 #include "request.h"
-#include "response.h"
-#include "responsewriter.h"
 
 class QAbstractSocket;
+class QThread;
 
 namespace Http
 {
-    class AsyncFileSender;
-
-    class ResponseWriterImpl final : public ResponseWriter
+    class AsyncFileSender final : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY_MOVE(ResponseWriterImpl)
+        Q_DISABLE_COPY_MOVE(AsyncFileSender)
 
     public:
         enum class State
@@ -56,31 +56,33 @@ namespace Http
             Failed
         };
 
-        explicit ResponseWriterImpl(QAbstractSocket *socket, QObject *parent = nullptr);
-        ~ResponseWriterImpl() override;
+        AsyncFileSender(const Request &request, const Path &filePath, const HeaderMap &headers, QAbstractSocket *socket, QObject *parent = nullptr);
+        ~AsyncFileSender() override;
 
-        void prepare(const Request &request);
-
-        // Send entire response at once.
-        // Allow response content to be gzip encoded.
-        void setResponse(const Response &response) override;
-
-        // Allow to stream file using separate IO thread for reading.
-        // Support Range requests.
-        void streamFile(const Path &filePath, const HeaderMap &headers) override;
-
-        bool isFinished() const override;
         State state() const;
 
+        void run();
+
+    signals:
+        void failed();
+        void finished();
+
     private:
+        void processNextData();
         void fail();
         void finish();
 
-        QAbstractSocket *m_socket = nullptr;
-        Request m_request;
-
-        AsyncFileSender *m_asyncFileSender = nullptr;
-
         State m_state = State::Ready;
+
+        Request m_request;
+        Path m_filePath;
+        HeaderMap m_headers;
+        QAbstractSocket *m_socket = nullptr;
+
+        class DataPipe;
+        std::shared_ptr<DataPipe> m_dataPipe;
+
+        class Worker;
+        QPointer<Worker> m_worker;
     };
 }

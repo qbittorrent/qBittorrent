@@ -52,7 +52,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install zizmor
+          pip install zizmor==1.29.0
           IGNORE_RULEID='(.ruleId != "zizmor/template-injection")
             and (.ruleId != "zizmor/unpinned-uses")'
           IGNORE_ID='(.id != "zizmor/template-injection")

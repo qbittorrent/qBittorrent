@@ -17,7 +17,7 @@ qBittorrent - a Bittorrent client written in C++ / Qt
 # DESCRIPTION
 **qBittorrent** is an advanced Bittorrent client written in C++ / Qt,
 using the **libtorrent-rasterbar** library by Arvid Norberg. qBittorrent is similar to uTorrent.
-qBittorrent is fast, stable, light, it supports unicode and it provides a good integrated
+qBittorrent is fast, stable, light, it supports Unicode and it provides a good integrated
 search engine. It also comes with UPnP port forwarding / NAT-PMP, encryption (Vuze compatible),
 FAST extension (mainline) and PeX support (utorrent compatible).
 

@@ -274,7 +274,7 @@ bool RequestParser::parsePostMessage(const QByteArrayView data)
     if (contentTypeLower.startsWith(CONTENT_TYPE_FORM_ENCODED))
     {
         // [URL Standard] 5.1 application/x-www-form-urlencoded parsing
-        const QByteArray processedData = data.toByteArray().replace('+', ' ');
+        const QByteArray processedData = Utils::ByteArray::asQByteArray(data).replace('+', ' ');
 
         const QList<QStringPair> pairs = QUrlQuery(QString::fromUtf8(processedData)).queryItems(QUrl::FullyDecoded);
         for (const QStringPair &pair : pairs)

@@ -135,7 +135,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
     };
 
     // travel from the deepest folder and remove anything unwanted on the way out.
-    QStringList dirList(path.data() + u'/');  // get all sub directories paths
+    QStringList dirList(path.data() + u'/');  // get all subdirectory paths
     QDirIterator iter {path.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
     while (iter.hasNext())
         dirList << iter.next() + u'/';

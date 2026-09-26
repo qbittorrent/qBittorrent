@@ -51,6 +51,8 @@ namespace
     // static limits
     const int MAX_TORRENTS = 10000;
     const int MAX_PEERS_PER_TORRENT = 200;
+    // [BEP-3] the `ip` parameter may hold a DNS name, whose maximum length is 253 characters
+    const int MAX_CLAIMED_ADDRESS_SIZE = 255;
     const int ANNOUNCE_INTERVAL = 1800;  // 30min
 
     // constants
@@ -291,6 +293,8 @@ void Tracker::processAnnounceRequest()
     // ip address
     announceReq.socketAddress = m_env.clientAddress;
     announceReq.claimedAddress = queryParams.value(ANNOUNCE_REQUEST_IP);
+    if (announceReq.claimedAddress.size() > MAX_CLAIMED_ADDRESS_SIZE)
+        throw TrackerError(u"Invalid \"ip\" parameter"_s);
 
     // Enforce using IPv4 if address is indeed IPv4 or if it is an IPv4-mapped IPv6 address
     bool ok = false;
@@ -413,7 +417,8 @@ void Tracker::unregisterPeer(const TrackerAnnounceRequest &announceReq)
 
 void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
 {
-    const TorrentStats &torrentStats = m_torrents[announceReq.torrentID];
+    // don't create an entry for an unknown torrent, it would bypass the `MAX_TORRENTS` limit
+    const TorrentStats &torrentStats = m_torrents.value(announceReq.torrentID);
 
     lt::entry::dictionary_type replyDict
     {

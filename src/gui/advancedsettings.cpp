@@ -187,6 +187,10 @@ namespace
         I2P_OUTBOUND_QUANTITY,
         I2P_INBOUND_LENGTH,
         I2P_OUTBOUND_LENGTH,
+#if LIBTORRENT_VERSION_NUM >= 20012
+        I2P_INBOUND_LENGTH_VARIANCE,
+        I2P_OUTBOUND_LENGTH_VARIANCE,
+#endif // LIBTORRENT_VERSION_NUM >= 20012
 #endif
 
         ROW_COUNT
@@ -400,6 +404,10 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setI2POutboundQuantity(m_spinBoxI2POutboundQuantity.value());
     session->setI2PInboundLength(m_spinBoxI2PInboundLength.value());
     session->setI2POutboundLength(m_spinBoxI2POutboundLength.value());
+#if LIBTORRENT_VERSION_NUM >= 20012
+    session->setI2PInboundLengthVariance(m_spinBoxI2PInboundLengthVariance.value());
+    session->setI2POutboundLengthVariance(m_spinBoxI2POutboundLengthVariance.value());
+#endif // LIBTORRENT_VERSION_NUM >= 20012
 #endif
 
     session->setTorrentContentRemoveOption(m_comboBoxTorrentContentRemoveOption.currentData().value<BitTorrent::TorrentContentRemoveOption>());
@@ -1050,6 +1058,18 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxI2POutboundLength.setValue(session->I2POutboundLength());
     addRow(I2P_OUTBOUND_LENGTH, (tr("I2P outbound length") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_outbound_length", u"(?)"))
         , &m_spinBoxI2POutboundLength);
+#if LIBTORRENT_VERSION_NUM >= 20012
+    m_spinBoxI2PInboundLengthVariance.setMinimum(-7);
+    m_spinBoxI2PInboundLengthVariance.setMaximum(7);
+    m_spinBoxI2PInboundLengthVariance.setValue(session->I2PInboundLengthVariance());
+    addRow(I2P_INBOUND_LENGTH_VARIANCE, (tr("I2P inbound length variance") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_inbound_length_variance", u"(?)"))
+           , &m_spinBoxI2PInboundLengthVariance);
+    m_spinBoxI2POutboundLengthVariance.setMinimum(-7);
+    m_spinBoxI2POutboundLengthVariance.setMaximum(7);
+    m_spinBoxI2POutboundLengthVariance.setValue(session->I2POutboundLengthVariance());
+    addRow(I2P_OUTBOUND_LENGTH_VARIANCE, (tr("I2P outbound length variance") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_outbound_length_variance", u"(?)"))
+           , &m_spinBoxI2POutboundLengthVariance);
+#endif // LIBTORRENT_VERSION_NUM >= 20012
 #endif
 }
 

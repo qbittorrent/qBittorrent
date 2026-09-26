@@ -97,6 +97,7 @@ if (MSVC)
         /Zc:__cplusplus
     )
     target_link_options(qbt_common_cfg INTERFACE
+        $<$<AND:$<STREQUAL:${CMAKE_SYSTEM_PROCESSOR},AMD64>,$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>>:/CETCOMPAT>
         /GUARD:CF
         $<$<NOT:$<CONFIG:Debug>>:/OPT:REF /OPT:ICF>
         # suppress linking warning due to /INCREMENTAL and /OPT:ICF being both ON

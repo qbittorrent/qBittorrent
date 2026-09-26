@@ -60,7 +60,7 @@ namespace
             , m_torrentInfo {torrentInfo}
         {
             if ((m_bytesPerPixel > 0) && (m_bytesPerPixel < 10))
-                qDebug() << "PieceIndexToImagePos: torrent size is too small for correct computaions."
+                qDebug() << "PieceIndexToImagePos: torrent size is too small for correct computations."
                          << "Torrent size =" << torrentInfo.totalSize() << "Image width = " << image.width();
         }
 
