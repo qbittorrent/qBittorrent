@@ -18,6 +18,12 @@ repos:
         types_or:
           - ts
 
+      - id: check-webui-translation-tag
+        name: Check issues in WebUI <translation> tag
+        entry: .github/workflows/helper/pre-commit/check_webui_translation_tag.py
+        language: script
+        files: ^src/webui/www/translations/.+\.ts$
+
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
     rev: v6.0.0
     hooks:
