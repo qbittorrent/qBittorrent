@@ -1,4 +1,4 @@
-Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.4
+Mon Sep 28th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.4
     - BUGFIX: Enable links in add torrent comments (TurboTheTurtle) #24604
     - BUGFIX: Resolve relative UI theme paths against config folder (vrubleg) #24658
     - BUGFIX: Fix redefined signal (glassez) #24679
@@ -12,6 +12,8 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.4
     - WEBUI: Use safe property for setting element title (Chocobo1) #24766
     - WEBUI: Only open http(s) URLs from RSS articles and search results (Piccirello) #24790
     - WEBUI: Prevent in-place corruption in DynamicTable.loadColumnsOrder() (UgurGumushan) #24809
+    - WEBUI: Fixed ability to manually add peers (Chocobo1) #24733
+    - WEBUI: Fixed Preferences page crash with Italian locale (Chocobo1) #24733
     - OTHER: Suppress useless compiler warning (Chocobo1) #24814
 
 Tue Jul 07th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.3
