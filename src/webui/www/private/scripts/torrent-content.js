@@ -137,7 +137,7 @@ window.qBittorrent.TorrentContent ??= (() => {
         checkbox.type = "checkbox";
         checkbox.setAttribute("data-id", id);
         checkbox.setAttribute("data-file-id", fileId);
-        checkbox.addEventListener("click", fileCheckboxClicked);
+        checkbox.addEventListener("click", (event) => fileCheckboxClicked(event));
 
         updateCheckbox(checkbox, checked);
         return checkbox;
@@ -176,7 +176,7 @@ window.qBittorrent.TorrentContent ??= (() => {
         select.setAttribute("data-id", id);
         select.setAttribute("data-file-id", fileId);
         select.classList.add("combo_priority");
-        select.addEventListener("change", fileComboboxChanged);
+        select.addEventListener("change", (event) => fileComboboxChanged(event));
 
         select.appendChild(createOption(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), "QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]"));
         select.appendChild(createOption(FilePriority.Normal, (FilePriority.Normal === selectedPriority), "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]"));
