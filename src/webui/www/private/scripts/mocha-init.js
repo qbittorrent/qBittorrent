@@ -911,8 +911,8 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 200
+            width: window.qBittorrent.Dialog.limitWidthToViewport(500),
+            height: 400
         });
     };
 
@@ -953,8 +953,8 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 200
+            width: window.qBittorrent.Dialog.limitWidthToViewport(500),
+            height: 400
         });
     };
 
@@ -976,8 +976,8 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 200
+            width: window.qBittorrent.Dialog.limitWidthToViewport(500),
+            height: 400
         });
     };
 
@@ -999,8 +999,8 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 200
+            width: window.qBittorrent.Dialog.limitWidthToViewport(500),
+            height: 400
         });
     };
 

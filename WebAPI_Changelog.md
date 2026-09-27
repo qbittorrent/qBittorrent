@@ -6,6 +6,14 @@
   * `app/preferences` endpoint includes `confirm_remove_all_tags` (bool) option
   * `app/preferences` endpoint includes `confirm_remove_tracker_from_all_torrents` (bool) option
   * `app/setPreferences` endpoint allows to set all of the above
+* [#24918](https://github.com/qbittorrent/qBittorrent/pull/24918)
+  * `torrents/createCategory` and `torrents/editCategory` endpoints accept the following new parameters:
+    * `ratioLimit` (float) - the category share ratio limit; `-2` means use the global limit, `-1` means unlimited
+    * `seedingTimeLimit` (int) - the category seeding time limit in minutes; `-2` means use the global limit, `-1` means unlimited
+    * `inactiveSeedingTimeLimit` (int) - the category inactive seeding time limit in minutes; `-2` means use the global limit, `-1` means unlimited
+    * `shareLimitsMode` (string) - how the limits combine: `Default`, `MatchAny` or `MatchAll`
+    * `shareLimitAction` (string) - the action taken when a limit is reached: `Default`, `Stop`, `Remove`, `RemoveWithContent` or `EnableSuperSeeding`
+  * `torrents/editCategory` endpoint no longer requires the `savePath` parameter
 * [#24891](https://github.com/qbittorrent/qBittorrent/pull/24891)
   * `app/preferences` endpoint includes `i2p_inbound_length_variance` (int) option
   * `app/preferences` endpoint includes `i2p_outbound_length_variance` (int) option

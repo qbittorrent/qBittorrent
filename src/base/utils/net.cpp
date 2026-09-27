@@ -28,6 +28,8 @@
 
 #include "net.h"
 
+#include <ranges>
+
 #include <QList>
 #include <QNetworkInterface>
 #include <QSslCertificate>
@@ -205,6 +207,33 @@ namespace Utils
             QHostAddress canonical(addr.toIPv6Address());
             canonical.setScopeId(QString::number(id));
             return canonical;
+        }
+
+        QHostAddress resolveForwardedClientAddress(const QHostAddress &peerAddress
+                , const QStringView forwardedFor, const QList<Subnet> &trustedProxies)
+        {
+            // only a trusted proxy may declare an address on the client's behalf
+            if (!isIPInSubnets(peerAddress, trustedProxies))
+                return peerAddress;
+
+            const QList<QStringView> hops = forwardedFor.split(u',', Qt::SkipEmptyParts);
+            if (hops.isEmpty())
+                return peerAddress;
+
+            QHostAddress hopAddress;
+            for (const QStringView hop : std::views::reverse(hops))
+            {
+                if (!hopAddress.setAddress(hop.trimmed().toString()))  // the chain is unresolvable past this point
+                    return peerAddress;
+
+                // anything beyond the nearest hop that no trusted proxy vouches for was
+                // supplied by the client itself and cannot be relied upon
+                if (!isIPInSubnets(hopAddress, trustedProxies))
+                    return hopAddress;
+            }
+
+            // every hop is itself a trusted proxy
+            return hopAddress;
         }
 
         std::optional<IPRange> parseIPRange(QStringView filterStr, const bool isStrictIPv4)

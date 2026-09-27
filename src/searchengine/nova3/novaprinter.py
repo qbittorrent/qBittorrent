@@ -1,4 +1,4 @@
-# VERSION: 1.54
+# VERSION: 1.55
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -25,7 +25,8 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import re
-from typing import NotRequired, TypedDict
+import urllib.parse
+from typing import NotRequired, TypedDict, get_type_hints
 
 SearchResults = TypedDict('SearchResults', {
     'link': str,
@@ -39,10 +40,22 @@ SearchResults = TypedDict('SearchResults', {
 })
 
 
+# these fields contain untrusted values as they are unescaped or not encoded
+_unescapedFields = tuple(field for field in get_type_hints(SearchResults).keys() if field not in {'name'})
+
+
 def prettyPrinter(dictionary: SearchResults) -> None:
-    outtext = "|".join((
+    delimiter = "|"
+
+    # safety check for unexpected delimiter in values
+    for key in _unescapedFields:
+        value = str(dictionary.get(key, ''))
+        if delimiter in value:
+            raise ValueError(f'found unexpected delimiter character ({delimiter}) in value. Key: "{key}". Value: "{value}".')
+
+    outtext = delimiter.join((
         dictionary["link"],
-        dictionary["name"].replace("|", " "),
+        urllib.parse.quote(dictionary["name"]),
         str(anySizeToBytes(dictionary['size'])),
         str(dictionary["seeds"]),
         str(dictionary["leech"]),
