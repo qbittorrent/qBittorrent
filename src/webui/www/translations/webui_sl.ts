@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Velikost:</translation>
+        <translation type="vanished">Velikost:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -139,10 +139,6 @@
         <translation>Filtriraj datoteke ...</translation>
     </message>
     <message>
-        <source>Add Torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Use another path for incomplete torrent</source>
         <translation>Uporabi drugačno pot za nedokončan torrent</translation>
     </message>
@@ -201,6 +197,18 @@
     <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2692,7 +2700,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2897,7 +2905,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3599,7 +3607,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4009,7 +4017,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Forum:</source>
-        <translation>Forum: </translation>
+        <translation>Forum:</translation>
     </message>
     <message>
         <source>E-mail:</source>
@@ -4164,6 +4172,18 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     <message>
         <source>Stop search</source>
         <translation>Ustavi iskanje</translation>
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5108,7 +5128,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Prejem</translation>
+        <translation type="vanished">Prejem</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5128,6 +5148,26 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Add Torrent Links</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
         <translation type="unfinished" />
     </message>
 </context>

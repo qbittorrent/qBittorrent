@@ -161,12 +161,12 @@
         <translation>ფაილი არ არსებობს: &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="84"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="90"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
         <translation>საქაღალდე უკვე არსებობს: &quot;&apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="88"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="94"/>
         <source>No such folder: &apos;%1&apos;.</source>
         <translation>საქაღალდე არ არსებობს: &apos;%1&apos;.</translation>
     </message>
@@ -244,25 +244,25 @@
         <translation>გაჩერების პირობა:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="316"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="321"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="318"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="323"/>
         <source>None</source>
         <translation>არცერთი</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="317"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="494"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="496"/>
         <source>Metadata received</source>
         <translation>მეტამონაცემები მიღებულია</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="318"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="320"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="322"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="321"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="324"/>
         <source>Files checked</source>
         <translation>ფაილები შემოწმებულია</translation>
     </message>
@@ -377,112 +377,112 @@
         <translation>შენახვა .torrent ფაილის სახით...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="701"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="703"/>
         <source>I/O Error</source>
         <translation>I/O შეცდომა</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="522"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="524"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>ხელმიუწვდომელია</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="523"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="525"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>ხელმიუწვდომელია</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="913"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="918"/>
         <source>Not available</source>
         <translation>ხელმისაწვდომი არაა</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="521"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="523"/>
         <source>Magnet link</source>
         <translation>მაგნიტური ბმული</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="525"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="527"/>
         <source>Retrieving metadata...</source>
         <translation>მეტამონაცემების მღება...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="308"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="310"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="314"/>
         <source>Choose save path</source>
         <translation>არჩიეთ შენახვის ბილიკი</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="316"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="318"/>
         <source>No stop condition is set.</source>
         <translation>გაჩერების პირობები დაყენებული არაა.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="317"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
         <source>Torrent will stop after metadata is received.</source>
         <translation>ტორენტი გაჩერდება მეტამონაცემების მიღების შემდეგ.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="321"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>ტორენტი გაჩერდება ფაილების საწყისი შემოწმების მიერ.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="320"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="322"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="507"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="508"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="509"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="510"/>
         <source>N/A</source>
         <translation>ა/მ</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="610"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="612"/>
         <source>%1 (Free space on disk: %2)</source>
         <translation>%1 (თავისუფალი ადგილი დისკზე: %2)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="611"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="613"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
         <translation>ხელმისაწვდომი არაა</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="688"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="690"/>
         <source>Torrent file (*%1)</source>
         <translation>ტორენტის ფაილი (*%1)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="690"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
         <source>Save as torrent file</source>
         <translation>შენახვა ტორენტის ფაილის სახით</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="702"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="704"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
         <translation>ვერ მოხერხდა ტორენტის მეტამონაცემების ფაილის ექსპორტი &apos;%1&apos;. მიზეზი: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="883"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="888"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
         <translation>შეუძლებელია ტორენტ v2 შექმნა, სანამ მისი მინაცემები არ იქნება მთლიანად ჩამოტვირთული.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="328"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="330"/>
         <source>Filter files...</source>
         <translation>ფაილების გაფილტვრა...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="862"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="867"/>
         <source>Parsing metadata...</source>
         <translation>მეტამონაცემების დამუშავება...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="866"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="871"/>
         <source>Metadata retrieval complete</source>
         <translation>მეტამონაცემების მიღება დასრულდა</translation>
     </message>
@@ -490,32 +490,32 @@
 <context>
     <name>AddTorrentManager</name>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="63"/>
+        <location filename="../base/addtorrentmanager.cpp" line="66"/>
         <source>Downloading torrent... Source: &quot;%1&quot;</source>
         <translation>ტორენტის გადმოწერა... წყარო: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="157"/>
+        <location filename="../base/addtorrentmanager.cpp" line="160"/>
         <source>Failed to add torrent. Source: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>ტორენტის დამატება ჩავარდა. წყარო: &apos;%1&apos;. მიზეზი: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="175"/>
+        <location filename="../base/addtorrentmanager.cpp" line="178"/>
         <source>Merging of trackers is disabled</source>
         <translation>ტრეკერების შერწყმა გამორთულია</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="179"/>
+        <location filename="../base/addtorrentmanager.cpp" line="182"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="186"/>
+        <location filename="../base/addtorrentmanager.cpp" line="189"/>
         <source>Trackers are merged from new source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="189"/>
+        <location filename="../base/addtorrentmanager.cpp" line="192"/>
         <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: &quot;%2&quot;. Torrent infohash: %3. Result: %4</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1448,106 +1448,106 @@
         <translation>გამოიყენება კონფიგურაციის საქაღალდე: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="703"/>
+        <location filename="../app/application.cpp" line="704"/>
         <source>Torrent name: %1</source>
         <translation>ტორენტის სახელი: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="704"/>
+        <location filename="../app/application.cpp" line="705"/>
         <source>Torrent size: %1</source>
         <translation>ტორენტის ზომა: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="705"/>
+        <location filename="../app/application.cpp" line="706"/>
         <source>Save path: %1</source>
         <translation>შენახვის ბილიკი: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="706"/>
+        <location filename="../app/application.cpp" line="707"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>ტორენტი გადმოწერილია %1-ში.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="708"/>
-        <location filename="../app/application.cpp" line="726"/>
+        <location filename="../app/application.cpp" line="709"/>
+        <location filename="../app/application.cpp" line="727"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>მადლობა qBittorrent-ის გამოყენებისთვის.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="757"/>
+        <location filename="../app/application.cpp" line="758"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>ტორენტი: %1. შეტყობინების გაგზავნა ელფოსტაზე</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="945"/>
+        <location filename="../app/application.cpp" line="946"/>
         <source>Add torrent failed</source>
         <translation>ტორენტის დამატება ჩავარდა</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="946"/>
+        <location filename="../app/application.cpp" line="947"/>
         <source>Couldn&apos;t add torrent &apos;%1&apos;, reason: %2.</source>
         <translation>ტორენტის &apos;%1&apos; დამატება შეუძლებელია. მიზეზი: %2.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="995"/>
+        <location filename="../app/application.cpp" line="996"/>
         <source>The WebUI administrator username is: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="996"/>
+        <location filename="../app/application.cpp" line="997"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="997"/>
+        <location filename="../app/application.cpp" line="998"/>
         <source>You should set your own password in program preferences.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1003"/>
+        <location filename="../app/application.cpp" line="1004"/>
         <source>The WebUI is disabled! To enable the WebUI, edit the config file manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="610"/>
+        <location filename="../app/application.cpp" line="611"/>
         <source>Running external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="611"/>
+        <location filename="../app/application.cpp" line="612"/>
         <source>Failed to run external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="715"/>
+        <location filename="../app/application.cpp" line="716"/>
         <source>Torrent &quot;%1&quot; has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="855"/>
+        <location filename="../app/application.cpp" line="856"/>
         <source>WebUI will be started shortly after internal preparations. Please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="876"/>
-        <location filename="../app/application.cpp" line="1034"/>
+        <location filename="../app/application.cpp" line="877"/>
+        <location filename="../app/application.cpp" line="1035"/>
         <source>Loading torrents...</source>
         <translation>ტორენტების ჩატვირთვა...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="879"/>
+        <location filename="../app/application.cpp" line="880"/>
         <source>E&amp;xit</source>
         <translation>&amp;გასვლა</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="927"/>
+        <location filename="../app/application.cpp" line="928"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O შეცდომა</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="928"/>
+        <location filename="../app/application.cpp" line="929"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -1556,18 +1556,18 @@
  მიზეზი: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="940"/>
+        <location filename="../app/application.cpp" line="941"/>
         <source>Torrent added</source>
         <translation>ტორენტი დაემატა</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="940"/>
+        <location filename="../app/application.cpp" line="941"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
         <translation>&apos;%1&apos; დაემატა.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="934"/>
+        <location filename="../app/application.cpp" line="935"/>
         <source>Download completed</source>
         <translation>გადმოწერა დასრულებულია</translation>
     </message>
@@ -1578,88 +1578,88 @@
         <translation>qBittorrent %1 გაეშვა. პროცესის ID: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="725"/>
+        <location filename="../app/application.cpp" line="726"/>
         <source>This is a test email.</source>
         <translation>ეს სატესტო ელფოსტაა.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="732"/>
+        <location filename="../app/application.cpp" line="733"/>
         <source>Test email</source>
         <translation>სატესტო ელფოსტა</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="934"/>
+        <location filename="../app/application.cpp" line="935"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>&apos;%1&apos;-ის გადმოწერა დასრულდა.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="977"/>
+        <location filename="../app/application.cpp" line="978"/>
         <source>Information</source>
         <translation>ინფორმაცია</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="982"/>
+        <location filename="../app/application.cpp" line="983"/>
         <source>To fix the error, you may need to edit the config file manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="991"/>
+        <location filename="../app/application.cpp" line="992"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1034"/>
+        <location filename="../app/application.cpp" line="1035"/>
         <source>Exit</source>
         <translation>გასვლა</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1080"/>
+        <location filename="../app/application.cpp" line="1081"/>
         <source>Recursive download confirmation</source>
         <translation>რეკურსიული გადმოწერის დადასტურება</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1081"/>
+        <location filename="../app/application.cpp" line="1082"/>
         <source>The torrent &apos;%1&apos; contains .torrent files, do you want to proceed with their downloads?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1087"/>
+        <location filename="../app/application.cpp" line="1088"/>
         <source>Never</source>
         <translation>არასდროს</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1116"/>
+        <location filename="../app/application.cpp" line="1117"/>
         <source>Recursive download .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1222"/>
+        <location filename="../app/application.cpp" line="1223"/>
         <source>Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1257"/>
+        <location filename="../app/application.cpp" line="1258"/>
         <source>Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: &quot;%4&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1365"/>
+        <location filename="../app/application.cpp" line="1366"/>
         <source>qBittorrent termination initiated</source>
         <translation>ინიცირებულია qBittorrent-ის შეწყვეტა</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1371"/>
+        <location filename="../app/application.cpp" line="1372"/>
         <source>qBittorrent is shutting down...</source>
         <translation>qBittorrent ითიშება...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1399"/>
+        <location filename="../app/application.cpp" line="1400"/>
         <source>Saving torrent progress...</source>
         <translation>ტორენტის მიმდინარეობის შენახვა...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1436"/>
+        <location filename="../app/application.cpp" line="1437"/>
         <source>qBittorrent is now ready to exit</source>
         <translation>qBittorrent გასასვლელად მზადაა</translation>
     </message>
@@ -2196,10 +2196,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="749"/>
         <source>Save resume data transaction failed. Error: %1</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t begin transaction. Error: %1</source>
-        <translation type="vanished">ტრანზაქციის დაწყება შეუძლებელია. შეცდომა: %1</translation>
     </message>
 </context>
 <context>
@@ -3467,22 +3463,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>GUIAddTorrentManager</name>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="113"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="116"/>
         <source>Downloading torrent... Source: &quot;%1&quot;</source>
         <translation>ტორენტის გადმოწერა... წყარო: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="207"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="222"/>
         <source>Torrent is already present</source>
         <translation>ტორენტი უკვე არსებობს</translation>
     </message>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="213"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="228"/>
         <source>Trackers cannot be merged because it is a private torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="219"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="234"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Do you want to merge trackers from new source?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8888,12 +8884,17 @@ Those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="526"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="496"/>
+        <source>Failed to add torrent from RSS article. Reason: unsupported torrent URL. Only HTTP(S) URLs, magnet URIs and info hashes are supported. Article: &quot;%1&quot;. URL: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="535"/>
         <source>Failed to read RSS AutoDownloader rules. %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="544"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="553"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9246,60 +9247,72 @@ Those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="470"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="494"/>
         <source>Blocked opening RSS article URL. URL pointing to local file might be malicious behaviour. Article: &quot;%1&quot;. URL: &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="481"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="505"/>
         <source>Blocked opening RSS article URL. The following article URL is pointing to local file and it may be malicious behaviour:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="483"/>
-        <location filename="../gui/rss/rsswidget.cpp" line="490"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="462"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="507"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="514"/>
         <source>There are %1 more articles with the same issue.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="488"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="448"/>
+        <source>Blocked adding torrent from RSS article. Unsupported torrent URL. Only HTTP(S) URLs, magnet URIs and info hashes are supported. Article: &quot;%1&quot;. URL: &quot;%2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rsswidget.cpp" line="460"/>
+        <source>Blocked adding torrent from RSS article. The following article has an unsupported torrent URL and it may be malicious behaviour:
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rsswidget.cpp" line="512"/>
         <source>The following article has no news URL provided:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="510"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="534"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>გთხოვთ აირჩიეთ ახალი სახელი ამ RSS არხისთვის</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="510"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="534"/>
         <source>New feed name:</source>
         <translation>ახალი ლენტის სახელი:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="518"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="542"/>
         <source>Rename failed</source>
         <translation>სახელის გადარქმევა ჩავარდა</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="689"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="713"/>
         <source>Date: </source>
         <translation>თარიღი: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="691"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="715"/>
         <source>Feed: </source>
         <translation>ლენტა: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="693"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="717"/>
         <source>Author: </source>
         <translation>ავტორი: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="695"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="719"/>
         <source>Open link</source>
         <translation>ბმულის გახსნა</translation>
     </message>
@@ -10953,13 +10966,13 @@ Please choose a different name and try again.</source>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="101"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="179"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="181"/>
         <source>Select file</source>
         <translation>აირჩიეთ ფაილი</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="108"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="171"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="173"/>
         <source>Select folder</source>
         <translation>საქაღალდის არჩევა</translation>
     </message>
@@ -10984,7 +10997,7 @@ Please choose a different name and try again.</source>
         <translation>ნაწილის ზომა:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="123"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="124"/>
         <source>Auto</source>
         <translation>ავტო</translation>
     </message>
@@ -11064,58 +11077,58 @@ Please choose a different name and try again.</source>
         <translation>მიმდინარეობა:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="131"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="132"/>
         <source>Create Torrent</source>
         <translation>ტორენტის შექმნა</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="235"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="237"/>
         <source>Calculating...</source>
         <translation>გამოთვლა...</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="280"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="331"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="282"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="333"/>
         <source>Torrent creation failed</source>
         <translation>ტორენტის შექმნა ჩავარდა</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="280"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="282"/>
         <source>Reason: Path to file/folder is not readable.</source>
         <translation>მიზეზი: ფაილის/დირექტორიის მისამარტი არ არის წაკითხვადი</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="286"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="288"/>
         <source>Select where to save the new torrent</source>
         <translation>ამოირჩიეთ, სად შევინახოთ ახალი ტორენტი</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="286"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="288"/>
         <source>Torrent Files (*.torrent)</source>
         <translation>ტორენტის ფაილები (*.torrent)</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="368"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="370"/>
         <source>Add torrent to transfer list failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="368"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="370"/>
         <source>Reason: &quot;%1&quot;</source>
         <translation>მიზეზი: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="369"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="371"/>
         <source>Add torrent failed</source>
         <translation>ტორენტის დამატება ჩავარდა</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="340"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="342"/>
         <source>Torrent creator</source>
         <translation>ტორენტის შემქმნელი</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="341"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="343"/>
         <source>Torrent created:</source>
         <translation>ტორენტი შეიქმნა:</translation>
     </message>

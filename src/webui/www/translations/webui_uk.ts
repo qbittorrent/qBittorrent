@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Розмір:</translation>
+        <translation type="vanished">Розмір:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation>Додати торрент</translation>
+        <translation type="vanished">Додати торрент</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -201,6 +201,18 @@
     <message>
         <source>KiB/s</source>
         <translation>КіБ/с</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2096,7 +2108,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation>Використовувати шляхи Категорій в Ручному Режимі </translation>
+        <translation>Використовувати шляхи Категорій в Ручному Режимі</translation>
     </message>
     <message>
         <source>List of alternative WebUI</source>
@@ -2692,7 +2704,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2897,7 +2909,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3599,7 +3611,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4164,6 +4176,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Stop search</source>
         <translation>Зупинити пошук</translation>
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5112,7 +5136,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Завантажити</translation>
+        <translation type="vanished">Завантажити</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5133,6 +5157,26 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Add Torrent Links</source>
         <translation>Додати посилання на торрент</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

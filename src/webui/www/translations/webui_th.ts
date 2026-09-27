@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>ขนาด:</translation>
+        <translation type="vanished">ขนาด:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -139,10 +139,6 @@
         <translation>คัดกรองไฟล์...</translation>
     </message>
     <message>
-        <source>Add Torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Use another path for incomplete torrent</source>
         <translation>ใช้เส้นทางอื่นสำหรับทอร์เรนต์ที่ไม่สมบูรณ์</translation>
     </message>
@@ -201,6 +197,18 @@
     <message>
         <source>KiB/s</source>
         <translation>กิบิไบต์/วินาที</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -468,7 +476,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์ทอร์เรนต์ %1 เหล่านี้ออกจากรายการถ่ายโอน?</translation>
     </message>
     <message>
         <source>Unable to delete torrents.</source>
@@ -2160,7 +2168,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation type="unfinished" />
+        <translation>ช่วงเวลาหมดอายุของแคชตัวแก้ไขชื่อโฮสต์</translation>
     </message>
     <message>
         <source>sec</source>
@@ -2212,7 +2220,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation>รหัสจุดบริการที่แตกต่างกัน (DSCP) สำหรับการเชื่อมต่อกับโหนดอื่น</translation>
     </message>
     <message>
         <source>The WebUI username must not contain a colon.</source>
@@ -2240,7 +2248,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>ยโปรแกรมจะเพิ่มข้อความต่อท้ายชื่อหน้าต่างเพื่อช่วยแยกแยะอินสแตนซ์ของ qBittorrent ออกจากกัน</translation>
     </message>
     <message>
         <source>Resolve peer host names:</source>
@@ -2544,7 +2552,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>ใช้การแสดงออกปกติ (Regular Expression)</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2688,7 +2696,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2893,7 +2901,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3595,7 +3603,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -3604,7 +3612,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>นอกจากนี้ ลบไฟล์เนื้อหาออกด้วย</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -4161,6 +4169,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Stop search</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4340,7 +4360,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation>ตัวกรองต้องลงท้ายด้วยอัฒภาค  " ; " </translation>
+        <translation>ตัวกรองต้องลงท้ายด้วยอัฒภาค  " ; "</translation>
     </message>
     <message>
         <source>? to match any single character</source>
@@ -5103,7 +5123,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>ดาวน์โหลด</translation>
+        <translation type="vanished">ดาวน์โหลด</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5124,6 +5144,26 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Add Torrent Links</source>
         <translation>เพิ่มลิงก์ของทอร์เรนต์</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

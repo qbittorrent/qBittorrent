@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>サイズ:</translation>
+        <translation type="vanished">サイズ:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -139,10 +139,6 @@
         <translation>ファイルを絞り込む...</translation>
     </message>
     <message>
-        <source>Add Torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Use another path for incomplete torrent</source>
         <translation>未完了のTorrentは別のパスを使用する</translation>
     </message>
@@ -201,6 +197,18 @@
     <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1532,7 +1540,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>フィードごとの記事数の上限: </translation>
+        <translation>フィードごとの記事数の上限:</translation>
     </message>
     <message>
         <source> min</source>
@@ -2692,7 +2700,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2897,7 +2905,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3599,7 +3607,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -3936,7 +3944,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation>追加するピアのリスト(1行ごとに1つのIP): </translation>
+        <translation>追加するピアのリスト(1行ごとに1つのIP):</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -4163,6 +4171,18 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -5107,7 +5127,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>ダウンロード</translation>
+        <translation type="vanished">ダウンロード</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5128,6 +5148,26 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Add Torrent Links</source>
         <translation>Torrentリンクの追加</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

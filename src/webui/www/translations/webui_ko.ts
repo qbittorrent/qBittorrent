@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>크기:</translation>
+        <translation type="vanished">크기:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation>토렌트 추가</translation>
+        <translation type="vanished">토렌트 추가</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -201,6 +201,18 @@
     <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1544,7 +1556,7 @@
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation>결합할 선택적 IP 주소: </translation>
+        <translation>결합할 선택적 IP 주소:</translation>
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
@@ -2692,7 +2704,7 @@ DNS 재결합 공격을 방어하기 위해
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2897,7 +2909,7 @@ DNS 재결합 공격을 방어하기 위해
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3599,7 +3611,7 @@ DNS 재결합 공격을 방어하기 위해
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4164,6 +4176,18 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Stop search</source>
         <translation>검색 중지</translation>
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5111,7 +5135,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>다운로드</translation>
+        <translation type="vanished">다운로드</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5132,6 +5156,26 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Add Torrent Links</source>
         <translation>토렌트 링크 추가</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

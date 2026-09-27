@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Mida:</translation>
+        <translation type="vanished">Mida:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation>Afegeix un torrent</translation>
+        <translation type="vanished">Afegeix un torrent</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -201,6 +201,18 @@
     <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -376,8 +388,7 @@
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation>Nom de categoria no vàlid:
-Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
+        <translation>Nom de categoria no vàlid:\nSi us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -1093,7 +1104,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Habilita l'intercanvi de clients (PeX) per trobar-ne més </translation>
+        <translation>Habilita l'intercanvi de clients (PeX) per trobar-ne més</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
@@ -2693,7 +2704,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2898,7 +2909,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3074,7 +3085,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation>Creat el </translation>
+        <translation>Creat el</translation>
     </message>
 </context>
 <context>
@@ -3600,7 +3611,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4165,6 +4176,18 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     <message>
         <source>Stop search</source>
         <translation>Atura la cerca</translation>
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5113,7 +5136,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Baixa</translation>
+        <translation type="vanished">Baixa</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5134,6 +5157,26 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     <message>
         <source>Add Torrent Links</source>
         <translation>Afegeix un enllaços de torrent</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

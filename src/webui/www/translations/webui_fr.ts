@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Taille :</translation>
+        <translation type="vanished">Taille :</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation>Ajouter un torrent</translation>
+        <translation type="vanished">Ajouter un torrent</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -201,6 +201,18 @@
     <message>
         <source>KiB/s</source>
         <translation>Kio/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1300,7 +1312,7 @@
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
-        <translation>Mode de gestion de torrent par défaut </translation>
+        <translation>Mode de gestion de torrent par défaut</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
@@ -2691,7 +2703,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2896,7 +2908,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3060,7 +3072,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Status Icon</source>
-        <translation>Icône de status </translation>
+        <translation>Icône de status</translation>
     </message>
     <message>
         <source>Session Uploaded</source>
@@ -3333,7 +3345,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation>Réduire/Développer </translation>
+        <translation>Réduire/Développer</translation>
     </message>
     <message>
         <source>Collapse/expand category</source>
@@ -3598,7 +3610,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4163,6 +4175,18 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Stop search</source>
         <translation>Arrêter la recherche</translation>
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4879,7 +4903,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <name>Login</name>
     <message>
         <source>qBittorrent WebUI</source>
-        <translation>IU Web de qBittorrent </translation>
+        <translation>IU Web de qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
@@ -4952,7 +4976,7 @@ torrent (ne sera pas distribué sur le réseau DHT)</translation>
     </message>
     <message>
         <source>Status Icon</source>
-        <translation>Icône de status </translation>
+        <translation>Icône de status</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
@@ -5044,7 +5068,7 @@ l'alignement</translation>
     </message>
     <message>
         <source>Started On</source>
-        <translation>Démarré le </translation>
+        <translation>Démarré le</translation>
     </message>
     <message>
         <source>Web Seeds</source>
@@ -5111,7 +5135,7 @@ immédiatement</translation>
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Télécharger</translation>
+        <translation type="vanished">Télécharger</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5132,6 +5156,26 @@ immédiatement</translation>
     <message>
         <source>Add Torrent Links</source>
         <translation>Ajouter les liens de torrents</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

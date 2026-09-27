@@ -161,12 +161,12 @@
         <translation>没有这个文件：“%1”。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="84"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="90"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
         <translation>文件夹已存在：“%1”。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="88"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="94"/>
         <source>No such folder: &apos;%1&apos;.</source>
         <translation>没有这个文件夹：“%1”。</translation>
     </message>
@@ -244,25 +244,25 @@
         <translation>停止条件：</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="316"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="321"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="318"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="323"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="317"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="494"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="496"/>
         <source>Metadata received</source>
         <translation>已收到元数据</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="318"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="320"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
         <translation>最开始就有元数据的 Torrent 文件被添加后将处在停止状态</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="322"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="321"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="324"/>
         <source>Files checked</source>
         <translation>文件已被检查</translation>
     </message>
@@ -377,112 +377,112 @@
         <translation>保存为 .torrent 文件...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="701"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="703"/>
         <source>I/O Error</source>
         <translation>I/O 错误</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="522"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="524"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="523"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="525"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="913"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="918"/>
         <source>Not available</source>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="521"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="523"/>
         <source>Magnet link</source>
         <translation>磁力链接</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="525"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="527"/>
         <source>Retrieving metadata...</source>
         <translation>正在检索元数据...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="308"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="310"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="314"/>
         <source>Choose save path</source>
         <translation>选择保存路径</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="316"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="318"/>
         <source>No stop condition is set.</source>
         <translation>未设置停止条件。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="317"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
         <source>Torrent will stop after metadata is received.</source>
         <translation>接收到元数据后，Torrent 将停止。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="321"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>第一次文件检查完成后，Torrent 将停止。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="320"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="322"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation>如果最开始不存在元数据，勾选此选项也会下载元数据。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="507"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="508"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="509"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="510"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="610"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="612"/>
         <source>%1 (Free space on disk: %2)</source>
         <translation>%1（剩余磁盘空间：%2）</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="611"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="613"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="688"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="690"/>
         <source>Torrent file (*%1)</source>
         <translation>Torrent 文件 (*%1)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="690"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
         <source>Save as torrent file</source>
         <translation>另存为 Torrent 文件</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="702"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="704"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
         <translation>无法导出 Torrent 元数据文件 “%1”。原因：%2。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="883"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="888"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
         <translation>在完全下载数据之前无法创建 v2 Torrent。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="328"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="330"/>
         <source>Filter files...</source>
         <translation>筛选文件...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="862"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="867"/>
         <source>Parsing metadata...</source>
         <translation>正在解析元数据...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="866"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="871"/>
         <source>Metadata retrieval complete</source>
         <translation>元数据检索完成</translation>
     </message>
@@ -490,32 +490,32 @@
 <context>
     <name>AddTorrentManager</name>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="63"/>
+        <location filename="../base/addtorrentmanager.cpp" line="66"/>
         <source>Downloading torrent... Source: &quot;%1&quot;</source>
         <translation>正在下载 Torrent... 来源：“%1”</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="157"/>
+        <location filename="../base/addtorrentmanager.cpp" line="160"/>
         <source>Failed to add torrent. Source: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>添加 Torrent 失败。来源：“%1”。原因：“%2”</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="175"/>
+        <location filename="../base/addtorrentmanager.cpp" line="178"/>
         <source>Merging of trackers is disabled</source>
         <translation>合并 Tracker 已禁用</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="179"/>
+        <location filename="../base/addtorrentmanager.cpp" line="182"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
         <translation>因为这是一个私有 Torrent，所以无法合并 Tracker</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="186"/>
+        <location filename="../base/addtorrentmanager.cpp" line="189"/>
         <source>Trackers are merged from new source</source>
         <translation>来自新来源的 Tracker 已经合并</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="189"/>
+        <location filename="../base/addtorrentmanager.cpp" line="192"/>
         <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: &quot;%2&quot;. Torrent infohash: %3. Result: %4</source>
         <translation>检测到尝试添加重复的种子文件。来源：%1.。现有种子：&quot;%2&quot;。种子 infohash 值：%3。结果：%4</translation>
     </message>
@@ -1448,106 +1448,106 @@
         <translation>使用配置目录：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="703"/>
+        <location filename="../app/application.cpp" line="704"/>
         <source>Torrent name: %1</source>
         <translation>Torrent 名称：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="704"/>
+        <location filename="../app/application.cpp" line="705"/>
         <source>Torrent size: %1</source>
         <translation>Torrent 大小：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="705"/>
+        <location filename="../app/application.cpp" line="706"/>
         <source>Save path: %1</source>
         <translation>保存路径：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="706"/>
+        <location filename="../app/application.cpp" line="707"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>该 Torrent 下载用时为 %1。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="708"/>
-        <location filename="../app/application.cpp" line="726"/>
+        <location filename="../app/application.cpp" line="709"/>
+        <location filename="../app/application.cpp" line="727"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>感谢您使用 qBittorrent。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="757"/>
+        <location filename="../app/application.cpp" line="758"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torrent：%1，发送邮件提醒</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="945"/>
+        <location filename="../app/application.cpp" line="946"/>
         <source>Add torrent failed</source>
         <translation>添加 torrent 失败</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="946"/>
+        <location filename="../app/application.cpp" line="947"/>
         <source>Couldn&apos;t add torrent &apos;%1&apos;, reason: %2.</source>
         <translation>无法添加 Torrent “%1”，原因：%2。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="995"/>
+        <location filename="../app/application.cpp" line="996"/>
         <source>The WebUI administrator username is: %1</source>
         <translation>WebUI 管理员用户名是：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="996"/>
+        <location filename="../app/application.cpp" line="997"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
         <translation>未设置 WebUI 管理员密码。为此会话提供了一个临时密码：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="997"/>
+        <location filename="../app/application.cpp" line="998"/>
         <source>You should set your own password in program preferences.</source>
         <translation>你应该在程序首选项中设置你自己的密码</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1003"/>
+        <location filename="../app/application.cpp" line="1004"/>
         <source>The WebUI is disabled! To enable the WebUI, edit the config file manually.</source>
         <translation>WebUI 已禁用！要启用 WebUI，请手动编辑配置文件。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="610"/>
+        <location filename="../app/application.cpp" line="611"/>
         <source>Running external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation>运行外部程序。Torrent：“%1”。命令：`%2`</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="611"/>
+        <location filename="../app/application.cpp" line="612"/>
         <source>Failed to run external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation>运行外部程序失败。Torrent 文件：“%1”。命令：`%2`</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="715"/>
+        <location filename="../app/application.cpp" line="716"/>
         <source>Torrent &quot;%1&quot; has finished downloading</source>
         <translation>Torrent “%1” 已完成下载</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="855"/>
+        <location filename="../app/application.cpp" line="856"/>
         <source>WebUI will be started shortly after internal preparations. Please wait...</source>
         <translation>WebUI 将在内部准备不久后启动。请稍等…</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="876"/>
-        <location filename="../app/application.cpp" line="1034"/>
+        <location filename="../app/application.cpp" line="877"/>
+        <location filename="../app/application.cpp" line="1035"/>
         <source>Loading torrents...</source>
         <translation>加载 Torrent 中...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="879"/>
+        <location filename="../app/application.cpp" line="880"/>
         <source>E&amp;xit</source>
         <translation>退出(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="927"/>
+        <location filename="../app/application.cpp" line="928"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O 错误</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="928"/>
+        <location filename="../app/application.cpp" line="929"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -1556,18 +1556,18 @@
  原因：%2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="940"/>
+        <location filename="../app/application.cpp" line="941"/>
         <source>Torrent added</source>
         <translation>已添加 Torrent</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="940"/>
+        <location filename="../app/application.cpp" line="941"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
         <translation>已添加 “%1”。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="934"/>
+        <location filename="../app/application.cpp" line="935"/>
         <source>Download completed</source>
         <translation>下载完成</translation>
     </message>
@@ -1578,88 +1578,88 @@
         <translation>qBittorrent %1 已启动。进程 ID：%2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="725"/>
+        <location filename="../app/application.cpp" line="726"/>
         <source>This is a test email.</source>
         <translation>这是测试邮件。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="732"/>
+        <location filename="../app/application.cpp" line="733"/>
         <source>Test email</source>
         <translation>测试邮件</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="934"/>
+        <location filename="../app/application.cpp" line="935"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>“%1” 下载完成。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="977"/>
+        <location filename="../app/application.cpp" line="978"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="982"/>
+        <location filename="../app/application.cpp" line="983"/>
         <source>To fix the error, you may need to edit the config file manually.</source>
         <translation>你可能需要手动编辑配置文件以修复此错误。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="991"/>
+        <location filename="../app/application.cpp" line="992"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
         <translation>要控制 qBittorrent，请访问下列地址的 WebUI：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1034"/>
+        <location filename="../app/application.cpp" line="1035"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1080"/>
+        <location filename="../app/application.cpp" line="1081"/>
         <source>Recursive download confirmation</source>
         <translation>确认递归下载</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1081"/>
+        <location filename="../app/application.cpp" line="1082"/>
         <source>The torrent &apos;%1&apos; contains .torrent files, do you want to proceed with their downloads?</source>
         <translation>Torrent “%1” 包含 .torrent 文件，您要继续下载它们的内容吗？</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1087"/>
+        <location filename="../app/application.cpp" line="1088"/>
         <source>Never</source>
         <translation>从不</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1116"/>
+        <location filename="../app/application.cpp" line="1117"/>
         <source>Recursive download .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;</source>
         <translation>递归下载 Torrent 内的 .torrent 文件。源 Torrent：“%1”。文件：“%2”</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1222"/>
+        <location filename="../app/application.cpp" line="1223"/>
         <source>Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: &quot;%2&quot;</source>
         <translation>设置物理内存（RAM）使用限制失败。错误代码：%1。错误信息：“%2”</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1257"/>
+        <location filename="../app/application.cpp" line="1258"/>
         <source>Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: &quot;%4&quot;</source>
         <translation>未能设置硬性物理内存（RAM）用量限制。请求的大小：%1。硬性系统限制：%2。错误码：%3。错误消息：“%4”</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1365"/>
+        <location filename="../app/application.cpp" line="1366"/>
         <source>qBittorrent termination initiated</source>
         <translation>发起了 qBittorrent 终止操作</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1371"/>
+        <location filename="../app/application.cpp" line="1372"/>
         <source>qBittorrent is shutting down...</source>
         <translation>qBittorrent 正在关闭...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1399"/>
+        <location filename="../app/application.cpp" line="1400"/>
         <source>Saving torrent progress...</source>
         <translation>正在保存 Torrent 进度...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1436"/>
+        <location filename="../app/application.cpp" line="1437"/>
         <source>qBittorrent is now ready to exit</source>
         <translation>qBittorrent 现在准备好退出了</translation>
     </message>
@@ -2196,11 +2196,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="749"/>
         <source>Save resume data transaction failed. Error: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t begin transaction. Error: %1</source>
-        <translation type="vanished">无法开始处理。错误：%1</translation>
+        <translation>保存恢复数据事务失败。错误：%1</translation>
     </message>
 </context>
 <context>
@@ -3468,22 +3464,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>GUIAddTorrentManager</name>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="113"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="116"/>
         <source>Downloading torrent... Source: &quot;%1&quot;</source>
         <translation>正在下载 Torrent... 来源：“%1”</translation>
     </message>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="207"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="222"/>
         <source>Torrent is already present</source>
         <translation>Torrent 已存在</translation>
     </message>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="213"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="228"/>
         <source>Trackers cannot be merged because it is a private torrent.</source>
         <translation>无法合并 Tracker，因为这是一个私有 Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="219"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="234"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Do you want to merge trackers from new source?</source>
         <translation>Torrent “%1” 已经在传输列表中。你想合并来自新来源的 Tracker 吗？</translation>
     </message>
@@ -6117,12 +6113,12 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="722"/>
         <source>Show speed in Dock</source>
-        <translation>Show speed in Dock</translation>
+        <translation>在 Dock 中显示速度</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="729"/>
         <source>Show qBittorrent in menu bar</source>
-        <translation>Show qBittorrent in menu bar</translation>
+        <translation>在菜单栏中显示 qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="806"/>
@@ -7824,12 +7820,12 @@ readme[0-9].txt ：筛选 “readme1.txt” 、“readme2.txt” 但不筛选 �
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>Character Error</source>
-        <translation>Character Error</translation>
+        <translation>字符错误</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>The WebUI username must not contain a colon.</source>
-        <translation>The WebUI username must not contain a colon.</translation>
+        <translation>WebUI 用户名不得包含冒号。</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2149"/>
@@ -8911,12 +8907,17 @@ Those plugins were disabled.</source>
         <translation>已接受 RSS 文章  &apos;%1&apos;，依据是规则 &apos;%2&apos;。正尝试添加 torrent...</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="526"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="496"/>
+        <source>Failed to add torrent from RSS article. Reason: unsupported torrent URL. Only HTTP(S) URLs, magnet URIs and info hashes are supported. Article: &quot;%1&quot;. URL: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="535"/>
         <source>Failed to read RSS AutoDownloader rules. %1</source>
         <translation>未能读取 RSS 自动下载程序规则： %1</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="544"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="553"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
         <translation>无法读取 RSS 自动下载器规则。原因：%1</translation>
     </message>
@@ -9269,60 +9270,72 @@ Those plugins were disabled.</source>
         <translation>您确定要删除所选的 RSS 订阅吗？</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="470"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="494"/>
         <source>Blocked opening RSS article URL. URL pointing to local file might be malicious behaviour. Article: &quot;%1&quot;. URL: &quot;%2&quot;.</source>
         <translation>阻止了打开 RSS 文章 URL。指向本地文件的 URL 可能是恶意行为。文章：&quot;%1&quot;. URL：&quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="481"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="505"/>
         <source>Blocked opening RSS article URL. The following article URL is pointing to local file and it may be malicious behaviour:
 %1</source>
         <translation>阻止了打开 RSS 文章 URL。下列文章 URL 指向本地文件，可能是恶意行为：%1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="483"/>
-        <location filename="../gui/rss/rsswidget.cpp" line="490"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="462"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="507"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="514"/>
         <source>There are %1 more articles with the same issue.</source>
         <translation>还有 %1 篇文章也有相同问题.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="488"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="448"/>
+        <source>Blocked adding torrent from RSS article. Unsupported torrent URL. Only HTTP(S) URLs, magnet URIs and info hashes are supported. Article: &quot;%1&quot;. URL: &quot;%2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rsswidget.cpp" line="460"/>
+        <source>Blocked adding torrent from RSS article. The following article has an unsupported torrent URL and it may be malicious behaviour:
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rsswidget.cpp" line="512"/>
         <source>The following article has no news URL provided:
 %1</source>
         <translation>下列文章没有提供新闻 URL: %1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="510"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="534"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>请重命名该 RSS 订阅源</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="510"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="534"/>
         <source>New feed name:</source>
         <translation>新订阅源名称：</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="518"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="542"/>
         <source>Rename failed</source>
         <translation>重命名失败</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="689"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="713"/>
         <source>Date: </source>
         <translation>日期：</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="691"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="715"/>
         <source>Feed: </source>
         <translation>订阅源：</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="693"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="717"/>
         <source>Author: </source>
         <translation>作者：</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="695"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="719"/>
         <source>Open link</source>
         <translation>打开链接</translation>
     </message>
@@ -10980,13 +10993,13 @@ Please choose a different name and try again.</source>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="101"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="179"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="181"/>
         <source>Select file</source>
         <translation>选择文件</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="108"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="171"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="173"/>
         <source>Select folder</source>
         <translation>选择文件夹</translation>
     </message>
@@ -11011,7 +11024,7 @@ Please choose a different name and try again.</source>
         <translation>分块大小：</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="123"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="124"/>
         <source>Auto</source>
         <translation>自动</translation>
     </message>
@@ -11091,58 +11104,58 @@ Please choose a different name and try again.</source>
         <translation>进度：</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="131"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="132"/>
         <source>Create Torrent</source>
         <translation>制作 Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="235"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="237"/>
         <source>Calculating...</source>
         <translation>正在计算中...</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="280"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="331"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="282"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="333"/>
         <source>Torrent creation failed</source>
         <translation>Torrent 制作失败</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="280"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="282"/>
         <source>Reason: Path to file/folder is not readable.</source>
         <translation>原因：目标文件/文件夹不可读。</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="286"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="288"/>
         <source>Select where to save the new torrent</source>
         <translation>选择路径存放新 torrent</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="286"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="288"/>
         <source>Torrent Files (*.torrent)</source>
         <translation>Torrent 文件 (*.torrent)</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="368"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="370"/>
         <source>Add torrent to transfer list failed.</source>
         <translation>添加 Torrent 到传输列表失败。</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="368"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="370"/>
         <source>Reason: &quot;%1&quot;</source>
         <translation>原因：&quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="369"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="371"/>
         <source>Add torrent failed</source>
         <translation>添加 torrent 失败</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="340"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="342"/>
         <source>Torrent creator</source>
         <translation>制作 Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="341"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="343"/>
         <source>Torrent created:</source>
         <translation>Torrent 已创建：</translation>
     </message>
@@ -11385,7 +11398,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="67"/>
         <source>Remove torrent and its content</source>
-        <translation>删除 torrent 及其内容</translation>
+        <translation>删除种子及文件</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="70"/>
@@ -11583,7 +11596,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1922"/>
         <source>Category does not exist</source>
-        <translation>Category does not exist</translation>
+        <translation>分类不存在</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2059"/>
@@ -12286,7 +12299,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
         <source>Created On</source>
         <comment>Torrent was initially created on 01/01/2010 08:00</comment>
-        <translation>Created On</translation>
+        <translation>创建于</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="176"/>
@@ -12361,13 +12374,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="183"/>
         <source>Session Downloaded</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Session Downloaded</translation>
+        <translation>会话已下载</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
         <source>Session Uploaded</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Session Uploaded</translation>
+        <translation>会话已上传</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="188"/>

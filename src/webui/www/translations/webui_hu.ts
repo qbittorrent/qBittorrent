@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Méret:</translation>
+        <translation type="vanished">Méret:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation>Torrent Hozzáadása</translation>
+        <translation type="vanished">Torrent Hozzáadása</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -201,6 +201,18 @@
     <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -432,7 +444,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation>A bejövő kapcsolatokhoz használt portnak 0 és 65535 között kell lennie. </translation>
+        <translation>A bejövő kapcsolatokhoz használt portnak 0 és 65535 között kell lennie.</translation>
     </message>
     <message>
         <source>Original author</source>
@@ -2687,12 +2699,12 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>Írja ide a könyvtár nevét </translation>
+        <translation>Írja ide a könyvtár nevét</translation>
     </message>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2897,7 +2909,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3599,7 +3611,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4164,6 +4176,18 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     <message>
         <source>Stop search</source>
         <translation>Keresés leállítása</translation>
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5112,7 +5136,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Letöltés</translation>
+        <translation type="vanished">Letöltés</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5124,7 +5148,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation>Soronként egy link (HTTP linkek, mágnes linkek és az info hashek támogatottak) </translation>
+        <translation>Soronként egy link (HTTP linkek, mágnes linkek és az info hashek támogatottak)</translation>
     </message>
     <message>
         <source>URLs</source>
@@ -5133,6 +5157,26 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     <message>
         <source>Add Torrent Links</source>
         <translation>Torrent Linkek Hozzáadása</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

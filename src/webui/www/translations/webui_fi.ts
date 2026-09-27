@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Koko:</translation>
+        <translation type="vanished">Koko:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation>Lisää torrent</translation>
+        <translation type="vanished">Lisää torrent</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -201,6 +201,18 @@
     <message>
         <source>KiB/s</source>
         <translation>Kt/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1948,7 +1960,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Write-through</source>
-        <translation>Write through on tallennustapa, jossa tiedot kirjoitetaan välimuistiin ja vastaavaan päämuistipaikkaan samanaikaisesti. </translation>
+        <translation>Write through on tallennustapa, jossa tiedot kirjoitetaan välimuistiin ja vastaavaan päämuistipaikkaan samanaikaisesti.</translation>
     </message>
     <message>
         <source>WebUI</source>
@@ -2692,7 +2704,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2897,7 +2909,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3599,7 +3611,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4165,6 +4177,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <source>Stop search</source>
         <translation>Pysäytä haku</translation>
     </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4444,7 +4468,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation>poimii 2, 5, 8 ja läpi 15, 30 sekä jaksot siitä eteenpäin kaudesta yksi </translation>
+        <translation>poimii 2, 5, 8 ja läpi 15, 30 sekä jaksot siitä eteenpäin kaudesta yksi</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -5112,7 +5136,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Lataa</translation>
+        <translation type="vanished">Lataa</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5133,6 +5157,26 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     <message>
         <source>Add Torrent Links</source>
         <translation>Lisää torrent-linkkejä</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

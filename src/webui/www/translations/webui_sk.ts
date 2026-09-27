@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Veľkosť:</translation>
+        <translation type="vanished">Veľkosť:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation>Pridať torrent</translation>
+        <translation type="vanished">Pridať torrent</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -201,6 +201,18 @@
     <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -811,7 +823,7 @@
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation>Nemožno exportovať torrent súbor. </translation>
+        <translation>Nemožno exportovať torrent súbor.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -902,7 +914,7 @@
     </message>
     <message>
         <source>Update my dynamic domain name</source>
-        <translation>Aktualizovať môj dynamický doménový názov </translation>
+        <translation>Aktualizovať môj dynamický doménový názov</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
@@ -2692,7 +2704,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2897,7 +2909,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3212,7 +3224,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Force reannounce to selected tracker(s)</source>
-        <translation type="unfinished" />
+        <translation>Vynútiť znovuohlásenie vybraným trackerom</translation>
     </message>
     <message>
         <source>Min Announce</source>
@@ -3599,7 +3611,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4009,7 +4021,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Forum:</source>
-        <translation>Fórum: </translation>
+        <translation>Fórum:</translation>
     </message>
     <message>
         <source>E-mail:</source>
@@ -4164,6 +4176,18 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     <message>
         <source>Stop search</source>
         <translation>Zastaviť hľadanie</translation>
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4573,7 +4597,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Trackerless</source>
-        <translation>Bez trackeru</translation>
+        <translation>Bez trackera</translation>
     </message>
     <message>
         <source>Start torrents</source>
@@ -4937,7 +4961,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation>Nemožno exportovať torrent súbor. </translation>
+        <translation>Nemožno exportovať torrent súbor.</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
@@ -5047,7 +5071,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Web Seeds</source>
-        <translation type="unfinished" />
+        <translation>Webové Seedy</translation>
     </message>
     <message>
         <source>Start
@@ -5110,7 +5134,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Stiahnuť</translation>
+        <translation type="vanished">Stiahnuť</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5131,6 +5155,26 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     <message>
         <source>Add Torrent Links</source>
         <translation>Pridať odkazy torrentov</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

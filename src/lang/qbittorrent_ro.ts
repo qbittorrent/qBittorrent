@@ -161,12 +161,12 @@
         <translation>Fișier inexistent: „%1”.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="84"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="90"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
         <translation>Dosarul exită deja: „%1”.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="88"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="94"/>
         <source>No such folder: &apos;%1&apos;.</source>
         <translation>Dosar inexistent: „%1”.</translation>
     </message>
@@ -244,25 +244,25 @@
         <translation>Condiție de oprire:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="316"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="321"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="318"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="323"/>
         <source>None</source>
         <translation>Niciuna</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="317"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="494"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="496"/>
         <source>Metadata received</source>
         <translation>Metadate primite</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="318"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="320"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
         <translation>Torentele care au metadate inițial o să fie adăugate ca oprite.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="322"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="321"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="324"/>
         <source>Files checked</source>
         <translation>Fișiere verificate</translation>
     </message>
@@ -377,112 +377,112 @@
         <translation>Salvare ca fișier .torrent...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="701"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="703"/>
         <source>I/O Error</source>
         <translation>Eroare Intrare/Ieșire</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="522"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="524"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>Nu este disponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="523"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="525"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>Nu este disponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="913"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="918"/>
         <source>Not available</source>
         <translation>Nu este disponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="521"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="523"/>
         <source>Magnet link</source>
         <translation>Legătură magnet</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="525"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="527"/>
         <source>Retrieving metadata...</source>
         <translation>Se obțin metadatele...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="308"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="310"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="314"/>
         <source>Choose save path</source>
         <translation>Alegeți calea de salvare</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="316"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="318"/>
         <source>No stop condition is set.</source>
         <translation>Nicio condiție de oprire stabilită.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="317"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
         <source>Torrent will stop after metadata is received.</source>
         <translation>Torentul se va opri dupa ce se primesc metadatele.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="321"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>Torentul se va opri după ce fișierele sunt verificate inițial.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="320"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="322"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation>Aceasta va descarca de asemenea și metadatele dacă nu au fost acolo inițial.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="507"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="508"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="509"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="510"/>
         <source>N/A</source>
         <translation>Indisponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="610"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="612"/>
         <source>%1 (Free space on disk: %2)</source>
         <translation>%1 (Spațiu disponibil pe disc: %2)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="611"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="613"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
         <translation>Indisponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="688"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="690"/>
         <source>Torrent file (*%1)</source>
         <translation>Fisier torent (*%1)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="690"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
         <source>Save as torrent file</source>
         <translation>Salvează ca fișier torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="702"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="704"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
         <translation>Nu s-a putut exporta fișierul „%1” cu metadatele torentului. Motiv: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="883"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="888"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
         <translation>Nu poate fi creat un torent de versiuna 2 ptână când datele nu sunt complet descărcate.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="328"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="330"/>
         <source>Filter files...</source>
         <translation>Filtrare fișiere...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="862"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="867"/>
         <source>Parsing metadata...</source>
         <translation>Se analizează metadatele...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="866"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="871"/>
         <source>Metadata retrieval complete</source>
         <translation>Metadatele au fost obținute</translation>
     </message>
@@ -490,32 +490,32 @@
 <context>
     <name>AddTorrentManager</name>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="63"/>
+        <location filename="../base/addtorrentmanager.cpp" line="66"/>
         <source>Downloading torrent... Source: &quot;%1&quot;</source>
         <translation>Se descarcă torentul… Sursă: „%1”</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="157"/>
+        <location filename="../base/addtorrentmanager.cpp" line="160"/>
         <source>Failed to add torrent. Source: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Adăugarea torentului a eșuat. Sursă: „%1”. Motiv: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="175"/>
+        <location filename="../base/addtorrentmanager.cpp" line="178"/>
         <source>Merging of trackers is disabled</source>
         <translation>Combinarea urmăritoarelor este dezactivată</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="179"/>
+        <location filename="../base/addtorrentmanager.cpp" line="182"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
         <translation>Urmăritoarele nu a putut fi combinate deoarece este un torent privat</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="186"/>
+        <location filename="../base/addtorrentmanager.cpp" line="189"/>
         <source>Trackers are merged from new source</source>
         <translation>Urmăritoarele sunt combinate cu cele din sursa nouă</translation>
     </message>
     <message>
-        <location filename="../base/addtorrentmanager.cpp" line="189"/>
+        <location filename="../base/addtorrentmanager.cpp" line="192"/>
         <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: &quot;%2&quot;. Torrent infohash: %3. Result: %4</source>
         <translation>A fost detectată o încercare de a adăuga un torrent duplicat. Sursa: %1. Torrent existent: &quot;%2&quot;. Infohash-ul torrent-ului: %3. Rezultat: %4.</translation>
     </message>
@@ -1448,106 +1448,106 @@
         <translation>Se folosește directorul de configurație: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="703"/>
+        <location filename="../app/application.cpp" line="704"/>
         <source>Torrent name: %1</source>
         <translation>Nume torent: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="704"/>
+        <location filename="../app/application.cpp" line="705"/>
         <source>Torrent size: %1</source>
         <translation>Mărime torent: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="705"/>
+        <location filename="../app/application.cpp" line="706"/>
         <source>Save path: %1</source>
         <translation>Calea de salvare: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="706"/>
+        <location filename="../app/application.cpp" line="707"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torentul a fost descărcat în %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="708"/>
-        <location filename="../app/application.cpp" line="726"/>
+        <location filename="../app/application.cpp" line="709"/>
+        <location filename="../app/application.cpp" line="727"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Vă mulțumim că folosiți qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="757"/>
+        <location filename="../app/application.cpp" line="758"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torent: %1, se trimite notificare prin poșta electronică</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="945"/>
+        <location filename="../app/application.cpp" line="946"/>
         <source>Add torrent failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="946"/>
+        <location filename="../app/application.cpp" line="947"/>
         <source>Couldn&apos;t add torrent &apos;%1&apos;, reason: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="995"/>
+        <location filename="../app/application.cpp" line="996"/>
         <source>The WebUI administrator username is: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="996"/>
+        <location filename="../app/application.cpp" line="997"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="997"/>
+        <location filename="../app/application.cpp" line="998"/>
         <source>You should set your own password in program preferences.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1003"/>
+        <location filename="../app/application.cpp" line="1004"/>
         <source>The WebUI is disabled! To enable the WebUI, edit the config file manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="610"/>
+        <location filename="../app/application.cpp" line="611"/>
         <source>Running external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation>Se rulează program extern. Torent: „%1”. Comandă: `%2`</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="611"/>
+        <location filename="../app/application.cpp" line="612"/>
         <source>Failed to run external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="715"/>
+        <location filename="../app/application.cpp" line="716"/>
         <source>Torrent &quot;%1&quot; has finished downloading</source>
         <translation> Torentul &apos;%1&apos; s-a terminat de descărcat</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="855"/>
+        <location filename="../app/application.cpp" line="856"/>
         <source>WebUI will be started shortly after internal preparations. Please wait...</source>
         <translation>Interfața web va porni la scurt timp după pregătiri interne. Așteptați…</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="876"/>
-        <location filename="../app/application.cpp" line="1034"/>
+        <location filename="../app/application.cpp" line="877"/>
+        <location filename="../app/application.cpp" line="1035"/>
         <source>Loading torrents...</source>
         <translation>Se încarcă torentele...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="879"/>
+        <location filename="../app/application.cpp" line="880"/>
         <source>E&amp;xit</source>
         <translation>Închid&amp;e programul</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="927"/>
+        <location filename="../app/application.cpp" line="928"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Eroare I/O</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="928"/>
+        <location filename="../app/application.cpp" line="929"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -1556,18 +1556,18 @@
 Motivul: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="940"/>
+        <location filename="../app/application.cpp" line="941"/>
         <source>Torrent added</source>
         <translation>Torent adăugat</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="940"/>
+        <location filename="../app/application.cpp" line="941"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
         <translation>„%1” a fost adăugat.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="934"/>
+        <location filename="../app/application.cpp" line="935"/>
         <source>Download completed</source>
         <translation>Descărcare finalizată</translation>
     </message>
@@ -1578,88 +1578,88 @@ Motivul: %2</translation>
         <translation>qBittorrent %1 a pornit. ID proces: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="725"/>
+        <location filename="../app/application.cpp" line="726"/>
         <source>This is a test email.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="732"/>
+        <location filename="../app/application.cpp" line="733"/>
         <source>Test email</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="934"/>
+        <location filename="../app/application.cpp" line="935"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>&apos;%1&apos; s-a descărcat.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="977"/>
+        <location filename="../app/application.cpp" line="978"/>
         <source>Information</source>
         <translation>Informație</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="982"/>
+        <location filename="../app/application.cpp" line="983"/>
         <source>To fix the error, you may need to edit the config file manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="991"/>
+        <location filename="../app/application.cpp" line="992"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
         <translation>Pentru a controla qBittorrent, accesați interfața web la adresa: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1034"/>
+        <location filename="../app/application.cpp" line="1035"/>
         <source>Exit</source>
         <translation>Ieșire</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1080"/>
+        <location filename="../app/application.cpp" line="1081"/>
         <source>Recursive download confirmation</source>
         <translation>Confirmare descărcare recursivă</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1081"/>
+        <location filename="../app/application.cpp" line="1082"/>
         <source>The torrent &apos;%1&apos; contains .torrent files, do you want to proceed with their downloads?</source>
         <translation>Torentul „%1” conține fișiere .torrent, doriți să continuați cu descărcarea acestora?</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1087"/>
+        <location filename="../app/application.cpp" line="1088"/>
         <source>Never</source>
         <translation>Niciodată</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1116"/>
+        <location filename="../app/application.cpp" line="1117"/>
         <source>Recursive download .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;</source>
         <translation>Descarc recursiv fișierul .torrent din torent. Torentul sursă: „%1”. Fișier: „%2”</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1222"/>
+        <location filename="../app/application.cpp" line="1223"/>
         <source>Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: &quot;%2&quot;</source>
         <translation>A eșuat stabilirea unei limite de folosire a memorie fizice (RAM). Error code: %1. Mesaj de eroare: „%2”</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1257"/>
+        <location filename="../app/application.cpp" line="1258"/>
         <source>Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: &quot;%4&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1365"/>
+        <location filename="../app/application.cpp" line="1366"/>
         <source>qBittorrent termination initiated</source>
         <translation>Terminare qBittorrent inițiată</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1371"/>
+        <location filename="../app/application.cpp" line="1372"/>
         <source>qBittorrent is shutting down...</source>
         <translation>qBittorrent se închide...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1399"/>
+        <location filename="../app/application.cpp" line="1400"/>
         <source>Saving torrent progress...</source>
         <translation>Se salvează progresul torentelor...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1436"/>
+        <location filename="../app/application.cpp" line="1437"/>
         <source>qBittorrent is now ready to exit</source>
         <translation>qBittorrent e gata să iasă</translation>
     </message>
@@ -3464,22 +3464,22 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
 <context>
     <name>GUIAddTorrentManager</name>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="113"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="116"/>
         <source>Downloading torrent... Source: &quot;%1&quot;</source>
         <translation>Se descarcă torentul… Sursă: „%1”</translation>
     </message>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="207"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="222"/>
         <source>Torrent is already present</source>
         <translation>Torentul este deja prezent</translation>
     </message>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="213"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="228"/>
         <source>Trackers cannot be merged because it is a private torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/guiaddtorrentmanager.cpp" line="219"/>
+        <location filename="../gui/guiaddtorrentmanager.cpp" line="234"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Do you want to merge trackers from new source?</source>
         <translation>Torentul „%1” este deja în lista de transferuri. Doriți să combinați urmăritoarele de la sursa nouă?</translation>
     </message>
@@ -8890,12 +8890,17 @@ Totuși, acele module au fost dezactivate.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="526"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="496"/>
+        <source>Failed to add torrent from RSS article. Reason: unsupported torrent URL. Only HTTP(S) URLs, magnet URIs and info hashes are supported. Article: &quot;%1&quot;. URL: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="535"/>
         <source>Failed to read RSS AutoDownloader rules. %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="544"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="553"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9248,60 +9253,72 @@ Totuși, acele module au fost dezactivate.</translation>
         <translation>Sigur doriți să ștergeți fluxurile RSS alese?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="470"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="494"/>
         <source>Blocked opening RSS article URL. URL pointing to local file might be malicious behaviour. Article: &quot;%1&quot;. URL: &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="481"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="505"/>
         <source>Blocked opening RSS article URL. The following article URL is pointing to local file and it may be malicious behaviour:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="483"/>
-        <location filename="../gui/rss/rsswidget.cpp" line="490"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="462"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="507"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="514"/>
         <source>There are %1 more articles with the same issue.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="488"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="448"/>
+        <source>Blocked adding torrent from RSS article. Unsupported torrent URL. Only HTTP(S) URLs, magnet URIs and info hashes are supported. Article: &quot;%1&quot;. URL: &quot;%2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rsswidget.cpp" line="460"/>
+        <source>Blocked adding torrent from RSS article. The following article has an unsupported torrent URL and it may be malicious behaviour:
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rsswidget.cpp" line="512"/>
         <source>The following article has no news URL provided:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="510"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="534"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Alegeți o nouă denumire pentru acest flux RSS</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="510"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="534"/>
         <source>New feed name:</source>
         <translation>Denumire flux nou:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="518"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="542"/>
         <source>Rename failed</source>
         <translation>Redenumirea a eșuat</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="689"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="713"/>
         <source>Date: </source>
         <translation>Dată: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="691"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="715"/>
         <source>Feed: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="693"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="717"/>
         <source>Author: </source>
         <translation>Autor: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="695"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="719"/>
         <source>Open link</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10959,13 +10976,13 @@ Alegeți o denumire diferită și încercați iar.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="101"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="179"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="181"/>
         <source>Select file</source>
         <translation>Alegeți fișierul</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="108"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="171"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="173"/>
         <source>Select folder</source>
         <translation>Alegeți dosarul</translation>
     </message>
@@ -10990,7 +11007,7 @@ Alegeți o denumire diferită și încercați iar.</translation>
         <translation>Dimensiune bucată:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="123"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="124"/>
         <source>Auto</source>
         <translation>Automat</translation>
     </message>
@@ -11070,58 +11087,58 @@ Alegeți o denumire diferită și încercați iar.</translation>
         <translation>Progres:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="131"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="132"/>
         <source>Create Torrent</source>
         <translation>Creează torent</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="235"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="237"/>
         <source>Calculating...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="280"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="331"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="282"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="333"/>
         <source>Torrent creation failed</source>
         <translation>Crearea torentului a eșuat</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="280"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="282"/>
         <source>Reason: Path to file/folder is not readable.</source>
         <translation>Motiv: Calea către fișier/dosar nu este accesibilă.</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="286"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="288"/>
         <source>Select where to save the new torrent</source>
         <translation>Alegeți unde să fie salvat torentul nou</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="286"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="288"/>
         <source>Torrent Files (*.torrent)</source>
         <translation>Fișiere torent (*.torrent)</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="368"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="370"/>
         <source>Add torrent to transfer list failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="368"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="370"/>
         <source>Reason: &quot;%1&quot;</source>
         <translation>Motivul: „%1”</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="369"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="371"/>
         <source>Add torrent failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="340"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="342"/>
         <source>Torrent creator</source>
         <translation>Creator de torente</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="341"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="343"/>
         <source>Torrent created:</source>
         <translation>Torent creat:</translation>
     </message>

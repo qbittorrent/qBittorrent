@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Dimensione:</translation>
+        <translation type="vanished">Dimensione:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation>Aggiungi torrent</translation>
+        <translation type="vanished">Aggiungi torrent</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -201,6 +201,18 @@
     <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2076,8 +2088,7 @@ Per dividere voci multiple usa ';'. Si può usare il carattere jolly '*'.</trans
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation>Tentativo di invio email. 
-Controlla la posta in arrivo per confermare la ricezione</translation>
+        <translation>Tentativo di invio email. Controlla la posta in arrivo per confermare la ricezione</translation>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
@@ -2693,7 +2704,7 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2898,7 +2909,7 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3600,7 +3611,7 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4066,8 +4077,7 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>Il database gratuito da IP a Country Lite di DB-IP viene usato per risolvere i paesi dei peer. 
-Il database è concesso in licenza con la licenza internazionale Creative Commons Attribution 4.0</translation>
+        <translation>Il database gratuito da IP a Country Lite di DB-IP viene usato per risolvere i paesi dei peer. Il database è concesso in licenza con la licenza internazionale Creative Commons Attribution 4.0</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -4167,6 +4177,18 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
         <source>Stop search</source>
         <translation>Ferma ricerca</translation>
     </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4259,8 +4281,7 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>Il recupero dei feed RSS è disabilitato! 
-Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
+        <translation>Il recupero dei feed RSS è disabilitato! Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -4327,8 +4348,7 @@ Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>Il download automatico dei torrent RSS è disabilitato! 
-Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
+        <translation>Il download automatico dei torrent RSS è disabilitato! Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -5115,7 +5135,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Download</translation>
+        <translation type="vanished">Download</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5136,6 +5156,26 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Add Torrent Links</source>
         <translation>Aggiungi collegamenti torrent</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5176,18 +5216,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>confirmRotateAPIKeyDialog</name>
     <message>
         <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
-        <translation>Vuoi generare una chiave API? 
-Questa chiave può essere usata per interagire con l'API di qBittorrent.</translation>
+        <translation>Vuoi generare una chiave API? Questa chiave può essere usata per interagire con l'API di qBittorrent.</translation>
     </message>
     <message>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation>Vuoi eliminare questa chiave API? 
-La chiave attuale smetterà immediatamente di funzionare.</translation>
+        <translation>Vuoi eliminare questa chiave API? La chiave attuale smetterà immediatamente di funzionare.</translation>
     </message>
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation>Vuoi ruotare questa chiave API? 
-La chiave attuale smetterà immediatamente di funzionare e verrà generata una nuova chiave.</translation>
+        <translation>Vuoi ruotare questa chiave API? La chiave attuale smetterà immediatamente di funzionare e verrà generata una nuova chiave.</translation>
     </message>
 </context>
 </TS>

@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>大小：</translation>
+        <translation type="vanished">大小：</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation>添加种子</translation>
+        <translation type="vanished">添加种子</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -201,6 +201,18 @@
     <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2216,11 +2228,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
-        <translation>与对等节点连接的区分服务代码点 (DSCP) </translation>
+        <translation>与对等节点连接的区分服务代码点 (DSCP)</translation>
     </message>
     <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation>The WebUI username must not contain a colon.</translation>
+        <translation>WebUI 用户名不得包含冒号。</translation>
     </message>
     <message>
         <source>Date format:</source>
@@ -2692,7 +2704,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2897,7 +2909,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3065,15 +3077,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Session Uploaded</source>
-        <translation>Session Uploaded</translation>
+        <translation>会话已上传</translation>
     </message>
     <message>
         <source>Session Downloaded</source>
-        <translation>Session Downloaded</translation>
+        <translation>会话已下载</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation>Created On</translation>
+        <translation>创建于</translation>
     </message>
 </context>
 <context>
@@ -3599,7 +3611,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4164,6 +4176,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Stop search</source>
         <translation>停止搜索</translation>
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4809,7 +4833,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation>Category does not exist</translation>
+        <translation>分类不存在</translation>
     </message>
 </context>
 <context>
@@ -4820,7 +4844,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Manage Cookies</source>
-        <translation>管理  </translation>
+        <translation>管理</translation>
     </message>
     <message>
         <source>Add Cookie</source>
@@ -5107,7 +5131,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>下载</translation>
+        <translation type="vanished">下载</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5128,6 +5152,26 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Add Torrent Links</source>
         <translation>添加 Torrent 链接</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

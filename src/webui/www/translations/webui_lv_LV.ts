@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Izmērs:</translation>
+        <translation type="vanished">Izmērs:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -139,10 +139,6 @@
         <translation>Meklēt failos...</translation>
     </message>
     <message>
-        <source>Add Torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Use another path for incomplete torrent</source>
         <translation>Izmantot citu vietu nepabeigtiem torrentiem</translation>
     </message>
@@ -201,6 +197,18 @@
     <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -265,7 +273,7 @@
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>Galvenajam atļautajam kopējam lejupielādes ātrumam ir jābūt lielākam par 0 vai arī nekādam. </translation>
+        <translation>Galvenajam atļautajam kopējam lejupielādes ātrumam ir jābūt lielākam par 0 vai arī nekādam.</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
@@ -289,11 +297,11 @@
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>Atļautajam savienojumu skaitam jābūt lielākam par 0 vai arī atslēgtam. </translation>
+        <translation>Atļautajam savienojumu skaitam jābūt lielākam par 0 vai arī atslēgtam.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Atļautajam savienojumu skaitam uz katru torrentu jābūt lielākam par 0 vai arī atslēgtam. </translation>
+        <translation>Atļautajam savienojumu skaitam uz katru torrentu jābūt lielākam par 0 vai arī atslēgtam.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
@@ -468,7 +476,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
-        <translation>Vai esat pārliecināts, ka vēlaties izdzēst šos %1 torrentus no Torrentu saraksta? </translation>
+        <translation>Vai esat pārliecināts, ka vēlaties izdzēst šos %1 torrentus no Torrentu saraksta?</translation>
     </message>
     <message>
         <source>Unable to delete torrents.</source>
@@ -1034,7 +1042,7 @@
     </message>
     <message>
         <source>Upload:</source>
-        <translation>Augšupielāde: </translation>
+        <translation>Augšupielāde:</translation>
     </message>
     <message>
         <source>Download:</source>
@@ -1716,7 +1724,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Norādiet apgriezto starpniekserveru IP adreses (vai apakštīklus, piem. 0.0.0.0/24), lai izmantotu klienta pārsūtīto adresi (X-Forwarded-For atribūts), izmantojiet ";", lai atdalītu ierakstus. </translation>
+        <translation>Norādiet apgriezto starpniekserveru IP adreses (vai apakštīklus, piem. 0.0.0.0/24), lai izmantotu klienta pārsūtīto adresi (X-Forwarded-For atribūts), izmantojiet ";", lai atdalītu ierakstus.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1768,7 +1776,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation>Izveidot reģistra kopiju ik pēc: </translation>
+        <translation>Izveidot reģistra kopiju ik pēc:</translation>
     </message>
     <message>
         <source>days</source>
@@ -1780,7 +1788,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation>Dzēst reģistra kopijas vecākas par: </translation>
+        <translation>Dzēst reģistra kopijas vecākas par:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -2692,7 +2700,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2897,7 +2905,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3523,7 +3531,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation>Automātiskais režīms nozīmē, ka torrenta īpašības (piem. saglabāšanas vieta), tiks piešķirta atbilstoši izvēlētajai kategorijai. </translation>
+        <translation>Automātiskais režīms nozīmē, ka torrenta īpašības (piem. saglabāšanas vieta), tiks piešķirta atbilstoši izvēlētajai kategorijai.</translation>
     </message>
     <message>
         <source>Start</source>
@@ -3599,7 +3607,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4165,6 +4173,18 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <source>Stop search</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4257,7 +4277,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>RSS kanālu lasīšana ir atslēgta! Jūs to varat ieslēgt programmas iestatījumos. </translation>
+        <translation>RSS kanālu lasīšana ir atslēgta! Jūs to varat ieslēgt programmas iestatījumos.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -4324,7 +4344,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>RSS automātiskais lejupielādētājs ir atslēgts! Jūs to varat ieslēgt programmas iestatījumos. </translation>
+        <translation>RSS automātiskais lejupielādētājs ir atslēgts! Jūs to varat ieslēgt programmas iestatījumos.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -4404,7 +4424,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation>Neiekļaut: </translation>
+        <translation>Neiekļaut:</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
@@ -4424,7 +4444,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation>Parametrs &lt;b&gt;1x25-40;&lt;/b&gt; atlasīs tikai 1. sezonas epizodes, sākot no 25. līdz 40. </translation>
+        <translation>Parametrs &lt;b&gt;1x25-40;&lt;/b&gt; atlasīs tikai 1. sezonas epizodes, sākot no 25. līdz 40.</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
@@ -4855,7 +4875,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation>Vai esat drošs, ka vēlaties ieslēgt Automātisko torrentu pārvaldību priekš atlasītājiem torrentiem? Attiecīgi Auto uzstādījumiem, to saturs var tikt pārvietots. </translation>
+        <translation>Vai esat drošs, ka vēlaties ieslēgt Automātisko torrentu pārvaldību priekš atlasītājiem torrentiem? Attiecīgi Auto uzstādījumiem, to saturs var tikt pārvietots.</translation>
     </message>
 </context>
 <context>
@@ -5107,7 +5127,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Lejupielādēt</translation>
+        <translation type="vanished">Lejupielādēt</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5128,6 +5148,26 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     <message>
         <source>Add Torrent Links</source>
         <translation>Pievienot torrentu saites</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

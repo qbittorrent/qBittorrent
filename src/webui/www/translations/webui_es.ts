@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Tamaño:</translation>
+        <translation type="vanished">Tamaño:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation>Añadir Torrent</translation>
+        <translation type="vanished">Añadir Torrent</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -201,6 +201,18 @@
     <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -408,7 +420,7 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>Registrese para manejar vínculos magnéticos... </translation>
+        <translation>Registrese para manejar vínculos magnéticos...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -2692,7 +2704,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2897,7 +2909,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3599,7 +3611,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -3855,7 +3867,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>Advertencia: Asegúrese de cumplir con las leyes de copyright de su país cuando descarga torrents de estos motores de búsqueda. </translation>
+        <translation>Advertencia: Asegúrese de cumplir con las leyes de copyright de su país cuando descarga torrents de estos motores de búsqueda.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -4164,6 +4176,18 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     <message>
         <source>Stop search</source>
         <translation>Detener la búsqueda</translation>
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5112,7 +5136,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Descargar</translation>
+        <translation type="vanished">Descargar</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5124,7 +5148,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation>Un enlace por línea (pueden ser enlaces HTTP, enlaces magnet o info-hashes) </translation>
+        <translation>Un enlace por línea (pueden ser enlaces HTTP, enlaces magnet o info-hashes)</translation>
     </message>
     <message>
         <source>URLs</source>
@@ -5133,6 +5157,26 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     <message>
         <source>Add Torrent Links</source>
         <translation>Agregar enlaces torrent</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

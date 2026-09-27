@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Lelums:</translation>
+        <translation type="vanished">Lelums:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -139,10 +139,6 @@
         <translation>Meklēt failuos...</translation>
     </message>
     <message>
-        <source>Add Torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Use another path for incomplete torrent</source>
         <translation type="unfinished" />
     </message>
@@ -201,6 +197,18 @@
     <message>
         <source>KiB/s</source>
         <translation> KiB/s</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -261,19 +269,19 @@
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Golvonai kūpeigā nūsasyuteišonas dreizuma rūbežai juoir leluokai par 0 voi arī nūgrīztai. </translation>
+        <translation>Golvonai kūpeigā nūsasyuteišonas dreizuma rūbežai juoir leluokai par 0 voi arī nūgrīztai.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>Golvonai kūpeigā atsasyuteišonas dreizuma rūbežai juoir leluokai par 0 voi arī nūgrīztai. </translation>
+        <translation>Golvonai kūpeigā atsasyuteišonas dreizuma rūbežai juoir leluokai par 0 voi arī nūgrīztai.</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Aļternativai kūpeigā nūsasyuteišonas dreizuma rūbežai juoir leluokai par 0 voi arī nūgrīztai. </translation>
+        <translation>Aļternativai kūpeigā nūsasyuteišonas dreizuma rūbežai juoir leluokai par 0 voi arī nūgrīztai.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>Aļternativai kūpeigā atsasyuteišonas dreizuma rūbežai juoir leluokai par 0 voi arī nūgrīztai. </translation>
+        <translation>Aļternativai kūpeigā atsasyuteišonas dreizuma rūbežai juoir leluokai par 0 voi arī nūgrīztai.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
@@ -2688,7 +2696,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2893,7 +2901,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3223,7 +3231,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation>Saroksts ar trakeriem kurus dalikt (pa vīnam katrā aiļā): </translation>
+        <translation>Saroksts ar trakeriem kurus dalikt (pa vīnam katrā aiļā):</translation>
     </message>
     <message>
         <source>Add trackers</source>
@@ -3595,7 +3603,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -3932,7 +3940,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation>Saroksts ar kūplītuotuojīm kurus dalikt (pa vīnam katrā aiļā): </translation>
+        <translation>Saroksts ar kūplītuotuojīm kurus dalikt (pa vīnam katrā aiļā):</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -4159,6 +4167,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4440,7 +4460,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation>filtrys atlaseis 2., 5., nū 8. leidz 15., 30. i tuoluokās pirmous sezonys epizozes. </translation>
+        <translation>filtrys atlaseis 2., 5., nū 8. leidz 15., 30. i tuoluokās pirmous sezonys epizozes.</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -5103,7 +5123,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Atsasyuteit</translation>
+        <translation type="vanished">Atsasyuteit</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5124,6 +5144,26 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     <message>
         <source>Add Torrent Links</source>
         <translation>Dalikt torrentu saitys</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

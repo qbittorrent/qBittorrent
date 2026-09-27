@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>Kích cỡ:</translation>
+        <translation type="vanished">Kích cỡ:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation>Thêm Torrent</translation>
+        <translation type="vanished">Thêm Torrent</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -201,6 +201,18 @@
     <message>
         <source>KiB/s</source>
         <translation>KiB/giây</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1592,7 +1604,7 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation>%K: ID Torrent </translation>
+        <translation>%K: ID Torrent</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
@@ -2692,7 +2704,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2897,7 +2909,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3599,7 +3611,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4164,6 +4176,18 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     <message>
         <source>Stop search</source>
         <translation>Dừng tìm kiếm</translation>
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5112,7 +5136,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>Tải về</translation>
+        <translation type="vanished">Tải về</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5133,6 +5157,26 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     <message>
         <source>Add Torrent Links</source>
         <translation>Thêm Liên Kết Torrent</translation>
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
