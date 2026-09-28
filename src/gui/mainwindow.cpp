@@ -1154,6 +1154,17 @@ void MainWindow::showEvent(QShowEvent *e)
         {
             m_propertiesWidget->readSettings();
             m_neverShown = false;
+
+            // Correct unmapped restoration inflation under fractional DPI displays (e.g. 125% on Windows):
+            // When restoreGeometry() runs before show(), non-client frame calculation can inflate the
+            // client width. Once the native window is mapped, ensure the client size matches the
+            // restored normal size so inflated dimensions are never persisted to settings.
+            // See: https://github.com/qbittorrent/qBittorrent/issues/24850
+            if (!isMaximized() && !isFullScreen())
+            {
+                if (const QSize targetSize = normalGeometry().size(); targetSize.isValid() && (size() != targetSize))
+                    resize(targetSize);
+            }
         }
 
         if (currentTabWidget() == m_transferListWidget)
