@@ -30,7 +30,8 @@
 
 #pragma once
 
-#include <QSet>
+#include <QHash>
+#include <QHostAddress>
 #include <QSslConfiguration>
 #include <QTcpServer>
 
@@ -59,7 +60,7 @@ namespace Http
         void removeConnection(Connection *connection);
 
         IRequestHandler *m_requestHandler = nullptr;
-        QSet<Connection *> m_connections;  // for tracking persistent connections
+        QHash<Connection *, QHostAddress> m_connections;  // for tracking persistent connections
 
         bool m_https = false;
         QSslConfiguration m_sslConfig;
