@@ -836,7 +836,7 @@ void MainWindow::updateNbTorrents()
 
 void MainWindow::on_actionDocumentation_triggered() const
 {
-    QDesktopServices::openUrl(QUrl(u"https://doc.qbittorrent.org"_s));
+    QDesktopServices::openUrl(QUrl(u"https://wiki.qbittorrent.org"_s));
 }
 
 void MainWindow::tabChanged([[maybe_unused]] const int newTab)
