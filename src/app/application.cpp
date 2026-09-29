@@ -138,7 +138,7 @@ namespace
     const QString PARAM_FIRSTLASTPIECEPRIORITY = u"@firstLastPiecePriority"_s;
     const QString PARAM_SAVEPATH = u"@savePath"_s;
     const QString PARAM_SEQUENTIAL = u"@sequential"_s;
-    const QString PARAM_SKIPCHECKING = u"@skipChecking"_s;
+    const QString PARAM_SEEDMODE = u"@seedMode"_s;
     const QString PARAM_SKIPDIALOG = u"@skipDialog"_s;
 
 #if !defined(DISABLE_GUI) && defined(Q_OS_WIN)
@@ -209,8 +209,8 @@ namespace
         if (addTorrentParams.addStopped.has_value())
             result.append(bindParamValue(PARAM_ADDSTOPPED, (*addTorrentParams.addStopped ? u"1" : u"0")));
 
-        if (addTorrentParams.skipChecking)
-            result.append(PARAM_SKIPCHECKING);
+        if (addTorrentParams.seedMode)
+            result.append(PARAM_SEEDMODE);
 
         if (!addTorrentParams.category.isEmpty())
             result.append(bindParamValue(PARAM_CATEGORY, addTorrentParams.category));
@@ -253,9 +253,9 @@ namespace
                 continue;
             }
 
-            if (paramName == PARAM_SKIPCHECKING)
+            if (paramName == PARAM_SEEDMODE)
             {
-                addTorrentParams.skipChecking = true;
+                addTorrentParams.seedMode = true;
                 continue;
             }
 
@@ -552,7 +552,8 @@ void Application::processMessage(const QString &message)
 #ifndef DISABLE_GUI
     if (message.isEmpty())
     {
-        if (BitTorrent::Session::instance()->isRestored()) [[likely]]
+        if (const auto *btSession = BitTorrent::Session::instance();
+                btSession && btSession->isRestored()) [[likely]]
         {
             m_window->activate(); // show UI
         }
@@ -562,7 +563,7 @@ void Application::processMessage(const QString &message)
             m_startupProgressDialog->activateWindow();
             m_startupProgressDialog->raise();
         }
-        else
+        else if (m_desktopIntegration)
         {
             createStartupProgressDialog();
         }

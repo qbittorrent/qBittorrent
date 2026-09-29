@@ -156,6 +156,9 @@ void AppController::preferencesAction()
     data[u"status_bar_external_ip"_s] = pref->isStatusbarExternalIPDisplayed();
     // Transfer List
     data[u"confirm_torrent_deletion"_s] = pref->confirmTorrentDeletion();
+    // Search
+    data[u"store_search_jobs"_s] = pref->storeSearchJobs();
+    data[u"store_search_job_results"_s] = pref->storeSearchJobResults();
     // Log file
     data[u"file_log_enabled"_s] = app()->isFileLoggerEnabled();
     data[u"file_log_path"_s] = app()->fileLoggerPath().toString();
@@ -251,10 +254,13 @@ void AppController::preferencesAction()
     data[u"i2p_address"_s] = session->I2PAddress();
     data[u"i2p_port"_s] = session->I2PPort();
     data[u"i2p_mixed_mode"_s] = session->I2PMixedMode();
+    data[u"i2p_pex_enabled"_s] = session->isI2PPeXEnabled();
     data[u"i2p_inbound_quantity"_s] = session->I2PInboundQuantity();
     data[u"i2p_outbound_quantity"_s] = session->I2POutboundQuantity();
     data[u"i2p_inbound_length"_s] = session->I2PInboundLength();
     data[u"i2p_outbound_length"_s] = session->I2POutboundLength();
+    data[u"i2p_inbound_length_variance"_s] = session->I2PInboundLengthVariance();
+    data[u"i2p_outbound_length_variance"_s] = session->I2POutboundLengthVariance();
 
     // Proxy Server
     const auto *proxyManager = Net::ProxyConfigurationManager::instance();
@@ -353,6 +359,7 @@ void AppController::preferencesAction()
     data[u"web_ui_max_auth_fail_count"_s] = pref->getWebUIMaxAuthFailCount();
     data[u"web_ui_ban_duration"_s] = static_cast<int>(pref->getWebUIBanDuration().count());
     data[u"web_ui_session_timeout"_s] = pref->getWebUISessionTimeout();
+    data[u"web_ui_sessions_count_limit"_s] = pref->getWebUISessionsCountLimit();
     // API key
     data[u"web_ui_api_key"_s] = pref->getWebUIApiKey();
     // Use alternative WebUI
@@ -429,6 +436,10 @@ void AppController::preferencesAction()
     data[u"ignore_ssl_errors"_s] = pref->isIgnoreSSLErrors();
     // Python executable path
     data[u"python_executable_path"_s] = pref->getPythonExecutablePath().toString();
+    // Start Session paused
+    data[u"start_paused"_s] = session->isStartPaused();
+    // Session shutdown timeout
+    data[u"shutdown_timeout"_s] = session->shutdownTimeout();
 
     // libtorrent preferences
     // Bdecode depth limit
@@ -514,8 +525,12 @@ void AppController::preferencesAction()
     data[u"peer_turnover_interval"_s] = session->peerTurnoverInterval();
     // Maximum outstanding requests to a single peer
     data[u"request_queue_size"_s] = session->requestQueueSize();
+    // Maximum outstanding requests from a single peer
+    data[u"max_outstanding_block_requests"_s] = session->maxOutstandingBlockRequests();
     // DHT bootstrap nodes
     data[u"dht_bootstrap_nodes"_s] = session->getDHTBootstrapNodes();
+    // STUN server for WebTorrent NAT traversal
+    data[u"webtorrent_stun_server"_s] = session->getWebTorrentSTUNServer();
 
     setResult(data);
 }
@@ -552,6 +567,11 @@ void AppController::setPreferencesAction()
     // Transfer List
     if (hasKey(u"confirm_torrent_deletion"_s))
         pref->setConfirmTorrentDeletion(it.value().toBool());
+    // Search
+    if (hasKey(u"store_search_jobs"_s))
+        pref->setStoreSearchJobs(it.value().toBool());
+    if (hasKey(u"store_search_job_results"_s))
+        pref->setStoreSearchJobResults(it.value().toBool());
     // Log file
     if (hasKey(u"file_log_enabled"_s))
         app()->setFileLoggerEnabled(it.value().toBool());
@@ -743,6 +763,8 @@ void AppController::setPreferencesAction()
         session->setI2PPort(it.value().toInt());
     if (hasKey(u"i2p_mixed_mode"_s))
         session->setI2PMixedMode(it.value().toBool());
+    if (hasKey(u"i2p_pex_enabled"_s))
+        session->setI2PPeXEnabled(it.value().toBool());
     if (hasKey(u"i2p_inbound_quantity"_s))
         session->setI2PInboundQuantity(it.value().toInt());
     if (hasKey(u"i2p_outbound_quantity"_s))
@@ -751,6 +773,10 @@ void AppController::setPreferencesAction()
         session->setI2PInboundLength(it.value().toInt());
     if (hasKey(u"i2p_outbound_length"_s))
         session->setI2POutboundLength(it.value().toInt());
+    if (hasKey(u"i2p_inbound_length_variance"_s))
+        session->setI2PInboundLengthVariance(it.value().toInt());
+    if (hasKey(u"i2p_outbound_length_variance"_s))
+        session->setI2POutboundLengthVariance(it.value().toInt());
 
     // Proxy Server
     auto *proxyManager = Net::ProxyConfigurationManager::instance();
@@ -946,6 +972,8 @@ void AppController::setPreferencesAction()
         pref->setWebUIBanDuration(std::chrono::seconds {it.value().toInt()});
     if (hasKey(u"web_ui_session_timeout"_s))
         pref->setWebUISessionTimeout(it.value().toInt());
+    if (hasKey(u"web_ui_sessions_count_limit"_s))
+        pref->setWebUISessionsCountLimit(it.value().toInt());
     // Use alternative WebUI
     if (hasKey(u"alternative_webui_enabled"_s))
         pref->setAltWebUIEnabled(it.value().toBool());
@@ -1076,6 +1104,18 @@ void AppController::setPreferencesAction()
     // Python executable path
     if (hasKey(u"python_executable_path"_s))
         pref->setPythonExecutablePath(Path(it.value().toString()));
+    // Start session paused
+    if (hasKey(u"start_paused"_s))
+        session->setStartPaused(it.value().toBool());
+    // Session shutdown timeout
+    if (hasKey(u"shutdown_timeout"_s))
+    {
+        // validate shutdown timeout, range -1 to INT_MAX
+        bool ok = false;
+        const int timeout = it.value().toInt(&ok);
+        if (ok && (timeout >= -1))
+            session->setShutdownTimeout(timeout);
+    }
 
     // libtorrent preferences
     // Bdecode depth limit
@@ -1211,9 +1251,15 @@ void AppController::setPreferencesAction()
     // Maximum outstanding requests to a single peer
     if (hasKey(u"request_queue_size"_s))
         session->setRequestQueueSize(it.value().toInt());
+    // Maximum outstanding requests from a single peer
+    if (hasKey(u"max_outstanding_block_requests"_s))
+        session->setMaxOutstandingBlockRequests(it.value().toInt());
     // DHT bootstrap nodes
     if (hasKey(u"dht_bootstrap_nodes"_s))
         session->setDHTBootstrapNodes(it.value().toString());
+    // STUN server for WebTorrent NAT traversal
+    if (hasKey(u"webtorrent_stun_server"_s))
+        session->setWebTorrentSTUNServer(it.value().toString());
 
     // Save preferences
     pref->apply();

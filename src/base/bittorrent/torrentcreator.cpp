@@ -305,7 +305,11 @@ void TorrentCreator::run()
     }
     catch (const std::exception &err)
     {
+#if LIBTORRENT_VERSION_NUM >= 20100
+        emit creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(QString::fromStdString(err.what())));
+#else
         emit creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(QString::fromLocal8Bit(err.what())));
+#endif
     }
 }
 

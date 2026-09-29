@@ -451,6 +451,8 @@ void RSSWidget::refreshAllFeeds()
 
 void RSSWidget::downloadSelectedTorrents()
 {
+    qsizetype badURLCount = 0;
+    QString articleTitle;
     for (QListWidgetItem *item : asConst(m_ui->articleListWidget->selectedItems()))
     {
         auto *article = item->data(Qt::UserRole).value<RSS::Article *>();
@@ -459,7 +461,29 @@ void RSSWidget::downloadSelectedTorrents()
         // Mark as read
         article->markAsRead();
 
-        app()->addTorrentManager()->addTorrent(article->torrentUrl());
+        const QString torrentURL = article->torrentUrl();
+        if (!RSS::Article::isSupportedTorrentURL(torrentURL))
+        {
+            if (badURLCount == 0)
+                articleTitle = article->title();
+            ++badURLCount;
+
+            LogMsg(tr("Blocked adding torrent from RSS article. Unsupported torrent URL."
+                      " Only HTTP(S) URLs, magnet URIs and info hashes are supported."
+                      " Article: \"%1\". URL: \"%2\".")
+                    .arg(article->title(), torrentURL), Log::WARNING);
+            continue;
+        }
+
+        app()->addTorrentManager()->addTorrent(torrentURL);
+    }
+
+    if (badURLCount > 0)
+    {
+        QString message = tr("Blocked adding torrent from RSS article. The following article has an unsupported torrent URL and it may be malicious behaviour:\n%1").arg(articleTitle);
+        if (badURLCount > 1)
+            message.append(u"\n" + tr("There are %1 more articles with the same issue.").arg(badURLCount - 1));
+        QMessageBox::warning(this, u"qBittorrent"_s, message, QMessageBox::Ok);
     }
 }
 

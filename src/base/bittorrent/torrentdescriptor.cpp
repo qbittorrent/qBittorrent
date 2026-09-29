@@ -28,6 +28,9 @@
 
 #include "torrentdescriptor.h"
 
+#include <utility>
+#include <vector>
+
 #include <libtorrent/load_torrent.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/torrent_info.hpp>
@@ -86,6 +89,40 @@ namespace
 
         return limits;
     }
+
+    bool isSupportedTrackerURL(const QString &url)
+    {
+        const QUrl trackerURL {url};
+        if (!trackerURL.isValid() || trackerURL.host().isEmpty())
+            return false;
+
+        const QString scheme = trackerURL.scheme();
+        return ((scheme == u"http") || (scheme == u"https") || (scheme == u"udp"));
+    }
+
+    void removeUnsupportedTrackers(lt::add_torrent_params &params)
+    {
+        if (params.trackers.empty())
+            return;
+
+        std::vector<std::string> trackers;
+        trackers.reserve(params.trackers.size());
+        std::vector<int> trackerTiers;
+        trackerTiers.reserve(params.trackers.size());
+
+        for (std::size_t i = 0; i < params.trackers.size(); ++i)
+        {
+            const QString tracker = QString::fromStdString(params.trackers[i]);
+            if (!isSupportedTrackerURL(tracker))
+                continue;
+
+            trackers.push_back(params.trackers[i]);
+            trackerTiers.push_back((i < params.tracker_tiers.size()) ? params.tracker_tiers[i] : 0);
+        }
+
+        params.trackers = std::move(trackers);
+        params.tracker_tiers = std::move(trackerTiers);
+    }
 }
 
 const int TORRENTDESCRIPTOR_TYPEID = qRegisterMetaType<BitTorrent::TorrentDescriptor>();
@@ -98,7 +135,11 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<BitTorrent::TorrentDescriptor, QString>
@@ -111,7 +152,11 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<BitTorrent::TorrentDescriptor, QString>
@@ -124,13 +169,19 @@ try
     else if (isV1Hash(str))
         magnetURI = u"magnet:?xt=urn:btih:" + str;
 
-    TorrentDescriptor torrentDescriptor {lt::parse_magnet_uri(magnetURI.toStdString())};
+    lt::add_torrent_params params = lt::parse_magnet_uri(magnetURI.toStdString());
+    removeUnsupportedTrackers(params);
+    TorrentDescriptor torrentDescriptor {std::move(params)};
     torrentDescriptor.m_source = magnetURI;
     return torrentDescriptor;
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<void, QString> BitTorrent::TorrentDescriptor::saveToFile(const Path &path) const
@@ -145,7 +196,11 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 nonstd::expected<QByteArray, QString> BitTorrent::TorrentDescriptor::saveToBuffer() const
@@ -161,7 +216,11 @@ try
 }
 catch (const lt::system_error &err)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return nonstd::make_unexpected(QString::fromStdString(err.what()));
+#else
     return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+#endif
 }
 
 BitTorrent::TorrentDescriptor::TorrentDescriptor(lt::add_torrent_params ltAddTorrentParams)

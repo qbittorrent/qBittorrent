@@ -31,6 +31,7 @@
 #include <cctype>
 
 #include <libtorrent/error_code.hpp>
+#include <libtorrent/version.hpp>
 
 #include <QDataStream>
 #include <QFile>
@@ -278,7 +279,11 @@ int FilterParserThread::parseDATFilterFile()
             {
                 ++parseErrorCount;
                 addLog(tr("IP filter exception thrown for line %1. Exception is: %2")
+#if LIBTORRENT_VERSION_NUM >= 20100
+                       .arg(nbLine).arg(QString::fromStdString(e.what())));
+#else
                        .arg(nbLine).arg(QString::fromLocal8Bit(e.what())));
+#endif
             }
         }
 
@@ -465,7 +470,11 @@ int FilterParserThread::parseP2PFilterFile()
             {
                 ++parseErrorCount;
                 addLog(tr("IP filter exception thrown for line %1. Exception is: %2")
+#if LIBTORRENT_VERSION_NUM >= 20100
+                       .arg(nbLine).arg(QString::fromStdString(e.what())));
+#else
                        .arg(nbLine).arg(QString::fromLocal8Bit(e.what())));
+#endif
             }
         }
 

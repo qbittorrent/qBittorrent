@@ -20,12 +20,12 @@ jobs:
       fail-fast: false
       matrix:
         libtorrent:
-          - version: "2.1.0"
+          - version: "2.1.1"
             boost_major_version: "1"
             boost_minor_version: "77"
             boost_patch_version: "0"
-            libt_build_flags: "-Dwebtorrent=ON"
-          - version: "2.0.13"
+            libt_build_flags: ""
+          - version: "2.0.14"
             boost_major_version: "1"
             boost_minor_version: "77"
             boost_patch_version: "0"
@@ -200,7 +200,7 @@ jobs:
 
       - name: Package AppImage
         run: |
-          rm -f "${{ runner.workspace }}/Qt/${{ matrix.qt_version }}/gcc_64/plugins/sqldrivers/libqsqlmimer.so"
+          rm -f "$QT_PLUGIN_PATH/sqldrivers/libqsqlmimer.so"
           ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --plugin qt
           mkdir -p qbittorrent/apprun-hooks
           rm -f qbittorrent/apprun-hooks/*

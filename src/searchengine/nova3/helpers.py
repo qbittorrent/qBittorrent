@@ -1,4 +1,4 @@
-# VERSION: 1.57
+# VERSION: 1.58
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -30,6 +30,7 @@
 import datetime
 import gzip
 import html
+import http.cookiejar
 import io
 import os
 import socket
@@ -93,12 +94,15 @@ def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data:
     """
 
     request = urllib.request.Request(url, request_data, {**_headers, **custom_headers})
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()), urllib.request.HTTPSHandler(context=ssl_context))
+
     try:
-        response = urllib.request.urlopen(request, context=ssl_context)
+        with opener.open(request) as response:
+            contentType = response.getheader('Content-Type', '')
+            data: bytes = response.read()
     except urllib.error.URLError as errno:
         print(f"Connection error: {errno.reason}", file=sys.stderr)
         return ""
-    data: bytes = response.read()
 
     # Check if it is gzipped
     if data[:2] == b'\x1f\x8b':
@@ -108,7 +112,7 @@ def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data:
 
     charset = 'utf-8'
     try:
-        charset = response.getheader('Content-Type', '').split('charset=', 1)[1]
+        charset = contentType.split('charset=', 1)[1]
     except IndexError:
         pass
 
@@ -129,8 +133,10 @@ def download_file(url: str, referer: Optional[str] = None, ssl_context: Optional
     request = urllib.request.Request(url, headers=_headers)
     if referer is not None:
         request.add_header('referer', referer)
-    response = urllib.request.urlopen(request, context=ssl_context)
-    data = response.read()
+
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()), urllib.request.HTTPSHandler(context=ssl_context))
+    with opener.open(request) as response:
+        data = response.read()
 
     # Check if it is gzipped
     if data[:2] == b'\x1f\x8b':

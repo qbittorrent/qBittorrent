@@ -958,6 +958,11 @@ void OptionsDialog::loadConnectionTabOptions()
     m_ui->spinI2PPort->setValue(session->I2PPort());
     m_ui->checkI2PMixed->setChecked(session->I2PMixedMode());
     m_ui->groupI2P->setChecked(session->isI2PEnabled());
+#if LIBTORRENT_VERSION_NUM >= 20100
+    m_ui->checkI2PPeX->setChecked(session->isI2PPeXEnabled());
+#else
+    m_ui->checkI2PPeX->hide();
+#endif // LIBTORRENT_VERSION_NUM >= 20100
 #else
     m_ui->groupI2P->hide();
 #endif
@@ -1020,6 +1025,9 @@ void OptionsDialog::loadConnectionTabOptions()
     connect(m_ui->textI2PHost, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinI2PPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkI2PMixed, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
+#if LIBTORRENT_VERSION_NUM >= 20100
+    connect(m_ui->checkI2PPeX, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
+#endif // LIBTORRENT_VERSION_NUM >= 20100
     connect(m_ui->groupI2P, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
 #endif
 
@@ -1059,6 +1067,9 @@ void OptionsDialog::saveConnectionTabOptions() const
     session->setI2PAddress(m_ui->textI2PHost->text().trimmed());
     session->setI2PPort(m_ui->spinI2PPort->value());
     session->setI2PMixedMode(m_ui->checkI2PMixed->isChecked());
+#if LIBTORRENT_VERSION_NUM >= 20100
+    session->setI2PPeXEnabled(m_ui->checkI2PPeX->isChecked());
+#endif // LIBTORRENT_VERSION_NUM >= 20100
 #endif
 
     auto *proxyConfigManager = Net::ProxyConfigurationManager::instance();
@@ -1384,22 +1395,25 @@ void OptionsDialog::loadSearchTabOptions()
 {
     const auto *pref = Preferences::instance();
 
-    m_ui->groupStoreOpenedTabs->setChecked(pref->storeOpenedSearchTabs());
-    m_ui->checkStoreTabsSearchResults->setChecked(pref->storeOpenedSearchTabResults());
+    m_ui->groupStoreSearchJobs->setChecked(pref->storeSearchJobs());
+    m_ui->checkStoreSearchJobResults->setChecked(pref->storeSearchJobResults());
     m_ui->searchHistoryLengthSpinBox->setValue(pref->searchHistoryLength());
+    m_ui->checkCloseSearchTabWithMiddleClick->setChecked(pref->closeSearchTabWithMiddleClick());
 
-    connect(m_ui->groupStoreOpenedTabs, &QGroupBox::toggled, this, &OptionsDialog::enableApplyButton);
-    connect(m_ui->checkStoreTabsSearchResults, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->groupStoreSearchJobs, &QGroupBox::toggled, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->checkStoreSearchJobResults, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
     connect(m_ui->searchHistoryLengthSpinBox, qSpinBoxValueChanged, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->checkCloseSearchTabWithMiddleClick, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
 }
 
 void OptionsDialog::saveSearchTabOptions() const
 {
     auto *pref = Preferences::instance();
 
-    pref->setStoreOpenedSearchTabs(m_ui->groupStoreOpenedTabs->isChecked());
-    pref->setStoreOpenedSearchTabResults(m_ui->checkStoreTabsSearchResults->isChecked());
+    pref->setStoreSearchJobs(m_ui->groupStoreSearchJobs->isChecked());
+    pref->setStoreSearchJobResults(m_ui->checkStoreSearchJobResults->isChecked());
     pref->setSearchHistoryLength(m_ui->searchHistoryLengthSpinBox->value());
+    pref->setCloseSearchTabWithMiddleClick(m_ui->checkCloseSearchTabWithMiddleClick->isChecked());
 }
 
 #ifndef DISABLE_WEBUI
@@ -1443,6 +1457,7 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->spinBanCounter->setValue(pref->getWebUIMaxAuthFailCount());
     m_ui->spinBanDuration->setValue(pref->getWebUIBanDuration().count());
     m_ui->spinSessionTimeout->setValue(pref->getWebUISessionTimeout());
+    m_ui->spinBoxWebUISessionsCountLimit->setValue(pref->getWebUISessionsCountLimit());
     // Alternative UI
     m_ui->groupAltWebUI->setChecked(pref->isAltWebUIEnabled());
     m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUIRootFolder());
@@ -1487,6 +1502,7 @@ void OptionsDialog::loadWebUITabOptions()
     connect(m_ui->spinBanCounter, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinBanDuration, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinSessionTimeout, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinBoxWebUISessionsCountLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->groupAltWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -1526,6 +1542,7 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setWebUIMaxAuthFailCount(m_ui->spinBanCounter->value());
     pref->setWebUIBanDuration(std::chrono::seconds {m_ui->spinBanDuration->value()});
     pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
+    pref->setWebUISessionsCountLimit(m_ui->spinBoxWebUISessionsCountLimit->value());
     // Authentication
     if (const QString username = webUIUsername(); isValidWebUIUsernameLength(username) && isValidWebUIUsernameCharacterSet(username))
         pref->setWebUIUsername(username);

@@ -72,6 +72,12 @@ if ((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_CXX_COMPILER_ID STREQUAL "C
     endif()
 endif()
 
+if ((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") AND (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL "16"))
+    target_compile_options(qbt_common_cfg INTERFACE
+        $<$<COMPILE_LANGUAGE:CXX>:-Wno-sfinae-incomplete>
+    )
+endif()
+
 if ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang"))
     target_compile_options(qbt_common_cfg INTERFACE
         -Wno-range-loop-analysis
@@ -91,6 +97,7 @@ if (MSVC)
         /Zc:__cplusplus
     )
     target_link_options(qbt_common_cfg INTERFACE
+        $<$<AND:$<STREQUAL:${CMAKE_SYSTEM_PROCESSOR},AMD64>,$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>>:/CETCOMPAT>
         /GUARD:CF
         $<$<NOT:$<CONFIG:Debug>>:/OPT:REF /OPT:ICF>
         # suppress linking warning due to /INCREMENTAL and /OPT:ICF being both ON

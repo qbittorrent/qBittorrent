@@ -464,12 +464,17 @@ void SearchPluginManager::applyProxySettings()
 
     case Net::ProxyType::HTTP:
         {
-            const QString credential = proxyConfig.authEnabled
-                ? (proxyConfig.username + u':' + proxyConfig.password + u'@')
-                : QString();
-            const QString proxyURL = u"http://%1%2:%3"_s
-                .arg(credential, proxyConfig.ip, QString::number(proxyConfig.port));
+            QUrl url;
+            url.setScheme(u"http"_s);
+            url.setHost(proxyConfig.ip);
+            url.setPort(proxyConfig.port);
+            if (proxyConfig.authEnabled)
+            {
+                url.setUserName(proxyConfig.username);
+                url.setPassword(proxyConfig.password);
+            }
 
+            const QString proxyURL = url.toString();
             m_proxyEnv.insert(HTTP_PROXY, proxyURL);
             m_proxyEnv.insert(HTTPS_PROXY, proxyURL);
             m_proxyEnv.remove(SOCKS_PROXY);
@@ -478,28 +483,32 @@ void SearchPluginManager::applyProxySettings()
 
     case Net::ProxyType::SOCKS5:
         {
-            const QString scheme = proxyConfig.hostnameLookupEnabled ? u"socks5h"_s : u"socks5"_s;
-            const QString credential = proxyConfig.authEnabled
-                ? (proxyConfig.username + u':' + proxyConfig.password + u'@')
-                : QString();
-            const QString proxyURL = u"%1://%2%3:%4"_s
-                .arg(scheme, credential, proxyConfig.ip, QString::number(proxyConfig.port));
+            QUrl url;
+            url.setScheme(proxyConfig.hostnameLookupEnabled ? u"socks5h"_s : u"socks5"_s);
+            url.setHost(proxyConfig.ip);
+            url.setPort(proxyConfig.port);
+            if (proxyConfig.authEnabled)
+            {
+                url.setUserName(proxyConfig.username);
+                url.setPassword(proxyConfig.password);
+            }
 
             m_proxyEnv.remove(HTTP_PROXY);
             m_proxyEnv.remove(HTTPS_PROXY);
-            m_proxyEnv.insert(SOCKS_PROXY, proxyURL);
+            m_proxyEnv.insert(SOCKS_PROXY, url.toString());
         }
         break;
 
     case Net::ProxyType::SOCKS4:
         {
-            const QString scheme = proxyConfig.hostnameLookupEnabled ? u"socks4a"_s : u"socks4"_s;
-            const QString proxyURL = u"%1://%2:%3"_s
-                .arg(scheme, proxyConfig.ip, QString::number(proxyConfig.port));
+            QUrl url;
+            url.setScheme(proxyConfig.hostnameLookupEnabled ? u"socks4a"_s : u"socks4"_s);
+            url.setHost(proxyConfig.ip);
+            url.setPort(proxyConfig.port);
 
             m_proxyEnv.remove(HTTP_PROXY);
             m_proxyEnv.remove(HTTPS_PROXY);
-            m_proxyEnv.insert(SOCKS_PROXY, proxyURL);
+            m_proxyEnv.insert(SOCKS_PROXY, url.toString());
         }
         break;
     }

@@ -206,6 +206,8 @@ namespace BitTorrent
 
         virtual QString getDHTBootstrapNodes() const = 0;
         virtual void setDHTBootstrapNodes(const QString &nodes) = 0;
+        virtual QString getWebTorrentSTUNServer() const = 0;
+        virtual void setWebTorrentSTUNServer(const QString &server) = 0;
         virtual bool isDHTEnabled() const = 0;
         virtual void setDHTEnabled(bool enabled) = 0;
         virtual bool isLSDEnabled() const = 0;
@@ -297,6 +299,8 @@ namespace BitTorrent
         virtual void setI2PPort(int port) = 0;
         virtual bool I2PMixedMode() const = 0;
         virtual void setI2PMixedMode(bool enabled) = 0;
+        virtual bool isI2PPeXEnabled() const = 0;
+        virtual void setI2PPeXEnabled(bool enabled) = 0;
         virtual int I2PInboundQuantity() const = 0;
         virtual void setI2PInboundQuantity(int value) = 0;
         virtual int I2POutboundQuantity() const = 0;
@@ -305,6 +309,10 @@ namespace BitTorrent
         virtual void setI2PInboundLength(int value) = 0;
         virtual int I2POutboundLength() const = 0;
         virtual void setI2POutboundLength(int value) = 0;
+        virtual int I2PInboundLengthVariance() const = 0;
+        virtual void setI2PInboundLengthVariance(int value) = 0;
+        virtual int I2POutboundLengthVariance() const = 0;
+        virtual void setI2POutboundLengthVariance(int value) = 0;
         virtual bool isProxyPeerConnectionsEnabled() const = 0;
         virtual void setProxyPeerConnectionsEnabled(bool enabled) = 0;
         virtual ChokingAlgorithm chokingAlgorithm() const = 0;
@@ -331,6 +339,8 @@ namespace BitTorrent
         virtual void setPeerTurnoverInterval(int val) = 0;
         virtual int requestQueueSize() const = 0;
         virtual void setRequestQueueSize(int val) = 0;
+        virtual int maxOutstandingBlockRequests() const = 0;
+        virtual void setMaxOutstandingBlockRequests(int val) = 0;
         virtual int asyncIOThreads() const = 0;
         virtual void setAsyncIOThreads(int num) = 0;
         virtual int hashingThreads() const = 0;

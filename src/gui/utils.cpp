@@ -77,6 +77,15 @@ namespace
     }
 
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
+    void startDetached(const QString &program, const QStringList &args)
+    {
+        QProcess proc;
+        proc.setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
+        proc.setProgram(program);
+        proc.setArguments(args);
+        proc.startDetached();
+    }
+
     void invokeFileManager(const Path &path)
     {
         // detect and invoke file manager directly
@@ -93,7 +102,7 @@ namespace
             const auto output = QString::fromLocal8Bit(lookupProc->readLine(lineMaxLength).simplified());
             if ((output == u"dolphin.desktop") || (output == u"org.kde.dolphin.desktop"))
             {
-                QProcess::startDetached(u"dolphin"_s, {u"--select"_s, path.toString()});
+                startDetached(u"dolphin"_s, {u"--select"_s, path.toString()});
             }
             else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
                 || (output == u"nautilus-folder-handler.desktop"))
@@ -112,23 +121,23 @@ namespace
                     const QString pathParam = (Utils::Fs::isDir(path) ? path.parentPath() : path).toString();
 
                     if (NautilusVersion::fromString(nautilusVerStr, {1, 0, 0}) > NautilusVersion(3, 28, 0))
-                        QProcess::startDetached(u"nautilus"_s, {pathParam});
+                        startDetached(u"nautilus"_s, {pathParam});
                     else
-                        QProcess::startDetached(u"nautilus"_s, {u"--no-desktop"_s, pathParam});
+                        startDetached(u"nautilus"_s, {u"--no-desktop"_s, pathParam});
                 });
                 deProcess->start(u"nautilus"_s, {u"--version"_s});
             }
             else if (output == u"nemo.desktop")
             {
-                QProcess::startDetached(u"nemo"_s, {u"--no-desktop"_s, (Utils::Fs::isDir(path) ? path.parentPath() : path).toString()});
+                startDetached(u"nemo"_s, {u"--no-desktop"_s, (Utils::Fs::isDir(path) ? path.parentPath() : path).toString()});
             }
             else if ((output == u"konqueror.desktop") || (output == u"kfmclient_dir.desktop"))
             {
-                QProcess::startDetached(u"konqueror"_s, {u"--select"_s, path.toString()});
+                startDetached(u"konqueror"_s, {u"--select"_s, path.toString()});
             }
             else if (output == u"thunar.desktop")
             {
-                QProcess::startDetached(u"thunar"_s, {path.toString()});
+                startDetached(u"thunar"_s, {path.toString()});
             }
             else
             {

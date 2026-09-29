@@ -101,6 +101,18 @@
     </fieldset>
 
     <fieldset class="settings">
+        <legend>QBT_TR(Search)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="storeSearchJobs" onclick="qBittorrent.Preferences.updateStoreSearchJobsEnabled();">
+            <label for="storeSearchJobs">QBT_TR(Save search tabs)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow" style="margin-bottom: 3px; margin-left: 30px;">
+            <input type="checkbox" id="storeSearchJobResults">
+            <label for="storeSearchJobResults">QBT_TR(Also save search results)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>
             <input type="checkbox" id="filelog_checkbox" onclick="qBittorrent.Preferences.updateFileLogEnabled();">
             <label for="filelog_checkbox">QBT_TR(Log Files)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -560,6 +572,10 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
         <div class="formRow">
             <input type="checkbox" id="i2pMixedMode" title="QBT_TR(If &quot;mixed mode&quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.)QBT_TR[CONTEXT=OptionsDialog]">
             <label for="i2pMixedMode">QBT_TR(Mixed mode)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow" id="i2pPeXDiv">
+            <input type="checkbox" id="i2pPeXEnabled">
+            <label for="i2pPeXEnabled">QBT_TR(Enable I2P Peer Exchange (I2P PeX) to find more peers (requires restart))QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
 
@@ -1125,6 +1141,10 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
                         <td><label for="webUISessionTimeoutInput">QBT_TR(Session timeout:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                         <td><input type="number" id="webUISessionTimeoutInput" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]</td>
                     </tr>
+                    <tr>
+                        <td><label for="webUISessionsCountLimitInput">QBT_TR(Sessions count limit:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td><input type="number" id="webUISessionsCountLimitInput" style="width: 7em;" min="0">&nbsp;&nbsp;<i>QBT_TR(0 means unlimited)QBT_TR[CONTEXT=OptionsDialog]</i></td>
+                    </tr>
                 </tbody>
             </table>
         </fieldset>
@@ -1425,6 +1445,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     </td>
                     <td>
                         <input type="text" id="pythonExecutablePath" class="pathFile" placeholder="QBT_TR((Auto detect if empty))QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="startPaused">QBT_TR(Start BitTorrent session in paused state:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="startPaused">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="sessionShutdownTimeout">QBT_TR(BitTorrent session shutdown timeout [-1: unlimited]:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="sessionShutdownTimeout" style="width: 15em;">&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
             </tbody>
@@ -1835,10 +1871,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="maxOutstandingBlockRequests">QBT_TR(Maximum outstanding block requests from a peer:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#max_allowed_in_request_queue" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="text" id="maxOutstandingBlockRequests" style="width: 15em;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="dhtBootstrapNodes">QBT_TR(DHT bootstrap nodes:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#dht_bootstrap_nodes" target="_blank">(?)</a></label>
                     </td>
                     <td>
                         <input type="text" id="dhtBootstrapNodes" placeholder="QBT_TR(Resets to default if empty)QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;">
+                    </td>
+                </tr>
+                <tr id="rowWebTorrentSTUNServer">
+                    <td>
+                        <label for="webTorrentSTUNServer">QBT_TR(STUN server for WebTorrent NAT traversal:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#webtorrent_stun_server" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="text" id="webTorrentSTUNServer" style="width: 15em;">
                     </td>
                 </tr>
                 <tr id="rowI2pInboundQuantity">
@@ -1873,6 +1925,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <input id="i2pOutboundLength" type="number" min="0" max="7" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;">
                     </td>
                 </tr>
+                <tr id="rowI2pInboundLengthVariance">
+                    <td>
+                        <label for="i2pInboundLengthVariance">QBT_TR(I2P inbound length variance:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_inbound_length_variance" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input id="i2pInboundLengthVariance" type="number" min="-7" max="7" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;">
+                    </td>
+                </tr>
+                <tr id="rowI2pOutboundLengthVariance">
+                    <td>
+                        <label for="i2pOutboundLengthVariance">QBT_TR(I2P outbound length variance:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_outbound_length_variance" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input id="i2pOutboundLengthVariance" type="number" min="-7" max="7" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;">
+                    </td>
+                </tr>
             </tbody>
         </table>
     </fieldset>
@@ -1892,6 +1960,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateFileLogEnabled: updateFileLogEnabled,
                 updateFileLogBackupEnabled: updateFileLogBackupEnabled,
                 updateFileLogDeleteEnabled: updateFileLogDeleteEnabled,
+                updateStoreSearchJobsEnabled: updateStoreSearchJobsEnabled,
                 updateTempDirEnabled: updateTempDirEnabled,
                 updateTorrentBackupControls: updateTorrentBackupControls,
                 updateFinishedTorrentBackupControls: updateFinishedTorrentBackupControls,
@@ -1965,6 +2034,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const pros = document.getElementById("filelog_delete_old_checkbox").getProperties("disabled", "checked");
             document.getElementById("filelog_age_input").disabled = pros.disabled || !pros.checked;
             document.getElementById("filelog_age_type_select").disabled = pros.disabled || !pros.checked;
+        };
+
+        const updateStoreSearchJobsEnabled = () => {
+            const enabled = document.getElementById("storeSearchJobs").checked;
+            document.getElementById("storeSearchJobResults").disabled = !enabled;
         };
 
         // Downloads tab
@@ -2148,6 +2222,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("i2pAddress").disabled = !isI2PEnabled;
             document.getElementById("i2pPort").disabled = !isI2PEnabled;
             document.getElementById("i2pMixedMode").disabled = !isI2PEnabled;
+            document.getElementById("i2pPeXEnabled").disabled = !isI2PEnabled;
         };
 
         const updatePeerProxySettings = () => {
@@ -2419,6 +2494,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("dblclickCompleteSelect").value = dblclickComplete;
                     document.getElementById("dblclickFiltersSelect").value = dblclickFilter;
                     document.getElementById("confirmTorrentDeletion").checked = pref.confirm_torrent_deletion;
+                    document.getElementById("storeSearchJobs").checked = pref.store_search_jobs;
+                    document.getElementById("storeSearchJobResults").checked = pref.store_search_job_results;
+                    qBittorrent.Preferences.updateStoreSearchJobsEnabled();
                     document.getElementById("useAltRowColorsInput").checked = useAltRowColors === true;
                     document.getElementById("filelog_checkbox").checked = pref.file_log_enabled;
                     document.getElementById("filelog_save_path_input").value = pref.file_log_path;
@@ -2580,6 +2658,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("i2pAddress").value = pref.i2p_address;
                     document.getElementById("i2pPort").value = pref.i2p_port;
                     document.getElementById("i2pMixedMode").checked = pref.i2p_mixed_mode;
+                    document.getElementById("i2pPeXEnabled").checked = pref.i2p_pex_enabled;
                     updateI2PSettingsEnabled();
 
                     // Proxy Server
@@ -2710,6 +2789,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("webUIMaxAuthFailCountInput").value = Number(pref.web_ui_max_auth_fail_count);
                     document.getElementById("webUIBanDurationInput").value = Number(pref.web_ui_ban_duration);
                     document.getElementById("webUISessionTimeoutInput").value = Number(pref.web_ui_session_timeout);
+                    document.getElementById("webUISessionsCountLimitInput").value = Number(pref.web_ui_sessions_count_limit);
 
                     // API key
                     if (pref.web_ui_api_key.length > 0) {
@@ -2774,6 +2854,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("markOfTheWeb").checked = pref.mark_of_the_web;
                     document.getElementById("ignoreSSLErrors").checked = pref.ignore_ssl_errors;
                     document.getElementById("pythonExecutablePath").value = pref.python_executable_path;
+                    document.getElementById("startPaused").checked = pref.start_paused;
+                    document.getElementById("sessionShutdownTimeout").value = pref.shutdown_timeout;
                     // libtorrent section
                     document.getElementById("bdecodeDepthLimit").value = pref.bdecode_depth_limit;
                     document.getElementById("bdecodeTokenLimit").value = pref.bdecode_token_limit;
@@ -2822,11 +2904,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("peerTurnoverCutoff").value = pref.peer_turnover_cutoff;
                     document.getElementById("peerTurnoverInterval").value = pref.peer_turnover_interval;
                     document.getElementById("requestQueueSize").value = pref.request_queue_size;
+                    document.getElementById("maxOutstandingBlockRequests").value = pref.max_outstanding_block_requests;
                     document.getElementById("dhtBootstrapNodes").value = pref.dht_bootstrap_nodes;
+                    document.getElementById("webTorrentSTUNServer").value = pref.webtorrent_stun_server;
                     document.getElementById("i2pInboundQuantity").value = pref.i2p_inbound_quantity;
                     document.getElementById("i2pOutboundQuantity").value = pref.i2p_outbound_quantity;
                     document.getElementById("i2pInboundLength").value = pref.i2p_inbound_length;
                     document.getElementById("i2pOutboundLength").value = pref.i2p_outbound_length;
+                    document.getElementById("i2pInboundLengthVariance").value = pref.i2p_inbound_length_variance;
+                    document.getElementById("i2pOutboundLengthVariance").value = pref.i2p_outbound_length_variance;
                 }).catch((error) => {
                     console.error(error);
                     alert("QBT_TR(Unable to load program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
@@ -2861,6 +2947,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             clientData.dblclick_complete = document.getElementById("dblclickCompleteSelect").value;
             clientData.dblclick_filter = document.getElementById("dblclickFiltersSelect").value;
             settings["confirm_torrent_deletion"] = document.getElementById("confirmTorrentDeletion").checked;
+            settings["store_search_jobs"] = document.getElementById("storeSearchJobs").checked;
+            settings["store_search_job_results"] = document.getElementById("storeSearchJobResults").checked;
             clientData.use_alt_row_colors = document.getElementById("useAltRowColorsInput").checked;
             settings["file_log_enabled"] = document.getElementById("filelog_checkbox").checked;
             settings["file_log_path"] = document.getElementById("filelog_save_path_input").value;
@@ -2980,6 +3068,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["i2p_address"] = document.getElementById("i2pAddress").value;
             settings["i2p_port"] = Number(document.getElementById("i2pPort").value);
             settings["i2p_mixed_mode"] = document.getElementById("i2pMixedMode").checked;
+            settings["i2p_pex_enabled"] = document.getElementById("i2pPeXEnabled").checked;
 
             // Proxy Server
             settings["proxy_type"] = document.getElementById("peer_proxy_type_select").value;
@@ -3209,6 +3298,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["web_ui_max_auth_fail_count"] = Number(document.getElementById("webUIMaxAuthFailCountInput").value);
             settings["web_ui_ban_duration"] = Number(document.getElementById("webUIBanDurationInput").value);
             settings["web_ui_session_timeout"] = Number(document.getElementById("webUISessionTimeoutInput").value);
+            settings["web_ui_sessions_count_limit"] = Number(document.getElementById("webUISessionsCountLimitInput").value);
 
             // Use alternative WebUI
             const alternative_webui_enabled = document.getElementById("use_alt_webui_checkbox").checked;
@@ -3272,6 +3362,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 return;
             }
             settings["python_executable_path"] = pyPath;
+
+            settings["start_paused"] = document.getElementById("startPaused").checked;
+
+            const shutdownTimeoutStr = document.getElementById("sessionShutdownTimeout").value.trim();
+            const shutdownTimeout = (shutdownTimeoutStr === "") ? -1 : Number.parseInt(shutdownTimeoutStr, 10);
+            if (Number.isNaN(shutdownTimeout) || (shutdownTimeout < -1) || (shutdownTimeout > 2147483647)) {
+                alert("QBT_TR(BitTorrent session shutdown timeout must be between -1 and 2147483647.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["shutdown_timeout"] = shutdownTimeout;
 
             // libtorrent section
             settings["bdecode_depth_limit"] = Number(document.getElementById("bdecodeDepthLimit").value);
@@ -3359,11 +3459,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["peer_turnover_interval"] = peerTurnoverInterval;
 
             settings["request_queue_size"] = Number(document.getElementById("requestQueueSize").value);
+            settings["max_outstanding_block_requests"] = Number(document.getElementById("maxOutstandingBlockRequests").value);
             settings["dht_bootstrap_nodes"] = document.getElementById("dhtBootstrapNodes").value;
+            settings["webtorrent_stun_server"] = document.getElementById("webTorrentSTUNServer").value;
             settings["i2p_inbound_quantity"] = Number(document.getElementById("i2pInboundQuantity").value);
             settings["i2p_outbound_quantity"] = Number(document.getElementById("i2pOutboundQuantity").value);
             settings["i2p_inbound_length"] = Number(document.getElementById("i2pInboundLength").value);
             settings["i2p_outbound_length"] = Number(document.getElementById("i2pOutboundLength").value);
+            settings["i2p_inbound_length_variance"] = Number(document.getElementById("i2pInboundLengthVariance").value);
+            settings["i2p_outbound_length_variance"] = Number(document.getElementById("i2pOutboundLengthVariance").value);
 
             // Send data to qBT
             Promise.allSettled([
@@ -3410,11 +3514,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.6") < 0)
                 document.getElementById("diskIOWriteModeWriteThrough").hidden = true;
 
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.12") < 0) {
+                document.getElementById("rowI2pInboundLengthVariance").style.display = "none";
+                document.getElementById("rowI2pOutboundLengthVariance").style.display = "none";
+            }
+
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.13") < 0)
                 document.getElementById("rowMultiConnectionsPerPeerID").style.display = "none";
 
-            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.1") < 0)
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.1") < 0) {
                 document.getElementById("diskIOTypePreadPwrite").hidden = true;
+                document.getElementById("i2pPeXDiv").style.display = "none";
+                document.getElementById("rowWebTorrentSTUNServer").hidden = true;
+            }
 
             if ((buildInfo.platform === "linux") || (buildInfo.platform === "macos"))
                 document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";

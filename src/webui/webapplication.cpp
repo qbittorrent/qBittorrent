@@ -70,6 +70,7 @@
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
 #include "clientdatastorage.h"
+#include "searchjobmanager.h"
 #include "websession.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
@@ -174,6 +175,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_trRegex {u"QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s}
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
+    , m_searchJobManager {new SearchJobManager(this)}
     , m_clientDataStorage {new ClientDataStorage(this)}
 {
     declarePublicAPI(u"auth/login"_s);
@@ -422,13 +424,10 @@ void WebApplication::processAPIRequest(const QString &endpoint, const Http::Head
                 response.content = result.data.toJsonDocument().toJson(QJsonDocument::Compact);
                 break;
             case QMetaType::QByteArray:
-                {
-                    const auto resultData = result.data.toByteArray();
-                    response.headers.insert(Http::HEADER_CONTENT_TYPE, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
-                    if (!result.filename.isEmpty())
-                        response.headers.insert(Http::HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(result.filename));
-                    response.content = resultData;
-                }
+                response.headers.insert(Http::HEADER_CONTENT_TYPE, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
+                if (!result.filename.isEmpty())
+                    response.headers.insert(Http::HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(result.filename));
+                response.content = result.data.toByteArray();
                 break;
             case QMetaType::QString:
             default:
@@ -503,6 +502,7 @@ void WebApplication::configure()
     m_isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
     m_authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
     m_sessionTimeout = std::chrono::seconds(pref->getWebUISessionTimeout());
+    m_sessionsCountLimit = std::max(0, pref->getWebUISessionsCountLimit());
     m_sessionCookieName = SESSION_COOKIE_NAME_PREFIX + QString::number(pref->getWebUIPort());
 
     // all sessions need to update the cookie expiration date
@@ -891,6 +891,20 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
         return false;
     });
 
+    if (m_sessionsCountLimit > 0)
+    {
+        while (m_sessions.size() >= m_sessionsCountLimit)
+        {
+            const auto coldSessionIter = std::ranges::min_element(m_sessions
+                    , [](const WebSession *lhs, const WebSession *rhs)
+            {
+                return lhs->timestamp() < rhs->timestamp();
+            });
+            delete *coldSessionIter;
+            m_sessions.erase(coldSessionIter);
+        }
+    }
+
     m_currentSession = WebSession::create(sessionType, sessionId);
     m_sessions[m_currentSession->id()] = m_currentSession;
     if (sessionType == WebSessionType::CookieBased)
@@ -899,7 +913,6 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
     m_currentSession->registerAPIController(u"app"_s, [app = app(), parent = m_currentSession] { return new AppController(app, parent); });
     m_currentSession->registerAPIController(u"log"_s, [app = app(), parent = m_currentSession] { return new LogController(app, parent); });
     m_currentSession->registerAPIController(u"rss"_s, [app = app(), parent = m_currentSession] { return new RSSController(app, parent); });
-    m_currentSession->registerAPIController(u"search"_s, [app = app(), parent = m_currentSession] { return new SearchController(app, parent); });
     m_currentSession->registerAPIController(u"torrents"_s, [app = app(), parent = m_currentSession] { return new TorrentsController(app, parent); });
     m_currentSession->registerAPIController(u"transfer"_s, [app = app(), parent = m_currentSession] { return new TransferController(app, parent); });
     m_currentSession->registerAPIController(u"clientdata"_s
@@ -911,6 +924,11 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
             , [app = app(), parent = m_currentSession, torrentCreationManager = m_torrentCreationManager]
     {
         return new TorrentCreatorController(torrentCreationManager, app, parent);
+    });
+    m_currentSession->registerAPIController(u"search"_s
+            , [app = app(), parent = m_currentSession, searchJobManager = m_searchJobManager]
+    {
+        return new SearchController(searchJobManager, app, parent);
     });
     m_currentSession->registerAPIController(u"sync"_s
             , [app = app(), parent = m_currentSession, btSession = BitTorrent::Session::instance()]
@@ -969,9 +987,26 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
 
     if (originValue.isEmpty() && refererValue.isEmpty())
     {
-        // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
-        // so lets be permissive here
-        return false;
+        // A page can suppress both 'Origin' and 'Referer', so fall back to 'Sec-Fetch-Site', which is
+        // set by the browser itself and cannot be tampered with by the requesting page.
+        const QString secFetchSiteValue = request.headers.value(Http::HEADER_SEC_FETCH_SITE);
+        if (secFetchSiteValue.isEmpty())
+        {
+            // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
+            // so let's be permissive here (Web API clients don't send 'Sec-Fetch-Site' at all)
+            return false;
+        }
+
+        // "none" means the request wasn't initiated by a page (typed URL, bookmark, etc.)
+        const bool isValid = (secFetchSiteValue.compare(u"same-origin", Qt::CaseInsensitive) == 0)
+                || (secFetchSiteValue.compare(u"none", Qt::CaseInsensitive) == 0);
+        if (!isValid)
+        {
+            LogMsg(tr("WebUI: Cross-site request blocked. Source IP: '%1'. Sec-Fetch-Site header: '%2'. Target origin: '%3'")
+                   .arg(m_env.clientAddress.toString(), secFetchSiteValue, targetOrigin)
+                   , Log::WARNING);
+        }
+        return !isValid;
     }
 
     // sent with CORS requests, as well as with POST requests
@@ -1042,33 +1077,8 @@ QHostAddress WebApplication::resolveClientAddress() const
     if (!m_isReverseProxySupportEnabled)
         return m_env.clientAddress;
 
-    // Only reverse proxy can overwrite client address
-    if (!Utils::Net::isIPInSubnets(m_env.clientAddress, m_trustedReverseProxyList))
-        return m_env.clientAddress;
-
     const QString forwardedFor = m_request.headers.value(Http::HEADER_X_FORWARDED_FOR);
-
-    if (!forwardedFor.isEmpty())
-    {
-        // client address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
-        const QStringList remoteIpList = forwardedFor.split(u',', Qt::SkipEmptyParts);
-
-        if (!remoteIpList.isEmpty())
-        {
-            QHostAddress clientAddress;
-
-            for (const QString &remoteIp : remoteIpList)
-            {
-                if (clientAddress.setAddress(remoteIp) && clientAddress.isGlobal())
-                    return clientAddress;
-            }
-
-            if (clientAddress.setAddress(remoteIpList[0]))
-                return clientAddress;
-        }
-    }
-
-    return m_env.clientAddress;
+    return Utils::Net::resolveForwardedClientAddress(m_env.clientAddress, forwardedFor, m_trustedReverseProxyList);
 }
 
 bool WebApplication::validateCredentials(const QStringView username, const QStringView password) const

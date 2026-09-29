@@ -82,7 +82,17 @@ target_include_directories(qbt_lua
     PRIVATE "include/lua"
 )
 
-set_target_properties(qbt_lua PROPERTIES COMPILE_OPTIONS "-w")
+target_compile_definitions(qbt_lua
+    PUBLIC
+        $<$<PLATFORM_ID:Darwin>:LUA_USE_MACOSX>
+        $<$<PLATFORM_ID:Linux>:LUA_USE_LINUX>
+        # luaconf.h will define `LUA_USE_WINDOWS` automatically on Windows
+)
+
+target_compile_options(qbt_lua
+    PRIVATE
+        -w
+)
 
 target_link_libraries(qbt_lua
     PRIVATE

@@ -31,6 +31,7 @@
 
 #include "rss_session.h"
 
+#include <algorithm>
 #include <chrono>
 
 #include <QDebug>
@@ -65,7 +66,7 @@ Session::Session()
     : m_storeProcessingEnabled(u"RSS/Session/EnableProcessing"_s)
     , m_storeRefreshInterval(u"RSS/Session/RefreshInterval"_s, 30)
     , m_storeFetchDelay(u"RSS/Session/FetchDelay"_s, 2)
-    , m_storeMaxArticlesPerFeed(u"RSS/Session/MaxArticlesPerFeed"_s, 50)
+    , m_storeMaxArticlesPerFeed(u"RSS/Session/MaxArticlesPerFeed"_s, 50, [](const int n) { return std::max(n, 0); })
     , m_workingThread(new QThread)
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
@@ -614,10 +615,11 @@ int Session::maxArticlesPerFeed() const
 
 void Session::setMaxArticlesPerFeed(const int n)
 {
-    if (m_storeMaxArticlesPerFeed != n)
+    const int maxArticles = std::max(n, 0);
+    if (m_storeMaxArticlesPerFeed != maxArticles)
     {
-        m_storeMaxArticlesPerFeed = n;
-        emit maxArticlesPerFeedChanged(n);
+        m_storeMaxArticlesPerFeed = maxArticles;
+        emit maxArticlesPerFeedChanged(maxArticles);
     }
 }
 

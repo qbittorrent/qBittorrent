@@ -267,7 +267,8 @@ target_link_libraries(qbt_gui
     PRIVATE
         qbt_base
     PUBLIC
-        Qt::Gui Qt::Widgets
+        Qt::Gui
+        Qt::Widgets
 )
 
 if (DBUS)

@@ -2145,6 +2145,13 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkI2PPeX">
+                 <property name="text">
+                  <string>Enable I2P Peer Exchange (I2P PeX) to find more peers (requires restart)</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -3427,7 +3434,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
               </property>
               <layout class="QVBoxLayout" name="groupSearchUILayout">
                <item>
-                <widget class="QGroupBox" name="groupStoreOpenedTabs">
+                <widget class="QGroupBox" name="groupStoreSearchJobs">
                  <property name="title">
                   <string>Store opened tabs</string>
                  </property>
@@ -3437,9 +3444,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <property name="checked">
                   <bool>false</bool>
                  </property>
-                 <layout class="QVBoxLayout" name="groupStoreOpenedTabsLayout">
+                 <layout class="QVBoxLayout" name="groupStoreSearchJobsLayout">
                   <item>
-                   <widget class="QCheckBox" name="checkStoreTabsSearchResults">
+                   <widget class="QCheckBox" name="checkStoreSearchJobResults">
                     <property name="text">
                      <string>Also store search results</string>
                     </property>
@@ -3478,6 +3485,13 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   </spacer>
                  </item>
                 </layout>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkCloseSearchTabWithMiddleClick">
+                 <property name="text">
+                  <string>Allow closing tabs with middle-click</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -4068,6 +4082,40 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     </item>
                     <item>
                      <spacer name="horizontalSpacer_11">
+                      <property name="orientation">
+                       <enum>Qt::Orientation::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="layoutWebUISessionsCountLimit">
+                    <item>
+                     <widget class="QLabel" name="labelWebUISessionsCountLimit">
+                      <property name="text">
+                       <string>Sessions count limit:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="spinBoxWebUISessionsCountLimit">
+                      <property name="specialValueText">
+                       <string>Unlimited</string>
+                      </property>
+                      <property name="maximum">
+                       <number>2147483647</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="spacerWebUISessionsCountLimit">
                       <property name="orientation">
                        <enum>Qt::Orientation::Horizontal</enum>
                       </property>
