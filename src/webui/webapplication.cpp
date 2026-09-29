@@ -424,13 +424,10 @@ void WebApplication::processAPIRequest(const QString &endpoint, const Http::Head
                 response.content = result.data.toJsonDocument().toJson(QJsonDocument::Compact);
                 break;
             case QMetaType::QByteArray:
-                {
-                    const auto resultData = result.data.toByteArray();
-                    response.headers.insert(Http::HEADER_CONTENT_TYPE, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
-                    if (!result.filename.isEmpty())
-                        response.headers.insert(Http::HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(result.filename));
-                    response.content = resultData;
-                }
+                response.headers.insert(Http::HEADER_CONTENT_TYPE, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
+                if (!result.filename.isEmpty())
+                    response.headers.insert(Http::HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(result.filename));
+                response.content = result.data.toByteArray();
                 break;
             case QMetaType::QString:
             default:
@@ -1079,33 +1076,8 @@ QHostAddress WebApplication::resolveClientAddress() const
     if (!m_isReverseProxySupportEnabled)
         return m_env.clientAddress;
 
-    // Only reverse proxy can overwrite client address
-    if (!Utils::Net::isIPInSubnets(m_env.clientAddress, m_trustedReverseProxyList))
-        return m_env.clientAddress;
-
     const QString forwardedFor = m_request.headers.value(Http::HEADER_X_FORWARDED_FOR);
-
-    if (!forwardedFor.isEmpty())
-    {
-        // client address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
-        const QStringList remoteIpList = forwardedFor.split(u',', Qt::SkipEmptyParts);
-
-        if (!remoteIpList.isEmpty())
-        {
-            QHostAddress clientAddress;
-
-            for (const QString &remoteIp : remoteIpList)
-            {
-                if (clientAddress.setAddress(remoteIp) && clientAddress.isGlobal())
-                    return clientAddress;
-            }
-
-            if (clientAddress.setAddress(remoteIpList[0]))
-                return clientAddress;
-        }
-    }
-
-    return m_env.clientAddress;
+    return Utils::Net::resolveForwardedClientAddress(m_env.clientAddress, forwardedFor, m_trustedReverseProxyList);
 }
 
 bool WebApplication::validateCredentials(const QStringView username, const QStringView password) const

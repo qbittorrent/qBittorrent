@@ -36,6 +36,7 @@
 #include <QMetaObject>
 #include <QProcess>
 #include <QTimer>
+#include <QUrl>
 
 #include "base/global.h"
 #include "base/logger.h"
@@ -214,7 +215,7 @@ bool SearchHandler::parseSearchResult(const QByteArrayView line, SearchResult &s
 
     searchResult = SearchResult();
     searchResult.fileUrl = QString::fromUtf8(parts.at(PL_DL_LINK).trimmed()); // download URL
-    searchResult.fileName = QString::fromUtf8(parts.at(PL_NAME).trimmed()); // Name
+    searchResult.fileName = QUrl::fromPercentEncoding(Utils::ByteArray::asQByteArray(parts.at(PL_NAME).trimmed())); // Name
     searchResult.fileSize = parts.at(PL_SIZE).trimmed().toLongLong(); // Size
 
     bool ok = false;
