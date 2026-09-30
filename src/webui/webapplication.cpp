@@ -216,7 +216,8 @@ void WebApplication::sendWebUIFile(const Http::HeaderMap &commonHeaders, Http::R
 
     if (m_isAltUIUsed)
     {
-        if (!Utils::Fs::isRegularFile(localPath))
+        QString errorString;
+        if (!Utils::Fs::isRegularFile(localPath, &errorString))
         {
 #ifdef DISABLE_GUI
             if (path == INDEX_HTML)
@@ -226,7 +227,9 @@ void WebApplication::sendWebUIFile(const Http::HeaderMap &commonHeaders, Http::R
                 preferences->apply();
             }
 #endif
-            throw InternalServerErrorHTTPError(tr("Unacceptable file type, only regular file is allowed."));
+            throw errorString.empty()
+                ? InternalServerErrorHTTPError(tr("Unacceptable file type, only regular file is allowed for %1").arg(localPath.toString()))
+                : InternalServerErrorHTTPError(tr("Error checking file type of %1: %2").arg(localPath.toString(), errorString));
         }
 
         const QString rootFolder = m_rootFolder.data();
