@@ -50,6 +50,7 @@ public:
     explicit AdvancedSettings(IGUIApplication *app, QWidget *parent = nullptr);
 
 public slots:
+    void showSpeedWidgetSetting();
     void saveAdvancedSettings() const;
 
 signals:
