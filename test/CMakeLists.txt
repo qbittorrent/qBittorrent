@@ -13,6 +13,7 @@ set(testFiles
     testconceptsexplicitlyconvertibleto.cpp
     testconceptsstringable.cpp
     testglobal.cpp
+    testnetworkinterfacemonitor.cpp
     testorderedset.cpp
     testpath.cpp
     testutilsbytearray.cpp

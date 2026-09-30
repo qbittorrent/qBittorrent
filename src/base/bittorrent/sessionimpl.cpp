@@ -39,7 +39,6 @@
 #ifdef Q_OS_WIN
 #include <windows.h>
 #include <wincrypt.h>
-#include <iphlpapi.h>
 #endif
 
 #include <boost/asio/ip/tcp.hpp>
@@ -81,7 +80,6 @@
 #include <QString>
 #include <QThread>
 #include <QTimer>
-#include <QUuid>
 
 #include "base/algorithm.h"
 #include "base/freediskspacechecker.h"
@@ -89,6 +87,7 @@
 #include "base/keyvaluedatastorage.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
+#include "base/net/networkinterfacemonitor.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
@@ -317,27 +316,6 @@ namespace
         };
     }
 
-#ifdef Q_OS_WIN
-    QString convertIfaceNameToGuid(const QString &name)
-    {
-        // Under Windows XP or on Qt version <= 5.5 'name' will be a GUID already.
-        const QUuid uuid(name);
-        if (!uuid.isNull())
-            return uuid.toString().toUpper(); // Libtorrent expects the GUID in uppercase
-
-        const std::wstring nameWStr = name.toStdWString();
-        NET_LUID luid {};
-        const LONG res = ::ConvertInterfaceNameToLuidW(nameWStr.c_str(), &luid);
-        if (res == 0)
-        {
-            GUID guid;
-            if (::ConvertInterfaceLuidToGuid(&luid, &guid) == 0)
-                return QUuid(guid).toString().toUpper();
-        }
-
-        return {};
-    }
-#endif
 
     constexpr lt::move_flags_t toNative(const MoveStorageMode mode)
     {
@@ -639,6 +617,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_I2POutboundLengthVariance {BITTORRENT_SESSION_KEY(u"I2P/OutboundLengthVariance"_s), 0, clampValue(-7, 7)}
     , m_torrentContentRemoveOption {BITTORRENT_SESSION_KEY(u"TorrentContentRemoveOption"_s), TorrentContentRemoveOption::Delete}
     , m_startPaused {BITTORRENT_SESSION_KEY(u"StartPaused"_s)}
+    , m_networkInterfaceMonitor {new Net::NetworkInterfaceMonitor(this)}
     , m_seedingLimitTimer {new QTimer(this)}
     , m_resumeDataTimer {new QTimer(this)}
     , m_ioThread {new QThread}
@@ -687,6 +666,26 @@ SessionImpl::SessionImpl(QObject *parent)
 
     initializeNativeSession();
     configureComponents();
+
+    connect(m_networkInterfaceMonitor, &Net::NetworkInterfaceMonitor::checked, this, [this](const bool changed)
+    {
+        // A settings change may already have scheduled a new binding.
+        if (m_networkInterfaceMonitor->info().name != networkInterface())
+            return;
+
+        if (changed)
+        {
+            LogMsg(tr("The configured network interface changed. Refreshing the listening addresses."));
+            m_reopenNetworkSockets = true;
+            configureListeningInterface();
+        }
+        else if (!m_deferredConfigureScheduled && m_networkInterfaceMonitor->info().isUsable() && !isListening())
+        {
+            // The address may have become usable after the last bind attempt.
+            // Reapplying identical settings does not make libtorrent retry.
+            m_nativeSession->reopen_network_sockets({});
+        }
+    });
 
     if (isBandwidthSchedulerEnabled())
         enableBandwidthScheduler();
@@ -760,6 +759,7 @@ SessionImpl::SessionImpl(QObject *parent)
 
 SessionImpl::~SessionImpl()
 {
+    m_networkInterfaceMonitor->stop();
     m_nativeSession->pause();
 
     const auto timeout = (m_shutdownTimeout >= 0) ? (static_cast<qint64>(m_shutdownTimeout) * 1000) : -1;
@@ -1431,6 +1431,13 @@ void SessionImpl::configure()
     const bool isListenInterfaceChanged = !m_listenInterfaceConfigured;
 
     m_nativeSession->apply_settings(loadLTSettings());
+    if (m_reopenNetworkSockets)
+    {
+        // A device can reappear with the same name and addresses. Reconcile the
+        // sockets even if the generated settings have not changed.
+        m_nativeSession->reopen_network_sockets({});
+        m_reopenNetworkSockets = false;
+    }
     configureComponents();
 
     if (isListenInterfaceChanged && isReannounceWhenAddressChangedEnabled())
@@ -2302,6 +2309,12 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
     if (m_listenInterfaceConfigured)
         return;
 
+    m_networkInterfaceMonitor->setInterface(networkInterface());
+#ifdef Q_OS_WIN
+    if (!networkInterface().isEmpty() && m_networkInterfaceMonitor->info().deviceName.isEmpty())
+        LogMsg(tr("Could not find GUID of network interface. Interface: \"%1\"").arg(networkInterface()), Log::WARNING);
+#endif
+
     if (port() > 0)  // user has specified port number
         settingsPack.set_int(lt::settings_pack::max_retry_port_bind, 0);
 
@@ -2329,33 +2342,19 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
         }
         else
         {
-            // ip holds an interface name
-#ifdef Q_OS_WIN
-            // On Vista+ versions and after Qt 5.5 QNetworkInterface::name() returns
-            // the interface's LUID and not the GUID.
-            // Libtorrent expects GUIDs for the 'listen_interfaces' setting.
-            const QString guid = convertIfaceNameToGuid(ip);
-            if (!guid.isEmpty())
-            {
-                for (const QString &portString : asConst(portStrings))
-                    endpoints << (guid + portString);
-                outgoingInterfaces << guid;
-            }
-            else
-            {
-                LogMsg(tr("Could not find GUID of network interface. Interface: \"%1\"").arg(ip), Log::WARNING);
-                // Since we can't get the GUID, we'll pass the interface name instead.
-                // Otherwise an empty string will be passed to outgoing_interface which will cause IP leak.
-                for (const QString &portString : asConst(portStrings))
-                    endpoints << (ip + portString);
-                outgoingInterfaces << ip;
-            }
-#else
+            // Interface names have already been resolved to GUIDs on Windows.
             for (const QString &portString : asConst(portStrings))
                 endpoints << (ip + portString);
             outgoingInterfaces << ip;
-#endif
         }
+    }
+
+    // A selected adapter can temporarily have no addresses of the requested
+    // family. An empty outgoing restriction would allow other interfaces.
+    if (outgoingInterfaces.isEmpty() && !networkInterface().isEmpty())
+    {
+        const Net::NetworkInterfaceInfo &iface = m_networkInterfaceMonitor->info();
+        outgoingInterfaces << (iface.deviceName.isEmpty() ? iface.name : iface.deviceName);
     }
 
     const QString finalEndpoints = endpoints.join(u',');
@@ -3579,38 +3578,13 @@ QStringList SessionImpl::getListeningIPs() const
         return IPs;
     }
 
-    // Attempt to listen on provided interface
-    const QNetworkInterface networkIFace = QNetworkInterface::interfaceFromName(ifaceName);
-    if (!networkIFace.isValid())
-    {
-        qDebug("Invalid network interface: %s", qUtf8Printable(ifaceName));
+    const Net::NetworkInterfaceInfo &iface = m_networkInterfaceMonitor->info();
+    if (iface.index == 0)
         LogMsg(tr("The configured network interface is invalid. Interface: \"%1\"").arg(ifaceName), Log::CRITICAL);
-        IPs.append(ifaceName);
-        return IPs;
-    }
 
-    if (ifaceAddr.isEmpty())
-    {
-        IPs.append(ifaceName);
-        return IPs; // On Windows calling code converts it to GUID
-    }
-
-    const QList<QNetworkAddressEntry> addresses = networkIFace.addressEntries();
-    qDebug() << "This network interface has " << addresses.size() << " IP addresses";
-    for (const QNetworkAddressEntry &entry : addresses)
-        checkAndAddIP(entry.ip(), configuredAddr);
-
-    // Make sure there is at least one IP
-    // At this point there was an explicit interface and an explicit address set
-    // and the address should have been found
-    if (IPs.isEmpty())
-    {
-        LogMsg(tr("Failed to find the configured network address to listen on. Address: \"%1\"")
-            .arg(ifaceAddr), Log::CRITICAL);
-        IPs.append(ifaceAddr);
-    }
-
-    return IPs;
+    // Family selectors must never become wildcard bindings when this adapter
+    // has no matching addresses. The monitor will retry when addresses appear.
+    return iface.listeningAddresses(ifaceAddr);
 }
 
 // Set the ports range in which is chosen the port
