@@ -529,9 +529,8 @@ window.qBittorrent.TorrentContent ??= (() => {
                 }
 
                 // add torrent file list doesn't have "CopyDownloadURL", "Download" actions yet
-                if (torrentFilesTable.constructor.name === "AddTorrentFilesTable") {
+                if (torrentFilesTable.constructor.name === "AddTorrentFilesTable")
                     return;
-                }
 
                 const fileOnlyActions = ["CopyDownloadURL", "Download"];
                 if (hasFolder) {
