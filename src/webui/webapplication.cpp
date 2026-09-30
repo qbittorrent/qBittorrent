@@ -227,7 +227,7 @@ void WebApplication::sendWebUIFile(const Http::HeaderMap &commonHeaders, Http::R
                 preferences->apply();
             }
 #endif
-            throw errorString.empty()
+            throw errorString.isEmpty()
                 ? InternalServerErrorHTTPError(tr("Unacceptable file type, only regular file is allowed for %1").arg(localPath.toString()))
                 : InternalServerErrorHTTPError(tr("Error checking file type of %1: %2").arg(localPath.toString(), errorString));
         }
