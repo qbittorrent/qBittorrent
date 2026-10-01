@@ -13,9 +13,11 @@
         const UseGlobalLimit = -2;
         const NoLimit = -1;
         let limitReachedActionsEl;
+        let shareLimitsModeEl;
 
         window.addEventListener("DOMContentLoaded", (event) => {
             limitReachedActionsEl = document.getElementById("limitReachedActions");
+            shareLimitsModeEl = document.getElementById("shareLimitsModeActions");
 
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
@@ -40,7 +42,8 @@
                 maxRatio: Number(origValues[3]),
                 maxSeedingTime: Number(origValues[4]),
                 maxInactiveSeedingTime: Number(origValues[5]),
-                shareLimitAction: String(origValues[6])
+                shareLimitAction: String(origValues[6]),
+                shareLimitsMode: String(origValues[7])
             };
 
             // select default when orig values not passed. using double equals to compare string and int
@@ -71,6 +74,7 @@
                 }
 
                 limitReachedActionsEl.value = values.shareLimitAction;
+                shareLimitsModeEl.value = values.shareLimitsMode;
             }
 
             shareLimitChanged();
@@ -88,6 +92,7 @@
                 let seedingTimeLimitValue = 0; // eslint-disable-line no-useless-assignment
                 let inactiveSeedingTimeLimitValue = 0; // eslint-disable-line no-useless-assignment
                 let shareLimitActionValue = "Default";
+                let shareLimitsModeValue = "Default"
 
                 if (shareLimit === "default") {
                     ratioLimitValue = UseGlobalLimit;
@@ -104,6 +109,7 @@
                     seedingTimeLimitValue = document.getElementById("setTotalMinutes").checked ? document.getElementById("totalMinutes").value : -1;
                     inactiveSeedingTimeLimitValue = document.getElementById("setInactiveMinutes").checked ? document.getElementById("inactiveMinutes").value : -1;
                     shareLimitActionValue = limitReachedActionsEl.value;
+                    shareLimitsModeValue = shareLimitsModeEl.value;
                 }
                 else {
                     return;
@@ -116,7 +122,8 @@
                             ratioLimit: ratioLimitValue,
                             seedingTimeLimit: seedingTimeLimitValue,
                             inactiveSeedingTimeLimit: inactiveSeedingTimeLimitValue,
-                            shareLimitAction: shareLimitActionValue
+                            shareLimitAction: shareLimitActionValue,
+                            shareLimitsMode: shareLimitsModeValue,
                         })
                     })
                     .then((response) => {
@@ -152,6 +159,7 @@
             document.getElementById("setTotalMinutes").disabled = !customShareLimit;
             document.getElementById("setInactiveMinutes").disabled = !customShareLimit;
             limitReachedActionsEl.disabled = !customShareLimit;
+            shareLimitsModeEl.disabled = !customShareLimit;
 
             enableInputBoxes();
 
@@ -193,6 +201,14 @@
             <input type="checkbox" id="setInactiveMinutes" class="shareLimitInput" onclick="enableInputBoxes()">
             <label id="inactiveMinutesLabel" for="setInactiveMinutes">QBT_TR(inactive minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <input type="number" id="inactiveMinutes" value="0" step="1" min="0" class="shareLimitInput" aria-labelledby="inactiveMinutesLabel">
+        </div>
+        <div style="margin-left: 40px; margin-bottom: 5px;">
+            <label id="shareLimitsModeLabel" for="shareLimitsModeActions">QBT_TR(Mode)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <select id="shareLimitsModeActions" aria-labelledby="shareLimitsModeLabel">
+                <option value="Default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="MatchAny">QBT_TR(Match any limit)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="MatchAll">QBT_TR(Match all the limits)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+            </select>
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <label id="actionListLabel" for="limitReachedActions">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
