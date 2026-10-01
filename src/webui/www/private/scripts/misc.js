@@ -28,6 +28,11 @@
 
 "use strict";
 
+const TIME_RESOLUTION = Object.freeze({
+    Seconds: 'Seconds',
+    Minutes: 'Minutes',
+});
+
 window.qBittorrent ??= {};
 window.qBittorrent.Misc ??= (() => {
     const exports = () => {
@@ -54,7 +59,8 @@ window.qBittorrent.Misc ??= (() => {
             formatDate: formatDate,
             // variables
             FILTER_INPUT_DELAY: 400,
-            MAX_ETA: 8640000
+            MAX_ETA: 8640000,
+            TIME_RESOLUTION: TIME_RESOLUTION
         };
     };
 
@@ -172,13 +178,16 @@ window.qBittorrent.Misc ??= (() => {
     /*
      * JS counterpart of the function in src/misc.cpp
      */
-    const friendlyDuration = (seconds, maxCap = -1) => {
+    const friendlyDuration = (seconds, maxCap = -1, timeResolution = TIME_RESOLUTION.Minutes) => {
         if ((seconds < 0) || ((seconds >= maxCap) && (maxCap >= 0)))
             return "∞";
         if (seconds === 0)
             return "0";
-        if (seconds < 60)
-            return "QBT_TR(< 1m)QBT_TR[CONTEXT=misc]";
+        if (seconds < 60) {
+            if (timeResolution === TIME_RESOLUTION.Minutes)
+                return "QBT_TR(< 1m)QBT_TR[CONTEXT=misc]";
+            return "QBT_TR(%1s)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(seconds));
+        }
         let minutes = seconds / 60;
         if (minutes < 60)
             return "QBT_TR(%1m)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(minutes));
