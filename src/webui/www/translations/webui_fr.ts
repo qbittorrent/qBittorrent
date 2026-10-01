@@ -3924,6 +3924,10 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <source>Match any limit</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>about</name>

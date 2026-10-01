@@ -3925,6 +3925,10 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <source>Match any limit</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>about</name>

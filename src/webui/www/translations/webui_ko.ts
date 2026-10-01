@@ -3925,6 +3925,10 @@ DNS 재결합 공격을 방어하기 위해
         <source>Match any limit</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>about</name>

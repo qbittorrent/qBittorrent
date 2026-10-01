@@ -3909,6 +3909,10 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <source>Match any limit</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>about</name>

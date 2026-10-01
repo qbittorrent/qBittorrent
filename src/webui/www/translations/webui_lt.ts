@@ -3907,6 +3907,10 @@ pakaitos simbolį "*".</translation>
         <source>Match any limit</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>about</name>

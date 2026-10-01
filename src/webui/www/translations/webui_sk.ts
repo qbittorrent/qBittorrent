@@ -3917,6 +3917,10 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <source>Match any limit</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>about</name>

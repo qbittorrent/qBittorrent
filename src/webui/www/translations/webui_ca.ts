@@ -3925,6 +3925,10 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <source>Match any limit</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>about</name>
