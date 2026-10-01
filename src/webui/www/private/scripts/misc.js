@@ -29,8 +29,8 @@
 "use strict";
 
 const TIME_RESOLUTION = Object.freeze({
-    Seconds: 'Seconds',
-    Minutes: 'Minutes',
+    Seconds: "Seconds",
+    Minutes: "Minutes",
 });
 
 window.qBittorrent ??= {};
