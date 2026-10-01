@@ -3913,6 +3913,18 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <source>Action when the limit is reached</source>
         <translation>Hành động khi đạt đến giới hạn</translation>
     </message>
+    <message>
+        <source>Match all the limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match any limit</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>about</name>

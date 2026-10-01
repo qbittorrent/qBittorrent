@@ -3913,6 +3913,18 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <source>Action when the limit is reached</source>
         <translation>Åtgärd när gränsen är nådd</translation>
     </message>
+    <message>
+        <source>Match all the limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match any limit</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>about</name>
