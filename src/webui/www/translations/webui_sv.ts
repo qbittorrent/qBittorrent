@@ -4010,6 +4010,10 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <source>%1y %2d</source>
         <translation>%1å %2d</translation>
     </message>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentsController</name>

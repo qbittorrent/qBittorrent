@@ -4003,6 +4003,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>%1y %2d</source>
         <translation>%1 г. %2 дз</translation>
     </message>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentsController</name>

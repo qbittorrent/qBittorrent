@@ -3990,6 +3990,10 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <source>%1y %2d</source>
         <translation>%1 वर्ष %2 दिन</translation>
     </message>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentsController</name>

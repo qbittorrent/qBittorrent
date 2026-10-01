@@ -4010,6 +4010,10 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>%1y %2d</source>
         <translation>%1y %2gn</translation>
     </message>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentsController</name>
