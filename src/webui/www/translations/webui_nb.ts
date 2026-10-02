@@ -3901,22 +3901,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <source>Action when the limit is reached</source>
         <translation type="unfinished" />
     </message>
-    <message>
-        <source>Match all the limits</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Match any limit</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>about</name>

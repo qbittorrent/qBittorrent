@@ -3913,22 +3913,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <source>Action when the limit is reached</source>
         <translation>Művelet ha a korlát elérésre kerül</translation>
     </message>
-    <message>
-        <source>Match all the limits</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Match any limit</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>about</name>

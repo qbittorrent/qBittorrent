@@ -3913,22 +3913,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <source>Action when the limit is reached</source>
         <translation>Acción cando se alcanza o límite</translation>
     </message>
-    <message>
-        <source>Match all the limits</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Match any limit</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>about</name>
