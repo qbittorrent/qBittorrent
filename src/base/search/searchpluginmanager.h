@@ -36,7 +36,7 @@
 #include "base/path.h"
 #include "base/utils/version.h"
 
-using SearchPluginVersion = Utils::Version<2>;
+using SearchPluginVersion = Utils::Version<3, 1>;
 
 namespace Net
 {
