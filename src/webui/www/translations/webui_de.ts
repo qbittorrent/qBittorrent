@@ -4012,10 +4012,6 @@ Platzhalter '*' kann verwendet werden.</translation>
         <source>%1y %2d</source>
         <translation>%1J %2T</translation>
     </message>
-    <message>
-        <source>%1s</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TorrentsController</name>

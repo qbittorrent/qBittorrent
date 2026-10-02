@@ -4009,10 +4009,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <source>%1y %2d</source>
         <translation>%1 a %2 j</translation>
     </message>
-    <message>
-        <source>%1s</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TorrentsController</name>

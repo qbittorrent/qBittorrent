@@ -4010,10 +4010,6 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
         <source>%1y %2d</source>
         <translation>%1a %2d</translation>
     </message>
-    <message>
-        <source>%1s</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TorrentsController</name>

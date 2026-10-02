@@ -4010,10 +4010,6 @@ DNS 재결합 공격을 방어하기 위해
         <source>%1y %2d</source>
         <translation>%1y %2d</translation>
     </message>
-    <message>
-        <source>%1s</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TorrentsController</name>

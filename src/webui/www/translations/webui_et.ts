@@ -3994,10 +3994,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>%1y %2d</source>
         <translation>%1a %2p</translation>
     </message>
-    <message>
-        <source>%1s</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TorrentsController</name>
