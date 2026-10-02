@@ -33,6 +33,7 @@
 
 #include <QDialog>
 #include <QHash>
+#include <QList>
 #include <QSet>
 
 #include "base/rss/rss_autodownloadrule.h"
@@ -69,7 +70,7 @@ private slots:
     void onImportBtnClicked();
     void onRenameRuleBtnClicked();
     void handleRuleCheckStateChange(QListWidgetItem *ruleItem);
-    void handleFeedCheckStateChange(QListWidgetItem *feedItem);
+    void handleFeedCheckStateChange(QListWidgetItem *feedItem, Qt::CheckState checkState);
     void displayRulesListMenu();
     void cloneSelectedRule();
     void renameSelectedRule();
@@ -91,12 +92,14 @@ private:
     void loadSettings();
     void saveSettings();
     void createRuleItem(const RSS::AutoDownloadRule &rule);
+    QList<QListWidgetItem *> selectedRuleItems() const;
     void clearRuleDefinitionBox();
     void updateEditedRule();
     void updateMatchingArticles();
     void saveEditedRule();
     void loadFeedList();
     void updateFeedList();
+    void setAllFeedsCheckState(Qt::CheckState checkState);
     void addFeedArticlesToTree(RSS::Feed *feed, const QStringList &articles);
 
     const QString m_formatFilterJSON;
