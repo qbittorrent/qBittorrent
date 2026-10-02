@@ -909,6 +909,14 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <input type="radio" name="shareLimitMode" id="shareLimitModeAny" value="MatchAny">
+                            <label for="shareLimitModeAny">QBT_TR(Any of the above)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="radio" name="shareLimitMode" id="shareLimitModeAll" value="MatchAll">
+                            <label for="shareLimitModeAll">QBT_TR(All the above)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                </tr>
+                <tr>
                     <td style="text-align: right;"><label for="maxRatioSelect">QBT_TR(then)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                     <td>
                         <select id="maxRatioSelect">
@@ -2294,6 +2302,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("maxInactiveSeedingTimeValue").disabled = !isMaxInactiveSeedingTimeEnabled;
 
             document.getElementById("maxRatioSelect").disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
+
+            const shareLimitModeGroup = document.getElementsByName('shareLimitMode');
+            shareLimitModeGroup.forEach(radio => {
+                radio.disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
+            });
         };
 
         const updateAddTrackersEnabled = () => {
@@ -2748,6 +2761,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             maxRatioAct = 2;
                             break;
                     }
+
+                    const shareLimitMode = pref.share_limits_mode;
+
+                    document.getElementById("shareLimitModeAny").checked = shareLimitMode === "MatchAny";
+                    document.getElementById("shareLimitModeAll").checked = shareLimitMode === "MatchAll";
                     document.getElementById("maxRatioSelect").getChildren("option")[maxRatioAct].selected = true;
                     updateMaxRatioTimeEnabled();
 
@@ -3226,6 +3244,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }
             settings["max_inactive_seeding_time_enabled"] = document.getElementById("maxInactiveSeedingTimeCheckbox").checked;
             settings["max_inactive_seeding_time"] = maxInactiveSeedingTime;
+            settings["share_limits_mode"] = document.querySelector('input[name="shareLimitMode"]:checked').value;
             settings["max_ratio_act"] = Number(document.getElementById("maxRatioSelect").value);
 
             // Add trackers
