@@ -84,9 +84,9 @@ TransferListWidget *BaseFilterWidget::transferList() const
 
 void BaseFilterWidget::toggleFilter(const bool checked)
 {
+    if (!checked)
+        setCurrentRow(ALL_ROW, QItemSelectionModel::SelectCurrent);
+
     setVisible(checked);
-    if (checked)
-        applyFilter(currentRow());
-    else
-        applyFilter(ALL_ROW);
+    applyFilter(currentRow());
 }
