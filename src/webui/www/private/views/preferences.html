@@ -2303,10 +2303,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             document.getElementById("maxRatioSelect").disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
 
-            const shareLimitModeGroup = document.getElementsByName('shareLimitMode');
-            shareLimitModeGroup.forEach(radio => {
-                radio.disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
-            });
+            const shareLimitModeGroup = document.getElementsByName("shareLimitMode");
+            for (const radioEl of shareLimitModeGroup) {
+                radioEl.disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
+            }
         };
 
         const updateAddTrackersEnabled = () => {
