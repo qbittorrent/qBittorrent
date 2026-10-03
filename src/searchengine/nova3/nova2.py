@@ -1,4 +1,4 @@
-# VERSION: 1.53
+# VERSION: 1.54
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -137,7 +137,7 @@ def import_engine(engine_module_name: EngineModuleName) -> Optional[type[Engine]
         # import engines.[engine_module_name]
         engine_module = importlib.import_module(f"engines.{engine_module_name}")
         engine_class = getattr(engine_module, engine_module_name)
-    except Exception:
+    except Exception:  # noqa: BLE001, S110
         pass
 
     engine_dict[engine_module_name] = engine_class
@@ -173,12 +173,15 @@ def get_capabilities(engines: Iterable[EngineModuleName]) -> str:
         ET.SubElement(engine_module_element, 'name').text = engine_class.name
         ET.SubElement(engine_module_element, 'url').text = engine_class.url
 
-        supported_categories = ""
+        supported_categories: set[str] = set()
         if hasattr(engine_class, "supported_categories"):
-            supported_categories = " ".join((key
-                                             for key in sorted(engine_class.supported_categories.keys())
-                                             if key != Category.all.name))
-        ET.SubElement(engine_module_element, 'categories').text = supported_categories
+            for cat in engine_class.supported_categories:
+                if cat in Category.__members__:
+                    if cat != Category.all.name:
+                        supported_categories.add(cat)
+                else:
+                    print(f"Search engine has invalid category. Search engine: '{engine_class.name}'. Invalid category: '{cat}'", file=sys.stderr)
+        ET.SubElement(engine_module_element, 'categories').text = " ".join(sorted(supported_categories))
 
     ET.indent(capabilities_element)
     return ET.tostring(capabilities_element, 'unicode')
@@ -202,7 +205,7 @@ def run_search(search_params: tuple[type[Engine], str, Category]) -> bool:
         else:
             engine.search(what)
         return True
-    except Exception:
+    except Exception:  # noqa: BLE001
         traceback.print_exc()
         return False
 
@@ -224,7 +227,7 @@ if __name__ == "__main__":
 
         if "--capabilities" in sys.argv:
             if "--names" in sys.argv:
-                print(",".join((e for e in found_engines if import_engine(e) is not None)))
+                print(",".join(e for e in found_engines if import_engine(e) is not None))
                 return ExitCode.OK.value
 
             print(get_capabilities(found_engines))
@@ -234,7 +237,7 @@ if __name__ == "__main__":
             return ExitCode.ArgError.value
 
         # get unique engines
-        engs = set(arg.strip().lower() for arg in sys.argv[1].split(','))
+        engs = {arg.strip().lower() for arg in sys.argv[1].split(',')}
         engines = found_engines if 'all' in engs else [e for e in found_engines if e in engs]
 
         cat = sys.argv[2].lower()
