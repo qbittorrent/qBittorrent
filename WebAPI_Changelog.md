@@ -97,6 +97,8 @@
   * `sync/maindata` endpoint includes `share_limits_mode` for torrents
   * `app/preferences` endpoint includes `share_limits_mode` option
   * `app/setPreferences` endpoint allows to set `share_limits_mode` option
+  * `torrents/setShareLimits` endpoint now requires `shareLimitsMode` (string) param that sets a torrent's shareLimitsMode property.
+    * possible values `Default`, `MatchAny`, `MatchAll`
 
 ## 2.15.2
 
