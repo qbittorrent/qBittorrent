@@ -31,6 +31,7 @@
 
 #include <functional>
 #include <memory>
+#include <optional>
 
 #include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
@@ -246,6 +247,8 @@ namespace BitTorrent
         QString createMagnetURI() const override;
         nonstd::expected<QByteArray, QString> exportToBuffer() const override;
         nonstd::expected<void, QString> exportToFile(const Path &path) const override;
+        UniqueSubfolderMigrationPlan planUniqueSubfolderMigration() const override;
+        void startUniqueSubfolderMigration(const UniqueSubfolderMigrationPlan &plan) override;
 
         QFuture<QList<PeerInfo>> fetchPeerInfo() const override;
         QFuture<QList<QUrl>> fetchURLSeeds() const override;
@@ -296,6 +299,8 @@ namespace BitTorrent
             Path newFolderPath {};
             QHash<int, Path> renamedFiles {};
             QList<int> failedFileIndexes {};
+            // When true, success/failure of this job finalizes unique-subfolder layout conversion.
+            bool uniqueSubfolderConversion = false;
         };
 
         std::shared_ptr<const lt::torrent_info> nativeTorrentInfo() const;
@@ -309,7 +314,13 @@ namespace BitTorrent
         void setAutoManaged(bool enable);
 
         void doRenameFile(int index, const Path &path, int folderRenameJobID = -1);
+        // Shared batch-rename job used by doRenameFolder and unique-subfolder migration.
+        void scheduleRenameJob(const Path &oldFolderPath, const Path &newFolderPath
+                , const QList<QPair<int, Path>> &fileRenames, bool uniqueSubfolderConversion = false);
         void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath) override;
+        void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath, bool uniqueSubfolderConversion);
+        void completeRenameJob(const FolderRenameInfo &folderRenameInfo);
+        void finishUniqueSubfolderConversion(bool success, const QList<int> &failedFileIndexes);
 
         Path makeActualPath(int index, const Path &path) const;
         Path makeUserPath(const Path &path) const;

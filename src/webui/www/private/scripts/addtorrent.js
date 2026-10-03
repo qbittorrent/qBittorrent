@@ -114,8 +114,10 @@ window.qBittorrent.AddTorrent ??= (() => {
 
         if (pref.torrent_content_layout === "Subfolder")
             document.getElementById("contentLayout").selectedIndex = 1;
-        else if (pref.torrent_content_layout === "NoSubfolder")
+        else if (pref.torrent_content_layout === "UniqueSubfolder")
             document.getElementById("contentLayout").selectedIndex = 2;
+        else if (pref.torrent_content_layout === "NoSubfolder")
+            document.getElementById("contentLayout").selectedIndex = 3;
         else
             document.getElementById("contentLayout").selectedIndex = 0;
     };

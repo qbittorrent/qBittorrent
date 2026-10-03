@@ -579,6 +579,20 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->checkAdditionDialogFront->setChecked(pref->isAddNewTorrentDialogTopLevel());
 
     m_ui->contentLayoutComboBox->setCurrentIndex(static_cast<int>(session->torrentContentLayout()));
+    m_ui->contentLayoutComboBox->setToolTip(
+            u"<html><body><p><b>" + tr("Original") + u"</b> - "
+            + tr("Keep the torrent’s original layout.")
+            + u"</p><p><b>" + tr("Create subfolder") + u"</b> - "
+            + tr("Put content in a subfolder named after the torrent.")
+            + u"</p><p><b>" + tr("Create unique subfolder") + u"</b> - "
+            + tr("Put content in a unique folder with a short hash suffix (e.g. Show a19f83c275d1). "
+                 "Avoids name collisions; breaks path-based cross-seeding. "
+                 "Existing torrents stay as-is until converted from the transfer list. "
+                 "Conflicts are handled like normal content renaming; "
+                 "layout updates only if the whole conversion succeeds.")
+            + u"</p><p><b>" + tr("Don't create subfolder") + u"</b> - "
+            + tr("Put files directly in the save path.")
+            + u"</p></body></html>");
     m_ui->checkAddToQueueTop->setChecked(session->isAddTorrentToQueueTop());
     m_ui->checkAddStopped->setChecked(session->isAddTorrentStopped());
 
