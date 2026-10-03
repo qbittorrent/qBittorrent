@@ -52,6 +52,7 @@ namespace Utils::Gui
     QPoint screenCenter(const QWidget *w);
 
     void openPath(const Path &path);
+    void openPaths(const PathList &paths);
     void openFolderSelect(const Path &path);
 
     QString tagToWidgetText(const Tag &tag);
