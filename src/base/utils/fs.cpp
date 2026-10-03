@@ -322,10 +322,13 @@ Path Utils::Fs::tempPath()
     return path;
 }
 
-bool Utils::Fs::isRegularFile(const Path &path)
+bool Utils::Fs::isRegularFile(const Path &path, QString* outErrorString)
 {
     std::error_code ec;
-    return std::filesystem::is_regular_file(path.toStdFsPath(), ec);
+    const bool ret = std::filesystem::is_regular_file(path.toStdFsPath(), ec);
+    if (outErrorString && ec)
+        *outErrorString = QString::fromStdString(ec.message());
+    return ret;
 }
 
 bool Utils::Fs::isNetworkFileSystem(const Path &path)
