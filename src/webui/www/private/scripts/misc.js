@@ -28,11 +28,6 @@
 
 "use strict";
 
-const TIME_RESOLUTION = Object.freeze({
-    Seconds: "Seconds",
-    Minutes: "Minutes",
-});
-
 window.qBittorrent ??= {};
 window.qBittorrent.Misc ??= (() => {
     const exports = () => {
@@ -63,6 +58,11 @@ window.qBittorrent.Misc ??= (() => {
             TIME_RESOLUTION: TIME_RESOLUTION
         };
     };
+
+    const TIME_RESOLUTION = Object.freeze({
+        Seconds: Symbol("Seconds"),
+        Minutes: Symbol("Minutes"),
+    });
 
     // getHost emulate the GUI version `QString getHost(const QString &url)`
     const getHost = (url) => {
