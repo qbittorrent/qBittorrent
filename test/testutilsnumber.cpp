@@ -57,6 +57,23 @@ private slots:
         QCOMPARE(Utils::Number::clampingAdd(intMin, -1), intMin);
         QCOMPARE(Utils::Number::clampingAdd(intMin, intMin), intMin);
     }
+
+    void testRoundToPrecision() const
+    {
+        QCOMPARE(Utils::Number::roundToPrecision(1.234, 2), 1.23);
+        QCOMPARE(Utils::Number::roundToPrecision(1.235, 2), 1.24);
+        QCOMPARE(Utils::Number::roundToPrecision(-1.235, 2), -1.24);
+        QCOMPARE(Utils::Number::roundToPrecision(1.5, 0), 2.0);
+        QCOMPARE(Utils::Number::roundToPrecision(0.0, 2), 0.0);
+
+        // values already having the requested precision are left alone
+        QCOMPARE(Utils::Number::roundToPrecision(4.0, 2), 4.0);
+        QCOMPARE(Utils::Number::roundToPrecision(2.3, 2), 2.3);
+
+        // the error accumulated by repeatedly stepping a spin box is undone
+        QCOMPARE(Utils::Number::roundToPrecision(3.9999999999999938, 2), 4.0);
+        QCOMPARE(Utils::Number::roundToPrecision(2.9999999999999973, 2), 3.0);
+    }
 };
 
 QTEST_APPLESS_MAIN(TestUtilsNumber)
