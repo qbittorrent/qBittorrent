@@ -42,6 +42,8 @@
 #include <QShortcut>
 #include <QWheelEvent>
 
+#include <utility>
+
 #include "base/bittorrent/torrentcontenthandler.h"
 #include "base/path.h"
 #include "base/utils/string.h"
@@ -94,6 +96,14 @@ TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     m_filterModel = new TorrentContentFilterModel(this);
     m_filterModel->setSourceModel(m_model);
     QTreeView::setModel(m_filterModel);
+
+#ifdef Q_OS_MACOS
+    // QAccessibleTree caches cells by visible row. A priority change can make the
+    // sorting proxy rearrange those rows while the Cocoa accessibility bridge is
+    // enumerating selected children. Do not expose that transient selection.
+    connect(m_model, &TorrentContentModel::priorityUpdateStarted, this, &TorrentContentWidget::beginPriorityUpdate);
+    connect(m_model, &TorrentContentModel::priorityUpdateFinished, this, &TorrentContentWidget::endPriorityUpdate);
+#endif
 
     auto *itemDelegate = new TorrentContentItemDelegate(this);
     setItemDelegate(itemDelegate);
@@ -361,6 +371,27 @@ void TorrentContentWidget::setModel([[maybe_unused]] QAbstractItemModel *model)
 {
     Q_ASSERT_X(false, Q_FUNC_INFO, "Changing the model of TorrentContentWidget is not allowed.");
 }
+
+#ifdef Q_OS_MACOS
+void TorrentContentWidget::beginPriorityUpdate()
+{
+    Q_ASSERT(m_selectionBeforePriorityUpdate.isEmpty());
+
+    const QModelIndexList selection = selectionModel()->selectedIndexes();
+    m_selectionBeforePriorityUpdate = toPersistentIndexes(selection);
+    selectionModel()->clearSelection();
+}
+
+void TorrentContentWidget::endPriorityUpdate()
+{
+    const QList<QPersistentModelIndex> selection = std::exchange(m_selectionBeforePriorityUpdate, {});
+    for (const QPersistentModelIndex &index : selection)
+    {
+        if (index.isValid())
+            selectionModel()->select(index, QItemSelectionModel::Select);
+    }
+}
+#endif
 
 QModelIndex TorrentContentWidget::currentNameCell() const
 {
