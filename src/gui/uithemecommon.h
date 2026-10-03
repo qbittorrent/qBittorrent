@@ -78,6 +78,7 @@ inline QHash<QString, UIThemeColor> defaultUIThemeColors()
         {u"TransferList.CheckingResumeData"_s, {Color::Primer::Light::successFg, Color::Primer::Dark::successFg}},
         {u"TransferList.StoppedDownloading"_s, {Color::Primer::Light::fgMuted, Color::Primer::Dark::fgMuted}},
         {u"TransferList.StoppedUploading"_s, {Color::Primer::Light::doneFg, Color::Primer::Dark::doneFg}},
+        {u"TransferList.InsufficientDiskSpace"_s, {Color::Primer::Light::severeFg, Color::Primer::Dark::severeFg}},
         {u"TransferList.Moving"_s, {Color::Primer::Light::successFg, Color::Primer::Dark::successFg}},
         {u"TransferList.MissingFiles"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}},
         {u"TransferList.Error"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}},

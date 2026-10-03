@@ -69,6 +69,8 @@ namespace
             return u"forcedMetaDL"_s;
         case BitTorrent::TorrentState::StoppedDownloading:
             return u"stoppedDL"_s;
+        case BitTorrent::TorrentState::InsufficientDiskSpace:
+            return u"insufficientSpace"_s;
         case BitTorrent::TorrentState::QueuedDownloading:
             return u"queuedDL"_s;
         case BitTorrent::TorrentState::StalledDownloading:
