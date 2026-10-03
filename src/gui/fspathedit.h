@@ -99,6 +99,8 @@ signals:
 protected:
     explicit FileSystemPathEdit(Private::IFileEditorWithCompletion *editor, QWidget *parent);
 
+    bool event(QEvent *event) override;
+
     template <class Widget>
     Widget *editWidget() const
     {

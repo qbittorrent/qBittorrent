@@ -19,6 +19,9 @@
      <property name="text">
       <string>List of trackers to add (one per line):</string>
      </property>
+     <property name="buddy">
+      <cstring>textEditTrackersList</cstring>
+     </property>
     </widget>
    </item>
    <item>
@@ -39,6 +42,9 @@
      <property name="text">
       <string>µTorrent compatible list URL:</string>
      </property>
+     <property name="buddy">
+      <cstring>lineEditListURL</cstring>
+     </property>
     </widget>
    </item>
    <item>
@@ -49,6 +55,9 @@
      <item>
       <widget class="QPushButton" name="downloadButton">
        <property name="toolTip">
+        <string>Download trackers list</string>
+       </property>
+       <property name="accessibleName">
         <string>Download trackers list</string>
        </property>
       </widget>
