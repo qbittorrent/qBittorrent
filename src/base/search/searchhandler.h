@@ -47,6 +47,7 @@ struct SearchResult
     qlonglong nbSeeders = 0;
     qlonglong nbLeechers = 0;
     QString engineName;
+    QString engineFullName;
     QString siteUrl;
     QString descrLink;
     QDateTime pubDate;

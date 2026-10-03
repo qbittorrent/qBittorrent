@@ -1000,6 +1000,7 @@ window.qBittorrent.Search ??= (() => {
                                 nbLeechers: result.nbLeechers,
                                 nbSeeders: result.nbSeeders,
                                 engineName: result.engineName,
+                                engineFullName: result.engineFullName,
                                 siteUrl: result.siteUrl,
                                 pubDate: result.pubDate,
                             };
