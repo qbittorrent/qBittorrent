@@ -5,7 +5,6 @@ import glob
 import os
 import shutil
 import sys
-from typing import List
 
 
 def isNotStub(path: str) -> bool:
@@ -18,7 +17,7 @@ def main() -> int:
     parser.add_argument("nsis_packaging_folder", help="NSIS packaging translations folder")
     args = parser.parse_args()
 
-    tmp_translations: List[str] = glob.glob(f'{args.qt_translations_folder}/qt_??.qm')
+    tmp_translations: list[str] = glob.glob(f'{args.qt_translations_folder}/qt_??.qm')
     tmp_translations += glob.glob(f'{args.qt_translations_folder}/qt_??_??.qm')
     tmp_translations += glob.glob(f'{args.qt_translations_folder}/qtbase_??.qm')
     tmp_translations += glob.glob(f'{args.qt_translations_folder}/qtbase_??_??.qm')
