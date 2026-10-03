@@ -28,6 +28,7 @@
 
 #include "proptabbar.h"
 
+#include <QAbstractButton>
 #include <QButtonGroup>
 #include <QKeySequence>
 #include <QPushButton>
@@ -98,6 +99,10 @@ PropTabBar::PropTabBar(QWidget *parent)
     speedButton->setShortcut(Qt::ALT | Qt::Key_D);
     addWidget(speedButton);
     m_btnGroup->addButton(speedButton, SpeedTab);
+    // Allow clicking the selected tab again to hide the properties panel.
+    m_btnGroup->setExclusive(false);
+    for (QAbstractButton *button : m_btnGroup->buttons())
+        button->setCheckable(true);
     // SIGNAL/SLOT
     connect(m_btnGroup, &QButtonGroup::idClicked
             , this, &PropTabBar::setCurrentIndex);
@@ -117,16 +122,16 @@ void PropTabBar::setCurrentIndex(int index)
     {
         if (m_currentIndex >= 0)
         {
-          m_btnGroup->button(m_currentIndex)->setDown(false);
-          m_currentIndex = -1;
-          emit visibilityToggled(false);
+            m_btnGroup->button(m_currentIndex)->setChecked(false);
+            m_currentIndex = -1;
+            emit visibilityToggled(false);
         }
         return;
     }
     // Unselect previous tab
     if (m_currentIndex >= 0)
     {
-        m_btnGroup->button(m_currentIndex)->setDown(false);
+        m_btnGroup->button(m_currentIndex)->setChecked(false);
     }
     else
     {
@@ -134,7 +139,7 @@ void PropTabBar::setCurrentIndex(int index)
         emit visibilityToggled(true);
     }
     // Select the new button
-    m_btnGroup->button(index)->setDown(true);
+    m_btnGroup->button(index)->setChecked(true);
     m_currentIndex = index;
     // Emit the signal
     emit tabChanged(index);
