@@ -32,19 +32,19 @@ format files=PY_FILES:
         --max-line-length=1000 \
         --statistics \
         {{ files }}
-    isort \
-        --line-length 1000 \
-        {{ files }}
     just \
         --fmt \
         --unstable
 
 # Run static analyzer
 lint files=PY_FILES:
+    ruff \
+        check \
+        {{ files }}
     pyflakes \
         {{ files }}
     bandit \
-        --skip B110,B310,B314,B405 \
+        --configfile pyproject.toml \
         {{ files }}
     pydoclint \
         {{ files }}
@@ -52,5 +52,4 @@ lint files=PY_FILES:
 # Run tests
 test files='tests/*.py': fetch_aux
     pytest \
-        --showlocals \
         {{ files }}
