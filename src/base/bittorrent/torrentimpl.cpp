@@ -1414,6 +1414,58 @@ qlonglong TorrentImpl::eta() const
         const ShareLimits shareLimits = effectiveShareLimits();
         QList<qint64> etaList;
 
+        if (shareLimits.mode == ShareLimitsMode::Layered)
+        {
+            const bool ratioReached = (shareLimits.ratioLimit >= 0) && (realRatio() >= shareLimits.ratioLimit);
+            const bool seedingTimeReached = (shareLimits.seedingTimeLimit >= 0) && ((finishedTime() / 60) >= shareLimits.seedingTimeLimit);
+            const bool primaryReached = ratioReached || seedingTimeReached;
+
+            // Phase 1: Primary stage (Ratio OR Seeding Time) not yet met
+            if (!primaryReached)
+            {
+                if (shareLimits.ratioLimit >= 0)
+                {
+                    qint64 realDL = totalDownload();
+                    if (realDL <= 0)
+                        realDL = wantedSize();
+
+                    const qreal uploadLimit = realDL * shareLimits.ratioLimit;
+                    const qint64 uploaded = totalUpload();
+                    qint64 ratioEta = ZERO_ETA;
+                    if (uploadLimit > uploaded)
+                    {
+                        ratioEta = (speedAverage.upload > 0)
+                                ? (uploadLimit - uploaded) / speedAverage.upload
+                                : MAX_ETA;
+                    }
+                    etaList.append(ratioEta);
+                }
+
+                if (shareLimits.seedingTimeLimit >= 0)
+                {
+                    const qint64 seedingTimeEta = std::max(
+                            ((shareLimits.seedingTimeLimit * 60) - finishedTime()), ZERO_ETA);
+                    etaList.append(seedingTimeEta);
+                }
+
+                if (etaList.isEmpty())
+                    return MAX_ETA;
+
+                // Primary stage acts like MatchAny (whichever hits first)
+                return std::ranges::min(etaList);
+            }
+
+            // Phase 2: Primary stage met, return remaining inactive seeding time countdown
+            if (shareLimits.inactiveSeedingTimeLimit >= 0)
+            {
+                return std::max(
+                        ((shareLimits.inactiveSeedingTimeLimit * 60) - timeSinceActivity()), ZERO_ETA);
+            }
+
+            return ZERO_ETA;
+        }
+
+        // Stock handling for MatchAny and MatchAll
         if (shareLimits.ratioLimit >= 0)
         {
             qint64 realDL = totalDownload();

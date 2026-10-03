@@ -2530,6 +2530,48 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
             description = tr("Torrent reached the inactive seeding time limit.");
         }
     }
+    else if (shareLimits.mode == ShareLimitsMode::MatchAll)
+    {
+        reached = true;
+        description = tr("Torrent reached the share limit(s).");
+
+        if (const qreal ratio = torrent->realRatio();
+            (shareLimits.ratioLimit >= 0) && (ratio < shareLimits.ratioLimit))
+        {
+            reached = false;
+        }
+        else if (const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
+            (shareLimits.seedingTimeLimit >= 0) && (seedingTimeInMinutes < shareLimits.seedingTimeLimit))
+        {
+            reached = false;
+        }
+        else if (const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
+            (shareLimits.inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes < shareLimits.inactiveSeedingTimeLimit))
+        {
+            reached = false;
+        }
+    }
+    else if (shareLimits.mode == ShareLimitsMode::Layered)
+    {
+        const qreal ratio = torrent->realRatio();
+        const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
+        const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
+
+        const bool ratioReached = (shareLimits.ratioLimit >= 0) && (ratio >= shareLimits.ratioLimit);
+        const bool seedingTimeReached = (shareLimits.seedingTimeLimit >= 0) && (seedingTimeInMinutes >= shareLimits.seedingTimeLimit);
+
+        // Primary condition: Ratio OR Seeding Time (if configured)
+        const bool primaryReached = ratioReached || seedingTimeReached;
+
+        // Secondary condition: Inactive Seeding Time (if configured)
+        const bool inactiveReached = (shareLimits.inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes >= shareLimits.inactiveSeedingTimeLimit);
+
+        if (primaryReached && inactiveReached)
+        {
+            reached = true;
+            description = tr("Torrent reached the layered share limit (primary + inactive).");
+        }
+    }
     else
     {
         reached = true;
