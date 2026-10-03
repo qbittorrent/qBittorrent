@@ -52,6 +52,7 @@
 
 #ifdef Q_OS_WIN
 #include <QCoreApplication>
+#include <QSettings>
 #endif // Q_OS_WIN
 
 #include "base/global.h"
@@ -226,6 +227,30 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
 }
 
 #ifdef Q_OS_WIN
+bool Utils::OS::isMagnetProtocolRegistered()
+{
+    QSettings magnetProtocol {u"HKEY_CLASSES_ROOT\\magnet"_s, QSettings::NativeFormat};
+    const auto protocolDescription = magnetProtocol.value(u"."_s).toString();
+    const auto contentType = magnetProtocol.value(u"Content Type"_s).toString();
+    const bool hasUrlProtocol = magnetProtocol.contains(u"URL Protocol"_s);
+
+    return (magnetProtocol.status() == QSettings::NoError)
+        && !protocolDescription.isEmpty()
+        && (contentType == u"application/x-magnet"_s)
+        && hasUrlProtocol;
+}
+
+bool Utils::OS::registerMagnetProtocol()
+{
+    QSettings magnetProtocol {u"HKEY_CURRENT_USER\\Software\\Classes\\magnet"_s, QSettings::NativeFormat};
+    magnetProtocol.setValue(u"."_s, u"URL:Magnet URI"_s);
+    magnetProtocol.setValue(u"Content Type"_s, u"application/x-magnet"_s);
+    magnetProtocol.setValue(u"URL Protocol"_s, u""_s);
+    magnetProtocol.sync();
+
+    return (magnetProtocol.status() == QSettings::NoError);
+}
+
 Path Utils::OS::windowsSystemPath()
 {
     static const Path path = []() -> Path
