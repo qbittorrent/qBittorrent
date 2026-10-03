@@ -730,7 +730,8 @@ Path SearchPluginManager::pluginPath(const QString &name)
 
 SearchPluginVersion SearchPluginManager::getPluginVersion(const Path &filePath)
 {
-    const int lineMaxLength = 16;
+    // max length should be able to accommodate this: `# VERSION: 999.999.999`
+    const int lineMaxLength = 23;
 
     QFile pluginFile {filePath.data()};
     if (!pluginFile.open(QIODevice::ReadOnly | QIODevice::Text))
