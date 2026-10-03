@@ -37,7 +37,7 @@ window.qBittorrent.ColorScheme ??= (() => {
     };
 
     const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const clientData = window.parent.qBittorrent.ClientData;
+    const clientData = window.qBittorrent.ClientData ?? window.parent.qBittorrent.ClientData;
 
     const update = () => {
         const root = document.documentElement;
