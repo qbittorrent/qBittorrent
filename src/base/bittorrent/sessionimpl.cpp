@@ -33,6 +33,7 @@
 #include <concepts>
 #include <cstdint>
 #include <ctime>
+#include <memory>
 #include <ranges>
 #include <string>
 
@@ -798,18 +799,28 @@ SessionImpl::~SessionImpl()
     delete m_resumeDataStorage;
     LogMsg(tr("Saving resume data completed."));
 
-    auto *sessionTerminateThread = QThread::create([nativeSessionProxy]()
+    // Cannot use `connect(thread, &QThread::finished, thread, &QObject::deleteLater);` since this destructor
+    // is called from `QCoreApplication::aboutToQuit()`. By the time the `finished` signal is emitted, the event
+    // loop has already exited, and `deleteLater` will not be called.
+    const std::unique_ptr<QThread> sessionTerminateThread {QThread::create([nativeSessionProxy]()
     {
         qDebug("Deleting libtorrent session...");
         delete nativeSessionProxy;
-    });
+    })};
     sessionTerminateThread->setObjectName("~SessionImpl sessionTerminateThread");
-    connect(sessionTerminateThread, &QThread::finished, sessionTerminateThread, &QObject::deleteLater);
     sessionTerminateThread->start();
     if (sessionTerminateThread->wait(shutdownDeadlineTimer))
+    {
         LogMsg(tr("BitTorrent session successfully finished."));
+    }
     else
+    {
+        // must force stop the worker at this point
         LogMsg(tr("Session shutdown timed out."));
+
+        sessionTerminateThread->terminate();
+        sessionTerminateThread->wait();  // must wait for `terminate()`
+    }
 }
 
 QString SessionImpl::getDHTBootstrapNodes() const
