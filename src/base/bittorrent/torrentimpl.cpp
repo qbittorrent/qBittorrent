@@ -1713,6 +1713,41 @@ void TorrentImpl::forceRecheck()
     if (!hasMetadata())
         return;
 
+    if (isStopped() && m_session->isAppendExtensionEnabled())
+    {
+        const Path storagePath = actualStorageLocation();
+        bool normalizationFailed = false;
+
+        for (int i = 0; i < filesCount(); ++i)
+        {
+            const Path regularRelativePath = filePath(i);
+            const Path expectedIncompletePath = regularRelativePath + QB_EXT;
+
+            // Only normalize files for which libtorrent already expects
+            // the corresponding .!qB path.
+            if (actualFilePath(i) != expectedIncompletePath)
+                continue;
+
+            const Path regularPath = storagePath / regularRelativePath;
+            const Path incompletePath = storagePath / expectedIncompletePath;
+
+            // Missing files are valid. If both paths exist, leave them
+            // untouched rather than overwriting either one.
+            if (!regularPath.exists() || incompletePath.exists())
+                continue;
+
+            if (!Utils::Fs::renameFile(regularPath, incompletePath))
+            {
+                normalizationFailed = true;
+                LogMsg(tr("Failed to append .!qB before rechecking torrent \"%1\": %2")
+                    .arg(name(), regularPath.toString()), Log::WARNING);
+            }
+        }
+
+        if (normalizationFailed)
+            return;
+    }
+
     m_nativeHandle.force_recheck();
 
     // We have to force update the cached state, otherwise someone will be able to get
