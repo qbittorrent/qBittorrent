@@ -1527,7 +1527,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // eta
             this.columns["eta"].updateTd = function(td, row) {
-                const eta = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row), window.qBittorrent.Misc.MAX_ETA);
+                const eta = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row), window.qBittorrent.Misc.MAX_ETA, window.qBittorrent.Misc.TIME_RESOLUTION.Seconds);
                 td.textContent = eta;
                 td.title = eta;
             };

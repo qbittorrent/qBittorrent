@@ -428,7 +428,7 @@ void PropertiesWidget::loadDynamicData()
                                            .arg(m_torrent->connectionsCount())
                                            .arg(m_torrent->connectionsLimit() < 0 ? C_INFINITY : QString::number(m_torrent->connectionsLimit())));
 
-            m_ui->labelETAVal->setText(Utils::Misc::userFriendlyDuration(m_torrent->eta(), MAX_ETA));
+            m_ui->labelETAVal->setText(Utils::Misc::userFriendlyDuration(m_torrent->eta(), MAX_ETA, Utils::Misc::TimeResolution::Seconds));
 
             // Update next announce time
             m_ui->labelReannounceInVal->setText(Utils::Misc::userFriendlyDuration(m_torrent->nextAnnounce()));
