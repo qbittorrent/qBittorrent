@@ -75,6 +75,7 @@ window.qBittorrent.PropGeneral ??= (() => {
         document.getElementById("torrent_hash_v1").textContent = "";
         document.getElementById("torrent_hash_v2").textContent = "";
         document.getElementById("save_path").textContent = "";
+        document.getElementById("download_path").textContent = "";
         document.getElementById("comment").textContent = "";
         document.getElementById("private").textContent = "";
         piecesBar.clear();
@@ -231,6 +232,7 @@ window.qBittorrent.PropGeneral ??= (() => {
                     document.getElementById("torrent_hash_v2").textContent = torrentHashV2;
 
                     document.getElementById("save_path").textContent = data.save_path;
+                    document.getElementById("download_path").textContent = data.download_path;
 
                     document.getElementById("comment").innerHTML = window.qBittorrent.Misc.parseHtmlLinks(window.qBittorrent.Misc.escapeHtml(data.comment));
 
