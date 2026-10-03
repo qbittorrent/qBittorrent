@@ -39,6 +39,15 @@ namespace BitTorrent
     inline const int DEFAULT_SEEDING_TIME_LIMIT = -2;
     inline const int NO_SEEDING_TIME_LIMIT = -1;
 
+    inline const int DEFAULT_LONELY_TORRENTS_SEEDERS_LIMIT = 4;
+
+    inline bool shouldIgnoreShareRatioLimitForLonelyTorrent(const bool enabled
+            , const int lonelyTorrentsSeedersLimit, const int totalSeedsCount)
+    {
+        return enabled && (lonelyTorrentsSeedersLimit > 0) && (totalSeedsCount >= 0)
+                && (totalSeedsCount < lonelyTorrentsSeedersLimit);
+    }
+
     // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
     // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
     // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
