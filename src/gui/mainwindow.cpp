@@ -942,6 +942,10 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
 #ifdef Q_OS_MACOS
     m_ui->actionCloseWindow->setShortcut(QKeySequence::Close);
+
+    // macOS convention: Cmd+0 brings the main window to the front (e.g. Apple Mail).
+    const auto *showMainWindowShortcut = new QShortcut((Qt::CTRL | Qt::Key_0), this, nullptr, nullptr, Qt::ApplicationShortcut);
+    connect(showMainWindowShortcut, &QShortcut::activated, this, &MainWindow::activate);
 #else
     m_ui->actionCloseWindow->setVisible(false);
 #endif
