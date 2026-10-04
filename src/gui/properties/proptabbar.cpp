@@ -28,14 +28,45 @@
 
 #include "proptabbar.h"
 
-#include <QAbstractButton>
 #include <QButtonGroup>
+#include <QFocusEvent>
 #include <QKeySequence>
 #include <QPushButton>
 #include <QSpacerItem>
 
 #include "base/global.h"
 #include "gui/uithememanager.h"
+
+namespace
+{
+    class PropTabButton final : public QPushButton
+    {
+    public:
+        using QPushButton::QPushButton;
+
+        void setPersistentDown(const bool down)
+        {
+            m_persistentDown = down;
+            setDown(down);
+        }
+
+    protected:
+        void focusOutEvent(QFocusEvent *event) override
+        {
+            QPushButton::focusOutEvent(event);
+            if (m_persistentDown)
+                setDown(true);
+        }
+
+    private:
+        bool m_persistentDown = false;
+    };
+
+    void setButtonPersistentDown(QButtonGroup *group, const int index, const bool down)
+    {
+        static_cast<PropTabButton *>(group->button(index))->setPersistentDown(down);
+    }
+}
 
 PropTabBar::PropTabBar(QWidget *parent)
     : QHBoxLayout(parent)
@@ -44,7 +75,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     setSpacing(3);
     m_btnGroup = new QButtonGroup(this);
     // General tab
-    QPushButton *mainInfosButton = new QPushButton(
+    QPushButton *mainInfosButton = new PropTabButton(
 #ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon(u"help-about"_s, u"document-properties"_s),
 #endif
@@ -53,7 +84,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     addWidget(mainInfosButton);
     m_btnGroup->addButton(mainInfosButton, MainTab);
     // Trackers tab
-    QPushButton *trackersButton = new QPushButton(
+    QPushButton *trackersButton = new PropTabButton(
 #ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s),
 #endif
@@ -62,7 +93,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     addWidget(trackersButton);
     m_btnGroup->addButton(trackersButton, TrackersTab);
     // Peers tab
-    QPushButton *peersButton = new QPushButton(
+    QPushButton *peersButton = new PropTabButton(
 #ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon(u"peers"_s),
 #endif
@@ -71,7 +102,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     addWidget(peersButton);
     m_btnGroup->addButton(peersButton, PeersTab);
     // URL seeds tab
-    QPushButton *URLSeedsButton = new QPushButton(
+    QPushButton *URLSeedsButton = new PropTabButton(
 #ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon(u"network-server"_s),
 #endif
@@ -80,7 +111,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     addWidget(URLSeedsButton);
     m_btnGroup->addButton(URLSeedsButton, URLSeedsTab);
     // Files tab
-    QPushButton *filesButton = new QPushButton(
+    QPushButton *filesButton = new PropTabButton(
 #ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon(u"directory"_s),
 #endif
@@ -91,7 +122,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Spacer
     addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));
     // Speed tab
-    QPushButton *speedButton = new QPushButton(
+    QPushButton *speedButton = new PropTabButton(
 #ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon(u"chart-line"_s),
 #endif
@@ -99,10 +130,6 @@ PropTabBar::PropTabBar(QWidget *parent)
     speedButton->setShortcut(Qt::ALT | Qt::Key_D);
     addWidget(speedButton);
     m_btnGroup->addButton(speedButton, SpeedTab);
-    // Allow clicking the selected tab again to hide the properties panel.
-    m_btnGroup->setExclusive(false);
-    for (QAbstractButton *button : m_btnGroup->buttons())
-        button->setCheckable(true);
     // SIGNAL/SLOT
     connect(m_btnGroup, &QButtonGroup::idClicked
             , this, &PropTabBar::setCurrentIndex);
@@ -122,16 +149,16 @@ void PropTabBar::setCurrentIndex(int index)
     {
         if (m_currentIndex >= 0)
         {
-            m_btnGroup->button(m_currentIndex)->setChecked(false);
-            m_currentIndex = -1;
-            emit visibilityToggled(false);
+          setButtonPersistentDown(m_btnGroup, m_currentIndex, false);
+          m_currentIndex = -1;
+          emit visibilityToggled(false);
         }
         return;
     }
     // Unselect previous tab
     if (m_currentIndex >= 0)
     {
-        m_btnGroup->button(m_currentIndex)->setChecked(false);
+        setButtonPersistentDown(m_btnGroup, m_currentIndex, false);
     }
     else
     {
@@ -139,7 +166,7 @@ void PropTabBar::setCurrentIndex(int index)
         emit visibilityToggled(true);
     }
     // Select the new button
-    m_btnGroup->button(index)->setChecked(true);
+    setButtonPersistentDown(m_btnGroup, index, true);
     m_currentIndex = index;
     // Emit the signal
     emit tabChanged(index);
