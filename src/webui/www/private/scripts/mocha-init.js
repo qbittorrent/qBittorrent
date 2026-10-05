@@ -184,7 +184,7 @@ const initializeWindows = () => {
     const addClickEvent = (el, fn) => {
         for (const item of ["Link", "Button"]) {
             if (document.getElementById(el + item))
-                document.getElementById(el + item).addEventListener("click", fn);
+                document.getElementById(el + item).addEventListener("click", (event) => fn(event));
         }
     };
 
