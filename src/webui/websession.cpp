@@ -66,15 +66,22 @@ void WebSession::updateTimestamp()
     m_timestamp.start();
 }
 
-void WebSession::registerAPIController(const QString &scope, APIController *controller)
+void WebSession::registerAPIController(const QString &scope, CreateAPIControllerFunc createAPIController)
 {
-    Q_ASSERT(controller);
-    m_apiControllers[scope] = controller;
+    Q_ASSERT(createAPIController);
+    m_apiControllers.insert(scope, {.create = std::move(createAPIController), .instance = nullptr});
 }
 
 APIController *WebSession::getAPIController(const QString &scope) const
 {
-    return m_apiControllers.value(scope);
+    const auto iter = m_apiControllers.find(scope);
+    if (iter == m_apiControllers.end())
+        return nullptr;
+
+    if (!iter->instance)
+        iter->instance = std::invoke(iter->create);
+
+    return iter->instance;
 }
 
 WebSessionType CookieBasedWebSession::type() const

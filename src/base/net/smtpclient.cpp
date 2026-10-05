@@ -37,7 +37,6 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QHostInfo>
-#include <QStringList>
 #include <QSslSocket>
 
 #include "base/global.h"
@@ -82,11 +81,11 @@ namespace
         return hostname.toLocal8Bit();
     }
 
-    bool canEncodeAsLatin1(const QStringView string)
+    bool canEncodeAsASCII(const QStringView string)
     {
         return std::ranges::none_of(string, [](const QChar &ch)
         {
-            return ch > QChar(0xff);
+            return ch > QChar(0x7f);
         });
     }
 
@@ -99,12 +98,28 @@ namespace
         return (weekday + u", " + now.toString(Qt::RFC2822Date));
     }
 
-    QByteArray encodeMimeHeader(const QString &key, const QString &value, const QByteArray &prefix = {})
+    QString toValidHeaderValue(QString value)
     {
+        // Header field values must not contain control characters. [rfc5322] 2.2. Header Fields
+        // Control characters are replaced rather than removed, so that removal cannot bring
+        // together characters that form a new syntactic element (an encoded-word "=?", etc.).
+        for (QChar &ch : value)
+        {
+            if ((ch < QChar(0x20)) || (ch == QChar(0x7f)))
+                ch = u' ';
+        }
+
+        return value;
+    }
+
+    QByteArray encodeMimeHeader(const QString &key, const QString &rawValue, const QByteArray &prefix = {})
+    {
+        const QString value = toValidHeaderValue(rawValue);
+
         QByteArray rv = "";
         QByteArray line = key.toLatin1() + ": ";
         if (!prefix.isEmpty()) line += prefix;
-        if (!value.contains(u"=?") && canEncodeAsLatin1(value))
+        if (!value.contains(u"=?") && canEncodeAsASCII(value))
         {
             bool firstWord = true;
             for (const QByteArray &word : asConst(value.toLatin1().split(' ')))
@@ -123,7 +138,7 @@ namespace
         }
         else
         {
-            // The text cannot be losslessly encoded as Latin-1. Therefore, we
+            // The text contains non-ASCII characters. Therefore, we
             // must use base64 encoding.
             const QByteArray utf8 = value.toUtf8();
             // Use base64 encoding
@@ -143,6 +158,18 @@ namespace
         }
         return rv + line + "\r\n";
     }
+
+    QByteArray encodeMessageData(QByteArray message)
+    {
+        // Any line of the mail data that begins with a dot must have an extra dot
+        // prepended, so that the mail data cannot end the DATA phase on its own.
+        // [rfc5321] 4.5.2. Transparency
+        if (message.startsWith('.'))
+            message.prepend('.');
+        message.replace("\r\n.", "\r\n..");
+
+        return message;
+    }
 } // namespace
 
 const int SOCKETERROR_TYPEID = qRegisterMetaType<QAbstractSocket::SocketError>();
@@ -150,14 +177,22 @@ const int SOCKETERROR_TYPEID = qRegisterMetaType<QAbstractSocket::SocketError>()
 void Net::SMTPClient::sendMail(const QString &from, const QString &to
         , const QString &subject, const QString &body, QObject *context)
 {
-    [[maybe_unused]] auto *obj = new SMTPClient(from, to, subject, body, context);
+    QString normalizedTo = to;
+    const QStringList groupList = normalizedTo.remove(u' ').split(u';', Qt::SkipEmptyParts);
+    for (const QString &group : groupList)
+    {
+        [[maybe_unused]] auto *obj = new SMTPClient(from
+            , group.split(u',', Qt::SkipEmptyParts)
+            , subject, body, context);
+    }
 }
 
-Net::SMTPClient::SMTPClient(const QString &from, const QString &to
+Net::SMTPClient::SMTPClient(const QString &sender, const QStringList &recipients
         , const QString &subject, const QString &body, QObject *parent)
     : QObject(parent)
-    , m_from {from}
-    , m_rcpt {to}
+    , m_sender {sender}
+    , m_recipients {recipients}
+    , m_recipientsIterator {m_recipients}
 {
     m_socket = new QSslSocket(this);
 
@@ -174,9 +209,9 @@ Net::SMTPClient::SMTPClient(const QString &from, const QString &to
     const Preferences *const pref = Preferences::instance();
 
     m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
-            + encodeMimeHeader(u"From"_s, u"qBittorrent <%1>"_s.arg(from))
+            + encodeMimeHeader(u"From"_s, u"qBittorrent <%1>"_s.arg(m_sender))
             + encodeMimeHeader(u"Subject"_s, subject)
-            + encodeMimeHeader(u"To"_s, to)
+            + encodeMimeHeader(u"To"_s, m_recipients.join(u", "_s))
             + "MIME-Version: 1.0\r\n"
             + "Content-Type: text/plain; charset=UTF-8\r\n"
             + "Content-Transfer-Encoding: base64\r\n"
@@ -268,6 +303,10 @@ void Net::SMTPClient::readyRead()
         case StartTLSSent:
             if (code == "220")
             {
+                // Data received before the TLS negotiation was not obtained from the TLS session,
+                // so it must be discarded instead of being parsed as a protected server response.
+                // (RFC 3207, section 4)
+                m_buffer.clear();
                 m_socket->startClientEncryption();
                 // After STARTTLS negotiation, the client should discard all information about the
                 // server's capabilities obtained from the EHLO command and repeat the EHLO command
@@ -296,7 +335,7 @@ void Net::SMTPClient::readyRead()
             if (code[0] == '2')
             {
                 qDebug() << "Sending <mail from>...";
-                m_socket->write("mail from:<" + m_from.toLatin1() + ">\r\n");
+                m_socket->write("mail from:<" + m_sender.toLatin1() + ">\r\n");
                 m_socket->flush();
                 m_state = Rcpt;
             }
@@ -310,13 +349,21 @@ void Net::SMTPClient::readyRead()
         case Rcpt:
             if (code[0] == '2')
             {
-                m_socket->write("rcpt to:<" + m_rcpt.toLatin1() + ">\r\n");
-                m_socket->flush();
-                m_state = Data;
+                if (m_recipientsIterator.hasNext())
+                {
+                    m_socket->write("rcpt to:<" + m_recipientsIterator.next().toLatin1() + ">\r\n");
+                    m_socket->flush();
+                }
+
+                if (!m_recipientsIterator.hasNext())
+                    m_state = Data;
             }
             else
             {
-                logError(tr("<mail from> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
+                if (m_recipientsIterator.hasPrevious())
+                    logError(tr("<rcpt to> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
+                else
+                    logError(tr("<mail from> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
                 m_state = Close;
             }
             break;
@@ -329,14 +376,14 @@ void Net::SMTPClient::readyRead()
             }
             else
             {
-                logError(tr("<Rcpt to> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
+                logError(tr("<rcpt to> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
                 m_state = Close;
             }
             break;
         case Body:
             if (code[0] == '3')
             {
-                m_socket->write(m_message + "\r\n.\r\n");
+                m_socket->write(encodeMessageData(m_message) + "\r\n.\r\n");
                 m_socket->flush();
                 m_state = Quit;
             }

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -203,7 +203,7 @@ namespace BitTorrent
         virtual bool hasTag(const Tag &tag) const = 0;
         virtual bool addTag(const Tag &tag) = 0;
         virtual bool removeTag(const Tag &tag) = 0;
-        virtual void removeAllTags() = 0;
+        virtual void clearTags() = 0;
 
         virtual int piecesCount() const = 0;
         virtual int piecesHave() const = 0;

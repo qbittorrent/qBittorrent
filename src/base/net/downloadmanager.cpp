@@ -253,7 +253,7 @@ bool Net::DownloadManager::deleteCookie(const QNetworkCookie &cookie)
 
 bool Net::DownloadManager::hasSupportedScheme(const QString &url)
 {
-    const QStringList schemes = QNetworkAccessManager().supportedSchemes();
+    static const QStringList schemes = QNetworkAccessManager().supportedSchemes();
     return std::ranges::any_of(schemes, [&url](const QString &scheme)
     {
         return url.startsWith((scheme + u':'), Qt::CaseInsensitive);
@@ -400,6 +400,17 @@ Path Net::DownloadRequest::destFileName() const
 Net::DownloadRequest &Net::DownloadRequest::destFileName(const Path &value)
 {
     m_destFileName = value;
+    return *this;
+}
+
+bool Net::DownloadRequest::allowInsecureRedirect() const
+{
+    return m_allowInsecureRedirect;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::allowInsecureRedirect(const bool value)
+{
+    m_allowInsecureRedirect = value;
     return *this;
 }
 

@@ -43,7 +43,7 @@ public:
     explicit LineEdit(QWidget *parent = nullptr);
 
 signals:
-    void textChanged(const QString &text);
+    void textUpdated(const QString &text);
 
 private:
     void keyPressEvent(QKeyEvent *event) override;

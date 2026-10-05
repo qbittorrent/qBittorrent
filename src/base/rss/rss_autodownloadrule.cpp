@@ -176,7 +176,7 @@ QString computeEpisodeName(const QString &article)
     const QRegularExpression episodeRegex = AutoDownloader::instance()->smartEpisodeRegex();
     const QRegularExpressionMatch match = episodeRegex.match(article);
 
-    // See if we can extract an season/episode number or date from the title
+    // See if we can extract a season/episode number or date from the title
     if (!match.hasMatch())
         return {};
 
@@ -187,8 +187,12 @@ QString computeEpisodeName(const QString &article)
         if (cap.isEmpty())
             continue;
 
-        ret.append(cap);
+        bool isInt = false;
+        const int x = cap.toInt(&isInt);
+
+        ret.append(isInt ? QString::number(x) : cap);
     }
+
     return ret.join(u'x');
 }
 

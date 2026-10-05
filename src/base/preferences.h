@@ -171,10 +171,12 @@ public:
     // Search UI
     int searchHistoryLength() const;
     void setSearchHistoryLength(int length);
-    bool storeOpenedSearchTabs() const;
-    void setStoreOpenedSearchTabs(bool enabled);
-    bool storeOpenedSearchTabResults() const;
-    void setStoreOpenedSearchTabResults(bool enabled);
+    bool storeSearchJobs() const;
+    void setStoreSearchJobs(bool enabled);
+    bool storeSearchJobResults() const;
+    void setStoreSearchJobResults(bool enabled);
+    bool closeSearchTabWithMiddleClick() const;
+    void setCloseSearchTabWithMiddleClick(bool enabled);
 
     // HTTP Server
     bool isWebUIEnabled() const;
@@ -207,6 +209,8 @@ public:
     void setWebUIBanDuration(std::chrono::seconds duration);
     int getWebUISessionTimeout() const;
     void setWebUISessionTimeout(int timeout);
+    int getWebUISessionsCountLimit() const;
+    void setWebUISessionsCountLimit(int limit);
 
     // WebUI security
     bool isWebUIClickjackingProtectionEnabled() const;
@@ -376,6 +380,8 @@ public:
     void setTrackerListState(const QByteArray &state);
     QStringList getRssOpenFolders() const;
     void setRssOpenFolders(const QStringList &folders);
+    QByteArray getRssFeedListState() const;
+    void setRssFeedListState(const QByteArray &state);
     QByteArray getRssSideSplitterState() const;
     void setRssSideSplitterState(const QByteArray &state);
     QByteArray getRssMainSplitterState() const;

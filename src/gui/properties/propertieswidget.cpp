@@ -83,7 +83,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     m_contentFilterLine->setFixedWidth(300);
     m_contentFilterLine->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_contentFilterLine, &QWidget::customContextMenuRequested, this, &PropertiesWidget::showContentFilterContextMenu);
-    connect(m_contentFilterLine, &LineEdit::textChanged, this, &PropertiesWidget::setContentFilterPattern);
+    connect(m_contentFilterLine, &LineEdit::textUpdated, this, &PropertiesWidget::setContentFilterPattern);
     m_ui->contentFilterLayout->insertWidget(3, m_contentFilterLine);
 
     m_ui->filesList->setContentDragAllowed(true);
@@ -428,7 +428,7 @@ void PropertiesWidget::loadDynamicData()
                                            .arg(m_torrent->connectionsCount())
                                            .arg(m_torrent->connectionsLimit() < 0 ? C_INFINITY : QString::number(m_torrent->connectionsLimit())));
 
-            m_ui->labelETAVal->setText(Utils::Misc::userFriendlyDuration(m_torrent->eta(), MAX_ETA));
+            m_ui->labelETAVal->setText(Utils::Misc::userFriendlyDuration(m_torrent->eta(), MAX_ETA, Utils::Misc::TimeResolution::Seconds));
 
             // Update next announce time
             m_ui->labelReannounceInVal->setText(Utils::Misc::userFriendlyDuration(m_torrent->nextAnnounce()));
@@ -593,10 +593,11 @@ void PropertiesWidget::configure()
                 delete m_speedWidget;
             }
 
-            const auto displayText = u"<center><b>%1</b><p>%2</p></center>"_s
+            const auto displayText = u"<center><b>%1</b><p><a href=\"#\">%2</a></p></center>"_s
                 .arg(tr("Speed graphs are disabled"), tr("You can enable it in Advanced Options"));
             auto *label = new QLabel(displayText, this);
             label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+            connect(label, &QLabel::linkActivated, this, &PropertiesWidget::openAdvancedSettingsLinkActivated);
             m_speedWidget = label;
             m_ui->speedLayout->addWidget(m_speedWidget);
         }

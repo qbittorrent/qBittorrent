@@ -33,6 +33,7 @@
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QDragMoveEvent>
+#include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
 #include <QRegularExpression>
@@ -146,6 +147,10 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     connect(m_ui->feedListWidget, &QAbstractItemView::doubleClicked, this, &RSSWidget::renameSelectedRSSItem);
     connect(m_ui->feedListWidget, &QTreeWidget::currentItemChanged, this, &RSSWidget::handleCurrentFeedItemChanged);
     connect(m_ui->feedListWidget, &QWidget::customContextMenuRequested, this, &RSSWidget::displayRSSListMenu);
+    const QByteArray feedListState = Preferences::instance()->getRssFeedListState();
+    if (!feedListState.isEmpty())
+        m_ui->feedListWidget->header()->restoreState(feedListState);
+    connect(m_ui->feedListWidget->header(), &QHeaderView::sortIndicatorChanged, this, &RSSWidget::saveFeedListState);
     loadFoldersOpenState();
     m_ui->feedListWidget->setCurrentItem(m_ui->feedListWidget->stickyItemUnreadArticles());
 
@@ -175,6 +180,8 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     // Bind saveSliders slots
     connect(m_ui->splitterMain, &QSplitter::splitterMoved, this, &RSSWidget::saveSlidersPosition);
     connect(m_ui->splitterSide, &QSplitter::splitterMoved, this, &RSSWidget::saveSlidersPosition);
+
+    connect(m_ui->labelWarn, &QLabel::linkActivated, this, &RSSWidget::openRSSSettingsLinkActivated);
 
     if (RSS::Session::instance()->isProcessingEnabled())
         m_ui->labelWarn->hide();
@@ -208,6 +215,7 @@ RSSWidget::~RSSWidget()
     m_ui->articleListWidget->clear();
 
     saveFoldersOpenState();
+    saveFeedListState();
 
     delete m_ui;
 }
@@ -403,7 +411,7 @@ void RSSWidget::deleteSelectedItems()
     for (QTreeWidgetItem *item : selectedItems)
     {
         if (!m_ui->feedListWidget->isStickyItem(item))
-            RSS::Session::instance()->removeItem(m_ui->feedListWidget->itemPath(item));
+            std::ignore = RSS::Session::instance()->removeItem(m_ui->feedListWidget->itemPath(item));
     }
 }
 
@@ -445,6 +453,8 @@ void RSSWidget::refreshAllFeeds()
 
 void RSSWidget::downloadSelectedTorrents()
 {
+    qsizetype badURLCount = 0;
+    QString articleTitle;
     for (QListWidgetItem *item : asConst(m_ui->articleListWidget->selectedItems()))
     {
         auto *article = item->data(Qt::UserRole).value<RSS::Article *>();
@@ -453,7 +463,29 @@ void RSSWidget::downloadSelectedTorrents()
         // Mark as read
         article->markAsRead();
 
-        app()->addTorrentManager()->addTorrent(article->torrentUrl());
+        const QString torrentURL = article->torrentUrl();
+        if (!RSS::Article::isSupportedTorrentURL(torrentURL))
+        {
+            if (badURLCount == 0)
+                articleTitle = article->title();
+            ++badURLCount;
+
+            LogMsg(tr("Blocked adding torrent from RSS article. Unsupported torrent URL."
+                      " Only HTTP(S) URLs, magnet URIs and info hashes are supported."
+                      " Article: \"%1\". URL: \"%2\".")
+                    .arg(article->title(), torrentURL), Log::WARNING);
+            continue;
+        }
+
+        app()->addTorrentManager()->addTorrent(torrentURL);
+    }
+
+    if (badURLCount > 0)
+    {
+        QString message = tr("Blocked adding torrent from RSS article. The following article has an unsupported torrent URL and it may be malicious behaviour:\n%1").arg(articleTitle);
+        if (badURLCount > 1)
+            message.append(u"\n" + tr("There are %1 more articles with the same issue.").arg(badURLCount - 1));
+        QMessageBox::warning(this, u"qBittorrent"_s, message, QMessageBox::Ok);
     }
 }
 
@@ -648,6 +680,11 @@ void RSSWidget::restoreSlidersPosition()
     const QByteArray stateMain = pref->getRssMainSplitterState();
     if (!stateMain.isEmpty())
         m_ui->splitterMain->restoreState(stateMain);
+}
+
+void RSSWidget::saveFeedListState()
+{
+    Preferences::instance()->setRssFeedListState(m_ui->feedListWidget->header()->saveState());
 }
 
 void RSSWidget::updateRefreshInterval(int val) const

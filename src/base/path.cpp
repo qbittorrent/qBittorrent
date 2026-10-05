@@ -30,6 +30,7 @@
 #include "path.h"
 
 #include <algorithm>
+#include <ranges>
 
 #include <QDataStream>
 #include <QDir>
@@ -43,12 +44,6 @@
 #include "base/utils/fs.h"
 
 using namespace Qt::Literals::StringLiterals;
-
-#if defined(Q_OS_WIN)
-const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseInsensitive;
-#else
-const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseSensitive;
-#endif
 
 const int PATHLIST_TYPEID = qRegisterMetaType<PathList>("PathList");
 
@@ -206,13 +201,13 @@ bool Path::hasExtension(const QStringView ext) const
     return m_pathStr.endsWith(ext, Qt::CaseInsensitive);
 }
 
-bool Path::hasAncestor(const Path &other) const
+bool Path::hasAncestor(const Path &other, const Qt::CaseSensitivity caseSensitivity) const
 {
     if (other.isEmpty() || (m_pathStr.size() <= other.m_pathStr.size()))
         return false;
 
     return (m_pathStr[other.m_pathStr.size()] == u'/')
-            && m_pathStr.startsWith(other.m_pathStr, CASE_SENSITIVITY);
+            && m_pathStr.startsWith(other.m_pathStr, caseSensitivity);
 }
 
 Path Path::relativePathOf(const Path &childPath) const
@@ -312,12 +307,32 @@ Path Path::commonPath(const Path &left, const Path &right)
     return Path::createUnchecked(left.m_pathStr.first(commonPathSize));
 }
 
+Path Path::commonPath(const PathList &filePaths)
+{
+    if (filePaths.isEmpty())
+        return {};
+
+    Path commonPath = filePaths.at(0);
+    for (const Path &filePath : std::views::drop(filePaths, 1))
+    {
+        commonPath = Path::commonPath(commonPath, filePath);
+        if (commonPath.isEmpty())
+            return commonPath;
+    }
+
+    return commonPath;
+}
+
 Path Path::findRootFolder(const PathList &filePaths)
 {
+    // find the common first level path of all `filePaths`
+
     Path rootFolder;
     for (const Path &filePath : filePaths)
     {
-        const auto filePathElements = QStringView(filePath.m_pathStr).split(u'/');
+        Q_ASSERT(!filePath.m_pathStr.startsWith(u'/'));  // currently this function doesn't know how to handle absolute paths
+
+        const auto filePathElements = QStringView(filePath.m_pathStr).split(u'/', Qt::SkipEmptyParts);
         // if at least one file has no root folder, no common root folder exists
         if (filePathElements.count() <= 1)
             return {};
@@ -365,7 +380,7 @@ Path Path::createUnchecked(const QString &pathStr)
 
 bool operator==(const Path &lhs, const Path &rhs)
 {
-    return (lhs.data().compare(rhs.data(), CASE_SENSITIVITY) == 0);
+    return (lhs.data().compare(rhs.data(), Path::CASE_SENSITIVITY) == 0);
 }
 
 Path operator/(const Path &lhs, const Path &rhs)

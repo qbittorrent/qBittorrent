@@ -135,7 +135,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
     };
 
     // travel from the deepest folder and remove anything unwanted on the way out.
-    QStringList dirList(path.data() + u'/');  // get all sub directories paths
+    QStringList dirList(path.data() + u'/');  // get all subdirectory paths
     QDirIterator iter {path.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
     while (iter.hasNext())
         dirList << iter.next() + u'/';
@@ -162,7 +162,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
             continue;
 
         for (const QString &f : tmpFileList)
-            removeFile(Path(p + f));
+            std::ignore = removeFile(Path(p + f));
 
         // remove directory if empty
         dir.rmdir(p);
@@ -404,6 +404,12 @@ bool Utils::Fs::copyFile(const Path &from, const Path &to)
 
 bool Utils::Fs::renameFile(const Path &from, const Path &to)
 {
+    if (!from.exists())
+        return false;
+
+    if (!mkpath(to.parentPath()))
+        return false;
+
     return QFile::rename(from.data(), to.data());
 }
 

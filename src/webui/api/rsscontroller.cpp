@@ -142,7 +142,8 @@ void RSSController::markAsReadAction()
     const QString articleId {params()[u"articleId"_s]};
 
     RSS::Item *item = RSS::Session::instance()->itemByPath(itemPath);
-    if (!item) return;
+    if (!item)
+        return;
 
     if (!articleId.isNull())
     {
@@ -185,6 +186,29 @@ void RSSController::setRuleAction()
     RSS::AutoDownloader::instance()->setRule(RSS::AutoDownloadRule::fromJsonObject(jsonObj, ruleName));
 
     setResult(QString());
+}
+
+void RSSController::exportRulesAction()
+{
+    setResult(RSS::AutoDownloader::instance()->exportRules(
+        RSS::AutoDownloader::RulesFileFormat::JSON), u"application/json"_s
+        , u"rss-downloader-rules.json"_s);
+}
+
+void RSSController::importRulesAction()
+{
+    if (data().size() != 1)
+        throw APIError(APIErrorType::BadParams, tr("Exactly one rules file is required"));
+
+    try
+    {
+        RSS::AutoDownloader::instance()->importRules(data().cbegin().value()
+            , RSS::AutoDownloader::RulesFileFormat::JSON);
+    }
+    catch (const RSS::ParsingError &error)
+    {
+        throw APIError(APIErrorType::BadParams, error.message());
+    }
 }
 
 void RSSController::renameRuleAction()
@@ -242,7 +266,8 @@ void RSSController::matchingArticlesAction()
     for (const QString &feedURL : rule.feedURLs())
     {
         const RSS::Feed *feed = RSS::Session::instance()->feedByURL(feedURL);
-        if (!feed) continue; // feed doesn't exist
+        if (!feed)
+            continue;        // feed doesn't exist
 
         QJsonArray matchingArticles;
         for (const RSS::Article *article : feed->articles())

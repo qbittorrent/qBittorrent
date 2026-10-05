@@ -18,6 +18,12 @@ repos:
         types_or:
           - ts
 
+      - id: check-webui-translation-tag
+        name: Check issues in WebUI <translation> tag
+        entry: .github/workflows/helper/pre-commit/check_webui_translation_tag.py
+        language: script
+        files: ^src/webui/www/translations/.+\.ts$
+
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
     rev: v6.0.0
     hooks:
@@ -31,6 +37,7 @@ repos:
       name: Check trailing newlines
       exclude: |
         (?x)^(
+          src/base/3rdparty/.* |
           src/webui/www/private/css/lib/.* |
           src/webui/www/private/scripts/lib/.* |
           test/testdata/crlf.txt
@@ -39,14 +46,26 @@ repos:
         - svg
         - ts
 
+  - repo: https://github.com/rvben/rumdl-pre-commit.git
+    rev: v0.2.77
+    hooks:
+    - id: rumdl
+      name: Check Markdown files
+      args: ["--config", ".github/workflows/helper/pre-commit/.rumdl.toml", "--fix"]
+      exclude: |
+        (?x)^(
+          doc/.*/qbittorrent\.1\.md |
+          doc/.*/qbittorrent-nox\.1\.md
+        )$
+
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python.git
-    rev: 3.6.1
+    rev: 3.11.1
     hooks:
     - id: editorconfig-checker
       name: Check code formatting (EditorConfig)
 
   - repo: https://github.com/codespell-project/codespell.git
-    rev: v2.4.2
+    rev: v2.4.3
     hooks:
     - id: codespell
       name: Check spelling (codespell)
@@ -65,7 +84,7 @@ repos:
         - ts
 
   - repo: https://github.com/crate-ci/typos.git
-    rev: v1.46.0
+    rev: v1.50.3
     hooks:
     - id: typos
       name: Check spelling (typos)

@@ -53,7 +53,7 @@ void FileGuard::setAutoRemove(const bool remove) noexcept
 FileGuard::~FileGuard()
 {
     if (m_remove && !m_path.isEmpty())
-        Utils::Fs::removeFile(m_path); // removeFile() checks for file existence
+        std::ignore = Utils::Fs::removeFile(m_path); // removeFile() checks for file existence
 }
 
 TorrentFileGuard::TorrentFileGuard(const Path &path, const TorrentFileGuard::AutoDeleteMode mode)

@@ -15,223 +15,242 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
-    <widget class="QCheckBox" name="checkAutoTMM">
-     <property name="toolTip">
-      <string>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</string>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
      </property>
-     <property name="text">
-      <string>Automatic Torrent Management</string>
-     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>444</width>
+        <height>476</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QCheckBox" name="checkAutoTMM">
+         <property name="toolTip">
+          <string>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</string>
+         </property>
+         <property name="text">
+          <string>Automatic Torrent Management</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBoxSavePath">
+         <property name="title">
+          <string>Save at</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="FileSystemPathComboEdit" name="savePath" native="true"/>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkUseDownloadPath">
+            <property name="text">
+             <string>Use another path for incomplete torrent</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="FileSystemPathComboEdit" name="downloadPath" native="true">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelCategory">
+           <property name="text">
+            <string>Category:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="comboCategory">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+           <property name="maxVisibleItems">
+            <number>2147483647</number>
+           </property>
+           <property name="insertPolicy">
+            <enum>QComboBox::InsertPolicy::InsertAtTop</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Torrent Speed Limits</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Upload:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSlider" name="sliderUploadLimit">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QSpinBox" name="spinUploadLimit">
+            <property name="specialValueText">
+             <string>∞</string>
+            </property>
+            <property name="suffix">
+             <string> KiB/s</string>
+            </property>
+            <property name="maximum">
+             <number>2000000</number>
+            </property>
+            <property name="stepType">
+             <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Download:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSlider" name="sliderDownloadLimit">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QSpinBox" name="spinDownloadLimit">
+            <property name="specialValueText">
+             <string>∞</string>
+            </property>
+            <property name="suffix">
+             <string> KiB/s</string>
+            </property>
+            <property name="maximum">
+             <number>2000000</number>
+            </property>
+            <property name="stepType">
+             <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+           <widget class="QLabel" name="labelWarning">
+            <property name="text">
+             <string>These will not exceed the global limits</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="torrentShareLimitsBox">
+         <property name="title">
+          <string>Torrent Share Limits</string>
+         </property>
+         <layout class="QVBoxLayout" name="torrentShareLimitsBoxLayout">
+          <item>
+           <widget class="TorrentShareLimitsWidget" name="torrentShareLimitsWidget" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="checkDisableDHT">
+           <property name="text">
+            <string>Disable DHT for this torrent</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="checkSequential">
+           <property name="text">
+            <string>Download in sequential order</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="checkDisablePEX">
+           <property name="text">
+            <string>Disable PeX for this torrent</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="checkFirstLastPieces">
+           <property name="text">
+            <string>Download first and last pieces first</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="checkDisableLSD">
+           <property name="text">
+            <string>Disable LSD for this torrent</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
     </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBoxSavePath">
-     <property name="title">
-      <string>Save at</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="FileSystemPathComboEdit" name="savePath" native="true"/>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkUseDownloadPath">
-        <property name="text">
-         <string>Use another path for incomplete torrent</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="FileSystemPathComboEdit" name="downloadPath" native="true">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <layout class="QGridLayout" name="gridLayout_4">
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelCategory">
-       <property name="text">
-        <string>Category:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QComboBox" name="comboCategory">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="editable">
-        <bool>true</bool>
-       </property>
-       <property name="maxVisibleItems">
-        <number>2147483647</number>
-       </property>
-       <property name="insertPolicy">
-        <enum>QComboBox::InsertPolicy::InsertAtTop</enum>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Torrent Speed Limits</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Upload:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QSlider" name="sliderUploadLimit">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QSpinBox" name="spinUploadLimit">
-        <property name="specialValueText">
-         <string>∞</string>
-        </property>
-        <property name="suffix">
-         <string> KiB/s</string>
-        </property>
-        <property name="maximum">
-         <number>2000000</number>
-        </property>
-        <property name="stepType">
-         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Download:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QSlider" name="sliderDownloadLimit">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QSpinBox" name="spinDownloadLimit">
-        <property name="specialValueText">
-         <string>∞</string>
-        </property>
-        <property name="suffix">
-         <string> KiB/s</string>
-        </property>
-        <property name="maximum">
-         <number>2000000</number>
-        </property>
-        <property name="stepType">
-         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1" colspan="2">
-       <widget class="QLabel" name="labelWarning">
-        <property name="text">
-         <string>These will not exceed the global limits</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="torrentShareLimitsBox">
-     <property name="title">
-      <string>Torrent Share Limits</string>
-     </property>
-     <layout class="QVBoxLayout" name="torrentShareLimitsBoxLayout">
-      <item>
-       <widget class="TorrentShareLimitsWidget" name="torrentShareLimitsWidget" native="true"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="0">
-      <widget class="QCheckBox" name="checkDisableDHT">
-       <property name="text">
-        <string>Disable DHT for this torrent</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QCheckBox" name="checkSequential">
-       <property name="text">
-        <string>Download in sequential order</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="1" column="0">
-      <widget class="QCheckBox" name="checkDisablePEX">
-       <property name="text">
-        <string>Disable PeX for this torrent</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QCheckBox" name="checkFirstLastPieces">
-       <property name="text">
-        <string>Download first and last pieces first</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QCheckBox" name="checkDisableLSD">
-       <property name="text">
-        <string>Disable LSD for this torrent</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Orientation::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>0</height>
-      </size>
-     </property>
-    </spacer>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">

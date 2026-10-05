@@ -30,7 +30,8 @@
 #include <QTest>
 
 #include "base/bittorrent/peeraddress.h"
-#include "base/global.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -51,9 +52,13 @@ public:
 private slots:
     void testParse() const
     {
-        QCOMPARE(BitTorrent::PeerAddress::parse({}), BitTorrent::PeerAddress());
+        QCOMPARE(BitTorrent::PeerAddress::parse({}), {});
         QCOMPARE(BitTorrent::PeerAddress::parse(ipv4Str), ipv4);
         QCOMPARE(BitTorrent::PeerAddress::parse(ipv6Str), ipv6);
+
+        // malformed inputs
+        QCOMPARE(BitTorrent::PeerAddress::parse(u"1.2.3.4:80:80"), {});
+        QCOMPARE(BitTorrent::PeerAddress::parse(u"[2001::1]:80:80"), {});
     }
 
     void testToString() const
@@ -61,6 +66,36 @@ private slots:
         QCOMPARE(BitTorrent::PeerAddress().toString(), QString());
         QCOMPARE(ipv4.toString(), ipv4Str);
         QCOMPARE(ipv6.toString(), ipv6Str);
+    }
+
+    void testOperatorLessThan() const
+    {
+        QCOMPARE_EQ((BitTorrent::PeerAddress() < BitTorrent::PeerAddress()), false);
+        QCOMPARE_EQ((BitTorrent::PeerAddress() < ipv4), true);
+        QCOMPARE_EQ((ipv4 < BitTorrent::PeerAddress()), false);
+
+        QCOMPARE_EQ((ipv4 < ipv4), false);
+
+        {
+            const BitTorrent::PeerAddress left {.ip = QHostAddress(u"127.0.0.1"_s), .port = 80};
+            const BitTorrent::PeerAddress right {.ip = QHostAddress(u"127.0.0.2"_s), .port = 80};
+            QCOMPARE_EQ((left < right), true);
+        }
+        {
+            const BitTorrent::PeerAddress left {.ip = QHostAddress(u"127.0.0.1"_s), .port = 79};
+            const BitTorrent::PeerAddress right {.ip = QHostAddress(u"127.0.0.1"_s), .port = 80};
+            QCOMPARE_EQ((left < right), true);
+        }
+        {
+            const BitTorrent::PeerAddress left {.ip = QHostAddress(u"127.0.0.2"_s), .port = 80};
+            const BitTorrent::PeerAddress right {.ip = QHostAddress(u"127.0.0.1"_s), .port = 80};
+            QCOMPARE_EQ((left < right), false);
+        }
+        {
+            const BitTorrent::PeerAddress left {.ip = QHostAddress(u"127.0.0.1"_s), .port = 80};
+            const BitTorrent::PeerAddress right {.ip = QHostAddress(u"127.0.0.1"_s), .port = 79};
+            QCOMPARE_EQ((left < right), false);
+        }
     }
 
     void testOperatorEquality() const

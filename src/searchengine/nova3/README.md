@@ -1,5 +1,4 @@
-nova3 Engine
-===
+# nova3 Engine
 
 ## Development Workflow
 
@@ -12,11 +11,13 @@ nova3 Engine
 1. Setup development environment
 
    1. Setup virtual environment and dependencies
+
       ```shell
       uv sync
       ```
 
    2. Activate virtual environment
+
       ```shell
       source .venv/bin/activate
       ```

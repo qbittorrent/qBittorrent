@@ -16,12 +16,12 @@ jobs:
       security-events: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
 
       - name: Setup python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "*"
 
@@ -52,7 +52,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install zizmor
+          pip install zizmor==1.29.0
           IGNORE_RULEID='(.ruleId != "zizmor/template-injection")
             and (.ruleId != "zizmor/unpinned-uses")'
           IGNORE_ID='(.id != "zizmor/template-injection")

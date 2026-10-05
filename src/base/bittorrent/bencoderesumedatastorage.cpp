@@ -492,10 +492,10 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
 void BitTorrent::BencodeResumeDataStorage::Worker::remove(const TorrentID &id) const
 {
     const Path resumeFilename {u"%1.fastresume"_s.arg(id.toString())};
-    Utils::Fs::removeFile(m_resumeDataDir / resumeFilename);
+    std::ignore = Utils::Fs::removeFile(m_resumeDataDir / resumeFilename);
 
     const Path torrentFilename {u"%1.torrent"_s.arg(id.toString())};
-    Utils::Fs::removeFile(m_resumeDataDir / torrentFilename);
+    std::ignore = Utils::Fs::removeFile(m_resumeDataDir / torrentFilename);
 }
 
 void BitTorrent::BencodeResumeDataStorage::Worker::storeQueue(const QList<TorrentID> &queue) const

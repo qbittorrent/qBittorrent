@@ -41,8 +41,16 @@ int Utils::Compare::naturalCompare(const QString &left, const QString &right, co
     int posR = 0;
     while (true)
     {
-        if ((posL == left.size()) || (posR == right.size()))
-            return (left.size() - right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
+        if (const qsizetype lSize = left.size(), rSize = right.size()
+            ; (posL == lSize) || (posR == rSize))
+        {
+            // when a shorter string is another string's prefix, place shorter string before longer string
+            if (lSize < rSize)
+                return -1;
+            if (lSize == rSize)
+                return 0;
+            return 1;
+        }
 
         const QChar leftChar = (caseSensitivity == Qt::CaseSensitive) ? left[posL] : left[posL].toCaseFolded();
         const QChar rightChar = (caseSensitivity == Qt::CaseSensitive) ? right[posR] : right[posR].toCaseFolded();
@@ -73,7 +81,7 @@ int Utils::Compare::naturalCompare(const QString &left, const QString &right, co
             if (numViewL.length() != numViewR.length())
                 return (numViewL.length() - numViewR.length());
 
-            // both string/view has the same length
+            // both numbers have the same length
             for (qsizetype i = 0; i < numViewL.length(); ++i)
             {
                 const QChar numL = numViewL[i];
@@ -84,7 +92,7 @@ int Utils::Compare::naturalCompare(const QString &left, const QString &right, co
             }
 
             // String + digits do match and we haven't hit the end of both strings
-            // then continue to consume the remainings
+            // then continue to consume the rest
         }
         else
         {

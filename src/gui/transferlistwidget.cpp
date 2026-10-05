@@ -984,7 +984,7 @@ void TransferListWidget::removeSelectionTag(const Tag &tag)
 
 void TransferListWidget::clearSelectionTags()
 {
-    applyToSelectedTorrents([](BitTorrent::Torrent *const torrent) { torrent->removeAllTags(); });
+    applyToSelectedTorrents([](BitTorrent::Torrent *const torrent) { torrent->clearTags(); });
 }
 
 void TransferListWidget::displayListMenu()

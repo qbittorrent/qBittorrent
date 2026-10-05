@@ -251,8 +251,8 @@ void CustomDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const 
             const Path completeFilePath = incompleteFilePath.removedExtension(QB_EXT);
             if (completeFilePath.exists())
             {
-                Utils::Fs::removeFile(incompleteFilePath);
-                Utils::Fs::renameFile(completeFilePath, incompleteFilePath);
+                if (Utils::Fs::removeFile(incompleteFilePath))
+                    Utils::Fs::renameFile(completeFilePath, incompleteFilePath);
             }
         }
     }
@@ -316,8 +316,8 @@ void CustomStorage::handleCompleteFiles(const Path &savePath)
             const Path completeFilePath = incompleteFilePath.removedExtension(QB_EXT);
             if (completeFilePath.exists())
             {
-                Utils::Fs::removeFile(incompleteFilePath);
-                Utils::Fs::renameFile(completeFilePath, incompleteFilePath);
+                if (Utils::Fs::removeFile(incompleteFilePath))
+                    Utils::Fs::renameFile(completeFilePath, incompleteFilePath);
             }
         }
     }

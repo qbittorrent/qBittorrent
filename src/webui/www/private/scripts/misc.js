@@ -33,6 +33,7 @@ window.qBittorrent.Misc ??= (() => {
     const exports = () => {
         return {
             getHost: getHost,
+            isHttpUrl: isHttpUrl,
             createDebounceHandler: createDebounceHandler,
             filterInPlace: filterInPlace,
             friendlyUnit: friendlyUnit,
@@ -53,9 +54,15 @@ window.qBittorrent.Misc ??= (() => {
             formatDate: formatDate,
             // variables
             FILTER_INPUT_DELAY: 400,
-            MAX_ETA: 8640000
+            MAX_ETA: 8640000,
+            TIME_RESOLUTION: TIME_RESOLUTION
         };
     };
+
+    const TIME_RESOLUTION = Object.freeze({
+        Seconds: Symbol("Seconds"),
+        Minutes: Symbol("Minutes"),
+    });
 
     // getHost emulate the GUI version `QString getHost(const QString &url)`
     const getHost = (url) => {
@@ -78,6 +85,22 @@ window.qBittorrent.Misc ??= (() => {
         }
         catch (error) {
             return url;
+        }
+    };
+
+    /**
+     * Whether the URL is safe to navigate to, i.e. it doesn't use a scheme such as `javascript:`
+     *
+     * @param {string} url a URL, possibly relative to the current document
+     * @returns {boolean}
+     */
+    const isHttpUrl = (url) => {
+        try {
+            const scheme = new URL(url, window.location).protocol;
+            return (scheme === "http:") || (scheme === "https:");
+        }
+        catch (error) {
+            return false;
         }
     };
 
@@ -155,13 +178,16 @@ window.qBittorrent.Misc ??= (() => {
     /*
      * JS counterpart of the function in src/misc.cpp
      */
-    const friendlyDuration = (seconds, maxCap = -1) => {
+    const friendlyDuration = (seconds, maxCap = -1, timeResolution = TIME_RESOLUTION.Minutes) => {
         if ((seconds < 0) || ((seconds >= maxCap) && (maxCap >= 0)))
             return "∞";
         if (seconds === 0)
             return "0";
-        if (seconds < 60)
-            return "QBT_TR(< 1m)QBT_TR[CONTEXT=misc]";
+        if (seconds < 60) {
+            if (timeResolution === TIME_RESOLUTION.Minutes)
+                return "QBT_TR(< 1m)QBT_TR[CONTEXT=misc]";
+            return "QBT_TR(%1s)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(seconds));
+        }
         let minutes = seconds / 60;
         if (minutes < 60)
             return "QBT_TR(%1m)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(minutes));
@@ -371,11 +397,16 @@ window.qBittorrent.Misc ??= (() => {
         }
     };
 
-    const downloadFileStream = async (url, errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]") => {
+    const downloadFileStream = async (url) => {
+        const errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]";
+
         try {
             // Pre-flight HEAD request to check for errors before triggering download
             // This avoids navigating to an error page on failure
-            const response = await fetch(url, { method: "HEAD" });
+            const response = await fetch(url, {
+                method: "HEAD",
+                cache: "no-store"
+            });
             if (!response.ok) {
                 alert(errorMessage);
                 return;
@@ -385,6 +416,7 @@ window.qBittorrent.Misc ??= (() => {
             const link = document.createElement("a");
             link.href = url;
             link.click();
+            link.remove();
         }
         catch (error) {
             alert(errorMessage);

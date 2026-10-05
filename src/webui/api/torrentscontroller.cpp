@@ -30,6 +30,7 @@
 
 #include <algorithm>
 #include <chrono>
+#include <cmath>
 #include <concepts>
 
 #include <QBitArray>
@@ -62,6 +63,7 @@
 #include "base/search/searchpluginmanager.h"
 #include "base/torrentfilter.h"
 #include "base/utils/datetime.h"
+#include "base/utils/dict.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/sslkey.h"
@@ -156,6 +158,12 @@ const QString KEY_TORRENTINFO_PIECE_LENGTH = u"piece_length"_s;
 const QString KEY_TORRENTINFO_TRACKERS = u"trackers"_s;
 const QString KEY_TORRENTINFO_WEBSEEDS = u"webseeds"_s;
 
+// Parameter names
+const QString PARAM_CATEGORY = u"category"_s;
+const QString PARAM_SAVE_PATH = u"savePath"_s;
+const QString PARAM_DOWNLOAD_PATH = u"downloadPath"_s;
+const QString PARAM_DOWNLOAD_PATH_ENABLED = u"downloadPathEnabled"_s;
+
 namespace
 {
     using Utils::String::parseBool;
@@ -185,22 +193,72 @@ namespace
         }
     }
 
-    std::optional<QString> getOptionalString(const StringMap &params, const QString &name)
-    {
-        const auto it = params.constFind(name);
-        if (it == params.cend())
-            return std::nullopt;
-
-        return it.value();
-    }
-
     std::optional<Tag> getOptionalTag(const StringMap &params, const QString &name)
     {
-        const auto it = params.constFind(name);
-        if (it == params.cend())
-            return std::nullopt;
+        const std::optional<QString> optionalValue = Utils::Dict::get(params, name);
+        if (optionalValue)
+            return Tag(*optionalValue);
 
-        return Tag(it.value());
+        return std::nullopt;
+    }
+
+    void applyShareLimitsParams(BitTorrent::ShareLimits &shareLimits, const StringMap &params)
+    {
+        const QString PARAM_RATIO_LIMIT = u"ratioLimit"_s;
+        const QString PARAM_SEEDING_TIME_LIMIT = u"seedingTimeLimit"_s;
+        const QString PARAM_INACTIVE_SEEDING_TIME_LIMIT = u"inactiveSeedingTimeLimit"_s;
+        const QString PARAM_SHARE_LIMITS_MODE = u"shareLimitsMode"_s;
+        const QString PARAM_SHARE_LIMIT_ACTION = u"shareLimitAction"_s;
+
+        if (const std::optional<QString> value = Utils::Dict::get(params, PARAM_RATIO_LIMIT))
+        {
+            const std::optional<double> ratioLimit = parseDouble(*value);
+            if (!ratioLimit || !std::isfinite(*ratioLimit)
+                    || ((*ratioLimit < 0)
+                        && (*ratioLimit != BitTorrent::DEFAULT_RATIO_LIMIT)
+                        && (*ratioLimit != BitTorrent::NO_RATIO_LIMIT)))
+                throw APIError(APIErrorType::BadParams, TorrentsController::tr("'%1' parameter has invalid value").arg(PARAM_RATIO_LIMIT));
+
+            shareLimits.ratioLimit = *ratioLimit;
+        }
+
+        if (const std::optional<QString> value = Utils::Dict::get(params, PARAM_SEEDING_TIME_LIMIT))
+        {
+            const std::optional<int> seedingTimeLimit = parseInt(*value);
+            if (!seedingTimeLimit || (*seedingTimeLimit < BitTorrent::DEFAULT_SEEDING_TIME_LIMIT))
+                throw APIError(APIErrorType::BadParams, TorrentsController::tr("'%1' parameter has invalid value").arg(PARAM_SEEDING_TIME_LIMIT));
+
+            shareLimits.seedingTimeLimit = *seedingTimeLimit;
+        }
+
+        if (const std::optional<QString> value = Utils::Dict::get(params, PARAM_INACTIVE_SEEDING_TIME_LIMIT))
+        {
+            const std::optional<int> inactiveSeedingTimeLimit = parseInt(*value);
+            if (!inactiveSeedingTimeLimit || (*inactiveSeedingTimeLimit < BitTorrent::DEFAULT_SEEDING_TIME_LIMIT))
+                throw APIError(APIErrorType::BadParams, TorrentsController::tr("'%1' parameter has invalid value").arg(PARAM_INACTIVE_SEEDING_TIME_LIMIT));
+
+            shareLimits.inactiveSeedingTimeLimit = *inactiveSeedingTimeLimit;
+        }
+
+        // an unrecognized value must not silently fall back to `Default`, which would reset
+        // a setting that the caller did not intend to change
+        if (const std::optional<QString> value = Utils::Dict::get(params, PARAM_SHARE_LIMITS_MODE))
+        {
+            const auto mode = Utils::String::toEnum(*value, BitTorrent::ShareLimitsMode::Default);
+            if (Utils::String::fromEnum(mode) != *value)
+                throw APIError(APIErrorType::BadParams, TorrentsController::tr("'%1' parameter has invalid value").arg(PARAM_SHARE_LIMITS_MODE));
+
+            shareLimits.mode = mode;
+        }
+
+        if (const std::optional<QString> value = Utils::Dict::get(params, PARAM_SHARE_LIMIT_ACTION))
+        {
+            const auto action = Utils::String::toEnum(*value, BitTorrent::ShareLimitAction::Default);
+            if (Utils::String::fromEnum(action) != *value)
+                throw APIError(APIErrorType::BadParams, TorrentsController::tr("'%1' parameter has invalid value").arg(PARAM_SHARE_LIMIT_ACTION));
+
+            shareLimits.action = action;
+        }
     }
 
     QJsonArray getStickyTrackers(const BitTorrent::Torrent *const torrent)
@@ -607,7 +665,7 @@ void TorrentsController::countAction()
 void TorrentsController::infoAction()
 {
     const QString filter {params()[u"filter"_s]};
-    const std::optional<QString> category = getOptionalString(params(), u"category"_s);
+    const std::optional<QString> category = Utils::Dict::get(params(), u"category"_s);
     const std::optional<Tag> tag = getOptionalTag(params(), u"tag"_s);
     const QString sortedColumn {params()[u"sort"_s]};
     const bool reverse {parseBool(params()[u"reverse"_s]).value_or(false)};
@@ -1082,7 +1140,7 @@ void TorrentsController::addAction()
 {
     const QStringList urls = params()[u"urls"_s].split(u'\n', Qt::SkipEmptyParts);
 
-    const bool skipChecking = parseBool(params()[u"skip_checking"_s]).value_or(false);
+    const bool seedMode = parseBool(params()[u"seedMode"_s]).value_or(false);
     const bool seqDownload = parseBool(params()[u"sequentialDownload"_s]).value_or(false);
     const bool firstLastPiece = parseBool(params()[u"firstLastPiecePrio"_s]).value_or(false);
     const bool addForced = parseBool(params()[u"forced"_s]).value_or(false);
@@ -1154,7 +1212,7 @@ void TorrentsController::addAction()
         .stopCondition = stopCondition,
         .filePaths = {},
         .filePriorities = {},
-        .skipChecking = skipChecking,
+        .seedMode = seedMode,
         .contentLayout = contentLayout,
         .useAutoTMM = autoTMM,
         .uploadLimit = upLimit,
@@ -1310,8 +1368,8 @@ void TorrentsController::editTrackerAction()
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
     const QString origUrl = params()[u"url"_s];
-    const std::optional<QString> newUrlParam = getOptionalString(params(), u"newUrl"_s);
-    const std::optional<QString> newTierParam = getOptionalString(params(), u"tier"_s);
+    const std::optional<QString> newUrlParam = Utils::Dict::get(params(), u"newUrl"_s);
+    const std::optional<QString> newTierParam = Utils::Dict::get(params(), u"tier"_s);
 
     BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
@@ -1889,24 +1947,35 @@ void TorrentsController::setCategoryAction()
 
 void TorrentsController::createCategoryAction()
 {
-    requireParams({u"category"_s});
+    requireParams({PARAM_CATEGORY});
 
-    const QString category = params()[u"category"_s];
+    const QString category = params()[PARAM_CATEGORY];
     if (category.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Category cannot be empty"));
 
     if (!BitTorrent::Session::isValidCategoryName(category))
         throw APIError(APIErrorType::Conflict, tr("Incorrect category name"));
 
-    const Path savePath {params()[u"savePath"_s]};
-    const auto useDownloadPath = parseBool(params()[u"downloadPathEnabled"_s]);
     BitTorrent::CategoryOptions categoryOptions;
+
+    const Path savePath {params()[PARAM_SAVE_PATH]};
     categoryOptions.savePath = savePath;
-    if (useDownloadPath.has_value())
+
+    const std::optional<QString> useDownloadPathParam = Utils::Dict::get(params(), PARAM_DOWNLOAD_PATH_ENABLED);
+    if (useDownloadPathParam && !useDownloadPathParam->isEmpty())
     {
-        const Path downloadPath {params()[u"downloadPath"_s]};
-        categoryOptions.downloadPath = {useDownloadPath.value(), downloadPath};
+        if (const std::optional<bool> useDownloadPath = parseBool(*useDownloadPathParam))
+        {
+            const Path downloadPath {params()[PARAM_DOWNLOAD_PATH]};
+            categoryOptions.downloadPath = {*useDownloadPath, downloadPath};
+        }
+        else
+        {
+            throw APIError(APIErrorType::BadParams, tr("'%1' parameter has invalid value").arg(PARAM_DOWNLOAD_PATH_ENABLED));
+        }
     }
+
+    applyShareLimitsParams(categoryOptions.shareLimits, params());
 
     if (!BitTorrent::Session::instance()->addCategory(category, categoryOptions))
         throw APIError(APIErrorType::Conflict, tr("Unable to create category"));
@@ -1916,21 +1985,36 @@ void TorrentsController::createCategoryAction()
 
 void TorrentsController::editCategoryAction()
 {
-    requireParams({u"category"_s, u"savePath"_s});
+    requireParams({PARAM_CATEGORY});
 
-    const QString category = params()[u"category"_s];
+    const QString category = params()[PARAM_CATEGORY];
     if (category.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Category cannot be empty"));
 
-    const Path savePath {params()[u"savePath"_s]};
-    const auto useDownloadPath = parseBool(params()[u"downloadPathEnabled"_s]);
-    BitTorrent::CategoryOptions categoryOptions;
-    categoryOptions.savePath = savePath;
-    if (useDownloadPath.has_value())
+    BitTorrent::CategoryOptions categoryOptions = BitTorrent::Session::instance()->categoryOptions(category);
+
+    if (const std::optional<QString> savePathParam = Utils::Dict::get(params(), PARAM_SAVE_PATH))
+        categoryOptions.savePath = Path(*savePathParam);
+
+    const std::optional<QString> useDownloadPathParam = Utils::Dict::get(params(), PARAM_DOWNLOAD_PATH_ENABLED);
+    if (useDownloadPathParam)
     {
-        const Path downloadPath {params()[u"downloadPath"_s]};
-        categoryOptions.downloadPath = {useDownloadPath.value(), downloadPath};
+        if (useDownloadPathParam->isEmpty())
+        {
+            categoryOptions.downloadPath = std::nullopt;
+        }
+        else if (const std::optional<bool> useDownloadPath = parseBool(*useDownloadPathParam))
+        {
+            const Path downloadPath {params()[PARAM_DOWNLOAD_PATH]};
+            categoryOptions.downloadPath = {*useDownloadPath, downloadPath};
+        }
+        else
+        {
+            throw APIError(APIErrorType::BadParams, tr("'%1' parameter has invalid value").arg(PARAM_DOWNLOAD_PATH_ENABLED));
+        }
     }
+
+    applyShareLimitsParams(categoryOptions.shareLimits, params());
 
     if (!BitTorrent::Session::instance()->setCategoryOptions(category, categoryOptions))
         throw APIError(APIErrorType::NotFound, tr("Category does not exist"));
@@ -2026,7 +2110,7 @@ void TorrentsController::removeTagsAction()
     {
         applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent)
         {
-            torrent->removeAllTags();
+            torrent->clearTags();
         });
     }
 
@@ -2231,6 +2315,11 @@ void TorrentsController::fetchMetadataAction()
     // http(s) url
     else if (Net::DownloadManager::hasSupportedScheme(source))
     {
+        if (m_invalidTorrentSource.contains(source))
+        {
+            throw APIError(APIErrorType::BadData, tr("'%1' is not a valid torrent file.").arg(source));
+        }
+
         if (!m_requestedTorrentSource.contains(source))
         {
             if (!downloaderParam.isEmpty())
@@ -2444,10 +2533,12 @@ void TorrentsController::cacheTorrentFile(const QString &source, const QByteArra
         const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
         m_torrentSourceCache.insert(source, infoHash);
         m_torrentMetadataCache.insert(infoHash.toTorrentID(), torrentDescr);
+        m_invalidTorrentSource.remove(source);
     }
     else
     {
         LogMsg(tr("Parse torrent failed. URL: \"%1\". Error: \"%2\".").arg(source, loadResult.error()), Log::WARNING);
+        m_invalidTorrentSource.insert(source);
         m_torrentSourceCache.remove(source);
     }
 }

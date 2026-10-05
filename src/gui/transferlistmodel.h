@@ -29,6 +29,11 @@
 
 #pragma once
 
+#include <boost/multi_index_container.hpp>
+#include <boost/multi_index/hashed_index.hpp>
+#include <boost/multi_index/random_access_index.hpp>
+#include <boost/multi_index/tag.hpp>
+
 #include <QAbstractListModel>
 #include <QColor>
 #include <QHash>
@@ -116,14 +121,20 @@ private slots:
     void handleTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
 
 private:
+    int getTorrentRow(BitTorrent::Torrent *torrent) const;
+
     void configure();
     void loadUIThemeResources();
     QString displayValue(const BitTorrent::Torrent *torrent, int column) const;
     QVariant internalValue(const BitTorrent::Torrent *torrent, int column, bool alt) const;
     QIcon getIconByState(BitTorrent::TorrentState state) const;
 
-    QList<BitTorrent::Torrent *> m_torrentList;  // maps row number to torrent handle
-    QHash<BitTorrent::Torrent *, int> m_torrentMap;  // maps torrent handle to row number
+    using TorrentList = boost::multi_index_container<
+        BitTorrent::Torrent *,
+        boost::multi_index::indexed_by<
+            boost::multi_index::random_access<boost::multi_index::tag<struct ByIndex>>,
+            boost::multi_index::hashed_unique<boost::multi_index::tag<struct ByHandle>, boost::multi_index::identity<BitTorrent::Torrent *>>>>;
+    TorrentList m_torrents;
     const QHash<BitTorrent::TorrentState, QString> m_statusStrings;
     // row text colors
     QHash<BitTorrent::TorrentState, QColor> m_stateThemeColors;

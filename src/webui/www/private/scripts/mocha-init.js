@@ -124,6 +124,8 @@ let downloadLimitFN = () => {};
 let deleteSelectedTorrentsFN = () => {};
 let stopFN = () => {};
 let startFN = () => {};
+let pauseSessionFN = () => {};
+let resumeSessionFN = () => {};
 let autoTorrentManagementFN = () => {};
 let recheckFN = () => {};
 let reannounceFN = () => {};
@@ -182,7 +184,7 @@ const initializeWindows = () => {
     const addClickEvent = (el, fn) => {
         for (const item of ["Link", "Button"]) {
             if (document.getElementById(el + item))
-                document.getElementById(el + item).addEventListener("click", fn);
+                document.getElementById(el + item).addEventListener("click", (event) => fn(event));
         }
     };
 
@@ -215,7 +217,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 500),
-            height: loadWindowHeight(id, 300),
+            height: loadWindowHeight(id, 350),
             onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
             })
@@ -381,7 +383,7 @@ const initializeWindows = () => {
         for (const hash of hashes) {
             const row = torrentsTable.getRow(hash).full_data;
             const origValues = `${row.ratio_limit}|${row.seeding_time_limit}|${row.inactive_seeding_time_limit}|${row.max_ratio}`
-                + `|${row.max_seeding_time}|${row.max_inactive_seeding_time}|${row.share_limit_action}`;
+                + `|${row.max_seeding_time}|${row.max_inactive_seeding_time}|${row.share_limit_action}|${row.share_limits_mode}`;
 
             // initialize value
             if (shareRatio === null)
@@ -592,6 +594,30 @@ const initializeWindows = () => {
             });
             updateMainData();
         }
+    };
+
+    pauseSessionFN = () => {
+        fetch("api/v2/transfer/pauseSession", {
+            method: "POST",
+        }).then((response) => {
+            if (!response.ok) {
+                alert("QBT_TR(Unable to pause the session.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            updateMainData();
+        });
+    };
+
+    resumeSessionFN = () => {
+        fetch("api/v2/transfer/resumeSession", {
+            method: "POST",
+        }).then((response) => {
+            if (!response.ok) {
+                alert("QBT_TR(Unable to resume the session.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            updateMainData();
+        });
     };
 
     autoTorrentManagementFN = () => {
@@ -885,8 +911,8 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 200
+            width: window.qBittorrent.Dialog.limitWidthToViewport(500),
+            height: 400
         });
     };
 
@@ -927,8 +953,8 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 200
+            width: window.qBittorrent.Dialog.limitWidthToViewport(500),
+            height: 400
         });
     };
 
@@ -950,8 +976,8 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 200
+            width: window.qBittorrent.Dialog.limitWidthToViewport(500),
+            height: 400
         });
     };
 
@@ -973,8 +999,8 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 200
+            width: window.qBittorrent.Dialog.limitWidthToViewport(500),
+            height: 400
         });
     };
 
@@ -1059,6 +1085,10 @@ const initializeWindows = () => {
     torrentRemoveAllTagsFN = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
+            if (window.qBittorrent.Cache.preferences.get().confirm_remove_all_tags
+                && !confirm("QBT_TR(Remove all tags from selected torrents?)QBT_TR[CONTEXT=TransferListWidget]"))
+                return;
+
             fetch("api/v2/torrents/removeTags", {
                 method: "POST",
                 body: new URLSearchParams({
@@ -1124,11 +1154,33 @@ const initializeWindows = () => {
             || (trackerHost === TRACKERS_WARNING))
             return;
 
+        const urls = [...trackerMap.get(trackerHost).keys()].map(encodeURIComponent).join("|");
+
+        const trackerRemoved = () => {
+            updateMainData();
+            window.qBittorrent.Filters.clearTrackerFilter();
+        };
+
+        if (!window.qBittorrent.Cache.preferences.get().confirm_remove_tracker_from_all_torrents) {
+            fetch("api/v2/torrents/removeTrackers", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        hash: "*",
+                        urls: urls
+                    })
+                })
+                .then((response) => {
+                    if (response.ok)
+                        trackerRemoved();
+                });
+            return;
+        }
+
         const contentURL = new URL("confirmtrackerdeletion.html", window.location);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             host: trackerHost,
-            urls: [...trackerMap.get(trackerHost).keys()].map(encodeURIComponent).join("|")
+            urls: urls
         });
         new MochaUI.Window({
             id: "confirmDeletionPage",
@@ -1141,10 +1193,7 @@ const initializeWindows = () => {
             padding: 10,
             width: window.qBittorrent.Dialog.limitWidthToViewport(424),
             height: 100,
-            onCloseComplete: () => {
-                updateMainData();
-                window.qBittorrent.Filters.clearTrackerFilter();
-            }
+            onCloseComplete: trackerRemoved
         });
     };
 
@@ -1276,6 +1325,20 @@ const initializeWindows = () => {
             });
             updateMainData();
         }
+    });
+
+    addClickEvent("pauseSession", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        pauseSessionFN();
+    });
+
+    addClickEvent("resumeSession", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        resumeSessionFN();
     });
 
     addClickEvent("selectAll", (e) => {

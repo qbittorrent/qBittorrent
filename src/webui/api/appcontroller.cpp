@@ -46,7 +46,6 @@
 #include <QRegularExpression>
 #include <QStringList>
 #include <QTimer>
-#include <QTranslator>
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
@@ -74,6 +73,8 @@
 
 using namespace std::chrono_literals;
 
+const QString KEY_CONFIRM_REMOVE_ALL_TAGS = u"confirm_remove_all_tags"_s;
+const QString KEY_CONFIRM_REMOVE_TRACKER_FROM_ALL_TORRENTS = u"confirm_remove_tracker_from_all_torrents"_s;
 const QString KEY_COOKIE_NAME = u"name"_s;
 const QString KEY_COOKIE_DOMAIN = u"domain"_s;
 const QString KEY_COOKIE_PATH = u"path"_s;
@@ -157,6 +158,9 @@ void AppController::preferencesAction()
     data[u"status_bar_external_ip"_s] = pref->isStatusbarExternalIPDisplayed();
     // Transfer List
     data[u"confirm_torrent_deletion"_s] = pref->confirmTorrentDeletion();
+    // Search
+    data[u"store_search_jobs"_s] = pref->storeSearchJobs();
+    data[u"store_search_job_results"_s] = pref->storeSearchJobResults();
     // Log file
     data[u"file_log_enabled"_s] = app()->isFileLoggerEnabled();
     data[u"file_log_path"_s] = app()->fileLoggerPath().toString();
@@ -188,8 +192,12 @@ void AppController::preferencesAction()
     data[u"temp_path_enabled"_s] = session->isDownloadPathEnabled();
     data[u"temp_path"_s] = session->downloadPath().toString();
     data[u"use_category_paths_in_manual_mode"_s] = session->useCategoryPathsInManualMode();
-    data[u"export_dir"_s] = session->torrentExportDirectory().toString();
-    data[u"export_dir_fin"_s] = session->finishedTorrentExportDirectory().toString();
+    // .torrent files backup management
+    data[u"torrent_files_backup_enabled"_s] = session->isTorrentFileBackupEnabled();
+    data[u"torrent_files_backup_dir"_s] = session->torrentBackupDirectory().toString();
+    data[u"torrent_files_finished_backup_dir_enabled"_s] = session->isFinishedTorrentBackupDirectoryEnabled();
+    data[u"torrent_files_finished_backup_dir"_s] = session->finishedTorrentBackupDirectory().toString();
+    data[u"remove_torrent_file_backup"_s] = session->removeTorrentFileBackup();
 
     // TODO: The following code is deprecated. Delete it once replaced by updated API method.
     // === BEGIN DEPRECATED CODE === //
@@ -248,10 +256,13 @@ void AppController::preferencesAction()
     data[u"i2p_address"_s] = session->I2PAddress();
     data[u"i2p_port"_s] = session->I2PPort();
     data[u"i2p_mixed_mode"_s] = session->I2PMixedMode();
+    data[u"i2p_pex_enabled"_s] = session->isI2PPeXEnabled();
     data[u"i2p_inbound_quantity"_s] = session->I2PInboundQuantity();
     data[u"i2p_outbound_quantity"_s] = session->I2POutboundQuantity();
     data[u"i2p_inbound_length"_s] = session->I2PInboundLength();
     data[u"i2p_outbound_length"_s] = session->I2POutboundLength();
+    data[u"i2p_inbound_length_variance"_s] = session->I2PInboundLengthVariance();
+    data[u"i2p_outbound_length_variance"_s] = session->I2POutboundLengthVariance();
 
     // Proxy Server
     const auto *proxyManager = Net::ProxyConfigurationManager::instance();
@@ -350,6 +361,7 @@ void AppController::preferencesAction()
     data[u"web_ui_max_auth_fail_count"_s] = pref->getWebUIMaxAuthFailCount();
     data[u"web_ui_ban_duration"_s] = static_cast<int>(pref->getWebUIBanDuration().count());
     data[u"web_ui_session_timeout"_s] = pref->getWebUISessionTimeout();
+    data[u"web_ui_sessions_count_limit"_s] = pref->getWebUISessionsCountLimit();
     // API key
     data[u"web_ui_api_key"_s] = pref->getWebUIApiKey();
     // Use alternative WebUI
@@ -414,6 +426,10 @@ void AppController::preferencesAction()
     data[u"resolve_peer_host_names"_s] = pref->resolvePeerHostNames();
     // Resolve peer countries
     data[u"resolve_peer_countries"_s] = pref->resolvePeerCountries();
+    // Confirm removing all tags
+    data[KEY_CONFIRM_REMOVE_ALL_TAGS] = pref->confirmRemoveAllTags();
+    // Confirm removing a tracker from all torrents
+    data[KEY_CONFIRM_REMOVE_TRACKER_FROM_ALL_TORRENTS] = pref->confirmRemoveTrackerFromAllTorrents();
     // Reannounce to all trackers when ip/port changed
     data[u"reannounce_when_address_changed"_s] = session->isReannounceWhenAddressChangedEnabled();
     // Embedded tracker
@@ -426,6 +442,10 @@ void AppController::preferencesAction()
     data[u"ignore_ssl_errors"_s] = pref->isIgnoreSSLErrors();
     // Python executable path
     data[u"python_executable_path"_s] = pref->getPythonExecutablePath().toString();
+    // Start Session paused
+    data[u"start_paused"_s] = session->isStartPaused();
+    // Session shutdown timeout
+    data[u"shutdown_timeout"_s] = session->shutdownTimeout();
 
     // libtorrent preferences
     // Bdecode depth limit
@@ -486,6 +506,8 @@ void AppController::preferencesAction()
     data[u"idn_support_enabled"_s] = session->isIDNSupportEnabled();
     // Multiple connections per IP
     data[u"enable_multi_connections_from_same_ip"_s] = session->multiConnectionsPerIpEnabled();
+    // Multiple connections per Peer ID
+    data[u"enable_multi_connections_from_same_peer_id"_s] = session->multiConnectionsPerPeerIDEnabled();
     // Validate HTTPS tracker certificate
     data[u"validate_https_tracker_certificate"_s] = session->validateHTTPSTrackerCertificate();
     // SSRF mitigation
@@ -509,8 +531,12 @@ void AppController::preferencesAction()
     data[u"peer_turnover_interval"_s] = session->peerTurnoverInterval();
     // Maximum outstanding requests to a single peer
     data[u"request_queue_size"_s] = session->requestQueueSize();
+    // Maximum outstanding requests from a single peer
+    data[u"max_outstanding_block_requests"_s] = session->maxOutstandingBlockRequests();
     // DHT bootstrap nodes
     data[u"dht_bootstrap_nodes"_s] = session->getDHTBootstrapNodes();
+    // STUN server for WebTorrent NAT traversal
+    data[u"webtorrent_stun_server"_s] = session->getWebTorrentSTUNServer();
 
     setResult(data);
 }
@@ -534,21 +560,10 @@ void AppController::setPreferencesAction()
     // Language
     if (hasKey(u"locale"_s))
     {
-        QString locale = it.value().toString();
-        if (pref->getLocale() != locale)
+        if (const QString locale = it.value().toString(); locale != pref->getLocale())
         {
-            auto *translator = new QTranslator;
-            if (translator->load(u":/lang/qbittorrent_"_s + locale))
-            {
-                qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
-            }
-            else
-            {
-                qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));
-            }
-            qApp->installTranslator(translator);
-
             pref->setLocale(locale);
+            app()->loadTranslation(locale);
         }
     }
     if (hasKey(u"status_bar_external_ip"_s))
@@ -558,6 +573,11 @@ void AppController::setPreferencesAction()
     // Transfer List
     if (hasKey(u"confirm_torrent_deletion"_s))
         pref->setConfirmTorrentDeletion(it.value().toBool());
+    // Search
+    if (hasKey(u"store_search_jobs"_s))
+        pref->setStoreSearchJobs(it.value().toBool());
+    if (hasKey(u"store_search_job_results"_s))
+        pref->setStoreSearchJobResults(it.value().toBool());
     // Log file
     if (hasKey(u"file_log_enabled"_s))
         app()->setFileLoggerEnabled(it.value().toBool());
@@ -616,10 +636,18 @@ void AppController::setPreferencesAction()
         session->setDownloadPath(Path(it.value().toString()));
     if (hasKey(u"use_category_paths_in_manual_mode"_s))
         session->setUseCategoryPathsInManualMode(it.value().toBool());
-    if (hasKey(u"export_dir"_s))
-        session->setTorrentExportDirectory(Path(it.value().toString()));
-    if (hasKey(u"export_dir_fin"_s))
-        session->setFinishedTorrentExportDirectory(Path(it.value().toString()));
+
+    // .torrent files backup management
+    if (hasKey(u"torrent_files_backup_enabled"_s))
+        session->setTorrentFileBackupEnabled(it.value().toBool());
+    if (hasKey(u"torrent_files_backup_dir"_s))
+        session->setTorrentBackupDirectory(Path(it.value().toString()));
+    if (hasKey(u"torrent_files_finished_backup_dir_enabled"_s))
+        session->setFinishedTorrentBackupDirectoryEnabled(it.value().toBool());
+    if (hasKey(u"torrent_files_finished_backup_dir"_s))
+        session->setFinishedTorrentBackupDirectory(Path(it.value().toString()));
+    if (hasKey(u"remove_torrent_file_backup"_s))
+        session->setRemoveTorrentFileBackup(it.value().toBool());
 
     // TODO: The following code is deprecated. Delete it once replaced by updated API method.
     // === BEGIN DEPRECATED CODE === //
@@ -741,6 +769,8 @@ void AppController::setPreferencesAction()
         session->setI2PPort(it.value().toInt());
     if (hasKey(u"i2p_mixed_mode"_s))
         session->setI2PMixedMode(it.value().toBool());
+    if (hasKey(u"i2p_pex_enabled"_s))
+        session->setI2PPeXEnabled(it.value().toBool());
     if (hasKey(u"i2p_inbound_quantity"_s))
         session->setI2PInboundQuantity(it.value().toInt());
     if (hasKey(u"i2p_outbound_quantity"_s))
@@ -749,6 +779,10 @@ void AppController::setPreferencesAction()
         session->setI2PInboundLength(it.value().toInt());
     if (hasKey(u"i2p_outbound_length"_s))
         session->setI2POutboundLength(it.value().toInt());
+    if (hasKey(u"i2p_inbound_length_variance"_s))
+        session->setI2PInboundLengthVariance(it.value().toInt());
+    if (hasKey(u"i2p_outbound_length_variance"_s))
+        session->setI2POutboundLengthVariance(it.value().toInt());
 
     // Proxy Server
     auto *proxyManager = Net::ProxyConfigurationManager::instance();
@@ -944,6 +978,8 @@ void AppController::setPreferencesAction()
         pref->setWebUIBanDuration(std::chrono::seconds {it.value().toInt()});
     if (hasKey(u"web_ui_session_timeout"_s))
         pref->setWebUISessionTimeout(it.value().toInt());
+    if (hasKey(u"web_ui_sessions_count_limit"_s))
+        pref->setWebUISessionsCountLimit(it.value().toInt());
     // Use alternative WebUI
     if (hasKey(u"alternative_webui_enabled"_s))
         pref->setAltWebUIEnabled(it.value().toBool());
@@ -1055,6 +1091,12 @@ void AppController::setPreferencesAction()
     // Resolve peer countries
     if (hasKey(u"resolve_peer_countries"_s))
         pref->resolvePeerCountries(it.value().toBool());
+    // Confirm removing all tags
+    if (hasKey(KEY_CONFIRM_REMOVE_ALL_TAGS))
+        pref->setConfirmRemoveAllTags(it.value().toBool());
+    // Confirm removing a tracker from all torrents
+    if (hasKey(KEY_CONFIRM_REMOVE_TRACKER_FROM_ALL_TORRENTS))
+        pref->setConfirmRemoveTrackerFromAllTorrents(it.value().toBool());
     // Reannounce to all trackers when ip/port changed
     if (hasKey(u"reannounce_when_address_changed"_s))
         session->setReannounceWhenAddressChangedEnabled(it.value().toBool());
@@ -1074,6 +1116,18 @@ void AppController::setPreferencesAction()
     // Python executable path
     if (hasKey(u"python_executable_path"_s))
         pref->setPythonExecutablePath(Path(it.value().toString()));
+    // Start session paused
+    if (hasKey(u"start_paused"_s))
+        session->setStartPaused(it.value().toBool());
+    // Session shutdown timeout
+    if (hasKey(u"shutdown_timeout"_s))
+    {
+        // validate shutdown timeout, range -1 to INT_MAX
+        bool ok = false;
+        const int timeout = it.value().toInt(&ok);
+        if (ok && (timeout >= -1))
+            session->setShutdownTimeout(timeout);
+    }
 
     // libtorrent preferences
     // Bdecode depth limit
@@ -1165,6 +1219,9 @@ void AppController::setPreferencesAction()
     // Multiple connections per IP
     if (hasKey(u"enable_multi_connections_from_same_ip"_s))
         session->setMultiConnectionsPerIpEnabled(it.value().toBool());
+    // Multiple connections per Peer ID
+    if (hasKey(u"enable_multi_connections_from_same_peer_id"_s))
+        session->setMultiConnectionsPerPeerIDEnabled(it.value().toBool());
     // Validate HTTPS tracker certificate
     if (hasKey(u"validate_https_tracker_certificate"_s))
         session->setValidateHTTPSTrackerCertificate(it.value().toBool());
@@ -1206,9 +1263,15 @@ void AppController::setPreferencesAction()
     // Maximum outstanding requests to a single peer
     if (hasKey(u"request_queue_size"_s))
         session->setRequestQueueSize(it.value().toInt());
+    // Maximum outstanding requests from a single peer
+    if (hasKey(u"max_outstanding_block_requests"_s))
+        session->setMaxOutstandingBlockRequests(it.value().toInt());
     // DHT bootstrap nodes
     if (hasKey(u"dht_bootstrap_nodes"_s))
         session->setDHTBootstrapNodes(it.value().toString());
+    // STUN server for WebTorrent NAT traversal
+    if (hasKey(u"webtorrent_stun_server"_s))
+        session->setWebTorrentSTUNServer(it.value().toString());
 
     // Save preferences
     pref->apply();

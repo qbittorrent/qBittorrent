@@ -137,7 +137,7 @@ window.qBittorrent.TorrentContent ??= (() => {
         checkbox.type = "checkbox";
         checkbox.setAttribute("data-id", id);
         checkbox.setAttribute("data-file-id", fileId);
-        checkbox.addEventListener("click", fileCheckboxClicked);
+        checkbox.addEventListener("click", (event) => fileCheckboxClicked(event));
 
         updateCheckbox(checkbox, checked);
         return checkbox;
@@ -176,7 +176,7 @@ window.qBittorrent.TorrentContent ??= (() => {
         select.setAttribute("data-id", id);
         select.setAttribute("data-file-id", fileId);
         select.classList.add("combo_priority");
-        select.addEventListener("change", fileComboboxChanged);
+        select.addEventListener("change", (event) => fileComboboxChanged(event));
 
         select.appendChild(createOption(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), "QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]"));
         select.appendChild(createOption(FilePriority.Normal, (FilePriority.Normal === selectedPriority), "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]"));
@@ -212,7 +212,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
     const getComboboxPriority = (id) => {
         const node = torrentFilesTable.getNode(id.toString());
-        return normalizePriority(node.priority, 10);
+        return normalizePriority(node.priority);
     };
 
     const switchGlobalCheckboxState = (e) => {
@@ -466,14 +466,38 @@ window.qBittorrent.TorrentContent ??= (() => {
                     }
                 },
                 Download: async (element, ref) => {
-                    const url = getSelectedFileUrl();
-                    await window.qBittorrent.Misc.downloadFileStream(url);
+                    for (const url of getSelectedFilesURL()) {
+                        await window.qBittorrent.Misc.downloadFileStream(url);
+
+                        // https://stackoverflow.com/questions/53560991/automatic-file-downloads-limited-to-10-files-on-chrome-browser
+                        await window.qBittorrent.Misc.sleep(1000);
+                    }
                 },
-                CopyURL: async (element, ref) => {
-                    const url = getSelectedFileUrl();
+                CopyPath: async (element, ref) => {
+                    const torrentID = torrentsTable.getCurrentTorrentID();
+                    const torrentRow = torrentsTable.getRow(torrentID);
+                    const savePath = torrentsTable.getRowData(torrentRow, true).save_path;
+
+                    const files = [];
+                    for (const rowID of torrentFilesTable.selectedRowsIds()) {
+                        const names = [];
+                        for (let node = torrentFilesTable.getNode(rowID);; node = node.parent) {
+                            names.push(node.name);
+                            if (node.depth <= 0)
+                                break;
+                        }
+                        names.push(savePath);
+                        names.reverse();
+
+                        files.push(names.join(window.qBittorrent.Filesystem.getServerPathSeparator()));
+                    }
+
+                    await clipboardCopy(files.join("\n"));
+                },
+                CopyDownloadURL: async (element, ref) => {
+                    const url = getSelectedFilesURL().join("\n");
                     await clipboardCopy(url);
                 },
-
                 FilePrioIgnore: (element, ref) => {
                     filesPriorityMenuClicked(FilePriority.Ignored);
                 },
@@ -492,21 +516,34 @@ window.qBittorrent.TorrentContent ??= (() => {
                 y: 2
             },
             onShow: function() {
-                const selectedFiles = torrentFilesTable.selectedRowsIds();
-                if (selectedFiles.length !== 1) {
-                    this.hideItem("Download");
-                    this.hideItem("CopyURL");
+                let hasFolder = false;
+                let isAllComplete = true;
+                for (const rowID of torrentFilesTable.selectedRowsIds()) {
+                    const node = torrentFilesTable.getNode(rowID);
+                    const isFullyDownloaded = node.progress >= 100;
+
+                    if (node.isFolder)
+                        hasFolder = true;
+                    if (!isFullyDownloaded)
+                        isAllComplete = false;
+                }
+
+                // add torrent file list doesn't have "CopyDownloadURL", "Download" actions yet
+                if (torrentFilesTable.constructor.name === "AddTorrentFilesTable")
+                    return;
+
+                const fileOnlyActions = ["CopyDownloadURL", "Download"];
+                if (hasFolder) {
+                    for (const action of fileOnlyActions) {
+                        this.setEnabled(action, false)
+                            .setTooltip(action, "QBT_TR(Not available for folders)QBT_TR[CONTEXT=TorrentContent]");
+                    }
                 }
                 else {
-                    const node = torrentFilesTable.getNode(selectedFiles[0]);
-                    const isFullyDownloaded = node.progress >= 100;
-                    if (!node.isFolder && isFullyDownloaded) {
-                        this.showItem("Download");
-                        this.showItem("CopyURL");
-                    }
-                    else {
-                        this.hideItem("Download");
-                        this.hideItem("CopyURL");
+                    // only files are selected
+                    for (const action of fileOnlyActions) {
+                        this.setEnabled(action, isAllComplete)
+                            .setTooltip(action, (isAllComplete ? "" : "QBT_TR(Unavailable until all selected files are downloaded)QBT_TR[CONTEXT=TorrentContent]"));
                     }
                 }
             }
@@ -548,22 +585,22 @@ window.qBittorrent.TorrentContent ??= (() => {
         torrentFilesFilterInputTimer = -1;
     };
 
-    const getSelectedFileUrl = () => {
-        const current_hash = torrentsTable.getCurrentTorrentID();
-        if (current_hash.length === 0)
-            return;
+    const getSelectedFilesURL = () => {
+        const torrentID = torrentsTable.getCurrentTorrentID();
+        if (torrentID.length === 0)
+            return [];
 
-        const selectedFiles = torrentFilesTable.selectedRowsIds();
-        if (selectedFiles.length !== 1)
-            return;
-
-        const node = torrentFilesTable.getNode(selectedFiles[0]);
-        const url = new URL("api/v2/torrents/downloadFile", window.location);
-        url.search = new URLSearchParams({
-            hash: current_hash,
-            file: node.fileId
-        });
-        return url;
+        const urls = [];
+        for (const rowId of torrentFilesTable.selectedRowsIds()) {
+            const node = torrentFilesTable.getNode(rowId);
+            const url = new URL("api/v2/torrents/downloadFile", window.location);
+            url.search = new URLSearchParams({
+                hash: torrentID,
+                file: node.fileId
+            });
+            urls.push(url.toString());
+        }
+        return urls;
     };
 
     return exports();

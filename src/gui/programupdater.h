@@ -57,13 +57,11 @@ signals:
     void updateCheckFinished();
 
 private slots:
-    void rssDownloadFinished(const Net::DownloadResult &result);
     void fallbackDownloadFinished(const Net::DownloadResult &result, Version &version);
 
 private:
     enum class RemoteSource
     {
-        Fosshub,
         QbtMain,
         QbtBackup
     };
@@ -72,8 +70,6 @@ private:
     RemoteSource getLatestRemoteSource() const;
 
     int m_pendingRequestCount = 0;
-    Version m_fosshubVersion;
     Version m_qbtMainVersion;
     Version m_qbtBackupVersion;
-    QUrl m_updateURL;
 };

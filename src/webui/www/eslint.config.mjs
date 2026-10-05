@@ -49,6 +49,7 @@ export default [
             "require-await": "error",
             "sort-imports": ["error", { allowSeparatedGroups: true }],
             "PluginQbtWebUI/prefix-inc-dec-operators": "error",
+            "PluginQbtWebUI/require-event-parameter": "error",
             "PreferArrowFunctions/prefer-arrow-functions": "error",
             "Stylistic/no-extra-semi": "error",
             "Stylistic/no-mixed-operators": [
@@ -71,8 +72,14 @@ export default [
             "Stylistic/quote-props": ["error", "consistent-as-needed"],
             "Stylistic/semi": "error",
             "Stylistic/spaced-comment": ["error", "always", { exceptions: ["*"] }],
-            "Unicorn/no-array-for-each": "error",
+            "Unicorn/no-for-each": "error",
             "Unicorn/no-for-loop": "error",
+            "Unicorn/no-invalid-argument-count": [
+                "error",
+                {
+                    "location.reload": [0, 1],
+                }
+            ],
             "Unicorn/no-zero-fractions": "error",
             "Unicorn/prefer-classlist-toggle": "error",
             "Unicorn/prefer-native-coercion-functions": "error",

@@ -81,10 +81,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDiv = document.getElementById(dynamicTableDivId);
             this.useVirtualList = clientData.get("use_virtual_list") ?? true;
             this.fixedTableHeader = document.querySelector(`#${dynamicTableFixedHeaderDivId} thead tr`);
-            this.table = this.dynamicTableDiv.querySelector("table");
+            // the body table is the direct child; the fixed header table is nested in a child div
+            this.table = this.dynamicTableDiv.querySelector(":scope > table");
             this.colgroup = document.createElement("colgroup");
             this.table.prepend(this.colgroup);
-            this.tableBody = this.dynamicTableDiv.querySelector("tbody");
+            // the fixed header table needs its own colgroup so its columns size identically to the body
+            this.fixedTableHeaderColgroup = document.createElement("colgroup");
+            this.fixedTableHeader.closest("table").prepend(this.fixedTableHeaderColgroup);
+            this.tableBody = this.table.querySelector("tbody");
             this.rowHeight = (clientData.get("display_density") === "compact") ? 22 : 26;
             this.rows = new Map();
             this.cachedElements = [];
@@ -93,6 +97,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.contextMenu = contextMenu;
             this.sortedColumn = localPreferences.get(`sorted_column_${this.dynamicTableDivId}`, 0);
             this.reverseSort = localPreferences.get(`reverse_sort_${this.dynamicTableDivId}`, "0");
+            this.secondarySortedColumn = localPreferences.get(`secondary_sorted_column_${this.dynamicTableDivId}`) || null;
+            this.secondaryReverseSort = localPreferences.get(`secondary_reverse_sort_${this.dynamicTableDivId}`, "0");
             this.initColumns();
             this.loadColumnsOrder();
             this.updateTableHeaders();
@@ -121,21 +127,20 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         setupCommonEvents() {
-            const tableFixedHeaderDiv = document.getElementById(this.dynamicTableFixedHeaderDivId);
-
-            const tableElement = tableFixedHeaderDiv.querySelector("table");
             this.dynamicTableDiv.addEventListener("scroll", (e) => {
-                tableElement.style.left = `${-this.dynamicTableDiv.scrollLeft}px`;
-                // rerender on scroll
+                // rerender on vertical scroll
                 if (this.useVirtualList) {
-                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
-                    this.rerender();
+                    const scrollTop = this.dynamicTableDiv.scrollTop;
+                    if (scrollTop !== this.renderedOffset) {
+                        this.renderedOffset = scrollTop;
+                        this.rerender();
+                    }
                 }
             });
 
             this.dynamicTableDiv.addEventListener("click", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr) {
+                if ((tr === null) || (tr.rowId === undefined)) {
                     // clicking on the table body deselects all rows
                     this.deselectAll();
                     this.setRowClass();
@@ -207,10 +212,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.currentHeaderAction = "";
             this.canResize = false;
 
-            const resetElementBorderStyle = (el, side) => {
-                if ((side === "left") || (side !== "right"))
+            const resetElementBorderStyle = (el, side = "both") => {
+                if ((side === "left") || (side === "both"))
                     el.style.borderLeft = "";
-                if ((side === "right") || (side !== "left"))
+                if ((side === "right") || (side === "both"))
                     el.style.borderRight = "";
             };
 
@@ -372,10 +377,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             }.bind(this);
 
             for (const th of this.getRowCells(this.fixedTableHeader)) {
-                th.addEventListener("mousemove", mouseMoveFn);
-                th.addEventListener("mouseout", mouseOutFn);
-                th.addEventListener("touchend", onTouch, { passive: true });
-                th.addEventListener("dblclick", onDoubleClick);
+                th.addEventListener("mousemove", (event) => mouseMoveFn(event));
+                th.addEventListener("mouseout", (event) => mouseOutFn(event));
+                th.addEventListener("touchend", ((event) => onTouch(event)), { passive: true });
+                th.addEventListener("dblclick", (event) => onDoubleClick(event));
                 th.makeResizable({
                     modifiers: {
                         x: "",
@@ -444,6 +449,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const style = `width: ${column.width}px; ${column.style}`;
             this.getRowCells(this.fixedTableHeader)[pos].style.cssText = style;
             this.colgroup.children[pos].style.width = `${column.width}px`;
+            this.fixedTableHeaderColgroup.children[pos].style.width = `${column.width}px`;
             // rerender on column resize
             if (this.useVirtualList)
                 this.rerender();
@@ -612,26 +618,41 @@ window.qBittorrent.DynamicTable ??= (() => {
             const col = document.createElement("col");
             col.style.width = `${column.width}px`;
             this.colgroup.append(col);
+
+            const headerCol = document.createElement("col");
+            headerCol.style.width = `${column.width}px`;
+            this.fixedTableHeaderColgroup.append(headerCol);
+
             this.fixedTableHeader.append(document.createElement("th"));
         }
 
         loadColumnsOrder() {
-            const columnsOrder = [];
-            const val = localPreferences.get(`columns_order_${this.dynamicTableDivId}`);
-            if ((val === null) || (val === undefined))
+            const savedOrder = localPreferences.get(`columns_order_${this.dynamicTableDivId}`);
+            if ((savedOrder === null) || (savedOrder === undefined))
                 return;
-            for (const v of val.split(",")) {
-                if ((v in this.columns) && (!columnsOrder.contains(v)))
-                    columnsOrder.push(v);
+
+            const byName = new Map(this.columns.map(column => [column.name, column]));
+
+            // Build the desired column order. A Set keeps names unique while
+            // preserving their saved order.
+            const order = new Set();
+            for (const name of savedOrder.split(",")) {
+                // skip names that no longer exist as columns
+                if (byName.has(name))
+                    order.add(name);
             }
 
-            for (let i = 0; i < this.columns.length; ++i) {
-                if (!columnsOrder.contains(this.columns[i].name))
-                    columnsOrder.push(this.columns[i].name);
-            }
+            // Append columns that were added after the order was saved so that
+            // every column appears exactly once.
+            for (const column of this.columns)
+                order.add(column.name);
 
+            // Reorder the columns array in place to match the desired order.
+            // The array is mutated rather than replaced so its named properties
+            // are preserved.
+            const orderedNames = [...order];
             for (let i = 0; i < this.columns.length; ++i)
-                this.columns[i] = this.columns[columnsOrder[i]];
+                this.columns[i] = byName.get(orderedNames[i]);
         }
 
         saveColumnsOrder() {
@@ -647,9 +668,14 @@ window.qBittorrent.DynamicTable ??= (() => {
         updateTableHeaders() {
             this.updateHeader(this.fixedTableHeader);
             const cols = this.colgroup.children;
+            const headerCols = this.fixedTableHeaderColgroup.children;
             for (let i = 0; i < this.columns.length; ++i) {
-                cols[i].style.width = `${this.columns[i].width}px`;
-                cols[i].classList.toggle("invisible", !this.columns[i].isVisible());
+                const width = `${this.columns[i].width}px`;
+                const visible = this.columns[i].isVisible();
+                cols[i].style.width = width;
+                cols[i].classList.toggle("invisible", !visible);
+                headerCols[i].style.width = width;
+                headerCols[i].classList.toggle("invisible", !visible);
             }
             this.setSortedColumnIcon(this.sortedColumn, null, (this.reverseSort === "1"));
         }
@@ -683,6 +709,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const action = column.isVisible() ? "remove" : "add";
             fths[pos].classList[action]("invisible");
             this.colgroup.children[pos].classList[action]("invisible");
+            this.fixedTableHeaderColgroup.children[pos].classList[action]("invisible");
 
             for (const tr of this.getTrs()) {
                 const td = this.getRowCells(tr)[pos];
@@ -703,6 +730,8 @@ window.qBittorrent.DynamicTable ??= (() => {
         setSortedColumn(column, reverse = null) {
             if (column !== this.sortedColumn) {
                 const oldColumn = this.sortedColumn;
+                this.secondarySortedColumn = oldColumn;
+                this.secondaryReverseSort = this.reverseSort;
                 this.sortedColumn = column;
                 this.reverseSort = reverse ?? "0";
                 this.setSortedColumnIcon(column, oldColumn, false);
@@ -714,7 +743,29 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
             localPreferences.set(`sorted_column_${this.dynamicTableDivId}`, column);
             localPreferences.set(`reverse_sort_${this.dynamicTableDivId}`, this.reverseSort);
+            if (this.secondarySortedColumn !== null) {
+                localPreferences.set(`secondary_sorted_column_${this.dynamicTableDivId}`, this.secondarySortedColumn);
+                localPreferences.set(`secondary_reverse_sort_${this.dynamicTableDivId}`, this.secondaryReverseSort);
+            }
             this.updateTable(false);
+        }
+
+        rowComparator() {
+            const primary = this.columns[this.sortedColumn];
+            const isPrimaryReverse = this.reverseSort === "1";
+            const secondaryName = this.secondarySortedColumn;
+            const secondary = (secondaryName && (secondaryName !== this.sortedColumn))
+                ? this.columns[secondaryName] : null;
+            const isSecondaryReverse = this.secondaryReverseSort === "1";
+            return (row1, row2) => {
+                const result = primary.compareRows(row1, row2);
+                if (result !== 0)
+                    return isPrimaryReverse ? -result : result;
+                if (!secondary)
+                    return 0;
+                const subResult = secondary.compareRows(row1, row2);
+                return isSecondaryReverse ? -subResult : subResult;
+            };
         }
 
         setSortedColumnIcon(newColumn, oldColumn, isReverse) {
@@ -788,7 +839,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                     this.selectedRows.push(row.rowId);
                 }
                 else if (select) {
-                    this.selectedRows.push(row.rowId);
+                    if (this.useVirtualList) {
+                        this.selectedRows.push(row.rowId);
+                    }
+                    else {
+                        const tr = this.getTrByRowId(row.rowId);
+                        if ((tr !== null) && !tr.classList.contains("invisible"))
+                            this.selectedRows.push(row.rowId);
+                    }
                 }
             }
             this.setRowClass();
@@ -883,12 +941,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 filteredRows[row.rowId] = row;
             }
 
-            const column = this.columns[this.sortedColumn];
-            const isReverseSort = (this.reverseSort === "0");
-            filteredRows.sort((row1, row2) => {
-                const result = column.compareRows(row1, row2);
-                return isReverseSort ? result : -result;
-            });
+            filteredRows.sort(this.rowComparator());
             return filteredRows;
         }
 
@@ -1474,7 +1527,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // eta
             this.columns["eta"].updateTd = function(td, row) {
-                const eta = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row), window.qBittorrent.Misc.MAX_ETA);
+                const eta = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row), window.qBittorrent.Misc.MAX_ETA, window.qBittorrent.Misc.TIME_RESOLUTION.Seconds);
                 td.textContent = eta;
                 td.title = eta;
             };
@@ -1790,12 +1843,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
             }
 
-            const column = this.columns[this.sortedColumn];
-            const isReverseSort = (this.reverseSort === "0");
-            filteredRows.sort((row1, row2) => {
-                const result = column.compareRows(row1, row2);
-                return isReverseSort ? result : -result;
-            });
+            filteredRows.sort(this.rowComparator());
             return filteredRows;
         }
 
@@ -1803,7 +1851,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             super.setupCommonEvents();
             this.dynamicTableDiv.addEventListener("dblclick", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr)
+                if ((tr === null) || (tr.rowId === undefined))
                     return;
 
                 this.deselectAll();
@@ -1860,6 +1908,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("downloaded", "", "QBT_TR(Downloaded)QBT_TR[CONTEXT=PeerListWidget]", 50, true);
             this.newColumn("uploaded", "", "QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]", 50, true);
             this.newColumn("relevance", "", "QBT_TR(Relevance)QBT_TR[CONTEXT=PeerListWidget]", 30, true);
+            this.newColumn("contribution", "", "QBT_TR(Contribution)QBT_TR[CONTEXT=PeerListWidget]", 30, true);
             this.newColumn("files", "", "QBT_TR(Files)QBT_TR[CONTEXT=PeerListWidget]", 100, true);
 
             this.columns["country"].dataProperties.push("country_code");
@@ -1941,6 +1990,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             // relevance
             this.columns["relevance"].updateTd = displayProgress;
             this.columns["relevance"].staticWidth = 100;
+
+            // contribution
+            this.columns["contribution"].updateTd = displayProgress;
+            this.columns["contribution"].staticWidth = 100;
 
             // files
             this.columns["files"].updateTd = function(td, row) {
@@ -2054,12 +2107,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 filteredRows = [...this.getRowValues()];
             }
 
-            const column = this.columns[this.sortedColumn];
-            const isReverseSort = (this.reverseSort === "0");
-            filteredRows.sort((row1, row2) => {
-                const result = column.compareRows(row1, row2);
-                return isReverseSort ? result : -result;
-            });
+            filteredRows.sort(this.rowComparator());
 
             return filteredRows;
         }
@@ -2309,12 +2357,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
             }
 
-            const column = this.columns[this.sortedColumn];
-            const isReverseSort = this.reverseSort === "0";
-            const sortRows = (row1, row2) => {
-                const result = column.compareRows(row1, row2);
-                return isReverseSort ? result : -result;
-            };
+            const sortRows = this.rowComparator();
 
             const result = [];
             for (const tracker of trackers.sort(sortRows)) {
@@ -2767,7 +2810,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         #sortNodesByColumn(root, column) {
             const isColumnName = (column.name === this.fileNameColumn);
-            const isReverseSort = (this.reverseSort === "0");
+            const compareRows = this.rowComparator();
 
             const stack = [root];
             while (stack.length > 0) {
@@ -2782,8 +2825,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             return 1;
                     }
 
-                    const result = column.compareRows(node1, node2);
-                    return isReverseSort ? result : -result;
+                    return compareRows(node1, node2);
                 });
 
                 stack.push(...node.children);
@@ -2866,8 +2908,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                     || ((this.filterTerms.length > 0) && isFilterTermsChanged));
                 const isSortedColumnChanged = (this.prevSortedColumn !== this.sortedColumn);
                 const isReverseSortChanged = (this.prevReverseSort !== this.reverseSort);
+                const isSecondarySortChanged = (this.prevSecondarySortedColumn !== this.secondarySortedColumn)
+                    || (this.prevSecondaryReverseSort !== this.secondaryReverseSort);
 
-                return (rowsChanged || isFilterChanged || isSortedColumnChanged || isReverseSortChanged);
+                return (rowsChanged || isFilterChanged || isSortedColumnChanged || isReverseSortChanged || isSecondarySortChanged);
             }.bind(this);
 
             const rowsString = this.generateRowsSignature();
@@ -2891,6 +2935,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.prevFilteredRows = rows;
             this.prevSortedColumn = this.sortedColumn;
             this.prevReverseSort = this.reverseSort;
+            this.prevSecondarySortedColumn = this.secondarySortedColumn;
+            this.prevSecondaryReverseSort = this.secondaryReverseSort;
             return rows;
         }
 
@@ -3131,13 +3177,14 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         setupCommonEvents() {
-            const headerDiv = document.getElementById("bulkRenameFilesTableFixedHeaderDiv");
             this.dynamicTableDiv.addEventListener("scroll", (e) => {
-                headerDiv.scrollLeft = this.dynamicTableDiv.scrollLeft;
-                // rerender on scroll
+                // rerender on vertical scroll
                 if (this.useVirtualList) {
-                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
-                    this.rerender();
+                    const scrollTop = this.dynamicTableDiv.scrollTop;
+                    if (scrollTop !== this.renderedOffset) {
+                        this.renderedOffset = scrollTop;
+                        this.rerender();
+                    }
                 }
             });
         }
@@ -3478,12 +3525,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 filteredRows = [...this.getRowValues()];
             }
 
-            const column = this.columns[this.sortedColumn];
-            const isReverseSort = (this.reverseSort === "0");
-            filteredRows.sort((row1, row2) => {
-                const result = column.compareRows(row1, row2);
-                return isReverseSort ? result : -result;
-            });
+            filteredRows.sort(this.rowComparator());
 
             this.filteredLength = filteredRows.length;
 
@@ -3537,12 +3579,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 filteredRows = [...this.getRowValues()];
             }
 
-            const column = this.columns[this.sortedColumn];
-            const isReverseSort = (this.reverseSort === "0");
-            filteredRows.sort((row1, row2) => {
-                const result = column.compareRows(row1, row2);
-                return isReverseSort ? result : -result;
-            });
+            filteredRows.sort(this.rowComparator());
 
             return filteredRows;
         }

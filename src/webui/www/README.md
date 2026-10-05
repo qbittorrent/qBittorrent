@@ -1,16 +1,15 @@
-qBittorrent WebUI
----
+# qBittorrent WebUI
 
-### Browser compatibility
+## Browser compatibility
 
 The upper bound will always be the latest stable release.
 
-| Browser           | Lower bound                                            |
-| ----------------- | ------------------------------------------------------ |
-| Chrome            | [The release from 1 year ago][Chrome-lower-bound-link] |
-| Firefox           | [Latest active ESR release][Firefox-ESR-link]          |
-| Microsoft Edge    | [The release from 1 year ago][MSEdge-lower-bound-link] |
-| Safari            | [The release from 1 year ago][Safari-lower-bound-link] |
+| Browser        | Lower bound                                            |
+| -------------- | ------------------------------------------------------ |
+| Chrome         | [The release from 1 year ago][Chrome-lower-bound-link] |
+| Firefox        | [Latest active ESR release][Firefox-ESR-link]          |
+| Microsoft Edge | [The release from 1 year ago][MSEdge-lower-bound-link] |
+| Safari         | [The release from 1 year ago][Safari-lower-bound-link] |
 
 [Supported browsers table](https://browsersl.ist/?results#q=Chrome+%3E+0+and+last+1+year%0AEdge+%3E+0+and+last+1+year%0AFirefox+ESR%0ASafari+%3E+0+and+last+1+year)
 
@@ -19,7 +18,7 @@ The upper bound will always be the latest stable release.
 [MSEdge-lower-bound-link]: https://browsersl.ist/?results#q=Edge+%3E+0+and+last+1+year
 [Safari-lower-bound-link]: https://browsersl.ist/?results#q=Safari+%3E+0+and+last+1+year
 
-### Notices
+## Notices
 
 * The [MooTools library][mootools-home] has seen [little maintenance][mootools-code-frequency] and therefore
   its usage is [discouraged][mootools-deprecate]. \

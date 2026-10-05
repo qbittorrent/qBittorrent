@@ -31,10 +31,11 @@
 #pragma once
 
 #include <QDialog>
-#include <QThreadPool>
 
 #include "base/path.h"
 #include "base/settingvalue.h"
+
+class QThreadPool;
 
 namespace BitTorrent
 {
@@ -82,7 +83,7 @@ private:
 #endif
 
     Ui::TorrentCreatorDialog *m_ui = nullptr;
-    QThreadPool m_threadPool;
+    QThreadPool *m_threadPool = nullptr;
 
     // settings
     SettingValue<QSize> m_storeDialogSize;

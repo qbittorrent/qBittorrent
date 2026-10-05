@@ -62,6 +62,7 @@ public slots:
     void updateRefreshInterval(int val) const;
 
 signals:
+    void openRSSSettingsLinkActivated();
     void unreadCountUpdated(int count);
 
 private slots:
@@ -80,6 +81,7 @@ private slots:
     void downloadSelectedTorrents();
     void saveSlidersPosition();
     void restoreSlidersPosition();
+    void saveFeedListState();
     void askNewFolder();
     void saveFoldersOpenState();
     void loadFoldersOpenState();

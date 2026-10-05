@@ -29,6 +29,7 @@
 #pragma once
 
 #include <QtTypes>
+#include <QByteArray>
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QHash>
@@ -36,7 +37,6 @@
 
 #include "base/pathfwd.h"
 
-class QByteArray;
 class QHostAddress;
 class QString;
 
@@ -51,15 +51,13 @@ public:
     static GeoIPDatabase *load(const Path &filename, QString &error);
     static GeoIPDatabase *load(const QByteArray &data, QString &error);
 
-    ~GeoIPDatabase();
-
     QString type() const;
     quint16 ipVersion() const;
     QDateTime buildEpoch() const;
     QString lookup(const QHostAddress &hostAddr) const;
 
 private:
-    explicit GeoIPDatabase(quint32 size);
+    GeoIPDatabase(const QByteArray &data);
 
     bool parseMetadata(const QVariantHash &metadata, QString &error);
     bool loadDB(QString &error) const;
@@ -84,6 +82,5 @@ private:
     QString m_dbType;
     // Search data
     mutable QHash<quint32, QString> m_countries;
-    quint32 m_size = 0;
-    uchar *m_data = nullptr;
+    const QByteArray m_data;
 };

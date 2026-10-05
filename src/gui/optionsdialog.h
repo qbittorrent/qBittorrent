@@ -81,6 +81,8 @@ public:
 
 public slots:
     void showConnectionTab();
+    void showSpeedWidgetSetting();
+    void showRSSTab();
 
 private slots:
     void adjustProxyOptions();
@@ -159,8 +161,6 @@ private:
     bool preAllocateAllFiles() const;
     bool useAdditionDialog() const;
     bool addTorrentsStopped() const;
-    Path getTorrentExportDir() const;
-    Path getFinishedTorrentExportDir() const;
     // Connection options
     int getPort() const;
     bool isUPnPEnabled() const;
