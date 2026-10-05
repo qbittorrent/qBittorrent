@@ -725,7 +725,23 @@ window.qBittorrent.ContextMenu ??= (() => {
         }
     }
 
-    class RssArticleContextMenu extends ContextMenu {}
+    class RssArticleContextMenu extends ContextMenu {
+        updateMenuItems() {
+            const isMultiSelect = window.qBittorrent.Rss.rssArticleTable.selectedRowsIds().length > 1;
+
+            const label = isMultiSelect
+                ? "QBT_TR(Open separate download windows)QBT_TR[CONTEXT=RSSWidget]"
+                : "QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]";
+            const downloadAnchor = this.menu.querySelector("a[href=\"#Download\"]");
+            downloadAnchor.querySelector("img").alt = label;
+            downloadAnchor.lastChild.nodeValue = ` ${label}`;
+
+            if (isMultiSelect)
+                this.showItem("OpenSharedDownloadWindow");
+            else
+                this.hideItem("OpenSharedDownloadWindow");
+        }
+    }
 
     class RssDownloaderRuleContextMenu extends ContextMenu {
         adjustMenuPosition(e) {
