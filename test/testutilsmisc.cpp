@@ -30,6 +30,7 @@
 #include <QObject>
 #include <QTest>
 
+#include "base/global.h"
 #include "base/utils/misc.h"
 
 class TestUtilsMisc final : public QObject
@@ -43,23 +44,24 @@ public:
 private slots:
     void testfriendlyUnitCompact() const
     {
-        // numbers are formatted with the system locale, so the expected values must be too
-        const auto expected = [](const double number, const int precision, const QChar unit) -> QString
+        // numbers are formatted with the system locale
+        const QString decimalPoint = QLocale::system().decimalPoint();
+        const auto toNative = [&decimalPoint](QString string) -> QString
         {
-            return QLocale::system().toString(number, 'f', precision) + QChar::Nbsp + unit;
+            return string.replace(u' ', QChar::Nbsp).replace(u'.', decimalPoint);
         };
 
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(500), expected(500, 0, u'B'));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000), expected(0.97, 2, u'K'));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(5000), expected(4.88, 2, u'K'));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000), expected(9.76, 2, u'K'));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000), expected(14.6, 1, u'K'));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(100000), expected(97.6, 1, u'K'));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(150000), expected(146, 0, u'K'));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000000), expected(976, 0, u'K'));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000), expected(9.53, 2, u'M'));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000000), expected(14.3, 1, u'M'));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000000), expected(9.31, 2, u'G'));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(500), toNative(u"500 B"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000), toNative(u"0.97 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(5000), toNative(u"4.88 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000), toNative(u"9.76 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000), toNative(u"14.6 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(100000), toNative(u"97.6 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(150000), toNative(u"146 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000000), toNative(u"976 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000), toNative(u"9.53 M"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000000), toNative(u"14.3 M"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000000), toNative(u"9.31 G"_s));
     }
 };
 
