@@ -982,21 +982,12 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
     const QString targetOrigin = m_isReverseProxySupportEnabled
         ? request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST))
         : request.headers.value(Http::HEADER_HOST);
-    const QString originValue = request.headers.value(Http::HEADER_ORIGIN);
-    const QString refererValue = request.headers.value(Http::HEADER_REFERER);
 
-    if (originValue.isEmpty() && refererValue.isEmpty())
+    // Prefer 'Sec-Fetch-Site' when present: it is set by the browser itself, cannot be suppressed or tampered with
+    // by the requesting page, and doesn't rely on the 'Host' header (e.g. behind a reverse proxy).
+    // Browsers only send it to potentially trustworthy origins (HTTPS or localhost).
+    if (const QString secFetchSiteValue = request.headers.value(Http::HEADER_SEC_FETCH_SITE); !secFetchSiteValue.isEmpty())
     {
-        // A page can suppress both 'Origin' and 'Referer', so fall back to 'Sec-Fetch-Site', which is
-        // set by the browser itself and cannot be tampered with by the requesting page.
-        const QString secFetchSiteValue = request.headers.value(Http::HEADER_SEC_FETCH_SITE);
-        if (secFetchSiteValue.isEmpty())
-        {
-            // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
-            // so let's be permissive here (Web API clients don't send 'Sec-Fetch-Site' at all)
-            return false;
-        }
-
         // "none" means the request wasn't initiated by a page (typed URL, bookmark, etc.)
         const bool isValid = (secFetchSiteValue.compare(u"same-origin", Qt::CaseInsensitive) == 0)
                 || (secFetchSiteValue.compare(u"none", Qt::CaseInsensitive) == 0);
@@ -1008,6 +999,9 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
         }
         return !isValid;
     }
+
+    const QString originValue = request.headers.value(Http::HEADER_ORIGIN);
+    const QString refererValue = request.headers.value(Http::HEADER_REFERER);
 
     // sent with CORS requests, as well as with POST requests
     if (!originValue.isEmpty())
@@ -1034,7 +1028,9 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
         return isInvalid;
     }
 
-    return true;
+    // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
+    // so let's be permissive here (Web API clients don't send any of these headers)
+    return false;
 }
 
 bool WebApplication::validateHostHeader() const
