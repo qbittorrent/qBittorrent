@@ -688,7 +688,8 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
 
     const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
     const auto [authScheme, authData] = parseAuthorizationHeader(authHeader);
-    const bool isUsingApiKey = (authScheme.compare(BEARER_AUTH, Qt::CaseInsensitive) == 0);
+    const QString apiKeyHeader = m_request.headers.value(Http::HEADER_X_API_KEY);
+    const bool isUsingApiKey = !apiKeyHeader.isEmpty() || (authScheme.compare(BEARER_AUTH, Qt::CaseInsensitive) == 0);
 
     Http::HeaderMap commonHeaders = m_prebuiltHeaders;
 
@@ -709,7 +710,7 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
 
         if (isUsingApiKey)
         {
-            apiKeySessionInitialize(authData);
+            apiKeySessionInitialize(!apiKeyHeader.isEmpty() ? apiKeyHeader : authData);
         }
         else
         {
