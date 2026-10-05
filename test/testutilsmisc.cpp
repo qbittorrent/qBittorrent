@@ -26,6 +26,7 @@
  * exception statement from your version.
  */
 
+#include <QLocale>
 #include <QObject>
 #include <QTest>
 
@@ -42,17 +43,23 @@ public:
 private slots:
     void testfriendlyUnitCompact() const
     {
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(500), (u"500" + QChar::Nbsp + u"B"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000), (u"0.97" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(5000), (u"4.88" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000), (u"9.76" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000), (u"14.6" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(100000), (u"97.6" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(150000), (u"146" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000000), (u"976" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000), (u"9.53" + QChar::Nbsp + u"M"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000000), (u"14.3" + QChar::Nbsp + u"M"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000000), (u"9.31" + QChar::Nbsp + u"G"));
+        // numbers are formatted with the system locale, so the expected values must be too
+        const auto expected = [](const double number, const int precision, const QChar unit) -> QString
+        {
+            return QLocale::system().toString(number, 'f', precision) + QChar::Nbsp + unit;
+        };
+
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(500), expected(500, 0, u'B'));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000), expected(0.97, 2, u'K'));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(5000), expected(4.88, 2, u'K'));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000), expected(9.76, 2, u'K'));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000), expected(14.6, 1, u'K'));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(100000), expected(97.6, 1, u'K'));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(150000), expected(146, 0, u'K'));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000000), expected(976, 0, u'K'));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000), expected(9.53, 2, u'M'));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000000), expected(14.3, 1, u'M'));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000000), expected(9.31, 2, u'G'));
     }
 };
 
