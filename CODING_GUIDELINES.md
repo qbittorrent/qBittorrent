@@ -33,8 +33,6 @@ For programming languages other than C++ (e.g. JavaScript) used in this reposito
 * [10. Git commit message](#10-git-commit-message)
 * [11. Not covered above](#11-not-covered-above)
 
----
-
 ## 1. New lines & curly braces
 
 ### a. Function blocks, class/struct definitions, namespaces
