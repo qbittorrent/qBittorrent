@@ -2,6 +2,10 @@
 
 ## 2.16.2
 
+* [#24920](https://github.com/qbittorrent/qBittorrent/pull/24920)
+  * `app/preferences` endpoint includes `confirm_remove_all_tags` (bool) option
+  * `app/preferences` endpoint includes `confirm_remove_tracker_from_all_torrents` (bool) option
+  * `app/setPreferences` endpoint allows to set all of the above
 * [#24918](https://github.com/qbittorrent/qBittorrent/pull/24918)
   * `torrents/createCategory` and `torrents/editCategory` endpoints accept the following new parameters:
     * `ratioLimit` (float) - the category share ratio limit; `-2` means use the global limit, `-1` means unlimited
