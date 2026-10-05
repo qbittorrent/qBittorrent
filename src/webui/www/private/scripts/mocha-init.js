@@ -1085,6 +1085,10 @@ const initializeWindows = () => {
     torrentRemoveAllTagsFN = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
+            if (window.qBittorrent.Cache.preferences.get().confirm_remove_all_tags
+                && !confirm("QBT_TR(Remove all tags from selected torrents?)QBT_TR[CONTEXT=TransferListWidget]"))
+                return;
+
             fetch("api/v2/torrents/removeTags", {
                 method: "POST",
                 body: new URLSearchParams({
@@ -1150,11 +1154,33 @@ const initializeWindows = () => {
             || (trackerHost === TRACKERS_WARNING))
             return;
 
+        const urls = [...trackerMap.get(trackerHost).keys()].map(encodeURIComponent).join("|");
+
+        const trackerRemoved = () => {
+            updateMainData();
+            window.qBittorrent.Filters.clearTrackerFilter();
+        };
+
+        if (!window.qBittorrent.Cache.preferences.get().confirm_remove_tracker_from_all_torrents) {
+            fetch("api/v2/torrents/removeTrackers", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        hash: "*",
+                        urls: urls
+                    })
+                })
+                .then((response) => {
+                    if (response.ok)
+                        trackerRemoved();
+                });
+            return;
+        }
+
         const contentURL = new URL("confirmtrackerdeletion.html", window.location);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             host: trackerHost,
-            urls: [...trackerMap.get(trackerHost).keys()].map(encodeURIComponent).join("|")
+            urls: urls
         });
         new MochaUI.Window({
             id: "confirmDeletionPage",
@@ -1167,10 +1193,7 @@ const initializeWindows = () => {
             padding: 10,
             width: window.qBittorrent.Dialog.limitWidthToViewport(424),
             height: 100,
-            onCloseComplete: () => {
-                updateMainData();
-                window.qBittorrent.Filters.clearTrackerFilter();
-            }
+            onCloseComplete: trackerRemoved
         });
     };
 
