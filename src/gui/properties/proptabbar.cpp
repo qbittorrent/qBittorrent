@@ -50,7 +50,7 @@ namespace
             setDown(down);
         }
 
-    protected:
+    private:
         void focusOutEvent(QFocusEvent *event) override
         {
             QPushButton::focusOutEvent(event);
@@ -58,14 +58,8 @@ namespace
                 setDown(true);
         }
 
-    private:
         bool m_persistentDown = false;
     };
-
-    void setButtonPersistentDown(QButtonGroup *group, const int index, const bool down)
-    {
-        static_cast<PropTabButton *>(group->button(index))->setPersistentDown(down);
-    }
 }
 
 PropTabBar::PropTabBar(QWidget *parent)
@@ -149,7 +143,7 @@ void PropTabBar::setCurrentIndex(int index)
     {
         if (m_currentIndex >= 0)
         {
-          setButtonPersistentDown(m_btnGroup, m_currentIndex, false);
+          static_cast<PropTabButton *>(m_btnGroup->button(m_currentIndex))->setPersistentDown(false);
           m_currentIndex = -1;
           emit visibilityToggled(false);
         }
@@ -158,7 +152,7 @@ void PropTabBar::setCurrentIndex(int index)
     // Unselect previous tab
     if (m_currentIndex >= 0)
     {
-        setButtonPersistentDown(m_btnGroup, m_currentIndex, false);
+        static_cast<PropTabButton *>(m_btnGroup->button(m_currentIndex))->setPersistentDown(false);
     }
     else
     {
@@ -166,7 +160,7 @@ void PropTabBar::setCurrentIndex(int index)
         emit visibilityToggled(true);
     }
     // Select the new button
-    setButtonPersistentDown(m_btnGroup, index, true);
+    static_cast<PropTabButton *>(m_btnGroup->button(index))->setPersistentDown(true);
     m_currentIndex = index;
     // Emit the signal
     emit tabChanged(index);
