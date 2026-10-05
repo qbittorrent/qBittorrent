@@ -28,9 +28,7 @@
 
 "use strict";
 
-const submitLoginForm = (event) => {
-    event.preventDefault();
-
+const submitLoginForm = () => {
     const errorMsgElement = document.getElementById("error_msg");
     errorMsgElement.textContent = ""; // clear previous error
 
@@ -61,8 +59,11 @@ const submitLoginForm = (event) => {
     passwordElement.value = ""; // clear previous value
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", (_event) => {
     const loginForm = document.getElementById("loginform");
     loginForm.method = "POST";
-    loginForm.addEventListener("submit", submitLoginForm);
+    loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        submitLoginForm();
+    });
 });
