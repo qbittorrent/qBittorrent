@@ -238,6 +238,14 @@ AdvancedSettings::AdvancedSettings(IGUIApplication *app, QWidget *parent)
     horizontalHeader()->setStretchLastSection(true);
 }
 
+void AdvancedSettings::showSpeedWidgetSetting()
+{
+    scrollTo(model()->index(ENABLE_SPEED_WIDGET, PROPERTY), QAbstractItemView::PositionAtCenter);
+
+    if (QWidget *widget = cellWidget(ENABLE_SPEED_WIDGET, VALUE))
+        widget->setFocus();
+}
+
 void AdvancedSettings::saveAdvancedSettings() const
 {
     Preferences *const pref = Preferences::instance();

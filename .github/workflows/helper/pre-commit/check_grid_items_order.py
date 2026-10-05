@@ -29,9 +29,9 @@
 import argparse
 import re
 import sys
-import xml.etree.ElementTree as ElementTree
 from collections.abc import Callable, Sequence
 from typing import Optional
+from xml.etree import ElementTree
 
 
 def traversePostOrder(root: ElementTree.Element, visitFunc: Callable[[ElementTree.Element], None]) -> None:

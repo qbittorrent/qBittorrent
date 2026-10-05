@@ -81,6 +81,8 @@ public:
 
 public slots:
     void showConnectionTab();
+    void showSpeedWidgetSetting();
+    void showRSSTab();
 
 private slots:
     void adjustProxyOptions();
