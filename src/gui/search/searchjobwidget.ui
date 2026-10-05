@@ -190,7 +190,7 @@
        <item>
         <widget class="QComboBox" name="maxSizeUnit">
          <property name="accessibleName">
-          <string>to</string>
+          <string>Size:</string>
          </property>
         </widget>
        </item>
