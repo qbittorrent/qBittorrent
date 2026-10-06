@@ -31,6 +31,8 @@
 
 #include <algorithm>
 #include <filesystem>
+#include <system_error>
+#include <utility>
 
 #if defined(Q_OS_WIN)
 #include <memory>
@@ -59,7 +61,10 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QRegularExpression>
+
+#ifdef Q_OS_WIN
 #include <QStorageInfo>
+#endif
 
 #include "base/path.h"
 
@@ -312,7 +317,52 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
 
 qint64 Utils::Fs::freeDiskSpaceOnPath(const Path &path)
 {
-    return QStorageInfo(path.data()).bytesAvailable();
+    if (path.isEmpty())
+        return -1;
+
+    std::error_code ec;
+    std::filesystem::path current = std::filesystem::absolute(path.toStdFsPath(), ec);
+    if (ec)
+        return -1;
+
+    while (true)
+    {
+#ifdef Q_OS_WIN
+        // Preserve volume resolution for mounted folders and file symlinks on Windows.
+        if (std::filesystem::exists(current, ec))
+            return QStorageInfo(QString::fromStdWString(current.native())).bytesAvailable();
+        if (!ec)
+            ec = std::make_error_code(std::errc::no_such_file_or_directory);
+#else
+        const std::filesystem::space_info space = std::filesystem::space(current, ec);
+        if (!ec)
+            return std::in_range<qint64>(space.available) ? static_cast<qint64>(space.available) : -1;
+#endif
+        if (ec != std::errc::no_such_file_or_directory)
+            return -1;
+
+        // A directory that has not been created yet will use its ancestor's filesystem.
+        // A dangling symlink may point to a different filesystem, so do not use its parent's space.
+        std::error_code statusError;
+        if (std::filesystem::is_symlink(current, statusError)
+            || (statusError && (statusError != std::errc::no_such_file_or_directory)))
+        {
+            return -1;
+        }
+
+        const std::filesystem::path parent = current.parent_path();
+        if (parent.empty() || (parent == current))
+            return -1;
+
+        std::error_code parentError;
+        const std::filesystem::file_status parentStatus = std::filesystem::status(parent, parentError);
+        if ((parentError && (parentError != std::errc::no_such_file_or_directory))
+            || (std::filesystem::exists(parentStatus) && !std::filesystem::is_directory(parentStatus)))
+        {
+            return -1;
+        }
+        current = parent;
+    }
 }
 
 Path Utils::Fs::tempPath()
