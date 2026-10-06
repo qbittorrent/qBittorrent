@@ -121,6 +121,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
     , m_storeSource(SETTINGS_KEY(u"Source"_s))
 {
     m_ui->setupUi(this);
+    Utils::Gui::nameNestedGroupBoxes(this);
 
     m_ui->comboPieceSize->addItem(tr("Auto"), 0);
     for (int i = 4; i <= 17; ++i)

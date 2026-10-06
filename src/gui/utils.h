@@ -56,4 +56,6 @@ namespace Utils::Gui
 
     QString tagToWidgetText(const Tag &tag);
     Tag widgetTextToTag(const QString &text);
+
+    void nameNestedGroupBoxes(QWidget *widget);
 }
