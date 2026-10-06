@@ -942,6 +942,10 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
 #ifdef Q_OS_MACOS
     m_ui->actionCloseWindow->setShortcut(QKeySequence::Close);
+
+    // macOS convention: Cmd+0 brings the main window to the front (e.g. Apple Mail).
+    const auto *showMainWindowShortcut = new QShortcut((Qt::CTRL | Qt::Key_0), this, nullptr, nullptr, Qt::ApplicationShortcut);
+    connect(showMainWindowShortcut, &QShortcut::activated, this, &MainWindow::activate);
 #else
     m_ui->actionCloseWindow->setVisible(false);
 #endif
@@ -1040,6 +1044,12 @@ void MainWindow::on_actionExit_triggered()
 #ifdef Q_OS_MACOS
 void MainWindow::on_actionCloseWindow_triggered()
 {
+    if (QWidget *active = qApp->activeWindow(); active && (active != this))
+    {
+        active->close();
+        return;
+    }
+
     // On macOS window close is basically equivalent to window hide.
     // If you decide to implement this functionality for other OS,
     // then you will also need ui lock checks like in actionExit.
@@ -1127,6 +1137,8 @@ void MainWindow::on_actionAbout_triggered()
     // About dialog
     if (m_aboutDlg)
     {
+        m_aboutDlg->show();
+        m_aboutDlg->raise();
         m_aboutDlg->activateWindow();
     }
     else
@@ -1141,6 +1153,8 @@ void MainWindow::on_actionStatistics_triggered()
 {
     if (m_statsDlg)
     {
+        m_statsDlg->show();
+        m_statsDlg->raise();
         m_statsDlg->activateWindow();
     }
     else

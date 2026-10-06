@@ -63,6 +63,7 @@
 #ifdef Q_OS_MACOS
 #include <QAccessible>
 #include <QFileOpenEvent>
+#include <QKeyEvent>
 #endif // Q_OS_MACOS
 #endif
 
@@ -1197,6 +1198,28 @@ bool Application::event(QEvent *ev)
     }
 
     return BaseApplication::event(ev);
+}
+
+bool Application::notify(QObject *receiver, QEvent *ev)
+{
+    // On macOS the numeric keypad's Enter key generates Qt::Key_Enter, but
+    // QDialog only accepts Qt::Key_Return as the trigger for the default button.
+    // Remap Key_Enter → Key_Return for key-press events so dialogs respond to
+    // the numpad Enter key the same way as the main keyboard Return key.
+    // Closes: https://github.com/qbittorrent/qBittorrent/issues/16904
+    if (ev->type() == QEvent::KeyPress)
+    {
+        auto *keyEvent = static_cast<QKeyEvent *>(ev);
+        if (keyEvent->key() == Qt::Key_Enter)
+        {
+            QKeyEvent returnEvent {QEvent::KeyPress, Qt::Key_Return,
+                keyEvent->modifiers(), keyEvent->text(),
+                keyEvent->isAutoRepeat(), static_cast<ushort>(keyEvent->count())};
+            return BaseApplication::notify(receiver, &returnEvent);
+        }
+    }
+
+    return BaseApplication::notify(receiver, ev);
 }
 #endif // Q_OS_MACOS
 #endif // DISABLE_GUI
