@@ -62,7 +62,7 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
 {
     m_ui->setupUi(this);
 
-    m_ui->label->setText(tr("The following files from torrent \"%1\" support previewing, please select one of them:")
+    m_ui->label->setText(tr("The following files from torrent \"%1\" support previewing, please select one or more of them:")
         .arg(m_torrent->name()));
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Preview"));
@@ -78,6 +78,7 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
 
     m_ui->previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
+    m_ui->previewList->setSelectionMode(QAbstractItemView::ExtendedSelection);
     m_ui->previewList->setUniformRowHeights(true);
     m_ui->previewList->setModel(previewListModel);
 
@@ -134,22 +135,28 @@ void PreviewSelectDialog::previewButtonClicked()
     // Flush data
     m_torrent->flushCache();
 
-    // Only one file should be selected
-    const int fileIndex = selectedIndexes.at(0).data().toInt();
-    const Path path = m_torrent->actualStorageLocation() / m_torrent->actualFilePath(fileIndex);
-    // File
-    if (!path.exists())
+    PathList paths;
+    paths.reserve(selectedIndexes.size());
+
+    for (const QModelIndex &selectedIndex : selectedIndexes)
     {
-        const bool isSingleFile = (m_ui->previewList->model()->rowCount() == 1);
-        QWidget *parent = isSingleFile ? this->parentWidget() : this;
-        QMessageBox::critical(parent, tr("Preview impossible")
-            , tr("Sorry, we can't preview this file: \"%1\".").arg(path.toString()));
-        if (isSingleFile)
-            reject();
-        return;
+        const int fileIndex = selectedIndex.data().toInt();
+        const Path path = m_torrent->actualStorageLocation() / m_torrent->actualFilePath(fileIndex);
+        if (!path.exists())
+        {
+            const bool isSingleFile = (m_ui->previewList->model()->rowCount() == 1);
+            QWidget *parent = isSingleFile ? this->parentWidget() : this;
+            QMessageBox::critical(parent, tr("Preview impossible")
+                , tr("Sorry, we can't preview this file: \"%1\".").arg(path.toString()));
+            if (isSingleFile)
+                reject();
+            return;
+        }
+
+        paths.append(path);
     }
 
-    emit readyToPreviewFile(path);
+    emit readyToPreviewFiles(paths);
     accept();
 }
 
