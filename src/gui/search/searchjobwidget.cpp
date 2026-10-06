@@ -419,7 +419,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, const AddTorr
     const QString torrentUrl = m_proxyModel->data(
                 m_proxyModel->index(rowIndex.row(), SearchSortModel::DL_LINK)).toString();
     const QString engineName = m_proxyModel->data(
-                m_proxyModel->index(rowIndex.row(), SearchSortModel::ENGINE_NAME)).toString();
+                m_proxyModel->index(rowIndex.row(), SearchSortModel::ENGINE_NAME), SearchSortModel::UnderlyingDataRole).toString();
 
     if (torrentUrl.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
@@ -665,7 +665,7 @@ void SearchJobWidget::appendSearchResults(const QList<SearchResult> &results)
 
         setModelData(SearchSortModel::NAME, result.fileName, result.fileName);
         setModelData(SearchSortModel::DL_LINK, result.fileUrl, result.fileUrl);
-        setModelData(SearchSortModel::ENGINE_NAME, result.engineName, result.engineName);
+        setModelData(SearchSortModel::ENGINE_NAME, result.engineFullName, result.engineName);
         setModelData(SearchSortModel::ENGINE_URL, result.siteUrl, result.siteUrl);
         setModelData(SearchSortModel::DESC_LINK, result.descrLink, result.descrLink);
         setModelData(SearchSortModel::SIZE, Utils::Misc::friendlyUnit(result.fileSize), result.fileSize, (Qt::AlignRight | Qt::AlignVCenter));

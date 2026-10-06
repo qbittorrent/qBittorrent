@@ -91,6 +91,7 @@ const QString KEY_RESULT_FILESIZE = u"FileSize"_s;
 const QString KEY_RESULT_SEEDERSCOUNT = u"SeedersCount"_s;
 const QString KEY_RESULT_LEECHERSCOUNT = u"LeechersCount"_s;
 const QString KEY_RESULT_ENGINENAME = u"EngineName"_s;
+const QString KEY_RESULT_ENGINEFULLNAME = u"EngineFullName"_s;
 const QString KEY_RESULT_SITEURL = u"SiteURL"_s;
 const QString KEY_RESULT_DESCRLINK = u"DescrLink"_s;
 const QString KEY_RESULT_PUBDATE = u"PubDate"_s;
@@ -296,17 +297,31 @@ namespace
                 return nonstd::make_unexpected(formatErrorMsg);
 
             if (const QJsonValue engineNameVal = resultObj[KEY_RESULT_ENGINENAME]; engineNameVal.isString())
-                searchResult.engineName= engineNameVal.toString();
+                searchResult.engineName = engineNameVal.toString();
             else
                 return nonstd::make_unexpected(formatErrorMsg);
 
+            if (const QJsonValue engineFullNameVal = resultObj[KEY_RESULT_ENGINEFULLNAME]; engineFullNameVal.isString())
+            {
+                searchResult.engineFullName = engineFullNameVal.toString();
+            }
+            else if (engineFullNameVal.isUndefined())
+            {
+                // this key may not exist when upgrading from a previous qbt version, so reuse the short engine name instead
+                searchResult.engineFullName = searchResult.engineName;
+            }
+            else
+            {
+                return nonstd::make_unexpected(formatErrorMsg);
+            }
+
             if (const QJsonValue siteURLVal = resultObj[KEY_RESULT_SITEURL]; siteURLVal.isString())
-                searchResult.siteUrl= siteURLVal.toString();
+                searchResult.siteUrl = siteURLVal.toString();
             else
                 return nonstd::make_unexpected(formatErrorMsg);
 
             if (const QJsonValue descrLinkVal = resultObj[KEY_RESULT_DESCRLINK]; descrLinkVal.isString())
-                searchResult.descrLink= descrLinkVal.toString();
+                searchResult.descrLink = descrLinkVal.toString();
             else
                 return nonstd::make_unexpected(formatErrorMsg);
 
@@ -1055,6 +1070,7 @@ void SearchWidget::DataStorage::storeTab(const QString &tabID, const QList<Searc
             {KEY_RESULT_SEEDERSCOUNT, searchResult.nbSeeders},
             {KEY_RESULT_LEECHERSCOUNT, searchResult.nbLeechers},
             {KEY_RESULT_ENGINENAME, searchResult.engineName},
+            {KEY_RESULT_ENGINEFULLNAME, searchResult.engineFullName},
             {KEY_RESULT_SITEURL, searchResult.siteUrl},
             {KEY_RESULT_DESCRLINK, searchResult.descrLink},
             {KEY_RESULT_PUBDATE, Utils::DateTime::toSecsSinceEpoch(searchResult.pubDate)}
