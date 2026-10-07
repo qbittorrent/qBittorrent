@@ -51,17 +51,17 @@ BitTorrent::Session *AddTorrentManager::btSession() const
     return m_btSession;
 }
 
-bool AddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params)
+nonstd::expected<void, QString> AddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params)
 {
     // `source`: .torrent file path,  magnet URI or URL
 
     if (source.isEmpty())
-        return false;
+        return nonstd::make_unexpected(tr("Torrent source is empty"));
 
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
         if (m_downloadedTorrents.contains(source))
-            return true;
+            return {};
 
         LogMsg(tr("Downloading torrent... Source: \"%1\"").arg(source));
         const auto *pref = Preferences::instance();
@@ -69,7 +69,7 @@ bool AddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddT
         Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(pref->getTorrentFileSizeLimit())
                 , pref->useProxyForGeneralPurposes(), this, &AddTorrentManager::onDownloadFinished);
         m_downloadedTorrents[source] = params;
-        return true;
+        return {};
     }
 
     if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(source))
@@ -79,7 +79,7 @@ bool AddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddT
     else if (source.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
         handleAddTorrentFailed(source, parseResult.error());
-        return false;
+        return nonstd::make_unexpected(parseResult.error());
     }
 
     const Path decodedPath {source.startsWith(u"file://", Qt::CaseInsensitive)
@@ -93,16 +93,15 @@ bool AddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddT
     else
     {
        handleAddTorrentFailed(source, loadResult.error());
-       return false;
+       return nonstd::make_unexpected(loadResult.error());
     }
-
-    return false;
 }
 
-bool AddTorrentManager::addTorrentToSession(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
+nonstd::expected<void, QString> AddTorrentManager::addTorrentToSession(const QString &source
+        , const BitTorrent::TorrentDescriptor &torrentDescr
         , const BitTorrent::AddTorrentParams &addTorrentParams)
 {
-    const bool result = btSession()->addTorrent(torrentDescr, addTorrentParams);
+    const auto result = btSession()->addTorrent(torrentDescr, addTorrentParams);
     if (result)
        m_sourcesByInfoHash[torrentDescr.infoHash()] = source;
 
@@ -118,13 +117,19 @@ void AddTorrentManager::onDownloadFinished(const Net::DownloadResult &result)
     {
     case Net::DownloadStatus::Success:
         if (const auto loadResult = BitTorrent::TorrentDescriptor::load(result.data))
-            processTorrent(source, loadResult.value(), addTorrentParams);
+        {
+            // any failure is reported via "addTorrentFailed"/"duplicateTorrentDetected" signals
+            [[maybe_unused]] const auto addTorrentResult = processTorrent(source, loadResult.value(), addTorrentParams);
+        }
         else
             handleAddTorrentFailed(source, loadResult.error());
         break;
     case Net::DownloadStatus::RedirectedToMagnet:
         if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(result.magnetURI))
-            processTorrent(source, parseResult.value(), addTorrentParams);
+        {
+            // any failure is reported via "addTorrentFailed"/"duplicateTorrentDetected" signals
+            [[maybe_unused]] const auto addTorrentResult = processTorrent(source, parseResult.value(), addTorrentParams);
+        }
         else
             handleAddTorrentFailed(source, parseResult.error());
         break;
@@ -174,7 +179,7 @@ void AddTorrentManager::handleAddTorrentFailed(const QString &source, const QStr
     emit addTorrentFailed(source, reason);
 }
 
-void AddTorrentManager::handleDuplicateTorrent(const QString &source
+QString AddTorrentManager::handleDuplicateTorrent(const QString &source
         , const BitTorrent::TorrentDescriptor &torrentDescr, BitTorrent::Torrent *existingTorrent)
 {
     const bool hasMetadata = torrentDescr.info().has_value();
@@ -188,23 +193,24 @@ void AddTorrentManager::handleDuplicateTorrent(const QString &source
     QString message;
     if (!btSession()->isMergeTrackersEnabled())
     {
-        message = tr("Merging of trackers is disabled");
+        message = tr("Torrent is already in the transfer list. Merging of trackers is disabled");
     }
     else if (isPrivate)
     {
-        message = tr("Trackers cannot be merged because it is a private torrent");
+        message = tr("Torrent is already in the transfer list. Trackers cannot be merged because it is a private torrent");
     }
     else
     {
         // merge trackers and web seeds
         existingTorrent->addTrackers(torrentDescr.trackers());
         existingTorrent->addUrlSeeds(torrentDescr.urlSeeds());
-        message = tr("Trackers are merged from new source");
+        message = tr("Torrent is already in the transfer list. Trackers are merged from new source");
     }
 
     LogMsg(tr("Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: \"%2\". Torrent infohash: %3. Result: %4")
             .arg(source, existingTorrent->name(), existingTorrent->infoHash().toString(), message));
     emit duplicateTorrentDetected(source, existingTorrent, message);
+    return message;
 }
 
 void AddTorrentManager::setTorrentFileGuard(const QString &source, std::shared_ptr<TorrentFileGuard> torrentFileGuard)
@@ -217,7 +223,8 @@ std::shared_ptr<TorrentFileGuard> AddTorrentManager::releaseTorrentFileGuard(con
     return m_guardedTorrentFiles.take(source);
 }
 
-bool AddTorrentManager::processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
+nonstd::expected<void, QString> AddTorrentManager::processTorrent(const QString &source
+        , const BitTorrent::TorrentDescriptor &torrentDescr
         , const BitTorrent::AddTorrentParams &addTorrentParams)
 {
     const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
@@ -225,8 +232,8 @@ bool AddTorrentManager::processTorrent(const QString &source, const BitTorrent::
     if (BitTorrent::Torrent *torrent = btSession()->findTorrent(infoHash))
     {
         // a duplicate torrent is being added
-        handleDuplicateTorrent(source, torrentDescr, torrent);
-        return false;
+        const QString message = handleDuplicateTorrent(source, torrentDescr, torrent);
+        return nonstd::make_unexpected(message);
     }
 
     return addTorrentToSession(source, torrentDescr, addTorrentParams);

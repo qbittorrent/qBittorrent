@@ -374,7 +374,11 @@ void TorrentCreatorDialog::handleCreationSuccess(const BitTorrent::TorrentCreato
                 };
             }
 
-            BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);
+            if (const auto addResult = BitTorrent::Session::instance()->addTorrent(loadResult.value(), params); !addResult)
+            {
+                const QString message = tr("Add torrent to transfer list failed.") + u'\n' + tr("Reason: \"%1\"").arg(addResult.error());
+                QMessageBox::critical(this, tr("Add torrent failed"), message);
+            }
         }
         else
         {

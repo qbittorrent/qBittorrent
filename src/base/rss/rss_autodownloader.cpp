@@ -508,7 +508,8 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
             return;
         }
 
-        app()->addTorrentManager()->addTorrent(torrentURL, rule.addTorrentParams());
+        // any failure is reported via "addTorrentFailed"/"duplicateTorrentDetected" signals
+        [[maybe_unused]] const auto addTorrentResult = app()->addTorrentManager()->addTorrent(torrentURL, rule.addTorrentParams());
 
         if (BitTorrent::TorrentDescriptor::parse(torrentURL))
         {

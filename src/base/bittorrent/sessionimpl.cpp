@@ -2814,10 +2814,11 @@ qsizetype SessionImpl::torrentsCount() const
     return m_torrents.size();
 }
 
-bool SessionImpl::addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params)
+nonstd::expected<void, QString> SessionImpl::addTorrent(const TorrentDescriptor &torrentDescr
+        , const AddTorrentParams &params)
 {
     if (!isRestored())
-        return false;
+        return nonstd::make_unexpected(tr("BitTorrent session is not fully restored yet"));
 
     return addTorrent_impl(torrentDescr, params);
 }
@@ -2884,7 +2885,8 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
 }
 
 // Add a torrent to the BitTorrent session
-bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const AddTorrentParams &addTorrentParams)
+nonstd::expected<void, QString> SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr
+        , const AddTorrentParams &addTorrentParams)
 {
     Q_ASSERT(isRestored());
 
@@ -2907,32 +2909,32 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
 
         if (!isMergeTrackersEnabled())
         {
-            const QString message = tr("Merging of trackers is disabled");
+            const QString message = tr("Torrent is already in the transfer list. Merging of trackers is disabled");
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                     .arg(torrent->name(), torrent->infoHash().toString(), message));
             emit duplicateTorrentDetected(infoHash, torrent, message);
-            return false;
+            return nonstd::make_unexpected(message);
         }
 
         const bool isPrivate = torrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate());
         if (isPrivate)
         {
-            const QString message = tr("Trackers cannot be merged because it is a private torrent");
+            const QString message = tr("Torrent is already in the transfer list. Trackers cannot be merged because it is a private torrent");
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                     .arg(torrent->name(), torrent->infoHash().toString(), message));
             emit duplicateTorrentDetected(infoHash, torrent, message);
-            return false;
+            return nonstd::make_unexpected(message);
         }
 
         // merge trackers and web seeds
         torrent->addTrackers(torrentDescr.trackers());
         torrent->addUrlSeeds(torrentDescr.urlSeeds());
 
-        const QString message = tr("Trackers are merged from new source");
+        const QString message = tr("Torrent is already in the transfer list. Trackers are merged from new source");
         LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                 .arg(torrent->name(), torrent->infoHash().toString(), message));
         emit duplicateTorrentDetected(infoHash, torrent, message);
-        return false;
+        return nonstd::make_unexpected(message);
     }
 
     // It looks illogical that we don't just use an existing handle,
@@ -3173,7 +3175,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
         });
     });
 
-    return true;
+    return {};
 }
 
 QFuture<FileSearchResult> SessionImpl::findIncompleteFiles(const Path &savePath, const Path &downloadPath, const PathList &filePaths) const

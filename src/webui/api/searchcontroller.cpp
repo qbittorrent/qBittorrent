@@ -219,7 +219,8 @@ void SearchController::downloadTorrentAction()
 
     if (torrentUrl.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
-        app()->addTorrentManager()->addTorrent(torrentUrl);
+        // any failure is reported via "addTorrentFailed"/"duplicateTorrentDetected" signals
+        [[maybe_unused]] const auto addTorrentResult = app()->addTorrentManager()->addTorrent(torrentUrl);
     }
     else
     {
@@ -227,7 +228,8 @@ void SearchController::downloadTorrentAction()
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this
             , [this, downloadHandler](const QString &source, [[maybe_unused]] const QString &errorMessage)
         {
-            app()->addTorrentManager()->addTorrent(source);
+            // any failure is reported via "addTorrentFailed"/"duplicateTorrentDetected" signals
+            [[maybe_unused]] const auto addTorrentResult = app()->addTorrentManager()->addTorrent(source);
             downloadHandler->deleteLater();
         });
     }

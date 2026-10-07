@@ -885,7 +885,10 @@ void Application::processParams(const QBtCommandLineParameters &params)
         m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams, addTorrentOption);
 #else
     for (const QString &torrentSource : params.torrentSources)
-        m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams);
+    {
+        // any failure is reported via "addTorrentFailed"/"duplicateTorrentDetected" signals
+        [[maybe_unused]] const auto addTorrentResult = m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams);
+    }
 #endif
 }
 

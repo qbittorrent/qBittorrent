@@ -34,6 +34,7 @@
 #include <QHash>
 #include <QObject>
 
+#include "base/3rdparty/expected.hpp"
 #include "base/applicationcomponent.h"
 #include "base/bittorrent/addtorrentparams.h"
 #include "base/torrentfileguard.h"
@@ -62,7 +63,8 @@ public:
     AddTorrentManager(IApplication *app, BitTorrent::Session *btSession, QObject *parent = nullptr);
 
     BitTorrent::Session *btSession() const;
-    bool addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params = {});
+    nonstd::expected<void, QString> addTorrent(const QString &source
+            , const BitTorrent::AddTorrentParams &params = {});
 
 signals:
     void torrentAdded(const QString &source, BitTorrent::Torrent *torrent);
@@ -70,10 +72,10 @@ signals:
     void addTorrentFailed(const QString &source, const QString &reason);
 
 protected:
-    bool addTorrentToSession(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
+    nonstd::expected<void, QString> addTorrentToSession(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
             , const BitTorrent::AddTorrentParams &addTorrentParams);
     void handleAddTorrentFailed(const QString &source, const QString &reason);
-    void handleDuplicateTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr, BitTorrent::Torrent *existingTorrent);
+    QString handleDuplicateTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr, BitTorrent::Torrent *existingTorrent);
     void setTorrentFileGuard(const QString &source, std::shared_ptr<TorrentFileGuard> torrentFileGuard);
     std::shared_ptr<TorrentFileGuard> releaseTorrentFileGuard(const QString &source);
 
@@ -82,7 +84,7 @@ private:
     void onSessionTorrentAdded(BitTorrent::Torrent *torrent);
     void onSessionDuplicateTorrentDetected(const BitTorrent::InfoHash &infoHash, BitTorrent::Torrent *torrent, const QString &message);
     void onSessionAddTorrentFailed(const BitTorrent::InfoHash &infoHash, const QString &reason);
-    bool processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
+    nonstd::expected<void, QString> processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
             , const BitTorrent::AddTorrentParams &addTorrentParams);
 
     BitTorrent::Session *m_btSession = nullptr;
