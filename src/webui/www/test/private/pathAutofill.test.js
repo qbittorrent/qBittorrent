@@ -309,3 +309,76 @@ test("does not attach twice to the same input", () => {
     expect(addEventListener).not.toHaveBeenCalled();
     expect(document.querySelectorAll("datalist")).toHaveLength(1);
 });
+
+test("keeps a huge directory from flooding the datalist while typing character by character (#23507)", async () => {
+    // the issue reports Safari on iOS freezing on a directory with about 1000 subdirectories
+    const entries = [];
+    for (let i = 0; i < 1000; ++i)
+        entries.push(`/movies/Movie ${String(i).padStart(4, "0")}`);
+    entries.push("/movies/The Matrix");
+    fetchMock.mockReturnValueOnce(listingResponse(entries));
+
+    await type("/movies/");
+    expect(suggestions()).toHaveLength(10);
+
+    const replaceChildren = vi.spyOn(input.list, "replaceChildren");
+    let maxOptions = 0;
+    const observer = new MutationObserver(() => { maxOptions = Math.max(maxOptions, input.list.options.length); });
+    observer.observe(input.list, { childList: true });
+
+    // a steady typist: a keystroke every 150 ms never lets the refresh fire
+    let value = "/movies/";
+    for (const character of "The Matrix") {
+        value += character;
+        typeNow(value);
+        await vi.advanceTimersByTimeAsync(150);
+    }
+    expect(replaceChildren).not.toHaveBeenCalled();
+
+    await settle();
+    observer.disconnect();
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(replaceChildren).toHaveBeenCalledTimes(1);
+    expect(maxOptions).toBeLessThanOrEqual(10);
+    expect(suggestions()).toEqual(["/movies/The Matrix"]);
+});
+
+test("keeps separate state for each input on the same page", async () => {
+    document.body.innerHTML = `<input type="text" id="savepath" class="pathDirectory"><input type="text" id="downloadPath" class="pathDirectory">`;
+    attachPathAutofill();
+    const savePath = document.getElementById("savepath");
+    const downloadPath = document.getElementById("downloadPath");
+    expect(savePath.list.id).toBe("savepathSuggestions");
+    expect(downloadPath.list.id).toBe("downloadPathSuggestions");
+
+    fetchMock.mockReturnValueOnce(listingResponse(["/data/movies"]));
+    input = savePath;
+    await type("/data/");
+
+    fetchMock.mockReturnValueOnce(listingResponse(["/tmp/incomplete"]));
+    input = downloadPath;
+    await type("/tmp/");
+
+    expect([...savePath.list.options].map((option) => option.value)).toEqual(["/data/movies"]);
+    expect([...downloadPath.list.options].map((option) => option.value)).toEqual(["/tmp/incomplete"]);
+    // the second input's request did not abort the first one's
+    expect(fetchMock.mock.calls[0][1].signal.aborted).toBe(false);
+});
+
+test("does not rewrite the datalist when a listing arrives while typing continues", async () => {
+    const slow = deferredListing();
+    fetchMock.mockReturnValueOnce(slow.promise);
+    typeNow("/data/");
+    const replaceChildren = vi.spyOn(input.list, "replaceChildren");
+
+    await vi.advanceTimersByTimeAsync(100);
+    typeNow("/data/m");
+    slow.resolve(["/data/movies", "/data/music"]);
+    await vi.advanceTimersByTimeAsync(REFRESH_DELAY_MS - 1);
+    expect(replaceChildren).not.toHaveBeenCalled();
+
+    await vi.advanceTimersByTimeAsync(1);
+    expect(replaceChildren).toHaveBeenCalledTimes(1);
+    expect(suggestions()).toEqual(["/data/movies", "/data/music"]);
+});
