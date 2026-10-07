@@ -376,10 +376,11 @@ void TrackerListWidget::showTrackerListMenu()
                 , this, &TrackerListWidget::copyTrackerUrl);
     }
 
-    const bool isDHTSelected = selectionModel()->isRowSelected(TrackerListModel::ROW_DHT);
-    if (!torrent()->isStopped() && (hasSelectedTrackers || isDHTSelected))
+    const bool isDHTEnabled = torrent()->session()->isDHTEnabled() && !torrent()->isPrivate() && !torrent()->isDHTDisabled();
+    const bool canReannounceDHT = isDHTEnabled && selectionModel()->isRowSelected(TrackerListModel::ROW_DHT);
+    if (!torrent()->isStopped() && (hasSelectedTrackers || canReannounceDHT))
     {
-        const QString reannounceText = isDHTSelected
+        const QString reannounceText = canReannounceDHT
                 ? (hasSelectedTrackers ? tr("Force reannounce to selected trackers and DHT") : tr("Force reannounce to DHT"))
                 : tr("Force reannounce to selected trackers");
         menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), reannounceText
