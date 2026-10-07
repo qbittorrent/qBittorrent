@@ -30,6 +30,7 @@
 #include "automatedrssdownloader.h"
 
 #include <QtVersionChecks>
+#include <QCheckBox>
 #include <QCursor>
 #include <QFileDialog>
 #include <QMenu>
@@ -87,6 +88,14 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     connect(m_ui->importBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onImportBtnClicked);
     connect(m_ui->renameRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onRenameRuleBtnClicked);
     connect(m_ui->cloneRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::cloneSelectedRule);
+    connect(m_ui->checkAllFeedsBtn, &QPushButton::clicked, this, [this]
+    {
+        setAllFeedsCheckState(Qt::Checked);
+    });
+    connect(m_ui->uncheckAllFeedsBtn, &QPushButton::clicked, this, [this]
+    {
+        setAllFeedsCheckState(Qt::Unchecked);
+    });
 
     // Icons
     m_ui->cloneRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-copy"_s));
@@ -149,8 +158,6 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
 #endif
     connect(m_ui->spinIgnorePeriod, qOverload<int>(&QSpinBox::valueChanged)
             , this, &AutomatedRssDownloader::handleRuleDefinitionChanged);
-
-    connect(m_ui->listFeeds, &QListWidget::itemChanged, this, &AutomatedRssDownloader::handleFeedCheckStateChange);
 
     connect(m_ui->ruleList, &QListWidget::itemSelectionChanged, this, &AutomatedRssDownloader::updateRuleDefinitionBox);
     connect(m_ui->ruleList, &QListWidget::itemChanged, this, &AutomatedRssDownloader::handleRuleCheckStateChange);
@@ -221,24 +228,35 @@ void AutomatedRssDownloader::loadFeedList()
 
     for (const auto *feed : asConst(RSS::Session::instance()->feeds()))
     {
-        QListWidgetItem *item = new QListWidgetItem(feed->name(), m_ui->listFeeds);
+        QListWidgetItem *item = new QListWidgetItem(m_ui->listFeeds);
         item->setData(Qt::UserRole, feed->url());
-        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsAutoTristate);
+        auto *checkBox = new QCheckBox(feed->name(), m_ui->listFeeds);
+        checkBox->setCheckState(Qt::Unchecked);
+        item->setSizeHint(checkBox->sizeHint());
+        m_ui->listFeeds->setItemWidget(item, checkBox);
+
+        connect(checkBox, &QAbstractButton::clicked, this, [this, item, checkBox]
+        {
+            handleFeedCheckStateChange(item, checkBox->checkState());
+        });
     }
 
     updateFeedList();
+}
+
+QList<QListWidgetItem *> AutomatedRssDownloader::selectedRuleItems() const
+{
+    if (m_currentRuleItem)
+        return {m_currentRuleItem};
+
+    return m_ui->ruleList->selectedItems();
 }
 
 void AutomatedRssDownloader::updateFeedList()
 {
     const QSignalBlocker feedListSignalBlocker(m_ui->listFeeds);
 
-    QList<QListWidgetItem *> selection;
-
-    if (m_currentRuleItem)
-        selection << m_currentRuleItem;
-    else
-        selection = m_ui->ruleList->selectedItems();
+    const QList<QListWidgetItem *> selection = selectedRuleItems();
 
     bool enable = !selection.isEmpty();
 
@@ -253,23 +271,34 @@ void AutomatedRssDownloader::updateFeedList()
 
         for (const QListWidgetItem *ruleItem : asConst(selection))
         {
-            const auto rule = RSS::AutoDownloader::instance()->ruleByName(ruleItem->text());
+            const auto rule = (ruleItem == m_currentRuleItem)
+                    ? m_currentRule
+                    : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text());
             if (rule.feedURLs().contains(feedURL))
                 anyEnabled = true;
             else
                 allEnabled = false;
         }
 
+        Qt::CheckState checkState = Qt::Unchecked;
         if (anyEnabled && allEnabled)
-            item->setCheckState(Qt::Checked);
+            checkState = Qt::Checked;
         else if (anyEnabled)
-            item->setCheckState(Qt::PartiallyChecked);
-        else
-            item->setCheckState(Qt::Unchecked);
+            checkState = Qt::PartiallyChecked;
+
+        if (auto *checkBox = qobject_cast<QCheckBox *>(m_ui->listFeeds->itemWidget(item)))
+        {
+            const QSignalBlocker checkBoxSignalBlocker(checkBox);
+            checkBox->setTristate(selection.size() > 1);
+            checkBox->setEnabled(enable);
+            checkBox->setCheckState(checkState);
+        }
     }
 
     m_ui->listFeeds->sortItems();
     m_ui->lblListFeeds->setEnabled(enable);
+    m_ui->checkAllFeedsBtn->setEnabled(enable);
+    m_ui->uncheckAllFeedsBtn->setEnabled(enable);
     m_ui->listFeeds->setEnabled(enable);
 }
 
@@ -626,18 +655,19 @@ void AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList()
     }
 }
 
-void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feedItem)
+void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feedItem, const Qt::CheckState checkState)
 {
     const QString feedURL = feedItem->data(Qt::UserRole).toString();
-    for (QListWidgetItem *ruleItem : asConst(m_ui->ruleList->selectedItems()))
+    const QList<QListWidgetItem *> selection = selectedRuleItems();
+    for (QListWidgetItem *ruleItem : selection)
     {
         RSS::AutoDownloadRule rule = (ruleItem == m_currentRuleItem
                                        ? m_currentRule
                                        : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
         QStringList affectedFeeds = rule.feedURLs();
-        if ((feedItem->checkState() == Qt::Checked) && !affectedFeeds.contains(feedURL))
+        if ((checkState == Qt::Checked) && !affectedFeeds.contains(feedURL))
             affectedFeeds << feedURL;
-        else if ((feedItem->checkState() == Qt::Unchecked) && affectedFeeds.contains(feedURL))
+        else if ((checkState == Qt::Unchecked) && affectedFeeds.contains(feedURL))
             affectedFeeds.removeOne(feedURL);
 
         rule.setFeedURLs(affectedFeeds);
@@ -645,6 +675,64 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feedIte
             RSS::AutoDownloader::instance()->setRule(rule);
         else
             m_currentRule = rule;
+    }
+
+    handleRuleDefinitionChanged();
+}
+
+void AutomatedRssDownloader::setAllFeedsCheckState(const Qt::CheckState checkState)
+{
+    const QList<QListWidgetItem *> selection = selectedRuleItems();
+    if (selection.isEmpty())
+        return;
+
+    QStringList feedURLs;
+    feedURLs.reserve(m_ui->listFeeds->count());
+    for (int i = 0; i < m_ui->listFeeds->count(); ++i)
+    {
+        const QListWidgetItem *item = m_ui->listFeeds->item(i);
+        if (!item->isHidden())
+            feedURLs << item->data(Qt::UserRole).toString();
+    }
+
+    if (feedURLs.isEmpty())
+        return;
+
+    for (QListWidgetItem *ruleItem : selection)
+    {
+        RSS::AutoDownloadRule rule = (ruleItem == m_currentRuleItem
+                                       ? m_currentRule
+                                       : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
+        QStringList affectedFeeds = rule.feedURLs();
+        for (const QString &feedURL : asConst(feedURLs))
+        {
+            if (checkState == Qt::Checked)
+            {
+                if (!affectedFeeds.contains(feedURL))
+                    affectedFeeds << feedURL;
+            }
+            else
+            {
+                affectedFeeds.removeAll(feedURL);
+            }
+        }
+
+        rule.setFeedURLs(affectedFeeds);
+        if (ruleItem != m_currentRuleItem)
+            RSS::AutoDownloader::instance()->setRule(rule);
+        else
+            m_currentRule = rule;
+    }
+
+    const QSignalBlocker feedListSignalBlocker(m_ui->listFeeds);
+    for (int i = 0; i < m_ui->listFeeds->count(); ++i)
+    {
+        QListWidgetItem *item = m_ui->listFeeds->item(i);
+        if (!item->isHidden())
+        {
+            if (auto *checkBox = qobject_cast<QCheckBox *>(m_ui->listFeeds->itemWidget(item)))
+                checkBox->setCheckState(checkState);
+        }
     }
 
     handleRuleDefinitionChanged();
