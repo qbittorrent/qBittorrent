@@ -55,7 +55,15 @@ namespace
 {
     const int KEEP_ALIVE_DURATION = std::chrono::milliseconds(7s).count();
     const int CONNECTIONS_LIMIT = 500;
+    const int CONNECTIONS_PER_ADDRESS_LIMIT = 50;
     const std::chrono::seconds CONNECTIONS_SCAN_INTERVAL {2};
+
+    QHostAddress canonicalAddress(const QHostAddress &address)
+    {
+        bool ok = false;
+        const quint32 ipv4Address = address.toIPv4Address(&ok);
+        return ok ? QHostAddress(ipv4Address) : address;
+    }
 
     QList<QSslCipher> safeCipherList()
     {
@@ -125,6 +133,20 @@ void Server::incomingConnection(const qintptr socketDescriptor)
         return;
     }
 
+    const QHostAddress peerAddress = canonicalAddress(serverSocket->peerAddress());
+    int connectionsFromPeer = 0;
+    for (auto iter = m_connections.cbegin(); iter != m_connections.cend(); ++iter)
+    {
+        if (iter.value() == peerAddress)
+            ++connectionsFromPeer;
+    }
+    if (connectionsFromPeer >= CONNECTIONS_PER_ADDRESS_LIMIT)
+    {
+        qWarning("Too many connections from %s. Exceeded CONNECTIONS_PER_ADDRESS_LIMIT (%d). Connection closed."
+                , qUtf8Printable(peerAddress.toString()), CONNECTIONS_PER_ADDRESS_LIMIT);
+        return;
+    }
+
     try
     {
         if (isHttps())
@@ -135,7 +157,7 @@ void Server::incomingConnection(const qintptr socketDescriptor)
         }
 
         auto *connection = new Connection(serverSocket.release(), m_requestHandler, this);
-        m_connections.insert(connection);
+        m_connections.insert(connection, peerAddress);
         connect(connection, &Connection::closed, this, [this, connection] { removeConnection(connection); });
     }
     catch (const std::bad_alloc &exception)
@@ -154,14 +176,18 @@ void Server::removeConnection(Connection *connection)
 
 void Server::dropTimedOutConnection()
 {
-    m_connections.removeIf([](Connection *connection)
+    for (auto iter = m_connections.begin(); iter != m_connections.end();)
     {
+        Connection *const connection = iter.key();
         if (!connection->hasExpired(KEEP_ALIVE_DURATION))
-            return false;
+        {
+            ++iter;
+            continue;
+        }
 
+        iter = m_connections.erase(iter);
         connection->deleteLater();
-        return true;
-    });
+    }
 }
 
 bool Server::setupHttps(const QByteArray &certificates, const QByteArray &privateKey)
