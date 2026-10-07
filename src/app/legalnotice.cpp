@@ -36,11 +36,7 @@
 #include <QString>
 
 #ifndef DISABLE_GUI
-#include <QDialog>
-#include <QDialogButtonBox>
-#include <QLabel>
 #include <QMessageBox>
-#include <QVBoxLayout>
 #endif // DISABLE_GUI
 
 #include "base/global.h"
@@ -73,26 +69,12 @@ void showLegalNotice(const bool isInteractive)
     getchar();
 #else // DISABLE_GUI
     const QString messageBody = noticeBody + u"\n\n" + noticeEnd;
-#ifdef Q_OS_MACOS
-    // Native NSAlert crashes during layout, use a plain Qt dialog instead.
-    // https://github.com/qbittorrent/qBittorrent/issues/24936
-    QDialog dialog;
-    dialog.setWindowTitle(noticeTitle);
-    auto *layout = new QVBoxLayout(&dialog);
-    auto *label = new QLabel(messageBody);
-    label->setWordWrap(true);
-    layout->addWidget(label);
-    auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok);
-    layout->addWidget(buttonBox);
-    QObject::connect(buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
-    dialog.show();  // Need to be shown first or moveToCenter does not work
-    dialog.move(Utils::Gui::screenCenter(&dialog));
-    dialog.exec();
-#else
     QMessageBox msgBox {QMessageBox::NoIcon, noticeTitle, messageBody, QMessageBox::Ok};
+#ifdef Q_OS_MACOS
+    msgBox.setOption(QMessageBox::Option::DontUseNativeDialog);
+#endif
     msgBox.show();  // Need to be shown first or moveToCenter does not work
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
-#endif
 #endif // DISABLE_GUI
 }
