@@ -346,6 +346,11 @@
                   </item>
                   <item>
                    <property name="text">
+                    <string>Create unique subfolder</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
                     <string>Don't create subfolder</string>
                    </property>
                   </item>

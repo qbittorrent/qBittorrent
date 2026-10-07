@@ -651,7 +651,7 @@ LoadResumeDataResult DBResumeDataStorage::parseQueryResultRow(const QSqlQuery &q
         .action = Utils::String::toEnum(query.value(DB_COLUMN_SHARE_LIMIT_ACTION.name).toString(), ShareLimitAction::Default)
     };
     resumeData.contentLayout = Utils::String::toEnum<TorrentContentLayout>(
-        query.value(DB_COLUMN_CONTENT_LAYOUT.name).toString(), TorrentContentLayout::Original);
+            query.value(DB_COLUMN_CONTENT_LAYOUT.name).toString(), TorrentContentLayout::Original);
     resumeData.operatingMode = Utils::String::toEnum<TorrentOperatingMode>(
         query.value(DB_COLUMN_OPERATING_MODE.name).toString(), TorrentOperatingMode::AutoManaged);
     resumeData.stopped = query.value(DB_COLUMN_STOPPED.name).toBool();
