@@ -1236,6 +1236,7 @@ void TorrentsController::addAction()
 
     int pending = 0;
     int failure = 0;
+    QStringList failureReasons;
     QList<BitTorrent::TorrentID> addedTorrentIDs;
     addedTorrentIDs.reserve(urls.size() + torrents.size());
     for (QString url : urls)
@@ -1262,13 +1263,14 @@ void TorrentsController::addAction()
                 addTorrentParams.filePriorities = filePriorities;
             }
 
-            if (BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
+            if (const auto result = BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
             {
                 addedTorrentIDs.append(torrentID);
             }
             else
             {
                 ++failure;
+                failureReasons.append(result.error());
             }
         }
         else if (!downloaderParam.isEmpty() && !infoHash.isValid())
@@ -1280,7 +1282,8 @@ void TorrentsController::addAction()
             connect(downloadHandler, &SearchDownloadHandler::downloadFinished
                     , this, [this, addTorrentParams](const QString &torrentFilePath)
             {
-                app()->addTorrentManager()->addTorrent(torrentFilePath, addTorrentParams);
+                // any failure is reported via "addTorrentFailed"/"duplicateTorrentDetected" signals
+                [[maybe_unused]] const auto addTorrentResult = app()->addTorrentManager()->addTorrent(torrentFilePath, addTorrentParams);
             });
             connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
 
@@ -1291,7 +1294,7 @@ void TorrentsController::addAction()
             if (!filePriorities.isEmpty())
                 throw APIError(APIErrorType::BadParams, tr("`filePriorities` may only be specified when metadata has already been fetched"));
 
-            if (app()->addTorrentManager()->addTorrent(url, addTorrentParams))
+            if (const auto result = app()->addTorrentManager()->addTorrent(url, addTorrentParams))
             {
                 if (infoHash.isValid())
                 {
@@ -1305,6 +1308,7 @@ void TorrentsController::addAction()
             else
             {
                 ++failure;
+                failureReasons.append(result.error());
             }
         }
         m_torrentSourceCache.remove(url);
@@ -1317,13 +1321,14 @@ void TorrentsController::addAction()
         if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
         {
             const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
-            if (BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
+            if (const auto result = BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
             {
                 addedTorrentIDs.append(torrentDescr.infoHash().toTorrentID());
             }
             else
             {
                 ++failure;
+                failureReasons.append(result.error());
             }
         }
         else
@@ -1349,7 +1354,8 @@ void TorrentsController::addAction()
     }
     else
     {
-        throw APIError(APIErrorType::Conflict);
+        failureReasons.removeDuplicates();
+        throw APIError(APIErrorType::Conflict, tr("Torrent was not added: %1").arg(failureReasons.join(u"; "_s)));
     }
 }
 

@@ -309,7 +309,8 @@ void TorrentFilesWatcher::removeWatchedFolder(const Path &path)
 void TorrentFilesWatcher::onTorrentFound(const BitTorrent::TorrentDescriptor &torrentDescr
         , const BitTorrent::AddTorrentParams &addTorrentParams)
 {
-    BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams);
+    // any failure is reported via "addTorrentFailed"/"duplicateTorrentDetected" signals
+    [[maybe_unused]] const auto addTorrentResult = BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams);
 }
 
 TorrentFilesWatcher::Worker::Worker(QFileSystemWatcher *watcher)
