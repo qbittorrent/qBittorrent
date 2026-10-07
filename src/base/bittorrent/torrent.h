@@ -103,6 +103,8 @@ namespace BitTorrent
         StoppedDownloading,
         StoppedUploading,
 
+        InsufficientDiskSpace,
+
         Moving,
 
         MissingFiles,
