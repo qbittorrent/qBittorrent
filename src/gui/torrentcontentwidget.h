@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <QDateTime>
 #include <QTreeView>
 
 #include "base/bittorrent/downloadpriority.h"
@@ -124,6 +125,7 @@ private:
     void applyPrioritiesByOrder();
     Path getFullPath(const QModelIndex &index) const;
     void onItemDoubleClicked(const QModelIndex &index);
+    void onItemClicked(const QModelIndex &index);
     // Expand single-item folders recursively.
     // This will trigger sorting and filtering so do it after all relevant data is loaded.
     void expandRecursively();
@@ -134,6 +136,8 @@ private:
     ColumnsVisibilityMode m_columnsVisibilityMode = ColumnsVisibilityMode::Editable;
     QShortcut *m_openFileHotkeyEnter = nullptr;
     QShortcut *m_openFileHotkeyReturn = nullptr;
+    QModelIndex m_lastClickedIndex;
+    qint64 m_lastClickTime;
 
     bool m_contentDragAllowed = false;
     bool m_contentDragEnabled = false;
