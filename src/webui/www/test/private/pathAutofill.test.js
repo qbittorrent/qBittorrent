@@ -27,6 +27,8 @@
  */
 
 import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import { join } from "node:path";
+import { readFileSync } from "node:fs";
 
 import "../../private/scripts/pathAutofill.js";
 
@@ -94,4 +96,136 @@ test("does not label suggestions on touch devices", async () => {
     expect(options()).toEqual([
         ["/data/movies/Alien (1979)", null]
     ]);
+});
+
+test("labels a name that has no separator with the whole name", async () => {
+    fetchMock.mockReturnValueOnce(listingResponse(["Downloads"]));
+
+    await type("D");
+
+    expect(options()).toEqual([
+        ["Downloads", "Downloads"]
+    ]);
+});
+
+test("does not label the filesystem root", async () => {
+    fetchMock.mockReturnValueOnce(listingResponse(["/", "C:/"]));
+
+    await type("/");
+
+    expect(options()).toEqual([
+        ["/", null],
+        ["C:/", null]
+    ]);
+});
+
+test("labels paths with mixed separators with the part after the last one", async () => {
+    fetchMock.mockReturnValueOnce(listingResponse(["C:\\Users/alice\\Downloads/Movies", "C:/Users\\alice/Downloads\\Music"]));
+
+    await type("C:\\Users/");
+
+    expect(options()).toEqual([
+        ["C:\\Users/alice\\Downloads/Movies", "Movies"],
+        ["C:/Users\\alice/Downloads\\Music", "Music"]
+    ]);
+});
+
+test("labels unicode names without changing them", async () => {
+    fetchMock.mockReturnValueOnce(listingResponse(["/data/映画/Amélie (2001) 🎬", "/data/Ψ/ñ"]));
+
+    await type("/data/");
+
+    expect(options()).toEqual([
+        ["/data/映画/Amélie (2001) 🎬", "Amélie (2001) 🎬"],
+        ["/data/Ψ/ñ", "ñ"]
+    ]);
+});
+
+test("puts names that look like markup into the label as plain text", async () => {
+    const name = "/data/<img src=x onerror=\"window.pwned = true\">";
+    fetchMock.mockReturnValueOnce(listingResponse([name]));
+
+    await type("/data/");
+
+    expect(options()).toEqual([
+        [name, "<img src=x onerror=\"window.pwned = true\">"]
+    ]);
+    expect(document.querySelector("img")).toBeNull();
+    expect(window.pwned).toBeUndefined();
+});
+
+test("caps the suggestions at 25 and labels every one that is shown", async () => {
+    const names = Array.from({ length: 30 }, (_, i) => `/data/movies/Movie.${String(i).padStart(2, "0")}.2024.1080p.BluRay.x264`);
+    fetchMock.mockReturnValueOnce(listingResponse(names));
+
+    await type("/data/movies/");
+
+    expect(options()).toEqual(names.slice(0, 25).map((name) => [name, name.substring("/data/movies/".length)]));
+});
+
+test("replaces the labels when the suggestions update", async () => {
+    fetchMock.mockReturnValueOnce(listingResponse(["/data/movies/Alien (1979)"]));
+    await type("/data/movies/");
+
+    fetchMock.mockReturnValueOnce(listingResponse(["/data/shows/Severance", "/data/shows/Andor"]));
+    await type("/data/shows/");
+
+    expect(options()).toEqual([
+        ["/data/shows/Severance", "Severance"],
+        ["/data/shows/Andor", "Andor"]
+    ]);
+    expect(document.querySelectorAll("datalist")).toHaveLength(1);
+    expect(input.getAttribute("list")).toBe("savepathSuggestions");
+});
+
+test("follows the current pointer each time the suggestions update", async () => {
+    fetchMock.mockReturnValueOnce(listingResponse(["/data/movies/Alien (1979)"]));
+    await type("/data/movies/");
+    expect(options()).toEqual([
+        ["/data/movies/Alien (1979)", "Alien (1979)"]
+    ]);
+
+    finePointer = false;
+    fetchMock.mockReturnValueOnce(listingResponse(["/data/movies/Alien (1979)"]));
+    await type("/data/movies/A");
+    expect(options()).toEqual([
+        ["/data/movies/Alien (1979)", null]
+    ]);
+});
+
+test("does not label suggestions when matchMedia is unavailable", async () => {
+    vi.stubGlobal("matchMedia", undefined);
+    fetchMock.mockReturnValueOnce(listingResponse(["/data/movies/Alien (1979)"]));
+
+    await type("/data/movies/");
+
+    expect(options()).toEqual([
+        ["/data/movies/Alien (1979)", null]
+    ]);
+});
+
+test("labels file suggestions the same way as directory suggestions", async () => {
+    document.body.innerHTML = `<input type="text" id="certpath" class="pathFile">`;
+    input = document.getElementById("certpath");
+    attachPathAutofill();
+    fetchMock.mockReturnValueOnce(listingResponse(["/etc/ssl/certs/qbittorrent-webui.pem"]));
+
+    await type("/etc/ssl/certs/");
+
+    expect(fetchMock).toHaveBeenCalledOnce();
+    expect(fetchMock.mock.calls[0][0]).toContain("mode=all");
+    expect([...document.getElementById("certpathSuggestions").options].map((option) => [option.value, option.getAttribute("label")])).toEqual([
+        ["/etc/ssl/certs/qbittorrent-webui.pem", "qbittorrent-webui.pem"]
+    ]);
+});
+
+// The label is drawn as a second line inside the field's width, so a field
+// left at the default width cuts the name off after a few characters.
+test("gives every path field in Options a width", () => {
+    const html = readFileSync(join(import.meta.dirname, "../../private/views/preferences.html"), "utf8");
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const fields = [...doc.querySelectorAll("input.pathDirectory, input.pathFile")];
+
+    expect(fields.length).toBeGreaterThan(0);
+    expect(fields.filter((field) => field.style.width === "").map((field) => field.id)).toEqual([]);
 });
