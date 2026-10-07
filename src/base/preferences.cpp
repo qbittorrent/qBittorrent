@@ -1669,6 +1669,26 @@ void Preferences::setMainGeometry(const QByteArray &geometry)
     setValue(u"MainWindow/geometry"_s, geometry);
 }
 
+#ifdef Q_OS_MACOS
+bool Preferences::hasMainWindowMaximizedSetting() const
+{
+    return SettingsStorage::instance()->hasKey(u"MainWindow/maximized"_s);
+}
+
+bool Preferences::isMainWindowMaximized() const
+{
+    return value<bool>(u"MainWindow/maximized"_s);
+}
+
+void Preferences::setMainWindowMaximized(const bool value)
+{
+    if (value == isMainWindowMaximized())
+        return;
+
+    setValue(u"MainWindow/maximized"_s, value);
+}
+#endif // Q_OS_MACOS
+
 bool Preferences::isFiltersSidebarVisible() const
 {
     return value(u"GUI/MainWindow/FiltersSidebarVisible"_s, true);

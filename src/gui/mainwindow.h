@@ -226,6 +226,9 @@ private:
     QString m_uploadRate;
     bool m_posInitialized = false;
     bool m_neverShown = true;
+#ifdef Q_OS_MACOS
+    bool m_maximizeWhenRestored = false;
+#endif // Q_OS_MACOS
 
     QFileSystemWatcher *m_executableWatcher = nullptr;
     // GUI related
