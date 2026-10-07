@@ -365,7 +365,8 @@ void TrackerListWidget::showTrackerListMenu()
     menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("Add trackers...")
             , this, &TrackerListWidget::openAddTrackersDialog);
 
-    if (!getSelectedTrackerRows().isEmpty())
+    const bool hasSelectedTrackers = !getSelectedTrackerRows().isEmpty();
+    if (hasSelectedTrackers)
     {
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s),tr("Edit tracker URL...")
                 , this, &TrackerListWidget::editSelectedTracker);
@@ -373,11 +374,17 @@ void TrackerListWidget::showTrackerListMenu()
                 , this, &TrackerListWidget::deleteSelectedTrackers);
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy tracker URL")
                 , this, &TrackerListWidget::copyTrackerUrl);
-        if (!torrent()->isStopped())
-        {
-            menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to selected trackers")
-                    , this, &TrackerListWidget::reannounceSelected);
-        }
+    }
+
+    const bool isDHTEnabled = torrent()->session()->isDHTEnabled() && !torrent()->isPrivate() && !torrent()->isDHTDisabled();
+    const bool canReannounceDHT = isDHTEnabled && selectionModel()->isRowSelected(TrackerListModel::ROW_DHT);
+    if (!torrent()->isStopped() && (hasSelectedTrackers || canReannounceDHT))
+    {
+        const QString reannounceText = canReannounceDHT
+                ? (hasSelectedTrackers ? tr("Force reannounce to selected trackers and DHT") : tr("Force reannounce to DHT"))
+                : tr("Force reannounce to selected trackers");
+        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), reannounceText
+                , this, &TrackerListWidget::reannounceSelected);
     }
 
     if (!torrent()->isStopped())
