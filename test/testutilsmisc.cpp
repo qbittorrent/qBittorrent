@@ -26,9 +26,11 @@
  * exception statement from your version.
  */
 
+#include <QLocale>
 #include <QObject>
 #include <QTest>
 
+#include "base/global.h"
 #include "base/utils/misc.h"
 
 class TestUtilsMisc final : public QObject
@@ -42,17 +44,24 @@ public:
 private slots:
     void testfriendlyUnitCompact() const
     {
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(500), (u"500" + QChar::Nbsp + u"B"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000), (u"0.97" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(5000), (u"4.88" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000), (u"9.76" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000), (u"14.6" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(100000), (u"97.6" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(150000), (u"146" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000000), (u"976" + QChar::Nbsp + u"K"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000), (u"9.53" + QChar::Nbsp + u"M"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000000), (u"14.3" + QChar::Nbsp + u"M"));
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000000), (u"9.31" + QChar::Nbsp + u"G"));
+        // numbers are formatted with the system locale
+        const QString decimalPoint = QLocale::system().decimalPoint();
+        const auto toNative = [&decimalPoint](QString string) -> QString
+        {
+            return string.replace(u' ', QChar::Nbsp).replace(u'.', decimalPoint);
+        };
+
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(500), toNative(u"500 B"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000), toNative(u"0.97 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(5000), toNative(u"4.88 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000), toNative(u"9.76 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000), toNative(u"14.6 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(100000), toNative(u"97.6 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(150000), toNative(u"146 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000000), toNative(u"976 K"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000), toNative(u"9.53 M"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000000), toNative(u"14.3 M"_s));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000000), toNative(u"9.31 G"_s));
     }
 };
 
