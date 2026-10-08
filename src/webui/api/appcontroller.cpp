@@ -1357,17 +1357,8 @@ void AppController::getDirectoryContentAction()
 void AppController::getFreeSpaceAtPathAction()
 {
     requireParams({u"path"_s});
-    Path current {params().value(u"path"_s)};
-    const Path root = current.rootItem();
-    qint64 freeSpace = Utils::Fs::freeDiskSpaceOnPath(current);
-
-    // for non-existent directories (which will be created on demand) `Utils::Fs::freeDiskSpaceOnPath`
-    // will return invalid value so instead query its parent/ancestor paths
-    while ((freeSpace < 0) && (current != root))
-    {
-        current = current.parentPath();
-        freeSpace = Utils::Fs::freeDiskSpaceOnPath(current);
-    }
+    const Path path {params().value(u"path"_s)};
+    const qint64 freeSpace = Utils::Fs::freeDiskSpaceOnPath(path);
     setResult(QString::number(freeSpace));
 }
 
