@@ -2117,7 +2117,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         initColumns() {
             this.newColumn("fullName", "", "QBT_TR(Name)QBT_TR[CONTEXT=SearchPluginsTable]", 175, true);
             this.newColumn("version", "", "QBT_TR(Version)QBT_TR[CONTEXT=SearchPluginsTable]", 100, true);
-            this.newColumn("url", "", "QBT_TR(Url)QBT_TR[CONTEXT=SearchPluginsTable]", 175, true);
+            this.newColumn("url", "", "QBT_TR(URL)QBT_TR[CONTEXT=SearchPluginsTable]", 175, true);
             this.newColumn("enabled", "", "QBT_TR(Enabled)QBT_TR[CONTEXT=SearchPluginsTable]", 100, true);
 
             this.initColumnsFunctions();
