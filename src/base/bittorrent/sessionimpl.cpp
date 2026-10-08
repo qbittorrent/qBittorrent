@@ -3778,9 +3778,15 @@ void SessionImpl::setBandwidthSchedulerEnabled(const bool enabled)
     {
         m_isBandwidthSchedulerEnabled = enabled;
         if (enabled)
+        {
             enableBandwidthScheduler();
+        }
         else
+        {
+            if (m_bwScheduler && m_bwScheduler->isAlternativeRequested())
+                setAltGlobalSpeedLimitEnabled(false);
             delete m_bwScheduler;
+        }
     }
 }
 
