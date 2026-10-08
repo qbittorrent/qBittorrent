@@ -1713,7 +1713,12 @@ void TorrentImpl::forceRecheck()
     if (!hasMetadata())
         return;
 
+    const auto queuePos = m_nativeHandle.queue_position();
+
     m_nativeHandle.force_recheck();
+
+    if (queuePos >= lt::queue_position_t {})
+        m_nativeHandle.queue_position_set(queuePos);
 
     // We have to force update the cached state, otherwise someone will be able to get
     // an incorrect one during the interval until the cached state is updated in a regular way.
