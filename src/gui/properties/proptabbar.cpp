@@ -41,6 +41,8 @@ namespace
 {
     class PropTabButton final : public QPushButton
     {
+        Q_OBJECT
+
     public:
         using QPushButton::QPushButton;
 
@@ -165,3 +167,5 @@ void PropTabBar::setCurrentIndex(int index)
     // Emit the signal
     emit tabChanged(index);
 }
+
+#include "proptabbar.moc"
