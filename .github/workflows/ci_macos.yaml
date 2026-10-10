@@ -19,12 +19,12 @@ jobs:
       fail-fast: false
       matrix:
         libtorrent:
-          - version: "2.1.1"
+          - version: "2.1.2"
             boost_major_version: "1"
             boost_minor_version: "91"
             boost_patch_version: "0"
             libt_build_flags: ""
-          - version: "2.0.14"
+          - version: "2.0.15"
             boost_major_version: "1"
             boost_minor_version: "91"
             boost_patch_version: "0"
@@ -58,9 +58,10 @@ jobs:
           max_attempts: 6
           command: |
             brew update > /dev/null
+            # already preinstalled on the image: cmake ninja
             brew install \
               openssl@3 zlib
-            # preinstalled on the image: cmake ninja
+            echo "CMAKE_PREFIX_PATH=/opt/homebrew/opt/openssl@3" >> "$GITHUB_ENV"
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1

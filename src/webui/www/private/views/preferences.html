@@ -234,8 +234,12 @@
             </table>
         </fieldset>
         <div class="formRow">
-            <input type="checkbox" id="deletetorrentfileafter_checkbox">
-            <label for="deletetorrentfileafter_checkbox">QBT_TR(Delete .torrent files afterwards)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="checkbox" id="deleteTorrentFileAfterCheckbox">
+            <label for="deleteTorrentFileAfterCheckbox">QBT_TR(Delete .torrent files afterwards)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow" style="margin-left: 30px;" title="QBT_TR(Also delete .torrent files whose addition was cancelled)QBT_TR[CONTEXT=OptionsDialog]">
+            <input type="checkbox" id="deleteCancelledTorrentFileCheckbox">
+            <label for="deleteCancelledTorrentFileCheckbox">QBT_TR(Also when addition is cancelled)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
 
@@ -323,7 +327,7 @@
                 <tr>
                     <td>
                         <input type="checkbox" id="temppath_checkbox" onclick="qBittorrent.Preferences.updateTempDirEnabled();">
-                        <label id="tempPathLabel" for="temppath_checkbox">QBT_TR(Keep incomplete torrents in:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label id="tempPathLabel" for="temppath_checkbox">QBT_TR(Use another path for incomplete torrents:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
                         <input type="text" id="temppath_text" class="pathDirectory" autocorrect="off" autocapitalize="none" aria-labelledby="tempPathLabel">
@@ -909,6 +913,14 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <input type="radio" name="shareLimitMode" id="shareLimitModeAny" value="MatchAny">
+                        <label for="shareLimitModeAny">QBT_TR(Any of the above)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="radio" name="shareLimitMode" id="shareLimitModeAll" value="MatchAll">
+                        <label for="shareLimitModeAll">QBT_TR(All the above)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                </tr>
+                <tr>
                     <td style="text-align: right;"><label for="maxRatioSelect">QBT_TR(then)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                     <td>
                         <select id="maxRatioSelect">
@@ -1389,6 +1401,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     </td>
                     <td>
                         <input type="checkbox" id="resolvePeerCountries">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="confirmRemoveAllTags">QBT_TR(Confirm removal of all tags:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="confirmRemoveAllTags">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="confirmRemoveTrackerFromAllTorrents">QBT_TR(Confirm removal of tracker from all torrents:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="confirmRemoveTrackerFromAllTorrents">
                     </td>
                 </tr>
                 <tr>
@@ -2041,6 +2069,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("storeSearchJobResults").disabled = !enabled;
         };
 
+        const updateDeleteCancelledTorrentEnabled = () => {
+            const enabled = document.getElementById("deleteTorrentFileAfterCheckbox").checked;
+            document.getElementById("deleteCancelledTorrentFileCheckbox").disabled = !enabled;
+        };
+
         // Downloads tab
         let watchedFoldersTable;
 
@@ -2142,15 +2175,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("mailNotificationEncryptionCombobox").disabled = !isMailNotificationEnabled;
             document.getElementById("mail_auth_checkbox").disabled = !isMailNotificationEnabled;
             document.getElementById("mail_test_button").disabled = !isMailNotificationEnabled;
-
-            if (!isMailNotificationEnabled) {
-                document.getElementById("mail_auth_checkbox").checked = !isMailNotificationEnabled;
-                updateMailAuthSettings();
-            }
+            updateMailAuthSettings();
         };
 
         const updateMailAuthSettings = () => {
-            const isMailAuthEnabled = document.getElementById("mail_auth_checkbox").checked;
+            // the stored setting is left alone when notifications are off, so that saving the
+            // preferences does not silently turn authentication off
+            const isMailAuthEnabled = document.getElementById("mail_notification_checkbox").checked
+                && document.getElementById("mail_auth_checkbox").checked;
             document.getElementById("mail_username_text").disabled = !isMailAuthEnabled;
             document.getElementById("mail_password_text").disabled = !isMailAuthEnabled;
         };
@@ -2294,6 +2326,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("maxInactiveSeedingTimeValue").disabled = !isMaxInactiveSeedingTimeEnabled;
 
             document.getElementById("maxRatioSelect").disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
+
+            const shareLimitModeGroup = document.getElementsByName("shareLimitMode");
+            for (const radioEl of shareLimitModeGroup)
+                radioEl.disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
         };
 
         const updateAddTrackersEnabled = () => {
@@ -2537,7 +2573,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     }
                     document.getElementById("stopConditionSelect").getChildren("option")[index].selected = true;
                     document.getElementById("mergeTrackersInput").checked = pref.merge_trackers;
-                    document.getElementById("deletetorrentfileafter_checkbox").checked = pref.auto_delete_mode;
+                    document.getElementById("deleteTorrentFileAfterCheckbox").checked = (pref.auto_delete_mode > 0);
+                    document.getElementById("deleteCancelledTorrentFileCheckbox").checked = (pref.auto_delete_mode === 2);
+                    updateDeleteCancelledTorrentEnabled();
 
                     document.getElementById("preallocateall_checkbox").checked = pref.preallocate_all;
                     document.getElementById("appendext_checkbox").checked = pref.incomplete_files_ext;
@@ -2581,6 +2619,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Excluded file names
                     document.getElementById("excludedFileNamesCheckbox").checked = pref.excluded_file_names_enabled;
                     document.getElementById("excludedFileNamesTextarea").value = pref.excluded_file_names;
+                    updateExcludedFileNamesEnabled();
 
                     // Email notification upon download completion
                     document.getElementById("mail_notification_checkbox").checked = pref.mail_notification_enabled;
@@ -2748,6 +2787,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             maxRatioAct = 2;
                             break;
                     }
+
+                    const shareLimitMode = pref.share_limits_mode;
+
+                    document.getElementById("shareLimitModeAny").checked = shareLimitMode === "MatchAny";
+                    document.getElementById("shareLimitModeAll").checked = shareLimitMode === "MatchAll";
                     document.getElementById("maxRatioSelect").getChildren("option")[maxRatioAct].selected = true;
                     updateMaxRatioTimeEnabled();
 
@@ -2847,6 +2891,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("refreshInterval").value = pref.refresh_interval;
                     document.getElementById("resolvePeerHostNames").checked = pref.resolve_peer_host_names;
                     document.getElementById("resolvePeerCountries").checked = pref.resolve_peer_countries;
+                    document.getElementById("confirmRemoveAllTags").checked = pref.confirm_remove_all_tags;
+                    document.getElementById("confirmRemoveTrackerFromAllTorrents").checked = pref.confirm_remove_tracker_from_all_torrents;
                     document.getElementById("reannounceWhenAddressChanged").checked = pref.reannounce_when_address_changed;
                     document.getElementById("enableEmbeddedTracker").checked = pref.enable_embedded_tracker;
                     document.getElementById("embeddedTrackerPort").value = pref.embedded_tracker_port;
@@ -2965,7 +3011,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["add_stopped_enabled"] = document.getElementById("dontstartdownloads_checkbox").checked;
             settings["torrent_stop_condition"] = document.getElementById("stopConditionSelect").getSelected()[0].value;
             settings["merge_trackers"] = document.getElementById("mergeTrackersInput").checked;
-            settings["auto_delete_mode"] = Number(document.getElementById("deletetorrentfileafter_checkbox").checked);
+            settings["auto_delete_mode"] = !document.getElementById("deleteTorrentFileAfterCheckbox").checked
+                ? 0
+                : (document.getElementById("deleteCancelledTorrentFileCheckbox").checked ? 2 : 1);
 
             settings["preallocate_all"] = document.getElementById("preallocateall_checkbox").checked;
             settings["incomplete_files_ext"] = document.getElementById("appendext_checkbox").checked;
@@ -3226,6 +3274,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }
             settings["max_inactive_seeding_time_enabled"] = document.getElementById("maxInactiveSeedingTimeCheckbox").checked;
             settings["max_inactive_seeding_time"] = maxInactiveSeedingTime;
+            settings["share_limits_mode"] = document.querySelector('input[name="shareLimitMode"]:checked').value;
             settings["max_ratio_act"] = Number(document.getElementById("maxRatioSelect").value);
 
             // Add trackers
@@ -3347,6 +3396,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["refresh_interval"] = Number(document.getElementById("refreshInterval").value);
             settings["resolve_peer_host_names"] = document.getElementById("resolvePeerHostNames").checked;
             settings["resolve_peer_countries"] = document.getElementById("resolvePeerCountries").checked;
+            settings["confirm_remove_all_tags"] = document.getElementById("confirmRemoveAllTags").checked;
+            settings["confirm_remove_tracker_from_all_torrents"] = document.getElementById("confirmRemoveTrackerFromAllTorrents").checked;
             settings["reannounce_when_address_changed"] = document.getElementById("reannounceWhenAddressChanged").checked;
             settings["enable_embedded_tracker"] = document.getElementById("enableEmbeddedTracker").checked;
             settings["embedded_tracker_port"] = Number(document.getElementById("embeddedTrackerPort").value);
@@ -3537,6 +3588,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("networkInterface").addEventListener("change", function(event) {
                 updateInterfaceAddresses(this.value, "");
             });
+
+            document.getElementById("deleteTorrentFileAfterCheckbox").addEventListener("change", (e) => { updateDeleteCancelledTorrentEnabled(); });
 
             loadPreferences();
 

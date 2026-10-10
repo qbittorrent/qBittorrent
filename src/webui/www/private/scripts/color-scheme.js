@@ -47,7 +47,7 @@ window.qBittorrent.ColorScheme ??= (() => {
         root.classList.toggle("dark", ((!validScheme && isDark) || (colorScheme === "dark")));
     };
 
-    colorSchemeQuery.addEventListener("change", update);
+    colorSchemeQuery.addEventListener("change", (_event) => update());
     // Apply immediately: framed windows already have parent's ClientData loaded;
     // main window falls back to system preference until client.js calls update() after fetch
     update();

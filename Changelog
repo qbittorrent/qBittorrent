@@ -36,6 +36,8 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0
     - FEATURE: Expose libtorrent setting for WebTorrent STUN server (Chocobo1) #24837
     - FEATURE: Add I2P PeX setting (thalieht) #24870
     - FEATURE: Add settings for I2P inbound/outbound length variance (thalieht) #24891
+    - FEATURE: Make disabled speed graphs warning clickable (M-Hassan-Raza) #24023
+    - FEATURE: Relax plugin versioning rule (Chocobo1) #25017
     - BUGFIX: Fix Comment area background mismatch in Add New Torrent dialog (M-Hassan-Raza) #23916
     - BUGFIX: Rename FYR Macedonia to North Macedonia (alphanumericcharter) #23825
     - BUGFIX: Fix LineEdit dark corner artifacts on macOS (M-Hassan-Raza) #23909
@@ -60,6 +62,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0
     - BUGFIX: Use HTTPS for dynamic DNS (Piccirello) #24805
     - BUGFIX: Fix torrent completion handling when ignored files are present (sedlund) #24866
     - BUGFIX: Don't create a torrent entry from an unauthenticated announce (Piccirello) #24869
+    - BUGFIX: Fix broken documentation link (Chocobo1) #25019
     - WEBUI: Add "Select All" and "Invert Selection" (aaron-kruse) #23975
     - WEBUI: Enable virtual list by default (tehcneko) #23887
     - WEBUI: Improve folder collapse behavior (Piccirello) #23878
@@ -94,6 +97,9 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0
     - WEBUI: Cap path autocompletion suggestions to 25 entries (pktiuk) #24848
     - WEBUI: Keep properties panel sortable after tab click (pederbe) #24879
     - WEBUI: Fix authentication bypass via X-Forwarded-For spoofing (Piccirello) #24889
+    - WEBUI: Add missing Options page settings and fix mismatches (devnullv0id) #24920
+    - WEBUI: Prefer `Sec-Fetch-Site` for cross-site request detection (Piccirello) #24970
+    - WEBUI: Add shared download window for RSS articles (Piccirello) #24984
     - WEBAPI: Construct WebAPI controller instances on demand (glassez) #24700
     - WEBAPI: Require POST for search/downloadTorrent and rss/setFeedRefreshInterval (Piccirello) #24791
     - WEBAPI: Fix editCategory overwrites unrelated options (glassez) #24798
@@ -104,6 +110,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0
     - RSS: Allow adding torrents from links in RSS content viewer (glassez) #24120
     - RSS: Persist feed list sort order (TurboTheTurtle) #24519
     - RSS: Clamp 'Max articles per feed' to a non-negative value (Piccirello) #24806
+    - RSS: Make RSS settings warning clickable (M-Hassan-Raza) #23917
     - SEARCH: Clean up documentation format (Chocobo1) #23911
     - SEARCH: Preserve cookies when handling HTTP redirection (Chocobo1) #24912
     - SEARCH: Escape pipe characters properly (Chocobo1) #24933
