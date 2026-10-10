@@ -149,7 +149,7 @@ jobs:
             appName="qbittorrent-nox"
           fi
           mkdir -p upload/cmake/libtorrent
-          macdeployqt "build/$appName.app" -no-strip -no-codesign
+          macdeployqt "build/$appName.app" -no-strip
           python3 .github/workflows/helper/macos/package.py prepare \
             "build/$appName.app" upload/manifest.json
           artifactName=$(python3 -c 'import json; print(json.load(open("upload/manifest.json"))["artifact_name"])')
