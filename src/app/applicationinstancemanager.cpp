@@ -45,7 +45,8 @@ ApplicationInstanceManager::ApplicationInstanceManager(const Path &instancePath,
     , m_peer {new LocalPeer(instancePath.data(), this)}
     , m_isFirstInstance {!m_peer->isClient()}
 {
-    connect(m_peer, &LocalPeer::messageReceived, this, &ApplicationInstanceManager::messageReceived);
+    // use `Qt::QueuedConnection` to shift the heavy work to the receiver side
+    connect(m_peer, &LocalPeer::messageReceived, this, &ApplicationInstanceManager::messageReceived, Qt::QueuedConnection);
 
 #ifdef Q_OS_WIN
     const QString sharedMemoryKey = instancePath.data() + u"/shared-memory";
