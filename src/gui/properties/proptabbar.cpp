@@ -42,6 +42,7 @@ namespace
     class PropTabButton final : public QPushButton
     {
         Q_OBJECT
+        Q_DISABLE_COPY_MOVE(PropTabButton)
 
     public:
         using QPushButton::QPushButton;
