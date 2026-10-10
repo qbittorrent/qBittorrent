@@ -149,6 +149,9 @@ jobs:
             appName="qbittorrent-nox"
           fi
           mkdir -p upload/cmake/libtorrent
+          # qBittorrent only uses SQLite; other SQL drivers require external libraries.
+          test -f "${QT_PLUGIN_PATH:?}/sqldrivers/libqsqlite.dylib"
+          find "$QT_PLUGIN_PATH/sqldrivers" -type f ! -name libqsqlite.dylib -delete
           macdeployqt "build/$appName.app" -no-strip
           python3 .github/workflows/helper/macos/package.py prepare \
             "build/$appName.app" upload/manifest.json
