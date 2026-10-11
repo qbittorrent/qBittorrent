@@ -129,26 +129,28 @@
                 </ul>
             </div>
             <div id="mochaToolbar">
-                &nbsp;&nbsp;
-                <button type="button" id="menuDrawerButton" class="mochaToolButton" title="QBT_TR(Menu)QBT_TR[CONTEXT=MainWindow]" aria-label="QBT_TR(Menu)QBT_TR[CONTEXT=MainWindow]" aria-controls="desktopNavbar" aria-expanded="false"></button>
-                <div id="uploadButton" style="display: inline-block;">
-                    <label for="fileselectButton" style="cursor: pointer;">
-                        <img class="mochaToolButton" title="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/list-add.svg" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24">
-                    </label>
-                    <input type="file" id="fileselectButton" class="fileselect" accept=".torrent, application/x-bittorrent" name="fileselect[]" multiple style="display: none;">
+                <div id="toolbarButtons">
+                    &nbsp;&nbsp;
+                    <button type="button" id="menuDrawerButton" class="mochaToolButton" title="QBT_TR(Menu)QBT_TR[CONTEXT=MainWindow]" aria-label="QBT_TR(Menu)QBT_TR[CONTEXT=MainWindow]" aria-controls="desktopNavbar" aria-expanded="false"></button>
+                    <div id="uploadButton" style="display: inline-block;">
+                        <label for="fileselectButton" style="cursor: pointer;">
+                            <img class="mochaToolButton" title="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/list-add.svg" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24">
+                        </label>
+                        <input type="file" id="fileselectButton" class="fileselect" accept=".torrent, application/x-bittorrent" name="fileselect[]" multiple style="display: none;">
+                    </div>
+                    <a id="downloadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" src="images/insert-link.svg" alt="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
+                    <a id="deleteButton"><img class="mochaToolButton" title="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" src="images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"></a>
+                    <a id="startButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]" src="images/torrent-start.svg" alt="QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"></a>
+                    <a id="stopButton"><img class="mochaToolButton" title="QBT_TR(Stop)QBT_TR[CONTEXT=TransferListWidget]" src="images/torrent-stop.svg" alt="QBT_TR(Stop)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"></a>
+                    <span id="queueingButtons">
+                        <a id="topPrioButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Move to the top of the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-top.svg" alt="QBT_TR(Top of Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
+                        <a id="increasePrioButton"><img class="mochaToolButton" title="QBT_TR(Move up in the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-up.svg" alt="QBT_TR(Move Up Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
+                        <a id="decreasePrioButton"><img class="mochaToolButton" title="QBT_TR(Move down in the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-down.svg" alt="QBT_TR(Move Down Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
+                        <a id="bottomPrioButton"><img class="mochaToolButton" title="QBT_TR(Move to the bottom of the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-bottom.svg" alt="QBT_TR(Bottom of Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
+                    </span>
+                    <a id="torrentCreatorButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Torrent Creator)QBT_TR[CONTEXT=MainWindow]" src="images/torrent-creator.svg" alt="QBT_TR(Torrent Creator)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
+                    <a id="preferencesButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" src="images/configure.svg" alt="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" width="24" height="24"></a>
                 </div>
-                <a id="downloadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" src="images/insert-link.svg" alt="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
-                <a id="deleteButton"><img class="mochaToolButton" title="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" src="images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"></a>
-                <a id="startButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]" src="images/torrent-start.svg" alt="QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"></a>
-                <a id="stopButton"><img class="mochaToolButton" title="QBT_TR(Stop)QBT_TR[CONTEXT=TransferListWidget]" src="images/torrent-stop.svg" alt="QBT_TR(Stop)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"></a>
-                <span id="queueingButtons">
-                    <a id="topPrioButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Move to the top of the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-top.svg" alt="QBT_TR(Top of Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
-                    <a id="increasePrioButton"><img class="mochaToolButton" title="QBT_TR(Move up in the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-up.svg" alt="QBT_TR(Move Up Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
-                    <a id="decreasePrioButton"><img class="mochaToolButton" title="QBT_TR(Move down in the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-down.svg" alt="QBT_TR(Move Down Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
-                    <a id="bottomPrioButton"><img class="mochaToolButton" title="QBT_TR(Move to the bottom of the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-bottom.svg" alt="QBT_TR(Bottom of Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
-                </span>
-                <a id="torrentCreatorButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Torrent Creator)QBT_TR[CONTEXT=MainWindow]" src="images/torrent-creator.svg" alt="QBT_TR(Torrent Creator)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
-                <a id="preferencesButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" src="images/configure.svg" alt="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" width="24" height="24"></a>
                 <div id="mainWindowTabs" class="toolbarTabs">
                     <menu id="mainWindowTabsList" class="tab-menu">
                         <li id="transfersTabLink" class="selected">
