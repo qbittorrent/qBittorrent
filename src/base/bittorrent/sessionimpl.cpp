@@ -5965,7 +5965,7 @@ void SessionImpl::configureDeferred()
         return;
 
     m_deferredConfigureScheduled = true;
-    QMetaObject::invokeMethod(this, qOverload<>(&SessionImpl::configure), Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, &SessionImpl::configure, Qt::QueuedConnection);
 }
 
 // Enable IP Filtering
