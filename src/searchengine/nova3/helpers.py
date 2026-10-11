@@ -1,4 +1,4 @@
-# VERSION: 1.59
+# VERSION: 1.60
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -32,10 +32,10 @@ import gzip
 import html
 import http.cookiejar
 import io
+import logging
 import os
 import socket
 import ssl
-import sys
 import tempfile
 import urllib.error
 import urllib.parse
@@ -44,6 +44,8 @@ from collections.abc import Mapping
 from typing import Any, Optional, cast
 
 import socks
+
+_logger = logging.getLogger(__name__)
 
 
 def _getBrowserUserAgent() -> str:
@@ -101,7 +103,7 @@ def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data:
             contentType = response.getheader('Content-Type', '')
             data: bytes = response.read()
     except urllib.error.URLError as errno:
-        print(f"Connection error: {errno.reason}", file=sys.stderr)
+        _logger.warning(f"Retrieve URL error. Reason: '{errno.reason}'. URL: '{url}'.")
         return ""
 
     # Check if it is gzipped
