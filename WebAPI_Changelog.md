@@ -1,6 +1,7 @@
 # WebAPI Changelog
 
 ## 2.17.1
+
 * [#24779](https://github.com/qbittorrent/qBittorrent/pull/24779)
   * `app/preferences` endpoint includes `proxy_send_host_in_connect` (string) option
   * `app/setPreferences` endpoint allows to set `proxy_send_host_in_connect` (string) option
