@@ -55,6 +55,11 @@ void BandwidthScheduler::start()
     m_timer.start(30s);
 }
 
+bool BandwidthScheduler::isAlternativeRequested() const
+{
+    return m_lastAlternative;
+}
+
 bool BandwidthScheduler::isTimeForAlternative() const
 {
     const Preferences *const pref = Preferences::instance();
