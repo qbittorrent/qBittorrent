@@ -165,6 +165,7 @@ li.divider {
 #pageWrapper {
     border-bottom: 1px solid var(--color-border-default);
     border-top: 1px solid var(--color-border-default);
+    box-sizing: content-box; /* Mocha sizes the page without its borders */
     overflow: hidden; /* This can be set to hidden or auto */
     position: relative;
 }
