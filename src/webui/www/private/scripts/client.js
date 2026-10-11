@@ -892,7 +892,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             tagFilterItem.classList.toggle("selectedFilter", (tag === selectedTag));
 
             const span = tagFilterItem.firstElementChild;
-            span.lastChild.textContent = `${text} (${count})`;
+            span.lastElementChild.textContent = `${text} (${count})`;
 
             return tagFilterItem;
         };
@@ -946,18 +946,18 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             trackerFilterItem.classList.toggle("selectedFilter", (host === selectedTracker));
 
             const span = trackerFilterItem.firstElementChild;
-            span.lastChild.textContent = `${text} (${count})`;
+            span.lastElementChild.textContent = `${text} (${count})`;
 
             switch (host) {
                 case TRACKERS_ANNOUNCE_ERROR:
                 case TRACKERS_ERROR:
-                    span.lastElementChild.src = "images/tracker-error.svg";
+                    span.firstElementChild.src = "images/tracker-error.svg";
                     break;
                 case TRACKERS_TRACKERLESS:
-                    span.lastElementChild.src = "images/trackerless.svg";
+                    span.firstElementChild.src = "images/trackerless.svg";
                     break;
                 case TRACKERS_WARNING:
-                    span.lastElementChild.src = "images/tracker-warning.svg";
+                    span.firstElementChild.src = "images/tracker-warning.svg";
                     break;
             }
 
