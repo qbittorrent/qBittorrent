@@ -38,6 +38,8 @@
         const showTab = (element) => {
             for (const tab of document.querySelectorAll(".PrefTab"))
                 tab.classList.toggle("invisible", (tab !== element));
+            // open each tab at its top
+            document.getElementById("preferencesPage_contentWrapper").scrollTop = 0;
         };
 
         document.getElementById("PrefBehaviorLink").addEventListener("click", (e) => {
