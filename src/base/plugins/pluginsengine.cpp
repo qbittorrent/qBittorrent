@@ -523,7 +523,7 @@ nonstd::expected<PluginsEngine::PluginEntry, QString> PluginsEngine::loadPlugin(
 {
     auto loadResult = Plugin::load(path);
     if (!loadResult)
-        return loadResult.get_unexpected();
+        return nonstd::make_unexpected(loadResult.error());
 
     PluginEntry pluginEntry {
         .plugin = loadResult.value(),

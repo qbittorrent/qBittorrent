@@ -20,7 +20,7 @@
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation>ハッシュチェックを省略</translation>
+        <translation type="vanished">ハッシュチェックを省略</translation>
     </message>
     <message>
         <source>Torrent Management Mode:</source>
@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation>サイズ:</translation>
+        <translation type="vanished">サイズ:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -139,10 +139,6 @@
         <translation>ファイルを絞り込む...</translation>
     </message>
     <message>
-        <source>Add Torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Use another path for incomplete torrent</source>
         <translation>未完了のTorrentは別のパスを使用する</translation>
     </message>
@@ -200,10 +196,31 @@
     </message>
     <message>
         <source>%1 (Free space on disk: %2)</source>
-        <translation type="unfinished" />
+        <translation type="vanished">%1 (ディスクの空き容量: %2)</translation>
     </message>
     <message>
         <source>KiB/s</source>
+        <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.
+The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 free</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 needed · %2 free</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -256,6 +273,10 @@
         <source>Stop torrents</source>
         <translation>Torrentを停止する</translation>
     </message>
+    <message>
+        <source>Force start torrents</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -302,10 +323,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>最大アップロートスロット数は0より大きいか無効でなくてはなりません。</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">プログラム設定の保存ができません。qBittorrentはおそらく通信可能状態にありません。</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -583,7 +600,23 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Could not contact qBittorrent.</source>
+        <source>BitTorrent session shutdown timeout must be between -1 and 2147483647.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to resume the session.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to force start torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Invalid path to Python executable. Path contains unnecessary leading and trailing quotes.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to pause the session.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -659,11 +692,11 @@
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>全体のアップロード速度上限</translation>
+        <translation type="vanished">全体のアップロード速度上限</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>全体のダウンロード速度上限</translation>
+        <translation type="vanished">全体のダウンロード速度上限</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -847,7 +880,7 @@
     </message>
     <message>
         <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Infoハッシュ v1:</translation>
     </message>
     <message>
         <source>Invert Selection</source>
@@ -855,7 +888,7 @@
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>すべて選択</translation>
     </message>
     <message>
         <source>Remove torrent and content</source>
@@ -863,10 +896,34 @@
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrentを削除</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
+        <translation>Infoハッシュ v2:</translation>
+    </message>
+    <message>
+        <source>Resume session</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>[PAUSED]</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Global Speed Limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Pause session</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Pause Session</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resume Session</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -891,10 +948,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">言語</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -946,11 +999,11 @@
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation>".torrent"ファイルのコピー先:</translation>
+        <translation type="vanished">".torrent"ファイルのコピー先:</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>ダウンロードが完了した".torrent"ファイルのコピー先:</translation>
+        <translation type="vanished">ダウンロードが完了した".torrent"ファイルのコピー先:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -967,10 +1020,6 @@
     <message>
         <source>SMTP server:</source>
         <translation>SMTPサーバー:</translation>
-    </message>
-    <message>
-        <source>This server requires a secure connection (SSL)</source>
-        <translation type="vanished">このサーバーでは安全な接続(SSL)が必要</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1568,7 +1617,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>フィードごとの記事数の上限: </translation>
+        <translation>フィードごとの記事数の上限:</translation>
     </message>
     <message>
         <source> min</source>
@@ -2003,10 +2052,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation type="unfinished" />
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">qBittorentインスタンスを区別するために、ウィンドウタイトルにテキストを付加します。</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Web UIのユーザー名は、最低3文字が必要です。</translation>
     </message>
@@ -2024,7 +2069,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Show external IP in status bar</source>
-        <translation>ステータスバーに外部IPを表示する</translation>
+        <translation type="vanished">ステータスバーに外部IPを表示する</translation>
     </message>
     <message>
         <source>Fetched trackers</source>
@@ -2061,10 +2106,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>URL:</source>
         <translation>URL:</translation>
-    </message>
-    <message>
-        <source>Transfer list</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
@@ -2113,10 +2154,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>Run on torrent finished:</source>
         <translation>Torrentの完了時に実行:</translation>
-    </message>
-    <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="vanished">メールを送信しました。受信箱を確認してください。</translation>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
@@ -2283,10 +2320,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Default port</source>
         <translation type="unfinished" />
     </message>
@@ -2340,6 +2373,146 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>(best choice if supported)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Provide the sending email address.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable I2P Peer Exchange (I2P PeX) to find more peers (requires restart)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Status bar</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Notification</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Could not contact qBittorrent.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Separate multiple emails with a semicolon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Allow multiple connections from the same Peer ID:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Sessions count limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length variance:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Transfer List</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start BitTorrent session in paused state:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Store backup in:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Save search tabs</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Store backup .torrent file</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Note: b@y.com &amp; c@z.com will both see each other's email addresses, whereas a@x.com will not see them nor be seen.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display torrent content and some options</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Separate multiple email addresses within each email with a comma.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Provide the recipient email address or addresses.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Show external IP</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>BitTorrent session shutdown timeout [-1: unlimited]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Provide the SMTP server address for sending email notifications.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>smtp.example.com:465 - connect to server smtp.example.com on port 465</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding block requests from a peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also save search results</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length variance:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To manually specify the server port, add a colon and then the port number to the end.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove backup when removing torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When torrent finished move backup to:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>STUN server for WebTorrent NAT traversal:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The server address can be entered either as a DNS name or an IP address (DNS name recommended).</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Allow outgoing connections when seeding:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2424,6 +2597,10 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>IP/Address</source>
         <translation>IP/アドレス</translation>
+    </message>
+    <message>
+        <source>Contribution</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2752,6 +2929,18 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Availability:</source>
+        <translation>可用性:</translation>
+    </message>
+    <message>
+        <source>Copy path</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Copy download URL</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2784,7 +2973,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    </context>
+</context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2857,6 +3046,14 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Queued tracker announces:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Request latency:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The time it takes from receiving a request from a peer until we're sending the response back on the socket</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2994,10 +3191,14 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <source>Stop torrents</source>
         <translation>Torrentを停止する</translation>
     </message>
+    <message>
+        <source>Force start torrents</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    </context>
+</context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -3086,16 +3287,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
         <translation>アップロード 量</translation>
-    </message>
-    <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">セッション内ダウンロード量</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">セッション内アップロード量</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3709,7 +3900,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
 </context>
 <context>
     <name>about</name>
-    </context>
+</context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -4046,7 +4237,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation>追加するピアのリスト(1行ごとに1つのIP): </translation>
+        <translation>追加するピアのリスト(1行ごとに1つのIP):</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -4094,6 +4285,10 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>Stop torrents</source>
         <translation>Torrentを停止する</translation>
+    </message>
+    <message>
+        <source>Force start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4273,6 +4468,26 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Open download window</source>
+        <translation>ダウンロードウィンドウを開く</translation>
+    </message>
+    <message>
+        <source>Blocked opening search result description page URL. Only http:// and https:// links can be opened.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search results are no longer available</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open shared download window</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4408,6 +4623,10 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>Author: </source>
         <translation>作者: </translation>
+    </message>
+    <message>
+        <source>Blocked opening RSS article URL. Only http:// and https:// links can be opened.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4678,6 +4897,14 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Clone rule...</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Export</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Import</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
@@ -4715,6 +4942,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Other error</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Force start torrents</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4929,6 +5160,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Category does not exist</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Torrent share limits</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CookiesDialog</name>
@@ -5048,11 +5283,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Private
-                torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Unable to export torrent file</source>
         <translation type="unfinished" />
     </message>
@@ -5101,11 +5331,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>状態</translation>
     </message>
     <message>
-        <source>Align to piece boundary for files larger
-                than:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Select file/folder to share:</source>
         <translation type="unfinished" />
     </message>
@@ -5127,11 +5352,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Optimize
-                    alignment</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -5164,12 +5384,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Web Seeds</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start
-                seeding
-                immediately</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -5220,12 +5434,48 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Export Torrent</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ignore dotfiles</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Align to piece boundary for files larger than:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Private torrent (Won't distribute on DHT network)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ignore Dotfiles</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start seeding immediately</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Optimize alignment</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation>ダウンロード</translation>
+        <translation type="vanished">ダウンロード</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -5246,6 +5496,26 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Add Torrent Links</source>
         <translation>Torrentリンクの追加</translation>
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate dialog for each torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add Torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5269,6 +5539,46 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Upload speed</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Speed limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative download speed</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative upload speed</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to set speed limits</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5329,6 +5639,96 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Cancel</source>
+        <translation>キャンセル</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentShareLimitsWidget</name>
+    <message>
+        <source>min</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable super seeding for torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Inactive seeding time:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all the limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ratio:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match any limit</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent and its content</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share limit values cannot be empty or invalid.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Action when the limit is reached:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>From category (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Set to</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>From category</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unlimited</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TorrentContent</name>
+    <message>
+        <source>Unavailable until all selected files are downloaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Not available for folders</source>
         <translation type="unfinished" />
     </message>
 </context>

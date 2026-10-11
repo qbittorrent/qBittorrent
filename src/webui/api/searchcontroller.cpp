@@ -323,6 +323,7 @@ void SearchController::checkForUpdatesFailed(const QString &reason)
  *   - "nbSeeders"
  *   - "nbLeechers"
  *   - "engineName"
+ *   - "engineFullName"
  *   - "siteUrl"
  *   - "descrLink"
  *   - "pubDate"
@@ -340,6 +341,7 @@ QJsonObject SearchController::getResults(const QList<SearchResult> &searchResult
             {u"nbSeeders"_s, searchResult.nbSeeders},
             {u"nbLeechers"_s, searchResult.nbLeechers},
             {u"engineName"_s, searchResult.engineName},
+            {u"engineFullName"_s, searchResult.engineFullName},
             {u"siteUrl"_s, searchResult.siteUrl},
             {u"descrLink"_s, searchResult.descrLink},
             {u"pubDate"_s, Utils::DateTime::toSecsSinceEpoch(searchResult.pubDate)}

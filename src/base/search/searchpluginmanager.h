@@ -29,14 +29,19 @@
 
 #pragma once
 
-#include <QHash>
+#include <boost/multi_index_container.hpp>
+#include <boost/multi_index/hashed_index.hpp>
+#include <boost/multi_index/key.hpp>
+#include <boost/multi_index/tag.hpp>
+
+#include <QtContainerFwd>
 #include <QObject>
 #include <QProcessEnvironment>
 
 #include "base/path.h"
 #include "base/utils/version.h"
 
-using SearchPluginVersion = Utils::Version<2>;
+using SearchPluginVersion = Utils::Version<3, 1>;
 
 namespace Net
 {
@@ -74,7 +79,7 @@ public:
     QStringList supportedCategories() const;
     QStringList getPluginCategories(const QString &pluginName) const;
     SearchPluginInfo *pluginInfo(const QString &name) const;
-    QString pluginNameBySiteURL(const QString &siteURL) const;
+    SearchPluginInfo *pluginInfoBySiteURL(const QString &siteURL) const;
 
     void enablePlugin(const QString &name, bool enabled = true);
     void updatePlugin(const QString &name);
@@ -122,6 +127,13 @@ private:
 
     const QString m_updateUrl;
 
-    QHash<QString, SearchPluginInfo*> m_plugins;
+    using Plugins = boost::multi_index_container<
+        SearchPluginInfo *,
+        boost::multi_index::indexed_by<
+            boost::multi_index::hashed_unique<boost::multi_index::tag<struct ByName>, boost::multi_index::key<&SearchPluginInfo::name>>,
+            // allow multiple plugins for the same site when they have different plugin names
+            boost::multi_index::hashed_non_unique<boost::multi_index::tag<struct BySiteURL>, boost::multi_index::key<&SearchPluginInfo::url>>>>;
+    Plugins m_plugins;
+
     QProcessEnvironment m_proxyEnv;
 };

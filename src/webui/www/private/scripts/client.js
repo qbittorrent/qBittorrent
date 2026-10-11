@@ -1054,6 +1054,11 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                                     window.qBittorrent.Client.categoryMap.set(responseName, {
                                         savePath: responseData.savePath,
                                         downloadPath: responseData.download_path ?? null,
+                                        ratioLimit: responseData.ratio_limit,
+                                        seedingTimeLimit: responseData.seeding_time_limit,
+                                        inactiveSeedingTimeLimit: responseData.inactive_seeding_time_limit,
+                                        shareLimitAction: responseData.share_limit_action,
+                                        shareLimitsMode: responseData.share_limits_mode,
                                         torrents: new Set()
                                     });
                                 }
@@ -1062,6 +1067,16 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                                         categoryData.savePath = responseData.savePath;
                                     if (responseData.download_path !== undefined)
                                         categoryData.downloadPath = responseData.download_path;
+                                    if (responseData.ratio_limit !== undefined)
+                                        categoryData.ratioLimit = responseData.ratio_limit;
+                                    if (responseData.seeding_time_limit !== undefined)
+                                        categoryData.seedingTimeLimit = responseData.seeding_time_limit;
+                                    if (responseData.inactive_seeding_time_limit !== undefined)
+                                        categoryData.inactiveSeedingTimeLimit = responseData.inactive_seeding_time_limit;
+                                    if (responseData.share_limit_action !== undefined)
+                                        categoryData.shareLimitAction = responseData.share_limit_action;
+                                    if (responseData.share_limits_mode !== undefined)
+                                        categoryData.shareLimitsMode = responseData.share_limits_mode;
                                 }
                             }
                             updateCategories = true;
@@ -1813,7 +1828,16 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             }
         },
         tabsURL: "views/propertiesToolbar.html?v=${CACHEID}",
-        tabsOnload: () => {}, // must be included, otherwise panel won't load properly
+        tabsOnload: () => {
+            // Keep tab clicks and file filter editing from starting a panel drag.
+            for (const element of document.querySelectorAll("#propertiesTabs li, #torrentFilesFilterInput")) {
+                element.addEventListener("mousedown", (event) => {
+                    event.stopPropagation();
+                    // Preserve the document handler's window deactivation.
+                    setTimeout(() => { MochaUI.blurAll(); }, 50);
+                });
+            }
+        },
         onContentLoaded: function() {
             this.panelHeaderCollapseBoxEl.addEvent("click", (event) => {
                 localPreferences.set("properties_panel_collapsed", this.isCollapsed.toString());

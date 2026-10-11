@@ -33,8 +33,6 @@ For programming languages other than C++ (e.g. JavaScript) used in this reposito
 * [10. Git commit message](#10-git-commit-message)
 * [11. Not covered above](#11-not-covered-above)
 
----
-
 ## 1. New lines & curly braces
 
 ### a. Function blocks, class/struct definitions, namespaces
@@ -498,7 +496,7 @@ class ExampleWidget : public QWidget
 2. Separate subject from body with a blank line
 3. Capitalize the subject line
 4. Do not end the subject line with a period
-5. Use the imperative mood in the subject line (it's like you're ordering the program to do something (e.g. "Don't create temporary substrings")
+5. Use the imperative mood in the subject line (it's like you're ordering the program to do something (e.g. "Don't create temporary substrings"))
 6. Wrap the body at 72 characters
 7. Use the body to explain what and why vs. how
 8. If commit fixes a reported issue, mention it in the message body (e.g. `Closes #4134.`)

@@ -29,6 +29,7 @@
 #pragma once
 
 #include <libtorrent/config.hpp>
+#include <libtorrent/version.hpp>
 
 #include <QtSystemDetection>
 #include <QCheckBox>
@@ -49,6 +50,7 @@ public:
     explicit AdvancedSettings(IGUIApplication *app, QWidget *parent = nullptr);
 
 public slots:
+    void showSpeedWidgetSetting();
     void saveAdvancedSettings() const;
 
 signals:
@@ -101,6 +103,9 @@ private:
 
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
     QSpinBox m_spinBoxI2PInboundQuantity, m_spinBoxI2POutboundQuantity, m_spinBoxI2PInboundLength, m_spinBoxI2POutboundLength;
+#if LIBTORRENT_VERSION_NUM >= 20012
+    QSpinBox m_spinBoxI2PInboundLengthVariance, m_spinBoxI2POutboundLengthVariance;
+#endif // LIBTORRENT_VERSION_NUM >= 20012
 #endif
 
     // OS dependent settings

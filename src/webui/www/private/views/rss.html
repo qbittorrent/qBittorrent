@@ -201,6 +201,7 @@
 
 <ul id="rssArticleMenu" class="contextMenu">
     <li><a href="#Download"><img src="images/downloading.svg" alt="QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#OpenSharedDownloadWindow"><img src="images/downloading.svg" alt="QBT_TR(Open shared download window)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Open shared download window)QBT_TR[CONTEXT=RSSWidget]</a></li>
     <li><a href="#OpenNews"><img src="images/application-url.svg" alt="QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
 </ul>
 
@@ -222,7 +223,8 @@
                 addRSSFeed: addRSSFeed,
                 markSelectedAsRead: markSelectedAsRead,
                 openRssDownloader: openRssDownloader,
-                rssFeedTable: rssFeedTable
+                rssFeedTable: rssFeedTable,
+                rssArticleTable: rssArticleTable
             };
         };
 
@@ -332,6 +334,18 @@
                             const { name, torrentURL } = rssArticleTable.getRow(rowID).full_data;
                             window.qBittorrent.Client.createAddTorrentWindow(name, torrentURL);
                         }
+                    },
+                    OpenSharedDownloadWindow: (el) => {
+                        const urls = [];
+                        for (const rowID of rssArticleTable.selectedRows) {
+                            const { torrentURL } = rssArticleTable.getRow(rowID).full_data;
+                            if (torrentURL)
+                                urls.push(torrentURL);
+                        }
+                        if (urls.length === 0)
+                            return;
+                        const title = "QBT_TR(Add %1 torrents)QBT_TR[CONTEXT=RSSWidget]".replace("%1", urls.length);
+                        window.qBittorrent.Client.createAddTorrentWindow(title, urls.join("\n"), undefined, { shared: true });
                     },
                     OpenNews: (el) => {
                         const blockedUrls = [];
