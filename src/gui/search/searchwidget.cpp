@@ -63,8 +63,8 @@
 #include "base/utils/bytearray.h"
 #include "base/utils/compare.h"
 #include "base/utils/datetime.h"
-#include "base/utils/fs.h"
 #include "base/utils/foreignapps.h"
+#include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "gui/desktopintegration.h"
 #include "gui/interfaces/iguiapplication.h"
@@ -91,6 +91,7 @@ const QString KEY_RESULT_FILESIZE = u"FileSize"_s;
 const QString KEY_RESULT_SEEDERSCOUNT = u"SeedersCount"_s;
 const QString KEY_RESULT_LEECHERSCOUNT = u"LeechersCount"_s;
 const QString KEY_RESULT_ENGINENAME = u"EngineName"_s;
+const QString KEY_RESULT_ENGINEFULLNAME = u"EngineFullName"_s;
 const QString KEY_RESULT_SITEURL = u"SiteURL"_s;
 const QString KEY_RESULT_DESCRLINK = u"DescrLink"_s;
 const QString KEY_RESULT_PUBDATE = u"PubDate"_s;
@@ -296,17 +297,31 @@ namespace
                 return nonstd::make_unexpected(formatErrorMsg);
 
             if (const QJsonValue engineNameVal = resultObj[KEY_RESULT_ENGINENAME]; engineNameVal.isString())
-                searchResult.engineName= engineNameVal.toString();
+                searchResult.engineName = engineNameVal.toString();
             else
                 return nonstd::make_unexpected(formatErrorMsg);
 
+            if (const QJsonValue engineFullNameVal = resultObj[KEY_RESULT_ENGINEFULLNAME]; engineFullNameVal.isString())
+            {
+                searchResult.engineFullName = engineFullNameVal.toString();
+            }
+            else if (engineFullNameVal.isUndefined())
+            {
+                // this key may not exist when upgrading from a previous qbt version, so reuse the short engine name instead
+                searchResult.engineFullName = searchResult.engineName;
+            }
+            else
+            {
+                return nonstd::make_unexpected(formatErrorMsg);
+            }
+
             if (const QJsonValue siteURLVal = resultObj[KEY_RESULT_SITEURL]; siteURLVal.isString())
-                searchResult.siteUrl= siteURLVal.toString();
+                searchResult.siteUrl = siteURLVal.toString();
             else
                 return nonstd::make_unexpected(formatErrorMsg);
 
             if (const QJsonValue descrLinkVal = resultObj[KEY_RESULT_DESCRLINK]; descrLinkVal.isString())
-                searchResult.descrLink= descrLinkVal.toString();
+                searchResult.descrLink = descrLinkVal.toString();
             else
                 return nonstd::make_unexpected(formatErrorMsg);
 
@@ -421,10 +436,8 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     connect(m_ui->stopButton, &QPushButton::clicked, this, &SearchWidget::stopButtonClicked);
     connect(m_ui->lineEditSearchPattern, &LineEdit::returnPressed, m_ui->searchButton, &QPushButton::click);
     connect(m_ui->lineEditSearchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
-    connect(m_ui->selectPlugin, qOverload<int>(&QComboBox::currentIndexChanged)
-            , this, &SearchWidget::selectMultipleBox);
-    connect(m_ui->selectPlugin, qOverload<int>(&QComboBox::currentIndexChanged)
-            , this, &SearchWidget::fillCatCombobox);
+    connect(m_ui->selectPlugin, &QComboBox::currentIndexChanged, this, &SearchWidget::selectMultipleBox);
+    connect(m_ui->selectPlugin, &QComboBox::currentIndexChanged, this, &SearchWidget::fillCatCombobox);
 
     const auto *focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
     connect(focusSearchHotkey, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
@@ -440,8 +453,8 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     });
 
     m_historyLength = Preferences::instance()->searchHistoryLength();
-    m_storeOpenedTabs = Preferences::instance()->storeOpenedSearchTabs();
-    m_storeOpenedTabsResults = Preferences::instance()->storeOpenedSearchTabResults();
+    m_storeOpenedTabs = Preferences::instance()->storeSearchJobs();
+    m_storeOpenedTabsResults = Preferences::instance()->storeSearchJobResults();
     connect(Preferences::instance(), &Preferences::changed, this, &SearchWidget::onPreferencesChanged);
 
     m_dataStorage->moveToThread(m_ioThread.get());
@@ -467,7 +480,9 @@ bool SearchWidget::eventFilter(QObject *object, QEvent *event)
         {
             if (mouseEvent->button() == Qt::MiddleButton)
             {
-                closeTab(tabIndex);
+                if (Preferences::instance()->closeSearchTabWithMiddleClick())
+                    closeTab(tabIndex);
+
                 return true;
             }
 
@@ -488,7 +503,7 @@ void SearchWidget::onPreferencesChanged()
 {
     const auto *pref = Preferences::instance();
 
-    const bool storeOpenedTabs = pref->storeOpenedSearchTabs();
+    const bool storeOpenedTabs = pref->storeSearchJobs();
     const bool isStoreOpenedTabsChanged = storeOpenedTabs != m_storeOpenedTabs;
     if (isStoreOpenedTabsChanged)
     {
@@ -504,7 +519,7 @@ void SearchWidget::onPreferencesChanged()
     }
 
 
-    const bool storeOpenedTabsResults = pref->storeOpenedSearchTabResults();
+    const bool storeOpenedTabsResults = pref->storeSearchJobResults();
     const bool isStoreOpenedTabsResultsChanged = storeOpenedTabsResults != m_storeOpenedTabsResults;
     if (isStoreOpenedTabsResultsChanged)
         m_storeOpenedTabsResults = storeOpenedTabsResults;
@@ -1053,6 +1068,7 @@ void SearchWidget::DataStorage::storeTab(const QString &tabID, const QList<Searc
             {KEY_RESULT_SEEDERSCOUNT, searchResult.nbSeeders},
             {KEY_RESULT_LEECHERSCOUNT, searchResult.nbLeechers},
             {KEY_RESULT_ENGINENAME, searchResult.engineName},
+            {KEY_RESULT_ENGINEFULLNAME, searchResult.engineFullName},
             {KEY_RESULT_SITEURL, searchResult.siteUrl},
             {KEY_RESULT_DESCRLINK, searchResult.descrLink},
             {KEY_RESULT_PUBDATE, Utils::DateTime::toSecsSinceEpoch(searchResult.pubDate)}

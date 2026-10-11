@@ -33,6 +33,7 @@
 #include <concepts>
 #include <cstdint>
 #include <ctime>
+#include <memory>
 #include <ranges>
 #include <string>
 
@@ -58,6 +59,10 @@
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
+
+#if (LIBTORRENT_VERSION_NUM >= 20100) && TORRENT_USE_I2P
+#include <libtorrent/extensions/i2p_pex.hpp>
+#endif
 
 #include <QDateTime>
 #include <QDeadlineTimer>
@@ -479,6 +484,7 @@ QStringList Session::expandCategory(const QString &category)
 SessionImpl::SessionImpl(QObject *parent)
     : Session(parent)
     , m_DHTBootstrapNodes(BITTORRENT_SESSION_KEY(u"DHTBootstrapNodes"_s), DEFAULT_DHT_BOOTSTRAP_NODES)
+    , m_webTorrentSTUNServer(BITTORRENT_SESSION_KEY(u"WebTorrentSTUNServer"_s), u"stun.l.google.com:19302"_s)
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY(u"DHTEnabled"_s), true)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY(u"LSDEnabled"_s), true)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY(u"PeXEnabled"_s), true)
@@ -616,6 +622,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY(u"PeerTurnoverCutOff"_s), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY(u"PeerTurnoverInterval"_s), 300)
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_s), 500)
+    , m_maxOutstandingBlockRequests(BITTORRENT_SESSION_KEY(u"MaxOutstandingBlockRequests"_s), 2000)
     , m_isExcludedFileNamesEnabled(BITTORRENT_KEY(u"ExcludedFileNamesEnabled"_s), false)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_s))
     , m_bannedIPs(u"State/BannedIPs"_s, QStringList(), Algorithm::sorted<QStringList>)
@@ -625,10 +632,13 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_I2PAddress {BITTORRENT_SESSION_KEY(u"I2P/Address"_s), u"127.0.0.1"_s}
     , m_I2PPort {BITTORRENT_SESSION_KEY(u"I2P/Port"_s), 7656}
     , m_I2PMixedMode {BITTORRENT_SESSION_KEY(u"I2P/MixedMode"_s), false}
-    , m_I2PInboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/InboundQuantity"_s), 3}
-    , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_s), 3}
-    , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_s), 3}
-    , m_I2POutboundLength {BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_s), 3}
+    , m_isI2PPeXEnabled {BITTORRENT_SESSION_KEY(u"I2P/PeXEnabled"_s), true}
+    , m_I2PInboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/InboundQuantity"_s), 3, clampValue(1, 16)}
+    , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_s), 3, clampValue(1, 16)}
+    , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_s), 3, clampValue(0, 7)}
+    , m_I2POutboundLength {BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_s), 3, clampValue(0, 7)}
+    , m_I2PInboundLengthVariance {BITTORRENT_SESSION_KEY(u"I2P/InboundLengthVariance"_s), 0, clampValue(-7, 7)}
+    , m_I2POutboundLengthVariance {BITTORRENT_SESSION_KEY(u"I2P/OutboundLengthVariance"_s), 0, clampValue(-7, 7)}
     , m_torrentContentRemoveOption {BITTORRENT_SESSION_KEY(u"TorrentContentRemoveOption"_s), TorrentContentRemoveOption::Delete}
     , m_startPaused {BITTORRENT_SESSION_KEY(u"StartPaused"_s)}
     , m_seedingLimitTimer {new QTimer(this)}
@@ -790,18 +800,25 @@ SessionImpl::~SessionImpl()
     delete m_resumeDataStorage;
     LogMsg(tr("Saving resume data completed."));
 
-    auto *sessionTerminateThread = QThread::create([nativeSessionProxy]()
+    // Do not use `QObject::deleteLater` as the event loop might shut down very soon
+    std::unique_ptr<QThread> sessionTerminateThread {QThread::create([nativeSessionProxy]()
     {
         qDebug("Deleting libtorrent session...");
         delete nativeSessionProxy;
-    });
+    })};
     sessionTerminateThread->setObjectName("~SessionImpl sessionTerminateThread");
-    connect(sessionTerminateThread, &QThread::finished, sessionTerminateThread, &QObject::deleteLater);
     sessionTerminateThread->start();
     if (sessionTerminateThread->wait(shutdownDeadlineTimer))
+    {
         LogMsg(tr("BitTorrent session successfully finished."));
+    }
     else
-        LogMsg(tr("Session shutdown timed out."));
+    {
+        LogMsg(tr("Session shutdown timed out."), Log::WARNING);
+        // Leave the thread untracked and let it run till app exit.
+        // Don't bother with `QThread::terminate(); QThread::wait();` as it cannot really stop the thread and will block indefinitely.
+        sessionTerminateThread.release();
+    }
 }
 
 QString SessionImpl::getDHTBootstrapNodes() const
@@ -816,6 +833,20 @@ void SessionImpl::setDHTBootstrapNodes(const QString &nodes)
         return;
 
     m_DHTBootstrapNodes = nodes;
+    configureDeferred();
+}
+
+QString SessionImpl::getWebTorrentSTUNServer() const
+{
+    return m_webTorrentSTUNServer;
+}
+
+void SessionImpl::setWebTorrentSTUNServer(const QString &server)
+{
+    if (server == getWebTorrentSTUNServer())
+        return;
+
+    m_webTorrentSTUNServer = server;
     configureDeferred();
 }
 
@@ -1855,6 +1886,10 @@ void SessionImpl::initializeNativeSession()
     m_nativeSession->add_extension(&lt::create_ut_metadata_plugin);
     if (isPeXEnabled())
         m_nativeSession->add_extension(&lt::create_ut_pex_plugin);
+#if (LIBTORRENT_VERSION_NUM >= 20100) && TORRENT_USE_I2P
+    if (isI2PPeXEnabled())
+        m_nativeSession->add_extension(&lt::create_i2p_pex_plugin);
+#endif
 
     auto nativeSessionExtension = std::make_shared<NativeSessionExtension>();
     m_nativeSession->add_extension(nativeSessionExtension);
@@ -2009,6 +2044,10 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::i2p_outbound_quantity, I2POutboundQuantity());
     settingsPack.set_int(lt::settings_pack::i2p_inbound_length, I2PInboundLength());
     settingsPack.set_int(lt::settings_pack::i2p_outbound_length, I2POutboundLength());
+#if LIBTORRENT_VERSION_NUM >= 20012
+    settingsPack.set_int(lt::settings_pack::i2p_inbound_length_variance, I2PInboundLengthVariance());
+    settingsPack.set_int(lt::settings_pack::i2p_outbound_length_variance, I2POutboundLengthVariance());
+#endif // LIBTORRENT_VERSION_NUM >= 20012
 #endif
 
     // proxy
@@ -2065,6 +2104,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::peer_turnover_interval, peerTurnoverInterval());
 
     settingsPack.set_int(lt::settings_pack::max_out_request_queue, requestQueueSize());
+    settingsPack.set_int(lt::settings_pack::max_allowed_in_request_queue, maxOutstandingBlockRequests());
 
 #ifdef QBT_USES_LIBTORRENT2
     settingsPack.set_int(lt::settings_pack::metadata_token_limit, Preferences::instance()->getBdecodeTokenLimit());
@@ -2232,6 +2272,12 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_bool(lt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
 
     settingsPack.set_str(lt::settings_pack::dht_bootstrap_nodes, getDHTBootstrapNodes().toStdString());
+
+#if LIBTORRENT_VERSION_NUM >= 20100
+    // STUN server for WebTorrent NAT traversal
+    settingsPack.set_str(lt::settings_pack::webtorrent_stun_server, getWebTorrentSTUNServer().toStdString());
+#endif
+
     settingsPack.set_bool(lt::settings_pack::enable_dht, isDHTEnabled());
     settingsPack.set_bool(lt::settings_pack::enable_lsd, isLSDEnabled());
 
@@ -3974,6 +4020,17 @@ void SessionImpl::setI2PMixedMode(const bool enabled)
     }
 }
 
+bool SessionImpl::isI2PPeXEnabled() const
+{
+    return m_isI2PPeXEnabled;
+}
+
+void SessionImpl::setI2PPeXEnabled(const bool enabled)
+{
+    if (m_isI2PPeXEnabled != enabled)
+        m_isI2PPeXEnabled = enabled;
+}
+
 int SessionImpl::I2PInboundQuantity() const
 {
     return m_I2PInboundQuantity;
@@ -3981,10 +4038,11 @@ int SessionImpl::I2PInboundQuantity() const
 
 void SessionImpl::setI2PInboundQuantity(const int value)
 {
-    if (value == m_I2PInboundQuantity)
+    const int clampedValue = std::clamp(value, 1, 16);
+    if (clampedValue == m_I2PInboundQuantity)
         return;
 
-    m_I2PInboundQuantity = value;
+    m_I2PInboundQuantity = clampedValue;
     configureDeferred();
 }
 
@@ -3995,10 +4053,11 @@ int SessionImpl::I2POutboundQuantity() const
 
 void SessionImpl::setI2POutboundQuantity(const int value)
 {
-    if (value == m_I2POutboundQuantity)
+    const int clampedValue = std::clamp(value, 1, 16);
+    if (clampedValue == m_I2POutboundQuantity)
         return;
 
-    m_I2POutboundQuantity = value;
+    m_I2POutboundQuantity = clampedValue;
     configureDeferred();
 }
 
@@ -4009,10 +4068,11 @@ int SessionImpl::I2PInboundLength() const
 
 void SessionImpl::setI2PInboundLength(const int value)
 {
-    if (value == m_I2PInboundLength)
+    const int clampedValue = std::clamp(value, 0, 7);
+    if (clampedValue == m_I2PInboundLength)
         return;
 
-    m_I2PInboundLength = value;
+    m_I2PInboundLength = clampedValue;
     configureDeferred();
 }
 
@@ -4023,10 +4083,41 @@ int SessionImpl::I2POutboundLength() const
 
 void SessionImpl::setI2POutboundLength(const int value)
 {
-    if (value == m_I2POutboundLength)
+    const int clampedValue = std::clamp(value, 0, 7);
+    if (clampedValue == m_I2POutboundLength)
         return;
 
-    m_I2POutboundLength = value;
+    m_I2POutboundLength = clampedValue;
+    configureDeferred();
+}
+
+int SessionImpl::I2PInboundLengthVariance() const
+{
+    return m_I2PInboundLengthVariance;
+}
+
+void SessionImpl::setI2PInboundLengthVariance(const int value)
+{
+    const int clampedValue = std::clamp(value, -7, 7);
+    if (clampedValue == m_I2PInboundLengthVariance)
+        return;
+
+    m_I2PInboundLengthVariance = clampedValue;
+    configureDeferred();
+}
+
+int SessionImpl::I2POutboundLengthVariance() const
+{
+    return m_I2POutboundLengthVariance;
+}
+
+void SessionImpl::setI2POutboundLengthVariance(const int value)
+{
+    const int clampedValue = std::clamp(value, -7, 7);
+    if (clampedValue == m_I2POutboundLengthVariance)
+        return;
+
+    m_I2POutboundLengthVariance = clampedValue;
     configureDeferred();
 }
 
@@ -4566,6 +4657,20 @@ void SessionImpl::setRequestQueueSize(const int val)
         return;
 
     m_requestQueueSize = val;
+    configureDeferred();
+}
+
+int SessionImpl::maxOutstandingBlockRequests() const
+{
+    return m_maxOutstandingBlockRequests;
+}
+
+void SessionImpl::setMaxOutstandingBlockRequests(const int val)
+{
+    if (val == m_maxOutstandingBlockRequests)
+        return;
+
+    m_maxOutstandingBlockRequests = val;
     configureDeferred();
 }
 
@@ -5878,7 +5983,7 @@ void SessionImpl::configureDeferred()
         return;
 
     m_deferredConfigureScheduled = true;
-    QMetaObject::invokeMethod(this, qOverload<>(&SessionImpl::configure), Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, &SessionImpl::configure, Qt::QueuedConnection);
 }
 
 // Enable IP Filtering
@@ -6233,7 +6338,11 @@ void SessionImpl::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *ale
 void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *alert)
 {
     const TorrentID torrentID = getInfoHash(*alert).toTorrentID();
+#if LIBTORRENT_VERSION_NUM >= 20100
+    const auto errorMessage = alert->error ? QString::fromStdString(alert->error.message()) : QString();
+#else
     const auto errorMessage = alert->error ? Utils::String::fromLocal8Bit(alert->error.message()) : QString();
+#endif
     handleRemovedTorrent(torrentID, errorMessage);
 }
 
@@ -6431,7 +6540,11 @@ void SessionImpl::handleListenFailedAlert(const lt::listen_failed_alert *alert)
     const QString proto {toString(alert->socket_type)};
     LogMsg(tr("Failed to listen on IP. IP: \"%1\". Port: \"%2/%3\". Reason: \"%4\"")
         .arg(toString(alert->address), proto, QString::number(alert->port)
+#if LIBTORRENT_VERSION_NUM >= 20100
+            , QString::fromStdString(alert->error.message())), Log::CRITICAL);
+#else
             , Utils::String::fromLocal8Bit(alert->error.message())), Log::CRITICAL);
+#endif
 }
 
 void SessionImpl::handleExternalIPAlert(const lt::external_ip_alert *alert)
@@ -6657,7 +6770,11 @@ void SessionImpl::handleSocks5Alert(const lt::socks5_alert *alert) const
         const QString endpoint = (addr.is_v6() ? u"[%1]:%2"_s : u"%1:%2"_s)
                 .arg(toString(addr), QString::number(alert->ip.port()));
         LogMsg(tr("SOCKS5 proxy error. Address: %1. Message: \"%2\".")
+#if LIBTORRENT_VERSION_NUM >= 20100
+                .arg(endpoint, QString::fromStdString(alert->error.message()))
+#else
                 .arg(endpoint, Utils::String::fromLocal8Bit(alert->error.message()))
+#endif
                 , Log::WARNING);
     }
 }
@@ -6796,7 +6913,11 @@ void SessionImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_fai
     if (alert->error != lt::errors::resume_data_not_modified)
     {
         LogMsg(tr("Generate resume data failed. Torrent: \"%1\". Reason: \"%2\"")
+#if LIBTORRENT_VERSION_NUM >= 20100
+                .arg(torrent->name(), QString::fromStdString(alert->error.message())), Log::CRITICAL);
+#else
                 .arg(torrent->name(), Utils::String::fromLocal8Bit(alert->error.message())), Log::CRITICAL);
+#endif
     }
 }
 
@@ -6836,7 +6957,11 @@ void SessionImpl::handleFileRenameFailedAlert(const lt::file_rename_failed_alert
 
     LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
             .arg(torrent->name(), torrent->filePath(torrent->fileIndexFromNative(alert->index)).toString()
+#if LIBTORRENT_VERSION_NUM >= 20100
+                    , QString::fromStdString(alert->error.message())), Log::WARNING);
+#else
                     , Utils::String::fromLocal8Bit(alert->error.message())), Log::WARNING);
+#endif
 }
 
 void SessionImpl::handleFileCompletedAlert(const lt::file_completed_alert *alert)

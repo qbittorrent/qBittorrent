@@ -51,6 +51,11 @@ namespace Utils::Net
     IPRange subnetToIPRange(const Subnet &subnet);
     QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
 
+    // resolves the originating client from `X-Forwarded-For`; honored only when `peerAddress`
+    // is a trusted proxy, with trailing entries that are themselves trusted proxies skipped
+    QHostAddress resolveForwardedClientAddress(const QHostAddress &peerAddress
+            , QStringView forwardedFor, const QList<Subnet> &trustedProxies);
+
     std::optional<IPRange> parseIPRange(QStringView filterStr, bool isStrictIPv4 = false);
     QString ipRangeToString(const IPRange &ipRange);
 

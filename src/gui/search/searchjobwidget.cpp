@@ -172,17 +172,17 @@ SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidge
     connect(m_lineEditSearchResultsFilter, &LineEdit::textUpdated, this, &SearchJobWidget::filterSearchResults);
     m_ui->horizontalLayout->insertWidget(0, m_lineEditSearchResultsFilter);
 
-    connect(m_ui->filterMode, qOverload<int>(&QComboBox::currentIndexChanged), this, &SearchJobWidget::updateNameFilter);
+    connect(m_ui->filterMode, &QComboBox::currentIndexChanged, this, &SearchJobWidget::updateNameFilter);
     connect(m_ui->minSeeds, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateSeedsFilter);
-    connect(m_ui->minSeeds, qOverload<int>(&QSpinBox::valueChanged), this, &SearchJobWidget::updateSeedsFilter);
+    connect(m_ui->minSeeds, &QSpinBox::valueChanged, this, &SearchJobWidget::updateSeedsFilter);
     connect(m_ui->maxSeeds, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateSeedsFilter);
-    connect(m_ui->maxSeeds, qOverload<int>(&QSpinBox::valueChanged), this, &SearchJobWidget::updateSeedsFilter);
+    connect(m_ui->maxSeeds, &QSpinBox::valueChanged, this, &SearchJobWidget::updateSeedsFilter);
     connect(m_ui->minSize, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateSizeFilter);
-    connect(m_ui->minSize, qOverload<double>(&QDoubleSpinBox::valueChanged), this, &SearchJobWidget::updateSizeFilter);
+    connect(m_ui->minSize, &QDoubleSpinBox::valueChanged, this, &SearchJobWidget::updateSizeFilter);
     connect(m_ui->maxSize, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateSizeFilter);
-    connect(m_ui->maxSize, qOverload<double>(&QDoubleSpinBox::valueChanged), this, &SearchJobWidget::updateSizeFilter);
-    connect(m_ui->minSizeUnit, qOverload<int>(&QComboBox::currentIndexChanged), this, &SearchJobWidget::updateSizeFilter);
-    connect(m_ui->maxSizeUnit, qOverload<int>(&QComboBox::currentIndexChanged), this, &SearchJobWidget::updateSizeFilter);
+    connect(m_ui->maxSize, &QDoubleSpinBox::valueChanged, this, &SearchJobWidget::updateSizeFilter);
+    connect(m_ui->minSizeUnit, &QComboBox::currentIndexChanged, this, &SearchJobWidget::updateSizeFilter);
+    connect(m_ui->maxSizeUnit, &QComboBox::currentIndexChanged, this, &SearchJobWidget::updateSizeFilter);
 
     connect(m_ui->resultsBrowser, &QAbstractItemView::doubleClicked, this, &SearchJobWidget::onItemDoubleClicked);
 
@@ -419,7 +419,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, const AddTorr
     const QString torrentUrl = m_proxyModel->data(
                 m_proxyModel->index(rowIndex.row(), SearchSortModel::DL_LINK)).toString();
     const QString engineName = m_proxyModel->data(
-                m_proxyModel->index(rowIndex.row(), SearchSortModel::ENGINE_NAME)).toString();
+                m_proxyModel->index(rowIndex.row(), SearchSortModel::ENGINE_NAME), SearchSortModel::UnderlyingDataRole).toString();
 
     if (torrentUrl.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
@@ -665,7 +665,7 @@ void SearchJobWidget::appendSearchResults(const QList<SearchResult> &results)
 
         setModelData(SearchSortModel::NAME, result.fileName, result.fileName);
         setModelData(SearchSortModel::DL_LINK, result.fileUrl, result.fileUrl);
-        setModelData(SearchSortModel::ENGINE_NAME, result.engineName, result.engineName);
+        setModelData(SearchSortModel::ENGINE_NAME, result.engineFullName, result.engineName);
         setModelData(SearchSortModel::ENGINE_URL, result.siteUrl, result.siteUrl);
         setModelData(SearchSortModel::DESC_LINK, result.descrLink, result.descrLink);
         setModelData(SearchSortModel::SIZE, Utils::Misc::friendlyUnit(result.fileSize), result.fileSize, (Qt::AlignRight | Qt::AlignVCenter));

@@ -98,8 +98,24 @@ namespace
         return (weekday + u", " + now.toString(Qt::RFC2822Date));
     }
 
-    QByteArray encodeMimeHeader(const QString &key, const QString &value, const QByteArray &prefix = {})
+    QString toValidHeaderValue(QString value)
     {
+        // Header field values must not contain control characters. [rfc5322] 2.2. Header Fields
+        // Control characters are replaced rather than removed, so that removal cannot bring
+        // together characters that form a new syntactic element (an encoded-word "=?", etc.).
+        for (QChar &ch : value)
+        {
+            if ((ch < QChar(0x20)) || (ch == QChar(0x7f)))
+                ch = u' ';
+        }
+
+        return value;
+    }
+
+    QByteArray encodeMimeHeader(const QString &key, const QString &rawValue, const QByteArray &prefix = {})
+    {
+        const QString value = toValidHeaderValue(rawValue);
+
         QByteArray rv = "";
         QByteArray line = key.toLatin1() + ": ";
         if (!prefix.isEmpty()) line += prefix;
@@ -141,6 +157,18 @@ namespace
             line += "?="; // end encoded-word atom
         }
         return rv + line + "\r\n";
+    }
+
+    QByteArray encodeMessageData(QByteArray message)
+    {
+        // Any line of the mail data that begins with a dot must have an extra dot
+        // prepended, so that the mail data cannot end the DATA phase on its own.
+        // [rfc5321] 4.5.2. Transparency
+        if (message.startsWith('.'))
+            message.prepend('.');
+        message.replace("\r\n.", "\r\n..");
+
+        return message;
     }
 } // namespace
 
@@ -275,6 +303,10 @@ void Net::SMTPClient::readyRead()
         case StartTLSSent:
             if (code == "220")
             {
+                // Data received before the TLS negotiation was not obtained from the TLS session,
+                // so it must be discarded instead of being parsed as a protected server response.
+                // (RFC 3207, section 4)
+                m_buffer.clear();
                 m_socket->startClientEncryption();
                 // After STARTTLS negotiation, the client should discard all information about the
                 // server's capabilities obtained from the EHLO command and repeat the EHLO command
@@ -351,7 +383,7 @@ void Net::SMTPClient::readyRead()
         case Body:
             if (code[0] == '3')
             {
-                m_socket->write(m_message + "\r\n.\r\n");
+                m_socket->write(encodeMessageData(m_message) + "\r\n.\r\n");
                 m_socket->flush();
                 m_state = Quit;
             }

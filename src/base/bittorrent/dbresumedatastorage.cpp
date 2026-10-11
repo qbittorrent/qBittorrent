@@ -904,7 +904,11 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
             catch (const std::exception &err)
             {
                 LogMsg(ResumeDataStorage::tr("Couldn't save torrent metadata. Error: %1.")
+#if LIBTORRENT_VERSION_NUM >= 20100
+                        .arg(QString::fromStdString(err.what())), Log::CRITICAL);
+#else
                         .arg(QString::fromLocal8Bit(err.what())), Log::CRITICAL);
+#endif
                 return;
             }
 

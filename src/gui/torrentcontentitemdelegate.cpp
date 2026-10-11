@@ -88,7 +88,7 @@ QWidget *TorrentContentItemDelegate::createEditor(QWidget *parent, const QStyleO
         editor->addItem(tr("Mixed", "Mixed (priorities)"));
     }
 
-    connect(editor, qOverload<int>(&QComboBox::currentIndexChanged), this, [this, editor]()
+    connect(editor, &QComboBox::currentIndexChanged, this, [this, editor]()
     {
         emit const_cast<TorrentContentItemDelegate *>(this)->commitData(editor);
     });

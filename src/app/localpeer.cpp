@@ -274,7 +274,7 @@ void LocalPeer::receivedConnection()
         socket->write(ACK);
         socket->disconnectFromServer();
 
-        emit messageReceived(result.value()); // might take a long time to return
+        emit messageReceived(result.value());
     });
 }
 

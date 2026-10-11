@@ -2145,6 +2145,13 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkI2PPeX">
+                 <property name="text">
+                  <string>Enable I2P Peer Exchange (I2P PeX) to find more peers (requires restart)</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -3437,7 +3444,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
               </property>
               <layout class="QVBoxLayout" name="groupSearchUILayout">
                <item>
-                <widget class="QGroupBox" name="groupStoreOpenedTabs">
+                <widget class="QGroupBox" name="groupStoreSearchJobs">
                  <property name="title">
                   <string>Store opened tabs</string>
                  </property>
@@ -3447,9 +3454,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <property name="checked">
                   <bool>false</bool>
                  </property>
-                 <layout class="QVBoxLayout" name="groupStoreOpenedTabsLayout">
+                 <layout class="QVBoxLayout" name="groupStoreSearchJobsLayout">
                   <item>
-                   <widget class="QCheckBox" name="checkStoreTabsSearchResults">
+                   <widget class="QCheckBox" name="checkStoreSearchJobResults">
                     <property name="text">
                      <string>Also store search results</string>
                     </property>
@@ -3488,6 +3495,13 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   </spacer>
                  </item>
                 </layout>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkCloseSearchTabWithMiddleClick">
+                 <property name="text">
+                  <string>Allow closing tabs with middle-click</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
