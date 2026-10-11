@@ -250,7 +250,12 @@ void TorrentCreatorController::torrentFileAction()
     if (!readResult)
         throw APIError(APIErrorType::Conflict, readResult.error().message);
 
-    setResult(readResult.value(), u"application/x-bittorrent"_s, (id + u".torrent"));
+    QString filename = task->params().sourcePath.filename();
+    if (filename.isEmpty())
+        filename = id;
+    filename += u".torrent";
+
+    setResult(readResult.value(), u"application/x-bittorrent"_s, filename);
 }
 
 void TorrentCreatorController::deleteTaskAction()
