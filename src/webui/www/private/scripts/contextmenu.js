@@ -95,8 +95,9 @@ window.qBittorrent.ContextMenu ??= (() => {
             this.menu.classList.toggle("scrollingMenu", (this.menu.offsetHeight > document.documentElement.clientHeight));
 
             // position the menu
-            let xPosMenu = e.pageX + this.options.offsets.x;
-            let yPosMenu = e.pageY + this.options.offsets.y;
+            const point = e.changedTouches?.[0] ?? e;
+            let xPosMenu = point.pageX + this.options.offsets.x;
+            let yPosMenu = point.pageY + this.options.offsets.y;
             if ((xPosMenu + this.menu.offsetWidth) > document.documentElement.clientWidth)
                 xPosMenu -= this.menu.offsetWidth;
             if ((yPosMenu + this.menu.offsetHeight) > document.documentElement.clientHeight)
@@ -149,15 +150,22 @@ window.qBittorrent.ContextMenu ??= (() => {
             elem.addEventListener("touchend", (e) => {
                 const now = performance.now();
                 const touchStartAt = this.touchStartAt;
-                const touchStartEvent = this.touchStartEvent;
+                // unset before the first touchstart
+                const touchStartEvent = this.touchStartEvent ?? null;
 
                 this.touchStartAt = null;
                 this.touchStartEvent = null;
 
+                if (touchStartEvent === null)
+                    return;
+
                 const isTargetUnchanged = (Math.abs(e.changedTouches[0].pageX - touchStartEvent.changedTouches[0].pageX) <= 10) && (Math.abs(e.changedTouches[0].pageY - touchStartEvent.changedTouches[0].pageY) <= 10);
-                if (((now - touchStartAt) >= this.options.touchTimer) && isTargetUnchanged)
+                if (((now - touchStartAt) >= this.options.touchTimer) && isTargetUnchanged) {
+                    // the click that follows the touch would close the menu again
+                    e.preventDefault();
                     this.triggerMenu(touchStartEvent, elem);
-            }, { passive: true });
+                }
+            });
         }
 
         addTarget(t) {
