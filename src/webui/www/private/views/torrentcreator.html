@@ -19,6 +19,16 @@
         width: 100%;
         height: calc(100% - 16px);
         border: 1px solid var(--color-border-default);
+        position: relative;
+    }
+
+    #torrentCreatorEmpty {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        left: 0;
+        transform: translateY(-50%);
+        text-align: center;
     }
 
     #torrentCreationTasksTableFixedHeaderDiv {
@@ -52,6 +62,7 @@
                 <tbody></tbody>
             </table>
         </div>
+        <p id="torrentCreatorEmpty" class="invisible">QBT_TR(There are no torrent creation tasks.)QBT_TR[CONTEXT=TorrentCreator]</p>
     </div>
 </div>
 <script>
@@ -214,6 +225,7 @@
 
                 const selectedTasks = table.selectedRowsIds();
                 table.clear();
+                document.getElementById("torrentCreatorEmpty").classList.toggle("invisible", (responseJSON.length > 0));
 
                 if (responseJSON.length > 0) {
                     for (const entry of responseJSON) {
