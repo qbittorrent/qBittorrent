@@ -1066,6 +1066,85 @@ window.qBittorrent.Responsive ??= (() => {
         update();
     };
 
+    // "Add Torrent File..." is a label in a div, not a link
+    const menuItems = "#desktopNavbar a, #uploadLink";
+
+    let menuDrawerScrim = null;
+    let releaseMenuDrawerFocus = null;
+
+    const openMenuDrawer = () => {
+        if (!queries.phone.matches || root.classList.contains("menuDrawerOpen"))
+            return;
+
+        const navbar = document.getElementById("desktopNavbar");
+        root.classList.add("menuDrawerOpen");
+        menuDrawerScrim = addScrim(closeMenuDrawer);
+        navbar.setAttribute("role", "dialog");
+        navbar.setAttribute("aria-modal", "true");
+        navbar.setAttribute("aria-labelledby", "menuDrawerTitle");
+        document.getElementById("menuDrawerButton").setAttribute("aria-expanded", "true");
+        setKeyboardItems(navbar, menuItems, true);
+        releaseMenuDrawerFocus = trapFocus(navbar);
+    };
+
+    const closeMenuDrawer = () => {
+        if (!root.classList.contains("menuDrawerOpen"))
+            return;
+
+        const navbar = document.getElementById("desktopNavbar");
+        root.classList.remove("menuDrawerOpen");
+        for (const li of navbar.querySelectorAll(":scope > ul > li.menuDrawerExpanded"))
+            li.classList.remove("menuDrawerExpanded");
+        menuDrawerScrim.remove();
+        menuDrawerScrim = null;
+        navbar.removeAttribute("role");
+        navbar.removeAttribute("aria-modal");
+        navbar.removeAttribute("aria-labelledby");
+        document.getElementById("menuDrawerButton").setAttribute("aria-expanded", "false");
+        setKeyboardItems(navbar, menuItems, false);
+        releaseMenuDrawerFocus();
+        releaseMenuDrawerFocus = null;
+        drawerClosed = true;
+    };
+
+    const initMenuDrawer = () => {
+        const navbar = document.getElementById("desktopNavbar");
+        document.getElementById("menuDrawerButton").addEventListener("click", (_event) => openMenuDrawer());
+        document.getElementById("menuDrawerClose").addEventListener("click", (_event) => closeMenuDrawer());
+        // a menu's name opens its menu and closes any other
+        for (const li of navbar.querySelectorAll(":scope > ul > li")) {
+            li.firstElementChild.addEventListener("click", (event) => {
+                if (!root.classList.contains("menuDrawerOpen"))
+                    return;
+
+                const open = !li.classList.contains("menuDrawerExpanded");
+                for (const other of navbar.querySelectorAll(":scope > ul > li.menuDrawerExpanded"))
+                    other.classList.remove("menuDrawerExpanded");
+                li.classList.toggle("menuDrawerExpanded", open);
+            });
+        }
+        // choosing an item closes the drawer; capturing, as the items' handlers stop the click
+        navbar.addEventListener("click", (event) => {
+            if (event.target.closest("li li") !== null)
+                closeMenuDrawer();
+        }, true);
+        chooseWithKeys(navbar, menuItems);
+        queries.phone.addEventListener("change", (_event) => {
+            if (!queries.phone.matches)
+                closeMenuDrawer();
+        });
+        document.addEventListener("keydown", (event) => {
+            switch (event.key) {
+                case "Escape":
+                    // close the drawer, not also the window behind it
+                    if (root.classList.contains("menuDrawerOpen"))
+                        event.stopPropagation();
+                    closeMenuDrawer();
+                    break;
+            }
+        });
+    };
+
     // called by client.js once the main window is built
     const init = () => {
         initLayout();
@@ -1077,6 +1156,7 @@ window.qBittorrent.Responsive ??= (() => {
         initCards();
         initCardCheckboxes();
         initCardSorting();
+        initMenuDrawer();
     };
 
     return exports();

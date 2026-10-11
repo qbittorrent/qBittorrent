@@ -97,6 +97,81 @@
     }
 }
 
+/* Menu drawer on phones */
+#menuDrawerButton {
+    display: none;
+}
+
+@media (width < 760px) {
+    #desktopNavbar {
+        display: none;
+    }
+
+    /* contain the toolbar's margin, as Mocha sizes the page by the header's height */
+    #desktopHeader {
+        display: flow-root;
+    }
+
+    :root:has(#mochaToolbar.invisible) #desktopNavbar {
+        display: block;
+    }
+
+    #menuDrawerButton {
+        align-items: center;
+        background: none;
+        border: 0;
+        color: var(--color-text-default);
+        cursor: pointer;
+        display: inline-flex;
+        font-size: 24px;
+        height: 24px;
+        justify-content: center;
+        padding: 0;
+        vertical-align: top;
+        width: 24px;
+
+        &::before {
+            content: "\2630"; /* for browsers without alternative text */
+            content: "\2630" / "";
+        }
+    }
+
+    :root.menuDrawerOpen #desktopNavbar {
+        background-color: var(--color-background-primary);
+        border-right: var(--responsive-separator);
+        bottom: 0;
+        box-shadow: var(--responsive-drawer-shadow);
+        display: block;
+        left: 0;
+        overflow-y: auto;
+        position: fixed;
+        top: 0;
+        width: var(--responsive-drawer-width);
+        z-index: 1501;
+
+        & #menuDrawerHead {
+            display: flex;
+        }
+
+        & > ul > li {
+            float: none;
+        }
+
+        /* submenus expand in place */
+        & li ul {
+            border-width: 0;
+            display: none;
+            max-height: none;
+            overflow: visible;
+            position: static;
+        }
+
+        & li.menuDrawerExpanded > ul {
+            display: block;
+        }
+    }
+}
+
 /* View tabs and filter bar on phones */
 @media (width < 760px) {
     #mainWindowTabs {
