@@ -134,49 +134,47 @@ jobs:
           cmake --build build --target qbt_update_translations
           cmake --build build
           cmake --build build --target check
-          if [ "${{ matrix.qbt_gui }}" = "GUI=ON" ]; then
-            build/qbittorrent.app/Contents/MacOS/qbittorrent -v
-          else
-            build/qbittorrent-nox.app/Contents/MacOS/qbittorrent-nox -v
-          fi
 
       - name: Prepare build artifacts
+        id: package
+        env:
+          QBT_QT_VERSION: ${{ matrix.qt_version }}
+          QBT_LIBTORRENT_VERSION: ${{ matrix.libtorrent.version }}
+          QBT_BOOST_VERSION: ${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}
         run: |
+          python3 -m unittest discover \
+            -s .github/workflows/helper/macos -t .github/workflows/helper -v
           appName="qbittorrent"
           if [ "${{ matrix.qbt_gui }}" = "GUI=OFF" ]; then
             appName="qbittorrent-nox"
           fi
-          pushd build
-          # packaging
-          macdeployqt "$appName.app" -no-strip
-          # code signing
-          xattr -cr "$appName.app"
-          codesign --force --sign - \
-            "$appName.app" \
-            "$appName.app/Contents/Frameworks"/* \
-            "$appName.app/Contents/MacOS/$appName"
-          codesign --verify --deep --strict -v "$appName.app"
-          # create .dmg
+          mkdir -p upload/cmake/libtorrent
+          # qBittorrent only uses SQLite; other SQL drivers require external libraries.
+          test -f "${QT_PLUGIN_PATH:?}/sqldrivers/libqsqlite.dylib"
+          find "$QT_PLUGIN_PATH/sqldrivers" -type f ! -name libqsqlite.dylib -delete
+          macdeployqt "build/$appName.app" -no-strip
+          python3 .github/workflows/helper/macos/package.py prepare \
+            "build/$appName.app" upload/manifest.json
+          artifactName=$(python3 -c 'import json; print(json.load(open("upload/manifest.json"))["artifact_name"])')
           PACKAGE_RETRY=0
           while [ "$PACKAGE_RETRY" -lt "3" ]; do
-            if hdiutil create -fs HFS+ -srcfolder "$appName.app" -volname "$appName" "$appName.dmg"; then
+            if hdiutil create -fs HFS+ -srcfolder "build/$appName.app" \
+              -volname "$appName" "upload/$artifactName.dmg"; then
               break
             fi
             sleep 5
             PACKAGE_RETRY=$((PACKAGE_RETRY + 1))
             echo "Retry $PACKAGE_RETRY..."
           done
-          popd
-          # prepare upload folder
-          mkdir upload
-          cp "build/$appName.dmg" upload
-          mkdir upload/cmake
+          test "$PACKAGE_RETRY" -lt "3"
+          python3 .github/workflows/helper/macos/package.py verify \
+            "upload/$artifactName.dmg" upload/manifest.json
           cp build/compile_commands.json upload/cmake
-          mkdir upload/cmake/libtorrent
           cp ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libtorrent.version }}_Qt-${{ matrix.qt_version }}
+          name: ${{ steps.package.outputs.artifact_name }}
           path: upload
+          if-no-files-found: error
