@@ -105,6 +105,11 @@
     }
 }
 
+/* Download from URLs on phones */
+:root.responsivePhone body:has(> #download_frame) {
+    padding-inline: 10px;
+}
+
 :root.responsiveRelayout :where(.dialogFooter, #uploadForm > #submitbutton) {
     background-color: var(--color-background-popup);
     border-top: var(--responsive-separator);
@@ -274,10 +279,342 @@
     }
 }
 
+:root.responsiveRelayout .mocha #searchPluginsContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-block: 0;
+    padding-top: 10px;
+
+    & > * {
+        flex: none;
+    }
+
+    & > #searchPluginsTable {
+        flex: 1 1 auto;
+        height: auto;
+        min-height: 120px;
+    }
+
+    & > .dialogFooter > button {
+        line-height: inherit !important; /* override inline style */
+    }
+}
+
+:root.responsiveRelayout:not(.responsivePhone)
+    .mocha
+    #searchPluginsContainer
+    > .dialogFooter {
+    display: flex;
+    gap: var(--responsive-gap);
+
+    & > button {
+        flex: 1 1 0;
+        width: auto !important; /* override inline style */
+    }
+}
+
+/* Add torrent */
+:root.responsiveRelayout #filesColumn > fieldset {
+    min-width: 0;
+}
+
+/* New category */
+:root.responsiveRelayout #shareLimitsGrid {
+    grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+}
+
+:root.responsiveRelayout #useDownloadPath {
+    flex: none;
+}
+
 /* About: same size for every tab */
 :root.responsiveRelayout #aboutpage .aboutTabContent {
     height: 100%;
     overflow: auto;
+}
+
+/* Torrent creator */
+:root.responsiveRelayout .mocha #torrentCreatorContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    & > * {
+        flex: none;
+    }
+
+    & > #torrentCreatorContentView {
+        flex: 1 1 auto;
+        height: auto;
+        min-height: 0;
+    }
+}
+
+:root.responsiveRelayout #RssDownloader {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: auto minmax(min-content, 1fr);
+
+    & > #rssDownloaderDisabled {
+        grid-column: 1 / -1;
+    }
+
+    & > #leftRssDownloaderColumn,
+    & > #centerRssDownloaderColumn,
+    & > #rightRssDownloaderColumn {
+        display: flex;
+        flex-direction: column;
+        float: none;
+        grid-row: 2;
+        height: auto !important;
+        min-height: 0;
+        width: auto;
+
+        & > * {
+            flex: none;
+        }
+    }
+
+    & #topMenuBar {
+        display: flow-root;
+        height: auto;
+    }
+
+    /* the lists share the height left and scroll, so their rows don't make the window taller */
+    & #rulesTable,
+    & #rssDownloaderFeeds,
+    & #rssDownloaderArticlesTable {
+        flex: 1 1 0;
+        height: auto !important;
+        min-height: 0;
+    }
+
+    /* scroll the list, not the fieldset */
+    & #rssDownloaderFeeds {
+        display: flex;
+        flex-direction: column;
+        min-height: 140px;
+        overflow: visible;
+    }
+
+    & #rssDownloaderFeedsTable {
+        flex: 1 1 auto;
+        height: auto !important;
+        min-height: 60px;
+    }
+}
+
+:root.responsiveRelayout #rssdownloaderpage {
+    & .mochaContent {
+        display: flex !important;
+        flex-direction: column;
+        min-height: 100%;
+    }
+
+    & #rssdownloaderpage_content {
+        height: auto;
+        padding-bottom: var(--responsive-row-space) !important;
+    }
+
+    & #RssDownloader {
+        flex: 1 0 auto;
+        height: auto;
+    }
+}
+
+/* columns stack in narrow windows */
+:root.responsiveRelayout #rssdownloaderpage .mochaContentWrapper {
+    container: rss-downloader / inline-size;
+}
+
+@container rss-downloader (width < 700px) {
+    #RssDownloader {
+        display: block;
+        height: auto;
+
+        & #leftRssDownloaderColumn,
+        & #centerRssDownloaderColumn,
+        & #rightRssDownloaderColumn {
+            float: none;
+            height: auto !important;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        /* stacked, the lists keep the heights below */
+        & #rulesTable,
+        & #rssDownloaderFeeds,
+        & #rssDownloaderArticlesTable {
+            flex-basis: auto;
+        }
+
+        & #rulesTable {
+            height: 180px !important;
+        }
+
+        & #rssDownloaderFeedsTable {
+            height: 160px !important;
+        }
+
+        & #rssDownloaderArticlesTable {
+            height: 240px !important;
+        }
+
+        & #saveButton {
+            box-shadow: 0 0 0 var(--responsive-row-space)
+                var(--color-background-popup);
+        }
+    }
+}
+
+/* New category on phones */
+:root.responsivePhone #shareLimitsGrid {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr) auto;
+
+    & :is(select, input) {
+        min-width: 0;
+    }
+
+    & > label,
+    & > .shareLimitsWideSelect,
+    & > .shareLimitsActionRow {
+        grid-column: 1 / -1;
+    }
+
+    & > .shareLimitsActionRow {
+        flex-wrap: wrap;
+
+        & > select {
+            flex: 1 1 100%;
+        }
+    }
+}
+
+/* Speed limits on phones */
+:root.responsivePhone .speedGrid {
+    grid-template-columns: 24px auto minmax(0, 1fr) minmax(0, 80px) auto;
+
+    & :is(input, select) {
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* Cookies on phones */
+:root.responsivePhone #manageCookiesTable {
+    display: block;
+
+    & :is(thead, tbody, tfoot) {
+        display: block;
+    }
+
+    & tr {
+        border-bottom: var(--responsive-separator);
+        display: grid;
+        gap: 4px 8px;
+        grid-template-areas:
+            "domain path"
+            "name value"
+            "expDate action";
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        padding: 6px 0;
+    }
+
+    & tr.invisible {
+        display: none;
+    }
+
+    & td {
+        min-width: 0;
+        width: auto;
+    }
+
+    & .domain {
+        grid-area: domain;
+    }
+
+    & .path {
+        grid-area: path;
+    }
+
+    & .name {
+        grid-area: name;
+    }
+
+    & .value {
+        grid-area: value;
+    }
+
+    & .expDate {
+        grid-area: expDate;
+    }
+
+    & td:last-child {
+        grid-area: action;
+    }
+
+    & td input {
+        min-width: 0;
+        width: 100%;
+    }
+
+    & tfoot tr {
+        border-bottom: 0;
+        display: flex;
+        justify-content: flex-end;
+
+        & td:empty {
+            display: none;
+        }
+    }
+}
+
+/* Multi-select menus on phones */
+:root.responsivePhone .vsb-menu {
+    max-width: calc(100vw - 20px);
+    right: 0;
+}
+
+/* Rename files on phones and short touch screens */
+@media (width < 760px), (pointer: coarse) and (height < 620px) {
+    #multiRenamePage .mochaContentWrapper {
+        overflow-y: auto !important;
+    }
+
+    #multiRenamePage_content > div {
+        display: flex;
+        flex-direction: column;
+
+        & > div:has(> .formRow > #multirename_rememberprefs_checkbox) {
+            float: none !important;
+            height: auto !important;
+            width: auto !important;
+        }
+
+        & > #torrentFiles {
+            height: 50vh !important;
+            margin: 10px 0 !important;
+            order: 1;
+            position: static !important;
+        }
+
+        & > #operation_btns {
+            background-color: var(--color-background-popup);
+            bottom: 0;
+            display: flow-root;
+            margin: 0 !important;
+            order: 2;
+            padding-bottom: var(--responsive-row-space);
+            position: sticky !important;
+            width: auto !important;
+            z-index: 1;
+
+            & > hr {
+                margin-bottom: var(--responsive-row-space);
+            }
+        }
+    }
 }
 
 /* Touch screens */
