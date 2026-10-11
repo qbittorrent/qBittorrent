@@ -156,7 +156,8 @@
 
 @media (width < 480px) {
     /* hidden, but still read by screen readers */
-    #torrentsFilterToolbar label[for="torrentsFilterSelect"] {
+    #torrentsFilterToolbar label[for="torrentsFilterSelect"],
+    #torrentsSelectionCount > span {
         clip-path: inset(50%);
         height: 1px;
         overflow: hidden;
@@ -253,6 +254,56 @@
             flex: 1 0 auto;
             font-weight: bold;
             white-space: nowrap;
+        }
+
+        & #torrentsSortSelect {
+            flex: 0 1 auto;
+            min-width: 0;
+            width: 100%;
+        }
+
+        & #torrentsSortOrder {
+            flex: none;
+            padding-inline: 6px;
+
+            &::before {
+                content: "\2191"; /* for browsers without alternative text */
+                content: "\2191" / "";
+            }
+
+            &[aria-pressed="true"]::before {
+                content: "\2193"; /* for browsers without alternative text */
+                content: "\2193" / "";
+            }
+        }
+
+        & #torrentsColumnsButton {
+            flex: none;
+        }
+    }
+
+    /* cards have no column widths to resize, and show only these columns */
+    #torrentsTableDiv_headerMenu {
+        &
+            li:not(
+                :has(
+                    > a:is(
+                            [href="#priority"],
+                            [href="#name"],
+                            [href="#progress"],
+                            [href="#status"],
+                            [href="#eta"],
+                            [href="#size"],
+                            [href="#dlspeed"],
+                            [href="#upspeed"]
+                        )
+                )
+            ) {
+            display: none;
+        }
+
+        & li.separator {
+            border-top: 0;
         }
     }
 

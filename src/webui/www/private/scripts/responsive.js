@@ -1003,9 +1003,17 @@ window.qBittorrent.Responsive ??= (() => {
             selectAll.checked = (selected > 0) && (selected >= all);
             selectAll.indeterminate = (selected > 0) && (selected < all);
             // a live region, which may be read out again when its text is rewritten
-            const text = (selected > 0) ? count.dataset.format.replace("%1", selected) : "";
-            if (count.textContent !== text)
-                count.textContent = text;
+            const [before, after = ""] = count.dataset.format.split("%1");
+            const text = (selected > 0) ? `${before}${selected}${after}` : "";
+            if (count.textContent !== text) {
+                // narrow phones show only the number, and the words around it only to screen readers
+                const words = [before, after].map((part) => {
+                    const span = document.createElement("span");
+                    span.textContent = part;
+                    return span;
+                });
+                count.replaceChildren(...((selected > 0) ? [words[0], selected.toString(), words[1]] : []));
+            }
             for (const tr of table.tableBody.children)
                 tr.setAttribute("aria-selected", tr.classList.contains("selected"));
         };
@@ -1025,6 +1033,39 @@ window.qBittorrent.Responsive ??= (() => {
         update();
     };
 
+    // the bar above the cards sorts them and opens the columns menu
+    const initCardSorting = async () => {
+        await whenElement("torrentsTableDiv");
+        const table = window.torrentsTable;
+        const select = document.getElementById("torrentsSortSelect");
+        const order = document.getElementById("torrentsSortOrder");
+        const update = () => {
+            if (!queries.phone.matches)
+                return;
+
+            const options = table.columns.filter((column) => column.caption !== "").map((column) => new Option(column.caption, column.name));
+            select.replaceChildren(...options);
+            select.value = table.columns[table.sortedColumn]?.name ?? "";
+            order.setAttribute("aria-pressed", (table.reverseSort === "1"));
+        };
+        select.addEventListener("change", (event) => {
+            table.setSortedColumn(select.value, table.reverseSort);
+            update();
+        });
+        order.addEventListener("click", (event) => {
+            table.setSortedColumn(table.sortedColumn);
+            update();
+        });
+        // the header's menu, below the button
+        document.getElementById("torrentsColumnsButton").addEventListener("click", (event) => {
+            event.stopPropagation();
+            const box = event.currentTarget.getBoundingClientRect();
+            table.fixedTableHeader.firstElementChild.dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true, button: 2, clientX: box.left, clientY: box.bottom }));
+        });
+        queries.phone.addEventListener("change", (_event) => update());
+        update();
+    };
+
     // called by client.js once the main window is built
     const init = () => {
         initLayout();
@@ -1035,6 +1076,7 @@ window.qBittorrent.Responsive ??= (() => {
         initHeaderAutoHide();
         initCards();
         initCardCheckboxes();
+        initCardSorting();
     };
 
     return exports();
