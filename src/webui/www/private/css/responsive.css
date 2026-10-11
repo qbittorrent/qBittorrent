@@ -8,6 +8,7 @@
     --responsive-card-height: 112px; /* also used in responsive.js */
     --responsive-card-menu-width: 44px; /* also used in responsive.js */
     --responsive-card-menu-height: 40px; /* also used in responsive.js */
+    --responsive-card-check-width: 40px; /* also used in responsive.js */
 }
 
 #desktop {
@@ -226,9 +227,33 @@
     }
 }
 
+/* Torrent cards on phones */
+#torrentsSelectionBar {
+    display: none;
+}
+
 @media (width < 760px) {
     #torrentsTableFixedHeaderDiv {
         display: none;
+    }
+
+    #torrentsSelectionBar {
+        align-items: center;
+        border-bottom: var(--responsive-separator);
+        display: flex;
+        gap: var(--responsive-gap);
+        padding: 4px 12px;
+
+        & #torrentsSelectAll {
+            flex: none;
+            margin: 0;
+        }
+
+        & #torrentsSelectionCount {
+            flex: 1 0 auto;
+            font-weight: bold;
+            white-space: nowrap;
+        }
     }
 
     #transferList #torrentsTableDiv {
@@ -254,6 +279,27 @@
             padding: 0 12px;
             right: 0;
             width: auto !important;
+        }
+
+        /* selection checkbox */
+        & tbody tr::before {
+            align-self: start;
+            background-color: var(--color-background-popup);
+            border: 1px solid var(--color-border-default);
+            border-radius: 3px;
+            color: var(--color-text-default);
+            content: "";
+            font-size: 14px;
+            grid-area: 1 / 1 / 5 / 2;
+            height: 20px;
+            line-height: 18px;
+            text-align: center;
+            width: 20px;
+        }
+
+        & tbody tr.selected::before {
+            content: "\2713"; /* for browsers without alternative text */
+            content: "\2713" / "";
         }
 
         /* menu button */
