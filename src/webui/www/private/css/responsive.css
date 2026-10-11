@@ -93,6 +93,184 @@
     }
 }
 
+/* View tabs and filter bar on phones */
+@media (width < 760px) {
+    #mainWindowTabs {
+        margin: 0;
+
+        & .tab-menu {
+            display: inline-flex;
+            margin: 0;
+        }
+
+        /* icons only */
+        & .tab-menu li a {
+            font-size: 0;
+            gap: 0;
+            justify-content: center;
+            margin-left: 4px;
+            min-width: var(--responsive-touch-target, 32px);
+        }
+    }
+
+    #torrentsFilterToolbar {
+        align-items: center;
+        display: flex;
+        gap: 4px;
+        padding: 2px 4px;
+        width: 100%;
+
+        & #filtersButton {
+            flex: none;
+            margin-right: 0;
+        }
+
+        & #torrentsFilterInput {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        & label[for="torrentsFilterRegexBox"] {
+            flex: none;
+        }
+
+        & #torrentsFilterSelect {
+            flex: 0 1 auto;
+            min-width: 0;
+        }
+    }
+
+    #desktopNavbar > #filtersButton {
+        clear: both;
+        display: flex;
+        float: none;
+        justify-content: center;
+        margin: 0 4px 4px;
+        width: calc(100% - 8px);
+    }
+}
+
+@media (width < 480px) {
+    /* hidden, but still read by screen readers */
+    #torrentsFilterToolbar label[for="torrentsFilterSelect"] {
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+}
+
+/* Menus */
+#desktopNavbar li ul {
+    max-height: calc(100dvh - 30px);
+    overflow-y: auto;
+}
+
+.contextMenu.scrollingMenu {
+    max-height: 100%;
+    overflow: hidden auto;
+
+    & li ul {
+        border-width: 1px 0 0;
+        display: none;
+        margin: 0 !important; /* override inline style */
+        padding-left: 16px;
+        position: static;
+        width: auto;
+    }
+
+    & li:not(.disabled):hover > ul {
+        display: block;
+    }
+}
+
+/* Context menus on phones */
+:root.responsivePhone .contextMenu {
+    max-width: 100vw;
+
+    &:not(.visible) {
+        overflow: clip;
+    }
+
+    & li a {
+        white-space: normal;
+    }
+
+    & li ul {
+        max-width: 100vw;
+    }
+}
+
+/* Status bar */
+:root.responsiveRelayout {
+    & #desktopFooterWrapper {
+        height: auto;
+    }
+
+    & #desktopFooter {
+        height: auto;
+        min-height: 28px;
+        overflow: visible !important; /* override inline style */
+
+        & > table,
+        & > table > tbody {
+            display: block;
+            width: auto !important;
+        }
+
+        & > table > tbody > tr {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
+            justify-content: flex-end;
+            min-height: 24px;
+            padding: 0 2px;
+        }
+
+        & :is(td.statusBarSeparator, td.speedLabel) {
+            align-self: stretch;
+        }
+
+        & td.speedLabel {
+            align-content: center;
+        }
+    }
+}
+
+@media (width < 760px) {
+    /* the longest speed and total fit, so the status bar doesn't change its rows as they change */
+    #desktopFooter td.speedLabel {
+        min-width: 17em;
+        white-space: nowrap;
+    }
+
+    #desktopFooter :is(#freeSpaceOnDisk, #externalIPs, #DHTNodes),
+    #desktopFooter
+        :is(#freeSpaceOnDisk, #externalIPs, #DHTNodes)
+        + td.statusBarSeparator {
+        display: none;
+    }
+
+    /* the icons and each speed in a row of their own: the separators before the speeds break the rows */
+    #desktopFooter td:has(> #alternativeSpeedLimits) + td.statusBarSeparator,
+    #desktopFooter td.speedLabel + td.statusBarSeparator {
+        flex-basis: 100%;
+        padding: 0;
+    }
+}
+
+@media (390px <= width < 760px) {
+    /* from 390 px both speeds fit in one row, unless limits make them longer */
+    #desktopFooter:not(.speedLimitsShown)
+        td.speedLabel
+        + td.statusBarSeparator {
+        display: none;
+    }
+}
+
 /* targets dialog windows loaded via iframes */
 :root.responsiveRelayout body:not(:has(#desktop)) {
     & input[type="text"],
@@ -275,6 +453,155 @@
 
         & :is(input:not([type="checkbox"], [type="radio"]), select, textarea) {
             max-width: 100%;
+        }
+    }
+}
+
+/* Properties panel on phones */
+@media (width < 760px) {
+    #propGeneral {
+        & table {
+            display: block;
+        }
+
+        & tbody {
+            column-gap: 8px;
+            display: grid;
+            grid-template-columns: max-content minmax(0, 1fr);
+        }
+
+        & tr {
+            display: contents;
+        }
+
+        & td {
+            display: block;
+            min-width: 0;
+            overflow-wrap: anywhere;
+            width: auto; /* override style.css */
+        }
+    }
+
+    #propertiesPanel_header {
+        height: auto;
+
+        & .toolbarTabs {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        & #propertiesTabs {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+
+        /* file filter below the tabs */
+        & #torrentFilesFilterToolbar {
+            flex: 1 1 100%;
+            float: none;
+            margin: 0 4px 4px;
+            order: 1;
+        }
+
+        & #torrentFilesFilterInput {
+            width: 100%;
+        }
+    }
+}
+
+/* Search tab */
+:root.responsiveRelayout #searchResults {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+        flex: none;
+    }
+
+    & > #searchResultsHeader,
+    & > #searchResultsFilters,
+    & #searchResultsHeaderContainer {
+        height: auto;
+    }
+
+    & > :last-child {
+        display: flow-root;
+        height: auto !important;
+    }
+
+    & > #searchResultsTableContainer,
+    & > #searchResultsNoPlugins,
+    & > #searchResultsNoSearches {
+        flex: 1 1 0;
+        height: auto;
+        min-height: 0;
+    }
+}
+
+/* Execution log */
+:root.responsiveRelayout #logView #logFilterBar {
+    height: auto;
+
+    & #filterTextInput {
+        flex: 1 1 160px;
+        min-width: 0;
+        width: auto;
+    }
+}
+
+:root.responsiveRelayout #rssView #rssButtonBar {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--responsive-gap);
+    height: auto;
+    overflow: visible;
+
+    & #rssFilterToolbar {
+        margin-left: auto;
+    }
+}
+
+/* RSS tab on phones; named with its panel, so that it outweighs the view's own rule, which loads later */
+@media (width < 760px) {
+    #RssPanel #rssView {
+        padding: 10px 10px 0;
+
+        & #rssButtonBar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            width: 100%;
+
+            & button {
+                margin: 0;
+                width: 100%;
+            }
+        }
+
+        & #rssFilterToolbar {
+            display: contents;
+        }
+
+        & #rssFilterInput {
+            grid-column: 1 / -1;
+            min-width: 0;
+            order: 1;
+            width: 100%;
+        }
+
+        & :is(#leftRssColumn, #centerRssColumn, #rightRssColumn) {
+            float: none;
+            height: auto;
+            margin: 0 0 10px;
+            width: 100%;
+        }
+
+        & #rssFeedTableDiv {
+            height: 30dvh;
+        }
+
+        & #rssArticleTableDiv {
+            height: 40dvh;
         }
     }
 }
@@ -628,6 +955,10 @@
     #desktopNavbar > ul > li > a {
         padding-bottom: 9px;
         padding-top: 9px;
+    }
+
+    #desktopNavbar li ul {
+        max-height: calc(100dvh - var(--responsive-touch-target) - 4px);
     }
 
     #desktopNavbar li ul li :is(a, div.anchor),

@@ -1260,6 +1260,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             transfer_info += ` [${window.qBittorrent.Misc.friendlyUnit(serverState.up_rate_limit, true)}]`;
         transfer_info += ` (${window.qBittorrent.Misc.friendlyUnit(serverState.up_info_data, false)})`;
         document.getElementById("UpInfos").textContent = transfer_info;
+        // limits lengthen the speeds, which the phone layout then stacks
+        document.getElementById("desktopFooter").classList.toggle("speedLimitsShown", ((serverState.dl_rate_limit > 0) || (serverState.up_rate_limit > 0)));
 
         let titlePrefix = "";
         if (serverState.session_state) {
