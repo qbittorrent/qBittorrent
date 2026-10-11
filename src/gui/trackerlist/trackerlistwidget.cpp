@@ -380,10 +380,7 @@ void TrackerListWidget::showTrackerListMenu()
     const bool canReannounceDHT = isDHTEnabled && selectionModel()->isRowSelected(TrackerListModel::ROW_DHT);
     if (!torrent()->isStopped() && (hasSelectedTrackers || canReannounceDHT))
     {
-        const QString reannounceText = canReannounceDHT
-                ? (hasSelectedTrackers ? tr("Force reannounce to selected trackers and DHT") : tr("Force reannounce to DHT"))
-                : tr("Force reannounce to selected trackers");
-        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), reannounceText
+        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to selected")
                 , this, &TrackerListWidget::reannounceSelected);
     }
 
