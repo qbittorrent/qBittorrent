@@ -1,0 +1,91 @@
+:root {
+    --responsive-separator: 1px solid var(--color-border-default);
+    --responsive-drawer-shadow: 0 0 12px hsl(0deg 0% 0% / 30%);
+    --responsive-drawer-width: min(320px, 86vw);
+}
+
+#desktop {
+    min-width: 0; /* override Layout.css */
+}
+
+/* Drawers */
+.responsiveScrim {
+    background-color: hsl(0deg 0% 0% / 40%);
+    inset: 0;
+    position: fixed;
+    z-index: 1500;
+}
+
+.responsiveDrawerHead {
+    align-items: center;
+    background-color: var(--color-background-primary);
+    border-bottom: var(--responsive-separator);
+    display: none;
+    gap: 8px;
+    padding: 4px 4px 4px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    & > span {
+        flex: 1 1 auto;
+        font-weight: bold;
+    }
+}
+
+/* Filters drawer */
+#filtersButton {
+    display: none;
+}
+
+@media (width < 1100px) {
+    #filtersColumn,
+    #filtersColumn_handle {
+        display: none;
+    }
+
+    #filtersButton {
+        align-items: center;
+        display: inline-flex;
+        gap: 4px;
+        margin-right: 4px;
+        vertical-align: middle;
+    }
+
+    :root:has(#filtersColumn.invisible) #filtersButton {
+        display: none;
+    }
+
+    /* moved to the menubar while the toolbar is hidden */
+    #desktopNavbar > #filtersButton {
+        float: right;
+        margin: 0 4px;
+    }
+
+    :root.filtersDrawerOpen #filtersColumn:not(.invisible) {
+        display: block;
+        height: 100% !important;
+        left: 0;
+        overflow: visible;
+        position: fixed;
+        top: 0;
+        width: 0 !important;
+        z-index: 1501;
+
+        & #Filters_wrapper {
+            height: 100%;
+        }
+
+        & #Filters {
+            background-color: var(--color-background-primary);
+            border-right: var(--responsive-separator);
+            box-shadow: var(--responsive-drawer-shadow);
+            height: 100% !important;
+            width: var(--responsive-drawer-width) !important;
+        }
+
+        & #filtersDrawerHead {
+            display: flex;
+        }
+    }
+}

@@ -422,10 +422,15 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     let isRssPanelLoaded = false;
 
     const saveColumnSizes = () => {
+        // don't store the sizes the responsive layout sets
+        const { drawer, small } = window.qBittorrent.Responsive.queries;
         const filters_width = document.getElementById("Filters").getSize().x;
-        localPreferences.set("filters_width", filters_width);
-        const properties_height_rel = document.getElementById("propertiesPanel").getSize().y / Window.getSize().y;
-        localPreferences.set("properties_height_rel", properties_height_rel);
+        if (!drawer.matches && (filters_width > 0))
+            localPreferences.set("filters_width", filters_width);
+        if (!small.matches) {
+            const properties_height_rel = document.getElementById("propertiesPanel").getSize().y / Window.getSize().y;
+            localPreferences.set("properties_height_rel", properties_height_rel);
+        }
     };
 
     window.addEventListener("resize", window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
@@ -621,6 +626,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
     // After Show Top Toolbar
     MochaUI.Desktop.setDesktopSize();
+
+    window.qBittorrent.Responsive.init();
 
     let syncMainDataLastResponseId = 0;
     const serverState = {};

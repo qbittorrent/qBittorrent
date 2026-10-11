@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="css/Layout.css?v=${CACHEID}">
     <link rel="stylesheet" type="text/css" href="css/Window.css?v=${CACHEID}">
     <link rel="stylesheet" type="text/css" href="css/Tabs.css?v=${CACHEID}">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css?v=${CACHEID}" id="responsiveStylesheet">
     <noscript>
         <link rel="stylesheet" type="text/css" href="css/noscript.css?v=${CACHEID}">
     </noscript>
@@ -30,6 +31,7 @@
     <script defer src="scripts/cache.js?v=${CACHEID}"></script>
     <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script defer src="scripts/client-data.js?v=${CACHEID}"></script>
+    <script defer src="scripts/responsive.js?v=${CACHEID}"></script>
     <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
     <script defer src="scripts/mocha-init.js?locale=${LANG}&v=${CACHEID}"></script>
     <script defer src="scripts/lib/clipboard-copy.js"></script>
@@ -160,6 +162,7 @@
                     <div class="clear"></div>
                 </div>
                 <div id="torrentsFilterToolbar">
+                    <button type="button" id="filtersButton" aria-expanded="false"><img src="images/filter-all.svg" alt="" width="16" height="16">QBT_TR(Filters)QBT_TR[CONTEXT=MainWindow]</button>
                     <input type="search" id="torrentsFilterInput" placeholder="QBT_TR(Filter torrent list...)QBT_TR[CONTEXT=MainWindow]" aria-label="QBT_TR(Filter torrent list...)QBT_TR[CONTEXT=MainWindow]" autocorrect="off" autocapitalize="none">
                     <input type="checkbox" id="torrentsFilterRegexBox">
                     <label for="torrentsFilterRegexBox" aria-label="QBT_TR(Use regular expression)QBT_TR[CONTEXT=MainWindow]" title="QBT_TR(Use regular expression)QBT_TR[CONTEXT=MainWindow]"></label>
