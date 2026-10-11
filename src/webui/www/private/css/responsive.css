@@ -616,7 +616,8 @@
     padding-inline: 10px;
 }
 
-:root.responsiveRelayout :where(.dialogFooter, #uploadForm > #submitbutton) {
+/* Button rows */
+:where(.dialogFooter, #uploadForm > #submitbutton) {
     background-color: var(--color-background-popup);
     border-top: var(--responsive-separator);
     bottom: 0;
@@ -631,11 +632,11 @@
     }
 }
 
-:root.responsiveRelayout .dialogFooter > #createTorrentButton {
+.dialogFooter > #createTorrentButton {
     margin-block: 0;
 }
 
-:root.responsiveRelayout #uploadForm > #submitbutton {
+#uploadForm > #submitbutton {
     min-height: calc(
         var(--responsive-touch-target, 26px) + (2 * var(--responsive-row-space))
     );
@@ -648,15 +649,14 @@
     }
 }
 
-:root.responsiveRelayout #RssDownloader #saveButton {
+#RssDownloader #saveButton {
     bottom: var(--responsive-row-space);
     position: sticky;
     z-index: 1;
 }
 
 /* windows that end with a button row */
-:root.responsiveRelayout
-    :is(
+:is(
         .modalDialog,
         #globalSpeedLimitsPage,
         #installSearchPlugin,
@@ -673,7 +673,8 @@
     }
 }
 
-:root.responsiveRelayout #preferencesPage .mochaContent {
+/* Options: Save at the bottom */
+#preferencesPage .mochaContent {
     display: flex !important;
     flex-direction: column;
     min-height: 100%;
@@ -687,9 +688,20 @@
     }
 }
 
-:root.responsiveRelayout .modalDialog .mochaContent.pad > .dialogFooter {
+.dialogFooter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--responsive-gap);
+    justify-content: center;
+}
+
+.dialogFooter.alignEnd,
+.modalDialog .dialogFooter {
+    justify-content: flex-end;
+}
+
+.modalDialog .mochaContent.pad > .dialogFooter {
     align-self: stretch;
-    text-align: right;
 }
 
 /* stacked on phones */
@@ -877,17 +889,21 @@
     }
 }
 
-:root.responsiveRelayout #rssView #rssButtonBar {
+/* RSS tab */
+#rssView #rssButtonBar {
     align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
     gap: var(--responsive-gap);
-    height: auto;
-    overflow: visible;
 
     & #rssFilterToolbar {
         margin-left: auto;
     }
+}
+
+:root.responsiveRelayout #rssView #rssButtonBar {
+    height: auto;
+    overflow: visible;
 }
 
 /* RSS tab on phones; named with its panel, so that it outweighs the view's own rule, which loads later */
@@ -934,7 +950,8 @@
     }
 }
 
-:root.responsiveRelayout .mocha #searchPluginsContainer {
+/* Search plugins */
+.mocha #searchPluginsContainer {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -956,10 +973,7 @@
     }
 }
 
-:root.responsiveRelayout:not(.responsivePhone)
-    .mocha
-    #searchPluginsContainer
-    > .dialogFooter {
+:root:not(.responsivePhone) .mocha #searchPluginsContainer > .dialogFooter {
     display: flex;
     gap: var(--responsive-gap);
 
@@ -1006,7 +1020,8 @@
     }
 }
 
-:root.responsiveRelayout #RssDownloader {
+/* RSS downloader */
+#RssDownloader {
     display: grid;
     grid-template-columns: 25% 50% 25%;
     grid-template-rows: auto minmax(min-content, 1fr);
@@ -1060,7 +1075,7 @@
     }
 }
 
-:root.responsiveRelayout #rssdownloaderpage {
+#rssdownloaderpage {
     & .mochaContent {
         display: flex !important;
         flex-direction: column;
@@ -1229,6 +1244,36 @@
 :root.responsivePhone .vsb-menu {
     max-width: calc(100vw - 20px);
     right: 0;
+}
+
+/* Rename files */
+#multiRenamePage .mochaContent {
+    display: flex !important;
+    flex-direction: column;
+    min-height: 100%;
+    padding-bottom: 0 !important;
+}
+
+#multiRenamePage_content {
+    & > div {
+        display: flex;
+        flex: 1 0 auto;
+        flex-direction: column;
+    }
+
+    & #operation_btns {
+        margin: auto 0 0 !important; /* override inline style */
+        padding-bottom: var(--responsive-row-space);
+        position: static !important;
+
+        & > hr {
+            margin-bottom: var(--responsive-row-space);
+        }
+    }
+
+    & #torrentFiles {
+        margin-bottom: var(--responsive-row-space) !important;
+    }
 }
 
 /* Rename files on phones and short touch screens */
