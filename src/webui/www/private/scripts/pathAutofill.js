@@ -40,14 +40,19 @@ window.qBittorrent.pathAutofill ??= (() => {
         };
     };
 
+    const MAX_SUGGESTIONS = 25;
+
     const showInputSuggestions = (inputElement, names) => {
         const datalist = document.createElement("datalist");
         datalist.id = `${inputElement.id}Suggestions`;
-        for (const name of names) {
+
+        const fragment = document.createDocumentFragment();
+        for (const name of names.slice(0, MAX_SUGGESTIONS)) {
             const option = document.createElement("option");
             option.value = name;
-            datalist.appendChild(option);
+            fragment.appendChild(option);
         }
+        datalist.appendChild(fragment);
 
         const oldDatalist = document.getElementById(`${inputElement.id}Suggestions`);
         if (oldDatalist !== null) {

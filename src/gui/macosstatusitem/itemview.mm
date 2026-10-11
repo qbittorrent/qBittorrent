@@ -56,8 +56,10 @@ namespace
         self.fDownloadRate = 0.0;
         self.fUploadRate = 0.0;
 
-        NSImage *icon = [NSImage imageNamed:@"qbittorrent_mac"];
+        NSString *iconPath = [NSBundle.mainBundle pathForResource:@"qbittorrent-tray-light" ofType:@"svg"];
+        NSImage *icon = [[NSImage alloc] initWithContentsOfFile:iconPath];
         [icon setSize:NSMakeSize(16, 16)];
+        [icon setTemplate:YES];
 
         self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
         self.statusItem.button.image = icon;

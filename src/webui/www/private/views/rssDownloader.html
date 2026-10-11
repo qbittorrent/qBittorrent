@@ -126,6 +126,15 @@
         background-image: url('images/edit-clear.svg');
     }
 
+    #rulesFileButtons {
+        display: flex;
+        gap: 4px;
+    }
+
+    #rulesFileButtons button {
+        flex: 1;
+    }
+
 </style>
 
 <div id="RssDownloader" class="RssDownloader">
@@ -137,6 +146,11 @@
             <b id="rulesTableDesc">QBT_TR(Download Rules)QBT_TR[CONTEXT=AutomatedRssDownloader]</b>
             <button type="button" id="newRuleButton" aria-label="QBT_TR(Add rule)QBT_TR[CONTEXT=AutomatedRssDownloader]" class="imageButton" onclick="qBittorrent.RssDownloader.addRule()"></button>
             <button type="button" id="deleteRuleButton" aria-label="QBT_TR(Remove rule)QBT_TR[CONTEXT=AutomatedRssDownloader]" class="imageButton" onclick="qBittorrent.RssDownloader.removeSelectedRule()"></button>
+        </div>
+        <div id="rulesFileButtons">
+            <button type="button" onclick="qBittorrent.RssDownloader.exportRules()">QBT_TR(Export)QBT_TR[CONTEXT=AutomatedRssDownloader]</button>
+            <button type="button" onclick="qBittorrent.RssDownloader.importRules()">QBT_TR(Import)QBT_TR[CONTEXT=AutomatedRssDownloader]</button>
+            <input type="file" id="rssRulesFileInput" accept=".json" hidden>
         </div>
         <div id="rulesTable">
             <div id="rulesSelectionCheckBoxList">
@@ -348,7 +362,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 rssDownloaderFeedSelectionTable: rssDownloaderFeedSelectionTable,
                 setElementTitles: setElementTitles,
                 addRule: addRule,
-                removeSelectedRule: removeSelectedRule
+                removeSelectedRule: removeSelectedRule,
+                exportRules: exportRules,
+                importRules: importRules
             };
         };
 
@@ -358,6 +374,36 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         let rulesList = {};
         let feedList = [];
+
+        const exportRules = () => {
+            const url = new URL("api/v2/rss/exportRules", window.location);
+            window.qBittorrent.Misc.downloadFile(url, "rss-downloader-rules.json");
+        };
+
+        const importRules = () => {
+            const input = document.getElementById("rssRulesFileInput");
+            input.value = "";
+            input.click();
+        };
+
+        document.getElementById("rssRulesFileInput").addEventListener("change", (event) => {
+            const file = document.getElementById("rssRulesFileInput").files[0];
+            if (!file)
+                return;
+
+            const formData = new FormData();
+            formData.append("rules", file, "rules");
+            fetch("api/v2/rss/importRules", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(async (response) => {
+                    if (!response.ok)
+                        throw new Error(await response.text());
+                    updateRulesList();
+                })
+                .catch((error) => alert(error.message));
+        });
 
         const setup = () => {
             const pref = window.parent.qBittorrent.Cache.preferences.get();
@@ -372,7 +418,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             document.getElementById("centerRssDownloaderColumn").style.height = `calc(100% - ${warningHeight}px)`;
             document.getElementById("rightRssDownloaderColumn").style.height = `calc(100% - ${warningHeight}px)`;
 
-            document.getElementById("rulesTable").style.height = `calc(100% - ${document.getElementById("rulesTableDesc").getBoundingClientRect().height}px)`;
+            const rulesTableHeaderHeight = document.getElementById("topMenuBar").getBoundingClientRect().height
+                + document.getElementById("rulesFileButtons").getBoundingClientRect().height;
+            document.getElementById("rulesTable").style.height = `calc(100% - ${rulesTableHeaderHeight}px)`;
             document.getElementById("rssDownloaderArticlesTable").style.height = `calc(100% - ${document.getElementById("articleTableDesc").getBoundingClientRect().height}px)`;
 
             const centerRowNotTableHeight = document.getElementById("saveButton").getBoundingClientRect().height

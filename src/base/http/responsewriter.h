@@ -55,6 +55,7 @@ namespace Http
         virtual bool isFinished() const = 0;
 
     signals:
+        void failed();
         void finished();
     };
 }

@@ -29,7 +29,6 @@
 #pragma once
 
 #include <QObject>
-#include <QPointer>
 
 #include "base/pathfwd.h"
 #include "headermap.h"
@@ -38,17 +37,26 @@
 #include "responsewriter.h"
 
 class QAbstractSocket;
-class QThread;
 
 namespace Http
 {
+    class AsyncFileSender;
+
     class ResponseWriterImpl final : public ResponseWriter
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(ResponseWriterImpl)
 
     public:
-        ResponseWriterImpl(QAbstractSocket *socket, QObject *parent = nullptr);
+        enum class State
+        {
+            Ready,
+            Running,
+            Finished,
+            Failed
+        };
+
+        explicit ResponseWriterImpl(QAbstractSocket *socket, QObject *parent = nullptr);
         ~ResponseWriterImpl() override;
 
         void prepare(const Request &request);
@@ -62,20 +70,17 @@ namespace Http
         void streamFile(const Path &filePath, const HeaderMap &headers) override;
 
         bool isFinished() const override;
+        State state() const;
 
     private:
-        void writeData(const QByteArray &data);
+        void fail();
         void finish();
 
-        QPointer<QAbstractSocket> m_socket;
+        QAbstractSocket *m_socket = nullptr;
         Request m_request;
 
-        class Worker;
-        Worker *m_asyncWorker = nullptr;
-        QThread *m_workerThread = nullptr;
-        bool m_isAsyncWorkerFinished = false;
+        AsyncFileSender *m_asyncFileSender = nullptr;
 
-        bool m_isWritingContent = false;
-        bool m_isFinished = false;
+        State m_state = State::Ready;
     };
 }

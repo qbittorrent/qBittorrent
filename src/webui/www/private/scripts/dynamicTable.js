@@ -377,10 +377,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             }.bind(this);
 
             for (const th of this.getRowCells(this.fixedTableHeader)) {
-                th.addEventListener("mousemove", mouseMoveFn);
-                th.addEventListener("mouseout", mouseOutFn);
-                th.addEventListener("touchend", onTouch, { passive: true });
-                th.addEventListener("dblclick", onDoubleClick);
+                th.addEventListener("mousemove", (event) => mouseMoveFn(event));
+                th.addEventListener("mouseout", (event) => mouseOutFn(event));
+                th.addEventListener("touchend", ((event) => onTouch(event)), { passive: true });
+                th.addEventListener("dblclick", (event) => onDoubleClick(event));
                 th.makeResizable({
                     modifiers: {
                         x: "",
@@ -627,22 +627,32 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         loadColumnsOrder() {
-            const columnsOrder = [];
-            const val = localPreferences.get(`columns_order_${this.dynamicTableDivId}`);
-            if ((val === null) || (val === undefined))
+            const savedOrder = localPreferences.get(`columns_order_${this.dynamicTableDivId}`);
+            if ((savedOrder === null) || (savedOrder === undefined))
                 return;
-            for (const v of val.split(",")) {
-                if ((v in this.columns) && (!columnsOrder.contains(v)))
-                    columnsOrder.push(v);
+
+            const byName = new Map(this.columns.map(column => [column.name, column]));
+
+            // Build the desired column order. A Set keeps names unique while
+            // preserving their saved order.
+            const order = new Set();
+            for (const name of savedOrder.split(",")) {
+                // skip names that no longer exist as columns
+                if (byName.has(name))
+                    order.add(name);
             }
 
-            for (let i = 0; i < this.columns.length; ++i) {
-                if (!columnsOrder.contains(this.columns[i].name))
-                    columnsOrder.push(this.columns[i].name);
-            }
+            // Append columns that were added after the order was saved so that
+            // every column appears exactly once.
+            for (const column of this.columns)
+                order.add(column.name);
 
+            // Reorder the columns array in place to match the desired order.
+            // The array is mutated rather than replaced so its named properties
+            // are preserved.
+            const orderedNames = [...order];
             for (let i = 0; i < this.columns.length; ++i)
-                this.columns[i] = this.columns[columnsOrder[i]];
+                this.columns[i] = byName.get(orderedNames[i]);
         }
 
         saveColumnsOrder() {
@@ -1517,7 +1527,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // eta
             this.columns["eta"].updateTd = function(td, row) {
-                const eta = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row), window.qBittorrent.Misc.MAX_ETA);
+                const eta = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row), window.qBittorrent.Misc.MAX_ETA, window.qBittorrent.Misc.TIME_RESOLUTION.Seconds);
                 td.textContent = eta;
                 td.title = eta;
             };
@@ -2002,7 +2012,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("fileSize", "", "QBT_TR(Size)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
             this.newColumn("nbSeeders", "", "QBT_TR(Seeders)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
             this.newColumn("nbLeechers", "", "QBT_TR(Leechers)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
-            this.newColumn("engineName", "", "QBT_TR(Engine)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
+            this.newColumn("engineFullName", "", "QBT_TR(Engine)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
             this.newColumn("siteUrl", "", "QBT_TR(Engine URL)QBT_TR[CONTEXT=SearchResultsTable]", 250, true);
             this.newColumn("pubDate", "", "QBT_TR(Published On)QBT_TR[CONTEXT=SearchResultsTable]", 200, true);
 

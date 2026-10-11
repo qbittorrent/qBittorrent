@@ -202,4 +202,13 @@ void TransferController::shadowbanPeersAction()
         if (!addr.ip.isNull())
             BitTorrent::Session::instance()->shadowbanIP(addr.ip.toString());
     }
+
+void TransferController::pauseSessionAction()
+{
+    BitTorrent::Session::instance()->pause();
+}
+
+void TransferController::resumeSessionAction()
+{
+    BitTorrent::Session::instance()->resume();
 }

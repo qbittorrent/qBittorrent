@@ -51,4 +51,6 @@ private slots:
     void setSpeedLimitsAction();
     void banPeersAction();
     void shadowbanPeersAction();
+    void pauseSessionAction();
+    void resumeSessionAction();
 };

@@ -132,7 +132,7 @@ window.qBittorrent.PropGeneral ??= (() => {
                         : window.qBittorrent.Misc.friendlyDuration(data.time_elapsed);
                     document.getElementById("time_elapsed").textContent = timeElapsed;
 
-                    document.getElementById("eta").textContent = window.qBittorrent.Misc.friendlyDuration(data.eta, window.qBittorrent.Misc.MAX_ETA);
+                    document.getElementById("eta").textContent = window.qBittorrent.Misc.friendlyDuration(data.eta, window.qBittorrent.Misc.MAX_ETA, window.qBittorrent.Misc.TIME_RESOLUTION.Seconds);
 
                     const nbConnections = "QBT_TR(%1 (%2 max))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", data.nb_connections)

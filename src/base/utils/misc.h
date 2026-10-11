@@ -70,7 +70,7 @@ namespace Utils::Misc
 
     QString unitString(SizeUnit unit, bool isSpeed = false);
 
-    // return the best user friendly storage unit (B, KiB, MiB, GiB, TiB)
+    // return the best user-friendly storage unit (B, KiB, MiB, GiB, TiB)
     // value must be given in bytes
     QString friendlyUnit(qint64 bytes, bool isSpeed = false, int precision = -1);
     QString friendlyUnitCompact(qint64 bytes);
