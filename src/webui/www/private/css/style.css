@@ -703,8 +703,8 @@ td.generalLabel {
 td.fullWidth {
     box-sizing: border-box;
     max-width: none;
+    overflow-wrap: anywhere;
     width: 100%;
-    word-break: break-all;
 }
 
 td.noWrap {
