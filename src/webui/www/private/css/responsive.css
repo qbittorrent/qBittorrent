@@ -91,6 +91,29 @@
     }
 }
 
+/* Windows on phones */
+:root.responsivePhone .mochaMaximizeButton {
+    display: none;
+}
+
+.mocha.responsiveFullScreen {
+    border-radius: 0;
+    box-shadow: none;
+
+    & .mochaOverlay {
+        border-radius: 0;
+    }
+
+    & .handle {
+        display: none;
+    }
+}
+
+:root.responsivePhone .mocha .tab-menu {
+    flex-wrap: wrap;
+    row-gap: 4px;
+}
+
 /* Options: rows wrap in narrow windows */
 :root.responsiveRelayout #preferencesPage .mochaContentWrapper {
     container: options / inline-size;
@@ -265,7 +288,11 @@
         padding-right: calc(var(--responsive-touch-target) + 4px);
     }
 
-    .mocha:has(.mochaMaximizeButton) .mochaTitlebar h3 {
+    /* phones hide the Maximize button */
+    :where(:root:not(.responsivePhone))
+        .mocha:has(.mochaMaximizeButton)
+        .mochaTitlebar
+        h3 {
         padding-right: calc((2 * var(--responsive-touch-target)) + 4px);
     }
 

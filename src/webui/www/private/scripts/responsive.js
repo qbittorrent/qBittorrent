@@ -416,13 +416,213 @@ window.qBittorrent.Responsive ??= (() => {
         new ResizeObserver(scrollToFirstRow).observe(tableDiv);
     };
 
+    const WINDOW_MARGIN = 8;
+    const PHONE_WINDOW_MARGIN = 12;
+
+    // resize like an edge drag, without storing the size
+    const setContentSize = (instance, width, height) => {
+        const wrapper = instance.contentWrapperEl;
+        if ((wrapper.style.width === width) && (wrapper.style.height === height))
+            return;
+
+        wrapper.style.width = width;
+        wrapper.style.height = height;
+        instance.drawWindow();
+        if (instance.options.resizable)
+            instance.adjustHandles();
+        MochaUI.rWidth(wrapper);
+        for (const column of wrapper.querySelectorAll(":scope > .column"))
+            MochaUI.panelHeight(column);
+    };
+
+    // the size the window asks for, rather than the one it was fitted to
+    const wantedSize = (instance) => {
+        const { width, height } = instance.contentWrapperEl.style;
+        const fitted = instance.responsiveFittedSize;
+        if ((fitted === undefined) || (width !== fitted.width) || (height !== fitted.height))
+            instance.responsiveWantedSize = { width: width, height: height };
+        return instance.responsiveWantedSize;
+    };
+
+    const roomOnScreen = (instance) => {
+        const wrapper = instance.contentWrapperEl;
+        const margin = queries.phone.matches ? PHONE_WINDOW_MARGIN : WINDOW_MARGIN;
+        return {
+            width: root.clientWidth - (2 * margin) - (instance.windowEl.offsetWidth - wrapper.offsetWidth),
+            height: root.clientHeight - (2 * margin) - (instance.windowEl.offsetHeight - wrapper.offsetHeight)
+        };
+    };
+
+    // what a window's fit depends on
+    const fitState = (instance) => {
+        const sizes = [root.clientWidth, root.clientHeight, instance.contentWrapperEl.style.width, instance.contentWrapperEl.style.height];
+        const page = [...instance.contentEl.children];
+        for (const element of [...page, instance.iframeEl?.contentDocument?.body ?? null, instance.toolbarWrapperEl ?? null]) {
+            if (element !== null)
+                sizes.push(element.offsetWidth, element.offsetHeight);
+        }
+        return sizes.join();
+    };
+
+    const fitWindow = (instance) => {
+        const windowEl = instance.windowEl;
+        if (!windowEl.isConnected || (windowEl.style.display === "none") || instance.isMaximized)
+            return;
+
+        const phone = queries.phone.matches;
+        const fullScreen = fitWindowSize(instance, phone);
+
+        // no dragging on phones
+        if (phone)
+            instance.windowDrag?.detach();
+        else
+            instance.windowDrag?.attach();
+
+        const margin = fullScreen ? 0 : (phone ? PHONE_WINDOW_MARGIN : WINDOW_MARGIN);
+        const wasFullScreen = windowEl.classList.contains("responsiveFullScreen");
+        windowEl.classList.toggle("responsiveFullScreen", fullScreen);
+        const maxLeft = root.clientWidth - windowEl.offsetWidth - margin;
+        const maxTop = root.clientHeight - windowEl.offsetHeight - margin;
+        if (fullScreen) {
+            windowEl.style.left = "0px";
+            windowEl.style.top = "0px";
+        }
+        else if (phone || wasFullScreen || (queries.relayout.matches && (instance.responsiveUserMoved !== true))) {
+            windowEl.style.left = `${Math.max(margin, Math.round((maxLeft + margin) / 2))}px`;
+            windowEl.style.top = `${Math.max(margin, Math.round((maxTop + margin) / 2))}px`;
+        }
+        else {
+            windowEl.style.left = `${Math.max(margin, Math.min(windowEl.offsetLeft, maxLeft))}px`;
+            windowEl.style.top = `${Math.max(margin, Math.min(windowEl.offsetTop, maxTop))}px`;
+        }
+        instance.responsiveFitState = fitState(instance);
+    };
+
+    // returns whether the window is full screen and whether it was fitted to its page
+    const fitWindowSize = (instance, phone) => {
+        const windowEl = instance.windowEl;
+        const wrapper = instance.contentWrapperEl;
+        const toolbar = instance.toolbarWrapperEl;
+        // Mocha draws the window around the toolbar's inline height
+        if (queries.relayout.matches && (toolbar !== undefined) && (toolbar.style.height !== `${toolbar.offsetHeight}px`)) {
+            toolbar.style.height = `${toolbar.offsetHeight}px`;
+            instance.drawWindow();
+        }
+        const wanted = wantedSize(instance);
+        // title bar, toolbar and borders
+        const frameWidth = windowEl.offsetWidth - wrapper.offsetWidth;
+        const frameHeight = windowEl.offsetHeight - wrapper.offsetHeight;
+        wrapper.style.width = wanted.width;
+        wrapper.style.height = wanted.height;
+        const wantedWidth = wrapper.offsetWidth;
+        const wantedHeight = wrapper.offsetHeight;
+        const margin = phone ? PHONE_WINDOW_MARGIN : WINDOW_MARGIN;
+        const maxWidth = root.clientWidth - (2 * margin) - frameWidth;
+        const maxHeight = root.clientHeight - (2 * margin) - frameHeight;
+
+        let width = phone ? maxWidth : Math.min(maxWidth, wantedWidth);
+        let height = Math.min(maxHeight, wantedHeight);
+        const fullScreen = phone;
+        if (fullScreen) {
+            width = root.clientWidth - frameWidth;
+            height = root.clientHeight - frameHeight;
+        }
+
+        // restore, so the window is only redrawn on a change
+        wrapper.style.width = instance.responsiveFittedSize?.width ?? wanted.width;
+        wrapper.style.height = instance.responsiveFittedSize?.height ?? wanted.height;
+        setContentSize(instance, `${width}px`, `${height}px`);
+        instance.responsiveFittedSize = { width: `${width}px`, height: `${height}px` };
+        return fullScreen;
+    };
+
+    const fitWindows = () => {
+        for (const instance of Object.values(MochaUI.Windows.instances))
+            fitWindow(instance);
+    };
+
+    // fit a window as it opens, and again as its page or the screen changes
+    const watch = (node) => {
+        if (node.classList?.contains("mocha") !== true)
+            return;
+
+        const instance = MochaUI.Windows.instances[node.id];
+        if (instance === undefined)
+            return;
+
+        // a window opened from the drawer would open behind it
+        closeFiltersDrawer();
+        fitWindow(instance);
+
+        // refit only when something the fit depends on has changed
+        const fitSoon = window.qBittorrent.Misc.createDebounceHandler(50, () => {
+            if (fitState(instance) !== instance.responsiveFitState)
+                fitWindow(instance);
+        });
+        const sizeObserver = new ResizeObserver(fitSoon);
+        const pageObserver = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                for (const added of mutation.addedNodes) {
+                    if (added.nodeType === Node.ELEMENT_NODE)
+                        sizeObserver.observe(added);
+                }
+                for (const removed of mutation.removedNodes) {
+                    if (removed.nodeType === Node.ELEMENT_NODE)
+                        sizeObserver.unobserve(removed);
+                }
+            }
+            instance.responsiveFitState = null;
+            fitSoon();
+        });
+        for (const child of instance.contentEl.children)
+            sizeObserver.observe(child);
+        pageObserver.observe(instance.contentEl, { childList: true });
+        if (instance.toolbarWrapperEl !== undefined)
+            sizeObserver.observe(instance.toolbarWrapperEl);
+        // not creation options: windows come here once created elsewhere
+        instance.addEvent("closeComplete", () => {
+            sizeObserver.disconnect();
+            pageObserver.disconnect();
+        });
+
+        // keep a size or place the user chose, from the start of the drag
+        instance.addEvent("resize", () => {
+            instance.responsiveUserResized = true;
+        });
+        // not creation options: MochaUI has none for its drags
+        for (const drag of [instance.resizable1, instance.resizable2, instance.resizable3, instance.resizable4, instance.resizable5]) {
+            drag?.addEvent("start", () => {
+                instance.responsiveUserMoved = true;
+                // Mocha signals the resize only once the drag ends
+                instance.responsiveUserResized = true;
+            });
+        }
+        instance.windowDrag?.addEvent("start", () => {
+            instance.responsiveUserMoved = true;
+        });
+
+        // framed dialogs
+        const iframe = instance.iframeEl;
+        iframe?.addEventListener("load", (event) => {
+            fitWindow(instance);
+            new iframe.contentWindow.ResizeObserver(fitSoon).observe(iframe.contentDocument.body);
+        });
+    };
+
     const initWindows = () => {
         const windowObserver = new MutationObserver((mutations) => {
-            if (mutations.some((mutation) => [...mutation.addedNodes].some((node) => node.classList?.contains("mocha"))))
-                closeFiltersDrawer();
+            for (const mutation of mutations) {
+                for (const node of mutation.addedNodes)
+                    watch(node);
+            }
         });
         for (const container of new Set([document.getElementById("desktop"), document.body]))
             windowObserver.observe(container, { childList: true });
+        for (const node of document.querySelectorAll(".mocha"))
+            watch(node);
+
+        // after Mocha's own resize handling
+        window.addEventListener("resize", window.qBittorrent.Misc.createDebounceHandler(50, fitWindows));
     };
 
     // called by client.js once the main window is built
