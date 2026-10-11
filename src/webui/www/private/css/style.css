@@ -745,6 +745,11 @@ td.noWrap {
     text-align: right;
 }
 
+/* keep the content from shifting sideways between tabs that scroll and tabs that don't */
+#preferencesPage .mochaContentWrapper {
+    scrollbar-gutter: stable;
+}
+
 #watched_folders_tab {
     border-collapse: collapse;
 }
