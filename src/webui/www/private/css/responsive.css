@@ -203,6 +203,26 @@
     }
 }
 
+/* Sliding header */
+#desktopHeader {
+    transition: height 0.2s ease;
+
+    &.sliding {
+        overflow: hidden;
+    }
+}
+
+:root.headerHidden #desktopHeader {
+    height: 0 !important; /* override inline style */
+    overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #desktopHeader {
+        transition: none;
+    }
+}
+
 /* Status bar */
 :root.responsiveRelayout {
     & #desktopFooterWrapper {
