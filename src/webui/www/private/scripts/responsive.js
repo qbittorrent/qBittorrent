@@ -34,7 +34,8 @@ window.qBittorrent.Responsive ??= (() => {
         return {
             init: init,
             queries: queries,
-            addFrame: addFrame
+            addFrame: addFrame,
+            rowHeight: rowHeight
         };
     };
 
@@ -49,6 +50,8 @@ window.qBittorrent.Responsive ??= (() => {
 
     const root = document.documentElement;
     const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
+    const cssLength = (name) => Number.parseFloat(getComputedStyle(root).getPropertyValue(name));
 
     const frameDocuments = new Set();
 
@@ -85,6 +88,23 @@ window.qBittorrent.Responsive ??= (() => {
         document.body.append(scrim);
         return scrim;
     };
+
+    const whenElement = (id) => new Promise((resolve) => {
+        const found = document.getElementById(id);
+        if (found !== null) {
+            resolve(found);
+            return;
+        }
+        const observer = new MutationObserver(() => {
+            const element = document.getElementById(id);
+            if (element === null)
+                return;
+
+            observer.disconnect();
+            resolve(element);
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    });
 
     const focusableSelector = "a[href], button:not([disabled]), input:not([disabled], [type='hidden']), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])";
     // keep the focus inside an open drawer
@@ -334,6 +354,68 @@ window.qBittorrent.Responsive ??= (() => {
         placeButton();
     };
 
+    // the virtual list's row height for dynamicTable.js, or undefined for its own
+    const rowHeight = (table) => {
+        if (queries.coarse.matches)
+            return cssLength("--responsive-touch-row-height");
+        return undefined;
+    };
+
+    // keep the first visible row in view while row heights change
+    const FIRST_ROW_TIME = 1000;
+    let shownRowHeight = null;
+    let firstRow = null;
+
+    const measureRowHeight = (table) => {
+        if (table.useVirtualList)
+            return table.rowHeight;
+        const height = table.tableBody.querySelector("tr")?.offsetHeight ?? 0;
+        return (height > 0) ? height : table.rowHeight;
+    };
+
+    const scrollToFirstRow = () => {
+        if ((firstRow === null) || (performance.now() > firstRow.until)) {
+            firstRow = null;
+            return;
+        }
+        window.torrentsTable.dynamicTableDiv.scrollTop = Math.round(firstRow.index * shownRowHeight);
+    };
+
+    const keepFirstRow = () => {
+        const table = window.torrentsTable;
+        if (shownRowHeight === null)
+            return;
+
+        firstRow = { index: table.dynamicTableDiv.scrollTop / shownRowHeight, until: performance.now() + FIRST_ROW_TIME };
+        if (table.useVirtualList)
+            table.rerender();
+        shownRowHeight = measureRowHeight(table);
+        scrollToFirstRow();
+    };
+
+    let mochaTitleHeights = null;
+
+    // new windows take their title bar height from responsive.css
+    const applyWindowTitleHeight = () => {
+        mochaTitleHeights ??= {
+            window: MochaUI.Window.prototype.options.headerHeight,
+            modal: MochaUI.Modal.prototype.options.headerHeight
+        };
+        const height = cssLength("--responsive-window-title-height");
+        MochaUI.Window.prototype.options.headerHeight = (height > 0) ? height : mochaTitleHeights.window;
+        MochaUI.Modal.prototype.options.headerHeight = (height > 0) ? height : mochaTitleHeights.modal;
+    };
+
+    const initTouch = async () => {
+        applyWindowTitleHeight();
+        queries.coarse.addEventListener("change", (_event) => applyWindowTitleHeight());
+
+        const tableDiv = await whenElement("torrentsTableDiv");
+        shownRowHeight = measureRowHeight(window.torrentsTable);
+        queries.coarse.addEventListener("change", (_event) => keepFirstRow());
+        new ResizeObserver(scrollToFirstRow).observe(tableDiv);
+    };
+
     const initWindows = () => {
         const windowObserver = new MutationObserver((mutations) => {
             if (mutations.some((mutation) => [...mutation.addedNodes].some((node) => node.classList?.contains("mocha"))))
@@ -347,6 +429,7 @@ window.qBittorrent.Responsive ??= (() => {
     const init = () => {
         initLayout();
         initFiltersDrawer();
+        initTouch();
         initWindows();
     };
 

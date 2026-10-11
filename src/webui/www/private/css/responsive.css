@@ -2,6 +2,7 @@
     --responsive-separator: 1px solid var(--color-border-default);
     --responsive-drawer-shadow: 0 0 12px hsl(0deg 0% 0% / 30%);
     --responsive-drawer-width: min(320px, 86vw);
+    --responsive-touch-row-height: 30px; /* also used in responsive.js */
 }
 
 #desktop {
@@ -87,5 +88,216 @@
         & #filtersDrawerHead {
             display: flex;
         }
+    }
+}
+
+/* Options: rows wrap in narrow windows */
+:root.responsiveRelayout #preferencesPage .mochaContentWrapper {
+    container: options / inline-size;
+}
+
+@container options (width < 800px) {
+    .PrefTab {
+        & fieldset {
+            min-width: 0;
+        }
+
+        & :is(table, tbody) {
+            display: block;
+        }
+
+        /* keep hidden rows hidden */
+        & tr:not([hidden]) {
+            align-items: center;
+            column-gap: 4px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        & td {
+            display: block;
+            min-width: 0;
+        }
+
+        & :is(input:not([type="checkbox"], [type="radio"]), select, textarea) {
+            max-width: 100%;
+        }
+    }
+}
+
+/* Touch screens */
+@media (pointer: coarse) {
+    :root {
+        --responsive-touch-target: 36px;
+        --responsive-touch-field-height: 32px;
+        --responsive-window-title-height: 36px; /* also used in responsive.js */
+    }
+
+    #desktopNavbar > ul > li > a {
+        padding-bottom: 9px;
+        padding-top: 9px;
+    }
+
+    #desktopNavbar li ul li :is(a, div.anchor),
+    .contextMenu li a,
+    .tab-menu li a,
+    ul.filterList span.link {
+        min-height: var(--responsive-touch-target);
+    }
+
+    #desktopNavbar li ul li :is(a, div.anchor) {
+        align-items: center;
+        display: flex;
+    }
+
+    #desktopNavbar .MyMenuIcon {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    #mochaToolbar .mochaToolButton {
+        height: var(--responsive-touch-target);
+        margin-right: 0;
+        padding: 6px;
+        width: var(--responsive-touch-target);
+    }
+
+    #mochaToolbar .divider {
+        background-position: 3px center;
+        padding-top: 0;
+    }
+
+    #propertiesPanel_header {
+        height: auto;
+    }
+
+    #filtersButton,
+    #torrentsFilterInput,
+    #torrentsFilterSelect {
+        height: var(--responsive-touch-target);
+    }
+
+    #torrentsFilterRegexBox + label,
+    #torrentsFilterRegexBox:checked + label {
+        height: var(--responsive-touch-target);
+        width: var(--responsive-touch-target);
+    }
+
+    :is(button, input[type="button"]) {
+        min-height: var(--responsive-touch-target);
+        min-width: var(--responsive-touch-target);
+    }
+
+    #RssDownloader .imageButton {
+        background-repeat: no-repeat;
+    }
+
+    #renameOptions {
+        min-width: var(--responsive-touch-target);
+        padding-left: 16px;
+    }
+
+    :is(
+        input[type="text"],
+        input[type="search"],
+        input[type="number"],
+        input[type="password"],
+        input[type="datetime-local"],
+        input:not([type]),
+        select,
+        textarea[rows="1"]
+    ) {
+        min-height: var(--responsive-touch-field-height);
+    }
+
+    /* a one-line text box's line in its middle, as a field's: the rest of its height above and below it, less its
+    border */
+    textarea[rows="1"] {
+        padding-block: calc(
+            (var(--responsive-touch-field-height) - 1lh - 2px) / 2
+        );
+    }
+
+    :is(
+        input:not(
+            [type="checkbox"],
+            [type="radio"],
+            [type="range"],
+            [type="button"]
+        ),
+        select,
+        textarea
+    ) {
+        font-size: 16px; /* prevent iOS from zooming in on focus */
+    }
+
+    .select-watched-folder-editable {
+        box-sizing: content-box;
+        height: var(--responsive-touch-field-height);
+    }
+
+    :is(input[type="checkbox"], input[type="radio"]) {
+        height: 24px;
+        vertical-align: middle;
+        width: 24px;
+    }
+
+    /* override style.css */
+    #deleteFromDiskCB {
+        vertical-align: middle;
+    }
+
+    /* Manage Cookies' add and remove icons, a finger's size around them */
+    :is(.addCookie, .removeCookie) {
+        box-sizing: content-box;
+        padding: calc((var(--responsive-touch-target) - 16px) / 2);
+    }
+
+    /* the filters' section titles, which a tap collapses and expands */
+    .filterTitle {
+        align-items: center;
+        min-height: var(--responsive-touch-target);
+    }
+
+    .mochaTitlebar h3 {
+        background-position: 8px center !important; /* override mocha titlebar logo inline style */
+        line-height: calc(var(--responsive-window-title-height) - 9px);
+        padding-right: calc(var(--responsive-touch-target) + 4px);
+    }
+
+    .mocha:has(.mochaMaximizeButton) .mochaTitlebar h3 {
+        padding-right: calc((2 * var(--responsive-touch-target)) + 4px);
+    }
+
+    .mochaControls {
+        height: var(--responsive-window-title-height);
+        right: 0;
+        top: 0;
+        width: auto;
+    }
+
+    :is(.mochaMaximizeButton, .mochaCloseButton) {
+        height: var(--responsive-window-title-height);
+        margin: 0;
+        width: var(--responsive-touch-target);
+    }
+
+    .dynamicTable tbody tr {
+        height: var(--responsive-touch-row-height);
+    }
+
+    .horizontalHandle {
+        height: 12px;
+    }
+
+    .columnHandle {
+        width: 12px;
+    }
+}
+
+@media (pointer: coarse) and (width < 760px) {
+    #mochaToolbar .divider {
+        background: none;
+        padding-left: 0;
     }
 }
