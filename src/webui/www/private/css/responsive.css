@@ -3,6 +3,8 @@
     --responsive-drawer-shadow: 0 0 12px hsl(0deg 0% 0% / 30%);
     --responsive-drawer-width: min(320px, 86vw);
     --responsive-touch-row-height: 30px; /* also used in responsive.js */
+    --responsive-gap: 8px;
+    --responsive-row-space: 6px;
 }
 
 #desktop {
@@ -100,6 +102,117 @@
     & select,
     & textarea {
         max-width: 100%;
+    }
+}
+
+:root.responsiveRelayout :where(.dialogFooter, #uploadForm > #submitbutton) {
+    background-color: var(--color-background-popup);
+    border-top: var(--responsive-separator);
+    bottom: 0;
+    padding-bottom: var(--responsive-row-space);
+    /* override inline style */
+    padding-top: var(--responsive-row-space) !important;
+    position: sticky !important;
+    z-index: 1;
+
+    & :is(button, input) {
+        margin-block: 0;
+    }
+}
+
+:root.responsiveRelayout .dialogFooter > #createTorrentButton {
+    margin-block: 0;
+}
+
+:root.responsiveRelayout #uploadForm > #submitbutton {
+    min-height: calc(
+        var(--responsive-touch-target, 26px) + (2 * var(--responsive-row-space))
+    );
+
+    /* the spinner and the error icon before the metadata's status, in the middle of the row as the status is */
+    & > :is(#loadingSpinner, #errorIcon) {
+        bottom: 0 !important; /* override inline style */
+        margin-block: auto;
+        top: 0;
+    }
+}
+
+:root.responsiveRelayout #RssDownloader #saveButton {
+    bottom: var(--responsive-row-space);
+    position: sticky;
+    z-index: 1;
+}
+
+/* windows that end with a button row */
+:root.responsiveRelayout
+    :is(
+        .modalDialog,
+        #globalSpeedLimitsPage,
+        #installSearchPlugin,
+        #cookiesPage,
+        #createTorrentPage,
+        #searchPlugins,
+        #preferencesPage
+    )
+    .mochaContent {
+    padding-bottom: 0 !important;
+
+    & :is(#installSearchPluginContainer, #manageCookiesContainer) {
+        margin-bottom: 0;
+    }
+}
+
+:root.responsiveRelayout #preferencesPage .mochaContent {
+    display: flex !important;
+    flex-direction: column;
+    min-height: 100%;
+
+    & > .PrefTab {
+        margin-bottom: 1em;
+    }
+
+    & > .dialogFooter {
+        margin-top: auto !important; /* override inline style */
+    }
+}
+
+:root.responsiveRelayout .modalDialog .mochaContent.pad > .dialogFooter {
+    align-self: stretch;
+    text-align: right;
+}
+
+/* stacked on phones */
+:root.responsivePhone :where(.dialogFooter) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--responsive-gap);
+
+    & > :is(button, input) {
+        margin: 0;
+        width: 100% !important;
+    }
+}
+
+:root.responsivePhone #uploadForm > #submitbutton {
+    flex-wrap: wrap;
+    gap: var(--responsive-gap);
+
+    /* the Download button's container */
+    & > div:not([id]),
+    & > #saveTorrent:not(.invisible) {
+        flex: 1 1 auto;
+        margin: 0;
+        position: static !important;
+        transform: none !important;
+    }
+
+    & > div > button {
+        width: 100%;
+    }
+
+    /* spacer */
+    & > span:not([id]) {
+        display: none;
     }
 }
 
