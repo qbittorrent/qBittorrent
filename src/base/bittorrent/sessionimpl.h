@@ -73,6 +73,11 @@ class NativeSessionExtension;
 
 struct FileSearchResult;
 
+namespace Net
+{
+    class NetworkInterfaceMonitor;
+}
+
 namespace BitTorrent
 {
     enum class MoveStorageMode;
@@ -824,6 +829,8 @@ namespace BitTorrent
         bool m_deferredConfigureScheduled = false;
         bool m_IPFilteringConfigured = false;
         mutable bool m_listenInterfaceConfigured = false;
+        bool m_reopenNetworkSockets = false;
+        Net::NetworkInterfaceMonitor *m_networkInterfaceMonitor = nullptr;
 
         QString m_additionalTrackersFromURL;
         QTimer *m_updateTrackersFromURLTimer = nullptr;
