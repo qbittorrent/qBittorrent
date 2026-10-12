@@ -387,7 +387,7 @@ void TrackerListWidget::showTrackerListMenu()
     if (!torrent()->isStopped())
     {
         menu->addSeparator();
-        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to all trackers")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to all")
                 , this, [this]()
         {
             torrent()->forceReannounce();
