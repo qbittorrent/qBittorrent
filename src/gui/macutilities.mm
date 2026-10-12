@@ -236,6 +236,17 @@ namespace MacUtils
                 keyEquivalent:@""] autorelease];
             [nsWindowMenu addItem:zoomItem];
 
+            NSMenuItem *fullScreenItem = [[[NSMenuItem alloc]
+                initWithTitle:NSLocalizedStringFromTableInBundle(
+                    @"Enter Full Screen",
+                    @"MenuCommands",
+                    [NSBundle bundleForClass:[NSApplication class]],
+                    @"")
+                action:@selector(toggleFullScreen:)
+                keyEquivalent:@"f"] autorelease];
+            fullScreenItem.keyEquivalentModifierMask = (NSEventModifierFlagControl | NSEventModifierFlagCommand);
+            [nsWindowMenu addItem:fullScreenItem];
+
             [nsWindowMenu addItem:[NSMenuItem separatorItem]];
 
             NSMenuItem *bringAllToFrontItem = [[[NSMenuItem alloc]

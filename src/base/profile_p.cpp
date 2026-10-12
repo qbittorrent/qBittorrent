@@ -115,8 +115,17 @@ Path Private::DefaultProfile::downloadLocation() const
 
 std::unique_ptr<QSettings> Private::DefaultProfile::applicationSettings(const QString &name) const
 {
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+#if defined(Q_OS_WIN)
     return std::make_unique<QSettings>(QSettings::IniFormat, QSettings::UserScope, profileName(), name);
+#elif defined(Q_OS_MACOS)
+    const Path settingsFilePath = configLocation() / Path(name + u".ini"_s);
+    if (!settingsFilePath.exists())
+    {
+        const Path legacySettingsFile = Utils::Fs::homePath() / Path(u".config"_s) / Path(profileName()) / Path(name + u".ini"_s);
+        if (legacySettingsFile.exists())
+            Utils::Fs::copyFile(legacySettingsFile, settingsFilePath);
+    }
+    return std::make_unique<QSettings>(settingsFilePath.data(), QSettings::IniFormat);
 #else
     return std::make_unique<QSettings>(profileName(), name);
 #endif
