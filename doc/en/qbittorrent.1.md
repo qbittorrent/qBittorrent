@@ -33,6 +33,8 @@ FAST extension (mainline) and PeX support (utorrent compatible).
 
 **`--torrenting-port=<port>`** Change the torrenting port.
 
+**`--announce-port=<port>`** Change the announce port.
+
 **`--no-splash`** Disable splash screen.
 
 **`--profile=<dir>`** Store configuration files in `<dir>`.
