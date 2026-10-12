@@ -3609,6 +3609,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 }
                 else {
                     // keep window open so user can reattempt saving
+                    // prefer the server's message
+                    const errors = results.filter((result) => result.status === "rejected").map((result) => result.reason);
+                    const error = errors.find((reason) => reason.name === "ServerError") ?? errors[0];
                     if (error.name === "ServerError")
                         alert(`QBT_TR(Error:)QBT_TR[CONTEXT=HttpServer] ${error.message}`);
                     else
