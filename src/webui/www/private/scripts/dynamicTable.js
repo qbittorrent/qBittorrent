@@ -377,10 +377,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             }.bind(this);
 
             for (const th of this.getRowCells(this.fixedTableHeader)) {
-                th.addEventListener("mousemove", mouseMoveFn);
-                th.addEventListener("mouseout", mouseOutFn);
-                th.addEventListener("touchend", onTouch, { passive: true });
-                th.addEventListener("dblclick", onDoubleClick);
+                th.addEventListener("mousemove", (event) => mouseMoveFn(event));
+                th.addEventListener("mouseout", (event) => mouseOutFn(event));
+                th.addEventListener("touchend", ((event) => onTouch(event)), { passive: true });
+                th.addEventListener("dblclick", (event) => onDoubleClick(event));
                 th.makeResizable({
                     modifiers: {
                         x: "",

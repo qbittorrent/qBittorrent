@@ -312,7 +312,17 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
 
 qint64 Utils::Fs::freeDiskSpaceOnPath(const Path &path)
 {
-    return QStorageInfo(path.data()).bytesAvailable();
+    Path usedPath = path;
+    qint64 freeSpace = -1;
+    // For non-existent directories (which will be created on demand) `QStorageInfo::bytesAvailable()`
+    // will return invalid value so instead query its parent/ancestor paths
+    while ((freeSpace < 0) && !usedPath.isEmpty())
+    {
+        freeSpace = QStorageInfo(usedPath.data()).bytesAvailable();
+        usedPath = usedPath.parentPath();
+    }
+
+    return freeSpace;
 }
 
 Path Utils::Fs::tempPath()

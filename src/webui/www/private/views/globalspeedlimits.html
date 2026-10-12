@@ -41,7 +41,7 @@
             const altDownloadValue = document.getElementById("altDownloadValue");
 
             const applyButton = document.getElementById("applyButton");
-            applyButton.addEventListener("click", () => {
+            applyButton.addEventListener("click", (_event) => {
                 const upload = Number(uploadValue.value) * 1024 || 0;
                 const download = Number(downloadValue.value) * 1024 || 0;
                 const altUpload = Number(altUploadValue.value) * 1024 || 0;
