@@ -49,19 +49,18 @@
 
             // Register keyboard events to modal window
             // https://github.com/qbittorrent/qBittorrent/pull/18687#discussion_r1135045726
-            new Keyboard({
+            const keyboard = new Keyboard({
                 defaultEventType: "keydown",
                 events: {
-                    Escape: (event) => {
-                        window.qBittorrent.Client.closeWindow(windowEl);
-                        event.preventDefault();
-                    },
                     Esc: (event) => {
                         window.qBittorrent.Client.closeWindow(windowEl);
                         event.preventDefault();
                     }
                 }
             }).activate();
+            // drop the key bindings when the window closes
+            // not a creation option: mocha-init.js or prop-files.js creates the window
+            window.MUI.Windows.instances["multiRenamePage"].addEvent("close", () => Keyboard.manager.drop(keyboard));
 
             const fileRenamer = new window.qBittorrent.MultiRename.RenameFiles();
             fileRenamer.hash = data.hash;
