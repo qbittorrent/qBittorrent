@@ -33,6 +33,13 @@
     "use strict";
 
     (() => {
+        // Options was closed while loading, and maybe opened again: a toolbar that arrives late finds no tabs, or
+        // the tabs of the window open now, which their own script set up
+        const tabs = document.getElementById("preferencesTabs");
+        if ((tabs === null) || (tabs.dataset.setUp === "true"))
+            return;
+        tabs.dataset.setUp = "true";
+
         MochaUI.initializeTabs("preferencesTabs");
 
         const showTab = (element) => {
