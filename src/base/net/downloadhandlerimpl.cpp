@@ -143,6 +143,7 @@ void Net::DownloadHandlerImpl::processFinishedDownload()
 #else
     m_result.data = m_reply->readAll();
 #endif
+    m_result.contentType = m_reply->header(QNetworkRequest::ContentTypeHeader).toString();
 
     if (m_downloadRequest.saveToFile())
     {
