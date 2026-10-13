@@ -300,6 +300,9 @@ public:
     bool recheckTorrentsOnCompletion() const;
     void recheckTorrentsOnCompletion(bool recheck);
     bool resolvePeerCountries() const;
+    // Only peers from these countries (ISO codes) are allowed. Empty list disables country filtering.
+    QStringList getGeoAllowedCountries() const;
+    void setGeoAllowedCountries(const QStringList &countries);
     void resolvePeerCountries(bool resolve);
     bool resolvePeerHostNames() const;
     void resolvePeerHostNames(bool resolve);

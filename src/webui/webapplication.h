@@ -132,6 +132,7 @@ private:
     void sessionInitialize();
     void setSessionCookie();
     void apiKeySessionInitialize();
+    bool reuseImplicitSession(const QString &key);
     bool isAuthNeeded();
     bool isPublicAPI(const QString &scope, const QString &action) const;
 
@@ -150,6 +151,10 @@ private:
 
     // Persistent data
     QHash<QString, WebSession *> m_sessions;
+    // Sessions of clients that don't send back the session cookie (Basic auth / auth bypass),
+    // keyed by credentials hash or client address. Prevents creating a new session (and
+    // re-hashing the password) on every request.
+    QHash<QString, QString> m_implicitSessions;
 
     // Current data
     WebSession *m_currentSession = nullptr;

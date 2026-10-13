@@ -66,6 +66,7 @@
 #include "base/utils/io.h"
 #include "base/utils/sslkey.h"
 #include "base/utils/string.h"
+#include "webui/peerinfocache.h"
 #include "apierror.h"
 #include "apistatus.h"
 #include "serialize/serialize_torrent.h"
@@ -206,7 +207,7 @@ namespace
     QJsonArray getStickyTrackers(const BitTorrent::Torrent *const torrent)
     {
         int seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, leechesDHT = 0, leechesPeX = 0, leechesLSD = 0;
-        const QList<BitTorrent::PeerInfo> peersList = torrent->fetchPeerInfo().takeResult();
+        const QList<BitTorrent::PeerInfo> peersList = PeerInfoCache::instance()->peers(torrent);
         for (const BitTorrent::PeerInfo &peer : peersList)
         {
             if (peer.isConnecting())

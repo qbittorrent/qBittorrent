@@ -48,6 +48,7 @@
 #include "base/net/reverseresolution.h"
 #include "base/preferences.h"
 #include "base/utils/string.h"
+#include "webui/peerinfocache.h"
 #include "apierror.h"
 #include "serialize/serialize_torrent.h"
 
@@ -64,6 +65,8 @@ namespace
     // Peer keys
     const QString KEY_PEER_CLIENT = u"client"_s;
     const QString KEY_PEER_ID_CLIENT = u"peer_id_client"_s;
+    const QString KEY_PEER_ID = u"peer_id"_s;
+    const QString KEY_PEER_ID_BASE64 = u"peer_id_b64"_s;
     const QString KEY_PEER_CONNECTION_TYPE = u"connection"_s;
     const QString KEY_PEER_COUNTRY = u"country"_s;
     const QString KEY_PEER_COUNTRY_CODE = u"country_code"_s;
@@ -821,6 +824,96 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     return syncData;
 }
 
+namespace
+{
+    struct PeerSerializationOptions
+    {
+        bool resolvePeerHostNames = false;
+        bool resolvePeerCountries = false;
+    };
+
+    PeerSerializationOptions peerSerializationOptions()
+    {
+        const auto *pref = Preferences::instance();
+        return {pref->resolvePeerHostNames(), pref->resolvePeerCountries()};
+    }
+
+    // Returns peers of the torrent keyed by "ip:port" (or I2P address)
+    QVariantHash serializePeers(const BitTorrent::Torrent *torrent, const QList<BitTorrent::PeerInfo> &peersList
+            , const PeerSerializationOptions &options)
+    {
+        QVariantHash peers;
+        peers.reserve(peersList.size());
+
+        const bool hasMetadata = torrent->hasMetadata();
+
+        for (const BitTorrent::PeerInfo &pi : peersList)
+        {
+            const bool useI2PSocket = pi.useI2PSocket();
+            if (pi.address().ip.isNull() && !useI2PSocket) continue;
+
+            const QByteArray peerId = pi.peerId();
+
+            QVariantMap peer =
+            {
+                {KEY_PEER_CLIENT, pi.client()},
+                {KEY_PEER_ID_CLIENT, pi.peerIdClient()},
+                {KEY_PEER_ID, QString::fromLatin1(peerId.toHex())},
+                {KEY_PEER_ID_BASE64, QString::fromLatin1(peerId.toBase64())},
+                {KEY_PEER_PROGRESS, pi.progress()},
+                {KEY_PEER_DOWN_SPEED, pi.payloadDownSpeed()},
+                {KEY_PEER_UP_SPEED, pi.payloadUpSpeed()},
+                {KEY_PEER_TOT_DOWN, pi.totalDownload()},
+                {KEY_PEER_TOT_UP, pi.totalUpload()},
+                {KEY_PEER_CONNECTION_TYPE, pi.connectionType()},
+                {KEY_PEER_FLAGS, pi.flags()},
+                {KEY_PEER_FLAGS_DESCRIPTION, pi.flagsDescription()},
+                {KEY_PEER_RELEVANCE, pi.relevance()}
+            };
+
+            if (hasMetadata)
+            {
+                const PathList filePaths = torrent->info().filesForPiece(pi.downloadingPieceIndex());
+                QStringList filesForPiece;
+                filesForPiece.reserve(filePaths.size());
+                for (const Path &filePath : filePaths)
+                    filesForPiece.append(filePath.toString());
+                peer.insert(KEY_PEER_FILES, filesForPiece.join(u'\n'));
+            }
+
+            if (useI2PSocket)
+            {
+                peer[KEY_PEER_I2P_DEST] = pi.I2PAddress();
+                peers[pi.I2PAddress()] = peer;
+            }
+            else
+            {
+                peer[KEY_PEER_IP] = pi.address().ip.toString();
+                peer[KEY_PEER_PORT] = pi.address().port;
+
+                peer[KEY_PEER_HOST_NAME] = options.resolvePeerHostNames
+                    ? Net::ReverseResolution::instance()->resolve(pi.address().ip)
+                    : QString();
+
+                if (options.resolvePeerCountries)
+                {
+                    peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
+                    peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
+                }
+                else
+                {
+                    peer[KEY_PEER_COUNTRY_CODE] = {};
+                    peer[KEY_PEER_COUNTRY] = {};
+                }
+
+                peers[pi.address().toString()] = peer;
+            }
+        }
+
+        return peers;
+    }
+}
+
 // GET param:
 //   - hash (string): torrent hash (ID)
 //   - rid (int): last response id
@@ -831,79 +924,55 @@ void SyncController::torrentPeersAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
+    const PeerSerializationOptions options = peerSerializationOptions();
+    const QList<BitTorrent::PeerInfo> peersList = PeerInfoCache::instance()->peers(torrent);
+
     QVariantMap data;
-    QVariantHash peers;
-
-    const QList<BitTorrent::PeerInfo> peersList = torrent->fetchPeerInfo().takeResult();
-
-    const auto *pref = Preferences::instance();
-    const bool resolvePeerHostNames = pref->resolvePeerHostNames();
-    const bool resolvePeerCountries = pref->resolvePeerCountries();
-
-    data[KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS] = resolvePeerCountries;
-
-    for (const BitTorrent::PeerInfo &pi : peersList)
-    {
-        const bool useI2PSocket = pi.useI2PSocket();
-        if (pi.address().ip.isNull() && !useI2PSocket) continue;
-
-        QVariantMap peer =
-        {
-            {KEY_PEER_CLIENT, pi.client()},
-            {KEY_PEER_ID_CLIENT, pi.peerIdClient()},
-            {KEY_PEER_PROGRESS, pi.progress()},
-            {KEY_PEER_DOWN_SPEED, pi.payloadDownSpeed()},
-            {KEY_PEER_UP_SPEED, pi.payloadUpSpeed()},
-            {KEY_PEER_TOT_DOWN, pi.totalDownload()},
-            {KEY_PEER_TOT_UP, pi.totalUpload()},
-            {KEY_PEER_CONNECTION_TYPE, pi.connectionType()},
-            {KEY_PEER_FLAGS, pi.flags()},
-            {KEY_PEER_FLAGS_DESCRIPTION, pi.flagsDescription()},
-            {KEY_PEER_RELEVANCE, pi.relevance()}
-        };
-
-        if (torrent->hasMetadata())
-        {
-            const PathList filePaths = torrent->info().filesForPiece(pi.downloadingPieceIndex());
-            QStringList filesForPiece;
-            filesForPiece.reserve(filePaths.size());
-            for (const Path &filePath : filePaths)
-                filesForPiece.append(filePath.toString());
-            peer.insert(KEY_PEER_FILES, filesForPiece.join(u'\n'));
-        }
-
-        if (useI2PSocket)
-        {
-            peer[KEY_PEER_I2P_DEST] = pi.I2PAddress();
-            peers[pi.I2PAddress()] = peer;
-        }
-        else
-        {
-            peer[KEY_PEER_IP] = pi.address().ip.toString();
-            peer[KEY_PEER_PORT] = pi.address().port;
-
-            peer[KEY_PEER_HOST_NAME] = resolvePeerHostNames
-                ? Net::ReverseResolution::instance()->resolve(pi.address().ip)
-                : QString();
-
-            if (resolvePeerCountries)
-            {
-                peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
-                peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
-            }
-            else
-            {
-                peer[KEY_PEER_COUNTRY_CODE] = {};
-                peer[KEY_PEER_COUNTRY] = {};
-            }
-
-            peers[pi.address().toString()] = peer;
-        }
-    }
-    data[u"peers"_s] = peers;
+    data[KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS] = options.resolvePeerCountries;
+    data[u"peers"_s] = serializePeers(torrent, peersList, options);
 
     const int acceptedResponseId = params()[u"rid"_s].toInt();
     setResult(generateSyncData(acceptedResponseId, data, m_lastAcceptedPeersResponse, m_lastPeersResponse));
+}
+
+// Peers of many torrents in a single request (served from the background peer cache).
+// GET param:
+//   - hashes (string): torrent hashes separated by "|", or "all" / omitted for all torrents
+// Response: {"show_flags": bool, "torrents": {"<hash>": {"<ip:port>": {<same fields as sync/torrentPeers>}}}}
+void SyncController::allTorrentPeersAction()
+{
+    const auto *session = BitTorrent::Session::instance();
+
+    QList<const BitTorrent::Torrent *> torrents;
+    const QString hashesParam = params()[u"hashes"_s];
+    if (hashesParam.isEmpty() || (hashesParam == u"all"))
+    {
+        for (const BitTorrent::Torrent *torrent : asConst(session->torrents()))
+            torrents.append(torrent);
+    }
+    else
+    {
+        for (const QString &hash : asConst(hashesParam.split(u'|', Qt::SkipEmptyParts)))
+        {
+            if (const BitTorrent::Torrent *torrent = session->getTorrent(BitTorrent::TorrentID::fromString(hash)))
+                torrents.append(torrent);
+        }
+    }
+
+    const PeerSerializationOptions options = peerSerializationOptions();
+    const PeerInfoCache::PeersByTorrent allPeers = PeerInfoCache::instance()->allPeers();
+
+    QJsonObject torrentsData;
+    for (const BitTorrent::Torrent *torrent : asConst(torrents))
+    {
+        const QList<BitTorrent::PeerInfo> peersList = allPeers.value(torrent->id());
+        torrentsData[torrent->id().toString()] = QJsonObject::fromVariantHash(serializePeers(torrent, peersList, options));
+    }
+
+    QJsonObject result;
+    result[KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS] = options.resolvePeerCountries;
+    result[u"torrents"_s] = torrentsData;
+    setResult(result);
 }
 
 void SyncController::onCategoryAdded(const QString &categoryName)

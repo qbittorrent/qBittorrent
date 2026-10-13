@@ -1300,7 +1300,11 @@ bool TorrentImpl::hasMissingFiles() const
 
 bool TorrentImpl::hasError() const
 {
-    return (m_nativeStatus.errc || (m_nativeStatus.flags & lt::torrent_flags::upload_mode));
+    if (m_nativeStatus.errc)
+        return true;
+
+    // in seed-only mode upload mode is set intentionally
+    return (m_nativeStatus.flags & lt::torrent_flags::upload_mode) && !m_session->isSeedOnlyModeEnabled();
 }
 
 int TorrentImpl::queuePosition() const
@@ -1313,7 +1317,7 @@ QString TorrentImpl::error() const
     if (m_nativeStatus.errc)
         return Utils::String::fromLocal8Bit(m_nativeStatus.errc.message());
 
-    if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
+    if ((m_nativeStatus.flags & lt::torrent_flags::upload_mode) && !m_session->isSeedOnlyModeEnabled())
     {
         return tr("Couldn't write to file. Reason: \"%1\". Torrent is now in \"upload only\" mode.")
             .arg(Utils::String::fromLocal8Bit(m_lastFileError.error.message()));
@@ -1958,7 +1962,8 @@ void TorrentImpl::start(const TorrentOperatingMode mode)
     if (hasError())
     {
         m_nativeHandle.clear_error();
-        m_nativeHandle.unset_flags(lt::torrent_flags::upload_mode);
+        if (!m_session->isSeedOnlyModeEnabled())
+            m_nativeHandle.unset_flags(lt::torrent_flags::upload_mode);
     }
 
     m_operatingMode = mode;
@@ -2565,6 +2570,10 @@ void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
         return;
 
     const lt::torrent_status oldStatus = std::exchange(m_nativeStatus, nativeStatus);
+
+    // seed-only mode: make sure torrent never leaves upload mode (i.e. never downloads)
+    if (m_session->isSeedOnlyModeEnabled() && !(m_nativeStatus.flags & lt::torrent_flags::upload_mode)) [[unlikely]]
+        m_nativeHandle.set_flags(lt::torrent_flags::upload_mode);
 
     if (m_nativeStatus.num_pieces != oldStatus.num_pieces)
         updateProgress();

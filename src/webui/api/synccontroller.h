@@ -54,6 +54,7 @@ public slots:
 private slots:
     void maindataAction();
     void torrentPeersAction();
+    void allTorrentPeersAction();
 
 private:
     void makeMaindataSnapshot();

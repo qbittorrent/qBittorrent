@@ -32,6 +32,7 @@
 #include <QDateTime>
 #include <QHostAddress>
 #include <QLocale>
+#include <QSet>
 
 #include "base/global.h"
 #include "base/logger.h"
@@ -101,6 +102,8 @@ void GeoIPManager::loadDatabase()
     {
         LogMsg(tr("Couldn't load IP geolocation database. Reason: %1").arg(error), Log::WARNING);
     }
+
+    emit geoFilterChanged();
 
     manageDatabaseUpdate();
 }
@@ -408,20 +411,53 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
 
 void GeoIPManager::configure()
 {
-    const bool enabled = Preferences::instance()->resolvePeerCountries();
+    const auto *pref = Preferences::instance();
+
+    QStringList allowedCountries;
+    for (const QString &country : asConst(pref->getGeoAllowedCountries()))
+    {
+        const QString code = country.trimmed().toUpper();
+        if (!code.isEmpty() && !allowedCountries.contains(code))
+            allowedCountries.append(code);
+    }
+    const bool allowedCountriesChanged = (allowedCountries != m_allowedCountries);
+    m_allowedCountries = allowedCountries;
+
+    // database is also needed for country filtering
+    const bool enabled = pref->resolvePeerCountries() || !m_allowedCountries.isEmpty();
     if (m_enabled != enabled)
     {
         m_enabled = enabled;
         if (m_enabled && !m_geoIPDatabase)
         {
-            loadDatabase();
+            loadDatabase(); // emits geoFilterChanged()
+            return;
         }
-        else if (!m_enabled)
+
+        if (!m_enabled)
         {
             delete m_geoIPDatabase;
             m_geoIPDatabase = nullptr;
+            emit geoFilterChanged();
+            return;
         }
     }
+
+    if (allowedCountriesChanged)
+        emit geoFilterChanged();
+}
+
+QStringList GeoIPManager::allowedCountries() const
+{
+    return m_allowedCountries;
+}
+
+QList<std::pair<Q_IPV6ADDR, int>> GeoIPManager::allowedNetworks() const
+{
+    if (!m_enabled || !m_geoIPDatabase || m_allowedCountries.isEmpty())
+        return {};
+
+    return m_geoIPDatabase->networks(QSet<QString>(m_allowedCountries.cbegin(), m_allowedCountries.cend()));
 }
 
 void GeoIPManager::downloadFinished(const DownloadResult &result)
@@ -451,6 +487,7 @@ void GeoIPManager::downloadFinished(const DownloadResult &result)
             LogMsg(tr("IP geolocation database loaded. Type: %1. Build time: %2.")
                 .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString())
                    , Log::INFO);
+            emit geoFilterChanged();
             const Path targetPath = specialFolderLocation(SpecialFolder::Data) / Path(GEODB_FOLDER);
             if (!targetPath.exists())
                 Utils::Fs::mkpath(targetPath);

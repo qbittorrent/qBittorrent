@@ -914,11 +914,19 @@ int Application::exec()
         m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);
 
         Net::GeoIPManager::initInstance();
+        // country filter depends on IP geolocation database
+        connect(Net::GeoIPManager::instance(), &Net::GeoIPManager::geoFilterChanged
+            , BitTorrent::Session::instance(), &BitTorrent::Session::reloadIPFilter);
+        BitTorrent::Session::instance()->reloadIPFilter();
         Net::ReverseResolution::initInstance();
         TorrentFilesWatcher::initInstance();
 
+        // RSS is removed in this seed-server build: objects are kept for compatibility
+        // with existing code/settings, but feed refreshing and auto downloading are always disabled
         new RSS::Session; // create RSS::Session singleton
         new RSS::AutoDownloader(this); // create RSS::AutoDownloader singleton
+        RSS::Session::instance()->setProcessingEnabled(false);
+        RSS::AutoDownloader::instance()->setProcessingEnabled(false);
 
 #ifndef DISABLE_GUI
         const auto *btSession = BitTorrent::Session::instance();

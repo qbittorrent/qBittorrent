@@ -1,5 +1,21 @@
 # WebAPI Changelog
 
+## Custom (icafe-nox-5.2)
+* `sync/torrentPeers` endpoint now includes the full 20-byte peer ID of each peer:
+  * `peer_id`: lowercase hex string (40 chars)
+  * `peer_id_b64`: Base64 string (decodes to 20 bytes)
+  * Both are empty strings when the peer ID is not known yet (before handshake)
+* Add `sync/allTorrentPeers` endpoint: peers of many torrents in one request
+  * Param `hashes` (optional): hashes separated by `|`, or `all` (default)
+  * Response: `{"show_flags": bool, "torrents": {"<hash>": {"<ip:port>": {...same fields as sync/torrentPeers...}}}}`
+  * Not incremental (no `rid`), always full data
+* Peer data (`sync/torrentPeers`, `sync/allTorrentPeers`, `torrents/trackers`) is served from a background cache
+  refreshed every `refresh_interval` ms while it is being requested, so these calls no longer block the client
+* Clients that don't send back the `SID` cookie (Basic auth or auth bypass) reuse one session instead of creating a new one per request
+* `app/preferences`: add `geo_allowed_countries` (comma separated ISO codes, empty = disabled, default `VN`) and read-only `seed_only_mode`
+* `app/setPreferences`: accepts `geo_allowed_countries`
+* Removed: `rss/*` and `search/*` endpoints (seed-server build)
+
 ## 2.15.1
 * [#23357](https://github.com/qbittorrent/qBittorrent/pull/23357)
   * Add `app/processInfo` endpoint returning `launch_time` (process launch time as UTC epoch seconds)

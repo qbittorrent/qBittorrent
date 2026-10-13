@@ -231,6 +231,15 @@ QString PeerInfo::peerIdClient() const
     return result;
 }
 
+QByteArray PeerInfo::peerId() const
+{
+    // when peer ID is not known yet it contains only zero bytes
+    if (m_nativeInfo.pid.is_all_zeros())
+        return {};
+
+    return QByteArray(m_nativeInfo.pid.data(), static_cast<qsizetype>(m_nativeInfo.pid.size()));
+}
+
 qreal PeerInfo::progress() const
 {
     return m_nativeInfo.progress;

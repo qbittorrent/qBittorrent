@@ -44,9 +44,12 @@
 
 class QString;
 
+template <typename T> class QFuture;
+
 namespace BitTorrent
 {
     class InfoHash;
+    class PeerInfo;
     class Torrent;
     class TorrentDescriptor;
     class TorrentID;
@@ -463,12 +466,18 @@ namespace BitTorrent
         virtual Torrent *getTorrent(const TorrentID &id) const = 0;
         virtual Torrent *findTorrent(const InfoHash &infoHash) const = 0;
         virtual QList<Torrent *> torrents() const = 0;
+        // Fetches peers of the given torrents (all torrents if `torrentIDs` is empty) in a single background job
+        virtual QFuture<QHash<TorrentID, QList<PeerInfo>>> fetchPeerInfo(const QList<TorrentID> &torrentIDs) const = 0;
         virtual qsizetype torrentsCount() const = 0;
         virtual const SessionStatus &status() const = 0;
         virtual const CacheStatus &cacheStatus() const = 0;
         virtual bool isListening() const = 0;
 
         virtual void banIP(const QString &ip) = 0;
+        // re-applies IP filter (filter file, banned IPs and country filter)
+        virtual void reloadIPFilter() = 0;
+        // seed-only mode: torrents never download, they only seed existing data
+        virtual bool isSeedOnlyModeEnabled() const = 0;
 
         virtual bool isKnownTorrent(const InfoHash &infoHash) const = 0;
         virtual bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) = 0;

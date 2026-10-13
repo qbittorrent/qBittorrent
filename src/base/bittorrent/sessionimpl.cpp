@@ -31,6 +31,7 @@
 
 #include <algorithm>
 #include <concepts>
+#include <array>
 #include <cstdint>
 #include <ctime>
 #include <ranges>
@@ -58,6 +59,7 @@
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
 
+#include <QBitArray>
 #include <QDateTime>
 #include <QDeadlineTimer>
 #include <QDebug>
@@ -83,6 +85,7 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
+#include "base/net/geoipmanager.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
@@ -109,6 +112,7 @@
 #include "resumedatastorage.h"
 #include "torrentcontentremover.h"
 #include "torrentdescriptor.h"
+#include "peerinfo.h"
 #include "torrentimpl.h"
 #include "tracker.h"
 #include "trackerentry.h"
@@ -446,6 +450,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY(u"PeXEnabled"_s), true)
     , m_isIPFilteringEnabled(BITTORRENT_SESSION_KEY(u"IPFilteringEnabled"_s), false)
     , m_isTrackerFilteringEnabled(BITTORRENT_SESSION_KEY(u"TrackerFilteringEnabled"_s), false)
+    , m_isSeedOnlyModeEnabled(BITTORRENT_SESSION_KEY(u"SeedOnlyMode"_s), true)
     , m_IPFilterFile(BITTORRENT_SESSION_KEY(u"IPFilter"_s))
     , m_announceToAllTrackers(BITTORRENT_SESSION_KEY(u"AnnounceToAllTrackers"_s), false)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY(u"AnnounceToAllTiers"_s), true)
@@ -1636,6 +1641,9 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
     resumeData.ltAddTorrentParams.storage = customStorageConstructor;
 #endif
 
+    if (isSeedOnlyModeEnabled())
+        resumeData.ltAddTorrentParams.flags |= lt::torrent_flags::upload_mode;
+
     qDebug() << "Starting up torrent" << torrentID.toString() << "...";
     m_nativeSession->async_add_torrent(resumeData.ltAddTorrentParams);
     m_addTorrentAlertHandlers.append([this, resumeData = std::move(resumeData)](const lt::add_torrent_alert *alert) mutable
@@ -1797,8 +1805,111 @@ void SessionImpl::initializeNativeSession()
     m_nativeSessionExtension = nativeSessionExtension.get();
 }
 
+void SessionImpl::applyCountryFilter(lt::ip_filter &filter) const
+{
+    const auto *geoIPManager = Net::GeoIPManager::instance();
+    if (!geoIPManager || geoIPManager->allowedCountries().isEmpty())
+        return;
+
+    const QList<std::pair<Q_IPV6ADDR, int>> networks = geoIPManager->allowedNetworks();
+    if (networks.isEmpty())
+    {
+        LogMsg(tr("Country filter is not applied because IP geolocation database is not available yet. Allowed countries: %1")
+            .arg(geoIPManager->allowedCountries().join(u", "_s)), Log::WARNING);
+        return;
+    }
+
+    lt::ip_filter countryFilter;
+
+    // 1. block everything
+    countryFilter.add_rule(lt::address_v4(lt::address_v4::bytes_type {0, 0, 0, 0})
+        , lt::address_v4(lt::address_v4::bytes_type {255, 255, 255, 255}), lt::ip_filter::blocked);
+    lt::address_v6::bytes_type v6Max;
+    v6Max.fill(0xFF);
+    countryFilter.add_rule(lt::address_v6(lt::address_v6::bytes_type {}), lt::address_v6(v6Max), lt::ip_filter::blocked);
+
+    // 2. allow local networks
+    const auto allowV4 = [&countryFilter](const std::uint8_t a, const std::uint8_t b, const int prefixLength)
+    {
+        const std::uint32_t first = (std::uint32_t(a) << 24) | (std::uint32_t(b) << 16);
+        const std::uint32_t last = first | (0xFFFFFFFFu >> prefixLength);
+        countryFilter.add_rule(lt::address_v4(first), lt::address_v4(last), 0);
+    };
+    allowV4(10, 0, 8);      // private
+    allowV4(100, 64, 10);   // carrier-grade NAT
+    allowV4(127, 0, 8);     // loopback
+    allowV4(169, 254, 16);  // link-local
+    allowV4(172, 16, 12);   // private
+    allowV4(192, 168, 16);  // private
+
+    const auto allowV6Prefix = [&countryFilter](const std::array<unsigned char, 16> &prefix, const int prefixLength)
+    {
+        lt::address_v6::bytes_type first {};
+        lt::address_v6::bytes_type last {};
+        for (int i = 0; i < 16; ++i)
+        {
+            const int bits = std::clamp((prefixLength - (i * 8)), 0, 8);
+            const unsigned char mask = static_cast<unsigned char>((0xFF00 >> bits) & 0xFF);
+            first[i] = prefix[i] & mask;
+            last[i] = static_cast<unsigned char>(first[i] | static_cast<unsigned char>(~mask));
+        }
+        countryFilter.add_rule(lt::address_v6(first), lt::address_v6(last), 0);
+    };
+    allowV6Prefix({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, 128); // loopback
+    allowV6Prefix({0xFC}, 7);       // unique local
+    allowV6Prefix({0xFE, 0x80}, 10); // link-local
+
+    // 3. allow networks of allowed countries
+    int v4Count = 0;
+    int v6Count = 0;
+    for (const auto &[address, prefixLength] : networks)
+    {
+        std::array<unsigned char, 16> prefix {};
+        for (int i = 0; i < 16; ++i)
+            prefix[i] = address[i];
+
+        const bool isV4Mapped = (prefixLength >= 96)
+            && std::all_of(prefix.cbegin(), (prefix.cbegin() + 10), [](const unsigned char c) { return c == 0; })
+            && (prefix[10] == 0xFF) && (prefix[11] == 0xFF);
+        if (isV4Mapped)
+        {
+            const int v4PrefixLength = prefixLength - 96;
+            const std::uint32_t first = (std::uint32_t(prefix[12]) << 24) | (std::uint32_t(prefix[13]) << 16)
+                | (std::uint32_t(prefix[14]) << 8) | std::uint32_t(prefix[15]);
+            const std::uint32_t hostMask = (v4PrefixLength >= 32) ? 0u : (0xFFFFFFFFu >> v4PrefixLength);
+            countryFilter.add_rule(lt::address_v4(first & ~hostMask), lt::address_v4(first | hostMask), 0);
+            ++v4Count;
+        }
+        else
+        {
+            allowV6Prefix(prefix, prefixLength);
+            ++v6Count;
+        }
+    }
+
+    // 4. re-apply blocking rules of the existing filter (IP filter file, banned IPs)
+    const auto [v4Ranges, v6Ranges] = filter.export_filter();
+    for (const auto &range : v4Ranges)
+    {
+        if (range.flags & lt::ip_filter::blocked)
+            countryFilter.add_rule(range.first, range.last, lt::ip_filter::blocked);
+    }
+    for (const auto &range : v6Ranges)
+    {
+        if (range.flags & lt::ip_filter::blocked)
+            countryFilter.add_rule(range.first, range.last, lt::ip_filter::blocked);
+    }
+
+    filter = std::move(countryFilter);
+
+    LogMsg(tr("Country filter applied. Allowed countries: %1. IPv4 networks: %2. IPv6 networks: %3. Local networks are always allowed.")
+        .arg(geoIPManager->allowedCountries().join(u", "_s), QString::number(v4Count), QString::number(v6Count)));
+}
+
 void SessionImpl::processBannedIPs(lt::ip_filter &filter)
 {
+    applyCountryFilter(filter);
+
     // First, import current filter
     for (const QString &ip : asConst(m_bannedIPs.get()))
     {
@@ -1885,6 +1996,13 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::send_socket_buffer_size, socketSendBufferSize());
     settingsPack.set_int(lt::settings_pack::recv_socket_buffer_size, socketReceiveBufferSize());
     settingsPack.set_int(lt::settings_pack::listen_queue_size, socketBacklogSize());
+    if (isSeedOnlyModeEnabled())
+    {
+        // serve more outstanding block requests per peer (helps high bandwidth/latency peers)
+        settingsPack.set_int(lt::settings_pack::max_allowed_in_request_queue, 2000);
+        // never automatically leave upload mode
+        settingsPack.set_int(lt::settings_pack::optimistic_disk_retry, (10 * 365 * 24 * 3600));
+    }
 
     applyNetworkInterfacesSettings(settingsPack);
 
@@ -2644,6 +2762,67 @@ QList<Torrent *> SessionImpl::torrents() const
     return result;
 }
 
+QFuture<QHash<TorrentID, QList<PeerInfo>>> SessionImpl::fetchPeerInfo(const QList<TorrentID> &torrentIDs) const
+{
+    struct Item
+    {
+        TorrentID id;
+        lt::torrent_handle handle;
+        QBitArray pieces;
+    };
+
+    std::vector<Item> items;
+    const auto addItem = [&items](const TorrentImpl *torrent)
+    {
+        items.push_back({torrent->id(), torrent->nativeHandle(), torrent->pieces()});
+    };
+
+    if (torrentIDs.isEmpty())
+    {
+        items.reserve(static_cast<std::size_t>(m_torrents.size()));
+        for (const TorrentImpl *torrent : asConst(m_torrents))
+            addItem(torrent);
+    }
+    else
+    {
+        items.reserve(static_cast<std::size_t>(torrentIDs.size()));
+        for (const TorrentID &id : torrentIDs)
+        {
+            if (const TorrentImpl *torrent = m_torrents.value(id))
+                addItem(torrent);
+        }
+    }
+
+    QPromise<QHash<TorrentID, QList<PeerInfo>>> promise;
+    auto future = promise.future();
+    promise.start();
+    m_asyncWorker->start([items = std::move(items), promise = std::move(promise)]() mutable
+    {
+        QHash<TorrentID, QList<PeerInfo>> result;
+        result.reserve(static_cast<qsizetype>(items.size()));
+        std::vector<lt::peer_info> nativePeers;
+        for (const Item &item : items)
+        {
+            try
+            {
+                nativePeers.clear();
+                item.handle.get_peer_info(nativePeers);
+                QList<PeerInfo> peers;
+                peers.reserve(static_cast<qsizetype>(nativePeers.size()));
+                for (const lt::peer_info &peer : nativePeers)
+                    peers.append(PeerInfo(peer, item.pieces));
+                result.insert(item.id, peers);
+            }
+            catch (const std::exception &) {}
+        }
+
+        promise.addResult(std::move(result));
+        promise.finish();
+    });
+
+    return future;
+}
+
 qsizetype SessionImpl::torrentsCount() const
 {
     return m_torrents.size();
@@ -2961,6 +3140,9 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
             for (qsizetype i = 0; i < result.fileNames.size(); ++i)
                 p.renamed_files[nativeIndexes[i]] = result.fileNames[i].toString().toStdString();
         }
+
+        if (isSeedOnlyModeEnabled())
+            p.flags |= lt::torrent_flags::upload_mode;
 
         m_nativeSession->async_add_torrent(p);
         m_addTorrentAlertHandlers.append([this, loadTorrentParams = std::move(loadTorrentParams)](const lt::add_torrent_alert *alert) mutable
@@ -5441,6 +5623,9 @@ lt::torrent_handle SessionImpl::reloadTorrent(const lt::torrent_handle &currentH
     params.storage = customStorageConstructor;
 #endif
 
+    if (isSeedOnlyModeEnabled())
+        params.flags |= lt::torrent_flags::upload_mode;
+
     // libtorrent will post an add_torrent_alert anyway, so we have to add an empty handler to ignore it.
     m_addTorrentAlertHandlers.emplaceBack();
     return m_nativeSession->add_torrent(std::move(params));
@@ -5631,6 +5816,19 @@ void SessionImpl::configureDeferred()
 
 // Enable IP Filtering
 // this method creates ban list from scratch combining user ban list and 3rd party ban list file
+void SessionImpl::reloadIPFilter()
+{
+    if (isIPFilteringEnabled())
+        enableIPFilter();
+    else
+        disableIPFilter();
+}
+
+bool SessionImpl::isSeedOnlyModeEnabled() const
+{
+    return m_isSeedOnlyModeEnabled;
+}
+
 void SessionImpl::enableIPFilter()
 {
     qDebug("Enabling IPFilter");

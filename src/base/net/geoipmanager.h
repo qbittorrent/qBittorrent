@@ -29,9 +29,13 @@
 
 #pragma once
 
-#include <QObject>
+#include <utility>
 
-class QHostAddress;
+#include <QtContainerFwd>
+#include <QHostAddress>
+#include <QObject>
+#include <QStringList>
+
 class QString;
 
 class GeoIPDatabase;
@@ -52,7 +56,16 @@ namespace Net
 
         QString lookup(const QHostAddress &hostAddr) const;
 
+        // Networks (IPv6 notation, IPv4 as IPv4-mapped) of the allowed countries, see Preferences::getGeoAllowedCountries().
+        // Empty if country filtering is disabled or the database is not available.
+        QList<std::pair<Q_IPV6ADDR, int>> allowedNetworks() const;
+        QStringList allowedCountries() const;
+
         static QString CountryName(const QString &countryISOCode);
+
+    signals:
+        // database or allowed countries changed
+        void geoFilterChanged();
 
     private slots:
         void configure();
@@ -67,6 +80,7 @@ namespace Net
         void downloadDatabaseFile();
 
         bool m_enabled = false;
+        QStringList m_allowedCountries;
         GeoIPDatabase *m_geoIPDatabase = nullptr;
 
         static GeoIPManager *m_instance;

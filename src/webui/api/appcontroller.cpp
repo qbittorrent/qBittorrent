@@ -411,6 +411,10 @@ void AppController::preferencesAction()
     data[u"resolve_peer_host_names"_s] = pref->resolvePeerHostNames();
     // Resolve peer countries
     data[u"resolve_peer_countries"_s] = pref->resolvePeerCountries();
+    // Country filter (custom): comma separated ISO codes, empty = disabled
+    data[u"geo_allowed_countries"_s] = pref->getGeoAllowedCountries().join(u',');
+    // Seed-only mode (custom, read-only here)
+    data[u"seed_only_mode"_s] = session->isSeedOnlyModeEnabled();
     // Reannounce to all trackers when ip/port changed
     data[u"reannounce_when_address_changed"_s] = session->isReannounceWhenAddressChangedEnabled();
     // Embedded tracker
@@ -977,10 +981,8 @@ void AppController::setPreferencesAction()
         RSS::Session::instance()->setFetchDelay(std::chrono::seconds(it.value().toLongLong()));
     if (hasKey(u"rss_max_articles_per_feed"_s))
         RSS::Session::instance()->setMaxArticlesPerFeed(it.value().toInt());
-    if (hasKey(u"rss_processing_enabled"_s))
-        RSS::Session::instance()->setProcessingEnabled(it.value().toBool());
-    if (hasKey(u"rss_auto_downloading_enabled"_s))
-        RSS::AutoDownloader::instance()->setProcessingEnabled(it.value().toBool());
+    // RSS processing can't be enabled in this seed-server build
+
     if (hasKey(u"rss_download_repack_proper_episodes"_s))
         RSS::AutoDownloader::instance()->setDownloadRepacks(it.value().toBool());
     if (hasKey(u"rss_smart_episode_filters"_s))
@@ -1046,6 +1048,9 @@ void AppController::setPreferencesAction()
     // Resolve peer countries
     if (hasKey(u"resolve_peer_countries"_s))
         pref->resolvePeerCountries(it.value().toBool());
+    // Country filter (custom)
+    if (hasKey(u"geo_allowed_countries"_s))
+        pref->setGeoAllowedCountries(it.value().toString().split(u',', Qt::SkipEmptyParts));
     // Reannounce to all trackers when ip/port changed
     if (hasKey(u"reannounce_when_address_changed"_s))
         session->setReannounceWhenAddressChangedEnabled(it.value().toBool());

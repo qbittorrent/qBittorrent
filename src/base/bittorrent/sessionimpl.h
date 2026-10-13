@@ -437,12 +437,17 @@ namespace BitTorrent
         Torrent *getTorrent(const TorrentID &id) const override;
         Torrent *findTorrent(const InfoHash &infoHash) const override;
         QList<Torrent *> torrents() const override;
+        QFuture<QHash<TorrentID, QList<PeerInfo>>> fetchPeerInfo(const QList<TorrentID> &torrentIDs) const override;
         qsizetype torrentsCount() const override;
         const SessionStatus &status() const override;
         const CacheStatus &cacheStatus() const override;
         bool isListening() const override;
 
         void banIP(const QString &ip) override;
+        void reloadIPFilter() override;
+
+        // Seed-only mode: torrents never download (libtorrent upload mode), they only seed existing data
+        bool isSeedOnlyModeEnabled() const override;
 
         bool isKnownTorrent(const InfoHash &infoHash) const override;
         bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) override;
@@ -560,6 +565,7 @@ namespace BitTorrent
         void initMetrics();
         void applyBandwidthLimits();
         void processBannedIPs(lt::ip_filter &filter);
+        void applyCountryFilter(lt::ip_filter &filter) const;
         QStringList getListeningIPs() const;
         void configureListeningInterface();
         void enableTracker(bool enable);
@@ -658,6 +664,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isPeXEnabled;
         CachedSettingValue<bool> m_isIPFilteringEnabled;
         CachedSettingValue<bool> m_isTrackerFilteringEnabled;
+        CachedSettingValue<bool> m_isSeedOnlyModeEnabled;
         CachedSettingValue<Path> m_IPFilterFile;
         CachedSettingValue<bool> m_announceToAllTrackers;
         CachedSettingValue<bool> m_announceToAllTiers;

@@ -1,0 +1,180 @@
+name: Build qbittorrent-nox (Windows, custom)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "icafe-*" ]
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build qbittorrent-nox (libtorrent ${{ matrix.libtorrent.version }}, x64)
+    runs-on: windows-latest
+    permissions:
+      actions: write
+      contents: read
+
+    strategy:
+      matrix:
+        libtorrent:
+          - version: "2.0.11"
+            boost_major_version: "1"
+            boost_minor_version: "90"
+            boost_patch_version: "0"
+
+    env:
+      arch: x64
+      qt_arch: win64_msvc2022_64
+      boost_path: "${{ github.workspace }}/../boost"
+      libtorrent_path: "${{ github.workspace }}/../libtorrent"
+      vcpkg_path: "c:/vcpkg"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Setup devcmd
+        uses: TheMrMilchmann/setup-msvc-dev@v4
+        with:
+          arch: ${{ env.arch }}
+
+      - name: Install build tools
+        run: |
+          if ((Get-Command "ninja.exe" -ErrorAction SilentlyContinue) -eq $null)
+          {
+             choco install ninja
+          }
+          ninja --version
+
+      # https://learn.microsoft.com/en-us/vcpkg/users/binarycaching#gha
+      - name: Set variables for vcpkg
+        uses: actions/github-script@v8
+        with:
+          script: |
+            core.exportVariable('ACTIONS_CACHE_URL', (process.env.ACTIONS_CACHE_URL || ''));
+            core.exportVariable('ACTIONS_RUNTIME_TOKEN', (process.env.ACTIONS_RUNTIME_TOKEN || ''));
+
+      - name: Install dependencies with vcpkg
+        run: |
+          New-Item -Force -ItemType File `
+            -Path "${{ env.vcpkg_path }}/triplets_overlay/${{ env.arch }}-windows-static-md-release.cmake"
+          Add-Content `
+            -Path "${{ env.vcpkg_path }}/triplets_overlay/${{ env.arch }}-windows-static-md-release.cmake" `
+            -Value @("set(VCPKG_TARGET_ARCHITECTURE ${{ env.arch }})",
+              "set(VCPKG_LIBRARY_LINKAGE static)",
+              "set(VCPKG_CRT_LINKAGE dynamic)",
+              "set(VCPKG_BUILD_TYPE release)")
+          $packages = `
+            "boost-build:${{ env.arch }}-windows-static-md-release",
+            "openssl:${{ env.arch }}-windows-static-md-release",
+            "zlib:${{ env.arch }}-windows-static-md-release"
+          ${{ env.vcpkg_path }}/vcpkg.exe upgrade `
+            --no-dry-run `
+            --overlay-triplets="${{ env.vcpkg_path }}/triplets_overlay"
+          ${{ env.vcpkg_path }}/vcpkg.exe install `
+            --binarysource="clear;x-gha,readwrite" `
+            --clean-after-build `
+            --overlay-triplets="${{ env.vcpkg_path }}/triplets_overlay" `
+            $packages
+
+      - name: Install boost
+        run: |
+          $v="${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}"
+          $u="${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}"
+          curl -L -o "${{ runner.temp }}/boost.tar.gz" "https://archives.boost.io/release/$v/source/boost_$u.tar.gz"
+          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."
+          if ($LastExitCode -ne 0)
+          {
+            curl -L -o "${{ runner.temp }}/boost.tar.gz" "https://sourceforge.net/projects/boost/files/boost/$v/boost_$u.tar.gz"
+            tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."
+          }
+          move "${{ github.workspace }}/../boost_*" "${{ env.boost_path }}"
+          cd "${{ env.boost_path }}"
+          ${{ env.vcpkg_path }}/installed/${{ env.arch }}-windows-static-md-release/tools/boost-build/b2.exe `
+            stage toolset=msvc --stagedir=.\ --with-headers
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.10.1"
+          arch: ${{ env.qt_arch }}
+          archives: qtbase qttools
+          cache: true
+
+      - name: Install libtorrent
+        run: |
+          git clone --branch v${{ matrix.libtorrent.version }} --depth 1 --recurse-submodules `
+            https://github.com/arvidn/libtorrent.git ${{ env.libtorrent_path }}
+          cd ${{ env.libtorrent_path }}
+          $env:CXXFLAGS+=" /guard:cf"
+          $env:LDFLAGS+=" /GUARD:CF"
+          cmake `
+            -B build `
+            -G "Ninja" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DCMAKE_CXX_STANDARD=20 `
+            -DCMAKE_INSTALL_PREFIX="${{ env.libtorrent_path }}/install" `
+            -DCMAKE_TOOLCHAIN_FILE="${{ env.vcpkg_path }}/scripts/buildsystems/vcpkg.cmake" `
+            -DBOOST_ROOT="${{ env.boost_path }}/lib/cmake" `
+            -DBUILD_SHARED_LIBS=OFF `
+            -Ddeprecated-functions=OFF `
+            -Dstatic_runtime=OFF `
+            -DVCPKG_TARGET_TRIPLET=${{ env.arch }}-windows-static-md-release
+          cmake --build build
+          cmake --install build
+
+      - name: Build qbittorrent-nox
+        run: |
+          cmake `
+            -B build `
+            -G "Ninja" `
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo `
+            -DCMAKE_TOOLCHAIN_FILE="${{ env.vcpkg_path }}/scripts/buildsystems/vcpkg.cmake" `
+            -DBOOST_ROOT="${{ env.boost_path }}/lib/cmake" `
+            -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/install/lib/cmake/LibtorrentRasterbar" `
+            -DMSVC_RUNTIME_DYNAMIC=ON `
+            -DGUI=OFF `
+            -DWEBUI=ON `
+            -DVCPKG_TARGET_TRIPLET=${{ env.arch }}-windows-static-md-release `
+            -DVERBOSE_CONFIGURE=ON
+          cmake --build build
+
+      - name: Smoke test
+        run: |
+          $env:PATH = "${{ env.Qt_ROOT_DIR }}/bin;$env:PATH"
+          ./build/qbittorrent-nox.exe --version
+          if ($LastExitCode -ne 0) { exit 1 }
+
+      - name: Prepare package
+        run: |
+          $out = "upload/qbittorrent-nox"
+          New-Item -ItemType Directory -Force -Path $out, "$out/plugins/sqldrivers", "$out/plugins/tls" | Out-Null
+          copy build/qbittorrent-nox.exe $out
+          copy build/qbittorrent-nox.pdb $out
+          copy dist/windows/qt.conf $out
+          copy dist/windows/nox/run-nox.bat $out
+          copy dist/windows/nox/seed-server-config.ps1 $out
+          copy WebAPI_Changelog.md $out
+          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Core.dll" $out
+          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Network.dll" $out
+          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Sql.dll" $out
+          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Xml.dll" $out
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/sqldrivers/qsqlite.dll" "$out/plugins/sqldrivers"
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/tls/qschannelbackend.dll" "$out/plugins/tls"
+          # MSVC runtime, so target PCs don't need the VC++ redistributable installed
+          $crt = Get-ChildItem "$env:VCToolsRedistDir\${{ env.arch }}" -Directory -Filter "Microsoft.VC*.CRT" -ErrorAction SilentlyContinue | Select-Object -First 1
+          if ($crt) { copy "$($crt.FullName)\*.dll" $out } else { Write-Warning "VC CRT redist not found" }
+          Get-ChildItem -Recurse $out | Select-Object FullName, Length
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: qbittorrent-nox-win-x64
+          path: upload/qbittorrent-nox

@@ -28,10 +28,15 @@
 
 #pragma once
 
+#include <utility>
+
 #include <QtTypes>
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QHash>
+#include <QHostAddress>
+#include <QList>
+#include <QSet>
 #include <QVariant>
 
 #include "base/pathfwd.h"
@@ -58,6 +63,11 @@ public:
     QDateTime buildEpoch() const;
     QString lookup(const QHostAddress &hostAddr) const;
 
+    // Network prefix (IPv6 notation, IPv4 networks are IPv4-mapped) and prefix length
+    using Network = std::pair<Q_IPV6ADDR, int>;
+    // All networks that belong to any of the given countries (ISO codes, uppercase)
+    QList<Network> networks(const QSet<QString> &countryCodes) const;
+
 private:
     explicit GeoIPDatabase(quint32 size);
 
@@ -65,6 +75,8 @@ private:
     bool loadDB(QString &error) const;
     QVariantHash readMetadata() const;
 
+    quint32 readRecord(const uchar *ptr) const;
+    QString countryForRecord(quint32 id) const;
     QVariant readDataField(quint32 &offset) const;
     bool readDataFieldDescriptor(quint32 &offset, DataFieldDescriptor &out) const;
     void fromBigEndian(uchar *buf, quint32 len) const;

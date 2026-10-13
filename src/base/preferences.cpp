@@ -1388,6 +1388,19 @@ void Preferences::resolvePeerCountries(const bool resolve)
     setValue(u"Preferences/Connection/ResolvePeerCountries"_s, resolve);
 }
 
+QStringList Preferences::getGeoAllowedCountries() const
+{
+    return value<QStringList>(u"Preferences/Connection/GeoAllowedCountries"_s, {u"VN"_s});
+}
+
+void Preferences::setGeoAllowedCountries(const QStringList &countries)
+{
+    if (countries == getGeoAllowedCountries())
+        return;
+
+    setValue(u"Preferences/Connection/GeoAllowedCountries"_s, countries);
+}
+
 bool Preferences::resolvePeerHostNames() const
 {
     return value(u"Preferences/Connection/ResolvePeerHostNames"_s, false);

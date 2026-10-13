@@ -30,6 +30,7 @@
 
 #include <libtorrent/peer_info.hpp>
 
+#include <QByteArray>
 #include <QCoreApplication>
 
 class QBitArray;
@@ -79,6 +80,7 @@ namespace BitTorrent
         QString I2PAddress() const;
         QString client() const;
         QString peerIdClient() const;
+        QByteArray peerId() const; // full 20-byte peer ID, empty if not known yet
         qreal progress() const;
         int payloadUpSpeed() const;
         int payloadDownSpeed() const;

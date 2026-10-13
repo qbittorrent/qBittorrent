@@ -31,6 +31,7 @@
 
 #include <algorithm>
 
+#include <QCryptographicHash>
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
@@ -471,6 +472,9 @@ void WebApplication::configure()
     m_sessionTimeout = std::chrono::seconds(pref->getWebUISessionTimeout());
     m_sessionCookieName = SESSION_COOKIE_NAME_PREFIX + QString::number(pref->getWebUIPort());
 
+    // credentials or auth rules may have changed
+    m_implicitSessions.clear();
+
     // all sessions need to update the cookie expiration date
     for (WebSession *session : asConst(m_sessions))
         session->setCookieRefreshTime(0s);
@@ -722,7 +726,12 @@ void WebApplication::sessionInitialize()
 
     if (!isAuthNeeded())
     {
+        const QString key = u"addr:"_s + m_clientAddress.toString();
+        if (reuseImplicitSession(key))
+            return;
+
         sessionStart();
+        m_implicitSessions[key] = m_currentSession->id();
         return;
     }
 
@@ -730,10 +739,38 @@ void WebApplication::sessionInitialize()
     const QStringView credentials = parseAuthorizationHeader(authHeader, BASIC_AUTH);
     if (!credentials.isEmpty())
     {
+        const QString key = u"basic:"_s
+            + QString::fromLatin1(QCryptographicHash::hash(credentials.toUtf8(), QCryptographicHash::Sha256).toHex());
+        if (reuseImplicitSession(key))
+            return;
+
         if (!validateBasicAuth(credentials))
             throw UnauthorizedHTTPError();
         sessionStart();
+        m_implicitSessions[key] = m_currentSession->id();
     }
+}
+
+bool WebApplication::reuseImplicitSession(const QString &key)
+{
+    Q_ASSERT(!m_currentSession);
+
+    const QString sessionId = m_implicitSessions.value(key);
+    if (sessionId.isEmpty())
+        return false;
+
+    WebSession *session = m_sessions.value(sessionId);
+    if (!session || session->hasExpired(m_sessionTimeout))
+    {
+        m_implicitSessions.remove(key);
+        return false;
+    }
+
+    m_currentSession = session;
+    if (m_currentSession->shouldRefreshCookie())
+        setSessionCookie();
+    m_currentSession->updateTimestamp();
+    return true;
 }
 
 void WebApplication::setSessionCookie()
@@ -840,8 +877,7 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const bool useCo
     m_currentSession->registerAPIController(u"clientdata"_s, new ClientDataController(m_clientDataStorage, app(), m_currentSession));
     m_currentSession->registerAPIController(u"log"_s, new LogController(app(), m_currentSession));
     m_currentSession->registerAPIController(u"torrentcreator"_s, new TorrentCreatorController(m_torrentCreationManager, app(), m_currentSession));
-    m_currentSession->registerAPIController(u"rss"_s, new RSSController(app(), m_currentSession));
-    m_currentSession->registerAPIController(u"search"_s, new SearchController(app(), m_currentSession));
+    // "rss" and "search" APIs are removed in this seed-server build
     m_currentSession->registerAPIController(u"torrents"_s, new TorrentsController(app(), m_currentSession));
     m_currentSession->registerAPIController(u"transfer"_s, new TransferController(app(), m_currentSession));
 

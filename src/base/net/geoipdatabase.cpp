@@ -28,6 +28,8 @@
 
 #include "geoipdatabase.h"
 
+#include <vector>
+
 #include <QByteArray>
 #include <QDateTime>
 #include <QDebug>
@@ -172,37 +174,95 @@ QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
             if (right)
                 ptr += m_recordBytes;
 
-            quint32 id = 0;
-            auto *idPtr = reinterpret_cast<uchar *>(&id);
-            memcpy(&idPtr[4 - m_recordBytes], ptr, m_recordBytes);
-            fromBigEndian(idPtr, 4);
+            const quint32 id = readRecord(ptr);
 
             if (id == m_nodeCount)
-            {
                 return {};
-            }
             if (id > m_nodeCount)
-            {
-                QString country = m_countries.value(id);
-                if (country.isEmpty())
-                {
-                    const quint32 offset = id - m_nodeCount - sizeof(DATA_SECTION_SEPARATOR);
-                    quint32 tmp = offset + m_indexSize + sizeof(DATA_SECTION_SEPARATOR);
-                    const QVariant val = readDataField(tmp);
-                    if (val.userType() == QMetaType::QVariantHash)
-                    {
-                        country = val.toHash()[u"country"_s].toHash()[u"iso_code"_s].toString();
-                        m_countries[id] = country;
-                    }
-                }
-                return country;
-            }
+                return countryForRecord(id);
 
             ptr = m_data + (id * m_nodeSize);
         }
     }
 
     return {};
+}
+
+QList<GeoIPDatabase::Network> GeoIPDatabase::networks(const QSet<QString> &countryCodes) const
+{
+    QList<Network> result;
+    if (countryCodes.isEmpty())
+        return result;
+
+    struct Entry
+    {
+        quint32 node = 0;
+        Q_IPV6ADDR prefix {};
+        int depth = 0;
+    };
+
+    std::vector<Entry> stack;
+    stack.push_back({});
+
+    while (!stack.empty())
+    {
+        const Entry entry = stack.back();
+        stack.pop_back();
+
+        if ((entry.depth >= 128) || (entry.node >= m_nodeCount))
+            continue;
+
+        const uchar *nodePtr = m_data + (static_cast<quint64>(entry.node) * m_nodeSize);
+        for (int side = 0; side < 2; ++side)
+        {
+            const quint32 id = readRecord(nodePtr + (side * m_recordBytes));
+            if (id == m_nodeCount)
+                continue; // no data
+
+            Q_IPV6ADDR prefix = entry.prefix;
+            if (side == 1)
+                prefix[entry.depth / 8] |= static_cast<quint8>(0x80 >> (entry.depth % 8));
+            const int depth = entry.depth + 1;
+
+            if (id > m_nodeCount)
+            {
+                if (countryCodes.contains(countryForRecord(id)))
+                    result.append({prefix, depth});
+            }
+            else
+            {
+                stack.push_back({id, prefix, depth});
+            }
+        }
+    }
+
+    return result;
+}
+
+quint32 GeoIPDatabase::readRecord(const uchar *ptr) const
+{
+    quint32 id = 0;
+    auto *idPtr = reinterpret_cast<uchar *>(&id);
+    memcpy(&idPtr[4 - m_recordBytes], ptr, m_recordBytes);
+    fromBigEndian(idPtr, 4);
+    return id;
+}
+
+QString GeoIPDatabase::countryForRecord(const quint32 id) const
+{
+    QString country = m_countries.value(id);
+    if (country.isEmpty())
+    {
+        const quint32 offset = id - m_nodeCount - sizeof(DATA_SECTION_SEPARATOR);
+        quint32 tmp = offset + m_indexSize + sizeof(DATA_SECTION_SEPARATOR);
+        const QVariant val = readDataField(tmp);
+        if (val.userType() == QMetaType::QVariantHash)
+        {
+            country = val.toHash()[u"country"_s].toHash()[u"iso_code"_s].toString();
+            m_countries[id] = country;
+        }
+    }
+    return country;
 }
 
 #define CHECK_METADATA_REQ(key, type) \
