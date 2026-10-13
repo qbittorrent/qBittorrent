@@ -71,6 +71,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
                 {
                 case TorrentState::Error:
                 case TorrentState::StoppedDownloading:
+                case TorrentState::InsufficientDiskSpace:
                 case TorrentState::Unknown:
                     return false;
                 default:
