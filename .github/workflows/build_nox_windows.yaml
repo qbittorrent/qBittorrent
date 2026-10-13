@@ -108,44 +108,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.qt_static_path }}
-          key: qt-static-${{ env.qt_version }}-msvc-mt-nogui-v1
+          key: qt-static-${{ env.qt_version }}-${{ hashFiles('dist/windows/nox/build-qt-static.ps1') }}
 
       - name: Build static Qt (qtbase + linguist tools)
         if: steps.cache-qt.outputs.cache-hit != 'true'
         run: |
-          $src = "${{ runner.temp }}/qtsrc"
-          git clone --depth 1 --branch v${{ env.qt_version }} https://github.com/qt/qtbase.git "$src/qtbase"
-          git clone --depth 1 --branch v${{ env.qt_version }} https://github.com/qt/qttools.git "$src/qttools"
-
-          cmake -G Ninja -S "$src/qtbase" -B "$src/qtbase-build" `
-            -DCMAKE_BUILD_TYPE=Release `
-            -DCMAKE_INSTALL_PREFIX="${{ env.qt_static_path }}" `
-            -DBUILD_SHARED_LIBS=OFF `
-            -DFEATURE_static_runtime=ON `
-            -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF -DQT_BUILD_BENCHMARKS=OFF `
-            -DFEATURE_gui=OFF -DFEATURE_widgets=OFF -DFEATURE_dbus=OFF -DFEATURE_icu=OFF `
-            -DFEATURE_openssl=OFF -DFEATURE_schannel=ON `
-            -DFEATURE_sql_sqlite=ON -DFEATURE_system_sqlite=OFF -DFEATURE_system_zlib=OFF `
-            -DFEATURE_system_pcre2=OFF -DFEATURE_system_doubleconversion=OFF -DFEATURE_testlib=OFF
-          if ($LastExitCode -ne 0) { exit 1 }
-          cmake --build "$src/qtbase-build"
-          if ($LastExitCode -ne 0) { exit 1 }
-          cmake --install "$src/qtbase-build"
-          if ($LastExitCode -ne 0) { exit 1 }
-
-          cmake -G Ninja -S "$src/qttools" -B "$src/qttools-build" `
-            -DCMAKE_TOOLCHAIN_FILE="${{ env.qt_static_path }}/lib/cmake/Qt6/qt.toolchain.cmake" `
-            -DCMAKE_BUILD_TYPE=Release `
-            -DCMAKE_INSTALL_PREFIX="${{ env.qt_static_path }}" `
-            -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF `
-            -DFEATURE_linguist=ON -DFEATURE_assistant=OFF -DFEATURE_designer=OFF -DFEATURE_pixeltool=OFF `
-            -DFEATURE_qtattributionsscanner=OFF -DFEATURE_qtplugininfo=OFF -DFEATURE_qtdiag=OFF `
-            -DFEATURE_kmap2qmap=OFF -DFEATURE_qev=OFF -DFEATURE_qdbus=OFF -DFEATURE_clang=OFF -DFEATURE_qdoc=OFF
-          if ($LastExitCode -ne 0) { exit 1 }
-          cmake --build "$src/qttools-build"
-          if ($LastExitCode -ne 0) { exit 1 }
-          cmake --install "$src/qttools-build"
-          if ($LastExitCode -ne 0) { exit 1 }
+          ./dist/windows/nox/build-qt-static.ps1 `
+            -Version "${{ env.qt_version }}" `
+            -Prefix "${{ env.qt_static_path }}" `
+            -WorkDir "${{ runner.temp }}/qtsrc"
 
       - name: Install libtorrent
         run: |

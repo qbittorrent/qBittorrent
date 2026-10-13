@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=qBittorrent
-Exec=qbittorrent-nox %U
-Icon=qbittorrent
-Type=Application
-Categories=Network

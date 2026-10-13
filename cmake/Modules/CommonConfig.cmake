@@ -19,8 +19,15 @@ target_compile_features(qbt_common_cfg INTERFACE
     cxx_std_20
 )
 
+# With a static Qt, the application is compiled as "part of" Qt (see qtcoreexports.h),
+# so it must use the same deprecation level as Qt itself, otherwise inline and
+# out-of-line (removed_api.cpp) definitions clash at link time (MSVC LNK2005).
+get_target_property(QBT_QT_CORE_TYPE Qt::Core TYPE)
+if (NOT (QBT_QT_CORE_TYPE STREQUAL "STATIC_LIBRARY"))
+    target_compile_definitions(qbt_common_cfg INTERFACE QT_DISABLE_DEPRECATED_UP_TO=0x060500)
+endif()
+
 target_compile_definitions(qbt_common_cfg INTERFACE
-    QT_DISABLE_DEPRECATED_UP_TO=0x060500
     QT_NO_CAST_FROM_ASCII
     QT_NO_CAST_TO_ASCII
     QT_NO_CAST_FROM_BYTEARRAY
