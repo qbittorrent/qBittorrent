@@ -354,16 +354,47 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
          <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
         </property>
         <item>
-         <widget class="QLabel" name="lblListFeeds">
-          <property name="font">
-           <font>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Apply Rule to Feeds:</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="feedButtonsLayout">
+          <item>
+           <widget class="QLabel" name="lblListFeeds">
+            <property name="font">
+             <font>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Apply Rule to Feeds:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="feedButtonsSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="checkAllFeedsBtn">
+            <property name="text">
+             <string>Check All</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="uncheckAllFeedsBtn">
+            <property name="text">
+             <string>Uncheck All</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <widget class="QListWidget" name="listFeeds"/>
