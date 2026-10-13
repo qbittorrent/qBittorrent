@@ -29,6 +29,7 @@
 #include "number.h"
 
 #include <algorithm>
+#include <cmath>
 #include <cstdint>
 #include <limits>
 
@@ -41,4 +42,10 @@ int Utils::Number::clampingAdd(const int num1, const int num2)
     const int64_t sumResult = static_cast<int64_t>(num1) + num2;
     const int64_t clampedValue = std::clamp(sumResult, intMin, intMax);
     return static_cast<int>(clampedValue);
+}
+
+double Utils::Number::roundToPrecision(const double value, const int precision)
+{
+    const double factor = std::pow(10.0, precision);
+    return (std::round(value * factor) / factor);
 }
