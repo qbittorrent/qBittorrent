@@ -29,10 +29,13 @@ jobs:
 
     env:
       arch: x64
-      qt_arch: win64_msvc2022_64
       boost_path: "${{ github.workspace }}/../boost"
       libtorrent_path: "${{ github.workspace }}/../libtorrent"
       vcpkg_path: "c:/vcpkg"
+      # everything is linked statically (incl. MSVC runtime) -> single qbittorrent-nox.exe
+      triplet: x64-windows-static-release
+      qt_version: "6.10.1"
+      qt_static_path: "${{ github.workspace }}/../qt-static"
 
     steps:
       - name: Checkout repository
@@ -64,17 +67,17 @@ jobs:
       - name: Install dependencies with vcpkg
         run: |
           New-Item -Force -ItemType File `
-            -Path "${{ env.vcpkg_path }}/triplets_overlay/${{ env.arch }}-windows-static-md-release.cmake"
+            -Path "${{ env.vcpkg_path }}/triplets_overlay/${{ env.triplet }}.cmake"
           Add-Content `
-            -Path "${{ env.vcpkg_path }}/triplets_overlay/${{ env.arch }}-windows-static-md-release.cmake" `
+            -Path "${{ env.vcpkg_path }}/triplets_overlay/${{ env.triplet }}.cmake" `
             -Value @("set(VCPKG_TARGET_ARCHITECTURE ${{ env.arch }})",
               "set(VCPKG_LIBRARY_LINKAGE static)",
-              "set(VCPKG_CRT_LINKAGE dynamic)",
+              "set(VCPKG_CRT_LINKAGE static)",
               "set(VCPKG_BUILD_TYPE release)")
           $packages = `
-            "boost-build:${{ env.arch }}-windows-static-md-release",
-            "openssl:${{ env.arch }}-windows-static-md-release",
-            "zlib:${{ env.arch }}-windows-static-md-release"
+            "boost-build:${{ env.triplet }}",
+            "openssl:${{ env.triplet }}",
+            "zlib:${{ env.triplet }}"
           ${{ env.vcpkg_path }}/vcpkg.exe upgrade `
             --no-dry-run `
             --overlay-triplets="${{ env.vcpkg_path }}/triplets_overlay"
@@ -97,16 +100,52 @@ jobs:
           }
           move "${{ github.workspace }}/../boost_*" "${{ env.boost_path }}"
           cd "${{ env.boost_path }}"
-          ${{ env.vcpkg_path }}/installed/${{ env.arch }}-windows-static-md-release/tools/boost-build/b2.exe `
+          ${{ env.vcpkg_path }}/installed/${{ env.triplet }}/tools/boost-build/b2.exe `
             stage toolset=msvc --stagedir=.\ --with-headers
 
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
+      - name: Cache static Qt
+        id: cache-qt
+        uses: actions/cache@v4
         with:
-          version: "6.10.1"
-          arch: ${{ env.qt_arch }}
-          archives: qtbase qttools
-          cache: true
+          path: ${{ env.qt_static_path }}
+          key: qt-static-${{ env.qt_version }}-msvc-mt-nogui-v1
+
+      - name: Build static Qt (qtbase + linguist tools)
+        if: steps.cache-qt.outputs.cache-hit != 'true'
+        run: |
+          $src = "${{ runner.temp }}/qtsrc"
+          git clone --depth 1 --branch v${{ env.qt_version }} https://github.com/qt/qtbase.git "$src/qtbase"
+          git clone --depth 1 --branch v${{ env.qt_version }} https://github.com/qt/qttools.git "$src/qttools"
+
+          cmake -G Ninja -S "$src/qtbase" -B "$src/qtbase-build" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DCMAKE_INSTALL_PREFIX="${{ env.qt_static_path }}" `
+            -DBUILD_SHARED_LIBS=OFF `
+            -DFEATURE_static_runtime=ON `
+            -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF -DQT_BUILD_BENCHMARKS=OFF `
+            -DFEATURE_gui=OFF -DFEATURE_widgets=OFF -DFEATURE_dbus=OFF -DFEATURE_icu=OFF `
+            -DFEATURE_openssl=OFF -DFEATURE_schannel=ON `
+            -DFEATURE_sql_sqlite=ON -DFEATURE_system_sqlite=OFF -DFEATURE_system_zlib=OFF `
+            -DFEATURE_system_pcre2=OFF -DFEATURE_system_doubleconversion=OFF -DFEATURE_testlib=OFF
+          if ($LastExitCode -ne 0) { exit 1 }
+          cmake --build "$src/qtbase-build"
+          if ($LastExitCode -ne 0) { exit 1 }
+          cmake --install "$src/qtbase-build"
+          if ($LastExitCode -ne 0) { exit 1 }
+
+          cmake -G Ninja -S "$src/qttools" -B "$src/qttools-build" `
+            -DCMAKE_TOOLCHAIN_FILE="${{ env.qt_static_path }}/lib/cmake/Qt6/qt.toolchain.cmake" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DCMAKE_INSTALL_PREFIX="${{ env.qt_static_path }}" `
+            -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF `
+            -DFEATURE_linguist=ON -DFEATURE_assistant=OFF -DFEATURE_designer=OFF -DFEATURE_pixeltool=OFF `
+            -DFEATURE_qtattributionsscanner=OFF -DFEATURE_qtplugininfo=OFF -DFEATURE_qtdiag=OFF `
+            -DFEATURE_kmap2qmap=OFF -DFEATURE_qev=OFF -DFEATURE_qdbus=OFF -DFEATURE_clang=OFF -DFEATURE_qdoc=OFF
+          if ($LastExitCode -ne 0) { exit 1 }
+          cmake --build "$src/qttools-build"
+          if ($LastExitCode -ne 0) { exit 1 }
+          cmake --install "$src/qttools-build"
+          if ($LastExitCode -ne 0) { exit 1 }
 
       - name: Install libtorrent
         run: |
@@ -125,8 +164,8 @@ jobs:
             -DBOOST_ROOT="${{ env.boost_path }}/lib/cmake" `
             -DBUILD_SHARED_LIBS=OFF `
             -Ddeprecated-functions=OFF `
-            -Dstatic_runtime=OFF `
-            -DVCPKG_TARGET_TRIPLET=${{ env.arch }}-windows-static-md-release
+            -Dstatic_runtime=ON `
+            -DVCPKG_TARGET_TRIPLET=${{ env.triplet }}
           cmake --build build
           cmake --install build
 
@@ -139,42 +178,44 @@ jobs:
             -DCMAKE_TOOLCHAIN_FILE="${{ env.vcpkg_path }}/scripts/buildsystems/vcpkg.cmake" `
             -DBOOST_ROOT="${{ env.boost_path }}/lib/cmake" `
             -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/install/lib/cmake/LibtorrentRasterbar" `
-            -DMSVC_RUNTIME_DYNAMIC=ON `
+            -DCMAKE_PREFIX_PATH="${{ env.qt_static_path }}" `
+            -DMSVC_RUNTIME_DYNAMIC=OFF `
             -DGUI=OFF `
             -DWEBUI=ON `
-            -DVCPKG_TARGET_TRIPLET=${{ env.arch }}-windows-static-md-release `
+            -DVCPKG_TARGET_TRIPLET=${{ env.triplet }} `
             -DVERBOSE_CONFIGURE=ON
           cmake --build build
 
       - name: Smoke test
         run: |
-          $env:PATH = "${{ env.Qt_ROOT_DIR }}/bin;$env:PATH"
-          ./build/qbittorrent-nox.exe --version
+          # must run without any Qt/MSVC DLL next to it
+          New-Item -ItemType Directory -Force -Path "${{ runner.temp }}/smoke" | Out-Null
+          copy build/qbittorrent-nox.exe "${{ runner.temp }}/smoke"
+          $env:PATH = "C:\Windows\System32;C:\Windows"
+          & "${{ runner.temp }}/smoke/qbittorrent-nox.exe" --version
           if ($LastExitCode -ne 0) { exit 1 }
+          dumpbin /dependents build/qbittorrent-nox.exe
 
       - name: Prepare package
         run: |
           $out = "upload/qbittorrent-nox"
-          New-Item -ItemType Directory -Force -Path $out, "$out/plugins/sqldrivers", "$out/plugins/tls" | Out-Null
+          New-Item -ItemType Directory -Force -Path $out | Out-Null
           copy build/qbittorrent-nox.exe $out
-          copy build/qbittorrent-nox.pdb $out
-          copy dist/windows/qt.conf $out
           copy dist/windows/nox/run-nox.bat $out
           copy dist/windows/nox/seed-server-config.ps1 $out
           copy WebAPI_Changelog.md $out
-          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Core.dll" $out
-          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Network.dll" $out
-          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Sql.dll" $out
-          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Xml.dll" $out
-          copy "${{ env.Qt_ROOT_DIR }}/plugins/sqldrivers/qsqlite.dll" "$out/plugins/sqldrivers"
-          copy "${{ env.Qt_ROOT_DIR }}/plugins/tls/qschannelbackend.dll" "$out/plugins/tls"
-          # MSVC runtime, so target PCs don't need the VC++ redistributable installed
-          $crt = Get-ChildItem "$env:VCToolsRedistDir\${{ env.arch }}" -Directory -Filter "Microsoft.VC*.CRT" -ErrorAction SilentlyContinue | Select-Object -First 1
-          if ($crt) { copy "$($crt.FullName)\*.dll" $out } else { Write-Warning "VC CRT redist not found" }
-          Get-ChildItem -Recurse $out | Select-Object FullName, Length
+          New-Item -ItemType Directory -Force -Path "upload/debug-symbols" | Out-Null
+          copy build/qbittorrent-nox.pdb "upload/debug-symbols"
+          Get-ChildItem -Recurse upload | Select-Object FullName, Length
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v6
         with:
           name: qbittorrent-nox-win-x64
           path: upload/qbittorrent-nox
+
+      - name: Upload debug symbols
+        uses: actions/upload-artifact@v6
+        with:
+          name: qbittorrent-nox-win-x64-pdb
+          path: upload/debug-symbols
