@@ -38,6 +38,7 @@
 #include "base/pathfwd.h"
 #include "base/tagset.h"
 #include "sharelimits.h"
+#include "toplevelpayload.h"
 #include "torrentannouncestatus.h"
 #include "torrentcontenthandler.h"
 
@@ -308,6 +309,9 @@ namespace BitTorrent
         virtual nonstd::expected<QByteArray, QString> exportToBuffer() const = 0;
         virtual nonstd::expected<void, QString> exportToFile(const Path &path) const = 0;
 
+        virtual UniqueSubfolderMigrationPlan planUniqueSubfolderMigration() const = 0;
+        virtual void startUniqueSubfolderMigration(const UniqueSubfolderMigrationPlan &plan) = 0;
+
         virtual QFuture<QList<PeerInfo>> fetchPeerInfo() const = 0;
         virtual QFuture<QList<QUrl>> fetchURLSeeds() const = 0;
         virtual QFuture<QList<int>> fetchPieceAvailability() const = 0;
@@ -319,6 +323,9 @@ namespace BitTorrent
 
         void toggleSequentialDownload();
         void toggleFirstLastPiecePriority();
+
+    signals:
+        void uniqueSubfolderMigrationFinished(bool success, const QString &message);
     };
 }
 
