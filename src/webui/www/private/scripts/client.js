@@ -1054,6 +1054,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
                         const responseJSON = await response.json();
 
+                        // apply a filter typed since, even if no torrent changed
+                        const filterChanged = (torrentsFilterInputTimer !== -1);
                         clearTimeout(torrentsFilterInputTimer);
                         torrentsFilterInputTimer = -1;
 
@@ -1203,7 +1205,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                         }
 
                         // don't update the table unnecessarily
-                        if (updateTorrents)
+                        if (updateTorrents || filterChanged)
                             torrentsTable.updateTable(fullUpdate);
 
                         if (responseJSON["server_state"]) {
