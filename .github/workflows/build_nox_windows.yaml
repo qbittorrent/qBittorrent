@@ -157,27 +157,8 @@ jobs:
             -DVERBOSE_CONFIGURE=ON
           cmake --build build
 
-      - name: Smoke test
-        run: |
-          # must run without any Qt/MSVC DLL next to it
-          New-Item -ItemType Directory -Force -Path "${{ runner.temp }}/smoke" | Out-Null
-          copy build/qbittorrent-nox.exe "${{ runner.temp }}/smoke"
-          $env:PATH = "C:\Windows\System32;C:\Windows"
-          & "${{ runner.temp }}/smoke/qbittorrent-nox.exe" --version
-          if ($LastExitCode -ne 0) { exit 1 }
-          dumpbin /dependents build/qbittorrent-nox.exe
-
-      - name: Prepare package
-        run: |
-          $out = "upload/qbittorrent-nox"
-          New-Item -ItemType Directory -Force -Path $out | Out-Null
-          copy build/qbittorrent-nox.exe $out
-          copy dist/windows/nox/run-nox.bat $out
-          copy dist/windows/nox/seed-server-config.ps1 $out
-          copy WebAPI_Changelog.md $out
-          New-Item -ItemType Directory -Force -Path "upload/debug-symbols" | Out-Null
-          copy build/qbittorrent-nox.pdb "upload/debug-symbols"
-          Get-ChildItem -Recurse upload | Select-Object FullName, Length
+      - name: Check, smoke test and package
+        run: ./dist/windows/nox/ci-package.ps1 -BuildDir build -OutDir upload
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v6
