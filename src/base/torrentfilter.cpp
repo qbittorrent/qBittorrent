@@ -47,12 +47,18 @@ const std::optional<TorrentAnnounceStatus> TorrentFilter::AnyAnnounceStatus;
 
 QString getTrackerHost(const QString &url)
 {
-    // We want the hostname.
-    if (const QString host = QUrl(url).host(); !host.isEmpty())
-        return host;
+    static QHash<QString, QString> cache;
 
+    if (const auto iter = cache.constFind(url); iter != cache.constEnd())
+        return iter.value();
+
+    // We want the hostname.
+    const QString host = QUrl(url).host();
     // If failed to parse the domain, original input should be returned
-    return url;
+    const QString result = !host.isEmpty() ? host : url;
+    cache[url] = result;
+
+    return result;
 }
 
 TorrentFilter::TorrentFilter(const Status status, const std::optional<TorrentIDSet> &idSet, const std::optional<QString> &category
