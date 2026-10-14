@@ -205,6 +205,8 @@ void TorrentContentWidget::setFilterPattern(const QString &patternText, const Fi
         m_filterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
     }
 
+    m_isFilterActive = !patternText.isEmpty();
+
     if (patternText.isEmpty())
     {
         collapseAll();
@@ -218,14 +220,46 @@ void TorrentContentWidget::setFilterPattern(const QString &patternText, const Fi
 
 void TorrentContentWidget::checkAll()
 {
-    for (int i = 0; i < model()->rowCount(); ++i)
-        model()->setData(model()->index(i, TorrentContentModelItem::COL_NAME), Qt::Checked, Qt::CheckStateRole);
+    applyCheckState(Qt::Checked);
 }
 
 void TorrentContentWidget::checkNone()
 {
-    for (int i = 0; i < model()->rowCount(); ++i)
-        model()->setData(model()->index(i, TorrentContentModelItem::COL_NAME), Qt::Unchecked, Qt::CheckStateRole);
+    applyCheckState(Qt::Unchecked);
+}
+
+void TorrentContentWidget::applyCheckState(const Qt::CheckState state)
+{
+    if (!m_isFilterActive)
+    {
+        for (int i = 0; i < model()->rowCount(); ++i)
+            model()->setData(model()->index(i, TorrentContentModelItem::COL_NAME), state, Qt::CheckStateRole);
+
+        return;
+    }
+
+    // Only act on the leaves of the filtered view: files and folders without visible children.
+    // They are gathered first since changing the state may reorder the view.
+    QModelIndexList leaves;
+    QList<QModelIndex> pendingParents {QModelIndex()};
+    while (!pendingParents.isEmpty())
+    {
+        const QModelIndex parent = pendingParents.takeLast();
+        const int rowCount = m_filterModel->rowCount(parent);
+        for (int row = 0; row < rowCount; ++row)
+        {
+            const QModelIndex index = m_filterModel->index(row, TorrentContentModelItem::COL_NAME, parent);
+            const bool isFolder = (m_filterModel->itemType(index) == TorrentContentModelItem::FolderType);
+            if (isFolder && (m_filterModel->rowCount(index) > 0))
+                pendingParents.append(index);
+            else
+                leaves.append(m_filterModel->mapToSource(index));
+        }
+    }
+
+    const BitTorrent::DownloadPriority priority = (state == Qt::Checked)
+        ? BitTorrent::DownloadPriority::Normal : BitTorrent::DownloadPriority::Ignored;
+    m_model->setItemsPriority(leaves, priority);
 }
 
 void TorrentContentWidget::setContentDragAllowed(const bool allowed)
