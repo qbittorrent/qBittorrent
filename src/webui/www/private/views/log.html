@@ -206,6 +206,7 @@
                     Clear: () => {
                         for (const rowId of tableInfo[currentSelectedTab].instance.selectedRowsIds())
                             tableInfo[currentSelectedTab].instance.removeRow(rowId);
+                        tableInfo[currentSelectedTab].instance.updateTable();
 
                         updateLabelCount();
                     }
