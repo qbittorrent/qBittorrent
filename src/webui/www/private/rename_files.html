@@ -300,6 +300,11 @@
                 let rowId = 0;
                 const rootNode = new window.qBittorrent.FileTree.FolderNode();
                 rootNode.autoCalculateCheckedState = false;
+                // Map<FolderNode, Map<folderName: String, FolderNode>>
+                const childFolders = new Map([
+                    [rootNode, new Map()]
+                ]);
+                const selectedRowIds = new Set(selectedRows);
 
                 for (const row of rows) {
                     const pathItems = row.path.split(window.qBittorrent.Filesystem.PathSeparator);
@@ -310,16 +315,8 @@
                         if (folderName === ".unwanted")
                             continue;
 
-                        let folderNode = null;
-                        if (parent.children !== null) {
-                            for (let i = 0; i < parent.children.length; ++i) {
-                                const childFolder = parent.children[i];
-                                if (childFolder.original === folderName) {
-                                    folderNode = childFolder;
-                                    break;
-                                }
-                            }
-                        }
+                        const parentFolders = childFolders.get(parent);
+                        let folderNode = parentFolders.get(folderName) ?? null;
 
                         if (folderNode === null) {
                             folderNode = new window.qBittorrent.FileTree.FolderNode();
@@ -328,11 +325,13 @@
                             folderNode.path = (parent.path === "")
                                 ? folderName
                                 : [parent.path, folderName].join(window.qBittorrent.Filesystem.PathSeparator);
-                            folderNode.checked = selectedRows.includes(rowId.toString()) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
+                            folderNode.checked = selectedRowIds.has(rowId.toString()) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
                             folderNode.original = folderName;
                             folderNode.renamed = "";
                             folderNode.root = parent;
                             parent.addChild(folderNode);
+                            parentFolders.set(folderName, folderNode);
+                            childFolders.set(folderNode, new Map());
 
                             ++rowId;
                         }
@@ -343,7 +342,7 @@
                     const childNode = new window.qBittorrent.FileTree.FileNode();
                     childNode.rowId = rowId;
                     childNode.path = row.path;
-                    childNode.checked = selectedRows.includes(rowId.toString()) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
+                    childNode.checked = selectedRowIds.has(rowId.toString()) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
                     childNode.original = row.original;
                     childNode.renamed = "";
                     childNode.root = parent;

@@ -301,6 +301,10 @@ window.qBittorrent.TorrentContent ??= (() => {
         let rowId = 0;
 
         const rootNode = new window.qBittorrent.FileTree.FolderNode();
+        // Map<FolderNode, Map<folderName: String, FolderNode>>
+        const childFolders = new Map([
+            [rootNode, new Map()]
+        ]);
 
         for (const row of rows) {
             const pathItems = row.fileName.split(window.qBittorrent.Filesystem.PathSeparator);
@@ -311,16 +315,8 @@ window.qBittorrent.TorrentContent ??= (() => {
                 if (folderName === ".unwanted")
                     continue;
 
-                let folderNode = null;
-                if (parent.children !== null) {
-                    for (let i = 0; i < parent.children.length; ++i) {
-                        const childFolder = parent.children[i];
-                        if (childFolder.name === folderName) {
-                            folderNode = childFolder;
-                            break;
-                        }
-                    }
-                }
+                const parentFolders = childFolders.get(parent);
+                let folderNode = parentFolders.get(folderName) ?? null;
 
                 if (folderNode === null) {
                     folderNode = new window.qBittorrent.FileTree.FolderNode();
@@ -331,6 +327,8 @@ window.qBittorrent.TorrentContent ??= (() => {
                     folderNode.rowId = rowId;
                     folderNode.root = parent;
                     parent.addChild(folderNode);
+                    parentFolders.set(folderName, folderNode);
+                    childFolders.set(folderNode, new Map());
 
                     ++rowId;
                 }
