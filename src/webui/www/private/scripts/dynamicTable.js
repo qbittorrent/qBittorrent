@@ -1596,10 +1596,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return compareNumbers(row1_val, row2_val);
             };
 
+            const nameCollator = new Intl.Collator(undefined, { numeric: true, sensitivity: "base" });
             const compareNames = function(row1, row2) {
                 const row1Val = this.getRowValue(row1);
                 const row2Val = this.getRowValue(row2);
-                return row1Val.localeCompare(row2Val, undefined, { numeric: true, sensitivity: "base" });
+                return nameCollator.compare(row1Val, row2Val);
             };
 
             // name, category, tags
