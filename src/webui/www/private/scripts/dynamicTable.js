@@ -1985,6 +1985,38 @@ window.qBittorrent.DynamicTable ??= (() => {
             return cnt;
         }
 
+        getStatusFilterCounts(filterNames) {
+            // status filters read only the state and whether a torrent transfers, so each such group is counted once
+            // Map<state: String, [inactive group, active group]>
+            const groups = new Map();
+            for (const row of this.rows.values()) {
+                const { state, upspeed, dlspeed } = row["full_data"];
+                let stateGroups = groups.get(state);
+                if (stateGroups === undefined) {
+                    stateGroups = [null, null];
+                    groups.set(state, stateGroups);
+                }
+                const active = ((upspeed > 0) || (dlspeed > 0)) ? 1 : 0;
+                if (stateGroups[active] !== null)
+                    ++stateGroups[active].count;
+                else
+                    stateGroups[active] = { row: row, count: 1 };
+            }
+
+            const counts = new Map();
+            for (const filterName of filterNames) {
+                let count = 0;
+                for (const stateGroups of groups.values()) {
+                    for (const group of stateGroups) {
+                        if ((group !== null) && this.applyFilter(group.row, filterName, CATEGORIES_ALL, TAGS_ALL, TRACKERS_ALL, null))
+                            count += group.count;
+                    }
+                }
+                counts.set(filterName, count);
+            }
+            return counts;
+        }
+
         getFilteredTorrentsHashes(filterName, category, tag, tracker) {
             const rowsHashes = [];
             const useRegex = document.getElementById("torrentsFilterRegexBox").checked;

@@ -736,9 +736,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         return added;
     };
 
-    const updateFilter = (filter, filterTitle) => {
+    const updateFilter = (filter, filterTitle, filterTorrentCount) => {
         const filterEl = document.getElementById(`${filter}_filter`);
-        const filterTorrentCount = torrentsTable.getFilteredTorrentsNumber(filter, CATEGORIES_ALL, TAGS_ALL, TRACKERS_ALL);
         if (useAutoHideZeroStatusFilters) {
             const hideFilter = (filterTorrentCount === 0) && (filter !== "all");
             if (filterEl.classList.toggle("invisible", hideFilter))
@@ -748,20 +747,25 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     };
 
     const updateFiltersList = () => {
-        updateFilter("all", "QBT_TR(All (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("downloading", "QBT_TR(Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("seeding", "QBT_TR(Seeding (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("completed", "QBT_TR(Completed (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("running", "QBT_TR(Running (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("stopped", "QBT_TR(Stopped (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("active", "QBT_TR(Active (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("inactive", "QBT_TR(Inactive (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("stalled", "QBT_TR(Stalled (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("stalled_uploading", "QBT_TR(Stalled Uploading (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("stalled_downloading", "QBT_TR(Stalled Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("checking", "QBT_TR(Checking (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("moving", "QBT_TR(Moving (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("errored", "QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        const filters = [
+            ["all", "QBT_TR(All (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["downloading", "QBT_TR(Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["seeding", "QBT_TR(Seeding (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["completed", "QBT_TR(Completed (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["running", "QBT_TR(Running (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["stopped", "QBT_TR(Stopped (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["active", "QBT_TR(Active (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["inactive", "QBT_TR(Inactive (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["stalled", "QBT_TR(Stalled (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["stalled_uploading", "QBT_TR(Stalled Uploading (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["stalled_downloading", "QBT_TR(Stalled Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["checking", "QBT_TR(Checking (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["moving", "QBT_TR(Moving (%1))QBT_TR[CONTEXT=StatusFilterWidget]"],
+            ["errored", "QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFilterWidget]"]
+        ];
+        const counts = torrentsTable.getStatusFilterCounts(filters.map(([filter]) => filter));
+        for (const [filter, filterTitle] of filters)
+            updateFilter(filter, filterTitle, counts.get(filter));
         if (useAutoHideZeroStatusFilters && document.getElementById(`${selectedStatus}_filter`).classList.contains("invisible"))
             window.qBittorrent.Filters.clearStatusFilter();
     };
