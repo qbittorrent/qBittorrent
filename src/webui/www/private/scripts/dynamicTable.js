@@ -1247,9 +1247,13 @@ window.qBittorrent.DynamicTable ??= (() => {
             const data = this.getRowData(row, fullUpdate);
 
             const tds = this.getRowCells(tr);
+            // the widths are set again only after a column changed
+            const widths = this.useVirtualList ? this.columns.map(column => column.width).join() : "";
+            const setWidths = (tr.columnWidths !== widths);
+            tr.columnWidths = widths;
             for (let i = 0; i < this.columns.length; ++i) {
                 // required due to position: absolute breaks table layout
-                if (this.useVirtualList) {
+                if (this.useVirtualList && setWidths) {
                     tds[i].style.width = `${this.columns[i].width}px`;
                     tds[i].style.maxWidth = `${this.columns[i].width}px`;
                 }
