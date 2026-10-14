@@ -42,6 +42,8 @@ window.qBittorrent.PropFiles ??= (() => {
     const onFilePriorityChanged = (fileIds, priority) => {
         // ignore folders
         fileIds = fileIds.filter(id => !window.qBittorrent.TorrentContent.isFolder(id));
+        // the next answer rebuilds the tree, so a priority the server rejects is put back
+        previousResponseText = "";
 
         clearTimeout(loadTorrentFilesDataTimer);
         loadTorrentFilesDataTimer = -1;
@@ -63,6 +65,7 @@ window.qBittorrent.PropFiles ??= (() => {
     };
 
     let loadTorrentFilesDataTimer = -1;
+    let previousResponseText = "";
     const loadTorrentFilesData = () => {
         if (document.hidden)
             return;
@@ -97,7 +100,12 @@ window.qBittorrent.PropFiles ??= (() => {
                 if (!response.ok)
                     return;
 
-                const files = await response.json();
+                // rebuild the tree only when the files changed
+                const responseText = await response.text();
+                if (!loadedNewTorrent && (responseText === previousResponseText))
+                    return;
+                previousResponseText = responseText;
+                const files = JSON.parse(responseText);
 
                 window.qBittorrent.TorrentContent.clearFilterInputTimer();
 
