@@ -1015,8 +1015,9 @@ window.qBittorrent.Search ??= (() => {
                         }
                     }
 
-                    // only update table if this search is currently being displayed
-                    if (searchId === getSelectedSearchId()) {
+                    // only update table if this search is currently being displayed and got new results,
+                    // or has none yet (a restarted search clears the table)
+                    if ((searchId === getSelectedSearchId()) && ((newRows.length > 0) || (state.rows.length === 0))) {
                         for (const row of newRows)
                             searchResultsTable.updateRowData(row);
 
