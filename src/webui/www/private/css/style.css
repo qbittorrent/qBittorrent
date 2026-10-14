@@ -502,8 +502,11 @@ a.propButton img {
     background-size: 1.5em;
     border: 1px solid var(--color-border-default);
     border-radius: 3px;
+    box-sizing: border-box;
+    height: 26px;
     min-width: 170px;
     padding: 2px 2px 2px 25px;
+    vertical-align: middle;
 }
 
 #torrentsFilterRegexBox {
@@ -520,7 +523,7 @@ a.propButton img {
     cursor: pointer;
     display: inline-block;
     height: 26px;
-    margin-bottom: -9px;
+    vertical-align: middle;
     width: 26px;
 }
 
@@ -534,12 +537,16 @@ a.propButton img {
     border-radius: 4px;
     display: inline-block;
     height: 26px;
-    margin-bottom: -9px;
+    vertical-align: middle;
     width: 26px;
 }
 
+/* vertical padding would make Safari clip the text at this height */
 #torrentsFilterSelect {
-    padding: 2px 4px;
+    box-sizing: border-box;
+    height: 26px;
+    padding: 0 4px;
+    vertical-align: middle;
 }
 
 #torrentFilesFilterToolbar {
