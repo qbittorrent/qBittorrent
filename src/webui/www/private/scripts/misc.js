@@ -428,6 +428,8 @@ window.qBittorrent.Misc ??= (() => {
         }
     };
 
+    const dateFormatters = new Map();
+
     /**
      * @param {Date} date
      * @param {string} format
@@ -437,8 +439,12 @@ window.qBittorrent.Misc ??= (() => {
         if ((format === "default") || !Object.hasOwn(DateFormatOptions, format))
             return date.toLocaleString();
 
-        const { locale, options } = DateFormatOptions[format];
-        const formatter = new Intl.DateTimeFormat(locale, options);
+        let formatter = dateFormatters.get(format);
+        if (formatter === undefined) {
+            const { locale, options } = DateFormatOptions[format];
+            formatter = new Intl.DateTimeFormat(locale, options);
+            dateFormatters.set(format, formatter);
+        }
         const formatted = formatter.format(date).replace(" at ", ", ");
         return format.includes(".") ? formatted.replaceAll("/", ".") : formatted;
     };
