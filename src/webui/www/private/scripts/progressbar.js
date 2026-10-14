@@ -46,7 +46,8 @@ window.qBittorrent.ProgressBar ??= (() => {
             lightfg: "var(--color-text)",
         };
 
-        #value = 0;
+        // null until the first setValue() draws the bar, so a bar created at 0 gets its label
+        #value = null;
 
         #id = ++ProgressBar.#progressBarUniqueId;
 
@@ -103,7 +104,10 @@ window.qBittorrent.ProgressBar ??= (() => {
             value = Number(value);
             if (Number.isNaN(value))
                 value = 0;
-            this.#value = Math.min(Math.max(value, 0), 100);
+            value = Math.min(Math.max(value, 0), 100);
+            if (value === this.#value)
+                return;
+            this.#value = value;
 
             const displayedValue = `${window.qBittorrent.Misc.toFixedPointString(this.#value, 1)}%`;
             this.#dark.textContent = displayedValue;
