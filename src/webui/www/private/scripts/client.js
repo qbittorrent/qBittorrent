@@ -942,6 +942,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             tag.classList.toggle("selectedFilter", (tag.id === selectedTag));
     };
 
+    // the torrent properties the tracker filters count
+    const trackerFilterProperties = ["trackers_count", "has_tracker_error", "has_other_announce_error", "has_tracker_warning"];
     const updateTrackerList = () => {
         const trackerFilterList = document.getElementById("trackerFilterList");
         if (trackerFilterList === null)
@@ -1199,7 +1201,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                                     updateCategories = true;
                                 if (addTorrentToTagList(responseJSON["torrents"][key]))
                                     updateTags = true;
-                                updateTrackers = true;
+                                if (trackerFilterProperties.some(property => Object.hasOwn(responseJSON["torrents"][key], property)))
+                                    updateTrackers = true;
                                 updateTorrents = true;
                             }
                         }
