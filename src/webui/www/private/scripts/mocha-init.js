@@ -1273,35 +1273,29 @@ const initializeWindows = () => {
     copyNameFN = () => {
         const selectedRows = torrentsTable.selectedRowsIds();
         const names = [];
-        if (selectedRows.length > 0) {
-            const rows = torrentsTable.getFilteredAndSortedRows();
-            for (const hash of selectedRows)
-                names.push(rows[hash].full_data.name);
-        }
+        for (const hash of selectedRows)
+            names.push(torrentsTable.getRow(hash).full_data.name);
         return names.join("\n");
     };
 
     copyInfohashFN = (policy) => {
         const selectedRows = torrentsTable.selectedRowsIds();
         const infohashes = [];
-        if (selectedRows.length > 0) {
-            const rows = torrentsTable.getFilteredAndSortedRows();
-            switch (policy) {
-                case 1:
-                    for (const id of selectedRows) {
-                        const infohash = rows[id].full_data.infohash_v1;
-                        if (infohash !== "")
-                            infohashes.push(infohash);
-                    }
-                    break;
-                case 2:
-                    for (const id of selectedRows) {
-                        const infohash = rows[id].full_data.infohash_v2;
-                        if (infohash !== "")
-                            infohashes.push(infohash);
-                    }
-                    break;
-            }
+        switch (policy) {
+            case 1:
+                for (const id of selectedRows) {
+                    const infohash = torrentsTable.getRow(id).full_data.infohash_v1;
+                    if (infohash !== "")
+                        infohashes.push(infohash);
+                }
+                break;
+            case 2:
+                for (const id of selectedRows) {
+                    const infohash = torrentsTable.getRow(id).full_data.infohash_v2;
+                    if (infohash !== "")
+                        infohashes.push(infohash);
+                }
+                break;
         }
         return infohashes.join("\n");
     };
@@ -1309,11 +1303,8 @@ const initializeWindows = () => {
     copyMagnetLinkFN = () => {
         const selectedRows = torrentsTable.selectedRowsIds();
         const magnets = [];
-        if (selectedRows.length > 0) {
-            const rows = torrentsTable.getFilteredAndSortedRows();
-            for (const hash of selectedRows)
-                magnets.push(rows[hash].full_data.magnet_uri);
-        }
+        for (const hash of selectedRows)
+            magnets.push(torrentsTable.getRow(hash).full_data.magnet_uri);
         return magnets.join("\n");
     };
 
@@ -1324,13 +1315,10 @@ const initializeWindows = () => {
     copyCommentFN = () => {
         const selectedRows = torrentsTable.selectedRowsIds();
         const comments = [];
-        if (selectedRows.length > 0) {
-            const rows = torrentsTable.getFilteredAndSortedRows();
-            for (const hash of selectedRows) {
-                const comment = rows[hash].full_data.comment;
-                if (comment && (comment !== ""))
-                    comments.push(comment);
-            }
+        for (const hash of selectedRows) {
+            const comment = torrentsTable.getRow(hash).full_data.comment;
+            if (comment && (comment !== ""))
+                comments.push(comment);
         }
         return comments.join("\n---------\n");
     };
@@ -1338,13 +1326,10 @@ const initializeWindows = () => {
     copyContentPathFN = () => {
         const selectedRows = torrentsTable.selectedRowsIds();
         const contentPaths = [];
-        if (selectedRows.length > 0) {
-            const rows = torrentsTable.getFilteredAndSortedRows();
-            for (const hash of selectedRows) {
-                const contentPath = rows[hash].full_data.content_path;
-                if ((contentPath !== null) && (contentPath.length > 0))
-                    contentPaths.push(contentPath);
-            }
+        for (const hash of selectedRows) {
+            const contentPath = torrentsTable.getRow(hash).full_data.content_path;
+            if ((contentPath !== null) && (contentPath.length > 0))
+                contentPaths.push(contentPath);
         }
         return contentPaths.join("\n");
     };

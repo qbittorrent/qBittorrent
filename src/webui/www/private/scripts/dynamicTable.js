@@ -1003,10 +1003,8 @@ window.qBittorrent.DynamicTable ??= (() => {
         getFilteredAndSortedRows() {
             const filteredRows = [];
 
-            for (const row of this.getRowValues()) {
+            for (const row of this.getRowValues())
                 filteredRows.push(row);
-                filteredRows[row.rowId] = row;
-            }
 
             filteredRows.sort(this.rowComparator());
             return filteredRows;
@@ -1965,10 +1963,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             for (const row of this.rows.values()) {
-                if (this.applyFilter(row, selectedStatus, selectedCategory, selectedTag, selectedTracker, filterTerms)) {
+                if (this.applyFilter(row, selectedStatus, selectedCategory, selectedTag, selectedTracker, filterTerms))
                     filteredRows.push(row);
-                    filteredRows[row.rowId] = row;
-                }
             }
 
             filteredRows.sort(this.rowComparator());
