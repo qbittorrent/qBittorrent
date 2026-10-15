@@ -284,27 +284,9 @@ window.qBittorrent.ContextMenu ??= (() => {
                     this.forgetTappedSubmenus(item);
             });
 
-            // hide on body click
-            document.body.addEventListener("click", (event) => {
-                // a click on an entry that opens a submenu keeps the menu open, wherever in the entry it lands (its
-                // icon included) and at any depth, as entries under More on phones are a submenu further down
-                const item = event.target.closest(".contextMenu li");
-                if ((item !== null) && (item.querySelector(":scope > ul") !== null))
-                    return;
-
-                this.hide();
-                this.options.element = null;
-            });
-
-            // hide on Escape, and only the menu, not also the drawer or window it was opened from
-            window.addEventListener("keydown", (event) => {
-                if ((event.key !== "Escape") || !this.menu.classList.contains("visible"))
-                    return;
-
-                event.stopPropagation();
-                this.hide();
-                this.options.element = null;
-            }, true);
+            // hide on body click, and on Escape
+            document.body.addEventListener("click", ContextMenu.#onBodyClick);
+            window.addEventListener("keydown", ContextMenu.#onEscape, true);
 
             // the keyboard moves through the items of one list, and into and out of submenus; from the menu itself,
             // which has the focus when a pointer opened it, the arrow keys go to its first or last item
@@ -356,6 +338,32 @@ window.qBittorrent.ContextMenu ??= (() => {
                 event.preventDefault();
                 event.stopPropagation();
             });
+        }
+
+        // only the last shown menu can be visible, so all menus share this listener
+        static #onBodyClick(event) {
+            if (lastShownContextMenu === null)
+                return;
+
+            // a click on an entry that opens a submenu keeps the menu open, wherever in the entry it lands (its icon
+            // included) and at any depth, as entries under More on phones are a submenu further down
+            const item = event.target.closest(".contextMenu li");
+            if ((item !== null) && (item.querySelector(":scope > ul") !== null))
+                return;
+
+            lastShownContextMenu.hide();
+            lastShownContextMenu.options.element = null;
+        }
+
+        // hide on Escape, and only the menu, not also the drawer or window it was opened from; shared as the
+        // body click is
+        static #onEscape(event) {
+            if ((event.key !== "Escape") || (lastShownContextMenu === null) || !lastShownContextMenu.menu.classList.contains("visible"))
+                return;
+
+            event.stopPropagation();
+            lastShownContextMenu.hide();
+            lastShownContextMenu.options.element = null;
         }
 
         // the items of one list that the keyboard moves through: those shown and enabled
