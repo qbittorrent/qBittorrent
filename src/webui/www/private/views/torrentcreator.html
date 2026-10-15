@@ -223,6 +223,10 @@
                 // Awaiting the json before clearing the table to prevent flickering
                 const responseJSON = await response.json();
 
+                // the window was closed meanwhile
+                if (table === null)
+                    return;
+
                 const selectedTasks = table.selectedRowsIds();
                 table.clear();
                 document.getElementById("torrentCreatorEmpty").classList.toggle("invisible", (responseJSON.length > 0));
@@ -257,7 +261,8 @@
                         table.reselectRows(selectedTasks);
                 }
             }).finally(() => {
-                syncTaskWithInterval(serverSyncMainDataInterval);
+                if (table !== null)
+                    syncTaskWithInterval(serverSyncMainDataInterval);
             });
         };
 
