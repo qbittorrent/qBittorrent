@@ -2950,6 +2950,9 @@ QFuture<QList<QUrl>> TorrentImpl::fetchURLSeeds() const
 
 QFuture<QList<int>> TorrentImpl::fetchPieceAvailability() const
 {
+    if (!hasMetadata())
+        return QtFuture::makeReadyValueFuture(QList<int>());
+
     return invokeAsync([nativeHandle = m_nativeHandle]() -> QList<int>
     {
         try
@@ -2966,6 +2969,9 @@ QFuture<QList<int>> TorrentImpl::fetchPieceAvailability() const
 
 QFuture<QBitArray> TorrentImpl::fetchDownloadingPieces() const
 {
+    if (!hasMetadata())
+        return QtFuture::makeReadyValueFuture(QBitArray());
+
     return invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QBitArray
     {
         try
@@ -2990,11 +2996,11 @@ QFuture<QBitArray> TorrentImpl::fetchDownloadingPieces() const
 
 QFuture<QList<qreal>> TorrentImpl::fetchAvailableFileFractions() const
 {
+    if (!hasMetadata())
+        return QtFuture::makeReadyValueFuture(QList<qreal>());
+
     return invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QList<qreal>
     {
-        if (!torrentInfo.isValid() || (torrentInfo.filesCount() <= 0))
-            return {};
-
         try
         {
             std::vector<int> piecesAvailability;
