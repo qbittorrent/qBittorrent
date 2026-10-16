@@ -30,8 +30,9 @@
 #include <QObject>
 #include <QTest>
 
-#include "base/global.h"
 #include "base/utils/misc.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 class TestUtilsMisc final : public QObject
 {
