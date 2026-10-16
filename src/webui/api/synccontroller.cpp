@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -512,6 +512,7 @@ void SyncController::maindataAction()
         connect(btSession, &BitTorrent::Session::torrentSavingModeChanged, this, &SyncController::onTorrentSavingModeChanged);
         connect(btSession, &BitTorrent::Session::torrentTagAdded, this, &SyncController::onTorrentTagAdded);
         connect(btSession, &BitTorrent::Session::torrentTagRemoved, this, &SyncController::onTorrentTagRemoved);
+        connect(btSession, &BitTorrent::Session::torrentInfoHashChanged, this, &SyncController::onTorrentInfoHashChanged);
         connect(btSession, &BitTorrent::Session::torrentsUpdated, this, &SyncController::onTorrentsUpdated);
         connect(btSession, &BitTorrent::Session::trackersAdded, this, &SyncController::onTorrentTrackersChanged);
         connect(btSession, &BitTorrent::Session::trackersRemoved, this, &SyncController::onTorrentTrackersChanged);
@@ -1030,6 +1031,11 @@ void SyncController::onTorrentTagAdded(BitTorrent::Torrent *torrent, [[maybe_unu
 void SyncController::onTorrentTagRemoved(BitTorrent::Torrent *torrent, [[maybe_unused]] const Tag &tag)
 {
     m_updatedTorrents.insert(torrent->id());
+}
+
+void SyncController::onTorrentInfoHashChanged(BitTorrent::Torrent *torrent, const BitTorrent::InfoHash &prevInfoHash)
+{
+
 }
 
 void SyncController::onTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents)

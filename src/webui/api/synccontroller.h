@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -75,6 +75,7 @@ private:
     void onTorrentSavingModeChanged(BitTorrent::Torrent *torrent);
     void onTorrentTagAdded(BitTorrent::Torrent *torrent, const Tag &tag);
     void onTorrentTagRemoved(BitTorrent::Torrent *torrent, const Tag &tag);
+    void onTorrentInfoHashChanged(BitTorrent::Torrent *torrent, const BitTorrent::InfoHash &prevInfoHash);
     void onTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
     void onTorrentTrackersChanged(BitTorrent::Torrent *torrent);
     void onTorrentTrackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent
