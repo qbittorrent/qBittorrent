@@ -2357,6 +2357,34 @@ void TorrentsController::fetchMetadataAction()
     }
 }
 
+void TorrentsController::cancelFetchMetadataAction()
+{
+    requireParams({u"source"_s});
+
+    const QString sourceParam = params()[u"source"_s].trimmed();
+    if (sourceParam.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Must specify URI or hash"));
+
+    const QString source = QUrl::fromPercentEncoding(sourceParam.toLatin1());
+
+    BitTorrent::InfoHash infoHash;
+    if (const auto iter = m_torrentSourceCache.constFind(source); iter != m_torrentSourceCache.constEnd())
+        infoHash = iter.value();
+    else if (const auto sourceTorrentDescr = BitTorrent::TorrentDescriptor::parse(source))
+        infoHash = sourceTorrentDescr.value().infoHash();
+
+    if (!infoHash.isValid())
+        throw APIError(APIErrorType::NotFound);
+
+    const BitTorrent::TorrentID torrentID = infoHash.toTorrentID();
+    const bool isCancelled = BitTorrent::Session::instance()->cancelDownloadMetadata(torrentID);
+    const bool isCached = m_torrentMetadataCache.remove(torrentID);
+    m_torrentSourceCache.remove(source);
+
+    if (!isCancelled && !isCached)
+        throw APIError(APIErrorType::NotFound);
+}
+
 void TorrentsController::parseMetadataAction()
 {
     const DataMap &uploadedTorrents = data();

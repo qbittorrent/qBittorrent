@@ -116,6 +116,7 @@ private slots:
     void SSLParametersAction();
     void setSSLParametersAction();
     void fetchMetadataAction();
+    void cancelFetchMetadataAction();
     void parseMetadataAction();
     void saveMetadataAction();
     void downloadFileAction();

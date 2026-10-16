@@ -6,6 +6,8 @@
   * `search/results` endpoint includes `engineFullName` (string) data as the display name of the engine
 * [#25093](https://github.com/qbittorrent/qBittorrent/pull/25093)
   * `torrents/info` and `sync/maindata` endpoints include `error` (string) data, the reason why the torrent is in `error` state (empty otherwise)
+* [#25092](https://github.com/qbittorrent/qBittorrent/pull/25092)
+  * Add `torrents/cancelFetchMetadata` endpoint with `source` as parameter for cancelling a metadata lookup started by `torrents/fetchMetadata` (accepts `POST` requests only)
 
 ## 2.16.2
 
