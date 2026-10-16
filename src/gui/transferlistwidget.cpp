@@ -1431,7 +1431,8 @@ void TransferListWidget::dropEvent(QDropEvent *event)
     event->acceptProposedAction();
     // remove scheme
     QStringList files;
-    if (const QMimeData *data = event->mimeData(); data->hasUrls())
+    const QMimeData *data = event->mimeData();
+    if (data->hasUrls())
     {
         const QList<QUrl> urls = data->urls();
         files.reserve(urls.size());
@@ -1462,6 +1463,20 @@ void TransferListWidget::dropEvent(QDropEvent *event)
         else
             otherFiles << file;
     }
+
+#ifdef Q_OS_WIN
+    // When a dragged link contains an image (e.g. in Firefox), the drop data also contains a local copy
+    // of the image as a file and Qt fills the URL list with that file only.
+    // The link itself is still provided in the standard Windows URL format.
+    if (torrentFiles.isEmpty() && data->hasUrls())
+    {
+        const QByteArray urlData = data->data(u"application/x-qt-windows-mime;value=\"UniformResourceLocatorW\""_s);
+        const QString link = QString::fromUtf16(reinterpret_cast<const char16_t *>(urlData.constData()), (urlData.size() / 2))
+            .section(QChar(u'\0'), 0, 0).trimmed();
+        if (Utils::Misc::isTorrentLink(link))
+            torrentFiles << link;
+    }
+#endif
 
     // Download torrents
     if (!torrentFiles.isEmpty())
