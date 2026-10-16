@@ -1431,7 +1431,8 @@ void TransferListWidget::dropEvent(QDropEvent *event)
     event->acceptProposedAction();
     // remove scheme
     QStringList files;
-    if (const QMimeData *data = event->mimeData(); data->hasUrls())
+    const QMimeData *data = event->mimeData();
+    if (data->hasUrls())
     {
         const QList<QUrl> urls = data->urls();
         files.reserve(urls.size());
@@ -1461,6 +1462,17 @@ void TransferListWidget::dropEvent(QDropEvent *event)
             torrentFiles << file;
         else
             otherFiles << file;
+    }
+
+    // Some sources provide the link only as text while the URL list contains something else,
+    // e.g. Firefox on Windows provides a local copy of the image when dragging a link containing an image
+    if (torrentFiles.isEmpty() && data->hasUrls() && data->hasText())
+    {
+        for (const QString &line : asConst(data->text().split(u'\n', Qt::SkipEmptyParts)))
+        {
+            if (const QString link = line.trimmed(); Utils::Misc::isTorrentLink(link))
+                torrentFiles << link;
+        }
     }
 
     // Download torrents
