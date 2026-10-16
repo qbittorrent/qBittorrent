@@ -15,6 +15,7 @@ set(testFiles
     testglobal.cpp
     testorderedset.cpp
     testpath.cpp
+    testrssautodownloadrule.cpp
     testutilsbytearray.cpp
     testutilscompare.cpp
     testutilsdatetime.cpp
