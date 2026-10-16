@@ -30,7 +30,6 @@
 #include "bandwidthscheduler.h"
 
 #include <chrono>
-#include <utility>
 
 #include <QDate>
 #include <QTime>
@@ -38,6 +37,37 @@
 #include "base/preferences.h"
 
 using namespace std::chrono_literals;
+
+namespace
+{
+    bool isScheduledDay(const Scheduler::Days schedulerDays, const int day)
+    {
+        switch (schedulerDays)
+        {
+        case Scheduler::Days::EveryDay:
+            return true;
+        case Scheduler::Days::Monday:
+        case Scheduler::Days::Tuesday:
+        case Scheduler::Days::Wednesday:
+        case Scheduler::Days::Thursday:
+        case Scheduler::Days::Friday:
+        case Scheduler::Days::Saturday:
+        case Scheduler::Days::Sunday:
+            {
+                const int offset = static_cast<int>(Scheduler::Days::Monday) - 1;
+                return (day == (static_cast<int>(schedulerDays) - offset));
+            }
+        case Scheduler::Days::Weekday:
+            return ((day >= 1) && (day <= 5));
+        case Scheduler::Days::Weekend:
+            return ((day == 6) || (day == 7));
+        default:
+            Q_UNREACHABLE();
+            break;
+        }
+        return false;
+    }
+}
 
 BandwidthScheduler::BandwidthScheduler(QObject *parent)
     : QObject(parent)
@@ -64,55 +94,21 @@ bool BandwidthScheduler::isTimeForAlternative() const
 {
     const Preferences *const pref = Preferences::instance();
 
-    QTime start = pref->getSchedulerStartTime();
-    QTime end = pref->getSchedulerEndTime();
+    const QTime start = pref->getSchedulerStartTime();
+    const QTime end = pref->getSchedulerEndTime();
     const QTime now = QTime::currentTime();
     const Scheduler::Days schedulerDays = pref->getSchedulerDays();
-    const int day = QDate::currentDate().dayOfWeek();
-    bool alternative = false;
+    const QDate today = QDate::currentDate();
 
-    if (start > end)
-    {
-        std::swap(start, end);
-        alternative = true;
-    }
+    if (start <= end)
+        return (start <= now) && (now <= end) && isScheduledDay(schedulerDays, today.dayOfWeek());
 
-    if ((start <= now) && (end >= now))
-    {
-        switch (schedulerDays)
-        {
-        case Scheduler::Days::EveryDay:
-            alternative = !alternative;
-            break;
-        case Scheduler::Days::Monday:
-        case Scheduler::Days::Tuesday:
-        case Scheduler::Days::Wednesday:
-        case Scheduler::Days::Thursday:
-        case Scheduler::Days::Friday:
-        case Scheduler::Days::Saturday:
-        case Scheduler::Days::Sunday:
-            {
-                const int offset = static_cast<int>(Scheduler::Days::Monday) - 1;
-                const int dayOfWeek = static_cast<int>(schedulerDays) - offset;
-                if (day == dayOfWeek)
-                    alternative = !alternative;
-            }
-            break;
-        case Scheduler::Days::Weekday:
-            if ((day >= 1) && (day <= 5))
-                alternative = !alternative;
-            break;
-        case Scheduler::Days::Weekend:
-            if ((day == 6) || (day == 7))
-                alternative = !alternative;
-            break;
-        default:
-            Q_UNREACHABLE();
-            break;
-        }
-    }
-
-    return alternative;
+    // The period crosses midnight, so it belongs to the day it starts on
+    if (now > start)
+        return isScheduledDay(schedulerDays, today.dayOfWeek());
+    if (now < end)
+        return isScheduledDay(schedulerDays, today.addDays(-1).dayOfWeek());
+    return false;
 }
 
 void BandwidthScheduler::onTimeout()
