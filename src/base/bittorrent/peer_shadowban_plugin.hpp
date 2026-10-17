@@ -70,11 +70,10 @@ public:
 protected:
     bool is_shadowbanned_peer()
     {
-        lt::peer_info info;
-        m_peer_connection.get_peer_info(info);
+        const auto& endpoint = m_peer_connection.remote();
+        const QString peer_ip = QString::fromStdString(endpoint.address().to_string());
 
-        QString peer_ip = QString::fromStdString(info.ip.address().to_string());
-        QStringList shadowbannedIPs =
+        const auto shadowbannedIPs =
             CachedSettingValue<QStringList>(u"State/ShadowBannedIPs"_s, QStringList(), Algorithm::sorted<QStringList>).get();
 
         return shadowbannedIPs.contains(peer_ip);
