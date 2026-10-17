@@ -18,6 +18,11 @@ qBittorrent - A BitTorrent client in C++ / Qt
   - CMake >= 3.16
       * Compile-time only
 
+  - GIO (gio-2.0 development files)
+      * Optional, for Unix GUI builds other than macOS
+      * Groups preview files by their default application for batch launching
+      * Without GIO, files are opened individually; disable with -DGIO=OFF
+
   - Python >= 3.13.0
       * Optional, run-time only
       * Used by the bundled search engine
