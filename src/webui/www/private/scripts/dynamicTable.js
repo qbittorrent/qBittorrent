@@ -1910,6 +1910,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("relevance", "", "QBT_TR(Relevance)QBT_TR[CONTEXT=PeerListWidget]", 30, true);
             this.newColumn("contribution", "", "QBT_TR(Contribution)QBT_TR[CONTEXT=PeerListWidget]", 30, true);
             this.newColumn("files", "", "QBT_TR(Files)QBT_TR[CONTEXT=PeerListWidget]", 100, true);
+            this.newColumn("shadowbanned", "", "QBT_TR(Files)QBT_TR[CONTEXT=PeerListWidget]", 100, false);
 
             this.columns["country"].dataProperties.push("country_code");
             this.columns["ip"].dataProperties.push("host_name");
@@ -3526,6 +3527,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             filteredRows.sort(this.rowComparator());
+
+            this.filteredLength = filteredRows.length;
 
             this.filteredLength = filteredRows.length;
 
