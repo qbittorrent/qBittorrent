@@ -72,6 +72,7 @@ add_library(qbt_base STATIC
     http/responsewriter.h
     http/responsewriterimpl.h
     http/server.h
+    http/utils.h
     indexrange.h
     interfaces/iapplication.h
     keyvaluedatastorage.h
@@ -182,6 +183,7 @@ add_library(qbt_base STATIC
     http/responseserialization.cpp
     http/responsewriterimpl.cpp
     http/server.cpp
+    http/utils.cpp
     keyvaluedatastorage.cpp
     logger.cpp
     net/dnsupdater.cpp
