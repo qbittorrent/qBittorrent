@@ -234,12 +234,12 @@ typedef unsigned long l_uint32;
 
 /* floor division (defined as 'floor(a/b)') */
 #if !defined(luai_numidiv)
-#define luai_numidiv(L,a,b)     ((void)L, l_floor(luai_numdiv(L,a,b)))
+#define luai_numidiv(L,a,b)     l_floor(luai_numdiv(L,a,b))
 #endif
 
 /* float division */
 #if !defined(luai_numdiv)
-#define luai_numdiv(L,a,b)      ((a)/(b))
+#define luai_numdiv(L,a,b)      ((void)L, (a)/(b))
 #endif
 
 /*
@@ -267,10 +267,10 @@ typedef unsigned long l_uint32;
 
 /* the others are quite standard operations */
 #if !defined(luai_numadd)
-#define luai_numadd(L,a,b)      ((a)+(b))
-#define luai_numsub(L,a,b)      ((a)-(b))
-#define luai_nummul(L,a,b)      ((a)*(b))
-#define luai_numunm(L,a)        (-(a))
+#define luai_numadd(L,a,b)      ((void)L, (a)+(b))
+#define luai_numsub(L,a,b)      ((void)L, (a)-(b))
+#define luai_nummul(L,a,b)      ((void)L, (a)*(b))
+#define luai_numunm(L,a)        ((void)L, -(a))
 #define luai_numeq(a,b)         ((a)==(b))
 #define luai_numlt(a,b)         ((a)<(b))
 #define luai_numle(a,b)         ((a)<=(b))

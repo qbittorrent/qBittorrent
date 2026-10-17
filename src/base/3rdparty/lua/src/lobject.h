@@ -208,7 +208,8 @@ typedef union {
 #define ttisstrictnil(o)	checktag((o), LUA_VNIL)
 
 
-#define setnilvalue(obj) settt_(obj, LUA_VNIL)
+#define setnilvalue(obj)	settt_(obj, LUA_VNIL)
+#define setnilvalue2s(stk)	setnilvalue(s2v(stk))
 
 
 #define isabstkey(v)		checktag((v), LUA_VABSTKEY)

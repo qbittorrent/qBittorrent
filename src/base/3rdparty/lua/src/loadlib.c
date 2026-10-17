@@ -541,7 +541,7 @@ static int searcher_Lua (lua_State *L) {
   const char *name = luaL_checkstring(L, 1);
   filename = findfile(L, name, "path", LUA_LSUBSEP);
   if (filename == NULL) return 1;  /* module not found in this path */
-  return checkload(L, (luaL_loadfile(L, filename) == LUA_OK), filename);
+  return checkload(L, (luaL_loadfilex(L, filename, "bt") == LUA_OK), filename);
 }
 
 
