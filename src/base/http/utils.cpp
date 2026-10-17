@@ -37,7 +37,7 @@ namespace
     bool isControlCharacter(const QChar c)
     {
         const ushort unicode = c.unicode();
-        return ((unicode < 32) || (unicode == 127));
+        return ((unicode < 0x20) || ((unicode >= 0x7f) && (unicode <= 0x9f)));
     }
 
     bool isAttrChar(const uchar c)

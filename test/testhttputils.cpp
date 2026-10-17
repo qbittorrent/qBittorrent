@@ -41,6 +41,21 @@ public:
     TestHttpUtils() = default;
 
 private slots:
+    void testControlCharacters() const
+    {
+        for (ushort code = 0; code <= 0x9f; ++code)
+        {
+            if ((code >= 0x20) && (code < 0x7f))
+                continue;
+
+            const QString filename = u"a"_s + QChar(code) + u"b.torrent"_s;
+            QCOMPARE(Http::makeContentDispositionHeader(filename), u"attachment; filename=\"ab.torrent\""_s);
+        }
+
+        QCOMPARE(Http::makeContentDispositionHeader(u"a\u00a0b.torrent"_s)
+            , u"attachment; filename=\"a\u00a0b.torrent\"; filename*=UTF-8''a%C2%A0b.torrent"_s);
+    }
+
     void testMakeContentDispositionHeader() const
     {
         QCOMPARE(Http::makeContentDispositionHeader(u"file.torrent"_s), u"attachment; filename=\"file.torrent\""_s);
