@@ -1035,7 +1035,31 @@ void SyncController::onTorrentTagRemoved(BitTorrent::Torrent *torrent, [[maybe_u
 
 void SyncController::onTorrentInfoHashChanged(BitTorrent::Torrent *torrent, const BitTorrent::InfoHash &prevInfoHash)
 {
+    const BitTorrent::TorrentID prevTorrentID = prevInfoHash.toTorrentID();
 
+    m_announcedTorrents.remove(prevTorrentID);
+    m_updatedTorrents.remove(prevTorrentID);
+    m_removedTorrents.insert(prevTorrentID);
+
+    const BitTorrent::TorrentID torrentID = torrent->id();
+
+    m_removedTorrents.remove(torrentID);
+    m_updatedTorrents.insert(torrentID);
+    m_announcedTorrents.insert(torrentID);
+
+    for (const BitTorrent::TrackerEntryStatus &status : asConst(torrent->trackers()))
+    {
+        const auto iter = m_knownTrackers.find(status.url);
+        Q_ASSERT(iter != m_knownTrackers.end());
+        if (iter == m_knownTrackers.end()) [[unlikely]]
+            continue;
+
+        QSet<BitTorrent::TorrentID> &torrentIDs = iter.value();
+        torrentIDs.remove(prevTorrentID);
+        torrentIDs.insert(torrentID);
+
+        m_updatedTrackers.insert(status.url);
+    }
 }
 
 void SyncController::onTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents)
