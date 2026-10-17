@@ -341,7 +341,7 @@
 @@ LUA_COMPAT_GLOBAL avoids 'global' being a reserved word
 */
 #if !defined(LUA_COMPAT_GLOBAL)
-#define LUA_COMPAT_GLOBAL	1
+#define LUA_COMPAT_GLOBAL	0
 #endif
 
 
