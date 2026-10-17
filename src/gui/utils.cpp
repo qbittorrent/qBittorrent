@@ -64,6 +64,10 @@
 #include <QDBusPendingReply>
 #endif
 
+#ifdef QBT_USES_GIO
+#include "utils/launch.h"
+#endif
+
 #include "base/global.h"
 #include "base/path.h"
 #include "base/tag.h"
@@ -239,18 +243,24 @@ void Utils::Gui::openPaths(const PathList &paths)
 
 #ifdef Q_OS_MACOS
     MacUtils::openFilesWithDefaultApplication(paths);
-#elif defined(Q_OS_UNIX)
+#elif defined(QBT_USES_GIO)
     QStringList urls;
-    urls.reserve(paths.size() + 1);
-    urls << u"open"_s;
+    urls.reserve(paths.size());
     for (const Path &path : paths)
-        urls << toURL(path).toString();
+        urls.append(toURL(path).toString(QUrl::FullyEncoded));
 
-    if (QProcess::startDetached(u"gio"_s, urls))
-        return;
-
-    for (const Path &path : paths)
-        openPath(path);
+    auto *thread = QThread::create([urls]()
+    {
+        const QStringList unhandled = launchWithDefaultApplications(urls);
+        QMetaObject::invokeMethod(qApp, [unhandled]()
+        {
+            for (const QString &url : unhandled)
+                QDesktopServices::openUrl(QUrl(url));
+        });
+    });
+    thread->setObjectName("Utils::Gui::openPaths thread");
+    QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
+    thread->start();
 #else
     for (const Path &path : paths)
         openPath(path);

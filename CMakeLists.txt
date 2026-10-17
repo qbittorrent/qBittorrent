@@ -34,6 +34,13 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
     )
 endif()
 
+if (UNIX AND NOT APPLE)
+    feature_option_dependent(GIO
+        "Use GIO for opening multiple files with their default applications when available"
+        ON "GUI" OFF
+    )
+endif()
+
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     feature_option_dependent(SYSTEMD
         "Install systemd service file. Target directory is overridable with `SYSTEMD_SERVICES_INSTALL_DIR` variable"

@@ -158,19 +158,37 @@ namespace MacUtils
 
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
             {
-                NSURL *firstURL = [pathURLs firstObject];
-                if (!firstURL)
-                    return;
+                @autoreleasepool
+                {
+                    NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+                    NSMutableDictionary<NSURL *, NSMutableArray<NSURL *> *> *applications = [NSMutableDictionary dictionary];
+                    for (NSURL *url in pathURLs)
+                    {
+                        NSURL *applicationURL = [workspace URLForApplicationToOpenURL:url];
+                        if (!applicationURL)
+                        {
+                            [workspace openURL:url];
+                            continue;
+                        }
 
-                NSURL *applicationURL = [[NSWorkspace sharedWorkspace] URLForApplicationToOpenURL:firstURL];
-                if (!applicationURL)
-                    return;
+                        NSMutableArray<NSURL *> *urls = applications[applicationURL];
+                        if (!urls)
+                        {
+                            urls = [NSMutableArray array];
+                            applications[applicationURL] = urls;
+                        }
+                        [urls addObject:url];
+                    }
 
-                NSWorkspaceOpenConfiguration *configuration = [NSWorkspaceOpenConfiguration configuration];
-                [[NSWorkspace sharedWorkspace] openURLs:pathURLs
-                                   withApplicationAtURL:applicationURL
-                                          configuration:configuration
-                                      completionHandler:nil];
+                    for (NSURL *applicationURL in applications)
+                    {
+                        NSWorkspaceOpenConfiguration *configuration = [NSWorkspaceOpenConfiguration configuration];
+                        [workspace openURLs:applications[applicationURL]
+                       withApplicationAtURL:applicationURL
+                              configuration:configuration
+                          completionHandler:nil];
+                    }
+                }
             });
         }
     }
