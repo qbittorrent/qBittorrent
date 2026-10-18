@@ -2825,7 +2825,7 @@ qsizetype SessionImpl::torrentsCount() const
 AddTorrentResult SessionImpl::addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params)
 {
     if (!isRestored())
-        return nonstd::make_unexpected(AddTorrentError {.status = AddTorrentError::SessionNotRestored, .message = tr("Session is not restored yet")});
+        return nonstd::make_unexpected<AddTorrentError>({.status = AddTorrentError::SessionNotRestored, .message = tr("Session is not restored yet")});
 
     return addTorrent_impl(torrentDescr, params);
 }
@@ -2919,7 +2919,7 @@ AddTorrentResult SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDe
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                     .arg(torrent->name(), torrent->infoHash().toString(), message));
             emit duplicateTorrentDetected(infoHash, torrent, message);
-            return nonstd::make_unexpected(AddTorrentError {.status = AddTorrentError::DuplicateTorrent, .message = message});
+            return nonstd::make_unexpected<AddTorrentError>({.status = AddTorrentError::DuplicateTorrent, .message = message});
         }
 
         const bool isPrivate = torrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate());
@@ -2929,7 +2929,7 @@ AddTorrentResult SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDe
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                     .arg(torrent->name(), torrent->infoHash().toString(), message));
             emit duplicateTorrentDetected(infoHash, torrent, message);
-            return nonstd::make_unexpected(AddTorrentError {.status = AddTorrentError::DuplicateTorrent, .message = message});
+            return nonstd::make_unexpected<AddTorrentError>({.status = AddTorrentError::DuplicateTorrent, .message = message});
         }
 
         // merge trackers and web seeds
@@ -2940,7 +2940,7 @@ AddTorrentResult SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDe
         LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                 .arg(torrent->name(), torrent->infoHash().toString(), message));
         emit duplicateTorrentDetected(infoHash, torrent, message);
-        return nonstd::make_unexpected(AddTorrentError {.status = AddTorrentError::DuplicateTorrent, .message = message});
+        return nonstd::make_unexpected<AddTorrentError>({.status = AddTorrentError::DuplicateTorrent, .message = message});
     }
 
     // It looks illogical that we don't just use an existing handle,
