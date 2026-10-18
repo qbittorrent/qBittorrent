@@ -1367,7 +1367,6 @@ void TorrentsController::addAction()
                 reasons.append(error.message);
             }
         }
-        reasons.removeDuplicates();
 
         throw APIError((allDuplicates ? APIErrorType::Conflict : APIErrorType::BadParams), reasons.join(u'\n'));
     }
