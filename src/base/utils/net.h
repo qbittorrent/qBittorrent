@@ -34,6 +34,7 @@
 #include <QtContainerFwd>
 #include <QHostAddress>
 
+class QNetworkAddressEntry;
 class QSslCertificate;
 class QSslKey;
 class QString;
@@ -64,4 +65,17 @@ namespace Utils::Net
     bool isSSLCertificatesValid(const QByteArray &data);
 
     bool lessThan(const QHostAddress &left, const QHostAddress &right);
+
+    // Whether listening on temporary IPv6 addresses only is supported on this platform
+    bool isTemporaryIPv6Supported();
+    // Whether `entry` is a temporary (RFC 8981) IPv6 address that is not deprecated.
+    // It does not tell whether the address is tentative. Exposed for tests.
+    bool isTemporaryIPv6Entry(const QNetworkAddressEntry &entry);
+    // Temporary IPv6 addresses that are neither deprecated nor tentative, sorted with `lessThan()`.
+    // `ifaceName` is a `QNetworkInterface::name()`. An empty `ifaceName` means all interfaces.
+    // Returns an empty list if `isTemporaryIPv6Supported()` is false.
+    QList<QHostAddress> temporaryIPv6Addresses(const QString &ifaceName = {});
+
+    // Compares only the address bytes and ignores the scope id
+    bool containsIPv6Address(const QList<QHostAddress> &addresses, const QHostAddress &addr);
 }

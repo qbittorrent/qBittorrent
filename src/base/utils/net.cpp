@@ -28,13 +28,17 @@
 
 #include "net.h"
 
+#include <algorithm>
 #include <ranges>
 
+#include <QDeadlineTimer>
 #include <QList>
+#include <QNetworkAddressEntry>
 #include <QNetworkInterface>
 #include <QSslCertificate>
 #include <QSslKey>
 #include <QString>
+#include <QUdpSocket>
 
 #include "base/global.h"
 
@@ -81,6 +85,15 @@ namespace
         if (first.protocol() == QAbstractSocket::IPv6Protocol)
             return std::ranges::lexicographical_compare(first.toIPv6Address().c, last.toIPv6Address().c, std::less_equal());
         return false;
+    }
+
+    // Qt does not report tentative (duplicate address detection is not finished) or duplicate addresses,
+    // and the OS refuses to bind them. Libtorrent would fail the same way, so test it directly.
+    // When the address becomes usable, the OS reports an address change.
+    bool canBindAddress(const QHostAddress &addr)
+    {
+        QUdpSocket socket;
+        return socket.bind(addr, 0);
     }
 }
 
@@ -336,6 +349,76 @@ namespace Utils
             }
 
             Q_UNREACHABLE_RETURN(false);
+        }
+
+        bool isTemporaryIPv6Supported()
+        {
+            // The detection works wherever Qt reports DNS eligibility (also BSD),
+            // but `Net::IPAddressWatcher` follows address changes on Linux, macOS and Windows only.
+#if defined(Q_OS_LINUX) || defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+            return true;
+#else
+            return false;
+#endif
+        }
+
+        bool isTemporaryIPv6Entry(const QNetworkAddressEntry &entry)
+        {
+            const QHostAddress addr = entry.ip();
+            if ((addr.protocol() != QAbstractSocket::IPv6Protocol) || addr.isLoopback() || addr.isLinkLocal())
+                return false;
+
+            // `isTemporary()` only means that the address expires, so it is true for stable SLAAC addresses too.
+            // Qt marks temporary (RFC 8981) and deprecated addresses as DNS-ineligible:
+            // with IFA_F_TEMPORARY on Linux, IN6_IFF_TEMPORARY on macOS/BSD
+            // and without IP_ADAPTER_ADDRESS_DNS_ELIGIBLE on Windows.
+            if (!entry.isTemporary() || (entry.dnsEligibility() != QNetworkAddressEntry::DnsIneligible))
+                return false;
+
+            // Qt on Windows swaps the preferred and the valid lifetimes.
+            // The preferred lifetime never exceeds the valid one, so the earlier deadline is the preferred one.
+            const QDeadlineTimer preferredLifetime = std::min(entry.preferredLifetime(), entry.validityLifetime());
+            // A deprecated address must not be used for new connections
+            return !preferredLifetime.hasExpired();
+        }
+
+        QList<QHostAddress> temporaryIPv6Addresses(const QString &ifaceName)
+        {
+            if (!isTemporaryIPv6Supported())
+                return {};
+
+            const QList<QNetworkInterface> ifaces = ifaceName.isEmpty()
+                ? QNetworkInterface::allInterfaces()
+                : QList<QNetworkInterface> {QNetworkInterface::interfaceFromName(ifaceName)};
+
+            QList<QHostAddress> addresses;
+            for (const QNetworkInterface &iface : ifaces)
+            {
+                const QList<QNetworkAddressEntry> entries = iface.addressEntries();
+                for (const QNetworkAddressEntry &entry : entries)
+                {
+                    if (isTemporaryIPv6Entry(entry) && canBindAddress(entry.ip()))
+                        addresses.append(entry.ip());
+                }
+            }
+            // Sort them to avoid listening on the same addresses again
+            // when the OS lists them in another order
+            std::ranges::sort(addresses, lessThan);
+            return addresses;
+        }
+
+        bool containsIPv6Address(const QList<QHostAddress> &addresses, const QHostAddress &addr)
+        {
+            if (addr.protocol() != QAbstractSocket::IPv6Protocol)
+                return false;
+
+            // Compare only the address bytes, `addr` can carry a scope id
+            const Q_IPV6ADDR bytes = addr.toIPv6Address();
+            return std::ranges::any_of(addresses, [&bytes](const QHostAddress &item)
+            {
+                return (item.protocol() == QAbstractSocket::IPv6Protocol)
+                    && std::ranges::equal(item.toIPv6Address().c, bytes.c);
+            });
         }
     }
 }

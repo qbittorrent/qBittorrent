@@ -26,8 +26,15 @@
  * exception statement from your version.
  */
 
+#include <algorithm>
+
+#include <QDeadlineTimer>
+#include <QHostAddress>
 #include <QList>
+#include <QNetworkAddressEntry>
 #include <QObject>
+#include <QString>
+#include <QStringList>
 #include <QTest>
 
 #include "base/utils/net.h"
@@ -36,9 +43,36 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
+    // temporary IPv6 address
+    const QString T1 = u"2001:db8::a1"_s;
+    // stable IPv6 address
+    const QString S1 = u"2001:db8::1"_s;
+
+    // address lifetimes in milliseconds, see `makeLifetime()`
+    const qint64 LIFETIME_EXPIRED = 0;
+    const qint64 LIFETIME_1H = 3600 * 1000;
+    const qint64 LIFETIME_2H = 2 * LIFETIME_1H;
+    const qint64 LIFETIME_FOREVER = -1;
+
+    QDeadlineTimer makeLifetime(const qint64 msecs)
+    {
+        if (msecs == LIFETIME_FOREVER)
+            return QDeadlineTimer(QDeadlineTimer::Forever);
+        return QDeadlineTimer(msecs);
+    }
+
     Utils::Net::Subnet makeSubnet(const QString &subnetString)
     {
         return Utils::Net::parseSubnet(subnetString).value_or(Utils::Net::Subnet {});
+    }
+
+    QList<QHostAddress> makeAddresses(const QStringList &addresses)
+    {
+        QList<QHostAddress> result;
+        result.reserve(addresses.size());
+        for (const QString &addr : addresses)
+            result.append(QHostAddress(addr));
+        return result;
     }
 }
 
@@ -170,6 +204,147 @@ private slots:
             QCOMPARE(Utils::Net::resolveForwardedClientAddress(peer, u"2001:db8::1, ::ffff:10.0.0.9", trusted)
                     , QHostAddress(u"2001:db8::1"_s));
         }
+    }
+
+    void testContainsIPv6Address() const
+    {
+        const QList<QHostAddress> addresses = makeAddresses({u"2001:db8::1"_s, u"fe80::1"_s, u"::ffff:192.0.2.4"_s});
+
+        // exact match
+        QVERIFY(Utils::Net::containsIPv6Address(addresses, QHostAddress(u"2001:db8::1"_s)));
+        QVERIFY(Utils::Net::containsIPv6Address(addresses, QHostAddress(u"fe80::1"_s)));
+
+        // the scope id of `addr` is ignored
+        QVERIFY(Utils::Net::containsIPv6Address(addresses, QHostAddress(u"fe80::1%eth0"_s)));
+        {
+            QHostAddress scoped {u"fe80::1"_s};
+            scoped.setScopeId(u"2"_s);
+            QCOMPARE(scoped.scopeId(), u"2"_s);
+            QVERIFY(Utils::Net::containsIPv6Address(addresses, scoped));
+        }
+
+        // ...and so is the scope id of the list items
+        {
+            QHostAddress scopedItem {u"fe80::2"_s};
+            scopedItem.setScopeId(u"eth0"_s);
+            QVERIFY(Utils::Net::containsIPv6Address({scopedItem}, QHostAddress(u"fe80::2"_s)));
+        }
+
+        // a different address
+        QVERIFY(!Utils::Net::containsIPv6Address(addresses, QHostAddress(u"2001:db8::2"_s)));
+        QVERIFY(!Utils::Net::containsIPv6Address(addresses, QHostAddress(u"fe80::2%eth0"_s)));
+
+        // an IPv4 `addr` never matches, not even its IPv4-mapped form
+        QVERIFY(!Utils::Net::containsIPv6Address(addresses, QHostAddress(u"192.0.2.4"_s)));
+        QVERIFY(!Utils::Net::containsIPv6Address(makeAddresses({u"192.0.2.4"_s}), QHostAddress(u"192.0.2.4"_s)));
+
+        // an IPv4-mapped `addr` does not match a plain IPv4 item
+        QVERIFY(!Utils::Net::containsIPv6Address(makeAddresses({u"192.0.2.4"_s}), QHostAddress(u"::ffff:192.0.2.4"_s)));
+
+        // a null `addr`
+        QVERIFY(!Utils::Net::containsIPv6Address(addresses, QHostAddress()));
+
+        // an empty list
+        QVERIFY(!Utils::Net::containsIPv6Address({}, QHostAddress(u"2001:db8::1"_s)));
+    }
+
+    void testIsTemporaryIPv6Supported() const
+    {
+#if defined(Q_OS_LINUX) || defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+        QVERIFY(Utils::Net::isTemporaryIPv6Supported());
+#else
+        QVERIFY(!Utils::Net::isTemporaryIPv6Supported());
+#endif
+    }
+
+    void testIsTemporaryIPv6Entry_data() const
+    {
+        QTest::addColumn<QString>("ip");
+        QTest::addColumn<QNetworkAddressEntry::DnsEligibilityStatus>("dnsEligibility");
+        QTest::addColumn<bool>("isLifetimeKnown");
+        QTest::addColumn<qint64>("preferredLifetime");
+        QTest::addColumn<qint64>("validityLifetime");
+        QTest::addColumn<bool>("expected");
+
+        QTest::newRow("temporary")
+            << T1 << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_1H << LIFETIME_2H << true;
+        QTest::newRow("ULA temporary")
+            << u"fd00::a1"_s << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_1H << LIFETIME_2H << true;
+        QTest::newRow("stable SLAAC")
+            << S1 << QNetworkAddressEntry::DnsEligible << true << LIFETIME_1H << LIFETIME_2H << false;
+        QTest::newRow("DNS eligibility unknown")
+            << T1 << QNetworkAddressEntry::DnsEligibilityUnknown << true << LIFETIME_1H << LIFETIME_2H << false;
+        QTest::newRow("permanent")
+            << S1 << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_FOREVER << LIFETIME_FOREVER << false;
+        QTest::newRow("permanent with finite preferred lifetime")
+            << S1 << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_1H << LIFETIME_FOREVER << false;
+        QTest::newRow("deprecated")
+            << T1 << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_EXPIRED << LIFETIME_1H << false;
+        QTest::newRow("expired")
+            << T1 << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_EXPIRED << LIFETIME_EXPIRED << false;
+
+        // Qt on Windows swaps the preferred and the valid lifetimes
+        QTest::newRow("swapped lifetimes")
+            << T1 << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_2H << LIFETIME_1H << true;
+        QTest::newRow("deprecated with swapped lifetimes")
+            << T1 << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_1H << LIFETIME_EXPIRED << false;
+
+        QTest::newRow("link-local")
+            << u"fe80::1"_s << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_1H << LIFETIME_2H << false;
+        QTest::newRow("loopback")
+            << u"::1"_s << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_1H << LIFETIME_2H << false;
+        QTest::newRow("IPv4")
+            << u"192.0.2.1"_s << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_1H << LIFETIME_2H << false;
+        QTest::newRow("null address")
+            << QString() << QNetworkAddressEntry::DnsIneligible << true << LIFETIME_1H << LIFETIME_2H << false;
+
+        // the entry keeps the default lifetimes, which are forever
+        QTest::newRow("lifetime unknown")
+            << T1 << QNetworkAddressEntry::DnsIneligible << false << LIFETIME_FOREVER << LIFETIME_FOREVER << false;
+    }
+
+    void testIsTemporaryIPv6Entry() const
+    {
+        QFETCH(QString, ip);
+        QFETCH(QNetworkAddressEntry::DnsEligibilityStatus, dnsEligibility);
+        QFETCH(bool, isLifetimeKnown);
+        QFETCH(qint64, preferredLifetime);
+        QFETCH(qint64, validityLifetime);
+        QFETCH(bool, expected);
+
+        QNetworkAddressEntry entry;
+        entry.setIp(QHostAddress(ip));
+        // `DnsEligibilityUnknown` is the default, which Qt keeps when it cannot tell
+        if (dnsEligibility != QNetworkAddressEntry::DnsEligibilityUnknown)
+            entry.setDnsEligibility(dnsEligibility);
+        if (isLifetimeKnown)
+            entry.setAddressLifetime(makeLifetime(preferredLifetime), makeLifetime(validityLifetime));
+
+        QCOMPARE(Utils::Net::isTemporaryIPv6Entry(entry), expected);
+    }
+
+    void testTemporaryIPv6Addresses() const
+    {
+        // the result depends on the machine, so only check its properties
+        // (the filter itself is covered by `testIsTemporaryIPv6Entry()`)
+        const QList<QHostAddress> addresses = Utils::Net::temporaryIPv6Addresses();
+
+        // no IPv4 address
+        QVERIFY(std::ranges::all_of(addresses, [](const QHostAddress &addr)
+        {
+            return addr.protocol() == QAbstractSocket::IPv6Protocol;
+        }));
+
+        // sorted, so that the same addresses in another order
+        // do not cause listening on them again
+        QVERIFY(std::ranges::is_sorted(addresses, Utils::Net::lessThan));
+
+        // an empty list on an unsupported platform
+        if (!Utils::Net::isTemporaryIPv6Supported())
+            QVERIFY(addresses.isEmpty());
+
+        // an unknown interface has no addresses, it does not fall back to all interfaces
+        QVERIFY(Utils::Net::temporaryIPv6Addresses(u"qbtnoiface"_s).isEmpty());
     }
 };
 
