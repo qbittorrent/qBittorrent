@@ -43,6 +43,7 @@
 #include <QUrl>
 
 #include "base/addtorrentmanager.h"
+#include "base/bittorrent/addtorrenterror.h"
 #include "base/bittorrent/categoryoptions.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
@@ -1235,7 +1236,7 @@ void TorrentsController::addAction()
 
 
     int pending = 0;
-    int failure = 0;
+    QList<BitTorrent::AddTorrentError> failures;
     QList<BitTorrent::TorrentID> addedTorrentIDs;
     addedTorrentIDs.reserve(urls.size() + torrents.size());
     for (QString url : urls)
@@ -1262,13 +1263,13 @@ void TorrentsController::addAction()
                 addTorrentParams.filePriorities = filePriorities;
             }
 
-            if (BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
+            if (const auto addResult = BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
             {
                 addedTorrentIDs.append(torrentID);
             }
             else
             {
-                ++failure;
+                failures.append(addResult.error());
             }
         }
         else if (!downloaderParam.isEmpty() && !infoHash.isValid())
@@ -1291,7 +1292,7 @@ void TorrentsController::addAction()
             if (!filePriorities.isEmpty())
                 throw APIError(APIErrorType::BadParams, tr("`filePriorities` may only be specified when metadata has already been fetched"));
 
-            if (app()->addTorrentManager()->addTorrent(url, addTorrentParams))
+            if (const auto addResult = app()->addTorrentManager()->addTorrent(url, addTorrentParams))
             {
                 if (infoHash.isValid())
                 {
@@ -1304,7 +1305,7 @@ void TorrentsController::addAction()
             }
             else
             {
-                ++failure;
+                failures.append(addResult.error());
             }
         }
         m_torrentSourceCache.remove(url);
@@ -1317,13 +1318,13 @@ void TorrentsController::addAction()
         if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
         {
             const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
-            if (BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
+            if (const auto addResult = BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
             {
                 addedTorrentIDs.append(torrentDescr.infoHash().toTorrentID());
             }
             else
             {
-                ++failure;
+                failures.append(addResult.error());
             }
         }
         else
@@ -1340,7 +1341,7 @@ void TorrentsController::addAction()
 
         setResult(QJsonObject {
             {u"success_count"_s, addedTorrentIDs.size()},
-            {u"failure_count"_s, failure},
+            {u"failure_count"_s, failures.size()},
             {u"pending_count"_s, pending},
             {u"added_torrent_ids"_s, ids},
         });
@@ -1349,7 +1350,26 @@ void TorrentsController::addAction()
     }
     else
     {
-        throw APIError(APIErrorType::Conflict);
+        // 409 is used only when all the torrents are already in the transfer list,
+        // so that clients can tell this case apart from actual failures
+        bool allDuplicates = true;
+        QStringList reasons;
+        reasons.reserve(failures.size());
+        for (const BitTorrent::AddTorrentError &error : asConst(failures))
+        {
+            if (error.status == BitTorrent::AddTorrentError::DuplicateTorrent)
+            {
+                reasons.append(tr("Torrent is already in the transfer list. %1").arg(error.message));
+            }
+            else
+            {
+                allDuplicates = false;
+                reasons.append(error.message);
+            }
+        }
+        reasons.removeDuplicates();
+
+        throw APIError((allDuplicates ? APIErrorType::Conflict : APIErrorType::BadParams), reasons.join(u'\n'));
     }
 }
 
