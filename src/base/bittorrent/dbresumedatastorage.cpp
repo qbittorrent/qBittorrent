@@ -43,6 +43,8 @@
 #include <libtorrent/load_torrent.hpp>
 #endif
 
+#include <optional>
+
 #include <QByteArray>
 #include <QDebug>
 #include <QList>
@@ -81,18 +83,25 @@ namespace
 
     using namespace BitTorrent;
 
+    struct StoreResult
+    {
+        TorrentID id;
+        bool hasMetadata = false;
+        bool succeeded = false;
+    };
+
     class Job
     {
     public:
         virtual ~Job() = default;
-        virtual void perform(QSqlDatabase db) = 0;
+        virtual std::optional<StoreResult> perform(QSqlDatabase db) = 0;
     };
 
     class StoreJob final : public Job
     {
     public:
         StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData);
-        void perform(QSqlDatabase db) override;
+        std::optional<StoreResult> perform(QSqlDatabase db) override;
 
     private:
         const TorrentID m_torrentID;
@@ -103,7 +112,7 @@ namespace
     {
     public:
         explicit RemoveJob(const TorrentID &torrentID);
-        void perform(QSqlDatabase db) override;
+        std::optional<StoreResult> perform(QSqlDatabase db) override;
 
     private:
         const TorrentID m_torrentID;
@@ -113,7 +122,7 @@ namespace
     {
     public:
         explicit StoreQueueJob(const QList<TorrentID> &queue);
-        void perform(QSqlDatabase db) override;
+        std::optional<StoreResult> perform(QSqlDatabase db) override;
 
     private:
         const QList<TorrentID> m_queue;
@@ -230,6 +239,7 @@ namespace BitTorrent
 {
     class DBResumeDataStorage::Worker final : public QThread
     {
+        Q_OBJECT
         Q_DISABLE_COPY_MOVE(Worker)
 
     public:
@@ -241,6 +251,10 @@ namespace BitTorrent
         void store(const TorrentID &id, LoadTorrentParams resumeData);
         void remove(const TorrentID &id);
         void storeQueue(const QList<TorrentID> &queue);
+
+    signals:
+        void metadataStored(const BitTorrent::TorrentID &torrentID);
+        void storeFailed(const BitTorrent::TorrentID &torrentID);
 
     private:
         void addJob(std::unique_ptr<Job> job);
@@ -277,6 +291,8 @@ BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject
     }
 
     m_asyncWorker = new Worker(dbPath, m_dbLock, this);
+    connect(m_asyncWorker, &Worker::metadataStored, this, &ResumeDataStorage::metadataStored);
+    connect(m_asyncWorker, &Worker::storeFailed, this, &ResumeDataStorage::storeFailed);
     m_asyncWorker->start();
 }
 
@@ -745,6 +761,7 @@ void BitTorrent::DBResumeDataStorage::Worker::run()
         if (!db.open())
             throw RuntimeError(db.lastError().text());
 
+        QList<StoreResult> transactedStoreResults;
         int64_t transactedJobsCount = 0;
         while (true)
         {
@@ -754,10 +771,26 @@ void BitTorrent::DBResumeDataStorage::Worker::run()
             {
                 if (transactedJobsCount > 0)
                 {
-                    db.commit();
+                    const bool isCommitted = db.commit();
+                    if (!isCommitted)
+                    {
+                        LogMsg(tr("Couldn't commit transaction. Error: %1").arg(db.lastError().text()), Log::CRITICAL);
+                        db.rollback();
+                    }
                     m_dbLock.unlock();
 
-                    qDebug() << "Resume data changes are committed. Transacted jobs:" << transactedJobsCount;
+                    if (isCommitted)
+                        qDebug() << "Resume data changes are committed. Transacted jobs:" << transactedJobsCount;
+
+                    for (const StoreResult &result : std::as_const(transactedStoreResults))
+                    {
+                        if (!isCommitted || !result.succeeded)
+                            emit storeFailed(result.id);
+                        else if (result.hasMetadata)
+                            emit metadataStored(result.id);
+                    }
+
+                    transactedStoreResults.clear();
                     transactedJobsCount = 0;
                 }
 
@@ -781,7 +814,8 @@ void BitTorrent::DBResumeDataStorage::Worker::run()
             m_jobs.pop();
             jobsLocker.unlock();
 
-            job->perform(db);
+            if (const auto result = job->perform(db))
+                transactedStoreResults.append(*result);
             ++transactedJobsCount;
         }
 
@@ -831,7 +865,7 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
     {
     }
 
-    void StoreJob::perform(QSqlDatabase db)
+    std::optional<StoreResult> StoreJob::perform(QSqlDatabase db)
     {
         // We need to adjust native libtorrent resume data
         lt::add_torrent_params p = m_resumeData.ltAddTorrentParams;
@@ -909,7 +943,7 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
 #else
                         .arg(QString::fromLocal8Bit(err.what())), Log::CRITICAL);
 #endif
-                return;
+                return StoreResult {.id = m_torrentID, .succeeded = false};
             }
 
             columns.append(DB_COLUMN_METADATA);
@@ -966,7 +1000,10 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
         {
             LogMsg(ResumeDataStorage::tr("Couldn't store resume data for torrent '%1'. Error: %2")
                     .arg(m_torrentID.toString(), err.message()), Log::CRITICAL);
+            return StoreResult {.id = m_torrentID, .succeeded = false};
         }
+
+        return StoreResult {.id = m_torrentID, .hasMetadata = (p.ti != nullptr), .succeeded = true};
     }
 
     RemoveJob::RemoveJob(const TorrentID &torrentID)
@@ -974,7 +1011,7 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
     {
     }
 
-    void RemoveJob::perform(QSqlDatabase db)
+    std::optional<StoreResult> RemoveJob::perform(QSqlDatabase db)
     {
         const auto deleteTorrentStatement = u"DELETE FROM %1 WHERE %2 = %3;"_s
                 .arg(quoted(DB_TABLE_TORRENTS), quoted(DB_COLUMN_TORRENT_ID.name), DB_COLUMN_TORRENT_ID.placeholder);
@@ -995,6 +1032,8 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
             LogMsg(ResumeDataStorage::tr("Couldn't delete resume data of torrent '%1'. Error: %2")
                     .arg(m_torrentID.toString(), err.message()), Log::CRITICAL);
         }
+
+        return std::nullopt;
     }
 
     StoreQueueJob::StoreQueueJob(const QList<TorrentID> &queue)
@@ -1002,7 +1041,7 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
     {
     }
 
-    void StoreQueueJob::perform(QSqlDatabase db)
+    std::optional<StoreResult> StoreQueueJob::perform(QSqlDatabase db)
     {
         const auto updateQueuePosStatement = u"UPDATE %1 SET %2 = %3 WHERE %4 = %5;"_s
                 .arg(quoted(DB_TABLE_TORRENTS), quoted(DB_COLUMN_QUEUE_POSITION.name), DB_COLUMN_QUEUE_POSITION.placeholder
@@ -1029,5 +1068,9 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
             LogMsg(ResumeDataStorage::tr("Couldn't store torrents queue positions. Error: %1")
                     .arg(err.message()), Log::CRITICAL);
         }
+
+        return std::nullopt;
     }
 }
+
+#include "dbresumedatastorage.moc"

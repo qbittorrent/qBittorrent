@@ -1513,6 +1513,18 @@ void SessionImpl::prepareStartup()
         context->isLoadFinished = true;
     });
 
+    connect(m_resumeDataStorage, &ResumeDataStorage::metadataStored, this, [this](const TorrentID &torrentID)
+    {
+        if (TorrentImpl *torrent = m_torrents.value(torrentID))
+            torrent->handleMetadataStored();
+    });
+
+    connect(m_resumeDataStorage, &ResumeDataStorage::storeFailed, this, [this](const TorrentID &torrentID)
+    {
+        if (TorrentImpl *torrent = m_torrents.value(torrentID))
+            torrent->handleSaveResumeDataFailed();
+    });
+
     connect(this, &SessionImpl::addTorrentAlertsReceived, context, [this, context](const qsizetype alertsCount)
     {
         context->processingResumeDataCount -= alertsCount;
@@ -6906,6 +6918,7 @@ void SessionImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_fai
 #else
                 .arg(torrent->name(), Utils::String::fromLocal8Bit(alert->error.message())), Log::CRITICAL);
 #endif
+        torrent->handleSaveResumeDataFailed();
     }
 }
 

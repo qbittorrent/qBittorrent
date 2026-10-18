@@ -874,6 +874,9 @@ bool TorrentImpl::connectPeer(const PeerAddress &peerAddress)
 
 bool TorrentImpl::needSaveResumeData() const
 {
+    if (m_needSaveResumeData || m_needSaveMetadata)
+        return true;
+
 #if LIBTORRENT_VERSION_NUM >= 20100
     return static_cast<bool>(m_nativeStatus.need_save_resume_data
         & (lt::torrent_handle::if_download_progress
@@ -887,8 +890,16 @@ bool TorrentImpl::needSaveResumeData() const
 #endif
 }
 
-void TorrentImpl::requestResumeData(const lt::resume_data_flags_t flags)
+void TorrentImpl::requestResumeData(lt::resume_data_flags_t flags)
 {
+    if ((flags & lt::torrent_handle::save_info_dict) && hasMetadata())
+        m_needSaveMetadata = true;
+    else if (m_needSaveMetadata)
+        flags |= lt::torrent_handle::save_info_dict;
+
+    if (m_needSaveResumeData || m_needSaveMetadata)
+        flags &= ~lt::torrent_handle::only_if_modified;
+
     m_nativeHandle.save_resume_data(flags);
     m_deferredRequestResumeDataInvoked = false;
 
@@ -2293,6 +2304,8 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
 
 void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
 {
+    m_needSaveResumeData = false;
+
     {
         decltype(params.have_pieces) havePieces;
         decltype(params.unfinished_pieces) unfinishedPieces;
@@ -2353,6 +2366,16 @@ void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
     };
 
     m_session->handleTorrentResumeDataReady(this, std::move(resumeData));
+}
+
+void TorrentImpl::handleMetadataStored()
+{
+    m_needSaveMetadata = false;
+}
+
+void TorrentImpl::handleSaveResumeDataFailed()
+{
+    m_needSaveResumeData = true;
 }
 
 void TorrentImpl::handleFastResumeRejected()
@@ -2534,6 +2557,7 @@ void TorrentImpl::handleMetadataReceived()
         m_session->handleTorrentInfoHashChanged(this, prevInfoHash);
 #endif
 
+    m_needSaveMetadata = true;
     m_maintenanceJob = MaintenanceJob::HandleMetadata;
     deferredRequestResumeData();
 }
