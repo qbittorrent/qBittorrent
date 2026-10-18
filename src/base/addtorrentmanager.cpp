@@ -102,7 +102,7 @@ bool AddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddT
 bool AddTorrentManager::addTorrentToSession(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
         , const BitTorrent::AddTorrentParams &addTorrentParams)
 {
-    const bool result = btSession()->addTorrent(torrentDescr, addTorrentParams);
+    const bool result = btSession()->addTorrent(torrentDescr, addTorrentParams).has_value();
     if (result)
        m_sourcesByInfoHash[torrentDescr.infoHash()] = source;
 
