@@ -94,25 +94,25 @@ GUIAddTorrentManager::~GUIAddTorrentManager()
     }
 }
 
-bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params, const AddTorrentOption option)
+BitTorrent::AddTorrentResult GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params, const AddTorrentOption option)
 {
     // `source`: .torrent file path,  magnet URI or URL
 
     if (source.isEmpty())
-        return false;
+        return nonstd::make_unexpected<BitTorrent::AddTorrentError>({.status = BitTorrent::AddTorrentError::InvalidSource, .message = tr("Torrent source is empty")});
 
     const auto *pref = Preferences::instance();
 
     if ((option == AddTorrentOption::SkipDialog)
             || ((option == AddTorrentOption::Default) && !pref->isAddNewTorrentDialogEnabled()))
     {
-        return AddTorrentManager::addTorrent(source, params).has_value();
+        return AddTorrentManager::addTorrent(source, params);
     }
 
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
         if (m_downloadedTorrents.contains(source))
-            return true;
+            return {};
 
         LogMsg(tr("Downloading torrent... Source: \"%1\"").arg(source));
         // Launch downloader
@@ -120,7 +120,7 @@ bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::A
                 , pref->useProxyForGeneralPurposes(), this, &GUIAddTorrentManager::onDownloadFinished);
         m_downloadedTorrents[source] = params;
 
-        return true;
+        return {};
     }
 
     if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(source))
@@ -130,7 +130,7 @@ bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::A
     else if (source.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
         handleAddTorrentFailed(source, parseResult.error());
-        return false;
+        return nonstd::make_unexpected<BitTorrent::AddTorrentError>({.status = BitTorrent::AddTorrentError::InvalidSource, .message = parseResult.error()});
     }
 
     const Path decodedPath {source.startsWith(u"file://", Qt::CaseInsensitive)
@@ -139,18 +139,16 @@ bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::A
     if (const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(decodedPath))
     {
         const BitTorrent::TorrentDescriptor &torrentDescriptor = loadResult.value();
-        const bool isProcessing = processTorrent(source, torrentDescriptor, params);
-        if (isProcessing)
+        const BitTorrent::AddTorrentResult result = processTorrent(source, torrentDescriptor, params);
+        if (result)
             setTorrentFileGuard(source, torrentFileGuard);
-        return isProcessing;
+        return result;
     }
     else
     {
         handleAddTorrentFailed(decodedPath.toString(), loadResult.error());
-        return false;
+        return nonstd::make_unexpected<BitTorrent::AddTorrentError>({.status = BitTorrent::AddTorrentError::InvalidSource, .message = loadResult.error()});
     }
-
-    return false;
 }
 
 void GUIAddTorrentManager::onDownloadFinished(const Net::DownloadResult &result)
@@ -162,13 +160,13 @@ void GUIAddTorrentManager::onDownloadFinished(const Net::DownloadResult &result)
     {
     case Net::DownloadStatus::Success:
         if (const auto loadResult = BitTorrent::TorrentDescriptor::load(result.data))
-            processTorrent(source, loadResult.value(), addTorrentParams);
+            std::ignore = processTorrent(source, loadResult.value(), addTorrentParams);
         else
             handleAddTorrentFailed(source, loadResult.error());
         break;
     case Net::DownloadStatus::RedirectedToMagnet:
         if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(result.magnetURI))
-            processTorrent(source, parseResult.value(), addTorrentParams);
+            std::ignore = processTorrent(source, parseResult.value(), addTorrentParams);
         else
             handleAddTorrentFailed(source, parseResult.error());
         break;
@@ -190,7 +188,7 @@ void GUIAddTorrentManager::onMetadataDownloaded(const BitTorrent::TorrentInfo &m
     }
 }
 
-bool GUIAddTorrentManager::processTorrent(const QString &source
+BitTorrent::AddTorrentResult GUIAddTorrentManager::processTorrent(const QString &source
         , const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &params)
 {
     const bool hasMetadata = torrentDescr.info().has_value();
@@ -205,12 +203,13 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
         dialog->show();
         dialog->activateWindow();
         dialog->raise();
-        return true;
+        return {};
     }
 
     // Prevent showing the dialog if download is already present
     if (BitTorrent::Torrent *torrent = btSession()->findTorrent(infoHash))
     {
+        QString message;
         if (Preferences::instance()->confirmMergeTrackers())
         {
             if (hasMetadata)
@@ -221,6 +220,7 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
 
             const bool isPrivate = torrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate());
             const QString dialogCaption = tr("Torrent is already present");
+            message = dialogCaption;
             if (isPrivate)
             {
                 // We cannot merge trackers for private torrent but we still notify user
@@ -243,10 +243,10 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
         }
         else
         {
-            handleDuplicateTorrent(source, torrentDescr, torrent);
+            message = handleDuplicateTorrent(source, torrentDescr, torrent);
         }
 
-        return false;
+        return nonstd::make_unexpected<BitTorrent::AddTorrentError>({.status = BitTorrent::AddTorrentError::DuplicateTorrent, .message = message});
     }
 
     if (!hasMetadata)
@@ -291,5 +291,5 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
     adjustDialogGeometry(dlg, app()->mainWindow());
     dlg->show();
 
-    return true;
+    return {};
 }
