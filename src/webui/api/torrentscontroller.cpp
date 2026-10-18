@@ -1236,7 +1236,7 @@ void TorrentsController::addAction()
 
 
     int pending = 0;
-    QList<BitTorrent::AddTorrentError> failures;
+    QList<std::pair<QString, BitTorrent::AddTorrentError>> failures;
     QList<BitTorrent::TorrentID> addedTorrentIDs;
     addedTorrentIDs.reserve(urls.size() + torrents.size());
     for (QString url : urls)
@@ -1269,7 +1269,7 @@ void TorrentsController::addAction()
             }
             else
             {
-                failures.append(addResult.error());
+                failures.emplaceBack(url, addResult.error());
             }
         }
         else if (!downloaderParam.isEmpty() && !infoHash.isValid())
@@ -1305,7 +1305,7 @@ void TorrentsController::addAction()
             }
             else
             {
-                failures.append(addResult.error());
+                failures.emplaceBack(url, addResult.error());
             }
         }
         m_torrentSourceCache.remove(url);
@@ -1324,7 +1324,7 @@ void TorrentsController::addAction()
             }
             else
             {
-                failures.append(addResult.error());
+                failures.emplaceBack(it.key(), addResult.error());
             }
         }
         else
@@ -1355,17 +1355,20 @@ void TorrentsController::addAction()
         bool allDuplicates = true;
         QStringList reasons;
         reasons.reserve(failures.size());
-        for (const BitTorrent::AddTorrentError &error : asConst(failures))
+        for (const auto &[source, error] : asConst(failures))
         {
+            QString reason;
             if (error.status == BitTorrent::AddTorrentError::DuplicateTorrent)
             {
-                reasons.append(tr("Torrent is already in the transfer list. %1").arg(error.message));
+                reason = tr("Torrent is already in the transfer list. %1").arg(error.message);
             }
             else
             {
                 allDuplicates = false;
-                reasons.append(error.message);
+                reason = error.message;
             }
+
+            reasons.append(tr("Failed to add torrent. Source: \"%1\". Reason: \"%2\"").arg(source, reason));
         }
 
         throw APIError((allDuplicates ? APIErrorType::Conflict : APIErrorType::BadParams), reasons.join(u'\n'));
