@@ -43,7 +43,7 @@
 #include <QUrl>
 
 #include "base/addtorrentmanager.h"
-#include "base/bittorrent/addtorrenterror.h"
+#include "base/bittorrent/addtorrentresult.h"
 #include "base/bittorrent/categoryoptions.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"

@@ -36,8 +36,8 @@
 
 #include "base/pathfwd.h"
 #include "base/tagset.h"
-#include "addtorrenterror.h"
 #include "addtorrentparams.h"
+#include "addtorrentresult.h"
 #include "categoryoptions.h"
 #include "sharelimits.h"
 #include "torrentcontentremoveoption.h"
