@@ -65,17 +65,17 @@ private:
     void onSubcategoriesSupportChanged();
     void onTagAdded(const Tag &tag);
     void onTagRemoved(const Tag &tag);
-    void onTorrentAdded(BitTorrent::Torrent *torrent);
-    void onTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
-    void onTorrentCategoryChanged(BitTorrent::Torrent *torrent, const QString &oldCategory);
-    void onTorrentMetadataReceived(BitTorrent::Torrent *torrent);
-    void onTorrentStopped(BitTorrent::Torrent *torrent);
-    void onTorrentStarted(BitTorrent::Torrent *torrent);
-    void onTorrentSavePathChanged(BitTorrent::Torrent *torrent);
-    void onTorrentSavingModeChanged(BitTorrent::Torrent *torrent);
-    void onTorrentTagAdded(BitTorrent::Torrent *torrent, const Tag &tag);
-    void onTorrentTagRemoved(BitTorrent::Torrent *torrent, const Tag &tag);
-    void onTorrentInfoHashChanged(BitTorrent::Torrent *torrent, const BitTorrent::InfoHash &prevInfoHash);
+    void onTorrentAdded(const BitTorrent::Torrent *torrent);
+    void onTorrentAboutToBeRemoved(const BitTorrent::Torrent *torrent);
+    void onTorrentCategoryChanged(const BitTorrent::Torrent *torrent, const QString &oldCategory);
+    void onTorrentMetadataReceived(const BitTorrent::Torrent *torrent);
+    void onTorrentStopped(const BitTorrent::Torrent *torrent);
+    void onTorrentStarted(const BitTorrent::Torrent *torrent);
+    void onTorrentSavePathChanged(const BitTorrent::Torrent *torrent);
+    void onTorrentSavingModeChanged(const BitTorrent::Torrent *torrent);
+    void onTorrentTagAdded(const BitTorrent::Torrent *torrent, const Tag &tag);
+    void onTorrentTagRemoved(const BitTorrent::Torrent *torrent, const Tag &tag);
+    void onTorrentInfoHashChanged(const BitTorrent::Torrent *torrent, const BitTorrent::InfoHash &prevInfoHash);
     void onTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
     void onTorrentTrackersChanged(BitTorrent::Torrent *torrent);
     void onTorrentTrackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent

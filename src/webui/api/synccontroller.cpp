@@ -945,7 +945,7 @@ void SyncController::onTagRemoved(const Tag &tag)
     m_removedTags.insert(tag.toString());
 }
 
-void SyncController::onTorrentAdded(BitTorrent::Torrent *torrent)
+void SyncController::onTorrentAdded(const BitTorrent::Torrent *torrent)
 {
     const BitTorrent::TorrentID torrentID = torrent->id();
 
@@ -961,7 +961,7 @@ void SyncController::onTorrentAdded(BitTorrent::Torrent *torrent)
     }
 }
 
-void SyncController::onTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent)
+void SyncController::onTorrentAboutToBeRemoved(const BitTorrent::Torrent *torrent)
 {
     const BitTorrent::TorrentID torrentID = torrent->id();
 
@@ -991,49 +991,49 @@ void SyncController::onTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent)
     }
 }
 
-void SyncController::onTorrentCategoryChanged(BitTorrent::Torrent *torrent
+void SyncController::onTorrentCategoryChanged(const BitTorrent::Torrent *torrent
         , [[maybe_unused]] const QString &oldCategory)
 {
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentMetadataReceived(BitTorrent::Torrent *torrent)
+void SyncController::onTorrentMetadataReceived(const BitTorrent::Torrent *torrent)
 {
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentStopped(BitTorrent::Torrent *torrent)
+void SyncController::onTorrentStopped(const BitTorrent::Torrent *torrent)
 {
     m_updatedTorrents.insert(torrent->id());
     m_announcedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentStarted(BitTorrent::Torrent *torrent)
+void SyncController::onTorrentStarted(const BitTorrent::Torrent *torrent)
 {
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentSavePathChanged(BitTorrent::Torrent *torrent)
+void SyncController::onTorrentSavePathChanged(const BitTorrent::Torrent *torrent)
 {
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentSavingModeChanged(BitTorrent::Torrent *torrent)
+void SyncController::onTorrentSavingModeChanged(const BitTorrent::Torrent *torrent)
 {
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentTagAdded(BitTorrent::Torrent *torrent, [[maybe_unused]] const Tag &tag)
+void SyncController::onTorrentTagAdded(const BitTorrent::Torrent *torrent, [[maybe_unused]] const Tag &tag)
 {
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentTagRemoved(BitTorrent::Torrent *torrent, [[maybe_unused]] const Tag &tag)
+void SyncController::onTorrentTagRemoved(const BitTorrent::Torrent *torrent, [[maybe_unused]] const Tag &tag)
 {
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentInfoHashChanged(BitTorrent::Torrent *torrent, const BitTorrent::InfoHash &prevInfoHash)
+void SyncController::onTorrentInfoHashChanged(const BitTorrent::Torrent *torrent, const BitTorrent::InfoHash &prevInfoHash)
 {
     const BitTorrent::TorrentID prevTorrentID = prevInfoHash.toTorrentID();
 
