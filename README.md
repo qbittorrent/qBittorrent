@@ -1,7 +1,6 @@
 # qBittorrent - A BitTorrent client in Qt
 
 [![GitHub Actions CI Status](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_ubuntu.yaml/badge.svg)](https://github.com/qbittorrent/qBittorrent/actions)
-[![Coverity Status](https://scan.coverity.com/projects/5494/badge.svg)](https://scan.coverity.com/projects/5494)
 
 qBittorrent is a [BitTorrent] client programmed in C++ / Qt that uses
 [libtorrent] (sometimes called libtorrent-rasterbar) by Arvid Norberg.
