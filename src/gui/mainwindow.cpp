@@ -1198,7 +1198,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                 if (!Utils::Misc::isTorrentLink(line))
                     continue;
 
-                app()->addTorrentManager()->addTorrent(line);
+                std::ignore = app()->addTorrentManager()->addTorrent(line);
             }
 
             return;
@@ -1360,7 +1360,7 @@ void MainWindow::on_actionOpen_triggered()
         return;
 
     for (const QString &file : pathsList)
-        app()->addTorrentManager()->addTorrent(file);
+        std::ignore = app()->addTorrentManager()->addTorrent(file);
 
     // Save last dir to remember it
     const Path topDir {pathsList.at(0)};
@@ -1538,7 +1538,7 @@ void MainWindow::reloadTorrentStats(const QList<BitTorrent::Torrent *> &torrents
 void MainWindow::downloadFromURLList(const QStringList &urlList)
 {
     for (const QString &url : urlList)
-        app()->addTorrentManager()->addTorrent(url);
+        std::ignore = app()->addTorrentManager()->addTorrent(url);
 }
 
 void MainWindow::populateDesktopIntegrationMenu()
