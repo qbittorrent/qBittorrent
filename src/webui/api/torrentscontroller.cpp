@@ -1280,7 +1280,7 @@ void TorrentsController::addAction()
             connect(downloadHandler, &SearchDownloadHandler::downloadFinished
                     , this, [this, addTorrentParams](const QString &torrentFilePath)
             {
-                app()->addTorrentManager()->addTorrent(torrentFilePath, addTorrentParams);
+                std::ignore = app()->addTorrentManager()->addTorrent(torrentFilePath, addTorrentParams);
             });
             connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
 

@@ -105,7 +105,7 @@ bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::A
     if ((option == AddTorrentOption::SkipDialog)
             || ((option == AddTorrentOption::Default) && !pref->isAddNewTorrentDialogEnabled()))
     {
-        return AddTorrentManager::addTorrent(source, params);
+        return AddTorrentManager::addTorrent(source, params).has_value();
     }
 
     if (Net::DownloadManager::hasSupportedScheme(source))
@@ -276,7 +276,7 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
                 torrentFileGuard->setAutoRemove(false);
         }
 
-        addTorrentToSession(source, torrentDescr, addTorrentParams);
+        std::ignore = addTorrentToSession(source, torrentDescr, addTorrentParams);
     });
     connect(dlg, &AddNewTorrentDialog::torrentRejected, this, [this, source]
     {

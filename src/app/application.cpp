@@ -885,7 +885,7 @@ void Application::processParams(const QBtCommandLineParameters &params)
         m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams, addTorrentOption);
 #else
     for (const QString &torrentSource : params.torrentSources)
-        m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams);
+        std::ignore = m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams);
 #endif
 }
 
