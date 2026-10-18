@@ -56,7 +56,7 @@ BitTorrent::AddTorrentResult AddTorrentManager::addTorrent(const QString &source
     // `source`: .torrent file path,  magnet URI or URL
 
     if (source.isEmpty())
-        return nonstd::make_unexpected(BitTorrent::AddTorrentError {.status = BitTorrent::AddTorrentError::InvalidSource, .message = tr("Torrent source is empty")});
+        return nonstd::make_unexpected<BitTorrent::AddTorrentError>({.status = BitTorrent::AddTorrentError::InvalidSource, .message = tr("Torrent source is empty")});
 
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
@@ -79,7 +79,7 @@ BitTorrent::AddTorrentResult AddTorrentManager::addTorrent(const QString &source
     else if (source.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
         handleAddTorrentFailed(source, parseResult.error());
-        return nonstd::make_unexpected(BitTorrent::AddTorrentError {.status = BitTorrent::AddTorrentError::InvalidSource, .message = parseResult.error()});
+        return nonstd::make_unexpected<BitTorrent::AddTorrentError>({.status = BitTorrent::AddTorrentError::InvalidSource, .message = parseResult.error()});
     }
 
     const Path decodedPath {source.startsWith(u"file://", Qt::CaseInsensitive)
@@ -93,7 +93,7 @@ BitTorrent::AddTorrentResult AddTorrentManager::addTorrent(const QString &source
     else
     {
        handleAddTorrentFailed(source, loadResult.error());
-       return nonstd::make_unexpected(BitTorrent::AddTorrentError {.status = BitTorrent::AddTorrentError::InvalidSource, .message = loadResult.error()});
+       return nonstd::make_unexpected<BitTorrent::AddTorrentError>({.status = BitTorrent::AddTorrentError::InvalidSource, .message = loadResult.error()});
     }
 }
 
@@ -225,7 +225,7 @@ BitTorrent::AddTorrentResult AddTorrentManager::processTorrent(const QString &so
     {
         // a duplicate torrent is being added
         const QString message = handleDuplicateTorrent(source, torrentDescr, torrent);
-        return nonstd::make_unexpected(BitTorrent::AddTorrentError {.status = BitTorrent::AddTorrentError::DuplicateTorrent, .message = message});
+        return nonstd::make_unexpected<BitTorrent::AddTorrentError>({.status = BitTorrent::AddTorrentError::DuplicateTorrent, .message = message});
     }
 
     return addTorrentToSession(source, torrentDescr, addTorrentParams);
