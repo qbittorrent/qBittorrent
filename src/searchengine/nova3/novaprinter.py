@@ -1,4 +1,4 @@
-# VERSION: 1.55
+# VERSION: 1.56
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -41,7 +41,7 @@ SearchResults = TypedDict('SearchResults', {
 
 
 # these fields contain untrusted values as they are unescaped or not encoded
-_unescapedFields = tuple(field for field in get_type_hints(SearchResults).keys() if field not in {'name'})
+_unescapedFields = tuple(field for field in get_type_hints(SearchResults) if field not in {'name'})
 
 
 def prettyPrinter(dictionary: SearchResults) -> None:
@@ -72,7 +72,7 @@ def prettyPrinter(dictionary: SearchResults) -> None:
 _sizeUnitRegex: re.Pattern[str] = re.compile(r"^(?P<size>\d*\.?\d+) *(?P<unit>[a-z]+)?", re.IGNORECASE)
 
 
-def anySizeToBytes(size_string: float | int | str) -> int:
+def anySizeToBytes(size_string: float | int | str) -> int:  # noqa: PYI041
     """
     Convert a string like '1 KB' to '1024' (bytes)
 

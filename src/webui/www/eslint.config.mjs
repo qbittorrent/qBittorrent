@@ -49,6 +49,7 @@ export default [
             "require-await": "error",
             "sort-imports": ["error", { allowSeparatedGroups: true }],
             "PluginQbtWebUI/prefix-inc-dec-operators": "error",
+            "PluginQbtWebUI/require-event-parameter": "error",
             "PreferArrowFunctions/prefer-arrow-functions": "error",
             "Stylistic/no-extra-semi": "error",
             "Stylistic/no-mixed-operators": [

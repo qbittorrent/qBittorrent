@@ -1,4 +1,4 @@
-# VERSION: 1.58
+# VERSION: 1.61
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -32,10 +32,10 @@ import gzip
 import html
 import http.cookiejar
 import io
+import logging
 import os
 import socket
 import ssl
-import sys
 import tempfile
 import urllib.error
 import urllib.parse
@@ -44,6 +44,8 @@ from collections.abc import Mapping
 from typing import Any, Optional, cast
 
 import socks
+
+_logger = logging.getLogger(__name__)
 
 
 def _getBrowserUserAgent() -> str:
@@ -55,11 +57,11 @@ def _getBrowserUserAgent() -> str:
     # https://whattrainisitnow.com/calendar/
     # https://wiki.mozilla.org/index.php?title=Release_Management/Calendar&redirect=no
 
-    baseDate = datetime.date(2024, 4, 16)
-    baseVersion = 125
+    baseDate = datetime.date(2026, 10, 13)
+    baseVersion = 158
 
-    nowDate = datetime.date.today()
-    nowVersion = baseVersion + ((nowDate - baseDate).days // 30)
+    nowDate = datetime.datetime.now(datetime.UTC).date()
+    nowVersion = baseVersion + ((nowDate - baseDate).days // 15)
 
     return f"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:{nowVersion}.0) Gecko/20100101 Firefox/{nowVersion}.0"
 
@@ -101,7 +103,7 @@ def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data:
             contentType = response.getheader('Content-Type', '')
             data: bytes = response.read()
     except urllib.error.URLError as errno:
-        print(f"Connection error: {errno.reason}", file=sys.stderr)
+        _logger.warning(f"Retrieve URL error. Reason: '{errno.reason}'. URL: '{url}'.")
         return ""
 
     # Check if it is gzipped

@@ -121,8 +121,7 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
         }
     });
     connect(m_searchProcess, &QProcess::readyReadStandardOutput, this, &SearchHandler::readSearchOutput);
-    connect(m_searchProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished)
-            , this, &SearchHandler::processFinished);
+    connect(m_searchProcess, &QProcess::finished, this, &SearchHandler::processFinished);
 
     m_searchTimeout->setSingleShot(true);
     connect(m_searchTimeout, &QTimer::timeout, this, &SearchHandler::cancelSearch);
@@ -229,7 +228,12 @@ bool SearchHandler::parseSearchResult(const QByteArrayView line, SearchResult &s
         searchResult.nbLeechers = -1;
 
     searchResult.siteUrl = QString::fromUtf8(parts.at(PL_ENGINE_URL).trimmed()); // Search engine site URL
-    searchResult.engineName = m_manager->pluginNameBySiteURL(searchResult.siteUrl); // Search engine name
+
+    if (const SearchPluginInfo *plugin = m_manager->pluginInfoBySiteURL(searchResult.siteUrl))
+    {
+        searchResult.engineName = plugin->name; // Search engine name
+        searchResult.engineFullName = plugin->fullName; // Search engine full name
+    }
 
     if (nbFields > PL_DESC_LINK)
         searchResult.descrLink = QString::fromUtf8(parts.at(PL_DESC_LINK).trimmed()); // Description Link

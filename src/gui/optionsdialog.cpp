@@ -1289,7 +1289,7 @@ void OptionsDialog::loadBittorrentTabOptions()
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, m_ui->spinMaxRatio, &QWidget::setEnabled);
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->spinMaxRatio, qOverload<double>(&QDoubleSpinBox::valueChanged),this, &ThisType::enableApplyButton);
+    connect(m_ui->spinMaxRatio, &QDoubleSpinBox::valueChanged,this, &ThisType::enableApplyButton);
     connect(m_ui->radioButtonShareLimitsModeAny, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->radioButtonShareLimitsModeAll, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->radioButtonShareLimitsModeLayered, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -2258,6 +2258,17 @@ bool OptionsDialog::isAlternativeWebUIPathValid()
 void OptionsDialog::showConnectionTab()
 {
     m_ui->tabSelection->setCurrentRow(TAB_CONNECTION);
+}
+
+void OptionsDialog::showSpeedWidgetSetting()
+{
+    m_ui->tabSelection->setCurrentRow(TAB_ADVANCED);
+    m_advancedSettings->showSpeedWidgetSetting();
+}
+
+void OptionsDialog::showRSSTab()
+{
+    m_ui->tabSelection->setCurrentRow(TAB_RSS);
 }
 
 #ifndef DISABLE_WEBUI

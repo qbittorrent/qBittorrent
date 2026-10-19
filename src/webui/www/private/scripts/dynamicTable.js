@@ -377,10 +377,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             }.bind(this);
 
             for (const th of this.getRowCells(this.fixedTableHeader)) {
-                th.addEventListener("mousemove", mouseMoveFn);
-                th.addEventListener("mouseout", mouseOutFn);
-                th.addEventListener("touchend", onTouch, { passive: true });
-                th.addEventListener("dblclick", onDoubleClick);
+                th.addEventListener("mousemove", (event) => mouseMoveFn(event));
+                th.addEventListener("mouseout", (event) => mouseOutFn(event));
+                th.addEventListener("touchend", ((event) => onTouch(event)), { passive: true });
+                th.addEventListener("dblclick", (event) => onDoubleClick(event));
                 th.makeResizable({
                     modifiers: {
                         x: "",
@@ -1527,7 +1527,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // eta
             this.columns["eta"].updateTd = function(td, row) {
-                const eta = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row), window.qBittorrent.Misc.MAX_ETA);
+                const eta = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row), window.qBittorrent.Misc.MAX_ETA, window.qBittorrent.Misc.TIME_RESOLUTION.Seconds);
                 td.textContent = eta;
                 td.title = eta;
             };
@@ -2011,7 +2011,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("fileSize", "", "QBT_TR(Size)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
             this.newColumn("nbSeeders", "", "QBT_TR(Seeders)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
             this.newColumn("nbLeechers", "", "QBT_TR(Leechers)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
-            this.newColumn("engineName", "", "QBT_TR(Engine)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
+            this.newColumn("engineFullName", "", "QBT_TR(Engine)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
             this.newColumn("siteUrl", "", "QBT_TR(Engine URL)QBT_TR[CONTEXT=SearchResultsTable]", 250, true);
             this.newColumn("pubDate", "", "QBT_TR(Published On)QBT_TR[CONTEXT=SearchResultsTable]", 200, true);
 
@@ -2117,7 +2117,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         initColumns() {
             this.newColumn("fullName", "", "QBT_TR(Name)QBT_TR[CONTEXT=SearchPluginsTable]", 175, true);
             this.newColumn("version", "", "QBT_TR(Version)QBT_TR[CONTEXT=SearchPluginsTable]", 100, true);
-            this.newColumn("url", "", "QBT_TR(Url)QBT_TR[CONTEXT=SearchPluginsTable]", 175, true);
+            this.newColumn("url", "", "QBT_TR(URL)QBT_TR[CONTEXT=SearchPluginsTable]", 175, true);
             this.newColumn("enabled", "", "QBT_TR(Enabled)QBT_TR[CONTEXT=SearchPluginsTable]", 100, true);
 
             this.initColumnsFunctions();

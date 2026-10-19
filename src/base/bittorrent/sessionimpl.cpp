@@ -33,6 +33,7 @@
 #include <concepts>
 #include <cstdint>
 #include <ctime>
+#include <memory>
 #include <ranges>
 #include <string>
 
@@ -798,18 +799,25 @@ SessionImpl::~SessionImpl()
     delete m_resumeDataStorage;
     LogMsg(tr("Saving resume data completed."));
 
-    auto *sessionTerminateThread = QThread::create([nativeSessionProxy]()
+    // Do not use `QObject::deleteLater` as the event loop might shut down very soon
+    std::unique_ptr<QThread> sessionTerminateThread {QThread::create([nativeSessionProxy]()
     {
         qDebug("Deleting libtorrent session...");
         delete nativeSessionProxy;
-    });
+    })};
     sessionTerminateThread->setObjectName("~SessionImpl sessionTerminateThread");
-    connect(sessionTerminateThread, &QThread::finished, sessionTerminateThread, &QObject::deleteLater);
     sessionTerminateThread->start();
     if (sessionTerminateThread->wait(shutdownDeadlineTimer))
+    {
         LogMsg(tr("BitTorrent session successfully finished."));
+    }
     else
-        LogMsg(tr("Session shutdown timed out."));
+    {
+        LogMsg(tr("Session shutdown timed out."), Log::WARNING);
+        // Leave the thread untracked and let it run till app exit.
+        // Don't bother with `QThread::terminate(); QThread::wait();` as it cannot really stop the thread and will block indefinitely.
+        sessionTerminateThread.release();
+    }
 }
 
 QString SessionImpl::getDHTBootstrapNodes() const
@@ -3820,9 +3828,15 @@ void SessionImpl::setBandwidthSchedulerEnabled(const bool enabled)
     {
         m_isBandwidthSchedulerEnabled = enabled;
         if (enabled)
+        {
             enableBandwidthScheduler();
+        }
         else
+        {
+            if (m_bwScheduler && m_bwScheduler->isAlternativeRequested())
+                setAltGlobalSpeedLimitEnabled(false);
             delete m_bwScheduler;
+        }
     }
 }
 
@@ -5999,7 +6013,7 @@ void SessionImpl::configureDeferred()
         return;
 
     m_deferredConfigureScheduled = true;
-    QMetaObject::invokeMethod(this, qOverload<>(&SessionImpl::configure), Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, &SessionImpl::configure, Qt::QueuedConnection);
 }
 
 // Enable IP Filtering

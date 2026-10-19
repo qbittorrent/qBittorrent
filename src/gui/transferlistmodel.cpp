@@ -288,7 +288,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     {
         if (hideValues && (value >= MAX_ETA))
             return {};
-        return Utils::Misc::userFriendlyDuration(value, MAX_ETA);
+        return Utils::Misc::userFriendlyDuration(value, MAX_ETA, Utils::Misc::TimeResolution::Seconds);
     };
 
     const auto ratioString = [hideValues](const qreal value) -> QString

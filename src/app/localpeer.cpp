@@ -69,6 +69,8 @@
 
 #include "localpeer.h"
 
+#include <memory>
+
 #include <QtSystemDetection>
 
 #include <QByteArray>
@@ -238,14 +240,8 @@ void LocalPeer::receivedConnection()
     if (!socket) [[unlikely]]
         return;
 
-    auto *buffer = new QByteArray;
-
-    connect(socket, &QLocalSocket::disconnected, this, [buffer, socket]
-    {
-        socket->deleteLater();
-        delete buffer;
-    });
-    connect(socket, &QIODevice::readyRead, this, [this, buffer, socket]
+    connect(socket, &QLocalSocket::disconnected, socket, &QObject::deleteLater);
+    connect(socket, &QIODevice::readyRead, this, [this, socket, buffer = std::make_unique<QByteArray>()]
     {
         const qint64 bytes = socket->bytesAvailable();
         if ((buffer->size() + bytes) > MAX_MESSAGE_SIZE)
@@ -274,7 +270,7 @@ void LocalPeer::receivedConnection()
         socket->write(ACK);
         socket->disconnectFromServer();
 
-        emit messageReceived(result.value()); // might take a long time to return
+        emit messageReceived(result.value());
     });
 }
 

@@ -1765,7 +1765,12 @@ void TorrentImpl::forceRecheck()
     if (!hasMetadata())
         return;
 
+    const lt::queue_position_t queuePos = m_nativeHandle.queue_position();
+
     m_nativeHandle.force_recheck();
+
+    if (queuePos >= lt::queue_position_t(0))
+        m_nativeHandle.queue_position_set(queuePos);
 
     // We have to force update the cached state, otherwise someone will be able to get
     // an incorrect one during the interval until the cached state is updated in a regular way.
@@ -3002,6 +3007,9 @@ QFuture<QList<QUrl>> TorrentImpl::fetchURLSeeds() const
 
 QFuture<QList<int>> TorrentImpl::fetchPieceAvailability() const
 {
+    if (!hasMetadata())
+        return QtFuture::makeReadyValueFuture(QList<int>());
+
     return invokeAsync([nativeHandle = m_nativeHandle]() -> QList<int>
     {
         try
@@ -3018,6 +3026,9 @@ QFuture<QList<int>> TorrentImpl::fetchPieceAvailability() const
 
 QFuture<QBitArray> TorrentImpl::fetchDownloadingPieces() const
 {
+    if (!hasMetadata())
+        return QtFuture::makeReadyValueFuture(QBitArray());
+
     return invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QBitArray
     {
         try
@@ -3042,11 +3053,11 @@ QFuture<QBitArray> TorrentImpl::fetchDownloadingPieces() const
 
 QFuture<QList<qreal>> TorrentImpl::fetchAvailableFileFractions() const
 {
+    if (!hasMetadata())
+        return QtFuture::makeReadyValueFuture(QList<qreal>());
+
     return invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QList<qreal>
     {
-        if (!torrentInfo.isValid() || (torrentInfo.filesCount() <= 0))
-            return {};
-
         try
         {
             std::vector<int> piecesAvailability;
