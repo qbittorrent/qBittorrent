@@ -40,6 +40,8 @@ jobs:
     env:
       boost_path: "${{ github.workspace }}/../boost"
       libtorrent_path: "${{ github.workspace }}/../libtorrent"
+      # Match the shipped 13.0 floor; when unset, binaries inherit the SDK default.
+      MACOSX_DEPLOYMENT_TARGET: "13"
 
     steps:
       - name: Checkout repository
