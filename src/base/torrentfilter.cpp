@@ -30,8 +30,6 @@
 
 #include <algorithm>
 
-#include <QUrl>
-
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentrystatus.h"
@@ -44,22 +42,6 @@ const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<Tag> TorrentFilter::AnyTag;
 const std::optional<QString> TorrentFilter::AnyTrackerHost;
 const std::optional<TorrentAnnounceStatus> TorrentFilter::AnyAnnounceStatus;
-
-QString getTrackerHost(const QString &url)
-{
-    static QHash<QString, QString> cache;
-
-    if (const auto iter = cache.constFind(url); iter != cache.constEnd())
-        return iter.value();
-
-    // We want the hostname.
-    const QString host = QUrl(url).host();
-    // If failed to parse the domain, original input should be returned
-    const QString result = !host.isEmpty() ? host : url;
-    cache[url] = result;
-
-    return result;
-}
 
 TorrentFilter::TorrentFilter(const Status status, const std::optional<TorrentIDSet> &idSet, const std::optional<QString> &category
         , const std::optional<Tag> &tag, const std::optional<bool> &isPrivate, const std::optional<QString> &trackerHost
@@ -262,12 +244,12 @@ bool TorrentFilter::matchTracker(const Torrent *torrent) const
         return torrent->trackers().isEmpty() && !m_announceStatus;
 
     return std::ranges::any_of(asConst(torrent->trackers())
-            , [trackerHost = m_trackerHost, announceStatus = m_announceStatus](const TrackerEntryStatus &trackerEntryStatus)
+            , [this](const TrackerEntryStatus &trackerEntryStatus)
     {
-        if (getTrackerHost(trackerEntryStatus.url) != trackerHost)
+        if (m_hostnameExtractor.extractHostname(trackerEntryStatus.url) != m_trackerHost)
             return false;
 
-        if (!announceStatus)
+        if (!m_announceStatus)
             return true;
 
         switch (trackerEntryStatus.state)
@@ -279,15 +261,15 @@ bool TorrentFilter::matchTracker(const Torrent *torrent) const
                 {
                     return !endpointEntry.message.isEmpty() && (endpointEntry.state == TrackerEndpointState::Working);
                 });
-                return hasWarningMessage ? announceStatus->testFlag(TorrentAnnounceStatusFlag::HasWarning) : !*announceStatus;
+                return hasWarningMessage ? m_announceStatus->testFlag(TorrentAnnounceStatusFlag::HasWarning) : !*m_announceStatus;
             }
 
         case TrackerEndpointState::NotWorking:
         case TrackerEndpointState::Unreachable:
-            return announceStatus->testFlag(TorrentAnnounceStatusFlag::HasOtherError);
+            return m_announceStatus->testFlag(TorrentAnnounceStatusFlag::HasOtherError);
 
         case TrackerEndpointState::TrackerError:
-            return announceStatus->testFlag(TorrentAnnounceStatusFlag::HasTrackerError);
+            return m_announceStatus->testFlag(TorrentAnnounceStatusFlag::HasTrackerError);
 
         case TrackerEndpointState::NotContacted:
             return false;

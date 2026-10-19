@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -42,7 +42,6 @@
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
-#include "base/torrentfilter.h"
 #include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "gui/transferlistwidget.h"
@@ -67,26 +66,6 @@ namespace
     {
         const QString scheme = QUrl(tracker).scheme();
         return !scheme.isEmpty() ? scheme : u"http"_s;
-    }
-
-    template <typename T>
-    concept HasUrlMember = requires (T t) { { t.url } -> std::convertible_to<QString>; };
-
-    template <HasUrlMember T>
-    QString getTrackerHost(const T &t)
-    {
-        return getTrackerHost(t.url);
-    }
-
-    template <typename T>
-    QSet<QString> extractTrackerHosts(const T &trackerEntries)
-    {
-        QSet<QString> trackerHosts;
-        trackerHosts.reserve(trackerEntries.size());
-        for (const auto &trackerEntry : trackerEntries)
-            trackerHosts.insert(getTrackerHost(trackerEntry));
-
-        return trackerHosts;
     }
 
     template <typename T>
@@ -716,4 +695,27 @@ int TrackersFilterWidget::rowFromTracker(const QString &tracker) const
             return i;
     }
     return -1;
+}
+
+QString TrackersFilterWidget::getTrackerHost(const QString &url) const
+{
+    return m_hostnameExtractor.extractHostname(url);
+}
+
+template <typename T>
+    requires requires (T t) { { t.url } -> std::convertible_to<QString>; }
+QString TrackersFilterWidget::getTrackerHost(const T &t)
+{
+    return getTrackerHost(t.url);
+}
+
+template <typename T>
+QSet<QString> TrackersFilterWidget::extractTrackerHosts(const T &trackerEntries)
+{
+    QSet<QString> trackerHosts;
+    trackerHosts.reserve(trackerEntries.size());
+    for (const auto &trackerEntry : trackerEntries)
+        trackerHosts.insert(getTrackerHost(trackerEntry));
+
+    return trackerHosts;
 }
