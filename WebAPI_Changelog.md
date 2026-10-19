@@ -18,7 +18,6 @@
   * `app/setPreferences` endpoint allows to set `exclude_files_without_extension` (bool) option
 * [#24952](https://github.com/qbittorrent/qBittorrent/pull/24952)
   * `torrents/add` endpoint lists each torrent that couldn't be added in the response body, with its source and the reason
-  * When all torrents fail to be added, response code 409 is used only if they are already in the transfer list, otherwise response code 400 is used
 
 ## 2.16.2
 
