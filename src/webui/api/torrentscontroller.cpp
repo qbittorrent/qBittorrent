@@ -1350,9 +1350,6 @@ void TorrentsController::addAction()
     }
     else
     {
-        // 409 is used only when all the torrents are already in the transfer list,
-        // so that clients can tell this case apart from actual failures
-        bool allDuplicates = true;
         QStringList reasons;
         reasons.reserve(failures.size());
         for (const auto &[source, error] : asConst(failures))
@@ -1364,14 +1361,13 @@ void TorrentsController::addAction()
             }
             else
             {
-                allDuplicates = false;
                 reason = error.message;
             }
 
             reasons.append(tr("Failed to add torrent. Source: \"%1\". Reason: \"%2\"").arg(source, reason));
         }
 
-        throw APIError((allDuplicates ? APIErrorType::Conflict : APIErrorType::BadParams), reasons.join(u'\n'));
+        throw APIError(APIErrorType::Conflict, reasons.join(u'\n'));
     }
 }
 
