@@ -105,6 +105,7 @@ public slots:
     void applyAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus);
     void previewFile(const Path &filePath);
     void renameSelectedTorrent();
+    void showHiddenTorrents(bool show);
 
 signals:
     void currentTorrentChanged(BitTorrent::Torrent *torrent);
@@ -118,6 +119,7 @@ private slots:
     void setSelectedTorrentsSequentialDownload(bool enabled) const;
     void setSelectedFirstLastPiecePrio(bool enabled) const;
     void setSelectedAutoTMMEnabled(bool enabled);
+    void setSelectedTorrentsHidden(bool hidden);
     void askNewCategoryForSelection();
     void saveSettings();
 
