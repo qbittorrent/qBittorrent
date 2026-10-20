@@ -81,6 +81,7 @@ add_library(qbt_base STATIC
     net/downloadmanager.h
     net/geoipdatabase.h
     net/geoipmanager.h
+    net/networkinterfacemonitor.h
     net/portforwarder.h
     net/proxyconfigurationmanager.h
     net/proxytype.h
@@ -189,6 +190,7 @@ add_library(qbt_base STATIC
     net/downloadmanager.cpp
     net/geoipdatabase.cpp
     net/geoipmanager.cpp
+    net/networkinterfacemonitor.cpp
     net/portforwarder.cpp
     net/proxyconfigurationmanager.cpp
     net/reverseresolution.cpp
