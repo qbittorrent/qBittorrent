@@ -30,7 +30,9 @@
 #pragma once
 
 #include <QDialog>
+#include <QList>
 
+#include "base/bittorrent/listenentry.h"
 #include "base/net/proxytype.h"
 #include "base/pathfwd.h"
 #include "base/settingvalue.h"
@@ -67,6 +69,7 @@ class OptionsDialog final : public GUIApplicationComponent<QDialog>
         TAB_UI,
         TAB_DOWNLOADS,
         TAB_CONNECTION,
+        TAB_LISTENING,
         TAB_SPEED,
         TAB_BITTORRENT,
         TAB_SEARCH,
@@ -80,7 +83,7 @@ public:
     ~OptionsDialog() override;
 
 public slots:
-    void showConnectionTab();
+    void showListeningTab();
     void showSpeedWidgetSetting();
     void showRSSTab();
 
@@ -99,7 +102,6 @@ private slots:
     void handleIPFilterParsed(bool error, int ruleCount);
     void on_banListButton_clicked();
     void on_IPSubnetWhitelistButton_clicked();
-    void on_randomButton_clicked();
     void on_addWatchedFolderButton_clicked();
     void on_editWatchedFolderButton_clicked();
     void on_removeWatchedFolderButton_clicked();
@@ -131,6 +133,9 @@ private:
     void loadConnectionTabOptions();
     void saveConnectionTabOptions() const;
 
+    void loadListeningTabOptions();
+    void saveListeningTabOptions() const;
+
     void loadSpeedTabOptions();
     void saveSpeedTabOptions() const;
 
@@ -161,9 +166,14 @@ private:
     bool preAllocateAllFiles() const;
     bool useAdditionDialog() const;
     bool addTorrentsStopped() const;
-    // Connection options
-    int getPort() const;
+    // Listening options
     bool isUPnPEnabled() const;
+    int currentListenEntryIndex() const;
+    void updateListenEntriesView(int selectedIndex);
+    void updateListenEntryButtons();
+    void addListenEntry();
+    void editListenEntry(int index);
+    void removeListenEntry();
     // Bittorrent options
     int getMaxConnections() const;
     int getMaxConnectionsPerTorrent() const;
@@ -209,6 +219,8 @@ private:
     QPushButton *m_applyButton = nullptr;
 
     AdvancedSettings *m_advancedSettings = nullptr;
+
+    QList<BitTorrent::ListenEntry> m_listenEntries;
 
     bool m_refreshingIpFilter = false;
 

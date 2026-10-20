@@ -1,5 +1,20 @@
 # WebAPI Changelog
 
+## 2.18.0
+
+* Listen entries replace the listening port, the SSL port and the network interface options
+  * `app/preferences` endpoint no longer includes `listen_port`, `random_port`, `ssl_enabled`, `ssl_listen_port`, `current_network_interface`, `current_interface_name` and `current_interface_address`, and `app/setPreferences` no longer accepts them
+  * `app/preferences` endpoint includes `listen_entries` (array) option. Each item is an object:
+    * `interfaces` (array): interface selections, see below. Each interface can appear only once
+    * `ports` (array of strings): e.g. `["6881", "6882s"]`. A port with `s` accepts only SSL connections. A JSON number is also accepted. A port cannot be both a plain and an SSL port
+  * An interface selection is an object:
+    * `interface` (string): the name of the network interface, `""` means any interface
+    * `interface_name` (string): the human-readable name of the interface
+    * `ipv4` (array of strings): `"all"` and IPv4 addresses
+    * `ipv6` (array of strings): `"all"`, `"temporary"` (the temporary addresses) and IPv6 addresses
+  * `app/setPreferences` endpoint allows to set `listen_entries`. It returns 400 for an empty or invalid list
+  * Add `app/networkInterfaces` endpoint. It returns an object with `interfaces` (array of objects with `name`, `value`, `addresses` and `temporary_ipv6_addresses`) and `temporary_ipv6_supported` (bool)
+
 ## 2.17.0
 
 * [#24955](https://github.com/qbittorrent/qBittorrent/pull/24955)

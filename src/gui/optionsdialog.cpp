@@ -71,10 +71,12 @@
 #include "base/utils/password.h"
 #include "base/utils/random.h"
 #include "base/utils/sslkey.h"
+#include "addressselectiontree.h"
 #include "advancedsettings.h"
 #include "banlistoptionsdialog.h"
 #include "interfaces/iguiapplication.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
+#include "listenentrydialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "ui_optionsdialog.h"
 #include "uithemedialog.h"
@@ -103,6 +105,12 @@ const int WEBUI_MIN_PASSWORD_LENGTH = 6;
 
 namespace
 {
+    enum ListenEntryColumn
+    {
+        LISTEN_COL_ADDRESSES,
+        LISTEN_COL_PORTS
+    };
+
     QStringList translatedWeekdayNames()
     {
         // return translated strings from Monday to Sunday in user selected locale
@@ -179,6 +187,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_s));
     m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_s, u"preferences-system-network"_s));
     m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_s, u"network-wired"_s));
+    m_ui->tabSelection->item(TAB_LISTENING)->setIcon(UIThemeManager::instance()->getIcon(u"network-server"_s));
     m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_s, u"folder-download"_s));
     m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_s, u"chronometer"_s));
     m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_s, u"application-rss+xml"_s));
@@ -206,6 +215,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     loadBehaviorTabOptions();
     loadDownloadsTabOptions();
     loadConnectionTabOptions();
+    loadListeningTabOptions();
     loadSpeedTabOptions();
     loadBittorrentTabOptions();
     loadRSSTabOptions();
@@ -893,8 +903,6 @@ void OptionsDialog::loadConnectionTabOptions()
     const auto *session = BitTorrent::Session::instance();
 
     m_ui->comboProtocol->setCurrentIndex(static_cast<int>(session->btProtocol()));
-    m_ui->spinPort->setValue(session->port());
-    m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
 
     int intValue = session->maxConnections();
     if (intValue > 0)
@@ -1000,8 +1008,6 @@ void OptionsDialog::loadConnectionTabOptions()
     m_ui->checkIpFilterTrackers->setChecked(session->isTrackerFilteringEnabled());
 
     connect(m_ui->comboProtocol, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->spinPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkMaxConnections, &QAbstractButton::toggled, m_ui->spinMaxConnec, &QWidget::setEnabled);
     connect(m_ui->checkMaxConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1054,8 +1060,6 @@ void OptionsDialog::saveConnectionTabOptions() const
     auto *session = BitTorrent::Session::instance();
 
     session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m_ui->comboProtocol->currentIndex()));
-    session->setPort(getPort());
-    Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
 
     session->setMaxConnections(getMaxConnections());
     session->setMaxConnectionsPerTorrent(getMaxConnectionsPerTorrent());
@@ -1093,6 +1097,145 @@ void OptionsDialog::saveConnectionTabOptions() const
     session->setIPFilteringEnabled(isIPFilteringEnabled());
     session->setTrackerFilteringEnabled(m_ui->checkIpFilterTrackers->isChecked());
     session->setIPFilterFile(m_ui->textFilterPath->selectedPath());
+}
+
+void OptionsDialog::loadListeningTabOptions()
+{
+    const auto *session = BitTorrent::Session::instance();
+
+    m_listenEntries = session->listenEntries();
+    updateListenEntriesView(0);
+
+
+    m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
+
+    connect(m_ui->treeListenEntries, &QTreeWidget::itemSelectionChanged, this, &ThisType::updateListenEntryButtons);
+    connect(m_ui->treeListenEntries, &QTreeWidget::itemDoubleClicked, this, [this]
+    {
+        editListenEntry(currentListenEntryIndex());
+    });
+    connect(m_ui->addListenEntryButton, &QAbstractButton::clicked, this, &ThisType::addListenEntry);
+    connect(m_ui->editListenEntryButton, &QAbstractButton::clicked, this, [this]
+    {
+        editListenEntry(currentListenEntryIndex());
+    });
+    connect(m_ui->removeListenEntryButton, &QAbstractButton::clicked, this, &ThisType::removeListenEntry);
+
+
+    connect(m_ui->checkUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+}
+
+void OptionsDialog::saveListeningTabOptions() const
+{
+    auto *session = BitTorrent::Session::instance();
+
+    session->setListenEntries(m_listenEntries);
+    Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
+}
+
+
+int OptionsDialog::currentListenEntryIndex() const
+{
+    const QList<QTreeWidgetItem *> selectedItems = m_ui->treeListenEntries->selectedItems();
+    if (selectedItems.isEmpty())
+        return -1;
+
+    QTreeWidgetItem *item = selectedItems.first();
+    while (item->parent())
+        item = item->parent();
+    return m_ui->treeListenEntries->indexOfTopLevelItem(item);
+}
+
+void OptionsDialog::updateListenEntriesView(const int selectedIndex)
+{
+    m_ui->treeListenEntries->clear();
+    for (const BitTorrent::ListenEntry &entry : asConst(m_listenEntries))
+    {
+        QStringList ifaceTexts;
+        for (const BitTorrent::InterfaceSelection &selection : entry.interfaces)
+            ifaceTexts.append(AddressSelectionTree::interfaceText(selection));
+
+        auto *entryItem = new QTreeWidgetItem(m_ui->treeListenEntries);
+        entryItem->setText(LISTEN_COL_ADDRESSES, ifaceTexts.join(u", "));
+        entryItem->setText(LISTEN_COL_PORTS, BitTorrent::listenPortsToString(entry.ports));
+
+        for (const BitTorrent::InterfaceSelection &selection : entry.interfaces)
+        {
+            auto *ifaceItem = new QTreeWidgetItem(entryItem, {AddressSelectionTree::interfaceText(selection)});
+            if (!selection.ipv4.isEmpty())
+            {
+                new QTreeWidgetItem(ifaceItem
+                    , {tr("IPv4: %1").arg(AddressSelectionTree::addressSelectionText(selection.ipv4))});
+            }
+            if (!selection.ipv6.isEmpty())
+            {
+                new QTreeWidgetItem(ifaceItem
+                    , {tr("IPv6: %1").arg(AddressSelectionTree::addressSelectionText(selection.ipv6))});
+            }
+        }
+    }
+    m_ui->treeListenEntries->expandAll();
+
+    for (int i = 0; i < m_ui->treeListenEntries->columnCount(); ++i)
+        m_ui->treeListenEntries->resizeColumnToContents(i);
+
+    if (QTreeWidgetItem *item = m_ui->treeListenEntries->topLevelItem(selectedIndex))
+        item->setSelected(true);
+    updateListenEntryButtons();
+}
+
+void OptionsDialog::updateListenEntryButtons()
+{
+    const bool hasSelection = (currentListenEntryIndex() >= 0);
+    m_ui->editListenEntryButton->setEnabled(hasSelection);
+    // Without an entry, qBittorrent listens on nothing
+    m_ui->removeListenEntryButton->setEnabled(hasSelection && (m_listenEntries.size() > 1));
+}
+
+void OptionsDialog::addListenEntry()
+{
+    BitTorrent::ListenEntry entry;
+    entry.ports = {BitTorrent::ListenPort {.port = static_cast<int>(Utils::Random::rand(1024, 65535))}};
+
+    auto *dialog = new ListenEntryDialog(entry, this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(dialog, &QDialog::accepted, this, [this, dialog]
+    {
+        m_listenEntries.append(dialog->listenEntry());
+        updateListenEntriesView(m_listenEntries.size() - 1);
+        enableApplyButton();
+    });
+    dialog->open();
+}
+
+void OptionsDialog::editListenEntry(const int index)
+{
+    if ((index < 0) || (index >= m_listenEntries.size()))
+        return;
+
+    auto *dialog = new ListenEntryDialog(m_listenEntries.at(index), this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(dialog, &QDialog::accepted, this, [this, dialog, index]
+    {
+        if (index >= m_listenEntries.size())
+            return;
+
+        m_listenEntries[index] = dialog->listenEntry();
+        updateListenEntriesView(index);
+        enableApplyButton();
+    });
+    dialog->open();
+}
+
+void OptionsDialog::removeListenEntry()
+{
+    const int index = currentListenEntryIndex();
+    if ((index < 0) || (m_listenEntries.size() <= 1))
+        return;
+
+    m_listenEntries.removeAt(index);
+    updateListenEntriesView(std::min(index, static_cast<int>(m_listenEntries.size() - 1)));
+    enableApplyButton();
 }
 
 void OptionsDialog::loadSpeedTabOptions()
@@ -1686,6 +1829,7 @@ void OptionsDialog::saveOptions() const
     saveBehaviorTabOptions();
     saveDownloadsTabOptions();
     saveConnectionTabOptions();
+    saveListeningTabOptions();
     saveSpeedTabOptions();
     saveBittorrentTabOptions();
     saveRSSTabOptions();
@@ -1708,17 +1852,6 @@ bool OptionsDialog::isIPFilteringEnabled() const
 Net::ProxyType OptionsDialog::getProxyType() const
 {
     return m_ui->comboProxyType->currentData().value<Net::ProxyType>();
-}
-
-int OptionsDialog::getPort() const
-{
-    return m_ui->spinPort->value();
-}
-
-void OptionsDialog::on_randomButton_clicked()
-{
-    // Range [1024: 65535]
-    m_ui->spinPort->setValue(Utils::Random::rand(1024, 65535));
 }
 
 int OptionsDialog::getEncryptionSetting() const
@@ -1838,6 +1971,7 @@ bool OptionsDialog::applySettings()
         m_ui->tabSelection->setCurrentRow(TAB_SPEED);
         return false;
     }
+
 #ifndef DISABLE_WEBUI
     if (isWebUIEnabled() && !webUIAuthenticationOk())
     {
@@ -2245,9 +2379,9 @@ bool OptionsDialog::isAlternativeWebUIPathValid()
 }
 #endif
 
-void OptionsDialog::showConnectionTab()
+void OptionsDialog::showListeningTab()
 {
-    m_ui->tabSelection->setCurrentRow(TAB_CONNECTION);
+    m_ui->tabSelection->setCurrentRow(TAB_LISTENING);
 }
 
 void OptionsDialog::showSpeedWidgetSetting()

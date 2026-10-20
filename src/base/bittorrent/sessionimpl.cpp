@@ -90,6 +90,7 @@
 #include "base/keyvaluedatastorage.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
+#include "base/net/ipaddresswatcher.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
@@ -109,6 +110,7 @@
 #include "extensiondata.h"
 #include "filesearcher.h"
 #include "filterparserthread.h"
+#include "listenentry.h"
 #include "loadtorrentparams.h"
 #include "lttypecast.h"
 #include "nativesessionextension.h"
@@ -590,12 +592,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY(u"SaveResumeDataInterval"_s), 60)
     , m_saveStatisticsInterval(BITTORRENT_SESSION_KEY(u"SaveStatisticsInterval"_s), 15)
     , m_shutdownTimeout(BITTORRENT_SESSION_KEY(u"ShutdownTimeout"_s), -1)
-    , m_port(BITTORRENT_SESSION_KEY(u"Port"_s), -1)
-    , m_sslEnabled(BITTORRENT_SESSION_KEY(u"SSL/Enabled"_s), false)
-    , m_sslPort(BITTORRENT_SESSION_KEY(u"SSL/Port"_s), -1)
-    , m_networkInterface(BITTORRENT_SESSION_KEY(u"Interface"_s))
-    , m_networkInterfaceName(BITTORRENT_SESSION_KEY(u"InterfaceName"_s))
-    , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY(u"InterfaceAddress"_s))
+    , m_storedListenEntries(BITTORRENT_SESSION_KEY(u"ListenEntries"_s))
     , m_encryption(BITTORRENT_SESSION_KEY(u"Encryption"_s), 0)
     , m_maxActiveCheckingTorrents(BITTORRENT_SESSION_KEY(u"MaxActiveCheckingTorrents"_s), 1)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY(u"ProxyPeerConnections"_s), false)
@@ -662,14 +659,28 @@ SessionImpl::SessionImpl(QObject *parent)
 
     m_alerts.reserve(1024);
 
-    if (port() < 0)
-        m_port = Utils::Random::rand(1024, 65535);
-    if (sslPort() < 0)
+    const QStringList storedListenEntries = m_storedListenEntries;
+    m_listenEntries = deserializeListenEntries(storedListenEntries);
+    if (m_listenEntries.size() != storedListenEntries.size())
     {
-        m_sslPort = Utils::Random::rand(1024, 65535);
-        while (m_sslPort == port())
-            m_sslPort = Utils::Random::rand(1024, 65535);
+        LogMsg(tr("Skipped invalid listen entries in the settings. Count: %1")
+            .arg(storedListenEntries.size() - m_listenEntries.size()), Log::WARNING);
     }
+    if (storedListenEntries.isEmpty())
+    {
+        m_listenEntries = {makeDefaultListenEntry(Utils::Random::rand(1024, 65535))};
+        m_storedListenEntries = serializeListenEntries(m_listenEntries);
+    }
+    else if (m_listenEntries.isEmpty())
+    {
+        // Listening on all interfaces could open the interfaces that the user excluded.
+        // The stored value stays, so that it can be fixed by hand.
+        LogMsg(tr("No valid listen entry in the settings. qBittorrent does not listen until you add one."), Log::CRITICAL);
+    }
+
+
+    m_ipAddressWatcher = new Net::IPAddressWatcher(this);
+    connect(m_ipAddressWatcher, &Net::IPAddressWatcher::addressesChanged, this, &SessionImpl::handleIPAddressesChanged);
 
     m_recentErroredTorrentsTimer->setSingleShot(true);
     m_recentErroredTorrentsTimer->setInterval(1s);
@@ -2310,67 +2321,21 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
     if (m_listenInterfaceConfigured)
         return;
 
-    if (port() > 0)  // user has specified port number
-        settingsPack.set_int(lt::settings_pack::max_retry_port_bind, 0);
+    // The user chose each port; the next ports can belong to other entries
+    settingsPack.set_int(lt::settings_pack::max_retry_port_bind, 0);
 
-    QStringList endpoints;
-    QStringList outgoingInterfaces;
-    QStringList portStrings = {u':' + QString::number(port())};
-    if (isSSLEnabled())
-        portStrings.append(u':' + QString::number(sslPort()) + u's');
+    const ListenConfiguration config = resolveListenConfiguration(m_listenEntries, takeNetworkSnapshot());
+    logListenConfiguration(config);
 
-    for (const QString &ip : asConst(getListeningIPs()))
-    {
-        const QHostAddress addr {ip};
-        if (!addr.isNull())
-        {
-            const bool isIPv6 = (addr.protocol() == QAbstractSocket::IPv6Protocol);
-            const QString ip = isIPv6
-                          ? Utils::Net::canonicalIPv6Addr(addr).toString()
-                          : addr.toString();
+    settingsPack.set_str(lt::settings_pack::listen_interfaces, config.listenInterfaces.toStdString());
+    LogMsg(tr("Trying to listen on the following list of IP addresses: \"%1\"").arg(config.listenInterfaces));
 
-            for (const QString &portString : asConst(portStrings))
-                endpoints << ((isIPv6 ? (u'[' + ip + u']') : ip) + portString);
+    settingsPack.set_str(lt::settings_pack::outgoing_interfaces, config.outgoingInterfaces.toStdString());
+    if (!config.outgoingInterfaces.isEmpty())
+        LogMsg(tr("Outgoing connections use the following list: \"%1\"").arg(config.outgoingInterfaces));
 
-            if ((ip != u"0.0.0.0") && (ip != u"::"))
-                outgoingInterfaces << ip;
-        }
-        else
-        {
-            // ip holds an interface name
-#ifdef Q_OS_WIN
-            // On Vista+ versions and after Qt 5.5 QNetworkInterface::name() returns
-            // the interface's LUID and not the GUID.
-            // Libtorrent expects GUIDs for the 'listen_interfaces' setting.
-            const QString guid = convertIfaceNameToGuid(ip);
-            if (!guid.isEmpty())
-            {
-                for (const QString &portString : asConst(portStrings))
-                    endpoints << (guid + portString);
-                outgoingInterfaces << guid;
-            }
-            else
-            {
-                LogMsg(tr("Could not find GUID of network interface. Interface: \"%1\"").arg(ip), Log::WARNING);
-                // Since we can't get the GUID, we'll pass the interface name instead.
-                // Otherwise an empty string will be passed to outgoing_interface which will cause IP leak.
-                for (const QString &portString : asConst(portStrings))
-                    endpoints << (ip + portString);
-                outgoingInterfaces << ip;
-            }
-#else
-            for (const QString &portString : asConst(portStrings))
-                endpoints << (ip + portString);
-            outgoingInterfaces << ip;
-#endif
-        }
-    }
-
-    const QString finalEndpoints = endpoints.join(u',');
-    settingsPack.set_str(lt::settings_pack::listen_interfaces, finalEndpoints.toStdString());
-    LogMsg(tr("Trying to listen on the following list of IP addresses: \"%1\"").arg(finalEndpoints));
-
-    settingsPack.set_str(lt::settings_pack::outgoing_interfaces, outgoingInterfaces.join(u',').toStdString());
+    m_lastListenInterfaces = config.listenInterfaces;
+    m_lastOutgoingInterfaces = config.outgoingInterfaces;
     m_listenInterfaceConfigured = true;
 }
 
@@ -3526,107 +3491,102 @@ void SessionImpl::setDownloadPath(const Path &path)
         torrent->handleCategoryOptionsChanged();
 }
 
-QStringList SessionImpl::getListeningIPs() const
+NetworkSnapshot SessionImpl::takeNetworkSnapshot() const
 {
-    QStringList IPs;
+    // One call, because each call lists all interfaces and probes the addresses
+    const QList<QHostAddress> temporaryIPv6Addresses = usesTemporaryIPv6Addresses(m_listenEntries)
+        ? Utils::Net::temporaryIPv6Addresses() : QList<QHostAddress>();
 
-    const QString ifaceName = networkInterface();
-    const QString ifaceAddr = networkInterfaceAddress();
-    const QHostAddress configuredAddr(ifaceAddr);
-    const bool allIPv4 = (ifaceAddr == u"0.0.0.0"); // Means All IPv4 addresses
-    const bool allIPv6 = (ifaceAddr == u"::"); // Means All IPv6 addresses
-
-    if (!ifaceAddr.isEmpty() && !allIPv4 && !allIPv6 && configuredAddr.isNull())
+    NetworkSnapshot network;
+    for (const QNetworkInterface &iface : asConst(QNetworkInterface::allInterfaces()))
     {
-        LogMsg(tr("The configured network address is invalid. Address: \"%1\"").arg(ifaceAddr), Log::CRITICAL);
-        // Pass the invalid user configured interface name/address to libtorrent
-        // in hopes that it will come online later.
-        // This will not cause IP leak but allow user to reconnect the interface
-        // and re-establish connection without restarting the client.
-        IPs.append(ifaceAddr);
-        return IPs;
-    }
+        NetworkInterfaceInfo info;
+        info.name = iface.name();
+#ifdef Q_OS_WIN
+        // On Vista+ versions and after Qt 5.5 QNetworkInterface::name() returns
+        // the interface's LUID and not the GUID.
+        // Libtorrent expects GUIDs for the 'outgoing_interfaces' setting.
+        const QString guid = convertIfaceNameToGuid(info.name);
+        info.device = guid.isEmpty() ? info.name : guid;
+#else
+        info.device = info.name;
+#endif
 
-    if (ifaceName.isEmpty())
-    {
-        if (ifaceAddr.isEmpty())
-            return {u"0.0.0.0"_s, u"::"_s}; // Indicates all interfaces + all addresses (aka default)
-
-        if (allIPv4)
-            return {u"0.0.0.0"_s};
-
-        if (allIPv6)
-            return {u"::"_s};
-    }
-
-    const auto checkAndAddIP = [allIPv4, allIPv6, &IPs](const QHostAddress &addr, const QHostAddress &match)
-    {
-        if ((allIPv4 && (addr.protocol() != QAbstractSocket::IPv4Protocol))
-            || (allIPv6 && (addr.protocol() != QAbstractSocket::IPv6Protocol)))
-            return;
-
-        if ((match == addr) || allIPv4 || allIPv6)
-            IPs.append(addr.toString());
-    };
-
-    if (ifaceName.isEmpty())
-    {
-        const QList<QHostAddress> addresses = QNetworkInterface::allAddresses();
-        for (const auto &addr : addresses)
-            checkAndAddIP(addr, configuredAddr);
-
-        // At this point ifaceAddr was non-empty
-        // If IPs.isEmpty() it means the configured Address was not found
-        if (IPs.isEmpty())
+        // Windows keeps reporting the addresses of a disconnected adapter, but nothing can bind them
+        const QNetworkInterface::InterfaceFlags runningFlags = QNetworkInterface::IsUp | QNetworkInterface::IsRunning;
+        if ((iface.flags() & runningFlags) == runningFlags)
         {
-            LogMsg(tr("Failed to find the configured network address to listen on. Address: \"%1\"")
-                .arg(ifaceAddr), Log::CRITICAL);
-            IPs.append(ifaceAddr);
+            for (const QNetworkAddressEntry &entry : asConst(iface.addressEntries()))
+            {
+                // A deprecated address must not be used for new connections.
+                // Qt on Windows swaps the lifetimes; the preferred one never exceeds the valid one.
+                if (std::min(entry.preferredLifetime(), entry.validityLifetime()).hasExpired())
+                    continue;
+
+                info.addresses.append(entry.ip());
+            }
+        }
+        // Sort them to avoid listening on the same addresses again
+        // when the OS lists them in another order. See `handleIPAddressesChanged()`.
+        std::ranges::sort(info.addresses, Utils::Net::lessThan);
+
+        for (const QHostAddress &addr : temporaryIPv6Addresses)
+        {
+            if (Utils::Net::containsIPv6Address(info.addresses, addr))
+                info.temporaryIPv6Addresses.append(addr);
         }
 
-        return IPs;
+        network.append(info);
     }
 
-    // Attempt to listen on provided interface
-    const QNetworkInterface networkIFace = QNetworkInterface::interfaceFromName(ifaceName);
-    if (!networkIFace.isValid())
-    {
-        qDebug("Invalid network interface: %s", qUtf8Printable(ifaceName));
-        LogMsg(tr("The configured network interface is invalid. Interface: \"%1\"").arg(ifaceName), Log::CRITICAL);
-        IPs.append(ifaceName);
-        return IPs;
-    }
-
-    if (ifaceAddr.isEmpty())
-    {
-        IPs.append(ifaceName);
-        return IPs; // On Windows calling code converts it to GUID
-    }
-
-    const QList<QNetworkAddressEntry> addresses = networkIFace.addressEntries();
-    qDebug() << "This network interface has " << addresses.size() << " IP addresses";
-    for (const QNetworkAddressEntry &entry : addresses)
-        checkAndAddIP(entry.ip(), configuredAddr);
-
-    // Make sure there is at least one IP
-    // At this point there was an explicit interface and an explicit address set
-    // and the address should have been found
-    if (IPs.isEmpty())
-    {
-        LogMsg(tr("Failed to find the configured network address to listen on. Address: \"%1\"")
-            .arg(ifaceAddr), Log::CRITICAL);
-        IPs.append(ifaceAddr);
-    }
-
-    return IPs;
+    return network;
 }
 
-// Set the ports range in which is chosen the port
-// the BitTorrent session will listen to
+void SessionImpl::logListenConfiguration(const ListenConfiguration &config) const
+{
+    for (const QString &iface : config.missingInterfaces)
+        LogMsg(tr("The configured network interface is not found. Interface: \"%1\"").arg(iface), Log::WARNING);
+
+    for (const QHostAddress &addr : config.missingFixedAddresses)
+        LogMsg(tr("Failed to find the configured network address to listen on. Address: \"%1\"").arg(addr.toString()), Log::WARNING);
+
+    if (usesTemporaryIPv6Addresses(m_listenEntries) && !Utils::Net::isTemporaryIPv6Supported())
+        LogMsg(tr("Temporary IPv6 addresses are not supported on this system."), Log::WARNING);
+
+    for (const ListenUnit &unit : config.conflictingUnits)
+    {
+        LogMsg(tr("Skipped a listen address, because another entry uses its port with another SSL setting. Address: \"%1\"")
+            .arg(unit.toString()), Log::WARNING);
+    }
+
+    if (config.units.isEmpty())
+        LogMsg(tr("There is no address to listen on."), Log::WARNING);
+
+    if (config.isOutgoingBlocked)
+    {
+        LogMsg(tr("No outgoing interface or address is available now. Outgoing connections fail until it comes back."), Log::WARNING);
+    }
+    else if (config.hasMixedOutgoingFamilies)
+    {
+        LogMsg(tr("The outgoing addresses mix IPv4 and IPv6. libtorrent uses them in turn,"
+            " so a connection fails when the address and the peer are of different families."), Log::WARNING);
+    }
+}
+
 void SessionImpl::configureListeningInterface()
 {
     m_listenInterfaceConfigured = false;
     configureDeferred();
+}
+
+void SessionImpl::handleIPAddressesChanged()
+{
+    const ListenConfiguration config = resolveListenConfiguration(m_listenEntries, takeNetworkSnapshot());
+    if ((config.listenInterfaces == m_lastListenInterfaces) && (config.outgoingInterfaces == m_lastOutgoingInterfaces))
+        return;
+
+    LogMsg(tr("Network addresses changed. Refreshing the listening addresses."));
+    configureListeningInterface();
 }
 
 int SessionImpl::globalDownloadSpeedLimit() const
@@ -3855,85 +3815,21 @@ void SessionImpl::setShutdownTimeout(const int value)
     m_shutdownTimeout = value;
 }
 
-int SessionImpl::port() const
+QList<ListenEntry> SessionImpl::listenEntries() const
 {
-    return m_port;
+    return m_listenEntries;
 }
 
-void SessionImpl::setPort(const int port)
+void SessionImpl::setListenEntries(const QList<ListenEntry> &entries)
 {
-    if (port != m_port)
-    {
-        m_port = port;
-        configureListeningInterface();
-    }
-}
-
-bool SessionImpl::isSSLEnabled() const
-{
-    return m_sslEnabled;
-}
-
-void SessionImpl::setSSLEnabled(const bool enabled)
-{
-    if (enabled == isSSLEnabled())
+    if (entries.isEmpty() || (entries == m_listenEntries))
         return;
 
-    m_sslEnabled = enabled;
+    m_listenEntries = entries;
+    m_storedListenEntries = serializeListenEntries(entries);
     configureListeningInterface();
 }
 
-int SessionImpl::sslPort() const
-{
-    return m_sslPort;
-}
-
-void SessionImpl::setSSLPort(const int port)
-{
-    if (port == sslPort())
-        return;
-
-    m_sslPort = port;
-    configureListeningInterface();
-}
-
-QString SessionImpl::networkInterface() const
-{
-    return m_networkInterface;
-}
-
-void SessionImpl::setNetworkInterface(const QString &iface)
-{
-    if (iface != networkInterface())
-    {
-        m_networkInterface = iface;
-        configureListeningInterface();
-    }
-}
-
-QString SessionImpl::networkInterfaceName() const
-{
-    return m_networkInterfaceName;
-}
-
-void SessionImpl::setNetworkInterfaceName(const QString &name)
-{
-    m_networkInterfaceName = name;
-}
-
-QString SessionImpl::networkInterfaceAddress() const
-{
-    return m_networkInterfaceAddress;
-}
-
-void SessionImpl::setNetworkInterfaceAddress(const QString &address)
-{
-    if (address != networkInterfaceAddress())
-    {
-        m_networkInterfaceAddress = address;
-        configureListeningInterface();
-    }
-}
 
 int SessionImpl::encryption() const
 {

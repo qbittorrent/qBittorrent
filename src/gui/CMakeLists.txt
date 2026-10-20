@@ -12,6 +12,7 @@ qt_wrap_ui(UI_HEADERS
     downloadfromurldialog.ui
     executionlogwidget.ui
     ipsubnetwhitelistoptionsdialog.ui
+    listenentrydialog.ui
     mainwindow.ui
     optionsdialog.ui
     previewselectdialog.ui
@@ -67,6 +68,7 @@ add_library(qbt_gui STATIC
     interfaces/iguiapplication.h
     ipsubnetwhitelistoptionsdialog.h
     lineedit.h
+    listenentrydialog.h
     log/logfiltermodel.h
     log/loglistview.h
     log/logmodel.h
@@ -174,6 +176,7 @@ add_library(qbt_gui STATIC
     hidabletabwidget.cpp
     ipsubnetwhitelistoptionsdialog.cpp
     lineedit.cpp
+    listenentrydialog.cpp
     log/logfiltermodel.cpp
     log/loglistview.cpp
     log/logmodel.cpp

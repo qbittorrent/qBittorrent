@@ -1772,7 +1772,7 @@ void MainWindow::on_actionDonateMoney_triggered()
 void MainWindow::showConnectionSettings()
 {
     on_actionOptions_triggered();
-    m_options->showConnectionTab();
+    m_options->showListeningTab();
 }
 
 void MainWindow::minimizeWindow()
