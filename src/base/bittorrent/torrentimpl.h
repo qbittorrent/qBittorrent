@@ -267,6 +267,8 @@ namespace BitTorrent
         void handleFileRenamed(lt::file_index_t nativeFileIndex, const Path &newActualFilePath, const Path &oldActualFilePath);
         void handleFileRenameFailed(lt::file_index_t nativeFileIndex);
         void handleMetadataReceived();
+        void handleMetadataStored();
+        void handleSaveResumeDataFailed();
         void handleSaveResumeData(lt::add_torrent_params params);
         void handleTorrentChecked();
         void handleTorrentFinished();
@@ -394,5 +396,7 @@ namespace BitTorrent
         QList<std::int64_t> m_filesProgress;
 
         bool m_deferredRequestResumeDataInvoked = false;
+        bool m_needSaveMetadata = false;
+        bool m_needSaveResumeData = false;
     };
 }
