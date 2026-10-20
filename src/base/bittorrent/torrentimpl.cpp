@@ -953,13 +953,10 @@ QString TorrentImpl::category() const
 
 bool TorrentImpl::belongsToCategory(const QString &category) const
 {
-    if (m_category.isEmpty())
-        return category.isEmpty();
+    if (const qsizetype testLength = category.size(); testLength < m_category.size())
+        return (m_category.at(testLength) == u'/') && m_category.startsWith(category);
 
-    if (m_category == category)
-        return true;
-
-    return m_category.startsWith(category + u'/');
+    return (m_category == category);
 }
 
 TagSet TorrentImpl::tags() const
