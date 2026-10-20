@@ -168,6 +168,7 @@ private:
     bool addTorrentsStopped() const;
     // Listening options
     bool isUPnPEnabled() const;
+    BitTorrent::OutgoingInterfaces getOutgoingInterfaces() const;
     int currentListenEntryIndex() const;
     void updateListenEntriesView(int selectedIndex);
     void updateListenEntryButtons();

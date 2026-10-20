@@ -87,6 +87,21 @@ namespace BitTorrent
         friend bool operator==(const ListenEntry &left, const ListenEntry &right) = default;
     };
 
+    // The value of libtorrent's `outgoing_interfaces`
+    struct OutgoingInterfaces
+    {
+        enum class Mode
+        {
+            ListenAddresses,  // the addresses that libtorrent listens on
+            Any,  // libtorrent connects through any interface
+            Selected  // the addresses that `interfaces` selects
+        };
+
+        Mode mode = Mode::ListenAddresses;
+        QList<InterfaceSelection> interfaces;  // for `Mode::Selected`, each interface at most once
+
+        friend bool operator==(const OutgoingInterfaces &left, const OutgoingInterfaces &right) = default;
+    };
 
     // Any interface, all IPv4 and IPv6 addresses
     ListenEntry makeDefaultListenEntry(int port);
@@ -114,11 +129,19 @@ namespace BitTorrent
     // or has a port both as a plain and an SSL port. A port can also be a JSON number.
     std::optional<ListenEntry> parseListenEntry(const QJsonObject &jsonObj);
 
+    // {"mode": "listen_addresses" | "any" | "selected", "interfaces": [<interface selection>, ...]}
+    QJsonObject toJsonObject(const OutgoingInterfaces &outgoing);
+    // Returns `std::nullopt` if `jsonObj` is not valid, or has an interface more than once.
+    // "interfaces" is optional and is ignored unless "mode" is "selected".
+    std::optional<OutgoingInterfaces> parseOutgoingInterfaces(const QJsonObject &jsonObj);
 
     // The settings store one JSON object for each entry
     QStringList serializeListenEntries(const QList<ListenEntry> &entries);
     // Skips the values that are not valid entries
     QList<ListenEntry> deserializeListenEntries(const QStringList &values);
+    QString serializeOutgoingInterfaces(const OutgoingInterfaces &outgoing);
+    // Returns `std::nullopt` if `value` is not valid
+    std::optional<OutgoingInterfaces> deserializeOutgoingInterfaces(const QString &value);
 
     struct NetworkInterfaceInfo
     {
@@ -166,9 +189,9 @@ namespace BitTorrent
         // Units that are left out, because an earlier unit has the same address and port with another SSL flag
         QList<ListenUnit> conflictingUnits;
         QString listenInterfaces;  // for libtorrent's `listen_interfaces`
-        // For libtorrent's `outgoing_interfaces`, from the selections of the entries. Empty lets libtorrent
-        // connect through any interface: if an entry selects all addresses of a family on any interface
-        // (as the wildcards did before). Otherwise it holds:
+        // For libtorrent's `outgoing_interfaces`. Empty lets libtorrent connect through any interface:
+        // for `OutgoingInterfaces::Mode::Any`, and for the listen addresses if an entry selects all addresses
+        // of a family on any interface (as the wildcards did before). Otherwise it holds:
         // * the device of an interface that has a selected family with all addresses
         //   (libtorrent binds a device to an address of the family of the peer),
         // * the other selected addresses, except loopback and link-local addresses,
@@ -184,8 +207,9 @@ namespace BitTorrent
         QList<QHostAddress> missingFixedAddresses;
     };
 
-    ListenConfiguration resolveListenConfiguration(const QList<ListenEntry> &entries, const NetworkSnapshot &network);
+    ListenConfiguration resolveListenConfiguration(const QList<ListenEntry> &entries
+        , const OutgoingInterfaces &outgoing, const NetworkSnapshot &network);
 
     // Whether `NetworkSnapshot` needs the temporary IPv6 addresses, which are expensive to find
-    bool usesTemporaryIPv6Addresses(const QList<ListenEntry> &entries);
+    bool usesTemporaryIPv6Addresses(const QList<ListenEntry> &entries, const OutgoingInterfaces &outgoing);
 }

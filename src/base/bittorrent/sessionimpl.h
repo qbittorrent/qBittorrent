@@ -260,6 +260,8 @@ namespace BitTorrent
         void setShutdownTimeout(int value) override;
         QList<ListenEntry> listenEntries() const override;
         void setListenEntries(const QList<ListenEntry> &entries) override;
+        OutgoingInterfaces outgoingInterfaces() const override;
+        void setOutgoingInterfaces(const OutgoingInterfaces &outgoing) override;
         int encryption() const override;
         void setEncryption(int state) override;
         int maxActiveCheckingTorrents() const override;
@@ -771,6 +773,8 @@ namespace BitTorrent
         CachedSettingValue<int> m_shutdownTimeout;
         CachedSettingValue<QStringList> m_storedListenEntries;
         QList<ListenEntry> m_listenEntries;
+        CachedSettingValue<QString> m_storedOutgoingInterfaces;
+        OutgoingInterfaces m_outgoingInterfaces;
         CachedSettingValue<int> m_encryption;
         CachedSettingValue<int> m_maxActiveCheckingTorrents;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;

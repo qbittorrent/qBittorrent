@@ -54,6 +54,7 @@ namespace BitTorrent
     class TorrentInfo;
     struct CacheStatus;
     struct ListenEntry;
+    struct OutgoingInterfaces;
     struct SessionStatus;
 
     enum class TorrentRemoveOption
@@ -280,6 +281,8 @@ namespace BitTorrent
         virtual QList<ListenEntry> listenEntries() const = 0;
         // Ignores an empty list
         virtual void setListenEntries(const QList<ListenEntry> &entries) = 0;
+        virtual OutgoingInterfaces outgoingInterfaces() const = 0;
+        virtual void setOutgoingInterfaces(const OutgoingInterfaces &outgoing) = 0;
         virtual int encryption() const = 0;
         virtual void setEncryption(int state) = 0;
         virtual int maxActiveCheckingTorrents() const = 0;

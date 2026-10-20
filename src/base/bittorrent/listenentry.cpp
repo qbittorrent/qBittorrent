@@ -47,11 +47,14 @@ namespace
     const QString KEY_IPV6 = u"ipv6"_s;
     const QString KEY_INTERFACES = u"interfaces"_s;
     const QString KEY_PORTS = u"ports"_s;
-
+    const QString KEY_MODE = u"mode"_s;
 
     const QString SELECTION_ALL = u"all"_s;
     const QString SELECTION_TEMPORARY = u"temporary"_s;
 
+    const QString MODE_LISTEN_ADDRESSES = u"listen_addresses"_s;
+    const QString MODE_ANY = u"any"_s;
+    const QString MODE_SELECTED = u"selected"_s;
 
     bool isIPv6(const QHostAddress &addr)
     {
@@ -420,6 +423,57 @@ std::optional<BitTorrent::ListenEntry> BitTorrent::parseListenEntry(const QJsonO
     return ListenEntry {.interfaces = *interfaces, .ports = ports};
 }
 
+QJsonObject BitTorrent::toJsonObject(const OutgoingInterfaces &outgoing)
+{
+    QString mode;
+    switch (outgoing.mode)
+    {
+    case OutgoingInterfaces::Mode::ListenAddresses:
+        mode = MODE_LISTEN_ADDRESSES;
+        break;
+    case OutgoingInterfaces::Mode::Any:
+        mode = MODE_ANY;
+        break;
+    case OutgoingInterfaces::Mode::Selected:
+        mode = MODE_SELECTED;
+        break;
+    }
+
+    return {
+        {KEY_MODE, mode},
+        {KEY_INTERFACES, toJsonArray(outgoing.interfaces)}
+    };
+}
+
+std::optional<BitTorrent::OutgoingInterfaces> BitTorrent::parseOutgoingInterfaces(const QJsonObject &jsonObj)
+{
+    OutgoingInterfaces outgoing;
+
+    const QString mode = jsonObj.value(KEY_MODE).toString();
+    if (mode == MODE_LISTEN_ADDRESSES)
+        outgoing.mode = OutgoingInterfaces::Mode::ListenAddresses;
+    else if (mode == MODE_ANY)
+        outgoing.mode = OutgoingInterfaces::Mode::Any;
+    else if (mode == MODE_SELECTED)
+        outgoing.mode = OutgoingInterfaces::Mode::Selected;
+    else
+        return std::nullopt;
+
+    if (outgoing.mode != OutgoingInterfaces::Mode::Selected)
+        return outgoing;
+
+    const QJsonValue interfacesVal = jsonObj.value(KEY_INTERFACES);
+    if (interfacesVal.isUndefined())
+        return outgoing;
+
+    const std::optional<QList<InterfaceSelection>> interfaces = parseInterfaceSelections(interfacesVal);
+    if (!interfaces)
+        return std::nullopt;
+
+    outgoing.interfaces = *interfaces;
+    return outgoing;
+}
+
 QStringList BitTorrent::serializeListenEntries(const QList<ListenEntry> &entries)
 {
     QStringList values;
@@ -443,6 +497,20 @@ QList<BitTorrent::ListenEntry> BitTorrent::deserializeListenEntries(const QStrin
             entries.append(*entry);
     }
     return entries;
+}
+
+QString BitTorrent::serializeOutgoingInterfaces(const OutgoingInterfaces &outgoing)
+{
+    return QString::fromUtf8(QJsonDocument(toJsonObject(outgoing)).toJson(QJsonDocument::Compact));
+}
+
+std::optional<BitTorrent::OutgoingInterfaces> BitTorrent::deserializeOutgoingInterfaces(const QString &value)
+{
+    const QJsonDocument jsonDoc = QJsonDocument::fromJson(value.toUtf8());
+    if (!jsonDoc.isObject())
+        return std::nullopt;
+
+    return parseOutgoingInterfaces(jsonDoc.object());
 }
 
 BitTorrent::ResolvedSelection BitTorrent::resolveSelection(const QList<InterfaceSelection> &interfaces, const NetworkSnapshot &network)
@@ -519,15 +587,18 @@ namespace
     // libtorrent binds each outgoing connection to the next item of `outgoing_interfaces`.
     // It binds a device to an address of the family of the peer, but an IP address only as it is.
     OutgoingItems resolveOutgoingItems(const QList<BitTorrent::InterfaceSelection> &interfaces
-        , const BitTorrent::NetworkSnapshot &network)
+        , const BitTorrent::NetworkSnapshot &network, const bool isListenMode)
     {
         OutgoingItems result;
         for (const BitTorrent::InterfaceSelection &selection : interfaces)
         {
             if (selection.iface.isEmpty())
             {
-                // Keeps the behavior of the wildcards that it replaced
-                if (selection.ipv4.allAddresses || selection.ipv6.allAddresses)
+                // The listen mode keeps the behavior of the wildcards that it replaced
+                const bool isAnyInterface = isListenMode
+                    ? (selection.ipv4.allAddresses || selection.ipv6.allAddresses)
+                    : (selection.ipv4.allAddresses && selection.ipv6.allAddresses);
+                if (isAnyInterface)
                 {
                     OutgoingItems anyInterface;
                     anyInterface.isAnyInterface = true;
@@ -572,7 +643,7 @@ namespace
 }
 
 BitTorrent::ListenConfiguration BitTorrent::resolveListenConfiguration(const QList<ListenEntry> &entries
-    , const NetworkSnapshot &network)
+    , const OutgoingInterfaces &outgoing, const NetworkSnapshot &network)
 {
     ListenConfiguration result;
 
@@ -606,11 +677,22 @@ BitTorrent::ListenConfiguration BitTorrent::resolveListenConfiguration(const QLi
         unitStrings.append(unit.toString());
     result.listenInterfaces = unitStrings.join(u',');
 
-    QList<InterfaceSelection> outgoingSelections;
-    for (const ListenEntry &entry : entries)
-        outgoingSelections.append(entry.interfaces);
+    if (outgoing.mode == OutgoingInterfaces::Mode::Any)
+        return result;
 
-    const OutgoingItems outgoingItems = resolveOutgoingItems(outgoingSelections, network);
+    QList<InterfaceSelection> outgoingSelections;
+    if (outgoing.mode == OutgoingInterfaces::Mode::ListenAddresses)
+    {
+        for (const ListenEntry &entry : entries)
+            outgoingSelections.append(entry.interfaces);
+    }
+    else
+    {
+        outgoingSelections = outgoing.interfaces;
+    }
+
+    const OutgoingItems outgoingItems = resolveOutgoingItems(outgoingSelections, network
+        , (outgoing.mode == OutgoingInterfaces::Mode::ListenAddresses));
     if (outgoingItems.isAnyInterface)
         return result;
 
@@ -620,13 +702,17 @@ BitTorrent::ListenConfiguration BitTorrent::resolveListenConfiguration(const QLi
     return result;
 }
 
-bool BitTorrent::usesTemporaryIPv6Addresses(const QList<ListenEntry> &entries)
+bool BitTorrent::usesTemporaryIPv6Addresses(const QList<ListenEntry> &entries, const OutgoingInterfaces &outgoing)
 {
-    return std::ranges::any_of(entries, [](const ListenEntry &entry)
+    const auto usesTemporary = [](const InterfaceSelection &selection) { return selection.ipv6.temporaryAddresses; };
+
+    const bool isUsedByEntries = std::ranges::any_of(entries, [&usesTemporary](const ListenEntry &entry)
     {
-        return std::ranges::any_of(entry.interfaces, [](const InterfaceSelection &selection)
-        {
-            return selection.ipv6.temporaryAddresses;
-        });
+        return std::ranges::any_of(entry.interfaces, usesTemporary);
     });
+    if (isUsedByEntries)
+        return true;
+
+    return (outgoing.mode == OutgoingInterfaces::Mode::Selected)
+        && std::ranges::any_of(outgoing.interfaces, usesTemporary);
 }

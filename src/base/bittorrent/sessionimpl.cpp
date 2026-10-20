@@ -593,6 +593,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_saveStatisticsInterval(BITTORRENT_SESSION_KEY(u"SaveStatisticsInterval"_s), 15)
     , m_shutdownTimeout(BITTORRENT_SESSION_KEY(u"ShutdownTimeout"_s), -1)
     , m_storedListenEntries(BITTORRENT_SESSION_KEY(u"ListenEntries"_s))
+    , m_storedOutgoingInterfaces(BITTORRENT_SESSION_KEY(u"OutgoingInterfaces"_s))
     , m_encryption(BITTORRENT_SESSION_KEY(u"Encryption"_s), 0)
     , m_maxActiveCheckingTorrents(BITTORRENT_SESSION_KEY(u"MaxActiveCheckingTorrents"_s), 1)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY(u"ProxyPeerConnections"_s), false)
@@ -678,6 +679,18 @@ SessionImpl::SessionImpl(QObject *parent)
         LogMsg(tr("No valid listen entry in the settings. qBittorrent does not listen until you add one."), Log::CRITICAL);
     }
 
+    if (const QString storedOutgoing = m_storedOutgoingInterfaces; !storedOutgoing.isEmpty())
+    {
+        if (const std::optional<OutgoingInterfaces> outgoing = deserializeOutgoingInterfaces(storedOutgoing))
+        {
+            m_outgoingInterfaces = *outgoing;
+        }
+        else
+        {
+            // The default uses the listen addresses, so it cannot open more interfaces than the user chose
+            LogMsg(tr("Invalid outgoing interfaces in the settings. Using the listen addresses."), Log::WARNING);
+        }
+    }
 
     m_ipAddressWatcher = new Net::IPAddressWatcher(this);
     connect(m_ipAddressWatcher, &Net::IPAddressWatcher::addressesChanged, this, &SessionImpl::handleIPAddressesChanged);
@@ -2324,7 +2337,7 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
     // The user chose each port; the next ports can belong to other entries
     settingsPack.set_int(lt::settings_pack::max_retry_port_bind, 0);
 
-    const ListenConfiguration config = resolveListenConfiguration(m_listenEntries, takeNetworkSnapshot());
+    const ListenConfiguration config = resolveListenConfiguration(m_listenEntries, m_outgoingInterfaces, takeNetworkSnapshot());
     logListenConfiguration(config);
 
     settingsPack.set_str(lt::settings_pack::listen_interfaces, config.listenInterfaces.toStdString());
@@ -3494,7 +3507,7 @@ void SessionImpl::setDownloadPath(const Path &path)
 NetworkSnapshot SessionImpl::takeNetworkSnapshot() const
 {
     // One call, because each call lists all interfaces and probes the addresses
-    const QList<QHostAddress> temporaryIPv6Addresses = usesTemporaryIPv6Addresses(m_listenEntries)
+    const QList<QHostAddress> temporaryIPv6Addresses = usesTemporaryIPv6Addresses(m_listenEntries, m_outgoingInterfaces)
         ? Utils::Net::temporaryIPv6Addresses() : QList<QHostAddress>();
 
     NetworkSnapshot network;
@@ -3550,7 +3563,7 @@ void SessionImpl::logListenConfiguration(const ListenConfiguration &config) cons
     for (const QHostAddress &addr : config.missingFixedAddresses)
         LogMsg(tr("Failed to find the configured network address to listen on. Address: \"%1\"").arg(addr.toString()), Log::WARNING);
 
-    if (usesTemporaryIPv6Addresses(m_listenEntries) && !Utils::Net::isTemporaryIPv6Supported())
+    if (usesTemporaryIPv6Addresses(m_listenEntries, m_outgoingInterfaces) && !Utils::Net::isTemporaryIPv6Supported())
         LogMsg(tr("Temporary IPv6 addresses are not supported on this system."), Log::WARNING);
 
     for (const ListenUnit &unit : config.conflictingUnits)
@@ -3581,7 +3594,7 @@ void SessionImpl::configureListeningInterface()
 
 void SessionImpl::handleIPAddressesChanged()
 {
-    const ListenConfiguration config = resolveListenConfiguration(m_listenEntries, takeNetworkSnapshot());
+    const ListenConfiguration config = resolveListenConfiguration(m_listenEntries, m_outgoingInterfaces, takeNetworkSnapshot());
     if ((config.listenInterfaces == m_lastListenInterfaces) && (config.outgoingInterfaces == m_lastOutgoingInterfaces))
         return;
 
@@ -3830,6 +3843,20 @@ void SessionImpl::setListenEntries(const QList<ListenEntry> &entries)
     configureListeningInterface();
 }
 
+OutgoingInterfaces SessionImpl::outgoingInterfaces() const
+{
+    return m_outgoingInterfaces;
+}
+
+void SessionImpl::setOutgoingInterfaces(const OutgoingInterfaces &outgoing)
+{
+    if (outgoing == m_outgoingInterfaces)
+        return;
+
+    m_outgoingInterfaces = outgoing;
+    m_storedOutgoingInterfaces = serializeOutgoingInterfaces(outgoing);
+    configureListeningInterface();
+}
 
 int SessionImpl::encryption() const
 {

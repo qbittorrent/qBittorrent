@@ -710,6 +710,22 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
             </div>
         </fieldset>
     </fieldset>
+    <fieldset class="settings">
+        <legend>QBT_TR(Outgoing connections)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow">
+            <input type="radio" id="outgoingListenAddresses" name="outgoingInterfacesMode" value="listen_addresses" onchange="qBittorrent.Preferences.updateOutgoingInterfacesEnabled();">
+            <label for="outgoingListenAddresses">QBT_TR(Use the listen addresses)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="radio" id="outgoingAny" name="outgoingInterfacesMode" value="any" onchange="qBittorrent.Preferences.updateOutgoingInterfacesEnabled();">
+            <label for="outgoingAny">QBT_TR(Use any interface)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="radio" id="outgoingSelected" name="outgoingInterfacesMode" value="selected" onchange="qBittorrent.Preferences.updateOutgoingInterfacesEnabled();">
+            <label for="outgoingSelected">QBT_TR(Use these interfaces and addresses:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div id="outgoingInterfacesTree" class="addressSelectionTree"></div>
+    </fieldset>
     <div class="formRow">
         <input type="checkbox" id="upnpCheckbox">
         <label for="upnpCheckbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -2010,6 +2026,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 acceptListenEntryEditor: acceptListenEntryEditor,
                 closeListenEntryEditor: closeListenEntryEditor,
                 setRandomListenPort: setRandomListenPort,
+                updateOutgoingInterfacesEnabled: updateOutgoingInterfacesEnabled,
                 updateMaxConnecEnabled: updateMaxConnecEnabled,
                 updateMaxConnecPerTorrentEnabled: updateMaxConnecPerTorrentEnabled,
                 updateMaxUploadsEnabled: updateMaxUploadsEnabled,
@@ -2412,6 +2429,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         let listenEntries = [];
         let editedListenEntryIndex = -1;  // -1 adds a new entry
         let listenEntryAddressTree = null;
+        let outgoingInterfacesTree = null;
+        let loadedOutgoingInterfaces = null;
 
         const fetchNetworkInterfaces = () => {
             networkInterfacesPromise ??= fetch("api/v2/app/networkInterfaces", {
@@ -2754,6 +2773,36 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             input.value = [`${port}`, ...sslPorts].join(", ");
         };
 
+        const loadOutgoingInterfaces = async (outgoing) => {
+            // Set the mode first, so that saving before the tree is ready keeps it
+            const radioIds = {
+                listen_addresses: "outgoingListenAddresses",
+                any: "outgoingAny",
+                selected: "outgoingSelected"
+            };
+            document.getElementById(radioIds[outgoing.mode] ?? "outgoingListenAddresses").checked = true;
+            loadedOutgoingInterfaces = outgoing;
+            outgoingInterfacesTree = null;
+
+            const networkInfo = await fetchNetworkInterfaces();
+            outgoingInterfacesTree = createAddressSelectionTree(document.getElementById("outgoingInterfacesTree"), (outgoing.interfaces ?? []), networkInfo);
+            updateOutgoingInterfacesEnabled();
+        };
+
+        const updateOutgoingInterfacesEnabled = () => {
+            outgoingInterfacesTree?.setEnabled(document.getElementById("outgoingSelected").checked);
+        };
+
+        const getOutgoingInterfaces = () => {
+            const mode = document.querySelector("input[name=outgoingInterfacesMode]:checked")?.value ?? "listen_addresses";
+            if (mode !== "selected")
+                return { mode: mode, interfaces: [] };
+            // The tree is not ready yet, so the selection is the loaded one
+            if (outgoingInterfacesTree === null)
+                return { mode: mode, interfaces: [...(loadedOutgoingInterfaces?.interfaces ?? [])] };
+            return { mode: mode, interfaces: outgoingInterfacesTree.getSelection() };
+        };
+
         const time_padding = (val) => {
             let ret = val.toString();
             if (ret.length === 1)
@@ -3017,6 +3066,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     listenEntries = [...pref.listen_entries];
                     closeListenEntryEditor();
                     updateListenEntriesTable();
+                    loadOutgoingInterfaces(pref.outgoing_interfaces);
                     document.getElementById("upnpCheckbox").checked = pref.upnp;
 
                     // Speed tab
@@ -3426,7 +3476,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // Listening tab
             settings["listen_entries"] = listenEntries;
-
+            const outgoingInterfaces = getOutgoingInterfaces();
+            if ((outgoingInterfaces.mode === "selected") && (outgoingInterfaces.interfaces.length === 0)) {
+                alert("QBT_TR(Select at least one interface or address for outgoing connections.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
+            settings["outgoing_interfaces"] = outgoingInterfaces;
             settings["upnp"] = document.getElementById("upnpCheckbox").checked;
 
             // Speed tab

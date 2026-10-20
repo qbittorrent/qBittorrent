@@ -2477,6 +2477,49 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupOutgoingInterfaces">
+              <property name="title">
+               <string>Outgoing connections</string>
+              </property>
+              <layout class="QVBoxLayout" name="outgoingInterfacesLayout">
+               <item>
+                <widget class="QRadioButton" name="radioOutgoingListenAddresses">
+                 <property name="text">
+                  <string>Use the listen addresses</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioOutgoingAny">
+                 <property name="text">
+                  <string>Use any interface</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioOutgoingSelected">
+                 <property name="text">
+                  <string>Use these interfaces and addresses:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="AddressSelectionTree" name="treeOutgoingInterfaces">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>250</width>
+                   <height>150</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QCheckBox" name="checkUPnP">
               <property name="text">
                <string>Use UPnP / NAT-PMP port forwarding from my router</string>
@@ -4520,6 +4563,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
    <extends>QWidget</extends>
    <header>gui/fspathedit.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AddressSelectionTree</class>
+   <extends>QTreeWidget</extends>
+   <header>gui/addressselectiontree.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

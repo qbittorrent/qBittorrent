@@ -247,6 +247,7 @@ void AppController::preferencesAction()
     for (const BitTorrent::ListenEntry &entry : asConst(session->listenEntries()))
         listenEntries.append(BitTorrent::toJsonObject(entry));
     data[u"listen_entries"_s] = listenEntries;
+    data[u"outgoing_interfaces"_s] = BitTorrent::toJsonObject(session->outgoingInterfaces());
     data[u"upnp"_s] = Net::PortForwarder::instance()->isEnabled();
     // Connections Limits
     data[u"max_connec"_s] = session->maxConnections();
@@ -556,7 +557,7 @@ void AppController::setPreferencesAction()
     // The name is shown while the interface is missing
     const auto fillInterfaceNames = [session](QList<BitTorrent::InterfaceSelection> &interfaces)
     {
-        QList<BitTorrent::InterfaceSelection> knownInterfaces;
+        QList<BitTorrent::InterfaceSelection> knownInterfaces = session->outgoingInterfaces().interfaces;
         for (const BitTorrent::ListenEntry &entry : asConst(session->listenEntries()))
             knownInterfaces.append(entry.interfaces);
 
@@ -575,7 +576,7 @@ void AppController::setPreferencesAction()
         }
     };
 
-    // Parse it before any change, so that an invalid list changes nothing
+    // Parse them before any change, so that an invalid value changes nothing
     std::optional<QList<BitTorrent::ListenEntry>> listenEntries;
     if (hasKey(u"listen_entries"_s))
     {
@@ -603,6 +604,16 @@ void AppController::setPreferencesAction()
         listenEntries = entries;
     }
 
+    std::optional<BitTorrent::OutgoingInterfaces> outgoingInterfaces;
+    if (hasKey(u"outgoing_interfaces"_s))
+    {
+        const QJsonValue jsonValue = QJsonValue::fromVariant(it.value());
+        outgoingInterfaces = jsonValue.isObject() ? BitTorrent::parseOutgoingInterfaces(jsonValue.toObject()) : std::nullopt;
+        if (!outgoingInterfaces)
+            throw APIError(APIErrorType::BadParams, tr("Invalid outgoing_interfaces"));
+
+        fillInterfaceNames(outgoingInterfaces->interfaces);
+    }
 
     // Behavior
     // Language
@@ -785,6 +796,8 @@ void AppController::setPreferencesAction()
     // Listening
     if (listenEntries)
         session->setListenEntries(*listenEntries);
+    if (outgoingInterfaces)
+        session->setOutgoingInterfaces(*outgoingInterfaces);
     if (hasKey(u"upnp"_s))
         Net::PortForwarder::instance()->setEnabled(it.value().toBool());
     // Connections Limits

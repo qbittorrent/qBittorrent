@@ -120,6 +120,11 @@ namespace
         return {.port = port, .isSSL = true};
     }
 
+    BitTorrent::OutgoingInterfaces makeOutgoing(const BitTorrent::OutgoingInterfaces::Mode mode
+        , const QList<BitTorrent::InterfaceSelection> &interfaces = {})
+    {
+        return {.mode = mode, .interfaces = interfaces};
+    }
 
     BitTorrent::ListenEntry makeEntry(const QList<BitTorrent::InterfaceSelection> &interfaces
         , const QList<BitTorrent::ListenPort> &ports = {makePort(6881)})
@@ -537,6 +542,108 @@ private slots:
         }
     }
 
+    void testOutgoingInterfacesToJson() const
+    {
+        using Mode = BitTorrent::OutgoingInterfaces::Mode;
+
+        QCOMPARE(BitTorrent::toJsonObject(makeOutgoing(Mode::ListenAddresses)).value(u"mode"_s).toString()
+            , u"listen_addresses"_s);
+        QCOMPARE(BitTorrent::toJsonObject(makeOutgoing(Mode::Any)).value(u"mode"_s).toString()
+            , u"any"_s);
+
+        const BitTorrent::OutgoingInterfaces selected {.mode = Mode::Selected, .interfaces = {makeSelection(u"wg0"_s, allAddresses())}};
+        const QJsonObject obj = BitTorrent::toJsonObject(selected);
+        QCOMPARE(obj.value(u"mode"_s).toString(), u"selected"_s);
+        const QJsonArray interfaces = obj.value(u"interfaces"_s).toArray();
+        QCOMPARE(interfaces.size(), 1);
+        QCOMPARE(interfaces.at(0).toObject(), BitTorrent::toJsonObject(selected.interfaces.first()));
+    }
+
+    void testParseOutgoingInterfaces() const
+    {
+        using Mode = BitTorrent::OutgoingInterfaces::Mode;
+
+        {
+            const std::optional<BitTorrent::OutgoingInterfaces> outgoing = BitTorrent::parseOutgoingInterfaces(jsonObject(uR"({"mode": "any"})"_s));
+            QVERIFY(outgoing.has_value());
+            QCOMPARE(*outgoing, makeOutgoing(Mode::Any));
+        }
+        {
+            const std::optional<BitTorrent::OutgoingInterfaces> outgoing = BitTorrent::parseOutgoingInterfaces(jsonObject(uR"({"mode": "listen_addresses"})"_s));
+            QVERIFY(outgoing.has_value());
+            QCOMPARE(*outgoing, makeOutgoing(Mode::ListenAddresses));
+        }
+        {
+            const std::optional<BitTorrent::OutgoingInterfaces> outgoing = BitTorrent::parseOutgoingInterfaces(jsonObject(
+                uR"({"mode": "selected", "interfaces": [{"interface": "wg0", "interface_name": "wg0", "ipv4": ["all"]}]})"_s));
+            QVERIFY(outgoing.has_value());
+            const BitTorrent::OutgoingInterfaces expected {.mode = Mode::Selected, .interfaces = {makeSelection(u"wg0"_s, allAddresses())}};
+            QCOMPARE(*outgoing, expected);
+        }
+        {
+            // "interfaces" is ignored unless the mode is "selected"
+            const std::optional<BitTorrent::OutgoingInterfaces> outgoing = BitTorrent::parseOutgoingInterfaces(jsonObject(
+                uR"({"mode": "any", "interfaces": [{"interface": "wg0", "interface_name": "wg0", "ipv4": ["all"]}]})"_s));
+            QVERIFY(outgoing.has_value());
+            QCOMPARE(*outgoing, makeOutgoing(Mode::Any));
+        }
+        {
+            const std::optional<BitTorrent::OutgoingInterfaces> outgoing = BitTorrent::parseOutgoingInterfaces(jsonObject(
+                uR"({"mode": "listen_addresses", "interfaces": [{"interface": "wg0", "interface_name": "wg0"}]})"_s));
+            QVERIFY(outgoing.has_value());
+            QCOMPARE(*outgoing, makeOutgoing(Mode::ListenAddresses));
+        }
+    }
+
+    void testParseOutgoingInterfacesInvalid_data() const
+    {
+        QTest::addColumn<QString>("json");
+
+        QTest::newRow("no mode") << uR"({})"_s;
+        QTest::newRow("unknown mode") << uR"({"mode": "all"})"_s;
+        QTest::newRow("mode not a string") << uR"({"mode": 1})"_s;
+        QTest::newRow("invalid selected interface")
+            << uR"({"mode": "selected", "interfaces": [{"interface": "", "interface_name": "", "ipv4": ["0.0.0.0"]}]})"_s;
+        QTest::newRow("same interface twice")
+            << uR"({"mode": "selected", "interfaces": [{"interface": "wg0", "interface_name": "wg0", "ipv4": ["all"]},)"
+               uR"( {"interface": "wg0", "interface_name": "wg0", "ipv6": ["all"]}]})"_s;
+        QTest::newRow("interfaces not an array")
+            << uR"({"mode": "selected", "interfaces": {"interface": "wg0", "interface_name": "wg0", "ipv4": ["all"]}})"_s;
+    }
+
+    void testParseOutgoingInterfacesInvalid() const
+    {
+        QFETCH(QString, json);
+
+        const QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8());
+        QVERIFY(doc.isObject());
+        QVERIFY(!BitTorrent::parseOutgoingInterfaces(doc.object()).has_value());
+    }
+
+    void testOutgoingInterfacesRoundTrip() const
+    {
+        using Mode = BitTorrent::OutgoingInterfaces::Mode;
+
+        const QList<BitTorrent::OutgoingInterfaces> values {
+            makeOutgoing(Mode::ListenAddresses),
+            makeOutgoing(Mode::Any),
+            {.mode = Mode::Selected, .interfaces = {makeSelection(u"wg0"_s, allAddresses(), temporaryAddresses())
+                , makeSelection({}, fixedAddresses({u"192.168.1.2"_s}))}}
+        };
+
+        for (const BitTorrent::OutgoingInterfaces &outgoing : values)
+        {
+            const std::optional<BitTorrent::OutgoingInterfaces> parsed = BitTorrent::parseOutgoingInterfaces(BitTorrent::toJsonObject(outgoing));
+            QVERIFY(parsed.has_value());
+            QCOMPARE(*parsed, outgoing);
+
+            const std::optional<BitTorrent::OutgoingInterfaces> deserialized
+                = BitTorrent::deserializeOutgoingInterfaces(BitTorrent::serializeOutgoingInterfaces(outgoing));
+            QVERIFY(deserialized.has_value());
+            QCOMPARE(*deserialized, outgoing);
+        }
+    }
+
     void testSerializeListenEntries() const
     {
         const QList<BitTorrent::ListenEntry> entries {
@@ -571,6 +678,14 @@ private slots:
             secondValues.first()
         };
         QCOMPARE(BitTorrent::deserializeListenEntries(values), (QList<BitTorrent::ListenEntry> {first, second}));
+    }
+
+    void testDeserializeOutgoingInterfacesInvalid() const
+    {
+        QVERIFY(!BitTorrent::deserializeOutgoingInterfaces({}).has_value());
+        QVERIFY(!BitTorrent::deserializeOutgoingInterfaces(u"garbage"_s).has_value());
+        QVERIFY(!BitTorrent::deserializeOutgoingInterfaces(u"[]"_s).has_value());
+        QVERIFY(!BitTorrent::deserializeOutgoingInterfaces(uR"({"mode": "everything"})"_s).has_value());
     }
 
     void testResolveAllAddresses() const
@@ -768,7 +883,7 @@ private slots:
             {.interfaces = {makeSelection(u"wg0"_s, allAddresses())}, .ports = {makePort(6881)}},
             {.interfaces = {makeSelection(u"wg0"_s, {}, fixedAddresses({u"2001:db8::5"_s}))}, .ports = {makeSSLPort(6882)}}
         };
-        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, {}, makeSnapshot());
 
         const QList<BitTorrent::ListenUnit> expected {
             {.address = QHostAddress(u"10.8.0.2"_s), .port = makePort(6881)},
@@ -786,7 +901,7 @@ private slots:
             {.interfaces = {makeSelection(u"eth0"_s, allAddresses()), makeSelection(u"wg0"_s, allAddresses())}
                 , .ports = {makePort(6881), makeSSLPort(6882)}}
         };
-        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, {}, makeSnapshot());
 
         QCOMPARE(sorted(unitStrings(config.units)), sorted({u"192.168.1.2:6881"_s, u"192.168.1.2:6882s"_s
             , u"10.8.0.2:6881"_s, u"10.8.0.2:6882s"_s}));
@@ -801,15 +916,15 @@ private slots:
         const BitTorrent::ListenEntry wgEntry {.interfaces = {makeSelection(u"wg0"_s, allAddresses())}
             , .ports = {makePort(6881), makePort(6883)}};
 
-        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({anyEntry, wgEntry}, snapshot);
+        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({anyEntry, wgEntry}, {}, snapshot);
         QCOMPARE(config.units.size(), 4);
         QCOMPARE(sorted(unitStrings(config.units.mid(0, 3))), sorted({u"127.0.0.1:6881l"_s, u"10.8.0.2:6881"_s, u"192.168.1.2:6881"_s}));
         QCOMPARE(config.units.at(3).toString(), u"10.8.0.2:6883"_s);
         QCOMPARE(config.listenInterfaces, unitStrings(config.units).join(u','));
         QVERIFY(config.conflictingUnits.isEmpty());
 
-        const BitTorrent::ListenConfiguration once = BitTorrent::resolveListenConfiguration({anyEntry}, snapshot);
-        const BitTorrent::ListenConfiguration twice = BitTorrent::resolveListenConfiguration({anyEntry, anyEntry}, snapshot);
+        const BitTorrent::ListenConfiguration once = BitTorrent::resolveListenConfiguration({anyEntry}, {}, snapshot);
+        const BitTorrent::ListenConfiguration twice = BitTorrent::resolveListenConfiguration({anyEntry, anyEntry}, {}, snapshot);
         QCOMPARE(twice.units, once.units);
         QCOMPARE(twice.listenInterfaces, once.listenInterfaces);
     }
@@ -820,7 +935,8 @@ private slots:
             {.interfaces = {makeSelection(u"tun0"_s, allAddresses()), makeSelection(u"eth0"_s, fixedAddresses({u"192.168.1.99"_s}))}
                 , .ports = {makePort(6881)}}
         };
-        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries
+            , makeOutgoing(BitTorrent::OutgoingInterfaces::Mode::Any), makeSnapshot());
 
         QVERIFY(config.units.isEmpty());
         QVERIFY(config.listenInterfaces.isEmpty());
@@ -830,7 +946,7 @@ private slots:
 
     void testListenConfigurationEmpty() const
     {
-        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({}, makeSnapshot());
+        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({}, {}, makeSnapshot());
         QVERIFY(config.units.isEmpty());
         QVERIFY(config.conflictingUnits.isEmpty());
         QVERIFY(config.listenInterfaces.isEmpty());
@@ -842,7 +958,7 @@ private slots:
             makeEntry({makeSelection(u"wg0"_s, allAddresses())}, {makePort(6881)}),
             makeEntry({makeSelection({}, allAddresses())}, {makeSSLPort(6881)})
         };
-        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, {}, makeSnapshot());
 
         QCOMPARE(config.units.size(), 3);
         QCOMPARE(config.units.first(), (BitTorrent::ListenUnit {.address = QHostAddress(u"10.8.0.2"_s), .port = makePort(6881)}));
@@ -852,8 +968,28 @@ private slots:
         QCOMPARE(config.listenInterfaces, unitStrings(config.units).join(u','));
     }
 
+    void testOutgoingAny() const
+    {
+        const BitTorrent::OutgoingInterfaces outgoing = makeOutgoing(BitTorrent::OutgoingInterfaces::Mode::Any);
+        const QList<QList<BitTorrent::ListenEntry>> entryLists {
+            {makeEntry({makeSelection(u"wg0"_s, allAddresses())})},
+            {makeEntry({makeSelection(u"tun0"_s, allAddresses())})},
+            {makeEntry({makeSelection(u"eth0"_s, fixedAddresses({u"192.168.1.99"_s}))})},
+            {makeEntry({makeSelection(u"lo"_s, fixedAddresses({u"127.0.0.1"_s}))})}
+        };
+
+        for (const QList<BitTorrent::ListenEntry> &entries : entryLists)
+        {
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, outgoing, makeSnapshot());
+            QVERIFY(config.outgoingInterfaces.isEmpty());
+            QVERIFY(!config.isOutgoingBlocked);
+            QVERIFY(!config.hasMixedOutgoingFamilies);
+        }
+    }
+
     void testOutgoingListenAddressesAnyInterface() const
     {
+        const BitTorrent::OutgoingInterfaces outgoing = makeOutgoing(BitTorrent::OutgoingInterfaces::Mode::ListenAddresses);
         // all addresses of one family on any interface is enough
         const QList<QList<BitTorrent::ListenEntry>> entryLists {
             {makeEntry({makeSelection({}, allAddresses())})},
@@ -864,7 +1000,7 @@ private slots:
 
         for (const QList<BitTorrent::ListenEntry> &entries : entryLists)
         {
-            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, outgoing, makeSnapshot());
             QVERIFY(config.outgoingInterfaces.isEmpty());
             QVERIFY(!config.isOutgoingBlocked);
             QVERIFY(!config.hasMixedOutgoingFamilies);
@@ -872,18 +1008,20 @@ private slots:
 
         // also while the system has no address
         const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(
-            {makeEntry({makeSelection({}, allAddresses())})}, {});
+            {makeEntry({makeSelection({}, allAddresses())})}, outgoing, {});
         QVERIFY(config.outgoingInterfaces.isEmpty());
         QVERIFY(!config.isOutgoingBlocked);
     }
 
     void testOutgoingListenAddressesDevices() const
     {
+        const BitTorrent::OutgoingInterfaces outgoing = makeOutgoing(BitTorrent::OutgoingInterfaces::Mode::ListenAddresses);
+
         {
             const QList<BitTorrent::ListenEntry> entries {
                 makeEntry({makeSelection(u"wg0"_s, allAddresses())}, {makePort(6881), makeSSLPort(6882)})
             };
-            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, outgoing, makeSnapshot());
             QCOMPARE(splitItems(config.outgoingInterfaces), QStringList {WG0_DEVICE});
             QVERIFY(!config.isOutgoingBlocked);
             QVERIFY(!config.hasMixedOutgoingFamilies);
@@ -894,7 +1032,7 @@ private slots:
                 makeEntry({makeSelection(u"wg0"_s, {}, allAddresses()), makeSelection(u"eth0"_s, allAddresses())}),
                 makeEntry({makeSelection(u"wg0"_s, allAddresses())}, {makePort(6882)})
             };
-            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, outgoing, makeSnapshot());
             QCOMPARE(splitItems(config.outgoingInterfaces), (QStringList {WG0_DEVICE, ETH0_DEVICE}));
             QVERIFY(!config.isOutgoingBlocked);
             QVERIFY(!config.hasMixedOutgoingFamilies);
@@ -903,13 +1041,15 @@ private slots:
 
     void testOutgoingListenAddressesAddresses() const
     {
+        const BitTorrent::OutgoingInterfaces outgoing = makeOutgoing(BitTorrent::OutgoingInterfaces::Mode::ListenAddresses);
+
         {
             // in selection order
             const QList<BitTorrent::ListenEntry> entries {
                 makeEntry({makeSelection(u"wg0"_s, fixedAddresses({u"10.8.0.2"_s})), makeSelection({}, fixedAddresses({u"192.168.1.2"_s}))}
                     , {makePort(6881), makeSSLPort(6882)})
             };
-            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, outgoing, makeSnapshot());
             QCOMPARE(splitItems(config.outgoingInterfaces), (QStringList {u"10.8.0.2"_s, u"192.168.1.2"_s}));
             QVERIFY(!config.isOutgoingBlocked);
             QVERIFY(!config.hasMixedOutgoingFamilies);
@@ -918,7 +1058,7 @@ private slots:
             const QList<BitTorrent::ListenEntry> entries {
                 makeEntry({makeSelection(u"eth0"_s, fixedAddresses({u"192.168.1.2"_s}), temporaryAddresses())})
             };
-            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, outgoing, makeSnapshot());
             QCOMPARE(splitItems(config.outgoingInterfaces).size(), 3);
             QCOMPARE(outgoingAddresses(config.outgoingInterfaces)
                 , makeSortedAddresses({u"192.168.1.2"_s, u"2001:db8::a1"_s, u"2001:db8::a2"_s}));
@@ -932,30 +1072,90 @@ private slots:
                 makeEntry({makeSelection(u"wg0"_s, fixedAddresses({u"10.8.0.2"_s}))}),
                 makeEntry({makeSelection({}, fixedAddresses({u"10.8.0.2"_s}))}, {makePort(6882)})
             };
-            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, outgoing, makeSnapshot());
             QCOMPARE(splitItems(config.outgoingInterfaces), QStringList {u"10.8.0.2"_s});
         }
     }
 
     void testOutgoingSkipsLocalAddresses() const
     {
+        using Mode = BitTorrent::OutgoingInterfaces::Mode;
+
         {
             const QList<BitTorrent::ListenEntry> entries {
                 makeEntry({makeSelection(u"lo"_s, fixedAddresses({u"127.0.0.1"_s}), fixedAddresses({u"::1"_s}))
                     , makeSelection(u"eth0"_s, fixedAddresses({u"192.168.1.2"_s}))})
             };
-            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries
+                , makeOutgoing(Mode::ListenAddresses), makeSnapshot());
             QCOMPARE(splitItems(config.outgoingInterfaces), QStringList {u"192.168.1.2"_s});
             QVERIFY(!config.isOutgoingBlocked);
             QVERIFY(!config.hasMixedOutgoingFamilies);
+        }
+        {
+            // any interface with the IPv4 family only, so the addresses are listed
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({}
+                , makeOutgoing(Mode::Selected, {makeSelection({}, allAddresses())}), makeSnapshot());
+            QCOMPARE(splitItems(config.outgoingInterfaces).size(), 2);
+            QCOMPARE(outgoingAddresses(config.outgoingInterfaces), makeSortedAddresses({u"10.8.0.2"_s, u"192.168.1.2"_s}));
+            QVERIFY(!config.isOutgoingBlocked);
+        }
+        {
+            // the Selected mode makes no listen unit from the link-local address
+            const BitTorrent::NetworkSnapshot snapshot {
+                makeInterface(u"eth0"_s, ETH0_DEVICE, {u"192.168.1.2"_s, u"fe80::2%eth0"_s})
+            };
+            const BitTorrent::OutgoingInterfaces outgoing = makeOutgoing(Mode::Selected
+                , {makeSelection(u"eth0"_s, fixedAddresses({u"192.168.1.2"_s}), fixedAddresses({u"fe80::2%eth0"_s}))});
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({}, outgoing, snapshot);
+            QCOMPARE(splitItems(config.outgoingInterfaces), QStringList {u"192.168.1.2"_s});
+            QVERIFY(!config.hasMixedOutgoingFamilies);
+        }
+    }
+
+    void testOutgoingSelected() const
+    {
+        using Mode = BitTorrent::OutgoingInterfaces::Mode;
+
+        {
+            // the entries are not used
+            const QList<BitTorrent::ListenEntry> entries {makeEntry({makeSelection({}, allAddresses(), allAddresses())})};
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries
+                , makeOutgoing(Mode::Selected, {makeSelection(u"wg0"_s, fixedAddresses({u"10.8.0.2"_s}))}), makeSnapshot());
+            QVERIFY(!config.units.isEmpty());
+            QCOMPARE(splitItems(config.outgoingInterfaces), QStringList {u"10.8.0.2"_s});
+            QVERIFY(!config.isOutgoingBlocked);
+        }
+        {
+            // any interface needs all addresses of both families
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({}
+                , makeOutgoing(Mode::Selected, {makeSelection({}, allAddresses(), allAddresses())}), makeSnapshot());
+            QVERIFY(config.outgoingInterfaces.isEmpty());
+            QVERIFY(!config.isOutgoingBlocked);
+            QVERIFY(!config.hasMixedOutgoingFamilies);
+        }
+        {
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({}
+                , makeOutgoing(Mode::Selected, {makeSelection(u"eth0"_s, {}, allAddresses())}), makeSnapshot());
+            QCOMPARE(splitItems(config.outgoingInterfaces), QStringList {ETH0_DEVICE});
+            QVERIFY(!config.isOutgoingBlocked);
+        }
+        {
+            const BitTorrent::OutgoingInterfaces outgoing = makeOutgoing(Mode::Selected
+                , {makeSelection(u"tun0"_s, allAddresses()), makeSelection(u"wg0"_s, {}, allAddresses())});
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({}, outgoing, makeSnapshot());
+            QCOMPARE(splitItems(config.outgoingInterfaces), (QStringList {u"tun0"_s, WG0_DEVICE}));
+            QVERIFY(!config.isOutgoingBlocked);
         }
     }
 
     void testOutgoingMissing() const
     {
+        const BitTorrent::OutgoingInterfaces outgoing = makeOutgoing(BitTorrent::OutgoingInterfaces::Mode::ListenAddresses);
+
         {
             const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(
-                {makeEntry({makeSelection(u"eth0"_s, fixedAddresses({u"192.168.1.99"_s}))})}, makeSnapshot());
+                {makeEntry({makeSelection(u"eth0"_s, fixedAddresses({u"192.168.1.99"_s}))})}, outgoing, makeSnapshot());
             QVERIFY(config.units.isEmpty());
             QCOMPARE(splitItems(config.outgoingInterfaces), QStringList {u"192.168.1.99"_s});
             QVERIFY(config.isOutgoingBlocked);
@@ -963,13 +1163,13 @@ private slots:
         {
             // also when the interface is missing
             const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(
-                {makeEntry({makeSelection(u"tun0"_s, fixedAddresses({u"10.9.0.2"_s}))})}, makeSnapshot());
+                {makeEntry({makeSelection(u"tun0"_s, fixedAddresses({u"10.9.0.2"_s}))})}, outgoing, makeSnapshot());
             QCOMPARE(splitItems(config.outgoingInterfaces), QStringList {u"10.9.0.2"_s});
             QVERIFY(config.isOutgoingBlocked);
         }
         {
             const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(
-                {makeEntry({makeSelection(u"eth0"_s, fixedAddresses({u"192.168.1.2"_s, u"192.168.1.99"_s}))})}, makeSnapshot());
+                {makeEntry({makeSelection(u"eth0"_s, fixedAddresses({u"192.168.1.2"_s, u"192.168.1.99"_s}))})}, outgoing, makeSnapshot());
             QCOMPARE(splitItems(config.outgoingInterfaces).size(), 2);
             QCOMPARE(outgoingAddresses(config.outgoingInterfaces), makeSortedAddresses({u"192.168.1.2"_s, u"192.168.1.99"_s}));
             QVERIFY(!config.isOutgoingBlocked);
@@ -977,20 +1177,20 @@ private slots:
         {
             // the snapshot does not have the interface, so its name is used
             const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(
-                {makeEntry({makeSelection(u"tun0"_s, allAddresses())})}, makeSnapshot());
+                {makeEntry({makeSelection(u"tun0"_s, allAddresses())})}, outgoing, makeSnapshot());
             QCOMPARE(splitItems(config.outgoingInterfaces), QStringList {u"tun0"_s});
             QVERIFY(config.isOutgoingBlocked);
         }
         {
             // a present device without addresses cannot bind
             const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(
-                {makeEntry({makeSelection(u"empty0"_s, allAddresses())})}, makeSnapshot());
+                {makeEntry({makeSelection(u"empty0"_s, allAddresses())})}, outgoing, makeSnapshot());
             QCOMPARE(splitItems(config.outgoingInterfaces), QStringList {EMPTY0_DEVICE});
             QVERIFY(config.isOutgoingBlocked);
         }
         {
             const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(
-                {makeEntry({makeSelection(u"tun0"_s, allAddresses()), makeSelection(u"wg0"_s, allAddresses())})}, makeSnapshot());
+                {makeEntry({makeSelection(u"tun0"_s, allAddresses()), makeSelection(u"wg0"_s, allAddresses())})}, outgoing, makeSnapshot());
             QCOMPARE(splitItems(config.outgoingInterfaces), (QStringList {u"tun0"_s, WG0_DEVICE}));
             QVERIFY(!config.isOutgoingBlocked);
         }
@@ -998,6 +1198,8 @@ private slots:
 
     void testOutgoingUnusable() const
     {
+        using Mode = BitTorrent::OutgoingInterfaces::Mode;
+
         // nothing is left after the local addresses are skipped, or nothing is selected now
         const QList<QList<BitTorrent::ListenEntry>> entryLists {
             {makeEntry({makeSelection(u"lo"_s, fixedAddresses({u"127.0.0.1"_s}))})},
@@ -1007,25 +1209,68 @@ private slots:
 
         for (const QList<BitTorrent::ListenEntry> &entries : entryLists)
         {
-            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries, makeSnapshot());
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration(entries
+                , makeOutgoing(Mode::ListenAddresses), makeSnapshot());
             QCOMPARE(config.outgoingInterfaces, BitTorrent::UNUSABLE_OUTGOING_DEVICE);
             QVERIFY(config.isOutgoingBlocked);
+            QVERIFY(!config.hasMixedOutgoingFamilies);
+        }
+
+        const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({}
+            , makeOutgoing(Mode::Selected, {makeSelection(u"lo"_s, {}, fixedAddresses({u"::1"_s}))}), makeSnapshot());
+        QCOMPARE(config.outgoingInterfaces, BitTorrent::UNUSABLE_OUTGOING_DEVICE);
+        QVERIFY(config.isOutgoingBlocked);
+    }
+
+    void testOutgoingMixedFamilies() const
+    {
+        using Mode = BitTorrent::OutgoingInterfaces::Mode;
+
+        {
+            const BitTorrent::OutgoingInterfaces outgoing = makeOutgoing(Mode::Selected
+                , {makeSelection(u"eth0"_s, fixedAddresses({u"192.168.1.2"_s})), makeSelection(u"wg0"_s, {}, fixedAddresses({u"2001:db8::5"_s}))});
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({}, outgoing, makeSnapshot());
+            QCOMPARE(splitItems(config.outgoingInterfaces), (QStringList {u"192.168.1.2"_s, u"2001:db8::5"_s}));
+            QVERIFY(config.hasMixedOutgoingFamilies);
+            QVERIFY(!config.isOutgoingBlocked);
+        }
+        {
+            // a device does not count as an address of a family
+            const BitTorrent::OutgoingInterfaces outgoing = makeOutgoing(Mode::Selected
+                , {makeSelection(u"wg0"_s, allAddresses()), makeSelection(u"eth0"_s, {}, fixedAddresses({u"2001:db8::2"_s}))});
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({}, outgoing, makeSnapshot());
+            QCOMPARE(splitItems(config.outgoingInterfaces), (QStringList {WG0_DEVICE, u"2001:db8::2"_s}));
+            QVERIFY(!config.hasMixedOutgoingFamilies);
+        }
+        {
+            const BitTorrent::OutgoingInterfaces outgoing = makeOutgoing(Mode::Selected
+                , {makeSelection({}, {}, fixedAddresses({u"2001:db8::2"_s, u"2001:db8::5"_s}))});
+            const BitTorrent::ListenConfiguration config = BitTorrent::resolveListenConfiguration({}, outgoing, makeSnapshot());
+            QCOMPARE(outgoingAddresses(config.outgoingInterfaces), makeSortedAddresses({u"2001:db8::2"_s, u"2001:db8::5"_s}));
             QVERIFY(!config.hasMixedOutgoingFamilies);
         }
     }
 
     void testUsesTemporaryIPv6Addresses() const
     {
+        using Mode = BitTorrent::OutgoingInterfaces::Mode;
+
         const BitTorrent::ListenEntry plainEntry {.interfaces = {makeSelection({}, allAddresses(), allAddresses())}
             , .ports = {makePort(6881)}};
         const BitTorrent::ListenEntry temporaryEntry {.interfaces = {makeSelection(u"wg0"_s, allAddresses())
                 , makeSelection(u"eth0"_s, {}, temporaryAddresses())}
             , .ports = {makePort(6881)}};
+        const QList<BitTorrent::InterfaceSelection> temporarySelection {makeSelection(u"eth0"_s, {}, temporaryAddresses())};
 
-        QVERIFY(!BitTorrent::usesTemporaryIPv6Addresses({}));
-        QVERIFY(!BitTorrent::usesTemporaryIPv6Addresses({plainEntry}));
-        QVERIFY(BitTorrent::usesTemporaryIPv6Addresses({plainEntry, temporaryEntry}));
-        QVERIFY(BitTorrent::usesTemporaryIPv6Addresses({temporaryEntry}));
+        QVERIFY(!BitTorrent::usesTemporaryIPv6Addresses({}, {}));
+        QVERIFY(!BitTorrent::usesTemporaryIPv6Addresses({plainEntry}, {}));
+        QVERIFY(BitTorrent::usesTemporaryIPv6Addresses({plainEntry, temporaryEntry}, {}));
+        QVERIFY(BitTorrent::usesTemporaryIPv6Addresses({temporaryEntry}, makeOutgoing(Mode::Any)));
+
+        QVERIFY(BitTorrent::usesTemporaryIPv6Addresses({plainEntry}, {.mode = Mode::Selected, .interfaces = temporarySelection}));
+        // the outgoing selection is used only in the Selected mode
+        QVERIFY(!BitTorrent::usesTemporaryIPv6Addresses({plainEntry}, {.mode = Mode::Any, .interfaces = temporarySelection}));
+        QVERIFY(!BitTorrent::usesTemporaryIPv6Addresses({plainEntry}, {.mode = Mode::ListenAddresses, .interfaces = temporarySelection}));
     }
 };
 

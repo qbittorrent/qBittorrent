@@ -1106,6 +1106,21 @@ void OptionsDialog::loadListeningTabOptions()
     m_listenEntries = session->listenEntries();
     updateListenEntriesView(0);
 
+    const BitTorrent::OutgoingInterfaces outgoing = session->outgoingInterfaces();
+    switch (outgoing.mode)
+    {
+    case BitTorrent::OutgoingInterfaces::Mode::ListenAddresses:
+        m_ui->radioOutgoingListenAddresses->setChecked(true);
+        break;
+    case BitTorrent::OutgoingInterfaces::Mode::Any:
+        m_ui->radioOutgoingAny->setChecked(true);
+        break;
+    case BitTorrent::OutgoingInterfaces::Mode::Selected:
+        m_ui->radioOutgoingSelected->setChecked(true);
+        break;
+    }
+    m_ui->treeOutgoingInterfaces->setSelection(outgoing.interfaces);
+    m_ui->treeOutgoingInterfaces->setEnabled(m_ui->radioOutgoingSelected->isChecked());
 
     m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
 
@@ -1121,6 +1136,11 @@ void OptionsDialog::loadListeningTabOptions()
     });
     connect(m_ui->removeListenEntryButton, &QAbstractButton::clicked, this, &ThisType::removeListenEntry);
 
+    connect(m_ui->radioOutgoingSelected, &QAbstractButton::toggled, m_ui->treeOutgoingInterfaces, &QWidget::setEnabled);
+    connect(m_ui->radioOutgoingListenAddresses, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->radioOutgoingAny, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->radioOutgoingSelected, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->treeOutgoingInterfaces, &AddressSelectionTree::selectionChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 }
@@ -1130,9 +1150,24 @@ void OptionsDialog::saveListeningTabOptions() const
     auto *session = BitTorrent::Session::instance();
 
     session->setListenEntries(m_listenEntries);
+    session->setOutgoingInterfaces(getOutgoingInterfaces());
     Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
 }
 
+BitTorrent::OutgoingInterfaces OptionsDialog::getOutgoingInterfaces() const
+{
+    BitTorrent::OutgoingInterfaces outgoing;
+    if (m_ui->radioOutgoingAny->isChecked())
+    {
+        outgoing.mode = BitTorrent::OutgoingInterfaces::Mode::Any;
+    }
+    else if (m_ui->radioOutgoingSelected->isChecked())
+    {
+        outgoing.mode = BitTorrent::OutgoingInterfaces::Mode::Selected;
+        outgoing.interfaces = m_ui->treeOutgoingInterfaces->selection();
+    }
+    return outgoing;
+}
 
 int OptionsDialog::currentListenEntryIndex() const
 {
@@ -1971,7 +2006,13 @@ bool OptionsDialog::applySettings()
         m_ui->tabSelection->setCurrentRow(TAB_SPEED);
         return false;
     }
-
+    if (m_ui->radioOutgoingSelected->isChecked() && m_ui->treeOutgoingInterfaces->selection().isEmpty())
+    {
+        m_ui->tabSelection->setCurrentRow(TAB_LISTENING);
+        QMessageBox::warning(this, tr("Outgoing Connections Error")
+            , tr("Select at least one interface or address for outgoing connections."));
+        return false;
+    }
 #ifndef DISABLE_WEBUI
     if (isWebUIEnabled() && !webUIAuthenticationOk())
     {
