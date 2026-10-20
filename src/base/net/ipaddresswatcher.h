@@ -29,6 +29,7 @@
 #pragma once
 
 #include <QObject>
+#include <QStringList>
 
 class QSocketNotifier;
 class QTimer;
@@ -37,7 +38,8 @@ namespace Net
 {
     // Watches the IPv4 and IPv6 addresses of the system and notifies when they change.
     // Bursts of OS events are merged into one `addressesChanged()` signal.
-    // Implemented on Linux (netlink), macOS (kernel events) and Windows. It does nothing on other platforms.
+    // Implemented on Linux (netlink), macOS (kernel events) and Windows.
+    // On other platforms, or if the OS events are not available, it compares the addresses periodically.
     class IPAddressWatcher final : public QObject
     {
         Q_OBJECT
@@ -54,8 +56,12 @@ namespace Net
 #if defined(Q_OS_LINUX) || defined(Q_OS_MACOS)
         void readEventSocket();
 #endif
+        void startPolling();
+        void poll();
 
         QTimer *m_debounceTimer = nullptr;
+        QTimer *m_pollTimer = nullptr;
+        QStringList m_polledAddresses;
 #if defined(Q_OS_LINUX) || defined(Q_OS_MACOS)
         int m_eventSocket = -1;
         QSocketNotifier *m_socketNotifier = nullptr;

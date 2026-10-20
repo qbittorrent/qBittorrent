@@ -54,13 +54,16 @@
 #include <iphlpapi.h>
 #endif
 
+#include <QHostAddress>
 #include <QMetaObject>
+#include <QNetworkInterface>
 #include <QTimer>
 
 #if defined(Q_OS_LINUX) || defined(Q_OS_MACOS)
 #include <QSocketNotifier>
 #endif
 
+#include "base/global.h"
 #include "base/logger.h"
 
 using namespace Net;
@@ -69,6 +72,16 @@ namespace
 {
     // OS events usually come in bursts (e.g. an address is added and an old one is deprecated)
     const std::chrono::seconds DEBOUNCE_INTERVAL {1};
+    const std::chrono::seconds POLL_INTERVAL {30};
+
+    QStringList currentAddresses()
+    {
+        QStringList addresses;
+        for (const QHostAddress &addr : asConst(QNetworkInterface::allAddresses()))
+            addresses.append(addr.toString());
+        addresses.sort();
+        return addresses;
+    }
 
 #if defined(Q_OS_LINUX)
     // Returns -1 and sets `errno` on failure
@@ -142,6 +155,7 @@ IPAddressWatcher::IPAddressWatcher(QObject *parent)
         const int errorCode = errno;
         LogMsg(tr("Failed to watch IP address changes. Reason: \"%1\". Error code: %2.")
             .arg(QString::fromLocal8Bit(std::strerror(errorCode)), QString::number(errorCode)), Log::WARNING);
+        startPolling();
         return;
     }
 
@@ -154,10 +168,13 @@ IPAddressWatcher::IPAddressWatcher(QObject *parent)
     if (result != NO_ERROR)
     {
         LogMsg(tr("Failed to watch IP address changes. Error code: %1.").arg(QString::number(result)), Log::WARNING);
+        startPolling();
         return;
     }
 
     m_notificationHandle = handle;
+#else
+    startPolling();
 #endif
 }
 
@@ -191,3 +208,22 @@ void IPAddressWatcher::readEventSocket()
     m_debounceTimer->start();
 }
 #endif
+
+void IPAddressWatcher::startPolling()
+{
+    m_polledAddresses = currentAddresses();
+    m_pollTimer = new QTimer(this);
+    m_pollTimer->setInterval(POLL_INTERVAL);
+    connect(m_pollTimer, &QTimer::timeout, this, &IPAddressWatcher::poll);
+    m_pollTimer->start();
+}
+
+void IPAddressWatcher::poll()
+{
+    QStringList addresses = currentAddresses();
+    if (addresses == m_polledAddresses)
+        return;
+
+    m_polledAddresses = std::move(addresses);
+    emit addressesChanged();
+}
