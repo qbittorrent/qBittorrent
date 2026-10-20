@@ -43,6 +43,7 @@ add_library(qbt_gui STATIC
     # headers
     aboutdialog.h
     addnewtorrentdialog.h
+    addressselectiontree.h
     addtorrentparamswidget.h
     advancedsettings.h
     autoexpandabledialog.h
@@ -154,6 +155,7 @@ add_library(qbt_gui STATIC
     # sources
     aboutdialog.cpp
     addnewtorrentdialog.cpp
+    addressselectiontree.cpp
     addtorrentparamswidget.cpp
     advancedsettings.cpp
     autoexpandabledialog.cpp
