@@ -290,14 +290,21 @@ if (DBUS)
 endif()
 
 if (PLUGINS)
-    add_subdirectory(3rdparty/lua)
-    set_target_properties(qbt_lua PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_lua,INTERFACE_INCLUDE_DIRECTORIES>)
+    if (SYSTEM_LUA)
+        find_package(PkgConfig REQUIRED)
+        pkg_check_modules(LuaLib REQUIRED IMPORTED_TARGET lua>=5.5)
+        set(LUA_TARGET PkgConfig::LuaLib)
+    else()
+        add_subdirectory(3rdparty/lua)
+        set_target_properties(qbt_lua PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_lua,INTERFACE_INCLUDE_DIRECTORIES>)
+        set(LUA_TARGET qbt_lua)
+    endif()
 
     add_subdirectory(3rdparty/luabridge)
     set_target_properties(qbt_luabridge PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:qbt_luabridge,INTERFACE_INCLUDE_DIRECTORIES>)
 
     target_compile_definitions(qbt_base PUBLIC ENABLE_PLUGINS)
-    target_link_libraries(qbt_base PRIVATE qbt_lua qbt_luabridge)
+    target_link_libraries(qbt_base PRIVATE ${LUA_TARGET} qbt_luabridge)
 
     target_sources(qbt_base PRIVATE
             plugins/luaclasses.h
