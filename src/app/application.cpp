@@ -882,10 +882,10 @@ void Application::processParams(const QBtCommandLineParameters &params)
     if (params.skipDialog.has_value())
         addTorrentOption = params.skipDialog.value() ? AddTorrentOption::SkipDialog : AddTorrentOption::ShowDialog;
     for (const QString &torrentSource : params.torrentSources)
-        m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams, addTorrentOption);
+        std::ignore = m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams, addTorrentOption);
 #else
     for (const QString &torrentSource : params.torrentSources)
-        m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams);
+        std::ignore = m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams);
 #endif
 }
 
@@ -1168,7 +1168,7 @@ void Application::recursiveTorrentDownload(const BitTorrent::TorrentID &torrentI
             BitTorrent::AddTorrentParams params;
             // Passing the save path along to the sub torrent file
             params.savePath = torrent->savePath();
-            addTorrentManager()->addTorrent(torrentFullpath.data(), params, AddTorrentOption::SkipDialog);
+            std::ignore = addTorrentManager()->addTorrent(torrentFullpath.data(), params, AddTorrentOption::SkipDialog);
         }
     }
 }

@@ -4,6 +4,8 @@
 
 * [#24955](https://github.com/qbittorrent/qBittorrent/pull/24955)
   * `search/results` endpoint includes `engineFullName` (string) data as the display name of the engine
+* [#24952](https://github.com/qbittorrent/qBittorrent/pull/24952)
+  * `torrents/add` endpoint lists each torrent that couldn't be added in the response body, with its source and the reason
 
 ## 2.16.2
 
