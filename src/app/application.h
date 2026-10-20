@@ -183,6 +183,7 @@ private:
     void createStartupProgressDialog();
 #ifdef Q_OS_MACOS
     bool event(QEvent *) override;
+    bool notify(QObject *receiver, QEvent *ev) override;
 #endif
     void askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent);
     void recursiveTorrentDownload(const BitTorrent::TorrentID &torrentID);
