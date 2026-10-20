@@ -47,25 +47,26 @@ namespace
         case Scheduler::Days::EveryDay:
             return true;
         case Scheduler::Days::Monday:
+            return day == 1;
         case Scheduler::Days::Tuesday:
+            return day == 2;
         case Scheduler::Days::Wednesday:
+            return day == 3;
         case Scheduler::Days::Thursday:
+            return day == 4;
         case Scheduler::Days::Friday:
+            return day == 5;
         case Scheduler::Days::Saturday:
+            return day == 6;
         case Scheduler::Days::Sunday:
-            {
-                const int offset = static_cast<int>(Scheduler::Days::Monday) - 1;
-                return (day == (static_cast<int>(schedulerDays) - offset));
-            }
+            return day == 7;
         case Scheduler::Days::Weekday:
             return ((day >= 1) && (day <= 5));
         case Scheduler::Days::Weekend:
             return ((day == 6) || (day == 7));
-        default:
-            Q_UNREACHABLE();
-            break;
         }
-        return false;
+
+        Q_UNREACHABLE_RETURN(false);
     }
 }
 
@@ -104,9 +105,9 @@ bool BandwidthScheduler::isTimeForAlternative() const
         return (start <= now) && (now <= end) && isScheduledDay(schedulerDays, today.dayOfWeek());
 
     // The period crosses midnight, so it belongs to the day it starts on
-    if (now > start)
+    if (now >= start)
         return isScheduledDay(schedulerDays, today.dayOfWeek());
-    if (now < end)
+    if (now <= end)
         return isScheduledDay(schedulerDays, today.addDays(-1).dayOfWeek());
     return false;
 }
