@@ -2168,8 +2168,17 @@ lt::settings_pack SessionImpl::loadLTSettings() const
 
     // Queueing System
     if (isQueueingSystemEnabled())
-    {
-        settingsPack.set_int(lt::settings_pack::active_downloads, maxActiveDownloads());
+    {   
+        int effectiveDownloads = maxActiveDownloads();
+        if (effectiveDownloads > 0) {
+            for (const TorrentImpl *torrent : asConst(m_torrents)) {
+                if (torrent->isStalled() && (torrent->nativeHandle().status().num_seeds == 0)) {
+                    effectiveDownloads++;
+                }
+            }
+        }
+        settingsPack.set_int(lt::settings_pack::active_downloads, effectiveDownloads);
+
         settingsPack.set_int(lt::settings_pack::active_limit, maxActiveTorrents());
         settingsPack.set_int(lt::settings_pack::active_seeds, maxActiveUploads());
         settingsPack.set_bool(lt::settings_pack::dont_count_slow_torrents, ignoreSlowTorrentsForQueueing());
