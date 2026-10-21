@@ -42,7 +42,7 @@
      <item>
       <widget class="QLineEdit" name="lineEditPorts">
        <property name="toolTip">
-        <string>Separate the ports with commas. Add "s" to a port to accept only SSL connections on it, e.g. 6881, 6882s</string>
+        <string>Separate the ports with commas. Add &quot;s&quot; to a port to accept only SSL connections on it, e.g. 6881, 6882s</string>
        </property>
        <property name="placeholderText">
         <string>e.g. 6881, 6882s</string>
