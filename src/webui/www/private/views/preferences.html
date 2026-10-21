@@ -2545,7 +2545,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             addressNode.checkbox.checked = temporaryNode.checkbox.checked;
                             temporaryNode.grandChildren.push(addressNode.checkbox);
                         }
-                        temporaryNode.checkbox.addEventListener("change", () => {
+                        temporaryNode.checkbox.addEventListener("change", (e) => {
                             for (const checkbox of temporaryNode.grandChildren)
                                 checkbox.checked = temporaryNode.checkbox.checked;
                             updateFamilyState(family);
@@ -2560,7 +2560,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         addressNode.kind = "address";
                         addressNode.value = address;
                         addressNode.checkbox.checked = fixedValues.some((value) => normalizeAddress(value) === normalizeAddress(address));
-                        addressNode.checkbox.addEventListener("change", () => {
+                        addressNode.checkbox.addEventListener("change", (e) => {
                             updateFamilyState(family);
                             updateInterfaceState(ifaceNode);
                         });
@@ -2578,7 +2578,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             addAddress(value, !normalizedKnown.includes(normalizeAddress(value)));
                     }
 
-                    family.checkbox.addEventListener("change", () => {
+                    family.checkbox.addEventListener("change", (e) => {
                         setFamilyChecked(family, family.checkbox.checked);
                         updateInterfaceState(ifaceNode);
                     });
@@ -2591,7 +2591,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                 ifaceNode.ipv4 = addFamily("IPv4", (selection.ipv4 ?? []), false);
                 ifaceNode.ipv6 = addFamily("IPv6", (selection.ipv6 ?? []), true);
-                ifaceNode.checkbox.addEventListener("change", () => {
+                ifaceNode.checkbox.addEventListener("change", (e) => {
                     setFamilyChecked(ifaceNode.ipv4, ifaceNode.checkbox.checked);
                     setFamilyChecked(ifaceNode.ipv6, ifaceNode.checkbox.checked);
                     updateInterfaceState(ifaceNode);
@@ -2670,7 +2670,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const tableBody = document.getElementById("listenEntriesTableBody");
             tableBody.replaceChildren();
 
-            listenEntries.forEach((entry, index) => {
+            for (const [index, entry] of listenEntries.entries()) {
                 const row = document.createElement("tr");
 
                 const addressesCell = document.createElement("td");
@@ -2691,7 +2691,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 const editButton = document.createElement("button");
                 editButton.type = "button";
                 editButton.textContent = "QBT_TR(Edit...)QBT_TR[CONTEXT=OptionsDialog]";
-                editButton.addEventListener("click", () => {
+                editButton.addEventListener("click", (e) => {
                     openListenEntryEditor(index);
                 });
 
@@ -2700,7 +2700,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 removeButton.textContent = "QBT_TR(Remove)QBT_TR[CONTEXT=OptionsDialog]";
                 // Without an entry, qBittorrent listens on nothing
                 removeButton.disabled = (listenEntries.length <= 1);
-                removeButton.addEventListener("click", () => {
+                removeButton.addEventListener("click", (e) => {
                     if (listenEntries.length <= 1)
                         return;
                     listenEntries.splice(index, 1);
@@ -2713,7 +2713,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                 row.append(addressesCell, portsCell, buttonsCell);
                 tableBody.append(row);
-            });
+            }
         };
 
         const openListenEntryEditor = async (index) => {
