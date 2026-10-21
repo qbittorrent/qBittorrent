@@ -35,8 +35,11 @@
 #include <QAction>
 #include <QApplication>
 #include <QCoreApplication>
+#include <QEvent>
 #include <QFileDialog>
+#include <QGroupBox>
 #include <QHBoxLayout>
+#include <QLabel>
 #include <QStyle>
 #include <QToolButton>
 
@@ -63,6 +66,26 @@ namespace
         QT_TRANSLATE_NOOP3("FileSystemPathEdit", "Choose a file", "Caption for file open/save dialog");
     constexpr TrStringWithComment defaultDialogCaptionForDirectory =
         QT_TRANSLATE_NOOP3("FileSystemPathEdit", "Choose a folder", "Caption for directory open dialog");
+
+    // names a widget the way QAccessibleWidget does: after its buddy label or its group box
+    QString inferredAccessibleName(const QWidget *widget)
+    {
+        const QWidget *parentWidget = widget->parentWidget();
+        if (!parentWidget)
+            return {};
+
+        const QList<QLabel *> labels = parentWidget->findChildren<QLabel *>();
+        for (const QLabel *label : labels)
+        {
+            if (label->buddy() == widget)
+                return label->text().remove(u'&');
+        }
+
+        if (const auto *groupBox = qobject_cast<const QGroupBox *>(parentWidget))
+            return groupBox->title().remove(u'&');
+
+        return {};
+    }
 }
 
 class FileSystemPathEdit::FileSystemPathEditPrivate
@@ -76,6 +99,7 @@ private:
     void modeChanged();
     void browseActionTriggered();
     QString dialogCaptionOrDefault() const;
+    void updateAccessibleNames();
 
     FileSystemPathEdit *q_ptr = nullptr;
     std::unique_ptr<Private::IFileEditorWithCompletion> m_editor;
@@ -101,6 +125,7 @@ FileSystemPathEdit::FileSystemPathEditPrivate::FileSystemPathEditPrivate(
     m_browseAction->setToolTip(browseButtonFullText.tr().remove(u'&'));
 
     m_browseBtn->setDefaultAction(m_browseAction);
+    m_browseBtn->setAccessibleName(browseButtonFullText.tr().remove(u'&'));
 
     m_validator->setStrictMode(false);
 
@@ -108,6 +133,19 @@ FileSystemPathEdit::FileSystemPathEditPrivate::FileSystemPathEditPrivate(
     m_editor->setValidator(m_validator);
 
     modeChanged();
+}
+
+void FileSystemPathEdit::FileSystemPathEditPrivate::updateAccessibleNames()
+{
+    Q_Q(FileSystemPathEdit);
+
+    // accessibility clients reach the inner edit widget, not this composite widget
+    QString name = q->accessibleName();
+    if (name.isEmpty())
+        name = inferredAccessibleName(q);
+
+    m_editor->widget()->setAccessibleName(name);
+    m_editor->widget()->setAccessibleDescription(q->accessibleDescription());
 }
 
 void FileSystemPathEdit::FileSystemPathEditPrivate::browseActionTriggered()
@@ -193,6 +231,15 @@ FileSystemPathEdit::FileSystemPathEdit(Private::IFileEditorWithCompletion *edito
     layout->addWidget(d->m_browseBtn);
 
     connect(d->m_browseAction, &QAction::triggered, this, [this]() { this->d_func()->browseActionTriggered(); });
+}
+
+bool FileSystemPathEdit::event(QEvent *event)
+{
+    // buddies from setupUi() are in place at polish time; repeat on show for later names
+    if ((event->type() == QEvent::Polish) || (event->type() == QEvent::Show))
+        d_func()->updateAccessibleNames();
+
+    return QWidget::event(event);
 }
 
 FileSystemPathEdit::~FileSystemPathEdit()
