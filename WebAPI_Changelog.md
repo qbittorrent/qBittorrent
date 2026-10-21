@@ -16,7 +16,7 @@
     * `mode` (string): `"listen_addresses"`, `"any"` or `"selected"`
     * `interfaces` (array): interface selections, used for `"selected"`
   * `app/setPreferences` endpoint allows to set `listen_entries` and `outgoing_interfaces`. It returns 400 for an empty or invalid `listen_entries` or an invalid `outgoing_interfaces`
-  * Add `app/networkInterfaces` endpoint. It returns an object with `interfaces` (array of objects with `name`, `value`, `addresses` and `temporary_ipv6_addresses`) and `temporary_ipv6_supported` (bool)
+  * Add `app/networkInterfaces` endpoint. It returns an object with `interfaces` (array of objects with `name`, `value`, `addresses` (without deprecated addresses) and `temporary_ipv6_addresses`) and `temporary_ipv6_supported` (bool)
 
 ## 2.17.0
 

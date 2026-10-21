@@ -66,6 +66,9 @@ namespace Utils::Net
 
     bool lessThan(const QHostAddress &left, const QHostAddress &right);
 
+    // Whether the preferred lifetime of `entry` has expired. A deprecated address must not be used for new connections.
+    bool isDeprecatedAddressEntry(const QNetworkAddressEntry &entry);
+
     // Whether listening on temporary IPv6 addresses only is supported on this platform
     bool isTemporaryIPv6Supported();
     // Whether `entry` is a temporary (RFC 8981) IPv6 address that is not deprecated.

@@ -196,7 +196,23 @@ void AddressSelectionTree::rebuild(const QList<BitTorrent::InterfaceSelection> &
         return selection;
     };
 
-    const QList<QHostAddress> systemAddresses = QNetworkInterface::allAddresses();
+    // The session does not use deprecated addresses, so they cannot be selected
+    const auto usableAddresses = [](const QNetworkInterface &iface)
+    {
+        QList<QHostAddress> addresses;
+        for (const QNetworkAddressEntry &entry : asConst(iface.addressEntries()))
+        {
+            if (!Utils::Net::isDeprecatedAddressEntry(entry))
+                addresses.append(entry.ip());
+        }
+        std::ranges::sort(addresses, Utils::Net::lessThan);
+        return addresses;
+    };
+
+    const QList<QNetworkInterface> systemInterfaces = QNetworkInterface::allInterfaces();
+    QList<QHostAddress> systemAddresses;
+    for (const QNetworkInterface &iface : systemInterfaces)
+        systemAddresses.append(usableAddresses(iface));
 
     const auto addInterface = [this, &systemAddresses](const BitTorrent::InterfaceSelection &selection, const QString &text
         , const QList<QHostAddress> &addresses, const QList<QHostAddress> &temporaryAddresses, const bool isMissing)
@@ -289,13 +305,9 @@ void AddressSelectionTree::rebuild(const QList<BitTorrent::InterfaceSelection> &
     // Any interface lists no addresses: a fixed address belongs to its interface
     addInterface(selectionFor({}), interfaceText({}), {}, allTemporaryAddresses, false);
 
-    const QList<QNetworkInterface> systemInterfaces = QNetworkInterface::allInterfaces();
     for (const QNetworkInterface &iface : systemInterfaces)
     {
-        QList<QHostAddress> addresses;
-        for (const QNetworkAddressEntry &entry : asConst(iface.addressEntries()))
-            addresses.append(entry.ip());
-        std::ranges::sort(addresses, Utils::Net::lessThan);
+        const QList<QHostAddress> addresses = usableAddresses(iface);
 
         QList<QHostAddress> temporaryAddresses;
         for (const QHostAddress &addr : allTemporaryAddresses)

@@ -362,6 +362,13 @@ namespace Utils
 #endif
         }
 
+        bool isDeprecatedAddressEntry(const QNetworkAddressEntry &entry)
+        {
+            // Qt on Windows swaps the preferred and the valid lifetimes.
+            // The preferred lifetime never exceeds the valid one, so the earlier deadline is the preferred one.
+            return std::min(entry.preferredLifetime(), entry.validityLifetime()).hasExpired();
+        }
+
         bool isTemporaryIPv6Entry(const QNetworkAddressEntry &entry)
         {
             const QHostAddress addr = entry.ip();
@@ -375,11 +382,7 @@ namespace Utils
             if (!entry.isTemporary() || (entry.dnsEligibility() != QNetworkAddressEntry::DnsIneligible))
                 return false;
 
-            // Qt on Windows swaps the preferred and the valid lifetimes.
-            // The preferred lifetime never exceeds the valid one, so the earlier deadline is the preferred one.
-            const QDeadlineTimer preferredLifetime = std::min(entry.preferredLifetime(), entry.validityLifetime());
-            // A deprecated address must not be used for new connections
-            return !preferredLifetime.hasExpired();
+            return !isDeprecatedAddressEntry(entry);
         }
 
         QList<QHostAddress> temporaryIPv6Addresses(const QString &ifaceName)

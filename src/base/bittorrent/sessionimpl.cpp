@@ -3531,12 +3531,8 @@ NetworkSnapshot SessionImpl::takeNetworkSnapshot() const
         {
             for (const QNetworkAddressEntry &entry : asConst(iface.addressEntries()))
             {
-                // A deprecated address must not be used for new connections.
-                // Qt on Windows swaps the lifetimes; the preferred one never exceeds the valid one.
-                if (std::min(entry.preferredLifetime(), entry.validityLifetime()).hasExpired())
-                    continue;
-
-                info.addresses.append(entry.ip());
+                if (!Utils::Net::isDeprecatedAddressEntry(entry))
+                    info.addresses.append(entry.ip());
             }
         }
         // Sort them to avoid listening on the same addresses again

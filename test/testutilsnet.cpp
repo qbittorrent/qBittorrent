@@ -248,6 +248,51 @@ private slots:
         QVERIFY(!Utils::Net::containsIPv6Address({}, QHostAddress(u"2001:db8::1"_s)));
     }
 
+    void testIsDeprecatedAddressEntry_data() const
+    {
+        QTest::addColumn<QString>("ip");
+        QTest::addColumn<bool>("isLifetimeKnown");
+        QTest::addColumn<qint64>("preferredLifetime");
+        QTest::addColumn<qint64>("validityLifetime");
+        QTest::addColumn<bool>("expected");
+
+        // the entry keeps the default lifetimes, which are forever
+        QTest::newRow("IPv6 lifetime unknown") << S1 << false << LIFETIME_FOREVER << LIFETIME_FOREVER << false;
+        QTest::newRow("IPv4 lifetime unknown") << u"192.0.2.1"_s << false << LIFETIME_FOREVER << LIFETIME_FOREVER << false;
+
+        QTest::newRow("IPv6 permanent") << S1 << true << LIFETIME_FOREVER << LIFETIME_FOREVER << false;
+        QTest::newRow("IPv6 preferred") << S1 << true << LIFETIME_1H << LIFETIME_2H << false;
+        QTest::newRow("IPv4 preferred") << u"192.0.2.1"_s << true << LIFETIME_1H << LIFETIME_2H << false;
+        QTest::newRow("IPv6 preferred with infinite validity") << S1 << true << LIFETIME_1H << LIFETIME_FOREVER << false;
+
+        QTest::newRow("IPv6 deprecated") << S1 << true << LIFETIME_EXPIRED << LIFETIME_1H << true;
+        QTest::newRow("IPv4 deprecated") << u"192.0.2.1"_s << true << LIFETIME_EXPIRED << LIFETIME_1H << true;
+        QTest::newRow("IPv6 deprecated with infinite validity") << S1 << true << LIFETIME_EXPIRED << LIFETIME_FOREVER << true;
+        QTest::newRow("IPv6 expired") << S1 << true << LIFETIME_EXPIRED << LIFETIME_EXPIRED << true;
+
+        // Qt on Windows swaps the preferred and the valid lifetimes
+        QTest::newRow("IPv6 preferred with swapped lifetimes") << S1 << true << LIFETIME_2H << LIFETIME_1H << false;
+        QTest::newRow("IPv6 deprecated with swapped lifetimes") << S1 << true << LIFETIME_1H << LIFETIME_EXPIRED << true;
+        QTest::newRow("IPv4 deprecated with swapped lifetimes") << u"192.0.2.1"_s << true << LIFETIME_1H << LIFETIME_EXPIRED << true;
+        QTest::newRow("IPv6 deprecated with swapped infinite validity") << S1 << true << LIFETIME_FOREVER << LIFETIME_EXPIRED << true;
+    }
+
+    void testIsDeprecatedAddressEntry() const
+    {
+        QFETCH(QString, ip);
+        QFETCH(bool, isLifetimeKnown);
+        QFETCH(qint64, preferredLifetime);
+        QFETCH(qint64, validityLifetime);
+        QFETCH(bool, expected);
+
+        QNetworkAddressEntry entry;
+        entry.setIp(QHostAddress(ip));
+        if (isLifetimeKnown)
+            entry.setAddressLifetime(makeLifetime(preferredLifetime), makeLifetime(validityLifetime));
+
+        QCOMPARE(Utils::Net::isDeprecatedAddressEntry(entry), expected);
+    }
+
     void testIsTemporaryIPv6Supported() const
     {
 #if defined(Q_OS_LINUX) || defined(Q_OS_MACOS) || defined(Q_OS_WIN)

@@ -1527,6 +1527,10 @@ void AppController::networkInterfacesAction()
         QJsonArray addresses;
         for (const QNetworkAddressEntry &entry : asConst(iface.addressEntries()))
         {
+            // The session does not use deprecated addresses, so they cannot be selected
+            if (Utils::Net::isDeprecatedAddressEntry(entry))
+                continue;
+
             ifaceAddresses.append(entry.ip());
             addresses.append(entry.ip().toString());
         }
