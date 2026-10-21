@@ -106,16 +106,16 @@ AddressSelectionTree::AddressSelectionTree(QWidget *parent)
     connect(this, &QTreeWidget::itemChanged, this, &AddressSelectionTree::handleItemChanged);
     connect(m_watcher, &Net::IPAddressWatcher::addressesChanged, this, [this]
     {
-        rebuild(selection());
+        rebuild(selectedInterfaces());
     });
 }
 
-void AddressSelectionTree::setSelection(const QList<BitTorrent::InterfaceSelection> &interfaces)
+void AddressSelectionTree::setSelectedInterfaces(const QList<BitTorrent::InterfaceSelection> &interfaces)
 {
     rebuild(interfaces);
 }
 
-QList<BitTorrent::InterfaceSelection> AddressSelectionTree::selection() const
+QList<BitTorrent::InterfaceSelection> AddressSelectionTree::selectedInterfaces() const
 {
     QList<BitTorrent::InterfaceSelection> result;
     for (int i = 0; i < topLevelItemCount(); ++i)
@@ -366,7 +366,7 @@ void AddressSelectionTree::handleItemChanged(QTreeWidgetItem *item)
     }
 
     m_isUpdating = false;
-    emit selectionChanged();
+    emit selectedInterfacesChanged();
 }
 
 void AddressSelectionTree::setFamilyChecked(QTreeWidgetItem *familyItem, const bool checked)

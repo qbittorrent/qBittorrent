@@ -43,10 +43,10 @@ ListenEntryDialog::ListenEntryDialog(const BitTorrent::ListenEntry &entry, QWidg
 {
     m_ui->setupUi(this);
 
-    m_ui->treeAddresses->setSelection(entry.interfaces);
+    m_ui->treeAddresses->setSelectedInterfaces(entry.interfaces);
     m_ui->lineEditPorts->setText(BitTorrent::listenPortsToString(entry.ports));
 
-    connect(m_ui->treeAddresses, &AddressSelectionTree::selectionChanged, this, &ListenEntryDialog::updateOKButton);
+    connect(m_ui->treeAddresses, &AddressSelectionTree::selectedInterfacesChanged, this, &ListenEntryDialog::updateOKButton);
     connect(m_ui->lineEditPorts, &QLineEdit::textChanged, this, &ListenEntryDialog::updateOKButton);
     connect(m_ui->buttonRandomPort, &QPushButton::clicked, this, &ListenEntryDialog::setRandomPort);
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
@@ -67,7 +67,7 @@ ListenEntryDialog::~ListenEntryDialog()
 BitTorrent::ListenEntry ListenEntryDialog::listenEntry() const
 {
     return {
-        .interfaces = m_ui->treeAddresses->selection(),
+        .interfaces = m_ui->treeAddresses->selectedInterfaces(),
         .ports = BitTorrent::parseListenPorts(m_ui->lineEditPorts->text()).value_or(QList<BitTorrent::ListenPort>())
     };
 }
@@ -93,6 +93,6 @@ void ListenEntryDialog::updateOKButton()
     const bool isPortsValid = ports && !ports->isEmpty();
     m_ui->lineEditPorts->setStyleSheet(isPortsValid ? QString() : u"QLineEdit { color: red; }"_s);
 
-    const bool isValid = isPortsValid && !m_ui->treeAddresses->selection().isEmpty();
+    const bool isValid = isPortsValid && !m_ui->treeAddresses->selectedInterfaces().isEmpty();
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(isValid);
 }

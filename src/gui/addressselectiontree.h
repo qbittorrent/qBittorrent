@@ -50,16 +50,16 @@ public:
     explicit AddressSelectionTree(QWidget *parent = nullptr);
 
     // Interfaces and fixed addresses that the system does not have now stay in the tree
-    void setSelection(const QList<BitTorrent::InterfaceSelection> &interfaces);
+    void setSelectedInterfaces(const QList<BitTorrent::InterfaceSelection> &interfaces);
     // Only the interfaces with a check
-    QList<BitTorrent::InterfaceSelection> selection() const;
+    QList<BitTorrent::InterfaceSelection> selectedInterfaces() const;
 
     static QString interfaceText(const BitTorrent::InterfaceSelection &selection);
     // e.g. "All", "Temporary, 2001:db8::5"
     static QString addressSelectionText(const BitTorrent::AddressSelection &selection);
 
 signals:
-    void selectionChanged();
+    void selectedInterfacesChanged();
 
 private:
     void rebuild(const QList<BitTorrent::InterfaceSelection> &interfaces);

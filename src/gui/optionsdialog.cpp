@@ -1119,7 +1119,7 @@ void OptionsDialog::loadListeningTabOptions()
         m_ui->radioOutgoingSelected->setChecked(true);
         break;
     }
-    m_ui->treeOutgoingInterfaces->setSelection(outgoing.interfaces);
+    m_ui->treeOutgoingInterfaces->setSelectedInterfaces(outgoing.interfaces);
     m_ui->treeOutgoingInterfaces->setEnabled(m_ui->radioOutgoingSelected->isChecked());
 
     m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
@@ -1140,7 +1140,7 @@ void OptionsDialog::loadListeningTabOptions()
     connect(m_ui->radioOutgoingListenAddresses, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->radioOutgoingAny, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->radioOutgoingSelected, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->treeOutgoingInterfaces, &AddressSelectionTree::selectionChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->treeOutgoingInterfaces, &AddressSelectionTree::selectedInterfacesChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 }
@@ -1164,7 +1164,7 @@ BitTorrent::OutgoingInterfaces OptionsDialog::getOutgoingInterfaces() const
     else if (m_ui->radioOutgoingSelected->isChecked())
     {
         outgoing.mode = BitTorrent::OutgoingInterfaces::Mode::Selected;
-        outgoing.interfaces = m_ui->treeOutgoingInterfaces->selection();
+        outgoing.interfaces = m_ui->treeOutgoingInterfaces->selectedInterfaces();
     }
     return outgoing;
 }
@@ -2006,7 +2006,7 @@ bool OptionsDialog::applySettings()
         m_ui->tabSelection->setCurrentRow(TAB_SPEED);
         return false;
     }
-    if (m_ui->radioOutgoingSelected->isChecked() && m_ui->treeOutgoingInterfaces->selection().isEmpty())
+    if (m_ui->radioOutgoingSelected->isChecked() && m_ui->treeOutgoingInterfaces->selectedInterfaces().isEmpty())
     {
         m_ui->tabSelection->setCurrentRow(TAB_LISTENING);
         QMessageBox::warning(this, tr("Outgoing Connections Error")
