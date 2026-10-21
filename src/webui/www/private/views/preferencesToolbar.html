@@ -10,6 +10,9 @@
         <li id="PrefConnectionLink">
             <a><img alt="QBT_TR(Connection)QBT_TR[CONTEXT=OptionsDialog]" src="images/network-connect.svg" width="16" height="16">QBT_TR(Connection)QBT_TR[CONTEXT=OptionsDialog]</a>
         </li>
+        <li id="PrefListeningLink">
+            <a><img alt="QBT_TR(Listening)QBT_TR[CONTEXT=OptionsDialog]" src="images/network-server.svg" width="16" height="16">QBT_TR(Listening)QBT_TR[CONTEXT=OptionsDialog]</a>
+        </li>
         <li id="PrefSpeedLink">
             <a><img alt="QBT_TR(Speed)QBT_TR[CONTEXT=OptionsDialog]" src="images/slow_off.svg" width="16" height="16">QBT_TR(Speed)QBT_TR[CONTEXT=OptionsDialog]</a>
         </li>
@@ -48,6 +51,9 @@
         });
         document.getElementById("PrefConnectionLink").addEventListener("click", (e) => {
             showTab(document.getElementById("ConnectionTab"));
+        });
+        document.getElementById("PrefListeningLink").addEventListener("click", (e) => {
+            showTab(document.getElementById("ListeningTab"));
         });
         document.getElementById("PrefSpeedLink").addEventListener("click", (e) => {
             showTab(document.getElementById("SpeedTab"));

@@ -54,6 +54,7 @@
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "categoryoptions.h"
+#include "listenentry.h"
 #include "session.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
@@ -72,6 +73,11 @@ class KeyValueDataStorage;
 class NativeSessionExtension;
 
 struct FileSearchResult;
+
+namespace Net
+{
+    class IPAddressWatcher;
+}
 
 namespace BitTorrent
 {
@@ -252,18 +258,10 @@ namespace BitTorrent
         void setSaveStatisticsInterval(std::chrono::minutes value) override;
         int shutdownTimeout() const override;
         void setShutdownTimeout(int value) override;
-        int port() const override;
-        void setPort(int port) override;
-        bool isSSLEnabled() const override;
-        void setSSLEnabled(bool enabled) override;
-        int sslPort() const override;
-        void setSSLPort(int port) override;
-        QString networkInterface() const override;
-        void setNetworkInterface(const QString &iface) override;
-        QString networkInterfaceName() const override;
-        void setNetworkInterfaceName(const QString &name) override;
-        QString networkInterfaceAddress() const override;
-        void setNetworkInterfaceAddress(const QString &address) override;
+        QList<ListenEntry> listenEntries() const override;
+        void setListenEntries(const QList<ListenEntry> &entries) override;
+        OutgoingInterfaces outgoingInterfaces() const override;
+        void setOutgoingInterfaces(const OutgoingInterfaces &outgoing) override;
         int encryption() const override;
         void setEncryption(int state) override;
         int maxActiveCheckingTorrents() const override;
@@ -580,8 +578,10 @@ namespace BitTorrent
         void initMetrics();
         void applyBandwidthLimits();
         void processBannedIPs(lt::ip_filter &filter);
-        QStringList getListeningIPs() const;
+        NetworkSnapshot takeNetworkSnapshot() const;
+        void logListenConfiguration(const ListenConfiguration &config) const;
         void configureListeningInterface();
+        void handleIPAddressesChanged();
         void enableTracker(bool enable);
         void enableBandwidthScheduler();
         void populateAdditionalTrackers();
@@ -771,12 +771,10 @@ namespace BitTorrent
         CachedSettingValue<int> m_saveResumeDataInterval;
         CachedSettingValue<int> m_saveStatisticsInterval;
         CachedSettingValue<int> m_shutdownTimeout;
-        CachedSettingValue<int> m_port;
-        CachedSettingValue<bool> m_sslEnabled;
-        CachedSettingValue<int> m_sslPort;
-        CachedSettingValue<QString> m_networkInterface;
-        CachedSettingValue<QString> m_networkInterfaceName;
-        CachedSettingValue<QString> m_networkInterfaceAddress;
+        CachedSettingValue<QStringList> m_storedListenEntries;
+        QList<ListenEntry> m_listenEntries;
+        CachedSettingValue<QString> m_storedOutgoingInterfaces;
+        OutgoingInterfaces m_outgoingInterfaces;
         CachedSettingValue<int> m_encryption;
         CachedSettingValue<int> m_maxActiveCheckingTorrents;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;
@@ -899,6 +897,11 @@ namespace BitTorrent
 
         QString m_lastExternalIPv4Address;
         QString m_lastExternalIPv6Address;
+
+        Net::IPAddressWatcher *m_ipAddressWatcher = nullptr;
+        // The last values given to libtorrent. See `handleIPAddressesChanged()`.
+        mutable QString m_lastListenInterfaces;
+        mutable QString m_lastOutgoingInterfaces;
 
         bool m_needUpgradeDownloadPath = false;
 
