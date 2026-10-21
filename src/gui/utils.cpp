@@ -52,12 +52,20 @@
 #include <QWidget>
 #include <QWindow>
 
+#ifdef Q_OS_MACOS
+#include "macutilities.h"
+#endif
+
 #ifdef QBT_USES_DBUS
 #include <QDBusConnection>
 #include <QDBusInterface>
 #include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
+#endif
+
+#ifdef QBT_USES_GIO
+#include "utils/launch.h"
 #endif
 
 #include "base/global.h"
@@ -228,6 +236,43 @@ void Utils::Gui::openPath(const Path &path)
     thread->start();
 #else
     QDesktopServices::openUrl(url);
+#endif
+}
+
+void Utils::Gui::openPaths(const PathList &paths)
+{
+    if (paths.empty())
+        return;
+
+    if (paths.size() == 1)
+    {
+        openPath(paths.first());
+        return;
+    }
+
+#ifdef Q_OS_MACOS
+    MacUtils::openFilesWithDefaultApplication(paths);
+#elif defined(QBT_USES_GIO)
+    QStringList urls;
+    urls.reserve(paths.size());
+    for (const Path &path : paths)
+        urls.append(toURL(path).toString(QUrl::FullyEncoded));
+
+    auto *thread = QThread::create([urls]()
+    {
+        const QStringList unhandled = launchWithDefaultApplications(urls);
+        QMetaObject::invokeMethod(qApp, [unhandled]()
+        {
+            for (const QString &url : unhandled)
+                QDesktopServices::openUrl(QUrl(url));
+        });
+    });
+    thread->setObjectName("Utils::Gui::openPaths thread");
+    QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
+    thread->start();
+#else
+    for (const Path &path : paths)
+        openPath(path);
 #endif
 }
 

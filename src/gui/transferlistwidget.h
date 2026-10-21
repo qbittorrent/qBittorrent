@@ -103,7 +103,7 @@ public slots:
     void applyTagFilter(const std::optional<Tag> &tag);
     void applyTrackerFilter(const std::optional<QString> &trackerHost);
     void applyAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus);
-    void previewFile(const Path &filePath);
+    void previewFiles(const PathList &filePaths);
     void renameSelectedTorrent();
 
 signals:
