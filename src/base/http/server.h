@@ -34,6 +34,8 @@
 #include <QSslConfiguration>
 #include <QTcpServer>
 
+class QSocketNotifier;
+
 namespace Http
 {
     class IRequestHandler;
@@ -46,10 +48,18 @@ namespace Http
 
     public:
         explicit Server(IRequestHandler *requestHandler, QObject *parent = nullptr);
+        ~Server() override;
 
         bool setupHttps(const QByteArray &certificates, const QByteArray &privateKey);
         void disableHttps();
         bool isHttps() const;
+
+        bool listenUnixSocket(const QString &path, int permissions = 0666);
+        void closeUnixSocket();
+        bool isUnixSocket() const { return m_isUnixSocket; }
+        QString unixSocketPath() const { return m_unixSocketPath; }
+        int unixSocketPermissions() const { return m_unixSocketPermissions; }
+        QString unixErrorString() const { return m_unixErrorString; }
 
     private slots:
         void dropTimedOutConnection();
@@ -57,11 +67,19 @@ namespace Http
     private:
         void incomingConnection(qintptr socketDescriptor) override;
         void removeConnection(Connection *connection);
+        void acceptUnixConnection();
 
         IRequestHandler *m_requestHandler = nullptr;
         QSet<Connection *> m_connections;  // for tracking persistent connections
 
         bool m_https = false;
         QSslConfiguration m_sslConfig;
+
+        bool m_isUnixSocket = false;
+        QString m_unixSocketPath;
+        QString m_unixErrorString;
+        int m_unixSocketPermissions = 0666;
+        int m_unixListenFd = -1;
+        QSocketNotifier *m_unixSocketNotifier = nullptr;
     };
 }
