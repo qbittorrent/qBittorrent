@@ -213,7 +213,7 @@ bool Utils::Misc::isPreviewable(const Path &filePath)
     return multimediaExtensions.contains(filePath.extension().toUpper());
 }
 
-bool Utils::Misc::isTorrentLink(const QString &str)
+bool Utils::Misc::isTorrentLink(const QStringView str)
 {
     return str.startsWith(u"magnet:", Qt::CaseInsensitive)
         || str.endsWith(TORRENT_FILE_EXTENSION, Qt::CaseInsensitive)
