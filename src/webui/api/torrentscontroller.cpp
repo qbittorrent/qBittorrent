@@ -646,6 +646,7 @@ void TorrentsController::countAction()
 //   - "ratio": Torrent share ratio
 //   - "eta": Torrent ETA
 //   - "state": Torrent state
+//   - "error": Torrent error message (empty if the torrent is not in error state)
 //   - "seq_dl": Torrent sequential download state
 //   - "f_l_piece_prio": Torrent first last piece priority state
 //   - "force_start": Torrent force start state
