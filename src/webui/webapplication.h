@@ -191,6 +191,7 @@ private:
         {{u"torrents"_s, u"addTrackers"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"addWebSeeds"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"bottomPrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"cancelFetchMetadata"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"createCategory"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"createTags"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"decreasePrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
