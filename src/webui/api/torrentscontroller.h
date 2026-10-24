@@ -131,5 +131,6 @@ private:
     QHash<QString, BitTorrent::InfoHash> m_torrentSourceCache;
     QHash<BitTorrent::TorrentID, BitTorrent::TorrentDescriptor> m_torrentMetadataCache;
     QSet<QString> m_requestedTorrentSource;
+    QSet<QString> m_cancelledTorrentSource;
     QSet<QString> m_invalidTorrentSource;
 };

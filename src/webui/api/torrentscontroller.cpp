@@ -2347,6 +2347,11 @@ void TorrentsController::fetchMetadataAction()
             }
             m_requestedTorrentSource.insert(source);
         }
+        else
+        {
+            // asking again takes back an earlier cancel
+            m_cancelledTorrentSource.remove(source);
+        }
 
         setResult(QJsonObject {});
         setStatus(APIStatus::Async);
@@ -2366,6 +2371,16 @@ void TorrentsController::cancelFetchMetadataAction()
         throw APIError(APIErrorType::BadParams, tr("Must specify URI or hash"));
 
     const QString source = QUrl::fromPercentEncoding(sourceParam.toLatin1());
+
+    // a URL still being downloaded: its result is dropped when it arrives
+    if (m_requestedTorrentSource.contains(source))
+    {
+        if (m_cancelledTorrentSource.contains(source))
+            throw APIError(APIErrorType::NotFound);
+
+        m_cancelledTorrentSource.insert(source);
+        return;
+    }
 
     BitTorrent::InfoHash infoHash;
     if (const auto iter = m_torrentSourceCache.constFind(source); iter != m_torrentSourceCache.constEnd())
@@ -2493,6 +2508,8 @@ void TorrentsController::onDownloadFinished(const Net::DownloadResult &result)
 {
     const QString source = result.url;
     m_requestedTorrentSource.remove(source);
+    if (m_cancelledTorrentSource.remove(source))
+        return;
 
     switch (result.status)
     {
@@ -2541,6 +2558,8 @@ void TorrentsController::onMetadataDownloaded(const BitTorrent::TorrentInfo &inf
 void TorrentsController::onSearchPluginTorrentDownloaded(const QString &source, const QString &data)
 {
     m_requestedTorrentSource.remove(source);
+    if (m_cancelledTorrentSource.remove(source))
+        return;
 
     // magnet URI
     if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(data))
