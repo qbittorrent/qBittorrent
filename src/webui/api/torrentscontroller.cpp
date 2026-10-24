@@ -2280,7 +2280,6 @@ void TorrentsController::fetchMetadataAction()
     if (!downloaderParam.isEmpty() && !SearchPluginManager::instance()->allPlugins().contains(downloaderParam))
         throw APIError(APIErrorType::BadParams, tr("downloader must be a valid search plugin"));
 
-    // Parameters are already form-decoded; preserve URI escapes in cache keys.
     const QString source = sourceParam;
     const auto sourceTorrentDescr = BitTorrent::TorrentDescriptor::parse(source);
 
@@ -2390,7 +2389,6 @@ void TorrentsController::saveMetadataAction()
     if (sourceParam.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Must specify URI or hash"));
 
-    // Parameters are already form-decoded; preserve URI escapes in cache keys.
     const QString source = sourceParam;
 
     BitTorrent::InfoHash infoHash;
