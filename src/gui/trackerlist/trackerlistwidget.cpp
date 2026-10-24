@@ -376,16 +376,16 @@ void TrackerListWidget::showTrackerListMenu()
                 , this, &TrackerListWidget::copyTrackerUrl);
     }
 
-    const bool isDHTEnabled = torrent()->session()->isDHTEnabled() && !torrent()->isPrivate() && !torrent()->isDHTDisabled();
-    const bool canReannounceDHT = isDHTEnabled && selectionModel()->isRowSelected(TrackerListModel::ROW_DHT);
-    if (!torrent()->isStopped() && (hasSelectedTrackers || canReannounceDHT))
-    {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to selected")
-                , this, &TrackerListWidget::reannounceSelected);
-    }
-
     if (!torrent()->isStopped())
     {
+        const bool isDHTEnabled = torrent()->session()->isDHTEnabled() && !torrent()->isPrivate() && !torrent()->isDHTDisabled();
+        const bool canReannounceDHT = isDHTEnabled && selectionModel()->isRowSelected(TrackerListModel::ROW_DHT);
+        if (hasSelectedTrackers || canReannounceDHT)
+        {
+            menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to selected")
+                , this, &TrackerListWidget::reannounceSelected);
+        }
+
         menu->addSeparator();
         menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to all")
                 , this, [this]()
