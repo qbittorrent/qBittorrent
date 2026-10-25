@@ -30,6 +30,8 @@
 
 #include "connection.h"
 
+#include <chrono>
+
 #include <QMetaObject>
 #include <QTcpSocket>
 
@@ -37,6 +39,13 @@
 #include "environment.h"
 #include "irequesthandler.h"
 #include "requestparser.h"
+
+using namespace std::chrono_literals;
+
+namespace
+{
+    const int REQUEST_HEADER_TIMEOUT = std::chrono::milliseconds(15s).count();
+}
 
 Http::Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent)
     : QObject(parent)
@@ -52,7 +61,7 @@ Http::Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler
 
     // reserve common size for requests, don't use the max allowed size which is too big for
     // memory constrained platforms
-    m_receivedData.reserve(1024 * 1024);
+    m_receivedData.reserve(RequestParser::MAX_HEADER_SIZE);
 
     // reset timer when there are activity
     m_idleTimer.start();
@@ -120,6 +129,14 @@ bool Http::Connection::processRequest()
     {
     case RequestParser::ParseStatus::OK:
         {
+            if (m_requestHeaderTimer.isValid()
+                && m_requestHeaderTimer.hasExpired(REQUEST_HEADER_TIMEOUT))
+            {
+                abort({408, u"Request Timeout"_s});
+                return false;
+            }
+            m_requestHeaderTimer.invalidate();
+
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
             m_receivedData.slice(result.frameSize);
 #else
@@ -135,7 +152,24 @@ bool Http::Connection::processRequest()
         }
         return true;
 
-    case RequestParser::ParseStatus::Incomplete:
+    case RequestParser::ParseStatus::IncompleteHeader:
+        if (!m_requestHeaderTimer.isValid())
+            m_requestHeaderTimer.start();
+
+        if (m_requestHeaderTimer.hasExpired(REQUEST_HEADER_TIMEOUT))
+            abort({408, u"Request Timeout"_s});
+        else if (m_isReadyRead)
+            QMetaObject::invokeMethod(this, &Connection::read, Qt::QueuedConnection);
+        break;
+
+    case RequestParser::ParseStatus::IncompleteBody:
+        if (m_requestHeaderTimer.isValid()
+            && m_requestHeaderTimer.hasExpired(REQUEST_HEADER_TIMEOUT))
+        {
+            abort({408, u"Request Timeout"_s});
+            break;
+        }
+        m_requestHeaderTimer.invalidate();
         if (const long bufferLimit = RequestParser::MAX_CONTENT_SIZE * 1.1; m_receivedData.size() > bufferLimit)  // some margin for headers
         {
             qWarning("%s", qUtf8Printable(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
@@ -148,6 +182,13 @@ bool Http::Connection::processRequest()
             // need to use `Qt::QueuedConnection` to avoid possible recursion
             QMetaObject::invokeMethod(this, &Connection::read, Qt::QueuedConnection);
         }
+        break;
+
+    case RequestParser::ParseStatus::HeaderTooLarge:
+        qWarning("%s", qUtf8Printable(tr("Http request header size exceeds limitation, closing socket. Limit: %1, IP: %2")
+                .arg(QString::number(RequestParser::MAX_HEADER_SIZE), m_socket->peerAddress().toString())));
+
+        abort({431, u"Request Header Fields Too Large"_s});
         break;
 
     case RequestParser::ParseStatus::BadMethod:
@@ -176,7 +217,9 @@ void Http::Connection::abort(const ResponseStatus &responseStatus)
 
 bool Http::Connection::hasExpired(const qint64 timeout) const
 {
-    return (m_socket->bytesAvailable() == 0)
+    return (m_requestHeaderTimer.isValid()
+            && m_requestHeaderTimer.hasExpired(REQUEST_HEADER_TIMEOUT))
+        || ((m_socket->bytesAvailable() == 0)
         && (m_socket->bytesToWrite() == 0)
-        && m_idleTimer.hasExpired(timeout);
+        && m_idleTimer.hasExpired(timeout));
 }
