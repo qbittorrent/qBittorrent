@@ -228,10 +228,26 @@ window.qBittorrent.Responsive ??= (() => {
         return true;
     };
 
+    // while the header slides, the properties panel keeps this height and the list gets all of the header's (Mocha
+    // would share it between both)
+    let keptPropertiesHeight = 0;
+
+    const keepPropertiesPanel = () => {
+        const list = document.getElementById("transferList");
+        const properties = document.getElementById("propertiesPanel");
+        if ((keptPropertiesHeight === 0) || (properties.offsetHeight === 0) || (properties.offsetHeight === keptPropertiesHeight))
+            return false;
+
+        list.style.height = `${list.offsetHeight + properties.offsetHeight - keptPropertiesHeight}px`;
+        properties.style.height = `${keptPropertiesHeight}px`;
+        return true;
+    };
+
     // Mocha relayouts only when the browser window is resized
     const relayout = () => {
         MochaUI.Desktop.setDesktopSize();
-        if ((restoreProperties !== null) ? restorePropertiesPanel() : fitPropertiesPanel())
+        const kept = keepPropertiesPanel();
+        if (((restoreProperties !== null) ? restorePropertiesPanel() : fitPropertiesPanel()) || kept)
             MochaUI.Desktop.setDesktopSize();
     };
 
@@ -852,6 +868,7 @@ window.qBittorrent.Responsive ??= (() => {
             header.classList.remove("sliding");
             header.style.removeProperty("height");
             relayout();
+            keptPropertiesHeight = 0;
             // ignore the scroll the relayout causes
             lockedUntil = performance.now() + SLIDE_TIME;
         };
@@ -861,6 +878,9 @@ window.qBittorrent.Responsive ??= (() => {
                 return;
 
             clearTimeout(slideTimer);
+            // the height before the first of overlapping slides
+            if (keptPropertiesHeight === 0)
+                keptPropertiesHeight = document.getElementById("propertiesPanel").offsetHeight;
             header.classList.add("sliding");
             // slide between fixed heights, as auto can't be animated
             header.style.height = `${header.offsetHeight}px`;
