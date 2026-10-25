@@ -435,6 +435,8 @@ namespace BitTorrent
         void setExcludedFileNamesEnabled(bool enabled) override;
         QStringList excludedFileNames() const override;
         void setExcludedFileNames(const QStringList &excludedFileNames) override;
+        bool isRemoveTorrentsWithExcludedFilesEnabled() const override;
+        void setRemoveTorrentsWithExcludedFilesEnabled(bool enabled) override;
         void applyFilenameFilter(const PathList &files, QList<BitTorrent::DownloadPriority> &priorities) override;
         QStringList bannedIPs() const override;
         void setBannedIPs(const QStringList &newList) override;
@@ -589,6 +591,8 @@ namespace BitTorrent
         void disableIPFilter();
         void processTorrentShareLimits(TorrentImpl *torrent);
         void populateExcludedFileNamesRegExpList();
+        bool isFilenameExcluded(const Path &fileName) const;
+        void removeTorrentIfHasExcludedFiles(const TorrentImpl *torrent);
         void prepareStartup();
         void handleLoadedResumeData(ResumeSessionContext *context);
         void processNextResumeData(ResumeSessionContext *context);
@@ -801,6 +805,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_maxOutstandingBlockRequests;
         CachedSettingValue<bool> m_isExcludedFileNamesEnabled;
         CachedSettingValue<QStringList> m_excludedFileNames;
+        CachedSettingValue<bool> m_isRemoveTorrentsWithExcludedFilesEnabled;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
         CachedSettingValue<bool> m_isMergeTrackersEnabled;

@@ -668,6 +668,7 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     m_ui->groupExcludedFileNames->setChecked(session->isExcludedFileNamesEnabled());
     m_ui->textExcludedFileNames->setPlainText(session->excludedFileNames().join(u'\n'));
+    m_ui->checkRemoveTorrentsWithExcludedFiles->setChecked(session->isRemoveTorrentsWithExcludedFilesEnabled());
 
     m_ui->groupMailNotification->setChecked(pref->isMailNotificationEnabled());
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
@@ -796,6 +797,7 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     connect(m_ui->groupExcludedFileNames, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textExcludedFileNames, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkRemoveTorrentsWithExcludedFiles, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->removeWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
 
     connect(m_ui->groupMailNotification, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
@@ -869,6 +871,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
 
     session->setExcludedFileNamesEnabled(m_ui->groupExcludedFileNames->isChecked());
     session->setExcludedFileNames(m_ui->textExcludedFileNames->toPlainText().split(u'\n', Qt::SkipEmptyParts));
+    session->setRemoveTorrentsWithExcludedFilesEnabled(m_ui->checkRemoveTorrentsWithExcludedFiles->isChecked());
 
     pref->setMailNotificationEnabled(m_ui->groupMailNotification->isChecked());
     pref->setMailNotificationSender(m_ui->senderEmailTxt->text());
