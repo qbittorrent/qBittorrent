@@ -24,6 +24,9 @@
         } = window.MUI.Windows.instances["rssCloneRuleDialog"];
 
         const alertDialog = (alertText) => {
+            const content = document.createElement("div");
+            content.textContent = alertText;
+
             new MochaUI.Window({
                 id: "alertDialog",
                 icon: "images/qbittorrent-tray.svg",
@@ -32,7 +35,7 @@
                 closeAfter: 3000,
                 type: "notification",
                 addClass: "notification",
-                content: alertText,
+                content: content,
                 width: 300,
                 height: 60,
                 padding: { top: 10, right: 12, bottom: 10, left: 12 },
