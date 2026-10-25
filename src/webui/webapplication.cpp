@@ -48,6 +48,7 @@
 #include "base/http/httperror.h"
 #include "base/http/response.h"
 #include "base/http/responsewriter.h"
+#include "base/http/utils.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/types.h"
@@ -426,7 +427,7 @@ void WebApplication::processAPIRequest(const QString &endpoint, const Http::Head
             case QMetaType::QByteArray:
                 response.headers.insert(Http::HEADER_CONTENT_TYPE, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
                 if (!result.filename.isEmpty())
-                    response.headers.insert(Http::HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(result.filename));
+                    response.headers.insert(Http::HEADER_CONTENT_DISPOSITION, Http::makeContentDispositionHeader(result.filename));
                 response.content = result.data.toByteArray();
                 break;
             case QMetaType::QString:
