@@ -1317,7 +1317,7 @@ const initializeWindows = () => {
         const comments = [];
         for (const hash of selectedRows) {
             const comment = torrentsTable.getRow(hash).full_data.comment;
-            if (comment && (comment !== ""))
+            if ((comment !== undefined) && (comment !== ""))
                 comments.push(comment);
         }
         return comments.join("\n---------\n");
