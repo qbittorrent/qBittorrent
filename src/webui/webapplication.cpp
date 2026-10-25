@@ -172,7 +172,7 @@ namespace
 WebApplication::WebApplication(IApplication *app, QObject *parent)
     : ApplicationComponent(app, parent)
     , m_cacheID {QString::number(Utils::Random::rand(), 36)}
-    , m_trRegex {u"QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s}
+    , m_trRegex {u"QBT_TR(_HTML|_JS)?\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s}
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
     , m_searchJobManager {new SearchJobManager(this)}
@@ -267,8 +267,9 @@ void WebApplication::translateDocument(QString &data) const
         i = data.indexOf(m_trRegex, i, &regexMatch);
         if (i >= 0)
         {
-            const QStringView sourceText = regexMatch.capturedView(1);
-            const QStringView context = regexMatch.capturedView(3);
+            const QStringView mode = regexMatch.capturedView(1);
+            const QStringView sourceText = regexMatch.capturedView(2);
+            const QStringView context = regexMatch.capturedView(4);
 
             const QString loadedText = m_translationFileLoaded
                 ? m_translator.translate(context.toUtf8().constData(), sourceText.toUtf8().constData())
@@ -277,11 +278,22 @@ void WebApplication::translateDocument(QString &data) const
             // it should fallback to `sourceText`
             QString translation = loadedText.isEmpty() ? sourceText.toString() : loadedText;
 
-            // Escape quotes to workaround issues with HTML attributes
-            // FIXME: this is a dirty workaround to deal with broken translation strings:
-            // 1. Translation strings is the culprit of the issue, they should be fixed instead
-            // 2. The escaped quote/string is wrong for JS. JS use backslash to escape the quote: "\""
-            translation.replace(u'"', u"&#34;"_s);
+            if (mode == u"_HTML")
+            {
+                translation = Utils::String::escapeHTML(translation);
+            }
+            else if (mode == u"_JS")
+            {
+                translation = Utils::String::escapeJSString(translation);
+            }
+            else
+            {
+                // Escape quotes to workaround issues with HTML attributes
+                // FIXME: this is a dirty workaround to deal with broken translation strings:
+                // 1. Translation strings is the culprit of the issue, they should be fixed instead
+                // 2. The escaped quote/string is wrong for JS. JS use backslash to escape the quote: "\""
+                translation.replace(u'"', u"&#34;"_s);
+            }
 
             data.replace(i, regexMatch.capturedLength(), translation);
             i += translation.length();

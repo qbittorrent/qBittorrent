@@ -71,6 +71,9 @@ namespace Utils::String
     QString fromLatin1(std::string_view string);
     QString fromLocal8Bit(std::string_view string);
 
+    QString escapeHTML(const QString &str);
+    QString escapeJSString(const QString &str);
+
     template <typename Container>
     QString joinIntoString(const Container &container, const QString &separator)
         requires ExplicitlyConvertibleTo<typename Container::value_type, QString>
