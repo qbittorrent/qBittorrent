@@ -629,6 +629,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isExcludedFileNamesEnabled(BITTORRENT_KEY(u"ExcludedFileNamesEnabled"_s), false)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_s))
     , m_isExcludeFilesWithoutExtensionEnabled(BITTORRENT_SESSION_KEY(u"ExcludeFilesWithoutExtension"_s), false)
+    , m_isRemoveTorrentsWithExcludedFilesEnabled(BITTORRENT_SESSION_KEY(u"RemoveTorrentsWithExcludedFiles"_s), false)
     , m_bannedIPs(u"State/BannedIPs"_s, QStringList(), Algorithm::sorted<QStringList>)
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_s), ResumeDataStorageType::Legacy)
     , m_isMergeTrackersEnabled(BITTORRENT_KEY(u"MergeTrackersEnabled"_s), false)
@@ -3182,6 +3183,8 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
 
                 if (isTorrentFileBackupEnabled())
                     backupTorrentFile(torrent, torrentDescr);
+
+                removeTorrentIfHasExcludedFiles(torrent);
             }
         });
     });
@@ -4358,30 +4361,60 @@ void SessionImpl::populateExcludedFileNamesRegExpList()
     }
 }
 
+bool SessionImpl::isRemoveTorrentsWithExcludedFilesEnabled() const
+{
+    return m_isRemoveTorrentsWithExcludedFilesEnabled;
+}
+
+void SessionImpl::setRemoveTorrentsWithExcludedFilesEnabled(const bool enabled)
+{
+    m_isRemoveTorrentsWithExcludedFilesEnabled = enabled;
+}
+
+bool SessionImpl::isFilenameExcluded(const Path &fileName) const
+{
+    // Only the file itself is checked for an extension; its parent folders never have one
+    if (isExcludeFilesWithoutExtensionEnabled() && fileName.extension().isEmpty())
+        return true;
+
+    return std::ranges::any_of(m_excludedFileNamesRegExpList, [&fileName](const QRegularExpression &re)
+    {
+        Path path = fileName;
+        while (!re.match(path.filename()).hasMatch())
+        {
+            path = path.parentPath();
+            if (path.isEmpty())
+                return false;
+        }
+        return true;
+    });
+}
+
+void SessionImpl::removeTorrentIfHasExcludedFiles(const TorrentImpl *torrent)
+{
+    if (!isExcludedFileNamesEnabled() || !isRemoveTorrentsWithExcludedFilesEnabled() || !torrent->hasMetadata())
+        return;
+
+    const PathList filePaths = torrent->filePaths();
+    const auto iter = std::ranges::find_if(filePaths, [this](const Path &filePath) { return isFilenameExcluded(filePath); });
+    if (iter == filePaths.cend())
+        return;
+
+    LogMsg(tr("Torrent contains excluded file. Removing torrent. Torrent: \"%1\". File: \"%2\"")
+        .arg(torrent->name(), iter->toString()), Log::WARNING);
+
+    // Removal is deferred because the torrent may still be in use by the caller.
+    // Content is kept since the torrent may point to pre-existing files.
+    QMetaObject::invokeMethod(this, [this, id = torrent->id()]
+    {
+        removeTorrent(id, TorrentRemoveOption::KeepContent);
+    }, Qt::QueuedConnection);
+}
+
 void SessionImpl::applyFilenameFilter(const PathList &files, QList<DownloadPriority> &priorities)
 {
     if (!isExcludedFileNamesEnabled())
         return;
-
-    const auto isFilenameExcluded = [patterns = m_excludedFileNamesRegExpList
-        , excludeFilesWithoutExtension = isExcludeFilesWithoutExtensionEnabled()](const Path &fileName)
-    {
-        // Only the file itself is checked for an extension; its parent folders never have one
-        if (excludeFilesWithoutExtension && fileName.extension().isEmpty())
-            return true;
-
-        return std::ranges::any_of(patterns, [&fileName](const QRegularExpression &re)
-        {
-            Path path = fileName;
-            while (!re.match(path.filename()).hasMatch())
-            {
-                path = path.parentPath();
-                if (path.isEmpty())
-                    return false;
-            }
-            return true;
-        });
-    };
 
     priorities.resize(files.count(), DownloadPriority::Normal);
     for (qsizetype i = 0; i < priorities.size(); ++i)
@@ -5643,6 +5676,8 @@ void SessionImpl::handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const
 void SessionImpl::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 {
     emit torrentMetadataReceived(torrent);
+
+    removeTorrentIfHasExcludedFiles(torrent);
 
     if (!isTorrentFileBackupEnabled() || torrent->infoHash().v2().isValid())
         return;
