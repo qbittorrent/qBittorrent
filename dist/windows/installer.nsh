@@ -113,8 +113,10 @@ SectionEnd
 
 Function .onInit
 
-  !insertmacro Init "installer"
+  !insertmacro ElevateUAC "installer"
   !insertmacro MUI_LANGDLL_DISPLAY
+
+  !insertmacro AdjustRegistryView
 
   ${IfNot} ${AtLeastWaaS} 1809 ; Windows 10 (1809) / Windows Server 2019. Min supported version by Qt6
     MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_win10) /SD IDOK
