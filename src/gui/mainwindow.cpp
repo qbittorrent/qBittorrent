@@ -538,6 +538,8 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     m_transferListWidget->setFocus();
 
+    connect(m_ui->actionShowHiddenTorrents, &QAction::toggled, m_transferListWidget, &TransferListWidget::showHiddenTorrents);
+
     // Update the number of torrents (tab)
     updateNbTorrents();
     connect(m_transferListWidget->getSourceModel(), &QAbstractItemModel::rowsInserted, this, &MainWindow::updateNbTorrents);

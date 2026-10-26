@@ -36,6 +36,7 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
+#include "base/keyvaluedatastorage.h"
 #include "base/preferences.h"
 #include "base/types.h"
 #include "base/unicodestrings.h"
@@ -111,6 +112,7 @@ TransferListModel::TransferListModel(QObject *parent)
         {BitTorrent::TorrentState::Moving, tr("Moving", "Torrent local data are being moved/relocated")},
         {BitTorrent::TorrentState::MissingFiles, tr("Missing Files")},
         {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}}
+    , m_hiddenTorrentsRegistry {new KeyValueDataStorage(u"HiddenTorrents"_s, this)}
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
@@ -197,6 +199,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
             case TR_REANNOUNCE: return tr("Reannounce In", "Indicates the time until next trackers reannounce");
             case TR_PRIVATE: return tr("Private", "Flags private torrents");
+            case TR_HIDDEN: return tr("Hidden", "Torrent is marked as 'hidden'");
             default: return {};
             }
         }
@@ -361,13 +364,17 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return Utils::Misc::userFriendlyDuration(time);
     };
 
-    const auto privateString = [hideValues](const bool isPrivate, const bool hasMetadata) -> QString
+    const auto boolString = [hideValues](const bool value) -> QString
     {
-        if (hideValues && !isPrivate)
+        if (hideValues && !value)
             return {};
-        if (hasMetadata)
-            return isPrivate ? tr("Yes") : tr("No");
-        return tr("N/A");
+        return value ? tr("Yes") : tr("No");
+    };
+
+    const auto privateString = [boolString](const bool isPrivate, const bool hasMetadata) -> QString
+    {
+        Q_ASSERT(hasMetadata || !isPrivate);
+        return hasMetadata ? boolString(isPrivate) : tr("N/A");
     };
 
     switch (column)
@@ -448,6 +455,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return reannounceString(torrent->nextAnnounce());
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
+    case TR_HIDDEN:
+        return boolString(isTorrentHidden(torrent));
     }
 
     return {};
@@ -533,6 +542,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_HIDDEN:
+        return isTorrentHidden(torrent);
     }
 
     return {};
@@ -673,6 +684,25 @@ BitTorrent::Torrent *TransferListModel::torrentHandle(const QModelIndex &index) 
     return m_torrents.get<ByIndex>().at(index.row());
 }
 
+bool TransferListModel::isTorrentHidden(const BitTorrent::Torrent *torrent) const
+{
+    Q_ASSERT(torrent);
+    const bool isTorrentHidden = m_hiddenTorrentsRegistry->fetchValue(torrent->id().toString()).takeResult().toBool();
+    return isTorrentHidden;
+}
+
+void TransferListModel::setTorrentHidden(const BitTorrent::Torrent *torrent, bool hidden)
+{
+    Q_ASSERT(torrent);
+    m_hiddenTorrentsRegistry->storeValue(torrent->id().toString(), hidden);
+
+    const int row = getTorrentRow(torrent);
+    Q_ASSERT(row >= 0);
+
+    const QModelIndex idx = index(row, TR_HIDDEN);
+    emit dataChanged(idx, idx);
+}
+
 void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
 {
     const int row = getTorrentRow(torrent);
@@ -681,6 +711,7 @@ void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const
     const auto iter = m_torrents.get<ByIndex>().begin() + row;
     beginRemoveRows({}, row, row);
     m_torrents.get<ByIndex>().erase(iter);
+    m_hiddenTorrentsRegistry->removeValue(torrent->id().toString());
     endRemoveRows();
 }
 
@@ -713,7 +744,7 @@ void TransferListModel::handleTorrentsUpdated(const QList<BitTorrent::Torrent *>
     }
 }
 
-int TransferListModel::getTorrentRow(BitTorrent::Torrent *const torrent) const
+int TransferListModel::getTorrentRow(const BitTorrent::Torrent *torrent) const
 {
     const auto iter = m_torrents.get<ByHandle>().find(torrent);
     const int row = (iter != m_torrents.get<ByHandle>().end())
