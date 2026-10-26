@@ -42,15 +42,17 @@ static int checkfield (lua_State *L, const char *key, int n) {
 
 /*
 ** Check that 'arg' either is a table or can behave like one (that is,
-** has a metatable with the required metamethods)
+** has a metatable with the required metamethods).
 */
 static void checktab (lua_State *L, int arg, int what) {
-  if (lua_type(L, arg) != LUA_TTABLE) {  /* is it not a table? */
+  int tp = lua_type(L, arg);
+  if (tp != LUA_TTABLE) {  /* is it not a table? */
     int n = 1;  /* number of elements to pop */
     if (lua_getmetatable(L, arg) &&  /* must have metatable */
         (!(what & TAB_R) || checkfield(L, "__index", ++n)) &&
         (!(what & TAB_W) || checkfield(L, "__newindex", ++n)) &&
-        (!(what & TAB_L) || checkfield(L, "__len", ++n))) {
+        (!(what & TAB_L) ||  /* strings don't need '__len' to have a length */
+             tp == LUA_TSTRING || checkfield(L, "__len", ++n))) {
       lua_pop(L, n);  /* pop metatable and tested metamethods */
     }
     else
@@ -204,8 +206,9 @@ static int tpack (lua_State *L) {
 
 static int tunpack (lua_State *L) {
   lua_Unsigned n;
+  lua_Integer len = aux_getn(L, 1, TAB_R);
   lua_Integer i = luaL_optinteger(L, 2, 1);
-  lua_Integer e = luaL_opt(L, luaL_checkinteger, 3, luaL_len(L, 1));
+  lua_Integer e = luaL_opt(L, luaL_checkinteger, 3, len);
   if (i > e) return 0;  /* empty range */
   n = l_castS2U(e) - l_castS2U(i);  /* number of elements minus 1 */
   if (l_unlikely(n >= (unsigned int)INT_MAX  ||

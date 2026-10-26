@@ -383,7 +383,7 @@ typedef struct global_State {
 
 
 /*
-** Union of all collectable objects (only for conversions)
+** Union of all collectable objects
 ** ISO C99, 6.5.2.3 p.5:
 ** "if a union contains several structures that share a common initial
 ** sequence [...], and if the union object currently contains one
@@ -403,32 +403,32 @@ union GCUnion {
 };
 
 
-/*
-** ISO C99, 6.7.2.1 p.14:
-** "A pointer to a union object, suitably converted, points to each of
-** its members [...], and vice versa."
+/* macros to convert a GCObject into a specific value
+** ISO C99, 6.3.2.2 p.7:
+** "A pointer to an object or incomplete type may be converted to a
+** pointer to a different object or incomplete type. If the resulting
+** pointer is not correctly aligned for the pointed-to type, the
+** behavior is undefined. Otherwise, when converted back again, the
+** result shall compare equal to the original pointer."
 */
-#define cast_u(o)	cast(union GCUnion *, (o))
-
-/* macros to convert a GCObject into a specific value */
-#define gco2ts(o)  \
-	check_exp(novariant((o)->tt) == LUA_TSTRING, &((cast_u(o))->ts))
-#define gco2u(o)  check_exp((o)->tt == LUA_VUSERDATA, &((cast_u(o))->u))
-#define gco2lcl(o)  check_exp((o)->tt == LUA_VLCL, &((cast_u(o))->cl.l))
-#define gco2ccl(o)  check_exp((o)->tt == LUA_VCCL, &((cast_u(o))->cl.c))
-#define gco2cl(o)  \
-	check_exp(novariant((o)->tt) == LUA_TFUNCTION, &((cast_u(o))->cl))
-#define gco2t(o)  check_exp((o)->tt == LUA_VTABLE, &((cast_u(o))->h))
-#define gco2p(o)  check_exp((o)->tt == LUA_VPROTO, &((cast_u(o))->p))
-#define gco2th(o)  check_exp((o)->tt == LUA_VTHREAD, &((cast_u(o))->th))
-#define gco2upv(o)	check_exp((o)->tt == LUA_VUPVAL, &((cast_u(o))->upv))
+#define gco2(v,T,o)	check_exp((o)->tt == v, cast(T*, o))
+#define gco2nv(t,T,o)	check_exp(novariant((o)->tt) == t, cast(T*, o))
+#define gco2ts(o)	gco2nv(LUA_TSTRING, TString, o)
+#define gco2u(o)	gco2(LUA_VUSERDATA, Udata, o)
+#define gco2lcl(o)	(&gco2(LUA_VLCL, Closure, o)->l)
+#define gco2ccl(o)	(&gco2(LUA_VCCL, Closure, o)->c)
+#define gco2cl(o)	gco2nv(LUA_TFUNCTION, Closure, o)
+#define gco2t(o)	gco2(LUA_VTABLE, Table, o)
+#define gco2p(o)	gco2(LUA_VPROTO, Proto, o)
+#define gco2th(o)	gco2(LUA_VTHREAD, lua_State, o)
+#define gco2upv(o)	gco2(LUA_VUPVAL, UpVal, o)
 
 
 /*
 ** macro to convert a Lua object into a GCObject
 */
 #define obj2gco(v)  \
-	check_exp(novariant((v)->tt) >= LUA_TSTRING, &(cast_u(v)->gc))
+	check_exp(novariant((v)->tt) >= LUA_TSTRING, cast(GCObject*, v))
 
 
 /* actual number of total memory allocated */
@@ -438,7 +438,7 @@ union GCUnion {
 LUAI_FUNC void luaE_setdebt (global_State *g, l_mem debt);
 LUAI_FUNC void luaE_freethread (lua_State *L, lua_State *L1);
 LUAI_FUNC lu_mem luaE_threadsize (lua_State *L);
-LUAI_FUNC CallInfo *luaE_extendCI (lua_State *L);
+LUAI_FUNC CallInfo *luaE_extendCI (lua_State *L, int err);
 LUAI_FUNC void luaE_shrinkCI (lua_State *L);
 LUAI_FUNC void luaE_checkcstack (lua_State *L);
 LUAI_FUNC void luaE_incCstack (lua_State *L);
