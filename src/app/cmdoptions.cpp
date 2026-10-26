@@ -376,7 +376,7 @@ namespace
             + wrapText(QCoreApplication::translate("CMD Options", "Change the WebUI port"))
             + u'\n'
             + TORRENTING_PORT_OPTION.usage(QCoreApplication::translate("CMD Options", "port"))
-            + wrapText(QCoreApplication::translate("CMD Options", "Change the torrenting port"))
+            + wrapText(QCoreApplication::translate("CMD Options", "Change the torrenting port of the listen entries"))
             + u'\n'
 #ifndef DISABLE_GUI
             + NO_SPLASH_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Disable splash screen")) + u'\n'

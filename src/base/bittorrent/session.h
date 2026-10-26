@@ -53,6 +53,8 @@ namespace BitTorrent
     class TorrentID;
     class TorrentInfo;
     struct CacheStatus;
+    struct ListenEntry;
+    struct OutgoingInterfaces;
     struct SessionStatus;
 
     enum class TorrentRemoveOption
@@ -275,18 +277,12 @@ namespace BitTorrent
         virtual void setSaveStatisticsInterval(std::chrono::minutes value) = 0;
         virtual int shutdownTimeout() const = 0;
         virtual void setShutdownTimeout(int value) = 0;
-        virtual int port() const = 0;
-        virtual void setPort(int port) = 0;
-        virtual bool isSSLEnabled() const = 0;
-        virtual void setSSLEnabled(bool enabled) = 0;
-        virtual int sslPort() const = 0;
-        virtual void setSSLPort(int port) = 0;
-        virtual QString networkInterface() const = 0;
-        virtual void setNetworkInterface(const QString &iface) = 0;
-        virtual QString networkInterfaceName() const = 0;
-        virtual void setNetworkInterfaceName(const QString &name) = 0;
-        virtual QString networkInterfaceAddress() const = 0;
-        virtual void setNetworkInterfaceAddress(const QString &address) = 0;
+        // Empty only if all stored entries are invalid. qBittorrent then listens on nothing.
+        virtual QList<ListenEntry> listenEntries() const = 0;
+        // Ignores an empty list
+        virtual void setListenEntries(const QList<ListenEntry> &entries) = 0;
+        virtual OutgoingInterfaces outgoingInterfaces() const = 0;
+        virtual void setOutgoingInterfaces(const OutgoingInterfaces &outgoing) = 0;
         virtual int encryption() const = 0;
         virtual void setEncryption(int state) = 0;
         virtual int maxActiveCheckingTorrents() const = 0;

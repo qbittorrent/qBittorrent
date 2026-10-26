@@ -31,7 +31,7 @@ FAST extension (mainline) and PeX support (utorrent compatible).
 
 **`--webui-port=<port>`** Change the WebUI port.
 
-**`--torrenting-port=<port>`** Change the torrenting port.
+**`--torrenting-port=<port>`** Change the torrenting port of the listen entries.
 
 **`--no-splash`** Disable splash screen.
 

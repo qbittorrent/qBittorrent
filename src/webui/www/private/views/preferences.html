@@ -502,19 +502,6 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
         </select>
     </div>
     <fieldset class="settings">
-        <legend>QBT_TR(Listening Port)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <div class="formRow">
-            <label for="portValue">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
-            <input type="text" id="portValue" style="width: 6em;" title="QBT_TR(Set to 0 to let your system pick an unused port)QBT_TR[CONTEXT=OptionsDialog]">
-            <button type="button" onclick="qBittorrent.Preferences.generateRandomPort();">QBT_TR(Random)QBT_TR[CONTEXT=OptionsDialog]</button>
-        </div>
-        <div class="formRow">
-            <input type="checkbox" id="upnpCheckbox">
-            <label for="upnpCheckbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-    </fieldset>
-
-    <fieldset class="settings">
         <legend>QBT_TR(Connections Limits)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <table>
             <tbody>
@@ -690,6 +677,59 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
             </fieldset>
         </div>
     </fieldset>
+</div>
+
+<div id="ListeningTab" class="PrefTab invisible">
+    <fieldset class="settings">
+        <legend>QBT_TR(Listen on)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <table id="listenEntriesTable">
+            <thead>
+                <tr>
+                    <th scope="col">QBT_TR(Interfaces and addresses)QBT_TR[CONTEXT=OptionsDialog]</th>
+                    <th scope="col">QBT_TR(Ports)QBT_TR[CONTEXT=OptionsDialog]</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="listenEntriesTableBody"></tbody>
+        </table>
+        <div class="formRow">
+            <button type="button" onclick="qBittorrent.Preferences.addListenEntry();">QBT_TR(Add)QBT_TR[CONTEXT=OptionsDialog]</button>
+        </div>
+        <fieldset id="listenEntryEditor" class="settings invisible">
+            <legend>QBT_TR(Listen Entry)QBT_TR[CONTEXT=ListenEntryDialog]</legend>
+            <div>QBT_TR(Interfaces and addresses:)QBT_TR[CONTEXT=ListenEntryDialog]</div>
+            <div id="listenEntryAddressTree" class="addressSelectionTree"></div>
+            <div class="formRow">
+                <label for="listenEntryPorts">QBT_TR(Ports:)QBT_TR[CONTEXT=ListenEntryDialog]</label>
+                <input type="text" id="listenEntryPorts" style="width: 15em;" placeholder="QBT_TR(e.g. 6881, 6882s)QBT_TR[CONTEXT=ListenEntryDialog]" title="QBT_TR(Separate the ports with commas. Add &quot;s&quot; to a port to accept only SSL connections on it, e.g. 6881, 6882s)QBT_TR[CONTEXT=ListenEntryDialog]">
+                <button type="button" onclick="qBittorrent.Preferences.setRandomListenPort();" title="QBT_TR(Replace the ports that are not SSL ports with one random port)QBT_TR[CONTEXT=ListenEntryDialog]">QBT_TR(Random)QBT_TR[CONTEXT=ListenEntryDialog]</button>
+            </div>
+            <div class="formRow">
+                <button type="button" onclick="qBittorrent.Preferences.acceptListenEntryEditor();">QBT_TR(OK)QBT_TR[CONTEXT=HttpServer]</button>
+                <button type="button" onclick="qBittorrent.Preferences.closeListenEntryEditor();">QBT_TR(Cancel)QBT_TR[CONTEXT=HttpServer]</button>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="settings">
+        <legend>QBT_TR(Outgoing connections)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow">
+            <input type="radio" id="outgoingListenAddresses" name="outgoingInterfacesMode" value="listen_addresses" onchange="qBittorrent.Preferences.updateOutgoingInterfacesEnabled();">
+            <label for="outgoingListenAddresses">QBT_TR(Use the listen addresses)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="radio" id="outgoingAny" name="outgoingInterfacesMode" value="any" onchange="qBittorrent.Preferences.updateOutgoingInterfacesEnabled();">
+            <label for="outgoingAny">QBT_TR(Use any interface)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="radio" id="outgoingSelected" name="outgoingInterfacesMode" value="selected" onchange="qBittorrent.Preferences.updateOutgoingInterfacesEnabled();">
+            <label for="outgoingSelected">QBT_TR(Use these interfaces and addresses:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div id="outgoingInterfacesTree" class="addressSelectionTree"></div>
+    </fieldset>
+    <div class="formRow">
+        <input type="checkbox" id="upnpCheckbox">
+        <label for="upnpCheckbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
+    </div>
 </div>
 
 <div id="SpeedTab" class="PrefTab invisible">
@@ -1311,24 +1351,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     </td>
                     <td>
                         <input type="text" id="memoryWorkingSetLimit" style="width: 15em;">&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="networkInterface">QBT_TR(Network interface:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <select id="networkInterface" style="width: 15em;">
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="optionalIPAddressToBind">QBT_TR(Optional IP address to bind to:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <select id="optionalIPAddressToBind" style="width: 15em;">
-                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -2000,7 +2022,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 sendTestEmail: sendTestEmail,
                 updateAutoRun: updateAutoRun,
                 updateAutoRunOnTorrentAdded: updateAutoRunOnTorrentAdded,
-                generateRandomPort: generateRandomPort,
+                addListenEntry: addListenEntry,
+                acceptListenEntryEditor: acceptListenEntryEditor,
+                closeListenEntryEditor: closeListenEntryEditor,
+                setRandomListenPort: setRandomListenPort,
+                updateOutgoingInterfacesEnabled: updateOutgoingInterfacesEnabled,
                 updateMaxConnecEnabled: updateMaxConnecEnabled,
                 updateMaxConnecPerTorrentEnabled: updateMaxConnecPerTorrentEnabled,
                 updateMaxUploadsEnabled: updateMaxUploadsEnabled,
@@ -2395,7 +2421,386 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             let port = crypto.getRandomValues(buffer)[0];
             while (port < 1024)
                 port = crypto.getRandomValues(buffer)[0];
-            document.getElementById("portValue").value = port;
+            return port;
+        };
+
+        // Listening tab
+        let networkInterfacesPromise = null;
+        let listenEntries = [];
+        let editedListenEntryIndex = -1; // -1 adds a new entry
+        let listenEntryAddressTree = null;
+        let outgoingInterfacesTree = null;
+        let loadedOutgoingInterfaces = null;
+
+        const fetchNetworkInterfaces = () => {
+            networkInterfacesPromise ??= fetch("api/v2/app/networkInterfaces", {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok)
+                        return { interfaces: [], temporary_ipv6_supported: false };
+                    return await response.json();
+                })
+                .catch(() => ({ interfaces: [], temporary_ipv6_supported: false }));
+            return networkInterfacesPromise;
+        };
+
+        // Compares only the address, because the scope id of an IPv6 address can be a name or a number
+        const normalizeAddress = (address) => address.split("%")[0].toLowerCase();
+        const isIPv6Address = (address) => address.includes(":");
+
+        const interfaceText = (selection, ifaces) => {
+            if (selection.interface === "")
+                return "QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]";
+            const iface = ifaces.find((item) => item.value === selection.interface);
+            return iface?.name ?? (selection.interface_name || selection.interface);
+        };
+
+        const addressSelectionText = (values) => {
+            if (values.includes("all"))
+                return "QBT_TR(All)QBT_TR[CONTEXT=AddressSelectionTree]";
+            return values.map((value) => ((value === "temporary") ? "QBT_TR(Temporary)QBT_TR[CONTEXT=AddressSelectionTree]" : value)).join(", ");
+        };
+
+        // A checkable tree of interface > IPv4 / IPv6 > address, in the form of `listen_entries[].interfaces`.
+        // A checked IPv4 or IPv6 node selects all addresses of the family, also the ones that come later.
+        const createAddressSelectionTree = (container, selections, networkInfo) => {
+            container.replaceChildren();
+            const rootList = document.createElement("ul");
+            container.append(rootList);
+            const interfaceNodes = [];
+            let isTreeEnabled = true;
+
+            // A locked checkbox stays disabled while the tree is enabled
+            const setLocked = (checkbox, locked) => {
+                checkbox.dataset.locked = locked;
+                checkbox.disabled = locked || !isTreeEnabled;
+            };
+
+            const createNode = (parentList, text, isMissing = false) => {
+                const item = document.createElement("li");
+                const label = document.createElement("label");
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                label.append(checkbox, document.createTextNode(isMissing
+                    ? `${text} QBT_TR((not found))QBT_TR[CONTEXT=AddressSelectionTree]`
+                    : text));
+                if (isMissing)
+                    label.style.fontStyle = "italic";
+                item.append(label);
+                parentList.append(item);
+                const childList = document.createElement("ul");
+                item.append(childList);
+                return { checkbox, childList };
+            };
+
+            const updateFamilyState = (family) => {
+                if (family.checkbox.checked) {
+                    family.checkbox.indeterminate = false;
+                    return;
+                }
+                family.checkbox.indeterminate = family.children.some((child) => child.checkbox.checked);
+            };
+
+            const updateInterfaceState = (ifaceNode) => {
+                const families = [ifaceNode.ipv4, ifaceNode.ipv6];
+                const isAllChecked = families.every((family) => family.checkbox.checked);
+                const isAllUnchecked = families.every((family) => !family.checkbox.checked && !family.checkbox.indeterminate);
+                ifaceNode.checkbox.checked = isAllChecked;
+                ifaceNode.checkbox.indeterminate = !isAllChecked && !isAllUnchecked;
+            };
+
+            // While the family is checked, its children only show what "all" gives now
+            const setFamilyChecked = (family, checked) => {
+                family.checkbox.checked = checked;
+                family.checkbox.indeterminate = false;
+                for (const child of family.children) {
+                    child.checkbox.checked = checked;
+                    setLocked(child.checkbox, checked);
+                    for (const grandChild of child.grandChildren ?? [])
+                        grandChild.checked = checked;
+                }
+            };
+
+            const addInterface = (selection, text, addresses, temporaryAddresses, knownAddresses, isMissing) => {
+                const ifaceNode = createNode(rootList, text, isMissing);
+                ifaceNode.value = selection.interface;
+                ifaceNode.name = isMissing ? (selection.interface_name || selection.interface) : text;
+
+                const addFamily = (title, values, isFamilyIPv6) => {
+                    const family = createNode(ifaceNode.childList, title);
+                    family.checkbox.title = "QBT_TR(Checked: all addresses of the family, also the ones that come later)QBT_TR[CONTEXT=AddressSelectionTree]";
+                    family.children = [];
+                    const normalizedTemporary = temporaryAddresses.map(normalizeAddress);
+
+                    if (isFamilyIPv6 && (networkInfo.temporary_ipv6_supported || values.includes("temporary"))) {
+                        const temporaryNode = createNode(family.childList, "QBT_TR(Temporary addresses)QBT_TR[CONTEXT=AddressSelectionTree]");
+                        temporaryNode.kind = "temporary";
+                        temporaryNode.checkbox.checked = values.includes("temporary");
+                        temporaryNode.grandChildren = [];
+                        for (const address of temporaryAddresses) {
+                            const addressNode = createNode(temporaryNode.childList, address);
+                            setLocked(addressNode.checkbox, true);
+                            addressNode.checkbox.checked = temporaryNode.checkbox.checked;
+                            temporaryNode.grandChildren.push(addressNode.checkbox);
+                        }
+                        temporaryNode.checkbox.addEventListener("change", (e) => {
+                            for (const checkbox of temporaryNode.grandChildren)
+                                checkbox.checked = temporaryNode.checkbox.checked;
+                            updateFamilyState(family);
+                            updateInterfaceState(ifaceNode);
+                        });
+                        family.children.push(temporaryNode);
+                    }
+
+                    const fixedValues = values.filter((value) => (value !== "all") && (value !== "temporary"));
+                    const addAddress = (address, isAddressMissing) => {
+                        const addressNode = createNode(family.childList, address, isAddressMissing);
+                        addressNode.kind = "address";
+                        addressNode.value = address;
+                        addressNode.checkbox.checked = fixedValues.some((value) => normalizeAddress(value) === normalizeAddress(address));
+                        addressNode.checkbox.addEventListener("change", (e) => {
+                            updateFamilyState(family);
+                            updateInterfaceState(ifaceNode);
+                        });
+                        family.children.push(addressNode);
+                    };
+
+                    for (const address of addresses) {
+                        if ((isIPv6Address(address) === isFamilyIPv6) && !normalizedTemporary.includes(normalizeAddress(address)))
+                            addAddress(address, false);
+                    }
+                    const normalizedAddresses = addresses.map(normalizeAddress);
+                    const normalizedKnown = knownAddresses.map(normalizeAddress);
+                    for (const value of fixedValues) {
+                        if (!normalizedAddresses.includes(normalizeAddress(value)))
+                            addAddress(value, !normalizedKnown.includes(normalizeAddress(value)));
+                    }
+
+                    family.checkbox.addEventListener("change", (e) => {
+                        setFamilyChecked(family, family.checkbox.checked);
+                        updateInterfaceState(ifaceNode);
+                    });
+                    // Unchecking a family also unchecks its children, which hold the rest of the selection
+                    if (values.includes("all"))
+                        setFamilyChecked(family, true);
+                    updateFamilyState(family);
+                    return family;
+                };
+
+                ifaceNode.ipv4 = addFamily("IPv4", (selection.ipv4 ?? []), false);
+                ifaceNode.ipv6 = addFamily("IPv6", (selection.ipv6 ?? []), true);
+                ifaceNode.checkbox.addEventListener("change", (e) => {
+                    setFamilyChecked(ifaceNode.ipv4, ifaceNode.checkbox.checked);
+                    setFamilyChecked(ifaceNode.ipv6, ifaceNode.checkbox.checked);
+                    updateInterfaceState(ifaceNode);
+                });
+                updateInterfaceState(ifaceNode);
+                interfaceNodes.push(ifaceNode);
+            };
+
+            const selectionFor = (iface) => selections.find((item) => item.interface === iface) ?? { interface: iface, ipv4: [], ipv6: [] };
+            const allAddresses = networkInfo.interfaces.flatMap((item) => item.addresses);
+            const allTemporaryAddresses = networkInfo.interfaces.flatMap((item) => item.temporary_ipv6_addresses);
+
+            // Any interface lists no addresses: a fixed address belongs to its interface
+            addInterface(selectionFor(""), "QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]", [], allTemporaryAddresses, allAddresses, false);
+            for (const iface of networkInfo.interfaces)
+                addInterface(selectionFor(iface.value), iface.name, iface.addresses, iface.temporary_ipv6_addresses, iface.addresses, false);
+            for (const selection of selections) {
+                if ((selection.interface !== "") && !networkInfo.interfaces.some((item) => item.value === selection.interface))
+                    addInterface(selection, (selection.interface_name || selection.interface), [], [], [], true);
+            }
+
+            const getSelection = () => {
+                const result = [];
+                for (const ifaceNode of interfaceNodes) {
+                    const familyValues = (family) => {
+                        if (family.checkbox.checked)
+                            return ["all"];
+                        return family.children
+                            .filter((child) => child.checkbox.checked)
+                            .map((child) => ((child.kind === "temporary") ? "temporary" : child.value));
+                    };
+
+                    const selection = {
+                        interface: ifaceNode.value,
+                        interface_name: (ifaceNode.value === "") ? "" : ifaceNode.name,
+                        ipv4: familyValues(ifaceNode.ipv4),
+                        ipv6: familyValues(ifaceNode.ipv6)
+                    };
+                    if ((selection.ipv4.length > 0) || (selection.ipv6.length > 0))
+                        result.push(selection);
+                }
+                return result;
+            };
+
+            const setEnabled = (enabled) => {
+                isTreeEnabled = enabled;
+                for (const checkbox of container.querySelectorAll("input[type=checkbox]"))
+                    checkbox.disabled = (checkbox.dataset.locked === "true") || !enabled;
+            };
+
+            return { getSelection, setEnabled };
+        };
+
+        // Parses "6881, 6882s". Returns null if an item is not a valid port.
+        const parseListenPorts = (text) => {
+            const ports = [];
+            for (const item of text.split(",")) {
+                const value = item.trim();
+                if (value === "")
+                    continue;
+                const match = /^(\d{1,5})(s?)$/i.exec(value);
+                if (match === null)
+                    return null;
+                const port = Number(match[1]);
+                if ((port < 1) || (port > 65535))
+                    return null;
+                const normalized = `${port}${(match[2] !== "") ? "s" : ""}`;
+                if (!ports.includes(normalized))
+                    ports.push(normalized);
+            }
+            return ports;
+        };
+
+        const updateListenEntriesTable = async () => {
+            const networkInfo = await fetchNetworkInterfaces();
+            const tableBody = document.getElementById("listenEntriesTableBody");
+            tableBody.replaceChildren();
+
+            for (const [index, entry] of listenEntries.entries()) {
+                const row = document.createElement("tr");
+
+                const addressesCell = document.createElement("td");
+                for (const selection of entry.interfaces) {
+                    const lines = [interfaceText(selection, networkInfo.interfaces)];
+                    if ((selection.ipv4 ?? []).length > 0)
+                        lines.push(`IPv4: ${addressSelectionText(selection.ipv4)}`);
+                    if ((selection.ipv6 ?? []).length > 0)
+                        lines.push(`IPv6: ${addressSelectionText(selection.ipv6)}`);
+                    const div = document.createElement("div");
+                    div.textContent = lines.join(" | ");
+                    addressesCell.append(div);
+                }
+
+                const portsCell = document.createElement("td");
+                portsCell.textContent = entry.ports.join(", ");
+
+                const editButton = document.createElement("button");
+                editButton.type = "button";
+                editButton.textContent = "QBT_TR(Edit...)QBT_TR[CONTEXT=OptionsDialog]";
+                editButton.addEventListener("click", (e) => {
+                    openListenEntryEditor(index);
+                });
+
+                const removeButton = document.createElement("button");
+                removeButton.type = "button";
+                removeButton.textContent = "QBT_TR(Remove)QBT_TR[CONTEXT=OptionsDialog]";
+                // Without an entry, qBittorrent listens on nothing
+                removeButton.disabled = (listenEntries.length <= 1);
+                removeButton.addEventListener("click", (e) => {
+                    if (listenEntries.length <= 1)
+                        return;
+                    listenEntries.splice(index, 1);
+                    closeListenEntryEditor();
+                    updateListenEntriesTable();
+                });
+
+                const buttonsCell = document.createElement("td");
+                buttonsCell.append(editButton, removeButton);
+
+                row.append(addressesCell, portsCell, buttonsCell);
+                tableBody.append(row);
+            }
+        };
+
+        const openListenEntryEditor = async (index) => {
+            editedListenEntryIndex = index;
+            const entry = (index >= 0)
+                ? listenEntries[index]
+                : { interfaces: [], ports: [`${generateRandomPort()}`] };
+
+            const networkInfo = await fetchNetworkInterfaces();
+            listenEntryAddressTree = createAddressSelectionTree(document.getElementById("listenEntryAddressTree"), entry.interfaces, networkInfo);
+            document.getElementById("listenEntryPorts").value = entry.ports.join(", ");
+            document.getElementById("listenEntryEditor").classList.remove("invisible");
+        };
+
+        const closeListenEntryEditor = () => {
+            editedListenEntryIndex = -1;
+            listenEntryAddressTree = null;
+            document.getElementById("listenEntryEditor").classList.add("invisible");
+        };
+
+        const addListenEntry = () => {
+            openListenEntryEditor(-1);
+        };
+
+        const acceptListenEntryEditor = () => {
+            if (listenEntryAddressTree === null)
+                return;
+
+            const ports = parseListenPorts(document.getElementById("listenEntryPorts").value);
+            if ((ports === null) || (ports.length === 0)) {
+                alert("QBT_TR(Enter one or more ports between 1 and 65535, separated by commas.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
+
+            const interfaces = listenEntryAddressTree.getSelection();
+            if (interfaces.length === 0) {
+                alert("QBT_TR(Select at least one interface or address.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
+
+            const entry = { interfaces: interfaces, ports: ports };
+            if ((editedListenEntryIndex >= 0) && (editedListenEntryIndex < listenEntries.length))
+                listenEntries[editedListenEntryIndex] = entry;
+            else
+                listenEntries.push(entry);
+
+            closeListenEntryEditor();
+            updateListenEntriesTable();
+        };
+
+        const setRandomListenPort = () => {
+            const input = document.getElementById("listenEntryPorts");
+            const sslPorts = (parseListenPorts(input.value) ?? []).filter((port) => port.endsWith("s"));
+            let port = generateRandomPort();
+            while (sslPorts.includes(`${port}s`))
+                port = generateRandomPort();
+            input.value = [`${port}`, ...sslPorts].join(", ");
+        };
+
+        const loadOutgoingInterfaces = async (outgoing) => {
+            // Set the mode first, so that saving before the tree is ready keeps it
+            const radioIds = {
+                listen_addresses: "outgoingListenAddresses",
+                any: "outgoingAny",
+                selected: "outgoingSelected"
+            };
+            document.getElementById(radioIds[outgoing.mode] ?? "outgoingListenAddresses").checked = true;
+            loadedOutgoingInterfaces = outgoing;
+            outgoingInterfacesTree = null;
+
+            const networkInfo = await fetchNetworkInterfaces();
+            outgoingInterfacesTree = createAddressSelectionTree(document.getElementById("outgoingInterfacesTree"), (outgoing.interfaces ?? []), networkInfo);
+            updateOutgoingInterfacesEnabled();
+        };
+
+        const updateOutgoingInterfacesEnabled = () => {
+            outgoingInterfacesTree?.setEnabled(document.getElementById("outgoingSelected").checked);
+        };
+
+        const getOutgoingInterfaces = () => {
+            const mode = document.querySelector("input[name=outgoingInterfacesMode]:checked")?.value ?? "listen_addresses";
+            if (mode !== "selected")
+                return { mode: mode, interfaces: [] };
+            // The tree is not ready yet, so the selection is the loaded one
+            if (outgoingInterfacesTree === null)
+                return { mode: mode, interfaces: [...(loadedOutgoingInterfaces?.interfaces ?? [])] };
+            return { mode: mode, interfaces: outgoingInterfacesTree.getSelection() };
         };
 
         const time_padding = (val) => {
@@ -2403,67 +2808,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (ret.length === 1)
                 ret = `0${ret}`;
             return ret;
-        };
-
-        // Advanced Tab
-        const updateNetworkInterfaces = (default_iface, default_iface_name) => {
-            for (const el of [...document.getElementById("networkInterface").children])
-                el.remove();
-
-            fetch("api/v2/app/networkInterfaceList", {
-                    method: "GET",
-                    cache: "no-store"
-                })
-                .then(async (response) => {
-                    if (!response.ok) {
-                        alert("Could not contact qBittorrent");
-                        return;
-                    }
-
-                    const ifaces = await response.json();
-                    if (!Array.isArray(ifaces))
-                        return;
-
-                    // add the current network interface to the options if needed
-                    if (default_iface && !ifaces.some((item) => item.value === default_iface))
-                        ifaces.push({ name: default_iface_name || default_iface, value: default_iface });
-
-                    document.getElementById("networkInterface").options.add(new Option("QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]", ""));
-                    for (const item of ifaces)
-                        document.getElementById("networkInterface").options.add(new Option(item.name, item.value));
-                    document.getElementById("networkInterface").value = default_iface;
-                });
-        };
-
-        const updateInterfaceAddresses = (iface, default_addr) => {
-            for (const el of [...document.getElementById("optionalIPAddressToBind").children])
-                el.remove();
-
-            const url = new URL("api/v2/app/networkInterfaceAddressList", window.location);
-            url.search = new URLSearchParams({
-                iface: iface
-            });
-            fetch(url, {
-                    method: "GET",
-                    cache: "no-store"
-                })
-                .then(async (response) => {
-                    if (!response.ok) {
-                        alert("Could not contact qBittorrent");
-                        return;
-                    }
-
-                    const addresses = await response.json();
-                    if (!addresses)
-                        return;
-
-                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]", ""));
-                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]", "0.0.0.0"));
-                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv6 addresses)QBT_TR[CONTEXT=OptionDialog]", "::"));
-                    for (const item of addresses)
-                        document.getElementById("optionalIPAddressToBind").options.add(new Option(item, item));
-                    document.getElementById("optionalIPAddressToBind").value = default_addr;
-                });
         };
 
         const updateWebuiLocaleSelect = (selected) => {
@@ -2643,10 +2987,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     updateAutoRun();
 
                     // Connection tab
-                    // Listening Port
-                    document.getElementById("portValue").value = Number(pref.listen_port);
-                    document.getElementById("upnpCheckbox").checked = pref.upnp;
-
                     // Connections Limits
                     const maxConnec = Number(pref.max_connec);
                     if (maxConnec <= 0) {
@@ -2720,6 +3060,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("ipfilter_trackers_checkbox").checked = pref.ip_filter_trackers;
                     document.getElementById("banned_IPs_textarea").value = pref.banned_IPs;
                     updateFilterSettings();
+
+                    // Listening tab
+                    // The cached preferences are frozen
+                    listenEntries = [...pref.listen_entries];
+                    closeListenEntryEditor();
+                    updateListenEntriesTable();
+                    loadOutgoingInterfaces(pref.outgoing_interfaces);
+                    document.getElementById("upnpCheckbox").checked = pref.upnp;
 
                     // Speed tab
                     // Global Rate Limits
@@ -2880,8 +3228,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("resumeDataStorageType").value = pref.resume_data_storage_type;
                     document.getElementById("torrentContentRemoveOption").value = pref.torrent_content_remove_option;
                     document.getElementById("memoryWorkingSetLimit").value = pref.memory_working_set_limit;
-                    updateNetworkInterfaces(pref.current_network_interface, pref.current_interface_name);
-                    updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
                     document.getElementById("saveResumeDataInterval").value = pref.save_resume_data_interval;
                     document.getElementById("saveStatisticsInterval").value = pref.save_statistics_interval;
                     document.getElementById("torrentFileSizeLimit").value = (pref.torrent_file_size_limit / 1024 / 1024);
@@ -3061,15 +3407,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["autorun_program"] = document.getElementById("autorunProg_txt").value;
 
             // Connection tab
-            // Listening Port
-            const listenPort = Number(document.getElementById("portValue").value);
-            if (Number.isNaN(listenPort) || (listenPort < 0) || (listenPort > 65535)) {
-                alert("QBT_TR(The port used for incoming connections must be between 0 and 65535.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-            settings["listen_port"] = listenPort;
-            settings["upnp"] = document.getElementById("upnpCheckbox").checked;
-
             // Connections Limits
             let maxConnec = -1;
             if (document.getElementById("maxConnectionsCheckbox").checked) {
@@ -3136,6 +3473,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["ip_filter_path"] = document.getElementById("ipfilter_text").value;
             settings["ip_filter_trackers"] = document.getElementById("ipfilter_trackers_checkbox").checked;
             settings["banned_IPs"] = document.getElementById("banned_IPs_textarea").value;
+
+            // Listening tab
+            settings["listen_entries"] = listenEntries;
+            const outgoingInterfaces = getOutgoingInterfaces();
+            if ((outgoingInterfaces.mode === "selected") && (outgoingInterfaces.interfaces.length === 0)) {
+                alert("QBT_TR(Select at least one interface or address for outgoing connections.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
+            settings["outgoing_interfaces"] = outgoingInterfaces;
+            settings["upnp"] = document.getElementById("upnpCheckbox").checked;
 
             // Speed tab
             // Global Rate Limits
@@ -3385,8 +3732,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["resume_data_storage_type"] = document.getElementById("resumeDataStorageType").value;
             settings["torrent_content_remove_option"] = document.getElementById("torrentContentRemoveOption").value;
             settings["memory_working_set_limit"] = Number(document.getElementById("memoryWorkingSetLimit").value);
-            settings["current_network_interface"] = document.getElementById("networkInterface").value;
-            settings["current_interface_address"] = document.getElementById("optionalIPAddressToBind").value;
             settings["save_resume_data_interval"] = Number(document.getElementById("saveResumeDataInterval").value);
             settings["save_statistics_interval"] = Number(document.getElementById("saveStatisticsInterval").value);
             settings["torrent_file_size_limit"] = (document.getElementById("torrentFileSizeLimit").value * 1024 * 1024);
@@ -3584,10 +3929,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             if ((buildInfo.platform !== "macos") && (buildInfo.platform !== "windows"))
                 document.getElementById("rowMarkOfTheWeb").style.display = "none";
-
-            document.getElementById("networkInterface").addEventListener("change", function(event) {
-                updateInterfaceAddresses(this.value, "");
-            });
 
             document.getElementById("deleteTorrentFileAfterCheckbox").addEventListener("change", (e) => { updateDeleteCancelledTorrentEnabled(); });
 
