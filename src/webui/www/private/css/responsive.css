@@ -10,11 +10,10 @@
     --responsive-card-menu-height: 40px; /* also used in responsive.js */
     --responsive-card-check-width: 40px; /* also used in responsive.js */
     --color-button-face: var(--color-background-default);
-    --color-button-border: var(--color-border-default);
+    --color-button-border: var(--color-border-control);
 
     &.dark {
         --color-button-face: hsl(0deg 0% 30%);
-        --color-button-border: hsl(0deg 0% 50%);
     }
 }
 
@@ -595,7 +594,7 @@ would cover the entry that opened it */
         & tbody tr::before {
             align-self: start;
             background-color: var(--color-background-popup);
-            border: 1px solid var(--color-border-default);
+            border: 1px solid var(--color-border-control);
             border-radius: 3px;
             content: "";
             grid-area: 1 / 1 / 5 / 2;

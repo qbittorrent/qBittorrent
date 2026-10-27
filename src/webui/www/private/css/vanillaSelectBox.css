@@ -72,7 +72,7 @@ li.short {
 }
 
 .vsb-main button {
-    border: 1px solid var(--color-border-default);
+    border: 1px solid var(--color-border-control);
     border-radius: 4px;
     min-width: 120px;
     padding: 6px 12px;

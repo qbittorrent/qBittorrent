@@ -18,6 +18,7 @@
     --color-background-hover: hsl(26deg 80% 88%);
     --color-border-blue: hsl(210deg 42% 48%);
     --color-border-default: hsl(0deg 0% 85%);
+    --color-border-control: hsl(0deg 0% 54%);
     --color-focus-ring: hsl(210deg 80% 40%);
     --color-icon-hover: brightness(0) invert(100%) sepia(100%) saturate(0%)
         hue-rotate(108deg) brightness(104%) contrast(104%);
@@ -47,6 +48,7 @@
         --color-background-default: hsl(0deg 0% 25%);
         --color-background-hover: hsl(26deg 35% 26%);
         --color-border-default: hsl(0deg 0% 33%);
+        --color-border-control: hsl(0deg 0% 52%);
         --color-focus-ring: hsl(210deg 90% 65%);
 
         & #torrentTrackersTableDiv tr {
@@ -121,7 +123,7 @@ input[type="button"],
 button,
 textarea,
 select {
-    border: 1px solid var(--color-border-default);
+    border: 1px solid var(--color-border-control);
     border-radius: 3px;
     color: var(--color-text-default);
     padding: 3px;
@@ -507,7 +509,7 @@ a.propButton img {
     background-position: 2px;
     background-repeat: no-repeat;
     background-size: 1.5em;
-    border: 1px solid var(--color-border-default);
+    border: 1px solid var(--color-border-control);
     border-radius: 3px;
     box-sizing: border-box;
     height: 26px;
@@ -525,7 +527,7 @@ a.propButton img {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 1.5em;
-    border: 1px solid var(--color-border-default);
+    border: 1px solid var(--color-border-control);
     border-radius: 4px;
     cursor: pointer;
     display: inline-block;
@@ -783,7 +785,7 @@ td.noWrap {
 }
 
 .select-watched-folder-editable {
-    border: 1px solid var(--color-border-default);
+    border: 1px solid var(--color-border-control);
     height: 22px;
     position: relative;
     width: 160px;
