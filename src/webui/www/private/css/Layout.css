@@ -53,7 +53,7 @@ Required by:
 }
 
 #desktopNavbar ul {
-    font-size: 12px;
+    font-size: var(--text-md);
     margin: 0;
     padding: 0;
     user-select: none;
@@ -186,8 +186,8 @@ li.divider {
 }
 
 #desktopFooter {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 11px;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
     height: 28px;
     padding: 2px;
 }
@@ -236,7 +236,7 @@ li.divider {
 
 .panel-header h2 {
     display: inline-block;
-    font-size: 12px;
+    font-size: var(--text-md);
     height: 22px;
     overflow: hidden;
     padding: 3px 8px 0;

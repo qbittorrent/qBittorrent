@@ -164,7 +164,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
         background-color: var(--color-text-on-accent);
         border-radius: 50%;
         color: var(--color-selection);
-        font-size: 11px;
+        font-size: var(--text-sm);
         font-weight: bold;
         height: 16px;
         line-height: 16px;
@@ -281,7 +281,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
         & > ul > li > a {
             align-items: center;
             display: flex;
-            font-size: 14px;
+            font-size: var(--text-lg);
             justify-content: space-between;
             padding-inline: 12px 8px;
             text-align: start;
@@ -644,7 +644,7 @@ would cover the entry that opened it */
 
         & td[data-col="name"] {
             display: block;
-            font-size: 13px;
+            font-size: var(--text-lg);
             font-weight: bold;
             grid-area: 1 / 3 / 2 / 5;
             line-height: 20px;
@@ -667,7 +667,7 @@ would cover the entry that opened it */
 
                 &::after {
                     content: attr(data-value);
-                    font-size: 12px;
+                    font-size: var(--text-md);
                     left: 100%;
                     position: absolute;
                     text-align: end;
@@ -846,7 +846,7 @@ would cover the entry that opened it */
         align-self: flex-start;
         display: flex;
         flex: 1 1 0;
-        font-size: 16px;
+        font-size: var(--text-touch);
         line-height: 22px;
         order: 2;
         white-space: normal;
@@ -867,7 +867,7 @@ would cover the entry that opened it */
 
     & td[data-col="size"] {
         align-self: flex-start;
-        font-size: 14px;
+        font-size: var(--text-lg);
         line-height: 22px;
         order: 3;
         padding-inline-start: 8px;
@@ -899,7 +899,7 @@ would cover the entry that opened it */
             border-color: transparent;
             color: inherit;
             cursor: pointer;
-            font-size: 16px;
+            font-size: var(--text-touch);
             padding-inline: 8px calc(12px + 4px + 6px);
             text-align: end;
         }
@@ -1872,7 +1872,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
         select,
         textarea
     ) {
-        font-size: 16px; /* prevent iOS from zooming in on focus */
+        font-size: var(--text-touch); /* prevent iOS from zooming in on focus */
     }
 
     .select-watched-folder-editable {

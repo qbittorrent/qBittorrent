@@ -24,7 +24,7 @@ Required by:
 
 .tab-menu {
     display: flex;
-    font-size: 11px;
+    font-size: var(--text-sm);
     list-style-type: none;
     overflow-x: auto;
     padding: 0;

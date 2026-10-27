@@ -16,7 +16,7 @@ li[data-parent].open:not(.hidden-search) {
     border: 1px solid var(--color-border);
     cursor: pointer;
     display: block;
-    font-size: 11px;
+    font-size: var(--text-sm);
     position: absolute;
     visibility: hidden;
     z-index: 1000; /*Don't change*/
@@ -96,7 +96,7 @@ li.short {
 }
 
 .vsb-menu li {
-    font-size: 12px;
+    font-size: var(--text-md);
     padding: 4px 26px;
 }
 

@@ -14,6 +14,13 @@
     --color-text-disabled: hsl(0deg 0% 60%);
     --color-text-hover: var(--color-text);
 
+    /* type */
+    --font-ui: "Arial", "Helvetica", sans-serif;
+    --text-sm: 11px;
+    --text-md: 12px;
+    --text-lg: 14px;
+    --text-touch: 16px;
+
     /* lines: separators, and the edges of fields and buttons */
     --color-border: hsl(0deg 0% 85%);
     --color-border-control: hsl(0deg 0% 54%);
@@ -175,8 +182,8 @@ button:disabled {
 body {
     background-color: var(--color-surface-page);
     color: var(--color-text);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-family: var(--font-ui);
+    font-size: var(--text-md);
     line-height: 1.5;
     text-align: left;
 }
@@ -205,21 +212,21 @@ body:not(:has(#desktop)) {
 h2,
 h3,
 h4 {
-    font-size: 12px;
+    font-size: var(--text-md);
     font-weight: bold;
     padding: 0 0 5px;
 }
 
 h2 {
     color: var(--color-text);
-    font-size: 14px;
+    font-size: var(--text-lg);
     font-weight: bold;
 }
 
 #mochaPage h3 {
     border-bottom: 1px solid var(--color-border);
     display: block;
-    font-size: 12px;
+    font-size: var(--text-md);
     margin: 0 0 8px;
     padding: 6px 0;
 }
@@ -228,12 +235,12 @@ h2 {
 #rename_error {
     color: var(--color-error);
     float: left;
-    font-size: 14px;
+    font-size: var(--text-lg);
     font-weight: bold;
 }
 
 h4 {
-    font-size: 11px;
+    font-size: var(--text-sm);
 }
 
 a {
@@ -276,7 +283,7 @@ pre {
     color: var(--color-success);
     display: block;
     font-family: "Courier New", Courier, monospace;
-    font-size: 11px;
+    font-size: var(--text-sm);
     margin: 0 0 10px;
     max-height: 250px;
     overflow: auto;
@@ -459,7 +466,7 @@ a.propButton img {
 /* Sliders */
 
 .slider {
-    font-size: 12px;
+    font-size: var(--text-md);
     font-weight: bold;
     margin: 4px;
     position: relative;

@@ -55,7 +55,7 @@ Required by:
 
 .mochaTitlebar h3 {
     background-size: 16px !important; /* override mocha titlebar logo inline style */
-    font-size: 12px;
+    font-size: var(--text-md);
     font-weight: bold;
     line-height: 15px;
     overflow: hidden;
@@ -92,7 +92,7 @@ div.mochaToolbarWrapper.bottom {
 /* Has a fixed height and scrollbars if required. */
 .mochaContentWrapper {
     background-color: var(--color-surface-popup);
-    font-size: 12px;
+    font-size: var(--text-md);
     overflow: auto;
 }
 
@@ -328,7 +328,7 @@ div.mochaToolbarWrapper.bottom {
 
 .mocha.notification .mochaContentWrapper {
     background: transparent;
-    font-size: 12px;
+    font-size: var(--text-md);
     font-weight: bold;
     text-align: center;
 }
