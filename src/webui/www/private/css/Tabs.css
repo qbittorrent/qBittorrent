@@ -36,8 +36,7 @@ Required by:
     float: left;
 }
 
-.tab-menu .selected img,
-.tab-menu li:hover img {
+.tab-menu .selected img {
     filter: var(--color-icon-hover);
 }
 
@@ -59,7 +58,7 @@ Required by:
 
 .tab-menu li:hover a {
     background-color: var(--color-background-hover);
-    color: var(--color-text-white);
+    color: var(--color-text-hover);
 }
 
 .tab-menu li.selected a {

@@ -27,7 +27,7 @@
 @media (hover: hover) {
     .dynamicTableDiv table.dynamicTable tbody tr:hover {
         background-color: var(--color-background-hover);
-        color: var(--color-text-white);
+        color: var(--color-text-hover);
     }
 }
 
@@ -133,12 +133,6 @@
 
 .dynamicTable tr.selected img:not(.flags) {
     filter: var(--color-icon-hover);
-}
-
-@media (hover: hover) {
-    .dynamicTable tr:hover img:not(.flags) {
-        filter: var(--color-icon-hover);
-    }
 }
 
 .dynamicTable td {

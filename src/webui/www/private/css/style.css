@@ -2,19 +2,20 @@
 
 /* Default rules */
 :root {
-    --color-accent-blue: hsl(210deg 65% 55%);
-    --color-text-blue: hsl(210deg 100% 55%);
-    --color-text-orange: hsl(26deg 100% 45%);
-    --color-text-red: hsl(0deg 100% 65%);
-    --color-text-green: hsl(110deg 94% 27%);
+    --color-accent-blue: hsl(210deg 65% 47%);
+    --color-text-blue: hsl(210deg 100% 42%);
+    --color-text-orange: hsl(26deg 100% 35%);
+    --color-text-red: hsl(0deg 100% 43%);
+    --color-text-green: hsl(110deg 94% 25%);
     --color-text-white: hsl(0deg 0% 100%);
     --color-text-disabled: hsl(0deg 0% 60%);
     --color-text-default: hsl(0deg 0% 33%);
+    --color-text-hover: var(--color-text-default);
     --color-background-primary: hsl(0deg 0% 100%);
-    --color-background-blue: hsl(210deg 65% 55%);
+    --color-background-blue: hsl(210deg 65% 47%);
     --color-background-popup: hsl(0deg 0% 100%);
     --color-background-default: hsl(0deg 0% 94%);
-    --color-background-hover: hsl(26deg 80% 60%);
+    --color-background-hover: hsl(26deg 80% 88%);
     --color-border-blue: hsl(210deg 42% 48%);
     --color-border-default: hsl(0deg 0% 85%);
     --color-focus-ring: hsl(210deg 80% 40%);
@@ -23,10 +24,10 @@
 
     & #torrentTrackersTableDiv tr {
         --color-tracker-disabled: hsl(240deg 4% 46%);
-        --color-tracker-not-contacted: hsl(32deg 95% 44%);
-        --color-tracker-working: hsl(142deg 76% 36%);
-        --color-tracker-updating: hsl(210deg 100% 55%);
-        --color-tracker-not-working: hsl(0deg 100% 65%);
+        --color-tracker-not-contacted: hsl(32deg 95% 33%);
+        --color-tracker-working: hsl(142deg 76% 28%);
+        --color-tracker-updating: hsl(210deg 100% 42%);
+        --color-tracker-not-working: hsl(0deg 100% 43%);
     }
 
     &:not(.dark) {
@@ -34,15 +35,17 @@
     }
 
     &.dark {
-        --color-accent-blue: hsl(210deg 42% 48%);
+        --color-accent-blue: hsl(210deg 42% 47%);
         --color-text-blue: hsl(210deg 88.1% 73.5%);
         --color-text-orange: hsl(26deg 65% 70%);
+        --color-text-red: hsl(0deg 100% 77%);
+        --color-text-green: hsl(110deg 70% 46%);
         --color-text-default: hsl(0deg 0% 90%);
         --color-background-primary: hsl(0deg 0% 7%);
-        --color-background-blue: hsl(210deg 42% 48%);
+        --color-background-blue: hsl(210deg 42% 47%);
         --color-background-popup: hsl(0deg 0% 20%);
         --color-background-default: hsl(0deg 0% 25%);
-        --color-background-hover: hsl(26deg 50% 55%);
+        --color-background-hover: hsl(26deg 35% 26%);
         --color-border-default: hsl(0deg 0% 33%);
         --color-focus-ring: hsl(210deg 90% 65%);
 
@@ -51,7 +54,7 @@
             --color-tracker-not-contacted: hsl(39deg 100% 72%);
             --color-tracker-working: hsl(142deg 69% 58%);
             --color-tracker-updating: hsl(210deg 88.1% 73.5%);
-            --color-tracker-not-working: hsl(0deg 100% 71%);
+            --color-tracker-not-working: hsl(0deg 100% 77%);
         }
 
         color-scheme: dark;
@@ -390,11 +393,7 @@ a.propButton img {
 
 .contextMenu li a:hover {
     background-color: var(--color-background-hover);
-    color: var(--color-text-white);
-}
-
-.contextMenu li a:hover img:not(.highlightedCategoryIcon) {
-    filter: var(--color-icon-hover);
+    color: var(--color-text-hover);
 }
 
 .contextMenu li ul {
@@ -644,12 +643,6 @@ ul.filterList .selectedFilter > .link :is(img, button) {
     filter: var(--color-icon-hover);
 }
 
-@media (hover: hover) {
-    ul.filterList span.link:hover :is(img, button) {
-        filter: var(--color-icon-hover);
-    }
-}
-
 ul.filterList span.link {
     align-items: center;
     cursor: pointer;
@@ -664,7 +657,7 @@ ul.filterList span.link {
 @media (hover: hover) {
     ul.filterList span.link:hover {
         background-color: var(--color-background-hover);
-        color: var(--color-text-white);
+        color: var(--color-text-hover);
     }
 }
 
@@ -903,7 +896,7 @@ td.statusBarSeparator {
     #torrentFilesTableDiv .dynamicTable tr.nonAlt:hover,
     #addTorrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
         background-color: var(--color-background-hover);
-        color: var(--color-text-white);
+        color: var(--color-text-hover);
     }
 }
 

@@ -75,11 +75,7 @@ Required by:
 
 #desktopNavbar ul li a:hover {
     background-color: var(--color-background-hover);
-    color: var(--color-text-white);
-}
-
-#desktopNavbar a:hover img {
-    filter: var(--color-icon-hover);
+    color: var(--color-text-hover);
 }
 
 #desktopNavbar ul li a.arrow-right::after,
@@ -138,7 +134,7 @@ Required by:
 #desktopNavbar li ul li a:hover,
 #desktopNavbar li ul li div.anchor:hover {
     background-color: var(--color-background-hover);
-    color: var(--color-text-white);
+    color: var(--color-text-hover);
 }
 
 /* lists nested under hovered list items */
