@@ -42,9 +42,9 @@ Required by:
 
 .tab-menu li a {
     align-items: center;
-    background-color: var(--color-background-default);
+    background-color: var(--color-surface-chrome);
     border-radius: 3px 3px 0 0;
-    color: var(--color-text-default);
+    color: var(--color-text);
     display: flex;
     gap: 5px;
     margin-left: 6px;
@@ -57,11 +57,11 @@ Required by:
 }
 
 .tab-menu li:hover a {
-    background-color: var(--color-background-hover);
+    background-color: var(--color-hover);
     color: var(--color-text-hover);
 }
 
 .tab-menu li.selected a {
-    background-color: var(--color-background-blue);
-    color: var(--color-text-white);
+    background-color: var(--color-selection);
+    color: var(--color-text-on-accent);
 }

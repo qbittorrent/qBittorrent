@@ -60,7 +60,7 @@ window.qBittorrent.PiecesBar ??= (() => {
             this._styles = {
                 height: 12,
                 borderSize: 1,
-                borderColor: "var(--color-border-default)",
+                borderColor: "var(--color-border)",
                 ...styles
             };
 

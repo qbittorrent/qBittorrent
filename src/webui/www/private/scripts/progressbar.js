@@ -40,10 +40,10 @@ window.qBittorrent.ProgressBar ??= (() => {
         static #progressBarUniqueId = 0;
         static #styles = {
             height: 12,
-            darkbg: "var(--color-background-blue)",
-            darkfg: "var(--color-text-white)",
-            lightbg: "var(--color-background-default)",
-            lightfg: "var(--color-text-default)",
+            darkbg: "var(--color-selection)",
+            darkfg: "var(--color-text-on-accent)",
+            lightbg: "var(--color-surface-chrome)",
+            lightfg: "var(--color-text)",
         };
 
         #value = 0;
@@ -84,7 +84,7 @@ window.qBittorrent.ProgressBar ??= (() => {
             this.attachShadow({ mode: "open" });
             this.shadowRoot.host.id = this.#id;
             this.shadowRoot.host.style.display = "block";
-            this.shadowRoot.host.style.border = "1px solid var(--color-border-default)";
+            this.shadowRoot.host.style.border = "1px solid var(--color-border)";
             this.shadowRoot.host.style.boxSizing = "content-box";
             this.shadowRoot.host.style.height = height;
             this.shadowRoot.host.style.position = "relative";

@@ -1,5 +1,5 @@
 :root {
-    --responsive-separator: 1px solid var(--color-border-default);
+    --responsive-separator: 1px solid var(--color-border);
     --responsive-drawer-shadow: 0 0 12px hsl(0deg 0% 0% / 30%);
     --responsive-drawer-width: min(320px, 86vw);
     --responsive-touch-row-height: 44px; /* also used in responsive.js */
@@ -9,7 +9,7 @@
     --responsive-card-menu-width: 44px; /* also used in responsive.js */
     --responsive-card-menu-height: 40px; /* also used in responsive.js */
     --responsive-card-check-width: 40px; /* also used in responsive.js */
-    --color-button-face: var(--color-background-default);
+    --color-button-face: var(--color-surface-chrome);
     --color-button-border: var(--color-border-control);
 
     &.dark {
@@ -42,7 +42,7 @@ input[type="button"]:disabled {
         --button-background: color-mix(
             in srgb,
             var(--color-button-face),
-            var(--color-text-default) 8%
+            var(--color-text) 8%
         );
     }
 }
@@ -53,7 +53,7 @@ input[type="button"]:disabled {
     --button-background: color-mix(
         in srgb,
         var(--color-button-face),
-        var(--color-text-default) 14%
+        var(--color-text) 14%
     );
 }
 
@@ -105,7 +105,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
 
 /* Drawers */
 .responsiveScrim {
-    background-color: hsl(0deg 0% 0% / 40%);
+    background-color: var(--color-overlay);
     inset: 0;
     position: fixed;
     z-index: 1500;
@@ -113,7 +113,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
 
 .responsiveDrawerHead {
     align-items: center;
-    background-color: var(--color-background-primary);
+    background-color: var(--color-surface-page);
     border-bottom: var(--responsive-separator);
     display: none;
     gap: 8px;
@@ -150,10 +150,10 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
     /* filters are on: the button looks like a selected filter, and their number takes the icon's place, so nothing
     moves */
     #filtersButton.filtered {
-        --button-background: var(--color-background-blue);
+        --button-background: var(--color-selection);
 
-        border-color: var(--color-background-blue);
-        color: var(--color-text-white);
+        border-color: var(--color-selection);
+        color: var(--color-text-on-accent);
 
         & > img {
             display: none;
@@ -161,9 +161,9 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
     }
 
     #filtersCount {
-        background-color: var(--color-text-white);
+        background-color: var(--color-text-on-accent);
         border-radius: 50%;
-        color: var(--color-background-blue);
+        color: var(--color-selection);
         font-size: 11px;
         font-weight: bold;
         height: 16px;
@@ -201,7 +201,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
         }
 
         & #Filters {
-            background-color: var(--color-background-primary);
+            background-color: var(--color-surface-page);
             border-right: var(--responsive-separator);
             box-shadow: var(--responsive-drawer-shadow);
             height: 100% !important;
@@ -237,7 +237,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
         align-items: center;
         background: none;
         border: 0;
-        color: var(--color-text-default);
+        color: var(--color-text);
         cursor: pointer;
         display: inline-flex;
         height: 24px;
@@ -256,7 +256,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
     }
 
     :root.menuDrawerOpen #desktopNavbar {
-        background-color: var(--color-background-primary);
+        background-color: var(--color-surface-page);
         border-right: var(--responsive-separator);
         bottom: 0;
         box-shadow: var(--responsive-drawer-shadow);
@@ -306,7 +306,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
 
         /* submenus expand in place, on the drawer's background */
         & li ul {
-            background-color: var(--color-background-primary);
+            background-color: var(--color-surface-page);
             border-width: 0;
             display: none;
             max-height: none;
@@ -324,7 +324,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
     @media (hover: none) {
         :root.menuDrawerOpen #desktopNavbar > ul > li > a:hover {
             background-color: transparent;
-            color: var(--color-text-default);
+            color: var(--color-text);
         }
     }
 }
@@ -594,7 +594,7 @@ would cover the entry that opened it */
         /* selection checkbox */
         & tbody tr::before {
             align-self: start;
-            background-color: var(--color-background-popup);
+            background-color: var(--color-surface-popup);
             border: 1px solid var(--color-border-control);
             border-radius: 3px;
             content: "";
@@ -905,8 +905,8 @@ would cover the entry that opened it */
         }
 
         & option {
-            background-color: var(--color-background-popup);
-            color: var(--color-text-default);
+            background-color: var(--color-surface-popup);
+            color: var(--color-text);
         }
     }
 }
@@ -1028,7 +1028,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
 /* Button rows */
 :where(.dialogFooter, #uploadForm > #submitbutton) {
-    background-color: var(--color-background-popup);
+    background-color: var(--color-surface-popup);
     border-top: var(--responsive-separator);
     bottom: 0;
     padding-bottom: var(--responsive-row-space);
@@ -1549,7 +1549,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
         & #saveButton {
             box-shadow: 0 0 0 var(--responsive-row-space)
-                var(--color-background-popup);
+                var(--color-surface-popup);
         }
     }
 }
@@ -1718,7 +1718,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
         }
 
         & > #operation_btns {
-            background-color: var(--color-background-popup);
+            background-color: var(--color-surface-popup);
             bottom: 0;
             display: flow-root;
             margin: 0 !important;
@@ -1808,7 +1808,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
     /* rounded all round, as the collapsed panel turns it upside down; its size overrides an inline style */
     #propertiesPanel_collapseToggle {
-        background-color: var(--color-background-default);
+        background-color: var(--color-surface-chrome);
         border-radius: 3px;
         height: var(--responsive-touch-target) !important;
         margin: 0;
@@ -2004,7 +2004,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
         /* the Menu button stays in view, and the buttons scroll under it */
         & #menuDrawerButton {
-            background: var(--color-background-primary);
+            background: var(--color-surface-page);
             left: 0;
             position: sticky;
         }

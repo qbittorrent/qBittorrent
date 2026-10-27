@@ -48,7 +48,7 @@ Required by:
 /* Navbar */
 
 #desktopNavbar {
-    background-color: var(--color-background-default);
+    background-color: var(--color-surface-chrome);
     overflow: hidden; /* Remove this line if you want the menu to be backward compatible with Firefox 2 */
 }
 
@@ -68,13 +68,13 @@ Required by:
 }
 
 #desktopNavbar ul li a {
-    color: var(--color-text-default);
+    color: var(--color-text);
     font-weight: normal;
     padding: 4px 10px;
 }
 
 #desktopNavbar ul li a:hover {
-    background-color: var(--color-background-hover);
+    background-color: var(--color-hover);
     color: var(--color-text-hover);
 }
 
@@ -93,8 +93,8 @@ Required by:
 
 /* hidden as well, so the keyboard skips the entries of closed menus */
 #desktopNavbar li ul {
-    background-color: var(--color-background-default);
-    border: 1px solid var(--color-border-default);
+    background-color: var(--color-surface-chrome);
+    border: 1px solid var(--color-border);
     left: -999em;
     position: absolute;
     visibility: hidden;
@@ -126,7 +126,7 @@ Required by:
 
 #desktopNavbar li ul li a,
 #desktopNavbar li ul li div.anchor {
-    color: var(--color-text-default);
+    color: var(--color-text);
     font-weight: normal;
     min-width: 155px;
     padding: 4px 10px 4px 23px;
@@ -135,7 +135,7 @@ Required by:
 
 #desktopNavbar li ul li a:hover,
 #desktopNavbar li ul li div.anchor:hover {
-    background-color: var(--color-background-hover);
+    background-color: var(--color-hover);
     color: var(--color-text-hover);
 }
 
@@ -157,14 +157,14 @@ Required by:
 }
 
 li.divider {
-    border-top: 1px solid var(--color-border-default);
+    border-top: 1px solid var(--color-border);
     margin-top: 2px;
     padding-top: 3px;
 }
 
 #pageWrapper {
-    border-bottom: 1px solid var(--color-border-default);
-    border-top: 1px solid var(--color-border-default);
+    border-bottom: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
     box-sizing: content-box; /* Mocha sizes the page without its borders */
     overflow: hidden; /* This can be set to hidden or auto */
     position: relative;
@@ -206,7 +206,7 @@ li.divider {
 /* Panels */
 
 .panel {
-    border-bottom: 1px solid var(--color-border-default);
+    border-bottom: 1px solid var(--color-border);
     overflow: auto;
     position: relative;
 }
@@ -225,7 +225,7 @@ li.divider {
 }
 
 .panel-header {
-    border-bottom: 1px solid var(--color-border-default);
+    border-bottom: 1px solid var(--color-border);
     overflow: hidden;
     position: relative;
 }
@@ -279,7 +279,7 @@ li.divider {
 
 .columnHandle {
     background: url("../images/handle-icon.svg") center center no-repeat;
-    border: 1px solid var(--color-border-default);
+    border: 1px solid var(--color-border);
     border-bottom: 0;
     border-top: 0;
     float: left;
@@ -301,11 +301,8 @@ li.divider {
 
 /* Have to specify div here for IE6's sake */
 div.toolbox.divider {
-    background: linear-gradient(
-            var(--color-border-default),
-            var(--color-border-default)
-        )
-        left top / 1px 100% no-repeat;
+    background: linear-gradient(var(--color-border), var(--color-border)) left
+        top / 1px 100% no-repeat;
     padding-left: 8px;
 }
 

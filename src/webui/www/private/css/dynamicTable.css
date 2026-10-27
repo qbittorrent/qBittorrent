@@ -5,7 +5,7 @@
 
 **************************************************************/
 .altRowColors tbody tr:nth-child(odd of :not(.invisible)) {
-    background-color: var(--color-background-default);
+    background-color: var(--color-surface-chrome);
 }
 
 #transferList .dynamicTable td {
@@ -26,15 +26,15 @@
 /* only where the pointer hovers: a touch screen leaves the last tapped row hovered */
 @media (hover: hover) {
     .dynamicTableDiv table.dynamicTable tbody tr:hover {
-        background-color: var(--color-background-hover);
+        background-color: var(--color-hover);
         color: var(--color-text-hover);
     }
 }
 
 /* after the hover, so a selected row stays marked under the pointer */
 .dynamicTableDiv table.dynamicTable tbody tr.selected {
-    background-color: var(--color-background-blue);
-    color: var(--color-text-white);
+    background-color: var(--color-selection);
+    color: var(--color-text-on-accent);
 }
 
 #transferList .stateIcon,
@@ -112,7 +112,7 @@
 }
 
 .dynamicTable th {
-    border-right: 1px solid var(--color-border-default);
+    border-right: 1px solid var(--color-border);
     padding: 4px 2px;
     white-space: nowrap;
 }
@@ -178,12 +178,12 @@ div:has(> div.dynamicTableDiv):not(.invisible) {
 
 /* opaque background on the header table so body rows don't show through when scrolling under it */
 .dynamicTableFixedHeaderDiv table {
-    background-color: var(--color-background-primary);
+    background-color: var(--color-surface-page);
 }
 
 #propertiesPanel .dynamicTableFixedHeaderDiv,
 #torrentsTableFixedHeaderDiv {
-    border-bottom: 1px solid var(--color-border-default);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .dynamicTableDiv {

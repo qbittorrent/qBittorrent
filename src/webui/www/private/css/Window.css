@@ -19,7 +19,7 @@ Required by:
 ---------------------------------------------------------------- */
 
 .mocha {
-    background-color: var(--color-background-default);
+    background-color: var(--color-surface-chrome);
     border-radius: 5px;
     box-shadow: rgb(51 51 51) 0 1px 5px;
     display: none;
@@ -27,7 +27,7 @@ Required by:
 }
 
 .mochaOverlay {
-    background-color: var(--color-background-default);
+    background-color: var(--color-surface-chrome);
     border-radius: 5px;
     height: auto !important; /* also fixes out of block issue */
     left: 0;
@@ -47,7 +47,7 @@ Required by:
 */
 
 .mochaTitlebar {
-    background-color: var(--color-background-default);
+    background-color: var(--color-surface-chrome);
     border-radius: 5px;
     overflow: hidden;
     width: 100%;
@@ -65,7 +65,7 @@ Required by:
 }
 
 .mochaToolbarWrapper {
-    background-color: var(--color-background-popup);
+    background-color: var(--color-surface-popup);
     height: auto !important;
     overflow: hidden;
     position: relative;
@@ -74,24 +74,24 @@ Required by:
 
 div.mochaToolbarWrapper.bottom {
     border: 0;
-    border-bottom: 1px solid var(--color-border-default);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .mochaToolbar {
-    border-top: 1px solid var(--color-border-default);
+    border-top: 1px solid var(--color-border);
     height: auto !important;
     padding-top: 4px;
     width: 100%; /* For IE */
 }
 
 .mochaContentBorder {
-    border-bottom: 1px solid var(--color-border-default);
-    border-top: 1px solid var(--color-border-default);
+    border-bottom: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
 }
 
 /* Has a fixed height and scrollbars if required. */
 .mochaContentWrapper {
-    background-color: var(--color-background-popup);
+    background-color: var(--color-surface-popup);
     font-size: 12px;
     overflow: auto;
 }
@@ -120,7 +120,7 @@ div.mochaToolbarWrapper.bottom {
 
 /* Bottom right resize handle */
 .mocha .cornerSE {
-    background-color: var(--color-background-default);
+    background-color: var(--color-surface-chrome);
     height: 20px;
     width: 20px;
 }
@@ -158,7 +158,7 @@ div.mochaToolbarWrapper.bottom {
 .mochaMinimizeButton::before,
 .mochaCloseButton::before,
 .mochaCloseButton::after {
-    background-color: var(--color-text-default);
+    background-color: var(--color-text);
     border-radius: 1px;
     content: "";
     height: 2px;
@@ -227,7 +227,7 @@ div.mochaToolbarWrapper.bottom {
 ---------------------------------------------------------------- */
 
 #modalOverlay {
-    background: hsl(0deg 0% 0% / 30%);
+    background: var(--color-overlay);
     display: none;
     left: 0;
     opacity: 0;

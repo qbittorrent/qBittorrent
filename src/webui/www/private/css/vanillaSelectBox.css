@@ -12,8 +12,8 @@ li[data-parent].open:not(.hidden-search) {
 
 .vsb-menu {
     background-clip: padding-box;
-    background-color: var(--color-background-default);
-    border: 1px solid var(--color-border-default);
+    background-color: var(--color-surface-chrome);
+    border: 1px solid var(--color-border);
     cursor: pointer;
     display: block;
     font-size: 11px;
@@ -101,7 +101,7 @@ li.short {
 }
 
 .vsb-menu li:hover {
-    background-color: var(--color-background-hover);
+    background-color: var(--color-hover);
     color: var(--color-text-hover);
 }
 
@@ -161,9 +161,9 @@ li.short {
 }
 
 .vsb-menu :not(.multi) li.active::before {
-    border-bottom: 3px solid var(--color-border-blue);
+    border-bottom: 3px solid var(--color-selection);
     border-radius: 2px;
-    border-right: 3px solid var(--color-border-blue);
+    border-right: 3px solid var(--color-selection);
     content: "";
     display: inline-block;
     font-size: inherit;
@@ -184,7 +184,7 @@ li.short {
 }
 
 .vsb-menu .multi li:not(.grouped-option)::before {
-    background: var(--color-background-popup);
+    background: var(--color-surface-popup);
     border: 1px solid;
     border-radius: 3px;
     content: "";
@@ -199,8 +199,8 @@ li.short {
 }
 
 .vsb-menu .multi li:not(.grouped-option).active::after {
-    border-bottom: 3px solid var(--color-border-blue);
-    border-right: 3px solid var(--color-border-blue);
+    border-bottom: 3px solid var(--color-selection);
+    border-right: 3px solid var(--color-selection);
     content: "";
     display: inline-block;
     float: left;
