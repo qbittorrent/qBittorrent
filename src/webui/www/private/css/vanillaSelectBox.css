@@ -215,7 +215,6 @@ li.short {
 .caret {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-top: 4px dashed;
     border-top: 4px solid;
     display: inline-block;
     height: 0;

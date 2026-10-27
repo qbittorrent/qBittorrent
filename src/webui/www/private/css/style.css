@@ -176,10 +176,6 @@ button {
     padding-right: 10px;
 }
 
-button:disabled {
-    cursor: initial;
-}
-
 /* a ring where the browser would show focus, as for the keyboard */
 :focus:not(:focus-visible) {
     outline: none;
@@ -560,16 +556,7 @@ hr {
 
 #torrentsFilterRegexBox:checked + label {
     background-color: var(--color-surface-chrome);
-    background-image: url("../images/regex.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 1.5em;
-    border: 1px solid var(--color-selection);
-    border-radius: var(--radius-control);
-    display: inline-block;
-    height: 26px;
-    vertical-align: middle;
-    width: 26px;
+    border-color: var(--color-selection);
 }
 
 /* vertical padding would make Safari clip the text at this height */
