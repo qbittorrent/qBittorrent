@@ -596,17 +596,20 @@ would cover the entry that opened it */
     }
 }
 
-/* one row in two halves on phones: the connection status and the download speed, then the speed limits and the
-upload speed */
+/* two rows on phones: the connection status, what of the free space, external IP and DHT nodes is shown, and the
+speed limits; then the download and the upload speed, each in its half of the screen */
 @media (width < 760px) {
+    /* the separators between the free space, external IP and DHT nodes stay */
     #desktopFooter
-        :is(#freeSpaceOnDisk, #externalIPs, #DHTNodes, td.statusBarSeparator) {
+        td.statusBarSeparator:not(:has(+ :is(#externalIPs, #DHTNodes))) {
         display: none;
     }
 
-    :root.responsiveRelayout #desktopFooter > table > tbody > tr {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+    /* the speeds start a row of their own */
+    :root.responsiveRelayout #desktopFooter > table > tbody > tr::after {
+        content: "";
+        flex-basis: 100%;
+        order: 4;
     }
 
     /* halves of the screen: no margin that sets the status bar off the right edge */
@@ -614,26 +617,42 @@ upload speed */
         margin-right: 0 !important; /* override inline style */
     }
 
-    #desktopFooter
-        :is(td:has(> #connectionStatus), td.speedLabel:has(#DlInfos)) {
-        grid-area: 1 / 1;
+    /* the icons at the ends of the first row, with what is between them centered */
+    #desktopFooter td:has(> #connectionStatus) {
+        margin-right: auto;
+        order: 1;
     }
 
     #desktopFooter
-        :is(td:has(> #alternativeSpeedLimits), td.speedLabel:has(#UpInfos)) {
-        grid-area: 1 / 2;
+        :is(#freeSpaceOnDisk, #externalIPs, #DHTNodes, td.statusBarSeparator) {
+        order: 2;
     }
 
-    /* the icons at the start of their half */
-    #desktopFooter td:has(> :is(#connectionStatus, #alternativeSpeedLimits)) {
-        justify-self: start;
+    #desktopFooter td:has(> #alternativeSpeedLimits) {
+        margin-left: auto;
+        order: 3;
     }
 
-    /* each speed centered in its half and clear of the icon, wrapped when it is longer */
-    :root.responsiveRelayout #desktopFooter td.speedLabel {
-        justify-self: center;
+    /* text that doesn't fit is cut short rather than wrapped, so the first row stays one row: the free space and DHT
+    nodes, which are short, take their room first, and the external IPs what is left */
+    #desktopFooter :is(#freeSpaceOnDisk, #externalIPs, #DHTNodes) {
+        flex: 100 1 0;
+        max-width: max-content;
         min-width: 0;
-        padding-inline: 24px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    #desktopFooter #externalIPs {
+        flex-grow: 1;
+    }
+
+    /* each speed centered in its half, wrapped when it is longer */
+    :root.responsiveRelayout #desktopFooter td.speedLabel {
+        flex: 1 1 0;
+        min-width: 0;
+        order: 5;
         text-align: center;
     }
 }
