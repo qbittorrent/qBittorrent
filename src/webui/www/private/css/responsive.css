@@ -312,6 +312,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
             max-height: none;
             overflow: visible;
             position: static;
+            visibility: visible;
         }
 
         & li.menuDrawerExpanded > ul {
@@ -1996,6 +1997,8 @@ speed limits; then the download and the upload speed, each in its half of the sc
         font-size: 0;
         min-width: 0;
         overflow: auto hidden;
+        /* room for a button's focus ring, 2 px wide and 1 px out, which the strip would clip */
+        padding-block: 3px;
         scrollbar-width: none;
         white-space: nowrap;
 

@@ -468,6 +468,16 @@ a.propButton img {
     margin-right: 10px;
 }
 
+/* the focus ring around a toolbar button's icon, not around the separator before it */
+#toolbarButtons :is(a, label):focus-visible {
+    outline: none;
+
+    & > img {
+        outline: 2px solid var(--color-focus-ring);
+        outline-offset: 1px;
+    }
+}
+
 /* Mocha Customization */
 
 #mochaToolbar {

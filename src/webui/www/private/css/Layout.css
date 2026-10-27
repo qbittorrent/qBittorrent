@@ -91,11 +91,13 @@ Required by:
     transform: rotate(-45deg) translateY(-50%);
 }
 
+/* hidden as well, so the keyboard skips the entries of closed menus */
 #desktopNavbar li ul {
     background-color: var(--color-background-default);
     border: 1px solid var(--color-border-default);
     left: -999em;
     position: absolute;
+    visibility: hidden;
     z-index: 8000;
 }
 
@@ -137,14 +139,16 @@ Required by:
     color: var(--color-text-hover);
 }
 
-/* lists nested under hovered list items */
+/* lists nested under hovered list items, and under the menu the keyboard is in */
 #desktopNavbar li:hover ul,
 #desktopNavbar li.ieHover ul,
 #desktopNavbar li li.ieHover ul,
 #desktopNavbar li li li.ieHover ul,
 #desktopNavbar li li:hover ul,
-#desktopNavbar li li li:hover ul {
+#desktopNavbar li li li:hover ul,
+#desktopNavbar li:focus-within > ul {
     left: auto;
+    visibility: visible;
 }
 
 /* For IE7 */
