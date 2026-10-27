@@ -744,6 +744,11 @@ td.noWrap {
     padding: 2px;
 }
 
+/* on wide screens the label columns stay close enough to read across */
+#propGeneral fieldset > table {
+    max-width: 1200px;
+}
+
 #propBarsWrapper {
     align-items: center;
     display: grid;
