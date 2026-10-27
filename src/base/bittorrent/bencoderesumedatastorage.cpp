@@ -63,14 +63,19 @@ namespace BitTorrent
 {
     class BencodeResumeDataStorage::Worker final : public QObject
     {
+        Q_OBJECT
         Q_DISABLE_COPY_MOVE(Worker)
 
     public:
         explicit Worker(const Path &resumeDataDir);
 
-        void store(const TorrentID &id, const LoadTorrentParams &resumeData) const;
+        void store(const TorrentID &id, const LoadTorrentParams &resumeData);
         void remove(const TorrentID &id) const;
         void storeQueue(const QList<TorrentID> &queue) const;
+
+    signals:
+        void metadataStored(const BitTorrent::TorrentID &torrentID);
+        void storeFailed(const BitTorrent::TorrentID &torrentID);
 
     private:
         const Path m_resumeDataDir;
@@ -134,6 +139,9 @@ BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const Path &path,
     loadQueue(path / Path(u"queue"_s));
 
     qDebug() << "Registered torrents count: " << m_registeredTorrents.size();
+
+    connect(m_asyncWorker, &Worker::metadataStored, this, &ResumeDataStorage::metadataStored);
+    connect(m_asyncWorker, &Worker::storeFailed, this, &ResumeDataStorage::storeFailed);
 
     m_asyncWorker->moveToThread(m_ioThread.get());
     connect(m_ioThread.get(), &QThread::finished, m_asyncWorker, &QObject::deleteLater);
@@ -403,7 +411,7 @@ BitTorrent::BencodeResumeDataStorage::Worker::Worker(const Path &resumeDataDir)
 {
 }
 
-void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, const LoadTorrentParams &resumeData) const
+void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, const LoadTorrentParams &resumeData)
 {
     // We need to adjust native libtorrent resume data
     lt::add_torrent_params p = resumeData.ltAddTorrentParams;
@@ -448,8 +456,11 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
         {
             LogMsg(tr("Couldn't save torrent metadata to '%1'. Error: %2.")
                    .arg(torrentFilepath.toString(), result.error()), Log::CRITICAL);
+            emit storeFailed(id);
             return;
         }
+
+        emit metadataStored(id);
     }
 
     data["qBt-ratioLimit"] = static_cast<int>(resumeData.shareLimits.ratioLimit * 1000);
@@ -486,6 +497,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     {
         LogMsg(tr("Couldn't save torrent resume data to '%1'. Error: %2.")
                .arg(resumeFilepath.toString(), result.error()), Log::CRITICAL);
+        emit storeFailed(id);
     }
 }
 
@@ -513,3 +525,5 @@ void BitTorrent::BencodeResumeDataStorage::Worker::storeQueue(const QList<Torren
             .arg(filepath.toString(), result.error()), Log::CRITICAL);
     }
 }
+
+#include "bencoderesumedatastorage.moc"
