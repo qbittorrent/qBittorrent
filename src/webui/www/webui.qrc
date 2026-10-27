@@ -338,6 +338,7 @@
         <file>private/images/network-connect.svg</file>
         <file>private/images/network-server.svg</file>
         <file>private/images/object-locked.svg</file>
+        <file>private/images/open-menu.svg</file>
         <file>private/images/pause-session.svg</file>
         <file>private/images/paused.svg</file>
         <file>private/images/peers-add.svg</file>
@@ -375,6 +376,7 @@
         <file>private/images/trackers.svg</file>
         <file>private/images/upload.svg</file>
         <file>private/images/view-categories.svg</file>
+        <file>private/images/view-more.svg</file>
         <file>private/images/view-refresh.svg</file>
         <file>private/images/view-statistics.svg</file>
         <file>private/images/wallet-open.svg</file>

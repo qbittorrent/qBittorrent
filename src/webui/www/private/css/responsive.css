@@ -123,7 +123,6 @@
         color: var(--color-text-default);
         cursor: pointer;
         display: inline-flex;
-        font-size: 24px;
         height: 24px;
         justify-content: center;
         padding: 0;
@@ -131,8 +130,11 @@
         width: 24px;
 
         &::before {
-            content: "\2630"; /* for browsers without alternative text */
-            content: "\2630" / "";
+            background-color: currentcolor;
+            content: "";
+            height: 20px;
+            mask: url("../images/open-menu.svg") center / contain no-repeat;
+            width: 20px;
         }
     }
 
@@ -364,14 +366,18 @@ would cover the entry that opened it */
             flex: none;
             padding-inline: 6px;
 
+            /* the arrows of a sorted column */
             &::before {
-                content: "\2191"; /* for browsers without alternative text */
-                content: "\2191" / "";
+                background: url("../images/go-up.svg") center / 14px no-repeat;
+                content: "";
+                display: inline-block;
+                height: 16px;
+                vertical-align: middle;
+                width: 16px;
             }
 
             &[aria-pressed="true"]::before {
-                content: "\2193"; /* for browsers without alternative text */
-                content: "\2193" / "";
+                background-image: url("../images/go-down.svg");
             }
         }
 
@@ -436,30 +442,29 @@ would cover the entry that opened it */
             background-color: var(--color-background-popup);
             border: 1px solid var(--color-border-default);
             border-radius: 3px;
-            color: var(--color-text-default);
             content: "";
-            font-size: 14px;
             grid-area: 1 / 1 / 5 / 2;
             height: 20px;
-            line-height: 18px;
-            text-align: center;
             width: 20px;
         }
 
+        /* the check cut out of the box, so it shows the selected card's color */
         & tbody tr.selected::before {
-            content: "\2713"; /* for browsers without alternative text */
-            content: "\2713" / "";
+            mask:
+                url("../images/checked-completed.svg") center / 14px no-repeat,
+                linear-gradient(#000000 0 0);
+            mask-composite: exclude;
         }
 
         /* menu button */
         & tbody tr::after {
-            content: "\22EF"; /* for browsers without alternative text */
-            content: "\22EF" / "";
-            font-size: 20px;
-            font-weight: bold;
+            background-color: currentcolor;
+            content: "";
             grid-area: 1 / 5;
-            line-height: 20px;
-            text-align: right;
+            height: 20px;
+            justify-self: end;
+            mask: url("../images/view-more.svg") center / contain no-repeat;
+            width: 20px;
         }
 
         & td {
