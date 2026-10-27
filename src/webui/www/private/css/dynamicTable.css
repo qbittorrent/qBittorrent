@@ -23,13 +23,17 @@
     padding-top: 2px;
 }
 
-.dynamicTableDiv table.dynamicTable tbody tr.selected {
-    background-color: var(--color-background-blue);
-    color: var(--color-text-white);
+/* only where the pointer hovers: a touch screen leaves the last tapped row hovered */
+@media (hover: hover) {
+    .dynamicTableDiv table.dynamicTable tbody tr:hover {
+        background-color: var(--color-background-hover);
+        color: var(--color-text-white);
+    }
 }
 
-.dynamicTableDiv table.dynamicTable tbody tr:hover {
-    background-color: var(--color-background-hover);
+/* after the hover, so a selected row stays marked under the pointer */
+.dynamicTableDiv table.dynamicTable tbody tr.selected {
+    background-color: var(--color-background-blue);
     color: var(--color-text-white);
 }
 
@@ -117,8 +121,14 @@
     cursor: pointer;
 }
 
-.dynamicTable tr:is(:hover, .selected) img:not(.flags) {
+.dynamicTable tr.selected img:not(.flags) {
     filter: var(--color-icon-hover);
+}
+
+@media (hover: hover) {
+    .dynamicTable tr:hover img:not(.flags) {
+        filter: var(--color-icon-hover);
+    }
 }
 
 .dynamicTable td {
@@ -178,7 +188,7 @@ div:has(> div.dynamicTableDiv):not(.invisible) {
 }
 
 /* Trackers table */
-#torrentTrackersTableDiv tr:not(.selected, :hover) {
+#torrentTrackersTableDiv tr:not(.selected) {
     & .trackerDisabled {
         color: var(--color-tracker-disabled);
     }
@@ -197,5 +207,20 @@ div:has(> div.dynamicTableDiv):not(.invisible) {
 
     & .trackerNotWorking {
         color: var(--color-tracker-not-working);
+    }
+}
+
+/* a hovered row's text takes the hover's color */
+@media (hover: hover) {
+    #torrentTrackersTableDiv
+        tr:hover
+        :is(
+            .trackerDisabled,
+            .trackerNotContacted,
+            .trackerWorking,
+            .trackerUpdating,
+            .trackerNotWorking
+        ) {
+        color: inherit;
     }
 }

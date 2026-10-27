@@ -616,9 +616,14 @@ ul.filterList {
     padding-left: 0;
 }
 
-ul.filterList span.link:hover :is(img, button),
 ul.filterList .selectedFilter > .link :is(img, button) {
     filter: var(--color-icon-hover);
+}
+
+@media (hover: hover) {
+    ul.filterList span.link:hover :is(img, button) {
+        filter: var(--color-icon-hover);
+    }
 }
 
 ul.filterList span.link {
@@ -631,9 +636,12 @@ ul.filterList span.link {
     white-space: nowrap;
 }
 
-ul.filterList span.link:hover {
-    background-color: var(--color-background-hover);
-    color: var(--color-text-white);
+/* only where the pointer hovers: a touch screen leaves the last tapped filter hovered */
+@media (hover: hover) {
+    ul.filterList span.link:hover {
+        background-color: var(--color-background-hover);
+        color: var(--color-text-white);
+    }
 }
 
 span.link :last-child {
@@ -647,7 +655,8 @@ span.link :is(img, button) {
     flex-shrink: 0;
 }
 
-.selectedFilter > span.link {
+/* after the hover and as specific, so the selected filter stays marked under the pointer */
+ul.filterList .selectedFilter > span.link {
     background-color: var(--color-background-blue);
     color: var(--color-text-white);
 }
@@ -850,10 +859,12 @@ td.statusBarSeparator {
     color: var(--color-text-green);
 }
 
-#torrentFilesTableDiv .dynamicTable tr.nonAlt:hover,
-#addTorrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
-    background-color: var(--color-background-hover);
-    color: var(--color-text-white);
+@media (hover: hover) {
+    #torrentFilesTableDiv .dynamicTable tr.nonAlt:hover,
+    #addTorrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
+        background-color: var(--color-background-hover);
+        color: var(--color-text-white);
+    }
 }
 
 /* Modals */
