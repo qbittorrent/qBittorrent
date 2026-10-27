@@ -1289,8 +1289,10 @@ upload speed */
     }
 }
 
-/* Rename files on phones and short touch screens */
-@media (width < 760px), (pointer: coarse) and (height < 620px) {
+/* Rename files on small screens: phones and short screens */
+@media (width < 760px),
+    (height < 620px),
+    (pointer: coarse) and (height < 900px) {
     #multiRenamePage .mochaContentWrapper {
         overflow-y: auto !important;
     }

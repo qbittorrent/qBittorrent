@@ -44,7 +44,7 @@ window.qBittorrent.Responsive ??= (() => {
         phone: window.matchMedia("(width < 760px)"),
         drawer: window.matchMedia("(width < 1100px)"),
         relayout: window.matchMedia("(pointer: coarse), (width < 1100px)"),
-        small: window.matchMedia("(width < 760px), (pointer: coarse) and (height < 620px)"),
+        small: window.matchMedia("(width < 760px), (height < 620px), (pointer: coarse) and (height < 900px)"),
         coarse: window.matchMedia("(pointer: coarse)")
     });
 
