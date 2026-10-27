@@ -17,6 +17,7 @@
     --color-background-hover: hsl(26deg 80% 60%);
     --color-border-blue: hsl(210deg 42% 48%);
     --color-border-default: hsl(0deg 0% 85%);
+    --color-focus-ring: hsl(210deg 80% 40%);
     --color-icon-hover: brightness(0) invert(100%) sepia(100%) saturate(0%)
         hue-rotate(108deg) brightness(104%) contrast(104%);
 
@@ -43,6 +44,7 @@
         --color-background-default: hsl(0deg 0% 25%);
         --color-background-hover: hsl(26deg 50% 55%);
         --color-border-default: hsl(0deg 0% 33%);
+        --color-focus-ring: hsl(210deg 90% 65%);
 
         & #torrentTrackersTableDiv tr {
             --color-tracker-disabled: hsl(240deg 6% 83%);
@@ -148,8 +150,14 @@ button:disabled {
     cursor: initial;
 }
 
-:focus {
+/* a ring where the browser would show focus, as for the keyboard */
+:focus:not(:focus-visible) {
     outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 1px;
 }
 
 /* Structure */
@@ -808,8 +816,14 @@ td.noWrap {
 }
 
 .select-watched-folder-editable select:focus,
-.select-editable input:focus {
+.select-watched-folder-editable input:focus {
     outline: none;
+}
+
+/* the ring around both the field and its list */
+.select-watched-folder-editable:has(:focus-visible) {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 1px;
 }
 
 /*
