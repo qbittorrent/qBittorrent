@@ -269,6 +269,16 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.hide();
                 this.options.element = null;
             });
+
+            // hide on Escape, and only the menu, not also the drawer or window it was opened from
+            window.addEventListener("keydown", (event) => {
+                if ((event.key !== "Escape") || !this.menu.classList.contains("visible"))
+                    return;
+
+                event.stopPropagation();
+                this.hide();
+                this.options.element = null;
+            }, true);
         }
 
         updateMenuItems() {}
