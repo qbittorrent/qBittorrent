@@ -297,7 +297,11 @@ li.divider {
 
 /* Have to specify div here for IE6's sake */
 div.toolbox.divider {
-    background: url("../images/toolbox-divider.svg") repeat-y;
+    background: linear-gradient(
+            var(--color-border-default),
+            var(--color-border-default)
+        )
+        left top / 1px 100% no-repeat;
     padding-left: 8px;
 }
 

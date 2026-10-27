@@ -477,10 +477,15 @@ a.propButton img {
     position: relative;
 }
 
+/* separator lines in the theme's border color */
 #mochaToolbar .divider {
-    background-image: url("../images/toolbox-divider.svg");
+    background-image: linear-gradient(
+        var(--color-border-default),
+        var(--color-border-default)
+    );
     background-position: left center;
     background-repeat: no-repeat;
+    background-size: 1px 20px;
     padding-left: 14px;
     padding-top: 15px;
 }
@@ -837,10 +842,13 @@ td.noWrap {
 }
 
 td.statusBarSeparator {
-    background-image: url("../images/toolbox-divider.svg");
+    background-image: linear-gradient(
+        var(--color-border-default),
+        var(--color-border-default)
+    );
     background-position: center 1px;
     background-repeat: no-repeat;
-    background-size: 2px 18px;
+    background-size: 1px 18px;
     width: 24px;
 }
 
