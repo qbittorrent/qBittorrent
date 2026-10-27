@@ -83,6 +83,8 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             if (this.menu.classList.contains("scrollableMenu"))
                 this.menu.style.maxHeight = `${scrollableMenuMaxHeight}px`;
+            else
+                this.menu.style.removeProperty("max-height");
 
             // draw the menu off-screen to know the menu dimensions
             this.menu.style.left = "-999em";
@@ -211,6 +213,35 @@ window.qBittorrent.ContextMenu ??= (() => {
                 else {
                     e.stopPropagation();
                 }
+            });
+
+            // a menu grows as a submenu expands in place: rather than run off the screen, it scrolls, and what is
+            // under the pointer stays where it is
+            new ResizeObserver(() => {
+                if (!this.menu.classList.contains("visible"))
+                    return;
+
+                const rect = this.menu.getBoundingClientRect();
+                const room = document.documentElement.clientHeight - rect.top;
+                if (rect.height > room)
+                    this.menu.style.maxHeight = `${room}px`;
+            }).observe(this.menu);
+            // and a submenu that opens in place below its bottom scrolls up into view, as far as its entry stays in view
+            this.menu.addEventListener("focusin", (event) => {
+                const submenu = event.target.closest("li")?.querySelector(":scope > ul") ?? null;
+                if (submenu === null)
+                    return;
+
+                requestAnimationFrame(() => {
+                    if (getComputedStyle(submenu).position !== "static")
+                        return;
+
+                    const menuRect = this.menu.getBoundingClientRect();
+                    const below = submenu.getBoundingClientRect().bottom - menuRect.bottom;
+                    const entryTop = submenu.parentElement.getBoundingClientRect().top - menuRect.top;
+                    if (below > 0)
+                        this.menu.scrollTop += Math.min(below, entryTop);
+                });
             });
 
             // hide on body click

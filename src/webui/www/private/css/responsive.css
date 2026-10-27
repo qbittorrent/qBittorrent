@@ -248,7 +248,9 @@
     overflow-y: auto;
 }
 
-.contextMenu.scrollingMenu {
+/* submenus expand in place in menus taller than the screen, and on phones, where a submenu beside its menu
+would cover the entry that opened it */
+:is(.contextMenu.scrollingMenu, :root.responsivePhone .contextMenu) {
     max-height: 100%;
     overflow: hidden auto;
 
