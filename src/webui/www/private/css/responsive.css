@@ -2,7 +2,7 @@
     --responsive-separator: 1px solid var(--color-border-default);
     --responsive-drawer-shadow: 0 0 12px hsl(0deg 0% 0% / 30%);
     --responsive-drawer-width: min(320px, 86vw);
-    --responsive-touch-row-height: 30px; /* also used in responsive.js */
+    --responsive-touch-row-height: 44px; /* also used in responsive.js */
     --responsive-gap: 8px;
     --responsive-row-space: 6px;
     --responsive-card-height: 112px; /* also used in responsive.js */
@@ -1335,14 +1335,16 @@ upload speed */
 /* Touch screens */
 @media (pointer: coarse) {
     :root {
-        --responsive-touch-target: 36px;
-        --responsive-touch-field-height: 32px;
-        --responsive-window-title-height: 36px; /* also used in responsive.js */
+        --responsive-touch-target: 44px;
+        --responsive-touch-field-height: 40px;
+        --responsive-window-title-height: 44px; /* also used in responsive.js */
     }
 
     #desktopNavbar > ul > li > a {
-        padding-bottom: 9px;
-        padding-top: 9px;
+        min-width: var(--responsive-touch-target);
+        padding-bottom: calc((var(--responsive-touch-target) - 1lh) / 2);
+        padding-top: calc((var(--responsive-touch-target) - 1lh) / 2);
+        text-align: center;
     }
 
     #desktopNavbar li ul {
@@ -1366,10 +1368,11 @@ upload speed */
         margin-top: 0;
     }
 
+    /* the icons keep their 24 px */
     #mochaToolbar .mochaToolButton {
         height: var(--responsive-touch-target);
         margin-right: 0;
-        padding: 6px;
+        padding: calc((var(--responsive-touch-target) - 24px) / 2);
         width: var(--responsive-touch-target);
     }
 
@@ -1499,6 +1502,16 @@ upload speed */
 
     .dynamicTable tbody tr {
         height: var(--responsive-touch-row-height);
+    }
+
+    /* the cells fill the row, so its text sits in the middle */
+    :is(#transferList, .dynamicTableDiv) .dynamicTable tbody td {
+        padding-block: calc((var(--responsive-touch-row-height) - 1lh) / 2);
+    }
+
+    /* tapped to sort */
+    .dynamicTable thead th {
+        height: var(--responsive-touch-target);
     }
 
     .horizontalHandle {
