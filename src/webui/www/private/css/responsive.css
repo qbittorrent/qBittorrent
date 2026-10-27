@@ -192,6 +192,19 @@
         }
     }
 
+    /* the properties and Options tabs: icons only, but the selected tab keeps its label */
+    :is(#propertiesTabs, #preferencesPage .tab-menu) li a {
+        font-size: 0;
+        gap: 0;
+        justify-content: center;
+        min-width: var(--responsive-touch-target, 32px);
+    }
+
+    :is(#propertiesTabs, #preferencesPage .tab-menu) li.selected a {
+        font-size: inherit;
+        gap: 5px;
+    }
+
     #torrentsFilterToolbar {
         align-items: center;
         display: flex;
@@ -239,6 +252,14 @@
         position: absolute;
         white-space: nowrap;
         width: 1px;
+    }
+}
+
+@media (width < 400px) {
+    /* the icon only, so the filter field keeps room for its text */
+    #torrentsFilterToolbar #filtersButton {
+        font-size: 0;
+        gap: 0;
     }
 }
 
