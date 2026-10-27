@@ -596,7 +596,7 @@ would cover the entry that opened it */
             align-self: start;
             background-color: var(--color-surface-popup);
             border: 1px solid var(--color-border-control);
-            border-radius: 3px;
+            border-radius: var(--radius-control);
             content: "";
             grid-area: 1 / 1 / 5 / 2;
             height: 20px;
@@ -1809,7 +1809,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
     /* rounded all round, as the collapsed panel turns it upside down; its size overrides an inline style */
     #propertiesPanel_collapseToggle {
         background-color: var(--color-surface-chrome);
-        border-radius: 3px;
+        border-radius: var(--radius-control);
         height: var(--responsive-touch-target) !important;
         margin: 0;
         width: var(--responsive-touch-target) !important;

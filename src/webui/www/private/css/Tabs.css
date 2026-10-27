@@ -43,7 +43,7 @@ Required by:
 .tab-menu li a {
     align-items: center;
     background-color: var(--color-surface-chrome);
-    border-radius: 3px 3px 0 0;
+    border-radius: var(--radius-control) var(--radius-control) 0 0;
     color: var(--color-text);
     display: flex;
     gap: 5px;

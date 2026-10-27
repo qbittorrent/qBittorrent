@@ -31,7 +31,7 @@ li[data-parent].open:not(.hidden-search) {
 }
 
 .vsb-js-search-zone input {
-    border-radius: 4px;
+    border-radius: var(--radius-control);
     height: 25px !important;
     margin-left: 2px;
     width: 96%;
@@ -73,7 +73,7 @@ li.short {
 
 .vsb-main button {
     border: 1px solid var(--color-border-control);
-    border-radius: 4px;
+    border-radius: var(--radius-control);
     min-width: 120px;
     padding: 6px 12px;
     text-align: left;
@@ -132,7 +132,7 @@ li.short {
 
 .vsb-menu li.grouped-option i {
     border: 1px solid;
-    border-radius: 3px;
+    border-radius: var(--radius-control);
     display: inline-block;
     float: left;
     font-size: inherit;
@@ -186,7 +186,7 @@ li.short {
 .vsb-menu .multi li:not(.grouped-option)::before {
     background: var(--color-surface-popup);
     border: 1px solid;
-    border-radius: 3px;
+    border-radius: var(--radius-control);
     content: "";
     display: inline-block;
     float: left;

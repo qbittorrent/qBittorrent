@@ -20,7 +20,7 @@ Required by:
 
 .mocha {
     background-color: var(--color-surface-chrome);
-    border-radius: 5px;
+    border-radius: var(--radius-window);
     box-shadow: rgb(51 51 51) 0 1px 5px;
     display: none;
     overflow: hidden;
@@ -28,7 +28,7 @@ Required by:
 
 .mochaOverlay {
     background-color: var(--color-surface-chrome);
-    border-radius: 5px;
+    border-radius: var(--radius-window);
     height: auto !important; /* also fixes out of block issue */
     left: 0;
     position: absolute; /* This is also set in theme.js in order to make theme transitions smoother */
@@ -48,7 +48,7 @@ Required by:
 
 .mochaTitlebar {
     background-color: var(--color-surface-chrome);
-    border-radius: 5px;
+    border-radius: var(--radius-window);
     overflow: hidden;
     width: 100%;
 }

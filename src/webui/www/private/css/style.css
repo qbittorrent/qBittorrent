@@ -21,6 +21,11 @@
     --text-lg: 14px;
     --text-touch: 16px;
 
+    /* shapes */
+    --radius-control: 3px;
+    --radius-window: 5px;
+    --radius-panel: 6px;
+
     /* lines: separators, and the edges of fields and buttons */
     --color-border: hsl(0deg 0% 85%);
     --color-border-control: hsl(0deg 0% 54%);
@@ -136,7 +141,7 @@ button,
 textarea,
 select {
     border: 1px solid var(--color-border-control);
-    border-radius: 3px;
+    border-radius: var(--radius-control);
     color: var(--color-text);
     padding: 3px;
 }
@@ -271,7 +276,7 @@ dd {
 
 fieldset {
     border: 1px solid var(--color-border);
-    border-radius: 1px;
+    border-radius: var(--radius-control);
     margin: 0 2px;
 }
 
@@ -534,7 +539,7 @@ a.propButton img {
     background-repeat: no-repeat;
     background-size: 1.5em;
     border: 1px solid var(--color-border-control);
-    border-radius: 3px;
+    border-radius: var(--radius-control);
     box-sizing: border-box;
     height: 26px;
     min-width: 170px;
@@ -552,7 +557,7 @@ a.propButton img {
     background-repeat: no-repeat;
     background-size: 1.5em;
     border: 1px solid var(--color-border-control);
-    border-radius: 4px;
+    border-radius: var(--radius-control);
     cursor: pointer;
     display: inline-block;
     height: 26px;
@@ -567,7 +572,7 @@ a.propButton img {
     background-repeat: no-repeat;
     background-size: 1.5em;
     border: 1px solid var(--color-selection);
-    border-radius: 4px;
+    border-radius: var(--radius-control);
     display: inline-block;
     height: 26px;
     vertical-align: middle;
@@ -872,7 +877,7 @@ td.statusBarSeparator {
 #statisticsContent {
     & table {
         background-color: var(--color-surface-chrome);
-        border-radius: 6px;
+        border-radius: var(--radius-panel);
         margin-bottom: 6px;
         padding: 6px 10px;
 
