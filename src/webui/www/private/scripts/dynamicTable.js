@@ -173,7 +173,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.dynamicTableDiv.addEventListener("contextmenu", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr)
+                // the header row is no row to select
+                if ((tr === null) || (tr.rowId === undefined))
                     return;
 
                 if (!this.isRowSelected(tr.rowId)) {
@@ -184,7 +185,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.dynamicTableDiv.addEventListener("touchstart", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr)
+                if ((tr === null) || (tr.rowId === undefined))
                     return;
 
                 if (!this.isRowSelected(tr.rowId)) {
