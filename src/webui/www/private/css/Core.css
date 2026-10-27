@@ -28,26 +28,3 @@ Notes:
     clear: both;
     height: 0;
 }
-
-* html .clear {
-    font-size: 1px;
-    line-height: 1px;
-    overflow: hidden;
-    visibility: hidden;
-}
-
-/* Miscellaneous
----------------------------------------------------------------- */
-
-#themeControl {
-    margin-top: 2px;
-}
-
-/* Theme Specific Adjustments to Default Plugin Styles
----------------------------------------------------------------- */
-
-/* Folder Tree */
-
-.tree li a {
-    color: #3f3f3f !important;
-}

@@ -35,17 +35,6 @@ Required by:
     top: 0;
 }
 
-/*
-
-    We get a little creative here in order to define a gradient in the CSS using a query
-    string appended to a background image.
-
-    "from" is the top color of the gradient. "to" is the bottom color of the gradient.
-
-    Both must be hex values without the leading # sign.
-
-*/
-
 .mochaTitlebar {
     background-color: var(--color-surface-chrome);
     border-radius: var(--radius-window);
@@ -258,10 +247,6 @@ div.mochaToolbarWrapper.bottom {
     width: 100%;
 }
 
-* html #windowUnderlay {
-    position: absolute;
-}
-
 .windowClosed {
     display: none;
     left: -20000px;
@@ -296,15 +281,6 @@ div.mochaToolbarWrapper.bottom {
 
 /* Window Themes */
 
-.mocha.no-canvas {
-    background: #e5e5e5;
-    border: 1px solid #555555;
-}
-
-.mocha.no-canvas .mochaTitlebar {
-    background: #e5e5e5;
-}
-
 .mocha.transparent .mochaTitlebar h3 {
     color: #ffffff;
     display: none;
@@ -331,19 +307,6 @@ div.mochaToolbarWrapper.bottom {
     font-size: var(--text-md);
     font-weight: bold;
     text-align: center;
-}
-
-/* This does not work in IE6. */
-.isFocused.jsonExample .mochaTitlebar h3 {
-    color: #ffffff;
-}
-
-#fxmorpherExample .mochaContentWrapper {
-    background: #577a9e;
-}
-
-#clock {
-    background: #ffffff;
 }
 
 /* iOS iframe scrolling */

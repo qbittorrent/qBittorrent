@@ -27,24 +27,6 @@ Required by:
     position: relative;
 }
 
-#topNav {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 10px;
-    padding: 13px 10px 0 0;
-    position: absolute;
-    right: 0;
-    text-align: right;
-    top: 0;
-}
-
-#topNav a {
-    font-weight: normal;
-}
-
-#topNav a:hover {
-    text-decoration: none;
-}
-
 /* Navbar */
 
 #desktopNavbar {
@@ -308,30 +290,6 @@ div.toolbox.divider {
 
 .toolbox img.disabled {
     cursor: default;
-}
-
-.iconWrapper {
-    border: 1px solid transparent;
-    display: inline-block;
-    height: 22px;
-    min-width: 22px;
-    overflow: hidden;
-}
-
-* html .iconWrapper {
-    border: 0;
-    padding: 1px;
-}
-
-.iconWrapper img {
-    cursor: pointer;
-    margin: 0;
-    padding: 3px;
-}
-
-.iconWrapper:hover {
-    border: 1px solid #a0a0a0;
-    border-radius: 3px;
 }
 
 #spinner {

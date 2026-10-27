@@ -212,10 +212,6 @@ body:not(:has(#desktop)) {
     background-color: var(--color-surface-popup);
 }
 
-.aside {
-    width: 300px;
-}
-
 .invisible {
     display: none;
 }
@@ -340,17 +336,6 @@ hr {
 
 #properties {
     background-color: var(--color-surface-chrome);
-}
-
-a.propButton {
-    border: 1px solid rgb(85 81 91);
-    margin-left: 3px;
-    margin-right: 3px;
-    padding: 2px;
-}
-
-a.propButton img {
-    margin-bottom: -4px;
 }
 
 .scrollableMenu {
