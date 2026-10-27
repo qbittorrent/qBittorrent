@@ -570,34 +570,45 @@ would cover the entry that opened it */
     }
 }
 
+/* one row in two halves on phones: the connection status and the download speed, then the speed limits and the
+upload speed */
 @media (width < 760px) {
-    /* the longest speed and total fit, so the status bar doesn't change its rows as they change */
-    #desktopFooter td.speedLabel {
-        min-width: 17em;
-        white-space: nowrap;
-    }
-
-    #desktopFooter :is(#freeSpaceOnDisk, #externalIPs, #DHTNodes),
     #desktopFooter
-        :is(#freeSpaceOnDisk, #externalIPs, #DHTNodes)
-        + td.statusBarSeparator {
+        :is(#freeSpaceOnDisk, #externalIPs, #DHTNodes, td.statusBarSeparator) {
         display: none;
     }
 
-    /* the icons and each speed in a row of their own: the separators before the speeds break the rows */
-    #desktopFooter td:has(> #alternativeSpeedLimits) + td.statusBarSeparator,
-    #desktopFooter td.speedLabel + td.statusBarSeparator {
-        flex-basis: 100%;
-        padding: 0;
+    :root.responsiveRelayout #desktopFooter > table > tbody > tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
-}
 
-@media (390px <= width < 760px) {
-    /* from 390 px both speeds fit in one row, unless limits make them longer */
-    #desktopFooter:not(.speedLimitsShown)
-        td.speedLabel
-        + td.statusBarSeparator {
-        display: none;
+    /* halves of the screen: no margin that sets the status bar off the right edge */
+    :root.responsiveRelayout #desktopFooter > table {
+        margin-right: 0 !important; /* override inline style */
+    }
+
+    #desktopFooter
+        :is(td:has(> #connectionStatus), td.speedLabel:has(#DlInfos)) {
+        grid-area: 1 / 1;
+    }
+
+    #desktopFooter
+        :is(td:has(> #alternativeSpeedLimits), td.speedLabel:has(#UpInfos)) {
+        grid-area: 1 / 2;
+    }
+
+    /* the icons at the start of their half */
+    #desktopFooter td:has(> :is(#connectionStatus, #alternativeSpeedLimits)) {
+        justify-self: start;
+    }
+
+    /* each speed centered in its half and clear of the icon, wrapped when it is longer */
+    :root.responsiveRelayout #desktopFooter td.speedLabel {
+        justify-self: center;
+        min-width: 0;
+        padding-inline: 24px;
+        text-align: center;
     }
 }
 
