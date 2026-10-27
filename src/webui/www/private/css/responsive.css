@@ -3,8 +3,6 @@
     --responsive-drawer-shadow: 0 0 12px hsl(0deg 0% 0% / 30%);
     --responsive-drawer-width: min(320px, 86vw);
     --responsive-touch-row-height: 44px; /* also used in responsive.js */
-    --responsive-gap: 8px;
-    --responsive-row-space: 6px;
     --responsive-card-height: 112px; /* also used in responsive.js */
     --responsive-card-menu-width: 44px; /* also used in responsive.js */
     --responsive-card-menu-height: 40px; /* also used in responsive.js */
@@ -116,8 +114,8 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
     background-color: var(--color-surface-page);
     border-bottom: var(--responsive-separator);
     display: none;
-    gap: 8px;
-    padding: 4px 4px 4px 10px;
+    gap: var(--space-4);
+    padding: var(--space-2) var(--space-2) var(--space-2) 10px;
     position: sticky;
     top: 0;
     z-index: 1;
@@ -142,8 +140,8 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
     #filtersButton {
         align-items: center;
         display: inline-flex;
-        gap: 4px;
-        margin-right: 4px;
+        gap: var(--space-2);
+        margin-right: var(--space-2);
         vertical-align: middle;
     }
 
@@ -183,7 +181,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
     /* moved to the menubar while the toolbar is hidden */
     #desktopNavbar > #filtersButton {
         float: right;
-        margin: 0 4px;
+        margin: 0 var(--space-2);
     }
 
     :root.filtersDrawerOpen #filtersColumn:not(.invisible) {
@@ -283,7 +281,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
             display: flex;
             font-size: var(--text-lg);
             justify-content: space-between;
-            padding-inline: 12px 8px;
+            padding-inline: var(--space-5) var(--space-4);
             text-align: start;
 
             &::after {
@@ -344,7 +342,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
             font-size: 0;
             gap: 0;
             justify-content: center;
-            margin-left: 4px;
+            margin-left: var(--space-2);
             min-width: var(--responsive-touch-target, 32px);
         }
     }
@@ -365,8 +363,8 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
     #torrentsFilterToolbar {
         align-items: center;
         display: flex;
-        gap: 4px;
-        padding: 2px 4px;
+        gap: var(--space-2);
+        padding: var(--space-1) var(--space-2);
         width: 100%;
 
         & #filtersButton {
@@ -394,7 +392,7 @@ does; it stays off while a window or drawer is open, so that a pull can't reload
         display: flex;
         float: none;
         justify-content: center;
-        margin: 0 4px 4px;
+        margin: 0 var(--space-2) var(--space-2);
         width: calc(100% - 8px);
     }
 }
@@ -436,7 +434,7 @@ would cover the entry that opened it */
         border-width: 1px 0 0;
         display: none;
         margin: 0 !important; /* override inline style */
-        padding-left: 16px;
+        padding-left: var(--space-6);
         position: static;
         width: auto;
     }
@@ -497,8 +495,8 @@ would cover the entry that opened it */
         align-items: center;
         border-bottom: var(--responsive-separator);
         display: flex;
-        gap: var(--responsive-gap);
-        padding: 4px 12px;
+        gap: var(--space-4);
+        padding: var(--space-2) var(--space-5);
 
         & #torrentsSelectAll {
             flex: none;
@@ -519,7 +517,7 @@ would cover the entry that opened it */
 
         & #torrentsSortOrder {
             flex: none;
-            padding-inline: 6px;
+            padding-inline: var(--space-3);
 
             /* the arrows of a sorted column */
             &::before {
@@ -586,7 +584,7 @@ would cover the entry that opened it */
             height: var(--responsive-card-height) !important;
             left: 0;
             overflow: hidden;
-            padding: 0 12px;
+            padding: 0 var(--space-5);
             right: 0;
             width: auto !important;
         }
@@ -655,7 +653,7 @@ would cover the entry that opened it */
             align-items: center;
             display: flex;
             grid-area: 2 / 2 / 3 / 6;
-            margin: 4px 0;
+            margin: var(--space-2) 0;
             min-height: 18px;
 
             & > progress-bar {
@@ -777,7 +775,7 @@ would cover the entry that opened it */
 
     & :is(thead, tbody) tr {
         display: flex;
-        padding-inline-end: 8px;
+        padding-inline-end: var(--space-4);
     }
 
     /* the check box for all files, and the name to sort by */
@@ -805,7 +803,7 @@ would cover the entry that opened it */
         border-bottom: var(--responsive-separator);
         flex-wrap: wrap;
         height: auto;
-        padding-block: 8px 4px;
+        padding-block: var(--space-4) var(--space-2);
 
         /* the files of a collapsed folder */
         &.invisible {
@@ -870,7 +868,7 @@ would cover the entry that opened it */
         font-size: var(--text-lg);
         line-height: 22px;
         order: 3;
-        padding-inline-start: 8px;
+        padding-inline-start: var(--space-4);
     }
 
     /* a line of its own, as a select is as wide as its longest choice; drawn as its value, without the select's box,
@@ -885,7 +883,7 @@ would cover the entry that opened it */
             background-color: currentcolor;
             content: "";
             height: 12px;
-            inset-inline-end: 4px;
+            inset-inline-end: var(--space-2);
             mask: url("../images/go-down.svg") center / contain no-repeat;
             pointer-events: none;
             position: absolute;
@@ -900,7 +898,8 @@ would cover the entry that opened it */
             color: inherit;
             cursor: pointer;
             font-size: var(--text-touch);
-            padding-inline: 8px calc(12px + 4px + 6px);
+            padding-inline: var(--space-4)
+                calc(12px + var(--space-2) + var(--space-3));
             text-align: end;
         }
 
@@ -932,10 +931,10 @@ would cover the entry that opened it */
             align-items: center;
             display: flex;
             flex-wrap: wrap;
-            gap: 2px;
+            gap: var(--space-1);
             justify-content: flex-end;
             min-height: 24px;
-            padding: 0 2px;
+            padding: 0 var(--space-1);
         }
 
         & :is(td.statusBarSeparator, td.speedLabel) {
@@ -1031,9 +1030,9 @@ speed limits; then the download and the upload speed, each in its half of the sc
     background-color: var(--color-surface-popup);
     border-top: var(--responsive-separator);
     bottom: 0;
-    padding-bottom: var(--responsive-row-space);
+    padding-bottom: var(--space-3);
     /* override inline style */
-    padding-top: var(--responsive-row-space) !important;
+    padding-top: var(--space-3) !important;
     position: sticky !important;
     z-index: 1;
 
@@ -1048,7 +1047,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
 #uploadForm > #submitbutton {
     min-height: calc(
-        var(--responsive-touch-target, 26px) + (2 * var(--responsive-row-space))
+        var(--responsive-touch-target, 26px) + (2 * var(--space-3))
     );
 
     /* the spinner and the error icon before the metadata's status, in the middle of the row as the status is */
@@ -1060,7 +1059,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 }
 
 #RssDownloader #saveButton {
-    bottom: var(--responsive-row-space);
+    bottom: var(--space-3);
     position: sticky;
     z-index: 1;
 }
@@ -1101,7 +1100,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 .dialogFooter {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--responsive-gap);
+    gap: var(--space-4);
     justify-content: center;
 }
 
@@ -1118,7 +1117,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 :root.responsivePhone :where(.dialogFooter) {
     display: flex;
     flex-direction: column;
-    gap: var(--responsive-gap);
+    gap: var(--space-4);
 
     & > :is(button, input) {
         margin: 0;
@@ -1128,7 +1127,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
 :root.responsivePhone #uploadForm > #submitbutton {
     flex-wrap: wrap;
-    gap: var(--responsive-gap);
+    gap: var(--space-4);
 
     /* the Download button's container */
     & > div:not([id]),
@@ -1170,7 +1169,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
 :root.responsivePhone .mocha .tab-menu {
     flex-wrap: wrap;
-    row-gap: 4px;
+    row-gap: var(--space-2);
 }
 
 /* Options: rows wrap in narrow windows */
@@ -1191,7 +1190,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
         /* keep hidden rows hidden */
         & tr:not([hidden]) {
             align-items: center;
-            column-gap: 4px;
+            column-gap: var(--space-2);
             display: flex;
             flex-wrap: wrap;
         }
@@ -1215,7 +1214,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
         }
 
         & tbody {
-            column-gap: 8px;
+            column-gap: var(--space-4);
             display: grid;
             grid-template-columns: max-content minmax(0, 1fr);
         }
@@ -1249,7 +1248,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
         & #torrentFilesFilterToolbar {
             flex: 1 1 100%;
             float: none;
-            margin: 0 4px 4px;
+            margin: 0 var(--space-2) var(--space-2);
             order: 1;
         }
 
@@ -1304,7 +1303,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
     align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--responsive-gap);
+    gap: var(--space-4);
 
     & #rssFilterToolbar {
         margin-left: auto;
@@ -1385,7 +1384,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
 :root:not(.responsivePhone) .mocha #searchPluginsContainer > .dialogFooter {
     display: flex;
-    gap: var(--responsive-gap);
+    gap: var(--space-4);
 
     & > button {
         flex: 1 1 0;
@@ -1500,7 +1499,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
     & #rssdownloaderpage_content {
         height: auto;
-        padding-bottom: var(--responsive-row-space) !important;
+        padding-bottom: var(--space-3) !important;
     }
 
     & #RssDownloader {
@@ -1548,8 +1547,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
         }
 
         & #saveButton {
-            box-shadow: 0 0 0 var(--responsive-row-space)
-                var(--color-surface-popup);
+            box-shadow: 0 0 0 var(--space-3) var(--color-surface-popup);
         }
     }
 }
@@ -1598,13 +1596,13 @@ speed limits; then the download and the upload speed, each in its half of the sc
     & tr {
         border-bottom: var(--responsive-separator);
         display: grid;
-        gap: 4px 8px;
+        gap: var(--space-2) var(--space-4);
         grid-template-areas:
             "domain path"
             "name value"
             "expDate action";
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        padding: 6px 0;
+        padding: var(--space-3) 0;
     }
 
     & tr.invisible {
@@ -1679,16 +1677,16 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
     & #operation_btns {
         margin: auto 0 0 !important; /* override inline style */
-        padding-bottom: var(--responsive-row-space);
+        padding-bottom: var(--space-3);
         position: static !important;
 
         & > hr {
-            margin-bottom: var(--responsive-row-space);
+            margin-bottom: var(--space-3);
         }
     }
 
     & #torrentFiles {
-        margin-bottom: var(--responsive-row-space) !important;
+        margin-bottom: var(--space-3) !important;
     }
 }
 
@@ -1723,13 +1721,13 @@ speed limits; then the download and the upload speed, each in its half of the sc
             display: flow-root;
             margin: 0 !important;
             order: 2;
-            padding-bottom: var(--responsive-row-space);
+            padding-bottom: var(--space-3);
             position: sticky !important;
             width: auto !important;
             z-index: 1;
 
             & > hr {
-                margin-bottom: var(--responsive-row-space);
+                margin-bottom: var(--space-3);
             }
         }
     }
@@ -1798,11 +1796,11 @@ speed limits; then the download and the upload speed, each in its half of the sc
         & .toolbox {
             height: auto;
             margin-top: 2px;
-            padding: 0 4px 0 0;
+            padding: 0 var(--space-2) 0 0;
         }
 
         & #propertiesTabs li a {
-            margin-left: 4px;
+            margin-left: var(--space-2);
         }
     }
 
@@ -1838,7 +1836,7 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
     #renameOptions {
         min-width: var(--responsive-touch-target);
-        padding-left: 16px;
+        padding-left: var(--space-6);
     }
 
     :is(

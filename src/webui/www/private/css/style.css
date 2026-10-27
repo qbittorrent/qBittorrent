@@ -26,6 +26,14 @@
     --radius-window: 5px;
     --radius-panel: 6px;
 
+    /* spacing */
+    --space-1: 2px;
+    --space-2: 4px;
+    --space-3: 6px;
+    --space-4: 8px;
+    --space-5: 12px;
+    --space-6: 16px;
+
     /* lines: separators, and the edges of fields and buttons */
     --color-border: hsl(0deg 0% 85%);
     --color-border-control: hsl(0deg 0% 54%);
