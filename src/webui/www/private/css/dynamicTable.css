@@ -191,6 +191,18 @@ div:has(> div.dynamicTableDiv):not(.invisible) {
     overflow: auto;
 }
 
+/* Transfer list */
+#torrentsTableDiv tr:not(.selected) .torrentErrored {
+    color: var(--color-error);
+}
+
+/* a hovered row's text takes the hover's color */
+@media (hover: hover) {
+    #torrentsTableDiv tr:hover .torrentErrored {
+        color: inherit;
+    }
+}
+
 /* Trackers table */
 #torrentTrackersTableDiv tr:not(.selected) {
     & .trackerDisabled {

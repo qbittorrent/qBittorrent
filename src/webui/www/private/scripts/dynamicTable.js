@@ -1502,6 +1502,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                         status = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
                 }
 
+                // a torrent stopped by an error says so in the error color
+                td.classList.toggle("torrentErrored", ((state === "error") || (state === "missingFiles")));
                 td.textContent = status;
                 td.title = status;
             };
