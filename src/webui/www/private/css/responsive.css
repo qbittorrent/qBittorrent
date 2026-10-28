@@ -59,6 +59,34 @@
         vertical-align: middle;
     }
 
+    /* filters are on: the button looks like a selected filter, and their number takes the icon's place, so nothing
+    moves */
+    #filtersButton.filtered {
+        background-color: var(--color-background-blue);
+        border-color: var(--color-background-blue);
+        color: var(--color-text-white);
+
+        & > img {
+            display: none;
+        }
+    }
+
+    #filtersCount {
+        background-color: var(--color-text-white);
+        border-radius: 50%;
+        color: var(--color-background-blue);
+        font-size: 11px;
+        font-weight: bold;
+        height: 16px;
+        line-height: 16px;
+        text-align: center;
+        width: 16px;
+
+        &:empty {
+            display: none;
+        }
+    }
+
     :root:has(#filtersColumn.invisible) #filtersButton {
         display: none;
     }
