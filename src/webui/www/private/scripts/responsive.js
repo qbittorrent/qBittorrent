@@ -873,9 +873,19 @@ window.qBittorrent.Responsive ??= (() => {
         const list = await whenElement("torrentsTableDiv");
         let lockedUntil = 0;
         let slideTimer = -1;
+        let slideFrame = 0;
+
+        // the list and the panels below the header follow its height while it slides, rather than catching up at the
+        // end: sliding in, the header would otherwise push them under the status bar
+        const followSlide = () => {
+            relayout();
+            if (header.classList.contains("sliding"))
+                slideFrame = requestAnimationFrame(followSlide);
+        };
 
         const endSlide = () => {
             clearTimeout(slideTimer);
+            cancelAnimationFrame(slideFrame);
             header.classList.remove("sliding");
             header.style.removeProperty("height");
             relayout();
@@ -899,10 +909,14 @@ window.qBittorrent.Responsive ??= (() => {
             root.classList.toggle("headerHidden", hidden);
             if (!hidden)
                 header.style.height = `${header.scrollHeight}px`;
-            if (getComputedStyle(header).transitionDuration === "0s")
+            if (getComputedStyle(header).transitionDuration === "0s") {
                 endSlide();
-            else
+            }
+            else {
                 slideTimer = setTimeout(endSlide, SLIDE_TIME);
+                cancelAnimationFrame(slideFrame);
+                slideFrame = requestAnimationFrame(followSlide);
+            }
             // ignore the scrolls of the slide
             lockedUntil = performance.now() + SLIDE_TIME;
         };
