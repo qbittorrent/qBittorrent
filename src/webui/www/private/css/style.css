@@ -186,6 +186,11 @@ button {
     outline-offset: 1px;
 }
 
+/* a window takes the focus as it opens, without a ring around it */
+.mocha:focus-visible {
+    outline: none;
+}
+
 /* Structure */
 
 body {

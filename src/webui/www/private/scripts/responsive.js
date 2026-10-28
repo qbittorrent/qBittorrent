@@ -109,18 +109,20 @@ window.qBittorrent.Responsive ??= (() => {
     });
 
     const focusableSelector = "a[href], button:not([disabled]), input:not([disabled], [type='hidden']), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])";
-    // keep the focus inside an open drawer
-    const trapFocus = (container) => {
+    // keep the focus inside an open drawer or modal window, which moves it there itself unless told not to
+    const trapFocus = (container, takeFocus = true) => {
         const returnTo = document.activeElement;
         // shown, and not hidden by visibility, as the toggles of categories without subcategories are
         const focusable = () => [...container.querySelectorAll(focusableSelector)].filter((element) => (element.getClientRects().length > 0) && (getComputedStyle(element).visibility !== "hidden"));
-        const first = focusable()[0];
-        if (first !== undefined) {
-            first.focus();
-        }
-        else {
-            container.tabIndex = -1;
-            container.focus();
+        if (takeFocus) {
+            const first = focusable()[0];
+            if (first !== undefined) {
+                first.focus();
+            }
+            else {
+                container.tabIndex = -1;
+                container.focus();
+            }
         }
         const onKeyDown = (event) => {
             if (event.key !== "Tab")
@@ -851,6 +853,26 @@ window.qBittorrent.Responsive ??= (() => {
             fitWindow(instance);
     };
 
+    // a window takes the focus as it opens, a modal one keeps it, and as the window closes the focus goes back to where
+    // it was; a page the window shows can move it on, as Remove does to its Cancel button
+    const holdWindowFocus = (instance) => {
+        const returnTo = document.activeElement;
+        const modal = (instance.options.type === "modal") || (instance.options.type === "modal2");
+        const releaseFocus = modal ? trapFocus(instance.windowEl, false) : null;
+        instance.windowEl.tabIndex = -1;
+        // a page in a frame is focused in its frame, where it can put the focus on its own field
+        if (!instance.windowEl.contains(document.activeElement))
+            (instance.iframeEl ?? instance.windowEl).focus({ preventScroll: true });
+
+        instance.addEvent("closeComplete", () => {
+            if (releaseFocus !== null)
+                releaseFocus();
+            // a window without a hold on the focus gives it back only if nothing else has it now
+            else if ((document.activeElement === document.body) && returnTo.isConnected)
+                returnTo.focus({ preventScroll: true });
+        });
+    };
+
     // on phones and touch screens, where Back is how a page is left, Back closes what shows on top of the page
     const backCloses = () => queries.phone.matches || queries.coarse.matches;
 
@@ -885,8 +907,8 @@ window.qBittorrent.Responsive ??= (() => {
         removeHistoryLayer(layer);
     };
 
-    // fit a window as it opens, and again as its page or the screen changes; and on phones and touch screens let Back
-    // close it
+    // fit a window as it opens, and again as its page or the screen changes; give it the focus, and on phones and touch
+    // screens let Back close it
     const watch = (node) => {
         if (node.classList?.contains("mocha") !== true)
             return;
@@ -899,6 +921,7 @@ window.qBittorrent.Responsive ??= (() => {
         closeFiltersDrawer();
         raiseStoredSize(instance);
         fitWindow(instance);
+        holdWindowFocus(instance);
         if (backCloses())
             addWindowLayer(instance);
         instance.addEvent("closeComplete", () => removeWindowLayer(instance));
