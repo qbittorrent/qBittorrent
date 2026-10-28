@@ -1456,6 +1456,27 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
     #propertiesPanel_header {
         height: auto;
+
+        /* the panel's collapse button: as big as the tabs beside it, and level with them; with the tabs a little
+        closer, all five fit beside it on a 320 px phone */
+        & .toolbox {
+            height: auto;
+            margin-top: 2px;
+            padding: 0 4px 0 0;
+        }
+
+        & #propertiesTabs li a {
+            margin-left: 4px;
+        }
+    }
+
+    /* rounded all round, as the collapsed panel turns it upside down; its size overrides an inline style */
+    #propertiesPanel_collapseToggle {
+        background-color: var(--color-background-default);
+        border-radius: 3px;
+        height: var(--responsive-touch-target) !important;
+        margin: 0;
+        width: var(--responsive-touch-target) !important;
     }
 
     #filtersButton,
