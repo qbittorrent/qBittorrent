@@ -41,6 +41,7 @@ window.qBittorrent.MonkeyPatch ??= (() => {
         patchMootoolsDocumentId();
         patchMochaGetAsset();
         patchMochaWindowOptions();
+        patchMochaCloseWindow();
     };
 
     const patchMootoolsDocumentId = () => {
@@ -133,6 +134,20 @@ window.qBittorrent.MonkeyPatch ??= (() => {
         options.shadowOffset = { x: 0, y: 0 };
         options.useCanvas = false;
         options.useCanvasControls = false;
+    };
+
+    /**
+     * Let a window refuse to close: one whose canClose() returns false stays open, as Options does when the user keeps
+     * the changes they have not saved. Every way of closing a window goes through MUI.closeWindow.
+     */
+    const patchMochaCloseWindow = () => {
+        const closeWindow = MUI.closeWindow;
+        MUI.closeWindow = (windowEl) => {
+            const instance = MUI.Windows.instances[windowEl?.id];
+            if ((instance !== undefined) && !instance.isClosing && (instance.canClose?.() === false))
+                return false;
+            return closeWindow.call(MUI, windowEl);
+        };
     };
 
     return exports();

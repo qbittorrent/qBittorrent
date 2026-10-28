@@ -2040,6 +2040,25 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             };
         };
 
+        // the fields as Options loaded them; closing Options, or leaving the WebUI, with changes since asks first. Not the
+        // API key's, which rotating or deleting it changes and applies at once
+        let loadedState = null;
+        const fieldsState = () => {
+            const page = document.getElementById("preferencesPage");
+            if (page === null)
+                return null;
+            const fields = [...page.querySelectorAll("input:not(#WebUIAPIKeyText), select, textarea")];
+            return JSON.stringify(fields.map((field) => (((field.type === "checkbox") || (field.type === "radio")) ? field.checked : field.value)));
+        };
+        const hasUnsavedChanges = () => {
+            const state = fieldsState();
+            return (loadedState !== null) && (state !== null) && (state !== loadedState);
+        };
+        window.addEventListener("beforeunload", (event) => {
+            if (hasUnsavedChanges())
+                event.preventDefault();
+        });
+
         // Behavior tab
         const numberInputLimiter = (input) => {
             const inputNumber = Number(input.value);
@@ -2457,7 +2476,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             for (const el of [...combobox.children])
                 el.remove();
 
-            fetch("api/v2/app/networkInterfaceList", {
+            return fetch("api/v2/app/networkInterfaceList", {
                     method: "GET",
                     cache: "no-store"
                 })
@@ -2502,7 +2521,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             url.search = new URLSearchParams({
                 iface: iface
             });
-            fetch(url, {
+            return fetch(url, {
                     method: "GET",
                     cache: "no-store"
                 })
@@ -2955,8 +2974,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("resumeDataStorageType").value = pref.resume_data_storage_type;
                     document.getElementById("torrentContentRemoveOption").value = pref.torrent_content_remove_option;
                     document.getElementById("memoryWorkingSetLimit").value = pref.memory_working_set_limit;
-                    updateNetworkInterfaces(pref.current_network_interface, pref.current_interface_name);
-                    updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
+                    const interfaceLists = [
+                        updateNetworkInterfaces(pref.current_network_interface, pref.current_interface_name),
+                        updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address)
+                    ];
                     document.getElementById("saveResumeDataInterval").value = pref.save_resume_data_interval;
                     document.getElementById("saveStatisticsInterval").value = pref.save_statistics_interval;
                     document.getElementById("torrentFileSizeLimit").value = (pref.torrent_file_size_limit / 1024 / 1024);
@@ -3034,6 +3055,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("i2pOutboundLength").value = pref.i2p_outbound_length;
                     document.getElementById("i2pInboundLengthVariance").value = pref.i2p_inbound_length_variance;
                     document.getElementById("i2pOutboundLengthVariance").value = pref.i2p_outbound_length_variance;
+
+                    // once the network interface lists have arrived too
+                    Promise.allSettled(interfaceLists).then(() => {
+                        if (page.isConnected)
+                            loadedState = fieldsState();
+                    });
                 }).catch((error) => {
                     if (!page.isConnected)
                         return;
@@ -3604,6 +3631,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 window.parent.qBittorrent.Cache.preferences.set(settings)
             ]).then((results) => {
                 if (results.every((result) => result.status === "fulfilled")) {
+                    // saved: neither the reload nor the closing asks
+                    loadedState = fieldsState();
                     window.parent.location.reload();
                     window.parent.qBittorrent.Client.closeWindow(document.getElementById("preferencesPage"));
                 }
@@ -3627,6 +3656,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if ((firstTab === null) || (firstTab.dataset.setUp === "true"))
                 return;
             firstTab.dataset.setUp = "true";
+
+            loadedState = null;
+            MochaUI.Windows.instances["preferencesPage"].canClose = () => !hasUnsavedChanges()
+                || confirm("QBT_TR(Discard the changes you made in Options?)QBT_TR[CONTEXT=OptionsDialog]");
 
             watchedFoldersTable = new HtmlTable(document.getElementById("watched_folders_tab"));
 

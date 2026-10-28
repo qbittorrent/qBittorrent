@@ -287,8 +287,8 @@ window.qBittorrent.Responsive ??= (() => {
             history.pushState({ responsiveLayer: true }, "");
     };
 
-    const addHistoryLayer = (close) => {
-        const layer = { close: close };
+    const addHistoryLayer = (close, isOpen) => {
+        const layer = { close: close, isOpen: isOpen };
         historyLayers.push(layer);
         pushLayerEntry();
         return layer;
@@ -328,6 +328,11 @@ window.qBittorrent.Responsive ??= (() => {
                 return;
 
             layer.close();
+            // it stayed open, as Options does when the user keeps their changes: its entry comes back
+            if (layer.isOpen()) {
+                historyLayers.push(layer);
+                pushLayerEntry();
+            }
         });
     };
 
@@ -357,7 +362,7 @@ window.qBittorrent.Responsive ??= (() => {
         filtersObserver = new MutationObserver(() => setKeyboardItems(filters, filterItems, true));
         filtersObserver.observe(filters, { childList: true, subtree: true });
         releaseFiltersFocus = trapFocus(column);
-        filtersLayer = addHistoryLayer(closeFiltersDrawer);
+        filtersLayer = addHistoryLayer(closeFiltersDrawer, () => root.classList.contains("filtersDrawerOpen"));
     };
 
     const closeFiltersDrawer = () => {
@@ -846,7 +851,7 @@ window.qBittorrent.Responsive ??= (() => {
     // a window there gains that as it opens, or as the screen turns into such a screen, and loses it as it turns back
     const addWindowLayer = (instance) => {
         if ((instance.responsiveLayer === undefined) && !instance.isClosing)
-            instance.responsiveLayer = addHistoryLayer(() => instance.close());
+            instance.responsiveLayer = addHistoryLayer(() => instance.close(), () => !instance.isClosing);
     };
 
     const removeWindowLayer = (instance) => {
@@ -862,7 +867,7 @@ window.qBittorrent.Responsive ??= (() => {
 
     const contextMenuShown = (contextMenu) => {
         if ((contextMenuLayer === null) && backCloses())
-            contextMenuLayer = addHistoryLayer(() => contextMenu.hide());
+            contextMenuLayer = addHistoryLayer(() => contextMenu.hide(), () => contextMenu.menu.classList.contains("visible"));
     };
 
     const contextMenuHidden = () => {
@@ -1264,7 +1269,7 @@ window.qBittorrent.Responsive ??= (() => {
         document.getElementById("menuDrawerButton").setAttribute("aria-expanded", "true");
         setKeyboardItems(navbar, menuItems, true);
         releaseMenuDrawerFocus = trapFocus(navbar);
-        menuDrawerLayer = addHistoryLayer(closeMenuDrawer);
+        menuDrawerLayer = addHistoryLayer(closeMenuDrawer, () => root.classList.contains("menuDrawerOpen"));
     };
 
     const closeMenuDrawer = () => {
