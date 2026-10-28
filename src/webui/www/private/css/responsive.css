@@ -439,7 +439,7 @@ would cover the entry that opened it */
         width: auto;
     }
 
-    & li:not(.disabled):hover > ul {
+    & li:not(.disabled):is(:hover, :focus-within) > ul {
         display: block;
     }
 }

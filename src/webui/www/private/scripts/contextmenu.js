@@ -46,6 +46,12 @@ window.qBittorrent.ContextMenu ??= (() => {
     };
 
     let lastShownContextMenu = null;
+
+    // whether a key or a pointer was used last: a menu opened from the keyboard puts the focus on its first item
+    let keyboardUsedLast = false;
+    document.addEventListener("keydown", (_event) => { keyboardUsedLast = true; }, true);
+    document.addEventListener("pointerdown", (_event) => { keyboardUsedLast = false; }, true);
+
     class ContextMenu {
         constructor(options) {
             this.options = {
@@ -196,6 +202,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             }
             // record this as the trigger
             this.options.element = el;
+            this.returnFocusTo = document.activeElement;
             this.adjustMenuPosition(e);
             // show the menu
             this.show();
@@ -215,6 +222,10 @@ window.qBittorrent.ContextMenu ??= (() => {
                 e.preventDefault();
                 if (!menuItem.classList.contains("disabled")) {
                     const anchor = menuItem.firstElementChild;
+                    // before the action, so that a window it opens gives the focus back there; an item that opens a
+                    // submenu keeps the menu open
+                    if (menuItem.querySelector(":scope > ul") === null)
+                        this.returnFocus();
                     this.execute(anchor.href.split("#")[1], this.options.element);
                     this.options.onClick.call(this, anchor, e);
                 }
@@ -279,6 +290,68 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.hide();
                 this.options.element = null;
             }, true);
+
+            // the keyboard moves through the items of one list, and into and out of submenus; from the menu itself,
+            // which has the focus when a pointer opened it, the arrow keys go to its first or last item
+            this.menu.addEventListener("keydown", (event) => {
+                const anchor = event.target.closest("li > a");
+                const list = (anchor === null) ? this.menu : anchor.parentElement.parentElement;
+                const items = this.listItems(list);
+                const index = items.indexOf(anchor);
+                const submenu = anchor?.parentElement.querySelector(":scope > ul") ?? null;
+                switch (event.key) {
+                    case "ArrowDown":
+                        items[(index + 1) % items.length]?.focus();
+                        break;
+                    case "ArrowUp":
+                        items.at(Math.max(index, 0) - 1)?.focus();
+                        break;
+                    case "Home":
+                        items[0]?.focus();
+                        break;
+                    case "End":
+                        items.at(-1)?.focus();
+                        break;
+                    case "ArrowRight":
+                        if (submenu === null)
+                            return;
+                        this.listItems(submenu)[0]?.focus();
+                        break;
+                    case "ArrowLeft":
+                        if (list === this.menu)
+                            return;
+                        list.parentElement.firstElementChild.focus();
+                        break;
+                    case "Enter":
+                    case " ":
+                        if (anchor === null)
+                            return;
+                        if (submenu !== null)
+                            this.listItems(submenu)[0]?.focus();
+                        else
+                            anchor.click();
+                        break;
+                    case "Tab":
+                        this.hide();
+                        this.options.element = null;
+                        break;
+                    default:
+                        return;
+                }
+                event.preventDefault();
+                event.stopPropagation();
+            });
+        }
+
+        // the items of one list that the keyboard moves through: those shown and enabled
+        listItems(list) {
+            return [...list.querySelectorAll(":scope > li:not(.invisible, .disabled) > a")];
+        }
+
+        // the focus goes back to where it was when the menu opened
+        returnFocus() {
+            if (this.menu.contains(document.activeElement))
+                this.returnFocusTo?.focus({ preventScroll: true });
         }
 
         updateMenuItems() {}
@@ -292,12 +365,31 @@ window.qBittorrent.ContextMenu ??= (() => {
             lastShownContextMenu = this;
             // on phones and touch screens Back closes it
             window.qBittorrent.Responsive?.contextMenuShown(this);
+
+            // a menu to screen readers, whose items all can take the focus, links or not
+            this.menu.setAttribute("role", "menu");
+            this.menu.tabIndex = -1;
+            for (const anchor of this.menu.querySelectorAll("li > a")) {
+                const item = anchor.parentElement;
+                item.setAttribute("role", "none");
+                anchor.setAttribute("role", "menuitem");
+                anchor.setAttribute("aria-disabled", item.classList.contains("disabled"));
+                anchor.tabIndex = -1;
+                const submenu = item.querySelector(":scope > ul");
+                submenu?.setAttribute("role", "menu");
+                if (submenu !== null)
+                    anchor.setAttribute("aria-haspopup", "menu");
+            }
+            // the keyboard goes on from the first item; a pointer leaves the items unmarked
+            const focusTarget = keyboardUsedLast ? (this.listItems(this.menu)[0] ?? this.menu) : this.menu;
+            focusTarget.focus({ preventScroll: true });
             return this;
         }
 
         // hide the menu
         hide(trigger) {
             if (lastShownContextMenu && (lastShownContextMenu.menu.style.visibility !== "hidden")) {
+                this.returnFocus();
                 this.menu.classList.remove("visible");
                 this.options.onHide.call(this);
                 window.qBittorrent.Responsive?.contextMenuHidden(this);
