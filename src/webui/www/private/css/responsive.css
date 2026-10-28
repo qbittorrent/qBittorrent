@@ -1535,6 +1535,11 @@ speed limits; then the download and the upload speed, each in its half of the sc
         margin-inline: 1px 0;
     }
 
+    /* the tree line in the middle of the row too, beside its check box */
+    .dynamicTable td > img:has(+ input[type="checkbox"]) {
+        vertical-align: middle !important; /* override inline style */
+    }
+
     /* override style.css */
     #deleteFromDiskCB {
         vertical-align: middle;
@@ -1583,9 +1588,10 @@ speed limits; then the download and the upload speed, each in its half of the sc
         height: var(--responsive-touch-row-height);
     }
 
-    /* the cells fill the row, so its text sits in the middle */
+    /* the cells fill the row, so what they hold, text, a check box or a list, sits in its middle */
     :is(#transferList, .dynamicTableDiv) .dynamicTable tbody td {
-        padding-block: calc((var(--responsive-touch-row-height) - 1lh) / 2);
+        height: var(--responsive-touch-row-height);
+        padding-block: 0;
     }
 
     /* tapped to sort */
