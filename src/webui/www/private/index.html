@@ -166,6 +166,21 @@
                             <a><img alt="QBT_TR(Execution Log)QBT_TR[CONTEXT=MainWindow]" src="images/help-contents.svg" width="16" height="16">QBT_TR(Execution Log)QBT_TR[CONTEXT=MainWindow]</a>
                         </li>
                     </menu>
+                    <script>
+                        "use strict";
+
+                        // client.js reopens the last view once the WebUI has started, after the tabs are first drawn:
+                        // mark its tab now, so that a reload doesn't show Transfers selected first. If that view is
+                        // off, client.js moves the mark back to Transfers
+                        (() => {
+                            const tab = document.getElementById(`${localStorage.getItem("selected_window_tab")}TabLink`);
+                            if (tab === null)
+                                return;
+
+                            document.getElementById("transfersTabLink").classList.remove("selected");
+                            tab.classList.add("selected");
+                        })();
+                    </script>
                     <div class="clear"></div>
                 </div>
                 <div id="torrentsFilterToolbar">
