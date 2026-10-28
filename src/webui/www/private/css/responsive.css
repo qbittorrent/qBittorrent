@@ -1259,6 +1259,12 @@ speed limits; then the download and the upload speed, each in its half of the sc
     min-width: 0;
 }
 
+/* on phones the files scroll with the rest of the dialog, not in a box of their own */
+:root.responsivePhone #filesColumn {
+    max-height: none !important; /* override inline style */
+    overflow-y: visible !important;
+}
+
 /* New category */
 :root.responsiveRelayout #shareLimitsGrid {
     grid-template-columns: max-content max-content minmax(0, 1fr) auto;
