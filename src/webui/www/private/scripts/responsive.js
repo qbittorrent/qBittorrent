@@ -112,8 +112,9 @@ window.qBittorrent.Responsive ??= (() => {
     // keep the focus inside an open drawer or modal window, which moves it there itself unless told not to
     const trapFocus = (container, takeFocus = true) => {
         const returnTo = document.activeElement;
-        // shown, and not hidden by visibility, as the toggles of categories without subcategories are
-        const focusable = () => [...container.querySelectorAll(focusableSelector)].filter((element) => (element.getClientRects().length > 0) && (getComputedStyle(element).visibility !== "hidden"));
+        // shown, not hidden by visibility, as the toggles of categories without subcategories are, and Tab stops, which
+        // the items of a group other than its current one are not
+        const focusable = () => [...container.querySelectorAll(focusableSelector)].filter((element) => (element.getClientRects().length > 0) && (getComputedStyle(element).visibility !== "hidden") && (element.tabIndex >= 0));
         if (takeFocus) {
             const first = focusable()[0];
             if (first !== undefined) {
@@ -159,6 +160,103 @@ window.qBittorrent.Responsive ??= (() => {
     // those that do something, rather than show something
     const keyboardButtons = "#mochaToolbar a[id], #uploadButton > label, label[for='torrentsFilterRegexBox']";
 
+    // the toolbar, each row of tabs and each filter list is one Tab stop, inside which the arrow keys move: the item the
+    // focus was last on, else the chosen one, else the first shown
+    const keyboardGroups = [
+        { group: "#toolbarButtons", items: "#uploadButton > label, a[id]", vertical: false },
+        { group: ".tab-menu", items: ":scope > li > a", chosen: ":scope > li.selected > a", vertical: false },
+        { group: "ul.filterList", items: "span.link", chosen: "li.selectedFilter > span.link", vertical: true }
+    ];
+    const lastFocusedItems = new WeakMap();
+    const shownItems = (group, spec) => [...group.querySelectorAll(spec.items)].filter((item) => item.getClientRects().length > 0);
+    // what an entry keeps when its filter list is built anew: its id
+    const itemKey = (item) => item.closest("li[id]")?.id ?? item;
+
+    const updateKeyboardGroups = () => {
+        for (const spec of keyboardGroups) {
+            for (const group of document.querySelectorAll(spec.group)) {
+                const items = shownItems(group, spec);
+                const last = lastFocusedItems.get(group);
+                const chosen = (spec.chosen === undefined) ? null : group.querySelector(spec.chosen);
+                const stop = items.find((item) => itemKey(item) === last) ?? (items.includes(chosen) ? chosen : items[0]);
+                for (const item of group.querySelectorAll(spec.items))
+                    item.tabIndex = (item === stop) ? 0 : -1;
+            }
+        }
+        // the arrow keys open and close a category instead
+        for (const toggle of document.querySelectorAll("ul.filterList .categoryToggle"))
+            toggle.tabIndex = -1;
+    };
+
+    // the group and its shown items, if this is one of them
+    const keyboardGroupOf = (element) => {
+        for (const spec of keyboardGroups) {
+            const group = element.closest(spec.group);
+            if (group === null)
+                continue;
+            const items = shownItems(group, spec);
+            if (items.includes(element))
+                return { spec: spec, group: group, items: items };
+        }
+        return null;
+    };
+
+    const initKeyboardGroups = () => {
+        document.addEventListener("focusin", (event) => {
+            const found = keyboardGroupOf(event.target);
+            if (found === null)
+                return;
+
+            lastFocusedItems.set(found.group, itemKey(event.target));
+            updateKeyboardGroups();
+        });
+
+        document.addEventListener("keydown", (event) => {
+            const found = keyboardGroupOf(event.target);
+            if (found === null)
+                return;
+
+            const { spec, items } = found;
+            const index = items.indexOf(event.target);
+            const back = spec.vertical ? "ArrowUp" : "ArrowLeft";
+            const forward = spec.vertical ? "ArrowDown" : "ArrowRight";
+            const entry = event.target.closest("li");
+            switch (event.key) {
+                // a row of buttons or tabs goes round, a list stops at its ends
+                case back:
+                    (spec.vertical ? items[index - 1] : items.at(index - 1))?.focus();
+                    break;
+                case forward:
+                    (spec.vertical ? items[index + 1] : items[(index + 1) % items.length])?.focus();
+                    break;
+                case "Home":
+                    items[0].focus();
+                    break;
+                case "End":
+                    items.at(-1).focus();
+                    break;
+                case "ArrowRight":
+                    // in the category tree: open a category; Left closes it, or goes up to the category it is in
+                    if (entry?.querySelector(":scope > ul") && entry.classList.contains("collapsedCategory"))
+                        entry.querySelector(".categoryToggle").click();
+                    break;
+                case "ArrowLeft":
+                    if (entry?.querySelector(":scope > ul") && !entry.classList.contains("collapsedCategory"))
+                        entry.querySelector(".categoryToggle").click();
+                    else
+                        entry?.parentElement.closest("li")?.querySelector(":scope > span.link").focus();
+                    break;
+                default:
+                    return;
+            }
+            // all of the item a row moves to shows, clear of what covers the row's start, as the phone toolbar's Menu
+            // button does: focus() scrolls only an item that is out of view altogether
+            if (!spec.vertical && found.group.contains(document.activeElement))
+                document.activeElement.scrollIntoView({ block: "nearest", inline: "nearest" });
+            event.preventDefault();
+        });
+    };
+
     const initKeyboardItems = () => {
         let tagQueued = false;
         const tag = () => {
@@ -171,6 +269,7 @@ window.qBittorrent.Responsive ??= (() => {
                 if (item.matches(keyboardButtons))
                     item.setAttribute("role", "button");
             }
+            updateKeyboardGroups();
         };
         // filter lists, tabs and windows are built after the page loads; once a frame, as the lists change often
         new MutationObserver(() => {
@@ -1429,6 +1528,7 @@ window.qBittorrent.Responsive ??= (() => {
         initMenuDrawer();
         initPropertiesPanel();
         initKeyboardItems();
+        initKeyboardGroups();
         initHistoryLayers();
     };
 

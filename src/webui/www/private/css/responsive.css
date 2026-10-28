@@ -1997,6 +1997,8 @@ speed limits; then the download and the upload speed, each in its half of the sc
         overflow: auto hidden;
         /* room for a button's focus ring, 2 px wide and 1 px out, which the strip would clip */
         padding-block: 3px;
+        /* a button the keyboard reaches shows beside the Menu button */
+        scroll-padding-inline-start: var(--responsive-touch-target, 24px);
         scrollbar-width: none;
         white-space: nowrap;
 
