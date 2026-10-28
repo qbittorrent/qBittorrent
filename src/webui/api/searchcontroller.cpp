@@ -219,7 +219,7 @@ void SearchController::downloadTorrentAction()
 
     if (torrentUrl.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
-        app()->addTorrentManager()->addTorrent(torrentUrl);
+        std::ignore = app()->addTorrentManager()->addTorrent(torrentUrl);
     }
     else
     {
@@ -227,7 +227,7 @@ void SearchController::downloadTorrentAction()
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this
             , [this, downloadHandler](const QString &source, [[maybe_unused]] const QString &errorMessage)
         {
-            app()->addTorrentManager()->addTorrent(source);
+            std::ignore = app()->addTorrentManager()->addTorrent(source);
             downloadHandler->deleteLater();
         });
     }

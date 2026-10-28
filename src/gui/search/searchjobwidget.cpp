@@ -441,7 +441,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, const AddTorr
 
 void SearchJobWidget::addTorrentToSession(const QString &source, const AddTorrentOption option)
 {
-    app()->addTorrentManager()->addTorrent(source, {}, option);
+    std::ignore = app()->addTorrentManager()->addTorrent(source, {}, option);
 }
 
 void SearchJobWidget::updateResultsCount()

@@ -43,6 +43,7 @@
 #include <QUrl>
 
 #include "base/addtorrentmanager.h"
+#include "base/bittorrent/addtorrentresult.h"
 #include "base/bittorrent/categoryoptions.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
@@ -1236,7 +1237,7 @@ void TorrentsController::addAction()
 
 
     int pending = 0;
-    int failure = 0;
+    QList<std::pair<QString, BitTorrent::AddTorrentError>> failures;
     QList<BitTorrent::TorrentID> addedTorrentIDs;
     addedTorrentIDs.reserve(urls.size() + torrents.size());
     for (QString url : urls)
@@ -1263,13 +1264,13 @@ void TorrentsController::addAction()
                 addTorrentParams.filePriorities = filePriorities;
             }
 
-            if (BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
+            if (const auto addResult = BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
             {
                 addedTorrentIDs.append(torrentID);
             }
             else
             {
-                ++failure;
+                failures.emplaceBack(url, addResult.error());
             }
         }
         else if (!downloaderParam.isEmpty() && !infoHash.isValid())
@@ -1281,7 +1282,7 @@ void TorrentsController::addAction()
             connect(downloadHandler, &SearchDownloadHandler::downloadFinished
                     , this, [this, addTorrentParams](const QString &torrentFilePath)
             {
-                app()->addTorrentManager()->addTorrent(torrentFilePath, addTorrentParams);
+                std::ignore = app()->addTorrentManager()->addTorrent(torrentFilePath, addTorrentParams);
             });
             connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
 
@@ -1292,7 +1293,7 @@ void TorrentsController::addAction()
             if (!filePriorities.isEmpty())
                 throw APIError(APIErrorType::BadParams, tr("`filePriorities` may only be specified when metadata has already been fetched"));
 
-            if (app()->addTorrentManager()->addTorrent(url, addTorrentParams))
+            if (const auto addResult = app()->addTorrentManager()->addTorrent(url, addTorrentParams))
             {
                 if (infoHash.isValid())
                 {
@@ -1305,7 +1306,7 @@ void TorrentsController::addAction()
             }
             else
             {
-                ++failure;
+                failures.emplaceBack(url, addResult.error());
             }
         }
         m_torrentSourceCache.remove(url);
@@ -1318,13 +1319,13 @@ void TorrentsController::addAction()
         if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
         {
             const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
-            if (BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
+            if (const auto addResult = BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
             {
                 addedTorrentIDs.append(torrentDescr.infoHash().toTorrentID());
             }
             else
             {
-                ++failure;
+                failures.emplaceBack(it.key(), addResult.error());
             }
         }
         else
@@ -1341,7 +1342,7 @@ void TorrentsController::addAction()
 
         setResult(QJsonObject {
             {u"success_count"_s, addedTorrentIDs.size()},
-            {u"failure_count"_s, failure},
+            {u"failure_count"_s, failures.size()},
             {u"pending_count"_s, pending},
             {u"added_torrent_ids"_s, ids},
         });
@@ -1350,7 +1351,24 @@ void TorrentsController::addAction()
     }
     else
     {
-        throw APIError(APIErrorType::Conflict);
+        QStringList reasons;
+        reasons.reserve(failures.size());
+        for (const auto &[source, error] : asConst(failures))
+        {
+            QString reason;
+            if (error.status == BitTorrent::AddTorrentError::DuplicateTorrent)
+            {
+                reason = tr("Torrent is already in the transfer list. %1").arg(error.message);
+            }
+            else
+            {
+                reason = error.message;
+            }
+
+            reasons.append(tr("Failed to add torrent. Source: \"%1\". Reason: \"%2\"").arg(source, reason));
+        }
+
+        throw APIError(APIErrorType::Conflict, reasons.join(u'\n'));
     }
 }
 

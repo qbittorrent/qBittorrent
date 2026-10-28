@@ -1467,7 +1467,7 @@ void TransferListWidget::dropEvent(QDropEvent *event)
     if (!torrentFiles.isEmpty())
     {
         for (const QString &file : asConst(torrentFiles))
-            app()->addTorrentManager()->addTorrent(file);
+            std::ignore = app()->addTorrentManager()->addTorrent(file);
 
         return;
     }
