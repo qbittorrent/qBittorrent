@@ -1884,6 +1884,9 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         onContentLoaded: function() {
             this.panelHeaderCollapseBoxEl.addEvent("click", (event) => {
                 localPreferences.set("properties_panel_collapsed", this.isCollapsed.toString());
+                // the tabs stop updating while the panel is collapsed
+                if (!this.isCollapsed)
+                    updatePropertiesPanel();
             });
 
             const togglePropertiesPanel = () => {
