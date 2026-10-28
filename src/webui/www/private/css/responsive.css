@@ -184,11 +184,40 @@
         }
 
         & > ul > li {
+            border-bottom: var(--responsive-separator);
             float: none;
         }
 
-        /* submenus expand in place */
+        /* a menu's name: a row with the Filters drawer's chevron, which turns down as the menu opens */
+        & > ul > li > a {
+            align-items: center;
+            display: flex;
+            font-size: 14px;
+            justify-content: space-between;
+            padding-inline: 12px 8px;
+            text-align: start;
+
+            &::after {
+                background: url("../images/go-down.svg") center / 16px no-repeat;
+                content: "";
+                flex: none;
+                height: 16px;
+                transform: rotate(-90deg);
+                width: 16px;
+            }
+        }
+
+        & > ul > li.menuDrawerExpanded > a {
+            font-weight: bold;
+
+            &::after {
+                transform: none;
+            }
+        }
+
+        /* submenus expand in place, on the drawer's background */
         & li ul {
+            background-color: var(--color-background-primary);
             border-width: 0;
             display: none;
             max-height: none;
@@ -198,6 +227,14 @@
 
         & li.menuDrawerExpanded > ul {
             display: block;
+        }
+    }
+
+    /* the hover a tap leaves behind does not mark a menu's name */
+    @media (hover: none) {
+        :root.menuDrawerOpen #desktopNavbar > ul > li > a:hover {
+            background-color: transparent;
+            color: var(--color-text-default);
         }
     }
 }
