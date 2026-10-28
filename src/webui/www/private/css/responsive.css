@@ -1493,6 +1493,10 @@ speed limits; then the download and the upload speed, each in its half of the sc
 
     :is(button, input[type="button"]) {
         min-height: var(--responsive-touch-target);
+    }
+
+    /* not the multi-select's button, which is wider already; :where keeps the specificity of the rule above */
+    :is(button, input[type="button"]):not(:where(.vsb-main button)) {
         min-width: var(--responsive-touch-target);
     }
 
