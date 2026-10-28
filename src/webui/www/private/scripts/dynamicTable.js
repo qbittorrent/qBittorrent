@@ -2203,17 +2203,20 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         initColumns() {
-            this.newColumn("url", "", "QBT_TR(URL/Announce Endpoint)QBT_TR[CONTEXT=TrackerListWidget]", 250, true);
-            this.newColumn("tier", "", "QBT_TR(Tier)QBT_TR[CONTEXT=TrackerListWidget]", 35, true);
-            this.newColumn("btVersion", "", "QBT_TR(BT Protocol)QBT_TR[CONTEXT=TrackerListWidget]", 35, true);
-            this.newColumn("status", "", "QBT_TR(Status)QBT_TR[CONTEXT=TrackerListWidget]", 125, true);
-            this.newColumn("peers", "", "QBT_TR(Peers)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
-            this.newColumn("seeds", "", "QBT_TR(Seeds)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
-            this.newColumn("leeches", "", "QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
-            this.newColumn("downloaded", "", "QBT_TR(Times Downloaded)QBT_TR[CONTEXT=TrackerListWidget]", 100, true);
+            // on phones the URL, its status and its message, narrower, so the message starts on screen; columns the
+            // user has shown, hidden or sized stay as they are
+            const phone = window.qBittorrent.Responsive?.queries.phone.matches ?? false;
+            this.newColumn("url", "", "QBT_TR(URL/Announce Endpoint)QBT_TR[CONTEXT=TrackerListWidget]", (phone ? 150 : 250), true);
+            this.newColumn("tier", "", "QBT_TR(Tier)QBT_TR[CONTEXT=TrackerListWidget]", 35, !phone);
+            this.newColumn("btVersion", "", "QBT_TR(BT Protocol)QBT_TR[CONTEXT=TrackerListWidget]", 35, !phone);
+            this.newColumn("status", "", "QBT_TR(Status)QBT_TR[CONTEXT=TrackerListWidget]", (phone ? 80 : 125), true);
+            this.newColumn("peers", "", "QBT_TR(Peers)QBT_TR[CONTEXT=TrackerListWidget]", 75, !phone);
+            this.newColumn("seeds", "", "QBT_TR(Seeds)QBT_TR[CONTEXT=TrackerListWidget]", 75, !phone);
+            this.newColumn("leeches", "", "QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]", 75, !phone);
+            this.newColumn("downloaded", "", "QBT_TR(Times Downloaded)QBT_TR[CONTEXT=TrackerListWidget]", 100, !phone);
             this.newColumn("message", "", "QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]", 250, true);
-            this.newColumn("nextAnnounce", "", "QBT_TR(Next Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
-            this.newColumn("minAnnounce", "", "QBT_TR(Min Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
+            this.newColumn("nextAnnounce", "", "QBT_TR(Next Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, !phone);
+            this.newColumn("minAnnounce", "", "QBT_TR(Min Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, !phone);
 
             this.initColumnsFunctions();
         }
