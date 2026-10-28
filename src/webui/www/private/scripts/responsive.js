@@ -873,6 +873,24 @@ window.qBittorrent.Responsive ??= (() => {
         });
     };
 
+    // Mocha draws a window's close control as a div: Tab reaches it, Enter or Space choose it, and screen readers name it
+    const makeCloseButton = (instance) => {
+        const button = instance.closeButtonEl;
+        if (button === undefined)
+            return;
+
+        button.setAttribute("role", "button");
+        button.setAttribute("aria-label", "QBT_TR(Close)QBT_TR[CONTEXT=MainWindow]");
+        button.tabIndex = 0;
+        button.addEventListener("keydown", (event) => {
+            if ((event.key !== "Enter") && (event.key !== " "))
+                return;
+
+            event.preventDefault();
+            button.click();
+        });
+    };
+
     // on phones and touch screens, where Back is how a page is left, Back closes what shows on top of the page
     const backCloses = () => queries.phone.matches || queries.coarse.matches;
 
@@ -907,8 +925,8 @@ window.qBittorrent.Responsive ??= (() => {
         removeHistoryLayer(layer);
     };
 
-    // fit a window as it opens, and again as its page or the screen changes; give it the focus, and on phones and touch
-    // screens let Back close it
+    // fit a window as it opens, and again as its page or the screen changes; make its close control a button, give it
+    // the focus, and on phones and touch screens let Back close it
     const watch = (node) => {
         if (node.classList?.contains("mocha") !== true)
             return;
@@ -921,6 +939,7 @@ window.qBittorrent.Responsive ??= (() => {
         closeFiltersDrawer();
         raiseStoredSize(instance);
         fitWindow(instance);
+        makeCloseButton(instance);
         holdWindowFocus(instance);
         if (backCloses())
             addWindowLayer(instance);
