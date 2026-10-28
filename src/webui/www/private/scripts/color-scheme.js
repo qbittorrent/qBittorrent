@@ -37,25 +37,31 @@ window.qBittorrent.ColorScheme ??= (() => {
     };
 
     const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const clientData = window.parent.qBittorrent.ClientData;
 
     const update = () => {
         const root = document.documentElement;
-        const colorScheme = clientData.get("color_scheme");
+        // chosen in Options and kept in this browser; none follows the system
+        const colorScheme = localStorage.getItem("color_scheme");
         const validScheme = (colorScheme === "light") || (colorScheme === "dark");
         const isDark = colorSchemeQuery.matches;
         root.classList.toggle("dark", ((!validScheme && isDark) || (colorScheme === "dark")));
     };
 
     colorSchemeQuery.addEventListener("change", (_event) => update());
-    // Apply immediately: framed windows already have parent's ClientData loaded;
-    // main window falls back to system preference until client.js calls update() after fetch
+    // each page loads this script at the top of its head, so that it is drawn in its scheme from the start
     update();
 
     // dialog frames take the responsive layout from the main window, the only page that loads responsive.js (a
-    // framed WebUI's parent is the page that embeds it)
-    if (window.qBittorrent.Responsive === undefined)
-        window.parent.qBittorrent.Responsive?.addFrame(document);
+    // framed WebUI's parent is the page that embeds it); once the page is read, so that the layout's stylesheet comes
+    // after the page's own
+    const addFrame = () => {
+        if (window.qBittorrent.Responsive === undefined)
+            window.parent.qBittorrent.Responsive?.addFrame(document);
+    };
+    if (document.readyState === "loading")
+        document.addEventListener("DOMContentLoaded", (_event) => addFrame());
+    else
+        addFrame();
 
     return exports();
 })();

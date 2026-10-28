@@ -2040,6 +2040,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             };
         };
 
+        const localPreferences = new window.parent.qBittorrent.LocalPreferences.LocalPreferences();
+
         // the fields as Options loaded them; closing Options, or leaving the WebUI, with changes since asks first. Not the
         // API key's, which rotating or deleting it changes and applies at once
         let loadedState = null;
@@ -2587,7 +2589,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                     const clientData = window.parent.qBittorrent.ClientData;
                     const dateFormat = clientData.get("date_format");
-                    const colorScheme = clientData.get("color_scheme");
+                    const colorScheme = localPreferences.get("color_scheme");
                     const displayDensity = clientData.get("display_density") ?? "default";
                     const fullUrlTrackerColumn = clientData.get("full_url_tracker_column");
                     const useVirtualList = clientData.get("use_virtual_list") ?? true;
@@ -3080,12 +3082,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["locale"] = document.getElementById("locale_select").value;
             clientData.date_format = document.getElementById("dateFormatSelect").getSelected()[0].value;
             const colorScheme = Number(document.getElementById("colorSchemeSelect").value);
+            // kept in this browser rather than with the client data, once saving succeeds
+            let storedColorScheme;
             if (colorScheme === 0)
-                clientData.color_scheme = null;
+                storedColorScheme = null;
             else if (colorScheme === 1)
-                clientData.color_scheme = "light";
+                storedColorScheme = "light";
             else
-                clientData.color_scheme = "dark";
+                storedColorScheme = "dark";
             const displayDensity = document.getElementById("displayDensitySelect").value;
             clientData.display_density = (displayDensity === "default") ? null : displayDensity;
             settings["status_bar_external_ip"] = document.getElementById("statusBarExternalIP").checked;
@@ -3631,6 +3635,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 window.parent.qBittorrent.Cache.preferences.set(settings)
             ]).then((results) => {
                 if (results.every((result) => result.status === "fulfilled")) {
+                    if (storedColorScheme === null)
+                        localPreferences.remove("color_scheme");
+                    else
+                        localPreferences.set("color_scheme", storedColorScheme);
                     // saved: neither the reload nor the closing asks
                     loadedState = fieldsState();
                     window.parent.location.reload();

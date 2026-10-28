@@ -411,7 +411,15 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     window.qBittorrent.LocalPreferences.upgrade();
 
     await window.qBittorrent.Client.initializeClientData();
-    window.qBittorrent.ColorScheme.update();
+    // the color scheme is kept in the browser, so that a page can apply it before it is drawn: one chosen while it
+    // was stored on the server moves here, and the server forgets it
+    const serverColorScheme = clientData.get("color_scheme") ?? null;
+    if (serverColorScheme !== null) {
+        if (localPreferences.get("color_scheme") === null)
+            localPreferences.set("color_scheme", serverColorScheme);
+        clientData.set({ color_scheme: null }).catch(console.error);
+        window.qBittorrent.ColorScheme.update();
+    }
     document.documentElement.classList.toggle("compact", clientData.get("display_density") === "compact");
 
     useAutoHideZeroStatusFilters = clientData.get("hide_zero_status_filters") === true;
