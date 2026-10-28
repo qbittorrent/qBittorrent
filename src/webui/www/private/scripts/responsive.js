@@ -1311,11 +1311,19 @@ window.qBittorrent.Responsive ??= (() => {
                 li.classList.toggle("menuDrawerExpanded", open);
             });
         }
-        // choosing an item closes the drawer; capturing, as the items' handlers stop the click
+        // choosing an item closes the drawer, or the menubar's menu; capturing, as the items' handlers stop the click
         navbar.addEventListener("click", (event) => {
-            if (event.target.closest("li li") !== null)
+            if (event.target.closest("li li") === null)
+                return;
+
+            if (root.classList.contains("menuDrawerOpen"))
                 closeMenuDrawer();
+            else
+                navbar.classList.add("menuChosen");
         }, true);
+        // the menus open again for a pointer on a menu's name, or for Tab
+        for (const li of navbar.querySelectorAll(":scope > ul > li"))
+            li.firstElementChild.addEventListener("pointerover", (_event) => navbar.classList.remove("menuChosen"));
         queries.phone.addEventListener("change", (_event) => {
             if (!queries.phone.matches)
                 closeMenuDrawer();
@@ -1327,6 +1335,9 @@ window.qBittorrent.Responsive ??= (() => {
                     if (root.classList.contains("menuDrawerOpen"))
                         event.stopPropagation();
                     closeMenuDrawer();
+                    break;
+                case "Tab":
+                    navbar.classList.remove("menuChosen");
                     break;
             }
         });

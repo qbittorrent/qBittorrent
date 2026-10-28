@@ -133,6 +133,11 @@ Required by:
     visibility: visible;
 }
 
+/* an item was chosen: its menu closes, though the pointer, a finger's hover or the focus is still on it */
+#desktopNavbar.menuChosen li ul {
+    visibility: hidden;
+}
+
 /* For IE7 */
 #desktopNavbar li:hover {
     position: static;
