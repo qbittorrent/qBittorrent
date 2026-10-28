@@ -67,23 +67,19 @@ window.qBittorrent.AddTorrent ??= (() => {
     };
 
     const getTags = () => {
-        const tagsSelect = document.getElementById("tagsSelect");
+        const tagsList = document.getElementById("tagsList");
         for (const tag of window.parent.qBittorrent.Client.tagMap.keys()) {
-            const option = document.createElement("option");
-            option.value = tag;
-            option.textContent = tag;
-            tagsSelect.appendChild(option);
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.value = tag;
+            const label = document.createElement("label");
+            label.append(checkbox, tag);
+            tagsList.appendChild(label);
         }
 
-        new vanillaSelectBox("#tagsSelect", {
-            maxHeight: 200,
-            search: false,
-            disableSelectAll: true,
-            translations: {
-                all: (window.parent.qBittorrent.Client.tagMap.length === 0) ? "" : "QBT_TR(All)QBT_TR[CONTEXT=AddNewTorrentDialog]",
-            },
-            keepInlineStyles: false
-        });
+        const noTags = tagsList.childElementCount === 0;
+        document.getElementById("tagsButton").disabled = noTags;
+        document.getElementById("tagsSelect").disabled = noTags;
     };
 
     const getPreferences = () => {
@@ -174,9 +170,20 @@ window.qBittorrent.AddTorrent ??= (() => {
         }
     };
 
-    const changeTagsSelect = (element) => {
-        const tags = Array.prototype.filter.call(element.options, (opt => opt.selected)).map(opt => opt.value);
+    const changeTags = () => {
+        const tags = [...document.querySelectorAll("#tagsList input:checked")].map(checkbox => checkbox.value);
         document.getElementById("tags").value = tags.join(",");
+        document.getElementById("tagsSelect").options[0].textContent = tags.join(", ");
+    };
+
+    const showTagsList = (show) => {
+        const tagsButton = document.getElementById("tagsButton");
+        const tagsList = document.getElementById("tagsList");
+        // as wide as its longest tag, up to the edge of the window
+        if (show)
+            tagsList.style.maxWidth = `${document.documentElement.clientWidth - tagsButton.getBoundingClientRect().left - 8}px`;
+        tagsList.hidden = !show;
+        tagsButton.setAttribute("aria-expanded", show);
     };
 
     const isAutoTMMEnabled = () => {
@@ -434,7 +441,26 @@ window.qBittorrent.AddTorrent ??= (() => {
 
     window.addEventListener("DOMContentLoaded", (event) => {
         document.getElementById("useDownloadPath").addEventListener("change", (e) => changeUseDownloadPath(e.target.checked));
-        document.getElementById("tagsSelect").addEventListener("change", (e) => changeTagsSelect(e.target));
+        const tagsField = document.getElementById("tagsField");
+        const tagsList = document.getElementById("tagsList");
+        document.getElementById("tagsButton").addEventListener("click", (event) => { showTagsList(tagsList.hidden); });
+        tagsList.addEventListener("change", (event) => { changeTags(); });
+        tagsField.addEventListener("keydown", (e) => {
+            if ((e.key !== "Escape") || tagsList.hidden)
+                return;
+            // closes the list, not the dialog
+            e.stopPropagation();
+            showTagsList(false);
+            document.getElementById("tagsButton").focus();
+        });
+        tagsField.addEventListener("focusout", (e) => {
+            if ((e.relatedTarget !== null) && !tagsField.contains(e.relatedTarget))
+                showTagsList(false);
+        });
+        document.addEventListener("pointerdown", (e) => {
+            if (!tagsField.contains(e.target))
+                showTagsList(false);
+        });
         document.getElementById("savepath").addEventListener("input", (event) => { showFreeSpace(event.target.value); });
     });
 

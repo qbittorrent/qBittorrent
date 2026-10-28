@@ -852,6 +852,64 @@ td.noWrap {
     outline-offset: 1px;
 }
 
+/* Add Torrent's tags: the category list's box with a button over it, and a list of check boxes below */
+#tagsField {
+    position: relative;
+    width: fit-content;
+}
+
+#tagsButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    inset: 0;
+    min-height: 0;
+    min-width: 0;
+    padding: 0;
+    position: absolute;
+
+    &:disabled {
+        cursor: default;
+    }
+}
+
+#tagsList {
+    background-color: var(--color-surface-chrome);
+    border: 1px solid var(--color-border);
+    box-sizing: border-box;
+    left: 0;
+    margin-top: 2px;
+    max-height: 200px;
+    min-width: 100%;
+    overflow-y: auto;
+    padding-block: var(--space-2);
+    position: absolute;
+    top: 100%;
+    width: max-content;
+    z-index: 1;
+
+    & label {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        gap: var(--space-4);
+        overflow-wrap: anywhere;
+        padding: var(--space-2) var(--space-5);
+    }
+
+    & input {
+        flex: none;
+        margin: 0;
+    }
+}
+
+@media (hover: hover) {
+    #tagsList label:hover {
+        background-color: var(--color-hover);
+        color: var(--color-text-hover);
+    }
+}
+
 /*
  * Workaround to prevent the transfer list from
  * disappearing when zooming in the browser.

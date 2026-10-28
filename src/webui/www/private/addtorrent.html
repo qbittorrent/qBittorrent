@@ -7,10 +7,8 @@
     <link rel="stylesheet" type="text/css" href="css/dynamicTable.css?v=${CACHEID}">
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css">
-    <link rel="stylesheet" href="css/vanillaSelectBox.css" type="text/css">
     <script defer src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
     <script defer src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
-    <script defer src="scripts/lib/vanillaSelectBox.js"></script>
     <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
     <script defer src="scripts/addtorrent.js?locale=${LANG}&v=${CACHEID}"></script>
@@ -132,10 +130,6 @@
             }
         }
 
-        #btn-group-tagsSelect button {
-            background-color: initial;
-        }
-
         #loadingSpinner {
             position: absolute;
             left: 6px;
@@ -238,12 +232,19 @@
                             </tr>
                             <tr>
                                 <td class="noWrap">
-                                    <label id="tagsLabel" for="tagsSelect">QBT_TR(Tags:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                                    <label id="tagsLabel" for="tagsButton">QBT_TR(Tags:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                                 </td>
                                 <td class="fullWidth">
-                                    <div>
+                                    <div id="tagsField">
                                         <input type="hidden" id="tags" name="tags">
-                                        <select id="tagsSelect" name="tagsSelect" multiple></select>
+                                        <!-- the select shows the chosen tags as the category list shows its category; the button over it opens the list of tags -->
+                                        <div class="select-watched-folder-editable">
+                                            <select id="tagsSelect" inert>
+                                                <option></option>
+                                            </select>
+                                            <button type="button" id="tagsButton" aria-labelledby="tagsLabel tagsSelect" aria-controls="tagsList" aria-expanded="false"></button>
+                                        </div>
+                                        <div id="tagsList" role="group" aria-labelledby="tagsLabel" hidden></div>
                                     </div>
                                 </td>
                             </tr>

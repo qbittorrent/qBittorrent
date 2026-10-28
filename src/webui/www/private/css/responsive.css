@@ -1944,6 +1944,12 @@ speed limits; then the download and the upload speed, each in its half of the sc
         height: var(--responsive-touch-field-height);
     }
 
+    /* Add Torrent's tags, in the size of the category list's text */
+    #tagsList label {
+        font-size: var(--text-touch);
+        min-height: var(--responsive-touch-target);
+    }
+
     :is(input[type="checkbox"], input[type="radio"]) {
         height: 24px;
         vertical-align: middle;
