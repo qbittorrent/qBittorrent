@@ -194,6 +194,17 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
             }, { passive: true });
 
+            // the rows are the list's Tab stop, not the box that scrolls them
+            this.dynamicTableDiv.tabIndex = -1;
+            this.dynamicTableDiv.addEventListener("focusin", (e) => {
+                const tr = e.target.closest("tr");
+                if (tr?.rowId === undefined)
+                    return;
+
+                this.focusedRowId = tr.rowId;
+                this.updateTabStop();
+            });
+
             this.dynamicTableDiv.addEventListener("keydown", (e) => {
                 const tr = e.target.closest("tr");
                 if (!tr)
@@ -201,15 +212,41 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 switch (e.key) {
                     case "ArrowUp":
+                    case "ArrowDown": {
                         e.preventDefault();
-                        this.selectPreviousRow();
-                        this.dynamicTableDiv.querySelector(".selected").scrollIntoView({ block: "nearest" });
-                        break;
+                        const next = this.neighbourRow(tr, ((e.key === "ArrowDown") ? 1 : -1));
+                        if (next === undefined)
+                            break;
 
-                    case "ArrowDown":
+                        // Shift extends the selection from the row it started at, Ctrl or ⌘ moves only the focus
+                        if (e.shiftKey) {
+                            const anchor = this.isRowSelected(this.selectionAnchorId) ? this.selectionAnchorId : tr.rowId;
+                            this.selectRows(anchor, next.rowId);
+                            this.selectionAnchorId = anchor;
+                        }
+                        else if (!e.ctrlKey && !e.metaKey) {
+                            this.deselectAll();
+                            this.selectRow(next.rowId);
+                            this.selectionAnchorId = next.rowId;
+                        }
+                        next.focus({ preventScroll: true });
+                        // into view below the column header, which stays at the top of the list as it scrolls
+                        this.dynamicTableDiv.style.scrollPaddingTop = `${this.headerHeight()}px`;
+                        next.scrollIntoView({ block: "nearest" });
+                        break;
+                    }
+
+                    // as a Ctrl+click does, on the row itself: a check box or list in it takes its own Space
+                    case " ":
+                        if (e.target !== tr)
+                            break;
+
                         e.preventDefault();
-                        this.selectNextRow();
-                        this.dynamicTableDiv.querySelector(".selected").scrollIntoView({ block: "nearest" });
+                        if (this.isRowSelected(tr.rowId))
+                            this.deselectRow(tr.rowId);
+                        else
+                            this.selectRow(tr.rowId);
+                        this.selectionAnchorId = tr.rowId;
                         break;
                 }
             });
@@ -879,6 +916,17 @@ window.qBittorrent.DynamicTable ??= (() => {
         setRowClass() {
             for (const tr of this.getTrs())
                 tr.classList.toggle("selected", this.isRowSelected(tr.rowId));
+            this.updateTabStop();
+        }
+
+        // one shown row is the list's Tab stop: the one the focus was last on, else the selected one, else the first
+        updateTabStop() {
+            const rows = [...this.getTrs()].filter((tr) => !tr.classList.contains("invisible") && (tr.style.display !== "none"));
+            const stop = rows.find((tr) => tr.rowId === this.focusedRowId)
+                ?? rows.find((tr) => this.isRowSelected(tr.rowId))
+                ?? rows[0];
+            for (const tr of this.getTrs())
+                tr.tabIndex = (tr === stop) ? 0 : -1;
         }
 
         onSelectedRowChanged() {}
@@ -1014,6 +1062,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 for (const tr of trMap.values())
                     tr.remove();
+                this.updateTabStop();
             }
         }
 
@@ -1053,7 +1102,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                     element = this.cachedElements[position] = this.createRowElement(row, offset);
                 elements.push(element);
             }
-            const hadFocus = this.dynamicTableDiv.contains(document.activeElement);
+            // a row had the focus, rather than a field in the header
+            const hadFocus = this.tableBody.contains(document.activeElement);
             this.tableBody.replaceChildren(...elements);
 
             // update row classes
@@ -1063,9 +1113,19 @@ window.qBittorrent.DynamicTable ??= (() => {
             for (const row of this.tableBody.children)
                 this.updateRow(row, true);
 
-            // restore focus so keyboard navigation continues working
-            if (hadFocus)
-                this.getTrByRowId(this.getSelectedRowId())?.focus({ preventScroll: true });
+            // restore focus so keyboard navigation continues working, on the row that had it if it is still shown, else on
+            // the first row in view, as a scroll or End may have taken it out of the list
+            if (hadFocus) {
+                const firstInView = rows[Math.min(Math.ceil((this.renderedOffset + this.headerHeight()) / this.rowHeight), (rows.length - 1))];
+                (this.getTrByRowId(this.focusedRowId)
+                    ?? this.getTrByRowId(this.getSelectedRowId())
+                    ?? ((firstInView !== undefined) ? this.getTrByRowId(firstInView.rowId) : null))?.focus({ preventScroll: true });
+            }
+        }
+
+        // the height of the column header, which stays at the top of the list as it scrolls
+        headerHeight() {
+            return this.dynamicTableDiv.querySelector(":scope > .dynamicTableFixedHeaderDiv")?.offsetHeight ?? 0;
         }
 
         createRowElement(row, top = -1) {
@@ -1167,34 +1227,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             return this.rows.size;
         }
 
-        selectNextRow() {
-            const visibleRows = Array.prototype.filter.call(this.getTrs(), (tr => !tr.classList.contains("invisible") && (tr.style.display !== "none")));
-            const selectedRowId = this.getSelectedRowId();
-
-            const selectedIndex = visibleRows.findIndex(row => (row.getAttribute("data-row-id") === selectedRowId));
-
-            const isLastRowSelected = (selectedIndex >= (visibleRows.length - 1));
-            if (!isLastRowSelected) {
-                this.deselectAll();
-                const newRow = visibleRows[selectedIndex + 1];
-                this.selectRow(newRow.getAttribute("data-row-id"));
-                newRow.focus({ preventScroll: true });
-            }
-        }
-
-        selectPreviousRow() {
-            const visibleRows = Array.prototype.filter.call(this.getTrs(), (tr => !tr.classList.contains("invisible") && (tr.style.display !== "none")));
-            const selectedRowId = this.getSelectedRowId();
-
-            const selectedIndex = visibleRows.findIndex(row => (row.getAttribute("data-row-id") === selectedRowId));
-
-            const isFirstRowSelected = selectedIndex <= 0;
-            if (!isFirstRowSelected) {
-                this.deselectAll();
-                const newRow = visibleRows[selectedIndex - 1];
-                this.selectRow(newRow.getAttribute("data-row-id"));
-                newRow.focus({ preventScroll: true });
-            }
+        // the shown row before (step -1) or after (step 1) this one
+        neighbourRow(tr, step) {
+            const visibleRows = Array.prototype.filter.call(this.getTrs(), (row => !row.classList.contains("invisible") && (row.style.display !== "none")));
+            return visibleRows[visibleRows.indexOf(tr) + step];
         }
     }
 
