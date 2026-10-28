@@ -375,15 +375,31 @@ window.qBittorrent.Responsive ??= (() => {
             }
             updateKeyboardGroups();
         };
-        // filter lists, tabs and windows are built after the page loads; once a frame, as the lists change often
-        new MutationObserver(() => {
+        // finding the shown items lays the page out: rather than in a frame, once the browser is idle
+        const queueTag = () => {
             if (tagQueued)
                 return;
 
             tagQueued = true;
-            requestAnimationFrame(tag);
+            if (window.requestIdleCallback !== undefined)
+                requestIdleCallback(() => tagQueued && tag(), { timeout: 500 });
+            else
+                setTimeout(() => tagQueued && tag(), 100);
+        };
+        // filter lists, tabs and windows are built after the page loads; the lists' rows and cells, which change on
+        // every refresh, hold no keyboard items
+        const holdsItems = (node) => (node.nodeType === Node.ELEMENT_NODE) && (node.matches(keyboardItems) || (node.querySelector(keyboardItems) !== null));
+        new MutationObserver((mutations) => {
+            if (mutations.some((mutation) => [...mutation.addedNodes, ...mutation.removedNodes].some(holdsItems)))
+                queueTag();
         }).observe(document.body, { childList: true, subtree: true });
-        tag();
+        // Tab finds the stops up to date, also where showing or hiding something changed which items are shown, as
+        // opening a drawer does
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Tab")
+                tag();
+        }, true);
+        queueTag();
 
         document.addEventListener("keydown", (event) => {
             switch (event.key) {
