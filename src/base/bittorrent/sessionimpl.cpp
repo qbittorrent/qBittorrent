@@ -5723,6 +5723,8 @@ void SessionImpl::handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoH
         m_torrents[torrent->id()] = m_torrents.take(prevID);
         m_changedTorrentIDs[torrent->id()] = prevID;
     }
+
+    emit torrentInfoHashChanged(torrent, prevInfoHash);
 }
 
 void SessionImpl::handleTorrentContentFileRenamed(TorrentImpl *torrent, const int index, const Path &oldFilePath)
