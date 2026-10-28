@@ -12,6 +12,7 @@
     --color-text: hsl(0deg 0% 33%);
     --color-text-on-accent: hsl(0deg 0% 100%);
     --color-text-disabled: hsl(0deg 0% 60%);
+    --color-text-placeholder: hsl(0deg 0% 42%);
     --color-text-hover: var(--color-text);
 
     /* type */
@@ -68,6 +69,7 @@
         --color-surface-chrome: hsl(0deg 0% 25%);
         --color-surface-popup: hsl(0deg 0% 20%);
         --color-text: hsl(0deg 0% 90%);
+        --color-text-placeholder: hsl(0deg 0% 70%);
         --color-border: hsl(0deg 0% 33%);
         --color-border-control: hsl(0deg 0% 52%);
         --color-selection: hsl(210deg 42% 47%);
@@ -152,6 +154,12 @@ select {
     border-radius: var(--radius-control);
     color: var(--color-text);
     padding: 3px;
+}
+
+/* lighter than the text, as a hint, and still 4.5:1 on the surfaces behind the fields */
+::placeholder {
+    color: var(--color-text-placeholder);
+    opacity: 1; /* Firefox draws placeholders at 54% */
 }
 
 select {
