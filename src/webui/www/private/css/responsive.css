@@ -1645,6 +1645,12 @@ speed limits; then the download and the upload speed, each in its half of the sc
         padding-top: 0;
     }
 
+    /* responsive.js moves Remove after Stop as the WebUI starts, after the toolbar is first drawn; until then Remove
+    stays hidden rather than show at its desktop place */
+    #deleteButton:not(#stopButton + *) {
+        display: none;
+    }
+
     #propertiesPanel_header {
         height: auto;
 
