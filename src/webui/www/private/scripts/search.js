@@ -175,21 +175,16 @@ window.qBittorrent.Search ??= (() => {
             }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
         });
 
+        // Enter in the search field starts the search; on the buttons and tabs it chooses them, as everywhere
         document.getElementById("SearchPanel").addEventListener("keydown", (event) => {
             switch (event.key) {
                 case "Enter":
+                    if (event.target.id !== "searchPattern")
+                        break;
+
                     event.preventDefault();
                     event.stopPropagation();
-
-                    switch (event.target.id) {
-                        case "manageSearchPlugins":
-                            manageSearchPlugins();
-                            break;
-                        case "searchPattern":
-                            document.getElementById("startSearchButton").click();
-                            break;
-                    }
-
+                    document.getElementById("startSearchButton").click();
                     break;
             }
         });
