@@ -15,6 +15,16 @@
     min-width: 0; /* override Layout.css */
 }
 
+/* Pull to refresh on phones: browsers don't start it on a page whose root hides its vertical overflow, as MochaUI's
+does; it stays off while a window or drawer is open, so that a pull can't reload a dialog away */
+:root.responsivePhone:has(#desktop):not(
+        .filtersDrawerOpen,
+        .menuDrawerOpen,
+        :has(.mocha)
+    ) {
+    overflow-y: auto !important; /* override MochaUI's inline style */
+}
+
 /* Drawers */
 .responsiveScrim {
     background-color: hsl(0deg 0% 0% / 40%);
