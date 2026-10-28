@@ -627,6 +627,23 @@ would cover the entry that opened it */
             }
         }
 
+        /* on a selected card the arrows take the text's color, as their own vanish in the selection */
+        &
+            tbody
+            tr.selected
+            :is(td[data-col="dlspeed"], td[data-col="upspeed"])::before {
+            background: currentcolor;
+            mask: center / contain no-repeat;
+        }
+
+        & tbody tr.selected td[data-col="dlspeed"]::before {
+            mask-image: url("../images/downloading.svg");
+        }
+
+        & tbody tr.selected td[data-col="upspeed"]::before {
+            mask-image: url("../images/upload.svg");
+        }
+
         /* hidden columns stay hidden */
         & td.invisible {
             display: none;
