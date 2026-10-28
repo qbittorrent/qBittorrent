@@ -624,6 +624,154 @@ would cover the entry that opened it */
     }
 }
 
+/* Add Torrent's files on phones: a list whose names wrap, with the size at the end of a name and the priority below */
+:root.responsivePhone #addTorrentFilesTableDiv:not(.virtualList) {
+    & table,
+    & :is(thead, tbody) {
+        display: block;
+        width: 100% !important;
+    }
+
+    & colgroup {
+        display: none;
+    }
+
+    & :is(thead, tbody) tr {
+        display: flex;
+        padding-inline-end: 8px;
+    }
+
+    /* the check box for all files, and the name to sort by */
+    & th {
+        align-content: center;
+        border-right: 0;
+        max-width: none !important; /* override inline style */
+        width: auto !important;
+
+        &.column_checked {
+            flex: 0 0 50px;
+        }
+
+        &.column_name {
+            flex: 1 1 0;
+        }
+
+        &:not(.column_checked, .column_name) {
+            display: none;
+        }
+    }
+
+    & tbody tr {
+        align-items: center;
+        border-bottom: var(--responsive-separator);
+        flex-wrap: wrap;
+        height: auto;
+        padding-block: 8px 4px;
+
+        /* the files of a collapsed folder */
+        &.invisible {
+            display: none;
+        }
+    }
+
+    & td {
+        border: 0;
+        height: auto;
+        min-width: 0;
+        padding: 0;
+    }
+
+    /* beside the name's first line; the order is fixed, whatever order the columns have */
+    & td[data-col="checked"] {
+        align-items: center;
+        align-self: flex-start;
+        display: flex;
+        flex: 0 0 50px;
+        height: 22px;
+        justify-content: center;
+        order: 1;
+
+        /* the tree's line */
+        & > img {
+            display: none;
+        }
+
+        & > input {
+            margin: 0;
+        }
+    }
+
+    /* the name wraps beside its arrow and folder icon */
+    & td[data-col="name"] {
+        align-items: flex-start;
+        align-self: flex-start;
+        display: flex;
+        flex: 1 1 0;
+        font-size: 16px;
+        line-height: 22px;
+        order: 2;
+        white-space: normal;
+
+        & > img {
+            margin-top: 2px;
+        }
+
+        & > .filesTableCollapseIcon {
+            margin-top: calc((22px - var(--icon-size, 15px)) / 2);
+        }
+
+        & > span {
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
+    }
+
+    & td[data-col="size"] {
+        align-self: flex-start;
+        font-size: 14px;
+        line-height: 22px;
+        order: 3;
+        padding-inline-start: 8px;
+    }
+
+    /* a line of its own, as a select is as wide as its longest choice; drawn as its value, without the select's box,
+    and with a chevron in the row's text color */
+    & td[data-col="priority"] {
+        flex: 0 0 100%;
+        order: 4;
+        position: relative;
+        text-align: end;
+
+        &::after {
+            background-color: currentcolor;
+            content: "";
+            height: 12px;
+            inset-inline-end: 4px;
+            mask: url("../images/go-down.svg") center / contain no-repeat;
+            pointer-events: none;
+            position: absolute;
+            top: calc(50% - 6px);
+            width: 12px;
+        }
+
+        & > select {
+            appearance: none;
+            background-color: transparent;
+            border-color: transparent;
+            color: inherit;
+            cursor: pointer;
+            font-size: 16px;
+            padding-inline: 8px calc(12px + 4px + 6px);
+            text-align: end;
+        }
+
+        & option {
+            background-color: var(--color-background-popup);
+            color: var(--color-text-default);
+        }
+    }
+}
+
 /* Status bar */
 :root.responsiveRelayout {
     & #desktopFooterWrapper {
