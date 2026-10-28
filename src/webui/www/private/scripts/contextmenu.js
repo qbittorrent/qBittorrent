@@ -272,6 +272,8 @@ window.qBittorrent.ContextMenu ??= (() => {
             this.menu.classList.add("visible");
             this.options.onShow.call(this);
             lastShownContextMenu = this;
+            // on phones and touch screens Back closes it
+            window.qBittorrent.Responsive?.contextMenuShown(this);
             return this;
         }
 
@@ -280,6 +282,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             if (lastShownContextMenu && (lastShownContextMenu.menu.style.visibility !== "hidden")) {
                 this.menu.classList.remove("visible");
                 this.options.onHide.call(this);
+                window.qBittorrent.Responsive?.contextMenuHidden(this);
             }
             return this;
         }

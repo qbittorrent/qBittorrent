@@ -35,7 +35,9 @@ window.qBittorrent.Responsive ??= (() => {
             init: init,
             queries: queries,
             addFrame: addFrame,
-            rowHeight: rowHeight
+            rowHeight: rowHeight,
+            contextMenuShown: contextMenuShown,
+            contextMenuHidden: contextMenuHidden
         };
     };
 
@@ -270,11 +272,71 @@ window.qBittorrent.Responsive ??= (() => {
         });
     };
 
+    // drawers, and windows on phones, cover the page as pages do, so Back closes the one on top rather than leave the
+    // WebUI: each adds a history entry as it opens, and one that closes some other way takes its entry back
+    const historyLayers = [];
+    let ignoredPops = 0;
+    // a Back takes its time: an entry pushed before it arrives is the one it goes back from, so the entries of layers
+    // added meanwhile, as a window that a menu drawer entry opens, wait for it
+    let waitingPushes = 0;
+
+    const pushLayerEntry = () => {
+        if (ignoredPops > 0)
+            ++waitingPushes;
+        else
+            history.pushState({ responsiveLayer: true }, "");
+    };
+
+    const addHistoryLayer = (close) => {
+        const layer = { close: close };
+        historyLayers.push(layer);
+        pushLayerEntry();
+        return layer;
+    };
+
+    const removeHistoryLayer = (layer) => {
+        const index = historyLayers.indexOf(layer);
+        // Back closed it, and took its entry
+        if (index === -1)
+            return;
+
+        historyLayers.splice(index, 1);
+        // the layers' entries are alike, so one under the top takes the current one back too, unless one is still
+        // waiting
+        if (waitingPushes > 0) {
+            --waitingPushes;
+        }
+        else {
+            ++ignoredPops;
+            history.back();
+        }
+    };
+
+    const initHistoryLayers = () => {
+        window.addEventListener("popstate", (_event) => {
+            if (ignoredPops > 0) {
+                --ignoredPops;
+                while ((ignoredPops === 0) && (waitingPushes > 0)) {
+                    --waitingPushes;
+                    history.pushState({ responsiveLayer: true }, "");
+                }
+                return;
+            }
+
+            const layer = historyLayers.pop();
+            if (layer === undefined)
+                return;
+
+            layer.close();
+        });
+    };
+
     const filterItems = "ul.filterList span.link";
 
     let filtersScrim = null;
     let filtersObserver = null;
     let releaseFiltersFocus = null;
+    let filtersLayer = null;
     // the rest of a double click or tap that closed a drawer would reach what the drawer covered
     let drawerClosed = false;
 
@@ -295,6 +357,7 @@ window.qBittorrent.Responsive ??= (() => {
         filtersObserver = new MutationObserver(() => setKeyboardItems(filters, filterItems, true));
         filtersObserver.observe(filters, { childList: true, subtree: true });
         releaseFiltersFocus = trapFocus(column);
+        filtersLayer = addHistoryLayer(closeFiltersDrawer);
     };
 
     const closeFiltersDrawer = () => {
@@ -314,6 +377,8 @@ window.qBittorrent.Responsive ??= (() => {
         setKeyboardItems(document.getElementById("Filters"), filterItems, false);
         releaseFiltersFocus();
         releaseFiltersFocus = null;
+        removeHistoryLayer(filtersLayer);
+        filtersLayer = null;
         drawerClosed = true;
     };
 
@@ -759,7 +824,42 @@ window.qBittorrent.Responsive ??= (() => {
             fitWindow(instance);
     };
 
-    // fit a window as it opens, and again as its page or the screen changes
+    // on phones and touch screens, where Back is how a page is left, Back closes what shows on top of the page
+    const backCloses = () => queries.phone.matches || queries.coarse.matches;
+
+    // a window there gains that as it opens, or as the screen turns into such a screen, and loses it as it turns back
+    const addWindowLayer = (instance) => {
+        if ((instance.responsiveLayer === undefined) && !instance.isClosing)
+            instance.responsiveLayer = addHistoryLayer(() => instance.close());
+    };
+
+    const removeWindowLayer = (instance) => {
+        if (instance.responsiveLayer === undefined)
+            return;
+
+        removeHistoryLayer(instance.responsiveLayer);
+        instance.responsiveLayer = undefined;
+    };
+
+    // and a context menu there, while it shows; contextmenu.js tells as it shows and hides one
+    let contextMenuLayer = null;
+
+    const contextMenuShown = (contextMenu) => {
+        if ((contextMenuLayer === null) && backCloses())
+            contextMenuLayer = addHistoryLayer(() => contextMenu.hide());
+    };
+
+    const contextMenuHidden = () => {
+        if (contextMenuLayer === null)
+            return;
+
+        const layer = contextMenuLayer;
+        contextMenuLayer = null;
+        removeHistoryLayer(layer);
+    };
+
+    // fit a window as it opens, and again as its page or the screen changes; and on phones and touch screens let Back
+    // close it
     const watch = (node) => {
         if (node.classList?.contains("mocha") !== true)
             return;
@@ -772,6 +872,9 @@ window.qBittorrent.Responsive ??= (() => {
         closeFiltersDrawer();
         raiseStoredSize(instance);
         fitWindow(instance);
+        if (backCloses())
+            addWindowLayer(instance);
+        instance.addEvent("closeComplete", () => removeWindowLayer(instance));
 
         // refit only when something the fit depends on has changed
         const fitSoon = window.qBittorrent.Misc.createDebounceHandler(50, () => {
@@ -845,6 +948,20 @@ window.qBittorrent.Responsive ??= (() => {
             windowObserver.observe(container, { childList: true });
         for (const node of document.querySelectorAll(".mocha"))
             watch(node);
+        const updateWindowLayers = () => {
+            for (const node of document.querySelectorAll(".mocha")) {
+                const instance = MochaUI.Windows.instances[node.id];
+                if (instance === undefined)
+                    continue;
+
+                if (backCloses())
+                    addWindowLayer(instance);
+                else
+                    removeWindowLayer(instance);
+            }
+        };
+        queries.phone.addEventListener("change", (_event) => updateWindowLayers());
+        queries.coarse.addEventListener("change", (_event) => updateWindowLayers());
 
         // after Mocha's own resize handling
         window.addEventListener("resize", window.qBittorrent.Misc.createDebounceHandler(50, fitWindows));
@@ -1116,6 +1233,7 @@ window.qBittorrent.Responsive ??= (() => {
 
     let menuDrawerScrim = null;
     let releaseMenuDrawerFocus = null;
+    let menuDrawerLayer = null;
 
     const openMenuDrawer = () => {
         if (!queries.phone.matches || root.classList.contains("menuDrawerOpen"))
@@ -1130,6 +1248,7 @@ window.qBittorrent.Responsive ??= (() => {
         document.getElementById("menuDrawerButton").setAttribute("aria-expanded", "true");
         setKeyboardItems(navbar, menuItems, true);
         releaseMenuDrawerFocus = trapFocus(navbar);
+        menuDrawerLayer = addHistoryLayer(closeMenuDrawer);
     };
 
     const closeMenuDrawer = () => {
@@ -1149,6 +1268,8 @@ window.qBittorrent.Responsive ??= (() => {
         setKeyboardItems(navbar, menuItems, false);
         releaseMenuDrawerFocus();
         releaseMenuDrawerFocus = null;
+        removeHistoryLayer(menuDrawerLayer);
+        menuDrawerLayer = null;
         drawerClosed = true;
     };
 
@@ -1233,6 +1354,7 @@ window.qBittorrent.Responsive ??= (() => {
         initCardSorting();
         initMenuDrawer();
         initPropertiesPanel();
+        initHistoryLayers();
     };
 
     return exports();
