@@ -1554,6 +1554,11 @@ speed limits; then the download and the upload speed, each in its half of the sc
         width: 24px;
     }
 
+    /* a slider's track stays thin, but a finger can take hold of it anywhere in this height */
+    input[type="range"] {
+        height: var(--responsive-touch-target);
+    }
+
     /* a file tree's check box shares its 50 px column with the tree line; with its side margins it would not fit,
     and the cell would show an ellipsis in its place */
     .dynamicTable td > img + input[type="checkbox"] {
