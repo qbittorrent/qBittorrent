@@ -76,7 +76,10 @@
 #include <QJsonValue>
 #include <QMutexLocker>
 #include <QNetworkAddressEntry>
+#include <QElapsedTimer>
 #include <QNetworkInterface>
+#include <QNetworkProxy>
+#include <QTcpSocket>
 #include <QPromise>
 #include <QRegularExpression>
 #include <QString>
@@ -585,6 +588,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_altGlobalDownloadSpeedLimit(BITTORRENT_SESSION_KEY(u"AlternativeGlobalDLSpeedLimit"_s), 10, lowerLimited(0))
     , m_altGlobalUploadSpeedLimit(BITTORRENT_SESSION_KEY(u"AlternativeGlobalUPSpeedLimit"_s), 10, lowerLimited(0))
     , m_isAltGlobalSpeedLimitEnabled(BITTORRENT_SESSION_KEY(u"UseAlternativeGlobalSpeedLimit"_s), false)
+    , m_bandwidthControlMode(BITTORRENT_SESSION_KEY(u"BandwidthControlMode"_s), BandwidthControlMode::Regular
+        , clampValue(BandwidthControlMode::Regular, BandwidthControlMode::Adaptive))
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY(u"BandwidthSchedulerEnabled"_s), false)
     , m_isPerformanceWarningEnabled(BITTORRENT_SESSION_KEY(u"PerformanceWarning"_s), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY(u"SaveResumeDataInterval"_s), 60)
@@ -688,6 +693,12 @@ SessionImpl::SessionImpl(QObject *parent)
 
     initializeNativeSession();
     configureComponents();
+
+    m_adaptiveBandwidthTimer = new QTimer(this);
+    m_adaptiveBandwidthTimer->setInterval(1500);
+    connect(m_adaptiveBandwidthTimer, &QTimer::timeout, this, &SessionImpl::runAdaptiveBandwidthProbe);
+    if (isAdaptiveBandwidthActive())
+        m_adaptiveBandwidthTimer->start();
 
     if (isBandwidthSchedulerEnabled())
         enableBandwidthScheduler();
@@ -1428,8 +1439,46 @@ void SessionImpl::setTrackerEnabled(const bool enabled)
 
 void SessionImpl::applyBandwidthLimits()
 {
+    if (!isAdaptiveBandwidthActive())
+    {
+        if (m_adaptiveBandwidthTimer && m_adaptiveBandwidthTimer->isActive())
+            m_adaptiveBandwidthTimer->stop();
+        m_adaptiveDownloadSpeedLimit = 0;
+        m_adaptiveBaselineRttMs = 0.0;
+        m_adaptiveLastRttMs = 0.0;
+        m_isAdaptiveCongestionDetected = false;
+        m_adaptiveClearTicks = 0;
+    }
+    else if (m_adaptiveBandwidthTimer && !m_adaptiveBandwidthTimer->isActive())
+    {
+        m_adaptiveBandwidthTimer->start();
+        QTimer::singleShot(100, this, &SessionImpl::runAdaptiveBandwidthProbe);
+    }
+
     lt::settings_pack settingsPack;
-    settingsPack.set_int(lt::settings_pack::download_rate_limit, downloadSpeedLimit());
+    if (isQoSBandwidthActive())
+    {
+        settingsPack.set_int(lt::settings_pack::mixed_mode_algorithm, lt::settings_pack::peer_proportional);
+        settingsPack.set_int(lt::settings_pack::peer_dscp, 0x20);
+        settingsPack.set_bool(lt::settings_pack::rate_limit_ip_overhead, true);
+    }
+    else
+    {
+        switch (utpMixedMode())
+        {
+        case MixedModeAlgorithm::TCP:
+        default:
+            settingsPack.set_int(lt::settings_pack::mixed_mode_algorithm, lt::settings_pack::prefer_tcp);
+            break;
+        case MixedModeAlgorithm::Proportional:
+            settingsPack.set_int(lt::settings_pack::mixed_mode_algorithm, lt::settings_pack::peer_proportional);
+            break;
+        }
+        settingsPack.set_int(lt::settings_pack::peer_dscp, peerDSCP());
+        settingsPack.set_bool(lt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
+    }
+
+    settingsPack.set_int(lt::settings_pack::download_rate_limit, effectiveDownloadSpeedLimit());
     settingsPack.set_int(lt::settings_pack::upload_rate_limit, uploadSpeedLimit());
     m_nativeSession->apply_settings(std::move(settingsPack));
 }
@@ -2000,7 +2049,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
 
     applyNetworkInterfacesSettings(settingsPack);
 
-    settingsPack.set_int(lt::settings_pack::download_rate_limit, downloadSpeedLimit());
+    settingsPack.set_int(lt::settings_pack::download_rate_limit, effectiveDownloadSpeedLimit());
     settingsPack.set_int(lt::settings_pack::upload_rate_limit, uploadSpeedLimit());
 
     // The most secure, rc4 only so that all streams are encrypted
@@ -2197,9 +2246,9 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::natpmp_lease_duration, UPnPLeaseDuration());
 #endif
     // Type of service
-    settingsPack.set_int(lt::settings_pack::peer_dscp, peerDSCP());
+    settingsPack.set_int(lt::settings_pack::peer_dscp, isQoSBandwidthActive() ? 0x20 : peerDSCP());
     // Include overhead in transfer limits
-    settingsPack.set_bool(lt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
+    settingsPack.set_bool(lt::settings_pack::rate_limit_ip_overhead, isQoSBandwidthActive() ? true : includeOverheadInLimits());
     // IP address to announce to trackers
     settingsPack.set_str(lt::settings_pack::announce_ip, announceIP().toStdString());
 #if LIBTORRENT_VERSION_NUM >= 20011
@@ -2240,15 +2289,22 @@ lt::settings_pack SessionImpl::loadLTSettings() const
         break;
     }
 
-    switch (utpMixedMode())
+    if (isQoSBandwidthActive())
     {
-    case MixedModeAlgorithm::TCP:
-    default:
-        settingsPack.set_int(lt::settings_pack::mixed_mode_algorithm, lt::settings_pack::prefer_tcp);
-        break;
-    case MixedModeAlgorithm::Proportional:
         settingsPack.set_int(lt::settings_pack::mixed_mode_algorithm, lt::settings_pack::peer_proportional);
-        break;
+    }
+    else
+    {
+        switch (utpMixedMode())
+        {
+        case MixedModeAlgorithm::TCP:
+        default:
+            settingsPack.set_int(lt::settings_pack::mixed_mode_algorithm, lt::settings_pack::prefer_tcp);
+            break;
+        case MixedModeAlgorithm::Proportional:
+            settingsPack.set_int(lt::settings_pack::mixed_mode_algorithm, lt::settings_pack::peer_proportional);
+            break;
+        }
     }
 
     settingsPack.set_int(lt::settings_pack::resolver_cache_timeout, hostnameCacheTTL());
@@ -3773,6 +3829,241 @@ void SessionImpl::setAltGlobalSpeedLimitEnabled(const bool enabled)
     applyBandwidthLimits();
     // Notify
     emit speedLimitModeChanged(m_isAltGlobalSpeedLimitEnabled);
+}
+
+BandwidthControlMode SessionImpl::bandwidthControlMode() const
+{
+    return m_bandwidthControlMode;
+}
+
+void SessionImpl::setBandwidthControlMode(const BandwidthControlMode mode)
+{
+    if (mode == m_bandwidthControlMode.get())
+        return;
+
+    m_bandwidthControlMode = mode;
+    applyBandwidthLimits();
+    emit bandwidthControlModeChanged(mode);
+}
+
+bool SessionImpl::isQoSBandwidthActive() const
+{
+    if (isAltGlobalSpeedLimitEnabled())
+        return false;
+    const BandwidthControlMode mode = m_bandwidthControlMode;
+    return (mode == BandwidthControlMode::QoS) || (mode == BandwidthControlMode::Adaptive);
+}
+
+bool SessionImpl::isAdaptiveBandwidthActive() const
+{
+    return !isAltGlobalSpeedLimitEnabled()
+        && (m_bandwidthControlMode.get() == BandwidthControlMode::Adaptive);
+}
+
+int SessionImpl::effectiveDownloadSpeedLimit() const
+{
+    const int userDlLimit = downloadSpeedLimit();
+    if (isAdaptiveBandwidthActive() && (m_adaptiveDownloadSpeedLimit > 0))
+        return (userDlLimit > 0) ? std::min(userDlLimit, m_adaptiveDownloadSpeedLimit) : m_adaptiveDownloadSpeedLimit;
+    return userDlLimit;
+}
+
+int SessionImpl::adaptiveDownloadSpeedLimit() const
+{
+    return isAdaptiveBandwidthActive() ? m_adaptiveDownloadSpeedLimit : 0;
+}
+
+double SessionImpl::adaptiveBaselineRttMs() const
+{
+    return m_adaptiveBaselineRttMs;
+}
+
+double SessionImpl::adaptiveLastRttMs() const
+{
+    return m_adaptiveLastRttMs;
+}
+
+bool SessionImpl::isAdaptiveCongestionDetected() const
+{
+    return isAdaptiveBandwidthActive() && m_isAdaptiveCongestionDetected;
+}
+
+void SessionImpl::runAdaptiveBandwidthProbe()
+{
+    if (!isAdaptiveBandwidthActive() || isPaused())
+        return;
+
+    const auto *proxyManager = Net::ProxyConfigurationManager::instance();
+    if (proxyManager && (proxyManager->proxyConfiguration().type != Net::ProxyType::None))
+        return;
+
+    QHostAddress boundAddress;
+    const QString ifaceName = networkInterface();
+    const QString configuredAddrStr = networkInterfaceAddress();
+    if (!ifaceName.isEmpty() || !configuredAddrStr.isEmpty())
+    {
+        if (!ifaceName.isEmpty())
+        {
+            const QNetworkInterface netIface = QNetworkInterface::interfaceFromName(ifaceName);
+            if (!netIface.isValid()
+                || !netIface.flags().testFlag(QNetworkInterface::IsUp)
+                || !netIface.flags().testFlag(QNetworkInterface::IsRunning))
+            {
+                return;
+            }
+
+            const QList<QNetworkAddressEntry> entries = netIface.addressEntries();
+            if (!configuredAddrStr.isEmpty())
+            {
+                const QHostAddress configuredAddr(configuredAddrStr);
+                if (configuredAddr.isNull() || (configuredAddr.protocol() != QAbstractSocket::IPv4Protocol))
+                    return;
+
+                const bool addrOnIface = std::ranges::any_of(entries, [&configuredAddr](const QNetworkAddressEntry &entry)
+                {
+                    return entry.ip() == configuredAddr;
+                });
+                if (!addrOnIface)
+                    return;
+
+                boundAddress = configuredAddr;
+            }
+            else
+            {
+                for (const QNetworkAddressEntry &entry : entries)
+                {
+                    const QHostAddress ip = entry.ip();
+                    if (!ip.isNull() && !ip.isLoopback() && (ip.protocol() == QAbstractSocket::IPv4Protocol))
+                    {
+                        boundAddress = ip;
+                        break;
+                    }
+                }
+                if (boundAddress.isNull())
+                    return;
+            }
+        }
+        else
+        {
+            const QHostAddress configuredAddr(configuredAddrStr);
+            if (configuredAddr.isNull() || (configuredAddr.protocol() != QAbstractSocket::IPv4Protocol))
+                return;
+            boundAddress = configuredAddr;
+        }
+    }
+
+    static constexpr const char *ENDPOINTS[] = {"1.1.1.1", "8.8.8.8", "9.9.9.9"};
+    const QString host = QString::fromLatin1(ENDPOINTS[m_adaptiveProbeEndpointIndex % 3]);
+    ++m_adaptiveProbeEndpointIndex;
+
+    auto *sock = new QTcpSocket(this);
+    sock->setProxy(QNetworkProxy::NoProxy);
+    if (!boundAddress.isNull())
+    {
+        if (!sock->bind(boundAddress, 0, QAbstractSocket::DontShareAddress))
+        {
+            sock->deleteLater();
+            return;
+        }
+    }
+
+    auto *timeoutTimer = new QTimer(sock);
+    timeoutTimer->setSingleShot(true);
+
+    QElapsedTimer timer;
+    timer.start();
+
+    connect(sock, &QAbstractSocket::connected, this, [this, sock, timeoutTimer, timer]()
+    {
+        timeoutTimer->stop();
+        const double rttMs = static_cast<double>(timer.nsecsElapsed()) / 1e6;
+        sock->abort();
+        sock->deleteLater();
+        processAdaptiveBandwidthRttSample(rttMs);
+    });
+
+    connect(sock, &QAbstractSocket::errorOccurred, this, [this, sock, timeoutTimer](QAbstractSocket::SocketError)
+    {
+        if (!timeoutTimer->isActive())
+            return;
+        timeoutTimer->stop();
+        sock->abort();
+        sock->deleteLater();
+        processAdaptiveBandwidthRttSample(999.0);
+    });
+
+    connect(timeoutTimer, &QTimer::timeout, this, [this, sock]()
+    {
+        sock->abort();
+        sock->deleteLater();
+        processAdaptiveBandwidthRttSample(999.0);
+    });
+
+    timeoutTimer->start(1200);
+    sock->connectToHost(host, 443, QIODevice::ReadWrite, QAbstractSocket::IPv4Protocol);
+}
+
+void SessionImpl::processAdaptiveBandwidthRttSample(const double rttMs)
+{
+    if (!isAdaptiveBandwidthActive() || (rttMs <= 0.0))
+        return;
+
+    m_adaptiveLastRttMs = rttMs;
+    const qint64 dlRate = m_status.payloadDownloadRate;
+
+    if (m_adaptiveBaselineRttMs <= 0.0)
+        m_adaptiveBaselineRttMs = (rttMs < 200.0) ? rttMs : 25.0;
+    else if (rttMs < m_adaptiveBaselineRttMs)
+        m_adaptiveBaselineRttMs = 0.8 * m_adaptiveBaselineRttMs + 0.2 * rttMs;
+    else if (dlRate < (256 * 1024))
+        m_adaptiveBaselineRttMs = 0.98 * m_adaptiveBaselineRttMs + 0.02 * rttMs;
+
+    const double bloatThresholdMs = std::max(m_adaptiveBaselineRttMs + 28.0, m_adaptiveBaselineRttMs * 1.85);
+    const double severeThresholdMs = std::max(m_adaptiveBaselineRttMs + 60.0, m_adaptiveBaselineRttMs * 2.5);
+    const bool congested = (rttMs > bloatThresholdMs) && ((dlRate > (128 * 1024)) || (m_adaptiveDownloadSpeedLimit > 0));
+    m_isAdaptiveCongestionDetected = congested;
+
+    const int prevLimit = m_adaptiveDownloadSpeedLimit;
+    static constexpr int MIN_ADAPTIVE_DL_LIMIT = 512 * 1024; // 512 KiB/s floor
+
+    if (congested)
+    {
+        m_adaptiveClearTicks = 0;
+        const double factor = (rttMs > severeThresholdMs) ? 0.65 : 0.82;
+        const int referenceRate = (m_adaptiveDownloadSpeedLimit > 0)
+            ? std::min(m_adaptiveDownloadSpeedLimit, static_cast<int>(std::max<qint64>(dlRate, MIN_ADAPTIVE_DL_LIMIT)))
+            : static_cast<int>(std::max<qint64>(dlRate, 2 * 1024 * 1024));
+        m_adaptiveDownloadSpeedLimit = std::max(MIN_ADAPTIVE_DL_LIMIT, static_cast<int>(referenceRate * factor));
+    }
+    else if (m_adaptiveDownloadSpeedLimit > 0)
+    {
+        ++m_adaptiveClearTicks;
+        if (m_adaptiveClearTicks >= 2)
+        {
+            if ((dlRate < (m_adaptiveDownloadSpeedLimit * 6 / 10)) && (m_adaptiveClearTicks >= 5))
+            {
+                m_adaptiveDownloadSpeedLimit = 0;
+            }
+            else
+            {
+                const int nextLimit = static_cast<int>(m_adaptiveDownloadSpeedLimit * 1.20) + (256 * 1024);
+                const int userDlLimit = downloadSpeedLimit();
+                if ((userDlLimit > 0) && (nextLimit >= userDlLimit))
+                    m_adaptiveDownloadSpeedLimit = 0;
+                else if (nextLimit > (100 * 1024 * 1024))
+                    m_adaptiveDownloadSpeedLimit = 0;
+                else
+                    m_adaptiveDownloadSpeedLimit = nextLimit;
+            }
+        }
+    }
+
+    if ((prevLimit != m_adaptiveDownloadSpeedLimit) && m_nativeSession)
+    {
+        lt::settings_pack settingsPack;
+        settingsPack.set_int(lt::settings_pack::download_rate_limit, effectiveDownloadSpeedLimit());
+        m_nativeSession->apply_settings(std::move(settingsPack));
+    }
 }
 
 bool SessionImpl::isBandwidthSchedulerEnabled() const

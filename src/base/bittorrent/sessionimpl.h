@@ -241,6 +241,13 @@ namespace BitTorrent
         void setUploadSpeedLimit(int limit) override;
         bool isAltGlobalSpeedLimitEnabled() const override;
         void setAltGlobalSpeedLimitEnabled(bool enabled) override;
+        BandwidthControlMode bandwidthControlMode() const override;
+        void setBandwidthControlMode(BandwidthControlMode mode) override;
+        int effectiveDownloadSpeedLimit() const override;
+        int adaptiveDownloadSpeedLimit() const override;
+        double adaptiveBaselineRttMs() const override;
+        double adaptiveLastRttMs() const override;
+        bool isAdaptiveCongestionDetected() const override;
         bool isBandwidthSchedulerEnabled() const override;
         void setBandwidthSchedulerEnabled(bool enabled) override;
 
@@ -579,6 +586,10 @@ namespace BitTorrent
         void configurePeerClasses();
         void initMetrics();
         void applyBandwidthLimits();
+        bool isQoSBandwidthActive() const;
+        bool isAdaptiveBandwidthActive() const;
+        void runAdaptiveBandwidthProbe();
+        void processAdaptiveBandwidthRttSample(double rttMs);
         void processBannedIPs(lt::ip_filter &filter);
         QStringList getListeningIPs() const;
         void configureListeningInterface();
@@ -766,6 +777,14 @@ namespace BitTorrent
         CachedSettingValue<int> m_altGlobalDownloadSpeedLimit;
         CachedSettingValue<int> m_altGlobalUploadSpeedLimit;
         CachedSettingValue<bool> m_isAltGlobalSpeedLimitEnabled;
+        CachedSettingValue<BandwidthControlMode> m_bandwidthControlMode;
+        int m_adaptiveDownloadSpeedLimit = 0;
+        double m_adaptiveBaselineRttMs = 0.0;
+        double m_adaptiveLastRttMs = 0.0;
+        bool m_isAdaptiveCongestionDetected = false;
+        int m_adaptiveClearTicks = 0;
+        int m_adaptiveProbeEndpointIndex = 0;
+        QTimer *m_adaptiveBandwidthTimer = nullptr;
         CachedSettingValue<bool> m_isBandwidthSchedulerEnabled;
         CachedSettingValue<bool> m_isPerformanceWarningEnabled;
         CachedSettingValue<int> m_saveResumeDataInterval;

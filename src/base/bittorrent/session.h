@@ -119,6 +119,14 @@ namespace BitTorrent
         };
         Q_ENUM_NS(MixedModeAlgorithm)
 
+        enum class BandwidthControlMode : int
+        {
+            Regular = 0,
+            QoS = 1,
+            Adaptive = 2
+        };
+        Q_ENUM_NS(BandwidthControlMode)
+
         enum class SeedChokingAlgorithm : int
         {
             RoundRobin = 0,
@@ -264,6 +272,13 @@ namespace BitTorrent
         virtual void setUploadSpeedLimit(int limit) = 0;
         virtual bool isAltGlobalSpeedLimitEnabled() const = 0;
         virtual void setAltGlobalSpeedLimitEnabled(bool enabled) = 0;
+        virtual BandwidthControlMode bandwidthControlMode() const = 0;
+        virtual void setBandwidthControlMode(BandwidthControlMode mode) = 0;
+        virtual int effectiveDownloadSpeedLimit() const = 0;
+        virtual int adaptiveDownloadSpeedLimit() const = 0;
+        virtual double adaptiveBaselineRttMs() const = 0;
+        virtual double adaptiveLastRttMs() const = 0;
+        virtual bool isAdaptiveCongestionDetected() const = 0;
         virtual bool isBandwidthSchedulerEnabled() const = 0;
         virtual void setBandwidthSchedulerEnabled(bool enabled) = 0;
 
@@ -515,6 +530,7 @@ namespace BitTorrent
         void paused();
         void resumed();
         void speedLimitModeChanged(bool alternative);
+        void bandwidthControlModeChanged(BitTorrent::BandwidthControlMode mode);
         void statsUpdated();
         void subcategoriesSupportChanged();
         void tagAdded(const Tag &tag);
