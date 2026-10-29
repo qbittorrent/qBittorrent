@@ -320,6 +320,12 @@ public:
     void setSpeedInDockEnabled(bool enabled);
     bool isMacOSMenuBarIconEnabled() const;
     void setMacOSMenuBarIconEnabled(bool enabled);
+    bool isMacOSMenuBarIconOpeningWindow() const;
+    void setMacOSMenuBarIconOpeningWindow(bool enabled);
+    bool isMacOSDockIconHidden() const;
+    void setMacOSDockIconHidden(bool hidden);
+    bool isMacOSMenuBarShownWhenActive() const;
+    void setMacOSMenuBarShownWhenActive(bool shown);
 #endif
     bool confirmTorrentDeletion() const;
     void setConfirmTorrentDeletion(bool enabled);

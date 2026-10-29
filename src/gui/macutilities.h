@@ -53,5 +53,8 @@ namespace MacUtils
     QString badgeLabelText();
     void setBadgeLabelText(const QString &text);
 
+    void setDockIconVisible(bool visible);
+    void activateApplication();
+
     void setupWindowMenu(QMenu *windowMenu);
 }

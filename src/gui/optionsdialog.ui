@@ -764,6 +764,36 @@
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkMenuBarIconOpensWindow">
+                 <property name="toolTip">
+                  <string>Right-click (or Control-click) the menu bar icon to open its menu instead.</string>
+                 </property>
+                 <property name="text">
+                  <string>Open qBittorrent when clicking the menu bar icon</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkHideDockIcon">
+                 <property name="toolTip">
+                  <string>qBittorrent stays reachable from its menu bar icon only. Closing the window leaves qBittorrent running.</string>
+                 </property>
+                 <property name="text">
+                  <string>Hide Dock icon (minimize to menu bar)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkShowMenuBarWhenActive">
+                 <property name="toolTip">
+                  <string>macOS shows the menu bar of an application only while it has a Dock icon, so the Dock icon is also shown while qBittorrent is focused.</string>
+                 </property>
+                 <property name="text">
+                  <string>Show menu bar while the qBittorrent window is focused</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>

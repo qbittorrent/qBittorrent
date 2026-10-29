@@ -28,7 +28,10 @@
 
 #pragma once
 
+#include <functional>
 #include <memory>
+
+class QMenu;
 
 namespace MacUtils
 {
@@ -40,6 +43,11 @@ namespace MacUtils
 
         void updateSpeed(int64_t downloadRate, int64_t uploadRate);
         void setVisible(bool visible);
+        void setMenu(QMenu *menu);
+        // When enabled, a plain click invokes the click handler instead of showing the menu.
+        // The menu remains available via right-click (or Control-click).
+        void setOpensWindowOnClick(bool enabled);
+        void setClickHandler(std::function<void ()> handler);
 
     private:
         struct Impl;
