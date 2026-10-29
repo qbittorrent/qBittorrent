@@ -570,10 +570,42 @@ would cover the entry that opened it */
             line-height: 20px;
         }
 
+        /* a thin bar, with its percentage beside it rather than split by the edge of the fill */
         & td[data-col="progress"] {
-            display: block;
+            align-items: center;
+            display: flex;
             grid-area: 2 / 2 / 3 / 6;
-            margin: 6px 0;
+            margin: 4px 0;
+            min-height: 18px;
+
+            & > progress-bar {
+                --progress-bar-height: 8px;
+
+                font-size: 0;
+                margin: 0 !important; /* override inline style */
+                width: calc(100% - 52px);
+
+                &::after {
+                    content: attr(data-value);
+                    font-size: 12px;
+                    left: 100%;
+                    position: absolute;
+                    text-align: end;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 52px;
+                }
+            }
+        }
+
+        /* on a selected card the bar is drawn in the text's color, as its own fill vanishes in the selection */
+        & tbody tr.selected td[data-col="progress"] > progress-bar {
+            --color-selection: var(--color-text-on-accent);
+            --color-surface-chrome: color-mix(
+                in srgb,
+                var(--color-text-on-accent) 30%,
+                transparent
+            );
         }
 
         & td[data-col="status"] {

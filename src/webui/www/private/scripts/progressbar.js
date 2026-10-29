@@ -56,8 +56,11 @@ window.qBittorrent.ProgressBar ??= (() => {
         constructor(value) {
             super();
 
+            // a page can make the bar thinner with --progress-bar-height
+            const height = `var(--progress-bar-height, ${ProgressBar.#styles.height}px)`;
+
             this.#dark.style.width = "100%";
-            this.#dark.style.height = `${ProgressBar.#styles.height}px`;
+            this.#dark.style.height = height;
             this.#dark.style.background = ProgressBar.#styles.darkbg;
             this.#dark.style.boxSizing = "content-box";
             this.#dark.style.color = ProgressBar.#styles.darkfg;
@@ -65,10 +68,10 @@ window.qBittorrent.ProgressBar ??= (() => {
             this.#dark.style.textAlign = "center";
             this.#dark.style.left = "0";
             this.#dark.style.top = "0";
-            this.#dark.style.lineHeight = `${ProgressBar.#styles.height}px`;
+            this.#dark.style.lineHeight = height;
 
             this.#light.style.width = "100%";
-            this.#light.style.height = `${ProgressBar.#styles.height}px`;
+            this.#light.style.height = height;
             this.#light.style.background = ProgressBar.#styles.lightbg;
             this.#light.style.boxSizing = "content-box";
             this.#light.style.color = ProgressBar.#styles.lightfg;
@@ -76,14 +79,14 @@ window.qBittorrent.ProgressBar ??= (() => {
             this.#light.style.textAlign = "center";
             this.#light.style.left = "0";
             this.#light.style.top = "0";
-            this.#light.style.lineHeight = `${ProgressBar.#styles.height}px`;
+            this.#light.style.lineHeight = height;
 
             this.attachShadow({ mode: "open" });
             this.shadowRoot.host.id = this.#id;
             this.shadowRoot.host.style.display = "block";
             this.shadowRoot.host.style.border = "1px solid var(--color-border-default)";
             this.shadowRoot.host.style.boxSizing = "content-box";
-            this.shadowRoot.host.style.height = `${ProgressBar.#styles.height}px`;
+            this.shadowRoot.host.style.height = height;
             this.shadowRoot.host.style.position = "relative";
             this.shadowRoot.host.style.margin = "0 auto";
             this.shadowRoot.appendChild(this.#dark);
@@ -105,6 +108,8 @@ window.qBittorrent.ProgressBar ??= (() => {
             const displayedValue = `${window.qBittorrent.Misc.toFixedPointString(this.#value, 1)}%`;
             this.#dark.textContent = displayedValue;
             this.#light.textContent = displayedValue;
+            // for a page that shows the value beside the bar
+            this.dataset.value = displayedValue;
 
             this.#dark.style.clipPath = `inset(0 ${100 - this.#value}% 0 0)`;
             this.#light.style.clipPath = `inset(0 0 0 ${this.#value}%)`;
