@@ -1823,6 +1823,9 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     let prop_h = localPreferences.get("properties_height_rel");
     if (prop_h !== null)
         prop_h = Number(prop_h) * Window.getSize().y;
+    // touch screens and narrow ones, with their taller controls, keep the larger part for the list
+    else if (window.qBittorrent.Responsive.queries.relayout.matches)
+        prop_h = document.documentElement.clientHeight / 3;
     else
         prop_h = Window.getSize().y / 2;
     new MochaUI.Panel({
