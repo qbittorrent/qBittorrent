@@ -860,6 +860,13 @@ td.noWrap {
     outline-offset: 1px;
 }
 
+/* Add Torrent's category and tags: their text a little in from the edge of the box */
+#uploadForm #categorySelect,
+#uploadForm #category,
+#uploadForm #tagsSelect {
+    padding-inline: 6px;
+}
+
 /* Add Torrent's tags: the category list's box with a button over it, and a list of check boxes below */
 #tagsField {
     position: relative;
