@@ -449,12 +449,26 @@ would cover the entry that opened it */
     }
 }
 
+/* only phones show how many torrents the menu acts on */
+.contextMenuHeader {
+    display: none;
+}
+
 /* Context menus on phones */
 :root.responsivePhone .contextMenu {
     max-width: 100vw;
 
     &:not(.visible) {
         overflow: clip;
+    }
+
+    /* above the entries, and not one of them: a tap on it goes to the menu */
+    & > .contextMenuHeader {
+        border-bottom: var(--responsive-separator);
+        display: block;
+        font-weight: bold;
+        padding: var(--space-4) var(--space-5);
+        pointer-events: none;
     }
 
     & li a {

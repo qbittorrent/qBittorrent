@@ -498,6 +498,9 @@ window.qBittorrent.ContextMenu ??= (() => {
             const categoryCount = new Map();
 
             const selectedRows = torrentsTable.selectedRowsIds();
+            // how many torrents the menu acts on, which phones show above it
+            const count = document.getElementById("torrentsTableMenuCount");
+            count.textContent = count.dataset.format.replace("%1", selectedRows.length);
             for (const item of selectedRows) {
                 const data = torrentsTable.getRow(item).full_data;
 
