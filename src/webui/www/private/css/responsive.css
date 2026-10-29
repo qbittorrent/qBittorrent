@@ -9,9 +9,12 @@
     --responsive-card-check-width: 40px; /* also used in responsive.js */
     --color-button-face: var(--color-surface-chrome);
     --color-button-border: var(--color-border-control);
+    --color-button-danger-text: var(--color-text-on-accent);
 
     &.dark {
         --color-button-face: hsl(0deg 0% 30%);
+        /* the dark theme's error red is light */
+        --color-button-danger-text: hsl(0deg 0% 7%);
     }
 }
 
@@ -53,6 +56,14 @@ input[type="button"]:disabled {
         var(--color-button-face),
         var(--color-text) 14%
     );
+}
+
+/* the button that removes torrents, in the error color; it moves on hover and press as the others do */
+#confirmDeletionButton {
+    --color-button-face: var(--color-error);
+    --color-button-border: var(--color-error);
+
+    color: var(--color-button-danger-text);
 }
 
 :is(
