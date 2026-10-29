@@ -265,17 +265,11 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             // hide on body click
             document.body.addEventListener("click", (event) => {
-                const parentNode = event.target.parentNode;
-
-                // make sure the click was on a context menu item
-                if ((parentNode !== null) && (parentNode.tagName.toLowerCase() === "li")) {
-                    const grandParentNode = parentNode.parentNode;
-                    if ((grandParentNode !== null) && (grandParentNode.classList.contains("contextMenu"))) {
-                        const submenuNodes = parentNode.getElementsByTagName("ul");
-                        if (submenuNodes.length > 0)
-                            return;
-                    }
-                }
+                // a click on an entry that opens a submenu keeps the menu open, wherever in the entry it lands (its
+                // icon included) and at any depth, as entries under More on phones are a submenu further down
+                const item = event.target.closest(".contextMenu li");
+                if ((item !== null) && (item.querySelector(":scope > ul") !== null))
+                    return;
 
                 this.hide();
                 this.options.element = null;
@@ -345,7 +339,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         // the items of one list that the keyboard moves through: those shown and enabled
         listItems(list) {
-            return [...list.querySelectorAll(":scope > li:not(.invisible, .disabled) > a")];
+            return [...list.querySelectorAll(":scope > li:not(.invisible, .disabled) > a")].filter((a) => a.getClientRects().length > 0);
         }
 
         // the focus goes back to where it was when the menu opened

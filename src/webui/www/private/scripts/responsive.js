@@ -1587,6 +1587,24 @@ window.qBittorrent.Responsive ??= (() => {
         });
     };
 
+    // on phones the transfer list's menu keeps its common entries, up to Remove, and gathers the others under More, so
+    // that it is short enough to take in; they move in the page, so that the keyboard follows
+    const initTorrentsMenuMore = () => {
+        const more = document.getElementById("torrentsTableMenuMore");
+        const list = more.querySelector(":scope > ul");
+        const place = () => {
+            if (queries.phone.matches) {
+                while (more.nextElementSibling !== null)
+                    list.append(more.nextElementSibling);
+            }
+            else {
+                more.after(...list.children);
+            }
+        };
+        queries.phone.addEventListener("change", (_event) => place());
+        place();
+    };
+
     // small screens start with the properties panel collapsed; larger ones undo a collapse that only this made
     const initPropertiesPanel = async () => {
         const collapsed = localPreferences.get("properties_panel_collapsed");
@@ -1629,6 +1647,7 @@ window.qBittorrent.Responsive ??= (() => {
         initCardCheckboxes();
         initCardSorting();
         initMenuDrawer();
+        initTorrentsMenuMore();
         initPropertiesPanel();
         initKeyboardItems();
         initKeyboardGroups();

@@ -449,8 +449,9 @@ would cover the entry that opened it */
     }
 }
 
-/* only phones show how many torrents the menu acts on */
-.contextMenuHeader {
+/* only phones show how many torrents the menu acts on, and gather its less common entries under More */
+.contextMenuHeader,
+:root:not(.responsivePhone) #torrentsTableMenuMore {
     display: none;
 }
 
@@ -469,6 +470,16 @@ would cover the entry that opened it */
         font-weight: bold;
         padding: var(--space-4) var(--space-5);
         pointer-events: none;
+    }
+
+    /* More, while closed, still lays its entries out without height, so that the menu opens as wide as they need
+    and More opens below without wrapping them in a narrow column */
+    & > #torrentsTableMenuMore:not(:hover, :focus-within) > ul {
+        border-width: 0;
+        display: block;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
     }
 
     & li a {
