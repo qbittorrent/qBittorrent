@@ -168,7 +168,8 @@ window.qBittorrent.Responsive ??= (() => {
         { group: "ul.filterList", items: "span.link", chosen: "li.selectedFilter > span.link", vertical: true }
     ];
     const lastFocusedItems = new WeakMap();
-    const shownItems = (group, spec) => [...group.querySelectorAll(spec.items)].filter((item) => item.getClientRects().length > 0);
+    // shown, and able to take the focus: the toolbar's transfer buttons are inert while another view shows
+    const shownItems = (group, spec) => [...group.querySelectorAll(spec.items)].filter((item) => (item.getClientRects().length > 0) && (item.closest("[inert]") === null));
     // what an entry keeps when its filter list is built anew: its id
     const itemKey = (item) => item.closest("li[id]")?.id ?? item;
 

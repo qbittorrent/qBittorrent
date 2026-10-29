@@ -491,6 +491,11 @@ hr {
     margin-right: 10px;
 }
 
+/* the transfer list's buttons, off while another view shows */
+#toolbarButtons [inert] {
+    opacity: 0.35;
+}
+
 /* the focus ring around a toolbar button's icon, not around the separator before it */
 #toolbarButtons :is(a, label):focus-visible {
     outline: none;
