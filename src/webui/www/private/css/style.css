@@ -1014,12 +1014,13 @@ td.statusBarSeparator {
     margin: auto 0;
 }
 
+/* the padlock before the label */
 #rememberBtn {
-    background: url("../images/object-locked.svg") center center / 24px
-        no-repeat var(--color-surface-popup);
-    height: 38px;
-    padding: 4px 6px;
-    width: 38px;
+    background-image: url("../images/object-locked.svg");
+    background-position: left 6px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding: 3px 8px 3px 28px;
 }
 
 #rememberBtn.disabled {
@@ -1051,6 +1052,11 @@ td.statusBarSeparator {
 
 .deletionGridItem:first-child {
     justify-self: center;
+}
+
+/* the check box and Remember choice go under the message */
+.confirmDeletionGrid > .deletionGridItem:nth-child(n + 3) {
+    grid-column: 2;
 }
 
 .confirmWarning,

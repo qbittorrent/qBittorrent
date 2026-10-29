@@ -70,8 +70,7 @@ input[type="button"]:disabled {
     #webUIAPIKeyCopyButton,
     #webUIAPIKeyRotateButton,
     #webUIAPIKeyDeleteButton,
-    #RssDownloader .imageButton,
-    #rememberBtn
+    #RssDownloader .imageButton
 ) {
     align-items: center;
     background-color: var(--button-background);
