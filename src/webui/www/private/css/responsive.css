@@ -442,6 +442,11 @@ would cover the entry that opened it */
     & li:not(.disabled):is(:hover, :focus-within) > ul {
         display: block;
     }
+
+    /* the entry's chevron turns down while its submenu is open, as in the menu drawer */
+    & li:not(.disabled):is(:hover, :focus-within) > .arrow-right::after {
+        transform: translateY(-75%) rotate(45deg);
+    }
 }
 
 /* Context menus on phones */
