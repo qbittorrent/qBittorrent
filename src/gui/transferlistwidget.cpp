@@ -1501,12 +1501,65 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
     QTreeView::wheelEvent(event);  // event delegated to base class
 }
 
-void TransferListWidget::openPreviewSelectDialog(const BitTorrent::Torrent *torrent)
+bool TransferListWidget::previewTorrentFile(const BitTorrent::Torrent *torrent, const int fileIndex, QWidget *errorParent)
 {
-    auto *dialog = new PreviewSelectDialog(this, torrent);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    // Flush data
+    torrent->flushCache();
+
+    const Path path = torrent->actualStorageLocation() / torrent->actualFilePath(fileIndex);
+    if (!path.exists())
+    {
+        QMessageBox::critical(errorParent, tr("Preview impossible")
+            , tr("Sorry, we can't preview this file: \"%1\".").arg(path.toString()));
+        return false;
+    }
+
     // Qt::QueuedConnection is required to prevent a bug on wayland compositors where the preview won't open.
     // It occurs when the window focus shifts immediately after TransferListWidget::previewFile has been called.
-    connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile, Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, [this, path] { previewFile(path); }, Qt::QueuedConnection);
+    return true;
+}
+
+void TransferListWidget::openPreviewSelectDialog(const BitTorrent::Torrent *torrent)
+{
+    int previewableFileIndex = -1;
+    bool hasMultiplePreviewableFiles = false;
+    for (int i = 0; i < torrent->filesCount(); ++i)
+    {
+        if (!Utils::Misc::isPreviewable(torrent->filePath(i)))
+            continue;
+
+        if (previewableFileIndex >= 0)
+        {
+            hasMultiplePreviewableFiles = true;
+            break;
+        }
+
+        previewableFileIndex = i;
+    }
+
+    if (previewableFileIndex < 0)
+        return;
+
+    if (!hasMultiplePreviewableFiles)
+    {
+        previewTorrentFile(torrent, previewableFileIndex, this);
+        return;
+    }
+
+    auto *dialog = new PreviewSelectDialog(this, torrent);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(dialog, &PreviewSelectDialog::fileSelected, this, [this, dialog, torrentID = torrent->id()](const int fileIndex)
+    {
+        const BitTorrent::Torrent *selectedTorrent = BitTorrent::Session::instance()->getTorrent(torrentID);
+        if (!selectedTorrent)
+        {
+            dialog->reject();
+            return;
+        }
+
+        if (previewTorrentFile(selectedTorrent, fileIndex, dialog))
+            dialog->accept();
+    });
     dialog->show();
 }
