@@ -26,7 +26,7 @@
 
             const searchParams = new URLSearchParams(window.location.search);
             const origUrl = searchParams.get("url");
-            document.getElementById("url").value = decodeURIComponent(origUrl);
+            document.getElementById("url").value = origUrl;
             document.getElementById("url").focus();
 
             document.getElementById("editWebSeedButton").addEventListener("click", (e) => {
@@ -36,7 +36,7 @@
                         method: "POST",
                         body: new URLSearchParams({
                             hash: searchParams.get("hash"),
-                            origUrl: origUrl,
+                            origUrl: encodeURIComponent(origUrl),
                             newUrl: encodeURIComponent(document.getElementById("url").value.trim())
                         })
                     })

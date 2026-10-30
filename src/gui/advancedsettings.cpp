@@ -612,8 +612,7 @@ void AdvancedSettings::loadAdvancedSettings()
 #endif
     m_spinBoxCache.setValue(session->diskCacheSize());
     updateCacheSpinSuffix(m_spinBoxCache.value());
-    connect(&m_spinBoxCache, qOverload<int>(&QSpinBox::valueChanged)
-            , this, &AdvancedSettings::updateCacheSpinSuffix);
+    connect(&m_spinBoxCache, &QSpinBox::valueChanged, this, &AdvancedSettings::updateCacheSpinSuffix);
     addRow(DISK_CACHE, (tr("Disk cache") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#cache_size", u"(?)"))
             , &m_spinBoxCache);
     // Disk cache expiry
@@ -856,8 +855,7 @@ void AdvancedSettings::loadAdvancedSettings()
         m_comboBoxInterface.setCurrentIndex(m_comboBoxInterface.count() - 1);
     }
 
-    connect(&m_comboBoxInterface, qOverload<int>(&QComboBox::currentIndexChanged)
-        , this, &AdvancedSettings::updateInterfaceAddressCombo);
+    connect(&m_comboBoxInterface, &QComboBox::currentIndexChanged, this, &AdvancedSettings::updateInterfaceAddressCombo);
     addRow(NETWORK_IFACE, tr("Network interface"), &m_comboBoxInterface);
     // Network interface address
     updateInterfaceAddressCombo();
@@ -897,8 +895,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxNotificationTimeout.setMinimum(-1);
     m_spinBoxNotificationTimeout.setMaximum(std::numeric_limits<int>::max());
     m_spinBoxNotificationTimeout.setValue(app()->desktopIntegration()->notificationTimeout());
-    connect(&m_spinBoxNotificationTimeout, qOverload<int>(&QSpinBox::valueChanged)
-        , this, &AdvancedSettings::updateNotificationTimeoutSuffix);
+    connect(&m_spinBoxNotificationTimeout, &QSpinBox::valueChanged, this, &AdvancedSettings::updateNotificationTimeoutSuffix);
     updateNotificationTimeoutSuffix(m_spinBoxNotificationTimeout.value());
     addRow(NOTIFICATION_TIMEOUT, tr("Notification timeout [0: infinite, -1: system default]"), &m_spinBoxNotificationTimeout);
 #endif
@@ -1102,9 +1099,9 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
 #endif
     }
     else if constexpr (std::is_same_v<T, QComboBox>)
-        connect(widget, qOverload<int>(&QComboBox::currentIndexChanged), this, &AdvancedSettings::settingsChanged);
+        connect(widget, &QComboBox::currentIndexChanged, this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QLineEdit>)
         connect(widget, &QLineEdit::textChanged, this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QSpinBox>)
-        connect(widget, qOverload<int>(&QSpinBox::valueChanged), this, &AdvancedSettings::settingsChanged);
+        connect(widget, &QSpinBox::valueChanged, this, &AdvancedSettings::settingsChanged);
 }
