@@ -42,6 +42,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSslError>
+#include <QStringView>
 #include <QTimer>
 #include <QUrl>
 
@@ -251,12 +252,12 @@ bool Net::DownloadManager::deleteCookie(const QNetworkCookie &cookie)
     return m_networkCookieJar->deleteCookie(cookie);
 }
 
-bool Net::DownloadManager::hasSupportedScheme(const QString &url)
+bool Net::DownloadManager::hasSupportedScheme(const QStringView url)
 {
     static const QStringList schemes = QNetworkAccessManager().supportedSchemes();
-    return std::ranges::any_of(schemes, [&url](const QString &scheme)
+    return std::ranges::any_of(schemes, [url](const QString &scheme)
     {
-        return url.startsWith((scheme + u':'), Qt::CaseInsensitive);
+        return (url.size() > scheme.size()) && url.startsWith(scheme, Qt::CaseInsensitive) && (url.at(scheme.size()) == u':');
     });
 }
 
