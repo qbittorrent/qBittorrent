@@ -22,6 +22,8 @@
     #centerRssDownloaderColumn {
         width: 50%;
         float: left;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     #rightRssDownloaderColumn {
@@ -40,6 +42,7 @@
 
     #rssDownloaderFeeds {
         height: calc(100% - 355px);
+        min-height: 150px;
         overflow: hidden;
     }
 
@@ -133,6 +136,19 @@
 
     #rulesFileButtons button {
         flex: 1;
+    }
+
+    .rssRuleShareLimitHeader {
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    #ruleShareLimitTable td {
+        padding-bottom: 5px;
+    }
+
+    #ruleShareLimitTable input[type="number"] {
+        width: 6em;
     }
 
 </style>
@@ -295,6 +311,84 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     </tr>
                 </tbody>
             </table>
+            <div class="formRow rssRuleShareLimitHeader">
+                <b>QBT_TR(Torrent Share Limits)QBT_TR[CONTEXT=TorrentOptionsDialog]</b>
+            </div>
+            <table class="fullWidth" id="ruleShareLimitTable">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label class="noWrap" id="ruleShareLimitRatioLabel" for="ruleShareLimitRatioMode">QBT_TR(Ratio:)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+                        </td>
+                        <td>
+                            <select disabled id="ruleShareLimitRatioMode">
+                                <option value="default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="unlimited">QBT_TR(Unlimited)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="set">QBT_TR(Set to)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                            </select>
+                        </td>
+                        <td class="fullWidth">
+                            <input disabled type="number" id="ruleShareLimitRatio" value="1.00" step=".01" min="0" aria-labelledby="ruleShareLimitRatioLabel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="noWrap" id="ruleShareLimitTotalMinutesLabel" for="ruleShareLimitTotalMinutesMode">QBT_TR(Seeding time:)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+                        </td>
+                        <td>
+                            <select disabled id="ruleShareLimitTotalMinutesMode">
+                                <option value="default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="unlimited">QBT_TR(Unlimited)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="set">QBT_TR(Set to)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                            </select>
+                        </td>
+                        <td class="fullWidth">
+                            <input disabled type="number" id="ruleShareLimitTotalMinutes" value="1440" step="1" min="0" aria-labelledby="ruleShareLimitTotalMinutesLabel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="noWrap" id="ruleShareLimitInactiveMinutesLabel" for="ruleShareLimitInactiveMinutesMode">QBT_TR(Inactive seeding time:)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+                        </td>
+                        <td>
+                            <select disabled id="ruleShareLimitInactiveMinutesMode">
+                                <option value="default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="unlimited">QBT_TR(Unlimited)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="set">QBT_TR(Set to)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                            </select>
+                        </td>
+                        <td class="fullWidth">
+                            <input disabled type="number" id="ruleShareLimitInactiveMinutes" value="1440" step="1" min="0" aria-labelledby="ruleShareLimitInactiveMinutesLabel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="noWrap" for="ruleShareLimitsMode">QBT_TR(Mode:)QBT_TR[CONTEXT=TorrentShareLimitsWidget]</label>
+                        </td>
+                        <td colspan="2" class="fullWidth">
+                            <select disabled id="ruleShareLimitsMode" class="fullWidth">
+                                <option value="Default">QBT_TR(Default)QBT_TR[CONTEXT=TorrentShareLimitsWidget]</option>
+                                <option value="MatchAny">QBT_TR(Match any limit)QBT_TR[CONTEXT=TorrentShareLimitsWidget]</option>
+                                <option value="MatchAll">QBT_TR(Match all the limits)QBT_TR[CONTEXT=TorrentShareLimitsWidget]</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="noWrap" id="ruleShareLimitActionLabel" for="ruleShareLimitAction">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+                        </td>
+                        <td colspan="2" class="fullWidth">
+                            <select disabled id="ruleShareLimitAction" class="fullWidth" aria-labelledby="ruleShareLimitActionLabel">
+                                <option value="Default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="Stop">QBT_TR(Stop torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="Remove">QBT_TR(Remove torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="RemoveWithContent">QBT_TR(Remove torrent and its content)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="EnableSuperSeeding">QBT_TR(Enable super seeding for torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </fieldset>
         <fieldset class="settings" id="rssDownloaderFeeds">
             <legend>QBT_TR(Apply Rule to Feeds:)QBT_TR[CONTEXT=AutomatedRssDownloader]</legend>
@@ -374,6 +468,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         let rulesList = {};
         let feedList = [];
+        let ruleShareLimit;
 
         const exportRules = () => {
             const url = new URL("api/v2/rss/exportRules", window.location);
@@ -407,6 +502,14 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         const setup = () => {
             const pref = window.parent.qBittorrent.Cache.preferences.get();
+
+            ruleShareLimit = new window.qBittorrent.RssRuleShareLimit.Controller(
+                document,
+                () => window.parent.qBittorrent.Cache.preferences.get(), {
+                    fromCategory: "QBT_TR(From category)QBT_TR[CONTEXT=TorrentShareLimitsWidget]",
+                    defaultWithValue: "QBT_TR(Default (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]",
+                    fromCategoryWithValue: "QBT_TR(From category (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
+                });
 
             if (!pref.rss_auto_downloading_enabled)
                 document.getElementById("rssDownloaderDisabled").classList.remove("invisible");
@@ -482,6 +585,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                         return;
 
                     const responseJSON = await response.json();
+                    ruleShareLimit.setCategories(responseJSON);
 
                     const combobox = document.getElementById("assignCategoryCombobox");
                     for (const cat in responseJSON) {
@@ -521,6 +625,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 });
             document.getElementById("savetoDifferentDir").addEventListener("click", (event) => {
                 document.getElementById("saveToText").disabled = !event.target.checked;
+            });
+            document.getElementById("assignCategoryCombobox").addEventListener("change", (event) => {
+                ruleShareLimit.updateDefaults(event.target.value);
             });
             updateRulesList();
         };
@@ -708,6 +815,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     break;
             }
 
+            if (!ruleShareLimit.save(rulesList[rule].torrentParams))
+                return;
+
             fetch("api/v2/rss/setRule", {
                     method: "POST",
                     body: new URLSearchParams({
@@ -776,6 +886,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 document.getElementById("ignoreDaysValue").disabled = true;
                 document.getElementById("addStoppedCombobox").disabled = true;
                 document.getElementById("contentLayoutCombobox").disabled = true;
+                ruleShareLimit.setEnabled(false);
 
                 // reset all boxes
                 document.getElementById("useRegEx").checked = false;
@@ -791,6 +902,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 document.getElementById("lastMatchText").textContent = "QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]";
                 document.getElementById("addStoppedCombobox").value = "default";
                 document.getElementById("contentLayoutCombobox").value = "Default";
+                ruleShareLimit.reset();
                 rssDownloaderFeedSelectionTable.clear();
                 rssDownloaderArticlesTable.clear();
 
@@ -812,6 +924,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 document.getElementById("ignoreDaysValue").disabled = false;
                 document.getElementById("addStoppedCombobox").disabled = false;
                 document.getElementById("contentLayoutCombobox").disabled = false;
+                ruleShareLimit.setEnabled(true);
 
                 // load rule settings
                 document.getElementById("useRegEx").checked = rulesList[ruleName].useRegex;
@@ -846,6 +959,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     document.getElementById("contentLayoutCombobox").value = "Default";
                 else
                     document.getElementById("contentLayoutCombobox").value = rulesList[ruleName].torrentParams.content_layout;
+                ruleShareLimit.load(rulesList[ruleName].torrentParams);
 
                 setElementTitles();
 
