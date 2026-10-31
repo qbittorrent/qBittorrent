@@ -62,6 +62,8 @@ namespace BitTorrent
         bool isOnParole() const;
         bool isSeed() const;
 
+        bool isShadowBanned() const;
+
         bool optimisticUnchoke() const;
         bool isSnubbed() const;
         bool isUploadOnly() const;
