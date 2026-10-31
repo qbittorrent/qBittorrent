@@ -356,6 +356,10 @@
             <label id="excludedFileNamesLabel" for="excludedFileNamesCheckbox">QBT_TR(Excluded file names)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <textarea id="excludedFileNamesTextarea" rows="6" cols="70" aria-labelledby="excludedFileNamesLabel"></textarea>
+        <div class="formRow" title="QBT_TR(Torrents that contain any file matching the filters above will be removed automatically once their file list is known. Downloaded content is kept.)QBT_TR[CONTEXT=OptionsDialog]">
+            <input type="checkbox" id="removeTorrentsWithExcludedFilesCheckbox">
+            <label for="removeTorrentsWithExcludedFilesCheckbox">QBT_TR(Remove torrents that contain excluded files)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -2173,6 +2177,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateExcludedFileNamesEnabled = () => {
             const isAExcludedFileNamesEnabled = document.getElementById("excludedFileNamesCheckbox").checked;
             document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
+            document.getElementById("removeTorrentsWithExcludedFilesCheckbox").disabled = !isAExcludedFileNamesEnabled;
         };
 
         const updateTorrentBackupControls = () => {
@@ -2641,6 +2646,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Excluded file names
                     document.getElementById("excludedFileNamesCheckbox").checked = pref.excluded_file_names_enabled;
                     document.getElementById("excludedFileNamesTextarea").value = pref.excluded_file_names;
+                    document.getElementById("removeTorrentsWithExcludedFilesCheckbox").checked = pref.remove_torrents_with_excluded_files;
                     updateExcludedFileNamesEnabled();
 
                     // Email notification upon download completion
@@ -3064,6 +3070,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Excluded file names
             settings["excluded_file_names_enabled"] = document.getElementById("excludedFileNamesCheckbox").checked;
             settings["excluded_file_names"] = document.getElementById("excludedFileNamesTextarea").value;
+            settings["remove_torrents_with_excluded_files"] = document.getElementById("removeTorrentsWithExcludedFilesCheckbox").checked;
 
             // Email notification upon download completion
             settings["mail_notification_enabled"] = document.getElementById("mail_notification_checkbox").checked;

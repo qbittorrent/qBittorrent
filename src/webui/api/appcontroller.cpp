@@ -221,6 +221,7 @@ void AppController::preferencesAction()
     // Excluded file names
     data[u"excluded_file_names_enabled"_s] = session->isExcludedFileNamesEnabled();
     data[u"excluded_file_names"_s] = session->excludedFileNames().join(u'\n');
+    data[u"remove_torrents_with_excluded_files"_s] = session->isRemoveTorrentsWithExcludedFilesEnabled();
 
     // Email notification upon download completion
     data[u"mail_notification_enabled"_s] = pref->isMailNotificationEnabled();
@@ -704,6 +705,8 @@ void AppController::setPreferencesAction()
         session->setExcludedFileNamesEnabled(it.value().toBool());
     if (hasKey(u"excluded_file_names"_s))
         session->setExcludedFileNames(it.value().toString().split(u'\n'));
+    if (hasKey(u"remove_torrents_with_excluded_files"_s))
+        session->setRemoveTorrentsWithExcludedFilesEnabled(it.value().toBool());
 
     // Email notification upon download completion
     if (hasKey(u"mail_notification_enabled"_s))

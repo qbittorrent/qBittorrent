@@ -1619,6 +1619,16 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkRemoveTorrentsWithExcludedFiles">
+                 <property name="toolTip">
+                  <string>Torrents that contain any file matching the filters above will be removed automatically once their file list is known. Downloaded content is kept.</string>
+                 </property>
+                 <property name="text">
+                  <string>Remove torrents that contain excluded files</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
