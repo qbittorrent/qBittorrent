@@ -1172,7 +1172,7 @@ void TorrentsController::addAction()
             ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
             : std::optional<BitTorrent::TorrentContentLayout> {});
 
-    const DataMap &torrents = data();
+    const DataList &torrents = data();
 
     QList<BitTorrent::DownloadPriority> filePriorities;
     const QStringList filePrioritiesParam = params()[u"filePriorities"_s].split(u',', Qt::SkipEmptyParts);
@@ -1313,9 +1313,9 @@ void TorrentsController::addAction()
     }
 
     // process uploaded .torrent files
-    for (auto it = torrents.constBegin(); it != torrents.constEnd(); ++it)
+    for (const Http::UploadedFile &torrent : torrents)
     {
-        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
+        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(torrent.data))
         {
             const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
             if (BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
@@ -1329,7 +1329,7 @@ void TorrentsController::addAction()
         }
         else
         {
-            throw APIError(APIErrorType::BadData, tr("Error: '%1' is not a valid torrent file.").arg(it.key()));
+            throw APIError(APIErrorType::BadData, tr("Error: '%1' is not a valid torrent file.").arg(torrent.filename));
         }
     }
 
@@ -2359,15 +2359,15 @@ void TorrentsController::fetchMetadataAction()
 
 void TorrentsController::parseMetadataAction()
 {
-    const DataMap &uploadedTorrents = data();
+    const DataList &uploadedTorrents = data();
     // must provide some value to parse
     if (uploadedTorrents.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Must specify torrent file(s)"));
 
     QJsonArray result;
-    for (auto it = uploadedTorrents.constBegin(); it != uploadedTorrents.constEnd(); ++it)
+    for (const Http::UploadedFile &torrent : uploadedTorrents)
     {
-        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
+        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(torrent.data))
         {
             const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
             m_torrentMetadataCache.insert(torrentDescr.infoHash().toTorrentID(), torrentDescr);
@@ -2375,7 +2375,7 @@ void TorrentsController::parseMetadataAction()
         }
         else
         {
-            throw APIError(APIErrorType::BadData, tr("'%1' is not a valid torrent file.").arg(it.key()));
+            throw APIError(APIErrorType::BadData, tr("'%1' is not a valid torrent file.").arg(torrent.filename));
         }
     }
 
