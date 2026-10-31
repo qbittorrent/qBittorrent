@@ -1429,11 +1429,30 @@ void TransferListWidget::dragMoveEvent(QDragMoveEvent *event)
 void TransferListWidget::dropEvent(QDropEvent *event)
 {
     event->acceptProposedAction();
-    // remove scheme
+
     QStringList files;
-    if (const QMimeData *data = event->mimeData(); data->hasUrls())
+
+    const QMimeData *mimeData = event->mimeData();
+    if (mimeData->hasText())
     {
-        const QList<QUrl> urls = data->urls();
+        const QString text = mimeData->text();
+        const QList<QStringView> parts = QStringView(text).split(u'\n', Qt::SkipEmptyParts);
+        files.reserve(parts.size());
+
+        for (const QStringView part : parts)
+        {
+            const QStringView partTrimmed = part.trimmed();
+            if (partTrimmed.isEmpty())
+                continue;
+
+            const QString file = partTrimmed.toString();
+            const QUrl url {file};
+            files.append(url.isLocalFile() ? url.toLocalFile() : file);
+        }
+    }
+    else if (mimeData->hasUrls())
+    {
+        const QList<QUrl> urls = mimeData->urls();
         files.reserve(urls.size());
 
         for (const QUrl &url : urls)
@@ -1443,12 +1462,8 @@ void TransferListWidget::dropEvent(QDropEvent *event)
 
             files.append(url.isLocalFile()
                 ? url.toLocalFile()
-                : url.toString());
+                : url.toString(QUrl::EncodeSpaces));  // otherwise it will decode spaces
         }
-    }
-    else
-    {
-        files = data->text().split(u'\n', Qt::SkipEmptyParts);
     }
 
     // differentiate ".torrent" files/links & magnet links from others
