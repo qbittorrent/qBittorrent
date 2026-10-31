@@ -59,6 +59,123 @@ QString Utils::String::fromLocal8Bit(const std::string_view string)
     return QString::fromLocal8Bit(string.data(), string.size());
 }
 
+// `&` is kept so that character references in the string still render
+QString Utils::String::escapeHTML(const QString &str)
+{
+    QString result;
+    result.reserve(str.size());
+    for (const QChar c : str)
+    {
+        switch (c.unicode())
+        {
+        case u'<':
+            result += u"&lt;"_s;
+            break;
+        case u'>':
+            result += u"&gt;"_s;
+            break;
+        case u'"':
+            result += u"&quot;"_s;
+            break;
+        case u'\'':
+            result += u"&#39;"_s;
+            break;
+        default:
+            result += c;
+            break;
+        }
+    }
+    return result;
+}
+
+// the string may already contain some JS escape sequences (e.g. `\n`), those are kept
+QString Utils::String::escapeJSString(const QString &str)
+{
+    const auto escape = [](QString &result, const char16_t c)
+    {
+        switch (c)
+        {
+        case u'\\':
+            result += u"\\\\"_s;
+            break;
+        case u'"':
+            result += u"\\\""_s;
+            break;
+        case u'\'':
+            result += u"\\'"_s;
+            break;
+        case u'`':
+            result += u"\\`"_s;
+            break;
+        case u'$':
+            result += u"\\$"_s;
+            break;
+        case u'\n':
+            result += u"\\n"_s;
+            break;
+        case u'\r':
+            result += u"\\r"_s;
+            break;
+        case u'\t':
+            result += u"\\t"_s;
+            break;
+        case u'<':
+            result += u"\\u003C"_s;
+            break;
+        case u' ':
+            result += u"\\u2028"_s;
+            break;
+        case u' ':
+            result += u"\\u2029"_s;
+            break;
+        default:
+            if (c < 0x20)
+                result += u"\\u%1"_s.arg(static_cast<int>(c), 4, 16, u'0');
+            else
+                result += QChar(c);
+            break;
+        }
+    };
+
+    QString result;
+    result.reserve(str.size());
+    for (qsizetype i = 0; i < str.size(); ++i)
+    {
+        char16_t c = str[i].unicode();
+        if ((c == u'\\') && ((i + 1) < str.size()))
+        {
+            const char16_t next = str[i + 1].unicode();
+            switch (next)
+            {
+            case u'n':
+                c = u'\n';
+                ++i;
+                break;
+            case u'r':
+                c = u'\r';
+                ++i;
+                break;
+            case u't':
+                c = u'\t';
+                ++i;
+                break;
+            case u'\\':
+            case u'"':
+            case u'\'':
+            case u'`':
+            case u'$':
+                c = next;
+                ++i;
+                break;
+            default:
+                break;
+            }
+        }
+        escape(result, c);
+    }
+    return result;
+}
+
 QString Utils::String::wildcardToRegexPattern(const QString &pattern)
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 6, 1))
