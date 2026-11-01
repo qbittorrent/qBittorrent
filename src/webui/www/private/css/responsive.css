@@ -53,6 +53,20 @@ td:has(> :disabled:not(#WebUIAPIKeyText)) {
     color: var(--color-text-disabled);
 }
 
+/* In windows, a name and its field, and a field and its unit, button or next field, stand about two spaces apart, as a
+field and its unit do in Options; one space puts them too close. The space is on the right of the first, so that it is
+lost at the end of a line, and is left out where the page spaces them itself */
+:where(.mochaContent, body:not(:has(#desktop))) {
+    & :is(label, select, [type="text"], [type="number"], [type="range"]) {
+        &:not(:has(+ [style*="margin-left"])) {
+            &:has(+ :is(label, select, span, button, [type="button"])),
+            &:has(+ :is([type="text"], [type="number"], [type="range"])) {
+                margin-right: 0.25em;
+            }
+        }
+    }
+}
+
 /* Options: a table's rows start where a box's other rows do */
 #preferencesPage .PrefTab {
     & table {
@@ -1517,7 +1531,7 @@ of its row where it fits */
 
         /* the rows' gaps space their items, not a desktop's margins, inline ones included, nor its indents */
         & :is(.formRow, td) > :is(label, input, select, button, span) {
-            margin-left: 0 !important;
+            margin-inline: 0 !important;
         }
 
         & .formRow[style*="padding-left"] {
@@ -2063,9 +2077,11 @@ of its row where it fits */
 :root.responsivePhone .speedGrid {
     grid-template-columns: 24px auto minmax(0, 1fr) minmax(0, 80px) auto;
 
+    /* as wide as their column, less the space after them */
     & :is(input, select) {
+        justify-self: stretch;
         min-width: 0;
-        width: 100%;
+        width: auto;
     }
 }
 
