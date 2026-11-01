@@ -1256,7 +1256,7 @@ window.qBittorrent.Responsive ??= (() => {
     // a little longer than the transition in responsive.css
     const SLIDE_TIME = 250;
 
-    // on small screens the header slides away once the first row scrolls out of view
+    // on small screens the header slides away as the list scrolls down past its first row, and back as it scrolls up
     const initHeaderAutoHide = async () => {
         const header = document.getElementById("desktopHeader");
         const list = await whenElement("torrentsTableDiv");
@@ -1312,14 +1312,33 @@ window.qBittorrent.Responsive ??= (() => {
 
         const busy = () => header.contains(document.activeElement) && document.activeElement.matches("input, select");
 
+        // the list's position at its last scroll, and where its present run down or up began: the header goes after a
+        // row down and comes back after a row up, so that a finger's jitter leaves it as it is
+        let lastTop = list.scrollTop;
+        let runDown = true;
+        let runFrom = lastTop;
+
         // capturing: read the sizes before the list renders its rows
         list.parentElement.addEventListener("scroll", (event) => {
-            if ((event.target !== list) || !queries.small.matches || (performance.now() < lockedUntil))
+            if ((event.target !== list) || !queries.small.matches)
                 return;
 
-            if (list.scrollTop <= window.torrentsTable.rowHeight)
+            const top = list.scrollTop;
+            if ((top !== lastTop) && ((top > lastTop) !== runDown)) {
+                runDown = top > lastTop;
+                runFrom = lastTop;
+            }
+            lastTop = top;
+            // the scrolls of a slide start no run
+            if (performance.now() < lockedUntil) {
+                runFrom = top;
+                return;
+            }
+
+            const rowHeight = window.torrentsTable.rowHeight;
+            if ((top <= rowHeight) || (!runDown && ((runFrom - top) >= rowHeight)))
                 setHidden(false);
-            else if (!root.classList.contains("headerHidden") && !busy() && ((list.scrollHeight - list.clientHeight) > (header.offsetHeight + 24)))
+            else if (runDown && ((top - runFrom) >= rowHeight) && !root.classList.contains("headerHidden") && !busy() && ((list.scrollHeight - list.clientHeight) > (header.offsetHeight + 24)))
                 setHidden(true);
         }, { capture: true, passive: true });
         queries.small.addEventListener("change", (_event) => {
