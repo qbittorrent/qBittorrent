@@ -65,6 +65,25 @@ lost at the end of a line, and is left out where the page spaces them itself */
             }
         }
     }
+
+    /* the bold name of a dialog's one field, on a line of its own above it, as far above it as rows stand apart */
+    & label[style*="font-weight: bold"]:has(+ input[type="text"]) {
+        display: block;
+        margin-bottom: var(--space-3);
+    }
+}
+
+/* Share Ratio: the custom limits stand below the choice of them as far as from each other */
+div:has(> #setRatio) {
+    margin-top: var(--space-2);
+}
+
+/* and on phones, where a field wraps below its check box or name, 6 px below it */
+:root.responsivePhone body:has(#setRatio) div[style*="margin-left: 40px"] {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) 0.25em;
 }
 
 /* Options: a table's rows start where a box's other rows do */
@@ -1220,6 +1239,11 @@ speed limits; then the download and the upload speed, each in its half of the sc
     justify-content: center;
 }
 
+/* a button row right below a field or a box stands as far below it as rows stand apart, so that its line shows */
+:is(input:not([type="hidden"]), select, textarea, fieldset) + .dialogFooter {
+    margin-top: var(--space-3);
+}
+
 .dialogFooter.alignEnd,
 .modalDialog .dialogFooter {
     justify-content: flex-end;
@@ -2004,6 +2028,27 @@ of its row where it fits */
         flex: 1 0 auto;
         height: auto;
     }
+
+    /* the file buttons 6 px below the rules' buttons, with those buttons' own margin */
+    & #rulesFileButtons {
+        margin-top: 5px;
+    }
+
+    /* a rule's check boxes and notes clear of the tables of fields around them; below the last match, floated, by its
+    own margin */
+    & #ruleSettings > :not(table) + table,
+    & #ruleSettings > table + :not(table) {
+        margin-top: 3px;
+    }
+
+    & #lastMatchDiv {
+        margin-bottom: 3px;
+    }
+
+    /* the ignored days' unit stays beside its field, the name before them wrapping instead */
+    & td:has(> #ignoreDaysValue) {
+        white-space: nowrap;
+    }
 }
 
 /* columns stack in narrow windows */
@@ -2216,6 +2261,17 @@ name leaves a field next to nothing of the phone's width */
 
     & #renameOptions {
         height: calc(1lh + 8px);
+    }
+
+    /* the search and replacement fields as far above what follows them as rows stand apart, and the counter clear of
+    the check boxes above it */
+    & :is(#multiRenameSearch, #multiRenameReplace) {
+        display: block;
+        margin-bottom: var(--space-3);
+    }
+
+    & .formRow:has(> #file_counter) {
+        margin-top: var(--space-2);
     }
 }
 
