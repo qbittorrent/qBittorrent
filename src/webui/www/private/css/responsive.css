@@ -127,6 +127,22 @@ div:has(> #setRatio) {
     }
 }
 
+/* Options, the RSS Downloader and Rename Files with a mouse: a choice as tall as a text field, a line and a field's
+padding and border, in either density; on touch screens both have the touch height. Not Rename Files' arrow, as tall as
+its button */
+@media not (pointer: coarse) {
+    :is(#preferencesPage, #rssdownloaderpage, #multiRenamePage) {
+        & select:not([multiple], #renameOptions) {
+            height: calc(1.5em + 8px);
+            padding-block: 3px;
+
+            :root.compact & {
+                height: calc(1.2em + 8px);
+            }
+        }
+    }
+}
+
 :where(input[type="button"], input[type="submit"], button) {
     --button-background: var(--color-button-face);
 }
