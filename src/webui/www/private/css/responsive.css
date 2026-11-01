@@ -53,6 +53,17 @@ td:has(> :disabled:not(#WebUIAPIKeyText)) {
     color: var(--color-text-disabled);
 }
 
+/* Options: a table's rows start where a box's other rows do */
+#preferencesPage .PrefTab {
+    & table {
+        border-spacing: 0 2px;
+    }
+
+    & td {
+        padding: 1px 4px 1px 0;
+    }
+}
+
 :where(input[type="button"], input[type="submit"], button) {
     --button-background: var(--color-button-face);
 }
