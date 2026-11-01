@@ -2188,6 +2188,16 @@ of its row where it fits */
     & #torrentFiles {
         margin-bottom: var(--space-3) !important;
     }
+
+    /* Replace and its arrow, one control: the arrow as tall as the button, a line and a button's padding and border,
+    not as its own text would make it */
+    & div:has(> #renameButton) {
+        display: flex;
+    }
+
+    & #renameOptions {
+        height: calc(1lh + 8px);
+    }
 }
 
 /* Rename files on small screens: phones and short screens */
@@ -2334,7 +2344,9 @@ of its row where it fits */
         min-width: var(--responsive-touch-target);
     }
 
+    /* as tall as Replace beside it */
     #renameOptions {
+        min-height: var(--responsive-touch-target);
         min-width: var(--responsive-touch-target);
         padding-left: var(--space-6);
     }
