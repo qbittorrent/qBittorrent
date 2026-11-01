@@ -24,15 +24,49 @@
             min-width: 90px;
         }
 
+        /* in the grid's columns, so that its choice starts where the others do */
         #shareLimitsGrid>.shareLimitsActionRow {
             grid-column: 1 / -1;
-            display: flex;
+            display: grid;
+            grid-template-columns: subgrid;
             align-items: center;
-            gap: 8px;
         }
 
-        #shareLimitsGrid .shareLimitsWideSelect {
+        /* its name wraps in the names' column rather than widen it */
+        #shareLimitsGrid>.shareLimitsActionRow>label {
+            contain: inline-size;
+        }
+
+        #shareLimitsGrid .shareLimitsWideSelect,
+        #shareLimitsGrid>.shareLimitsActionRow>select {
             grid-column: 2 / -1;
+        }
+
+        /* names in a column, so that the fields beside them start on one line */
+        .categoryFields {
+            display: grid;
+            grid-template-columns: max-content minmax(0, 1fr);
+            row-gap: 6px;
+        }
+
+        .categoryFields>div {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: subgrid;
+            align-items: center;
+        }
+
+        .categoryFields>div>input {
+            justify-self: stretch;
+        }
+
+        .categoryFields>div>select {
+            justify-self: start;
+        }
+
+        /* a choice as tall as a field: a line of 1.5 times the font, and a field's padding and border */
+        select {
+            height: calc(1.5em + 8px);
         }
 
     </style>
@@ -458,29 +492,33 @@
 
 <body>
     <div style="padding: 10px 10px 0px 10px;">
-        <div style="display: flex; align-items: center; margin-bottom: 6px;">
-            <label for="categoryName">QBT_TR(Category:)QBT_TR[CONTEXT=Category]</label>
-            <input type="text" id="categoryName" style="flex-grow: 1; margin-left: 10px;">
-        </div>
-        <div style="display: flex; align-items: center;">
-            <label for="savePath">QBT_TR(Save path:)QBT_TR[CONTEXT=Category]</label>
-            <input type="text" id="savePath" class="pathDirectory" style="flex-grow: 1; margin-left: 10px;">
+        <div class="categoryFields">
+            <div>
+                <label for="categoryName">QBT_TR(Category:)QBT_TR[CONTEXT=Category]</label>
+                <input type="text" id="categoryName" style="flex-grow: 1; margin-left: 10px;">
+            </div>
+            <div>
+                <label for="savePath">QBT_TR(Save path:)QBT_TR[CONTEXT=Category]</label>
+                <input type="text" id="savePath" class="pathDirectory" style="flex-grow: 1; margin-left: 10px;">
+            </div>
         </div>
 
         <fieldset class="settings" style="text-align: left;">
             <legend>QBT_TR(Save path for incomplete torrents:)QBT_TR[CONTEXT=Category]</legend>
 
-            <div style="display: flex; align-items: center;">
-                <label for="useDownloadPath">QBT_TR(Use another path for incomplete torrents:)QBT_TR[CONTEXT=Category]</label>
-                <select id="useDownloadPath" style="margin-left: 10px;">
-                    <option selected value="default">QBT_TR(Default)QBT_TR[CONTEXT=Category]</option>
-                    <option value="yes">QBT_TR(Yes)QBT_TR[CONTEXT=Category]</option>
-                    <option value="no">QBT_TR(No)QBT_TR[CONTEXT=Category]</option>
-                </select>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <label for="downloadPath">QBT_TR(Path:)QBT_TR[CONTEXT=Category]</label>
-                <input type="text" id="downloadPath" class="pathDirectory" style="flex-grow: 1; margin-left: 10px;">
+            <div class="categoryFields">
+                <div>
+                    <label for="useDownloadPath">QBT_TR(Use another path for incomplete torrents:)QBT_TR[CONTEXT=Category]</label>
+                    <select id="useDownloadPath" style="margin-left: 10px;">
+                        <option selected value="default">QBT_TR(Default)QBT_TR[CONTEXT=Category]</option>
+                        <option value="yes">QBT_TR(Yes)QBT_TR[CONTEXT=Category]</option>
+                        <option value="no">QBT_TR(No)QBT_TR[CONTEXT=Category]</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="downloadPath">QBT_TR(Path:)QBT_TR[CONTEXT=Category]</label>
+                    <input type="text" id="downloadPath" class="pathDirectory" style="flex-grow: 1; margin-left: 10px;">
+                </div>
             </div>
         </fieldset>
 

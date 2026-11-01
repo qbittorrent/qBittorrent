@@ -2064,12 +2064,31 @@ of its row where it fits */
         grid-column: 1 / -1;
     }
 
+    /* a row of its own, its choice below its name, rather than in the columns */
     & > .shareLimitsActionRow {
+        display: flex;
         flex-wrap: wrap;
+        gap: 8px;
+
+        & > label {
+            contain: none;
+        }
 
         & > select {
             flex: 1 1 100%;
         }
+    }
+}
+
+/* each field beside its name, as wide as the rest of its row, rather than lined up with the others: in a column, a long
+name leaves a field next to nothing of the phone's width */
+:root.responsivePhone .categoryFields {
+    display: flex;
+    flex-direction: column;
+
+    & > div {
+        align-items: center;
+        display: flex;
     }
 }
 
