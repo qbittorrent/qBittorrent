@@ -1588,6 +1588,26 @@ window.qBittorrent.Responsive ??= (() => {
         });
     };
 
+    // on phones the toolbar's buttons scroll sideways under its Menu button: the edge with more buttons beyond it fades,
+    // on the left from where the Menu button ends
+    const initToolbarEdges = () => {
+        const strip = document.getElementById("toolbarButtons");
+        const menuButton = document.getElementById("menuDrawerButton");
+        const update = () => {
+            const end = strip.scrollWidth - strip.clientWidth;
+            strip.classList.toggle("moreBefore", strip.scrollLeft > 1);
+            strip.classList.toggle("moreAfter", strip.scrollLeft < (end - 1));
+            strip.style.setProperty("--toolbar-start", `${menuButton.getBoundingClientRect().right - strip.getBoundingClientRect().left}px`);
+        };
+        strip.addEventListener("scroll", (_event) => update(), { passive: true });
+        // the strip, and the buttons in it, which some settings show or hide
+        const sizeObserver = new ResizeObserver((_entries) => update());
+        sizeObserver.observe(strip);
+        for (const child of strip.children)
+            sizeObserver.observe(child);
+        update();
+    };
+
     // on phones the transfer list's menu keeps its common entries, up to Remove, and gathers the others under More, so
     // that it is short enough to take in; they move in the page, so that the keyboard follows
     const initTorrentsMenuMore = () => {
@@ -1648,6 +1668,7 @@ window.qBittorrent.Responsive ??= (() => {
         initCardCheckboxes();
         initCardSorting();
         initMenuDrawer();
+        initToolbarEdges();
         initTorrentsMenuMore();
         initPropertiesPanel();
         initKeyboardItems();
