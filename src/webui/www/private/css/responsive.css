@@ -32,6 +32,27 @@ input[type="button"]:disabled {
     cursor: initial;
 }
 
+/* Fields: one that is off reads as off, as a button does; grayed, its box faded into what is behind it, and its name
+grayed with it. The WebUI API key's field is disabled only so that it is not typed into: it is not off */
+input[type="text"]:disabled:not(#WebUIAPIKeyText),
+input[type="number"]:disabled,
+input[type="password"]:disabled,
+input[type="search"]:disabled,
+select:disabled,
+textarea:disabled {
+    background-color: transparent;
+    border-color: var(--color-border);
+    color: var(--color-text-disabled);
+}
+
+/* and a unit or a colon beside it */
+:is([type="checkbox"], [type="radio"]):disabled + label,
+label:has(+ :disabled:not(#WebUIAPIKeyText)),
+td:has(+ td > :disabled:not(#WebUIAPIKeyText)) > label,
+td:has(> :disabled:not(#WebUIAPIKeyText)) {
+    color: var(--color-text-disabled);
+}
+
 :where(input[type="button"], input[type="submit"], button) {
     --button-background: var(--color-button-face);
 }
