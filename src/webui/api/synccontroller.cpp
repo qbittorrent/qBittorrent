@@ -662,6 +662,8 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     {
         const BitTorrent::Torrent *torrent = session->getTorrent(torrentID);
         Q_ASSERT(torrent);
+        if (!torrent)
+            continue;
 
         QVariantMap serializedTorrent = serialize(*torrent);
         serializedTorrent.remove(KEY_TORRENT_ID);
@@ -695,6 +697,8 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
 
         const BitTorrent::Torrent *torrent = session->getTorrent(torrentID);
         Q_ASSERT(torrent);
+        if (!torrent)
+            continue;
 
         const QString torrentIDStr = torrentID.toString();
         auto &torrentSnapshot = m_maindataSnapshot.torrents[torrentIDStr];
