@@ -94,19 +94,19 @@
                         if (selectedTasks.length === 0)
                             return;
 
-                        if (!confirm("QBT_TR(Are you sure you want to delete selected tasks?)QBT_TR[CONTEXT=TorrentCreator]"))
-                            return;
-
-                        for (const task of selectedTasks) {
-                            fetch("api/v2/torrentcreator/deleteTask", {
-                                method: "POST",
-                                body: new URLSearchParams({
-                                    taskID: task,
-                                })
-                            }).then((response) => {
-                                load();
+                        window.qBittorrent.Dialog.confirm("QBT_TR(Remove Task)QBT_TR[CONTEXT=TorrentCreator]",
+                            "QBT_TR(Are you sure you want to delete selected tasks?)QBT_TR[CONTEXT=TorrentCreator]", () => {
+                                for (const task of selectedTasks) {
+                                    fetch("api/v2/torrentcreator/deleteTask", {
+                                        method: "POST",
+                                        body: new URLSearchParams({
+                                            taskID: task,
+                                        })
+                                    }).then((response) => {
+                                        load();
+                                    });
+                                }
                             });
-                        }
                     },
                     exportTorrent: exportTorrents,
                 },

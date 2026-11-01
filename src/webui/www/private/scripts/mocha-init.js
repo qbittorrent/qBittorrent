@@ -44,7 +44,8 @@ window.qBittorrent.Dialog ??= (() => {
         return {
             baseModalOptions: baseModalOptions,
             limitWidthToViewport: limitWidthToViewport,
-            limitHeightToViewport: limitHeightToViewport
+            limitHeightToViewport: limitHeightToViewport,
+            confirm: confirm
         };
     };
 
@@ -108,6 +109,20 @@ window.qBittorrent.Dialog ??= (() => {
     });
 
     deepFreeze(baseModalOptions);
+
+    // asks in a window of the WebUI's, rather than the browser's confirm(); onYes runs when the answer is yes
+    const confirm = (title, message, onYes) => {
+        new MochaUI.Modal({
+            ...baseModalOptions,
+            id: "confirmDialog",
+            title: title,
+            contentURL: "views/confirm.html?v=${CACHEID}",
+            data: {
+                message: message,
+                onYes: onYes
+            }
+        });
+    };
 
     return exports();
 })();
@@ -1090,16 +1105,22 @@ const initializeWindows = () => {
     torrentRemoveAllTagsFN = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
-            if (window.qBittorrent.Cache.preferences.get().confirm_remove_all_tags
-                && !confirm("QBT_TR(Remove all tags from selected torrents?)QBT_TR[CONTEXT=TransferListWidget]"))
-                return;
+            const removeTags = () => {
+                fetch("api/v2/torrents/removeTags", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        hashes: hashes.join("|")
+                    })
+                });
+            };
 
-            fetch("api/v2/torrents/removeTags", {
-                method: "POST",
-                body: new URLSearchParams({
-                    hashes: hashes.join("|")
-                })
-            });
+            if (window.qBittorrent.Cache.preferences.get().confirm_remove_all_tags) {
+                window.qBittorrent.Dialog.confirm("QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]",
+                    "QBT_TR(Remove all tags from selected torrents?)QBT_TR[CONTEXT=TransferListWidget]", removeTags);
+            }
+            else {
+                removeTags();
+            }
         }
     };
 
@@ -1306,30 +1327,32 @@ const initializeWindows = () => {
         e.preventDefault();
         e.stopPropagation();
 
-        if (confirm("QBT_TR(Would you like to stop all torrents?)QBT_TR[CONTEXT=MainWindow]")) {
-            fetch("api/v2/torrents/stop", {
-                method: "POST",
-                body: new URLSearchParams({
-                    hashes: "all"
-                })
+        window.qBittorrent.Dialog.confirm("QBT_TR(Stop All)QBT_TR[CONTEXT=MainWindow]",
+            "QBT_TR(Would you like to stop all torrents?)QBT_TR[CONTEXT=MainWindow]", () => {
+                fetch("api/v2/torrents/stop", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        hashes: "all"
+                    })
+                });
+                updateMainData();
             });
-            updateMainData();
-        }
     });
 
     addClickEvent("startAll", (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        if (confirm("QBT_TR(Would you like to start all torrents?)QBT_TR[CONTEXT=MainWindow]")) {
-            fetch("api/v2/torrents/start", {
-                method: "POST",
-                body: new URLSearchParams({
-                    hashes: "all"
-                })
+        window.qBittorrent.Dialog.confirm("QBT_TR(Start All)QBT_TR[CONTEXT=MainWindow]",
+            "QBT_TR(Would you like to start all torrents?)QBT_TR[CONTEXT=MainWindow]", () => {
+                fetch("api/v2/torrents/start", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        hashes: "all"
+                    })
+                });
+                updateMainData();
             });
-            updateMainData();
-        }
     });
 
     addClickEvent("pauseSession", (e) => {
@@ -1445,21 +1468,22 @@ const initializeWindows = () => {
         e.preventDefault();
         e.stopPropagation();
 
-        if (confirm("QBT_TR(Are you sure you want to quit qBittorrent?)QBT_TR[CONTEXT=MainWindow]")) {
-            fetch("api/v2/app/shutdown", {
-                    method: "POST"
-                })
-                .then((response) => {
-                    if (!response.ok)
-                        return;
+        window.qBittorrent.Dialog.confirm("QBT_TR(Exit qBittorrent)QBT_TR[CONTEXT=HttpServer]",
+            "QBT_TR(Are you sure you want to quit qBittorrent?)QBT_TR[CONTEXT=MainWindow]", () => {
+                fetch("api/v2/app/shutdown", {
+                        method: "POST"
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
 
-                    const shutdownMessage = "QBT_TR(%1 has been shutdown)QBT_TR[CONTEXT=HttpServer]".replace("%1", window.qBittorrent.Client.mainTitle());
-                    document.write(`<!doctype html><html lang="${LANG}"><head> <meta charset="UTF-8"> <meta name="color-scheme" content="light dark"> <title>${shutdownMessage}</title> <style>* {font-family: Arial, Helvetica, sans-serif;}</style></head><body> <h1 style="text-align: center;">${shutdownMessage}</h1></body></html>`);
-                    document.close();
-                    window.stop();
-                    window.qBittorrent.Client.stop();
-                });
-        }
+                        const shutdownMessage = "QBT_TR(%1 has been shutdown)QBT_TR[CONTEXT=HttpServer]".replace("%1", window.qBittorrent.Client.mainTitle());
+                        document.write(`<!doctype html><html lang="${LANG}"><head> <meta charset="UTF-8"> <meta name="color-scheme" content="light dark"> <title>${shutdownMessage}</title> <style>* {font-family: Arial, Helvetica, sans-serif;}</style></head><body> <h1 style="text-align: center;">${shutdownMessage}</h1></body></html>`);
+                        document.close();
+                        window.stop();
+                        window.qBittorrent.Client.stop();
+                    });
+            });
     });
 
     // Deactivate menu header links

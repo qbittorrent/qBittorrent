@@ -3658,8 +3658,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             firstTab.dataset.setUp = "true";
 
             loadedState = null;
-            MochaUI.Windows.instances["preferencesPage"].canClose = () => !hasUnsavedChanges()
-                || confirm("QBT_TR(Discard the changes you made in Options?)QBT_TR[CONTEXT=OptionsDialog]");
+            // asked in a window, which answers later: Options stays open meanwhile, and closes on a yes
+            let discarding = false;
+            MochaUI.Windows.instances["preferencesPage"].canClose = () => {
+                if (discarding || !hasUnsavedChanges())
+                    return true;
+
+                window.qBittorrent.Dialog.confirm("QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]",
+                    "QBT_TR(Discard the changes you made in Options?)QBT_TR[CONTEXT=OptionsDialog]", () => {
+                        discarding = true;
+                        window.qBittorrent.Client.closeWindow(document.getElementById("preferencesPage"));
+                    });
+                return false;
+            };
 
             watchedFoldersTable = new HtmlTable(document.getElementById("watched_folders_tab"));
 
