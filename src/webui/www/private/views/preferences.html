@@ -749,27 +749,33 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
                 <input type="checkbox" id="limitSchedulingCheckbox" onclick="qBittorrent.Preferences.updateSchedulingEnabled();">
                 <label for="limitSchedulingCheckbox">QBT_TR(Schedule the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
-            <div class="formRow">
-                <label id="scheduleFromHourLabel">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                <input type="text" id="schedule_from_hour" aria-labelledby="scheduleFromHourLabel" style="width: 3.6em;">:<input type="text" id="schedule_from_min" aria-labelledby="scheduleFromHourLabel" style="width: 3.6em;">
-                <label id="scheduleToHourLabel">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                <input type="text" id="schedule_to_hour" aria-labelledby="scheduleToHourLabel" style="width: 3.6em;">:<input type="text" id="schedule_to_min" aria-labelledby="scheduleToHourLabel" style="width: 3.6em;">
-            </div>
-            <div class="formRow">
-                <label for="schedule_freq_select">QBT_TR(When:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                <select id="schedule_freq_select">
-                    <option value="0">QBT_TR(Every day)QBT_TR[CONTEXT=OptionsDialog]</option>
-                    <option value="1">QBT_TR(Weekdays)QBT_TR[CONTEXT=OptionsDialog]</option>
-                    <option value="2">QBT_TR(Weekends)QBT_TR[CONTEXT=OptionsDialog]</option>
-                    <option value="3">QBT_TR(Monday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="4">QBT_TR(Tuesday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="5">QBT_TR(Wednesday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="6">QBT_TR(Thursday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="7">QBT_TR(Friday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="8">QBT_TR(Saturday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="9">QBT_TR(Sunday)QBT_TR[CONTEXT=HttpServer]</option>
-                </select>
-            </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label id="scheduleFromHourLabel">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td><input type="text" id="schedule_from_hour" aria-labelledby="scheduleFromHourLabel" style="width: 3.6em;">&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text" id="schedule_from_min" aria-labelledby="scheduleFromHourLabel" style="width: 3.6em;"></td>
+                        <td><label id="scheduleToHourLabel">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td><input type="text" id="schedule_to_hour" aria-labelledby="scheduleToHourLabel" style="width: 3.6em;">&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text" id="schedule_to_min" aria-labelledby="scheduleToHourLabel" style="width: 3.6em;"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="schedule_freq_select">QBT_TR(When:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td colspan="3">
+                            <select id="schedule_freq_select">
+                                <option value="0">QBT_TR(Every day)QBT_TR[CONTEXT=OptionsDialog]</option>
+                                <option value="1">QBT_TR(Weekdays)QBT_TR[CONTEXT=OptionsDialog]</option>
+                                <option value="2">QBT_TR(Weekends)QBT_TR[CONTEXT=OptionsDialog]</option>
+                                <option value="3">QBT_TR(Monday)QBT_TR[CONTEXT=HttpServer]</option>
+                                <option value="4">QBT_TR(Tuesday)QBT_TR[CONTEXT=HttpServer]</option>
+                                <option value="5">QBT_TR(Wednesday)QBT_TR[CONTEXT=HttpServer]</option>
+                                <option value="6">QBT_TR(Thursday)QBT_TR[CONTEXT=HttpServer]</option>
+                                <option value="7">QBT_TR(Friday)QBT_TR[CONTEXT=HttpServer]</option>
+                                <option value="8">QBT_TR(Saturday)QBT_TR[CONTEXT=HttpServer]</option>
+                                <option value="9">QBT_TR(Sunday)QBT_TR[CONTEXT=HttpServer]</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </fieldset>
     </fieldset>
 
