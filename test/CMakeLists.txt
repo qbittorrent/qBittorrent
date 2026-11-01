@@ -40,3 +40,10 @@ foreach(testFile ${testFiles})
 
     add_dependencies(check "${testFilename}")
 endforeach()
+
+if (GUI AND TARGET PkgConfig::GIO)
+    add_executable(testguilaunch testguilaunch.cpp ../src/gui/utils/launch.cpp)
+    target_link_libraries(testguilaunch PRIVATE Qt::Test PkgConfig::GIO)
+    add_test(NAME testguilaunch COMMAND testguilaunch)
+    add_dependencies(check testguilaunch)
+endif()

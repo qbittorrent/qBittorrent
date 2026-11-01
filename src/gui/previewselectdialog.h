@@ -64,7 +64,7 @@ public:
     ~PreviewSelectDialog();
 
 signals:
-    void readyToPreviewFile(const Path &filePath) const;
+    void readyToPreviewFiles(const PathList &filePaths) const;
 
 private slots:
     void previewButtonClicked();
