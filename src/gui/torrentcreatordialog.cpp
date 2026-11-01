@@ -374,7 +374,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const BitTorrent::TorrentCreato
                 };
             }
 
-            BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);
+            std::ignore = BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);
         }
         else
         {

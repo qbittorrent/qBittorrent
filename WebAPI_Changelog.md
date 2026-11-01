@@ -6,6 +6,8 @@
   * `search/results` endpoint includes `engineFullName` (string) data as the display name of the engine
 * [#25093](https://github.com/qbittorrent/qBittorrent/pull/25093)
   * `torrents/info` and `sync/maindata` endpoints include `error` (string) data, the reason why the torrent is in `error` state (empty otherwise)
+* [#24952](https://github.com/qbittorrent/qBittorrent/pull/24952)
+  * `torrents/add` endpoint lists each torrent that couldn't be added in the response body, with its source and the reason
 
 ## 2.16.2
 

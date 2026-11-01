@@ -199,7 +199,7 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
         if ((Net::DownloadManager::hasSupportedScheme(urlStr) && link.path().endsWith(u".torrent"))
                 || (link.scheme() == u"magnet"))
         {
-            app->addTorrentManager()->addTorrent(urlStr);
+            std::ignore = app->addTorrentManager()->addTorrent(urlStr);
         }
         else
         {
@@ -477,7 +477,7 @@ void RSSWidget::downloadSelectedTorrents()
             continue;
         }
 
-        app()->addTorrentManager()->addTorrent(torrentURL);
+        std::ignore = app()->addTorrentManager()->addTorrent(torrentURL);
     }
 
     if (badURLCount > 0)

@@ -2822,10 +2822,10 @@ qsizetype SessionImpl::torrentsCount() const
     return m_torrents.size();
 }
 
-bool SessionImpl::addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params)
+AddTorrentResult SessionImpl::addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params)
 {
     if (!isRestored())
-        return false;
+        return nonstd::make_unexpected<AddTorrentError>({.status = AddTorrentError::SessionNotRestored, .message = tr("Session is not restored yet")});
 
     return addTorrent_impl(torrentDescr, params);
 }
@@ -2892,7 +2892,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
 }
 
 // Add a torrent to the BitTorrent session
-bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const AddTorrentParams &addTorrentParams)
+AddTorrentResult SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const AddTorrentParams &addTorrentParams)
 {
     Q_ASSERT(isRestored());
 
@@ -2919,7 +2919,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                     .arg(torrent->name(), torrent->infoHash().toString(), message));
             emit duplicateTorrentDetected(infoHash, torrent, message);
-            return false;
+            return nonstd::make_unexpected<AddTorrentError>({.status = AddTorrentError::DuplicateTorrent, .message = message});
         }
 
         const bool isPrivate = torrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate());
@@ -2929,7 +2929,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                     .arg(torrent->name(), torrent->infoHash().toString(), message));
             emit duplicateTorrentDetected(infoHash, torrent, message);
-            return false;
+            return nonstd::make_unexpected<AddTorrentError>({.status = AddTorrentError::DuplicateTorrent, .message = message});
         }
 
         // merge trackers and web seeds
@@ -2940,7 +2940,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
         LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                 .arg(torrent->name(), torrent->infoHash().toString(), message));
         emit duplicateTorrentDetected(infoHash, torrent, message);
-        return false;
+        return nonstd::make_unexpected<AddTorrentError>({.status = AddTorrentError::DuplicateTorrent, .message = message});
     }
 
     // It looks illogical that we don't just use an existing handle,
@@ -3181,7 +3181,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
         });
     });
 
-    return true;
+    return {};
 }
 
 QFuture<FileSearchResult> SessionImpl::findIncompleteFiles(const Path &savePath, const Path &downloadPath, const PathList &filePaths) const
