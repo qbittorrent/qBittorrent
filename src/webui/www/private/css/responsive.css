@@ -1222,6 +1222,12 @@ speed limits; then the download and the upload speed, each in its half of the sc
     }
 }
 
+/* unseen until its page is in (responsive.js), so that it shows at its size at once; still able to take the focus */
+.mocha.responsivePending {
+    opacity: 0 !important; /* override Mocha's fade in */
+    pointer-events: none;
+}
+
 /* phones fit every window again, so a size the user drags would not stay */
 :root.responsivePhone .mocha .handle {
     display: none;

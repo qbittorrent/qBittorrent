@@ -739,6 +739,8 @@ window.qBittorrent.Responsive ??= (() => {
     const MAX_WINDOW_HEIGHT = 800;
     // windows whose tabs share one size
     const ONE_SIZE_WINDOWS = new Set(["preferencesPage"]);
+    // how long a window fitted to its page waits for it unseen, before it shows at the size it asked for
+    const PAGE_WAIT = 1000;
 
     // resize like an edge drag, without storing the size
     const setContentSize = (instance, width, height) => {
@@ -933,6 +935,8 @@ window.qBittorrent.Responsive ??= (() => {
             setContentSize(instance, `${width}px`, `${height}px`);
     };
 
+    const isUserSized = (instance) => (instance.responsiveUserResized === true) || hasStoredSize(instance);
+
     // on the desktop, dialogs are fitted to their page
     const isDialog = (instance) => !ONE_SIZE_WINDOWS.has(instance.windowEl.id)
         && ((instance.iframeEl !== undefined) || !instance.options.resizable || (instance.contentEl.querySelector(".dialogFooter") !== null));
@@ -980,6 +984,13 @@ window.qBittorrent.Responsive ??= (() => {
             windowEl.style.left = `${Math.max(margin, Math.min(windowEl.offsetLeft, maxLeft))}px`;
             windowEl.style.top = `${Math.max(margin, Math.min(windowEl.offsetTop, maxTop))}px`;
         }
+        // a window fitted to its page stays unseen until its page is in, rather than show at the size it asked for and
+        // then at another: where windows are fitted, every one but those of one size, and on the desktop a dialog,
+        // which a modal window's page, not in yet, may well be
+        const fittedToPage = queries.relayout.matches ? !ONE_SIZE_WINDOWS.has(windowEl.id)
+            : ((isDialog(instance) || windowEl.classList.contains("modalDialog")) && !isUserSized(instance));
+        windowEl.classList.toggle("responsivePending", fittedToPage && (pageOf(instance) === null)
+            && (instance.responsivePageWaited !== true));
         instance.responsiveFitState = fitState(instance);
     };
 
@@ -1012,11 +1023,12 @@ window.qBittorrent.Responsive ??= (() => {
         let fitted = false;
         let ownHeight = null;
         // a size the user gave a window is kept, except on phones
-        const userSized = (instance.responsiveUserResized === true) || hasStoredSize(instance);
+        const userSized = isUserSized(instance);
         if (queries.relayout.matches && (phone || !userSized)) {
             width = phone ? maxWidth : Math.min(fitWidth, Math.max(width, MIN_WINDOW_WIDTH, pageOverflow(instance, width, wantedHeight).width));
+            // its page takes any height, so it is fitted before the page is in: full screen on phones from the start
             if (ONE_SIZE_WINDOWS.has(windowEl.id)) {
-                ownHeight = (pageOf(instance) === null) ? null : 0;
+                ownHeight = 0;
                 height = fitHeight;
             }
             else {
@@ -1142,6 +1154,12 @@ window.qBittorrent.Responsive ??= (() => {
         closeFiltersDrawer();
         raiseStoredSize(instance);
         fitWindow(instance);
+        // a page that takes long shows its window meanwhile
+        setTimeout(() => {
+            instance.responsivePageWaited = true;
+            if (instance.windowEl.classList.contains("responsivePending"))
+                fitWindow(instance);
+        }, PAGE_WAIT);
         makeCloseButton(instance);
         holdWindowFocus(instance);
         if (backCloses())
