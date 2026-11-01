@@ -439,12 +439,15 @@ would cover the entry that opened it */
         width: auto;
     }
 
-    & li:not(.disabled):is(:hover, :focus-within) > ul {
+    /* open while its entry is hovered or focused, unless a second tap closed it (contextmenu.js) */
+    & li:not(.disabled, .submenuClosed):is(:hover, :focus-within) > ul {
         display: block;
     }
 
     /* the entry's chevron turns down while its submenu is open, as in the menu drawer */
-    & li:not(.disabled):is(:hover, :focus-within) > .arrow-right::after {
+    &
+        li:not(.disabled, .submenuClosed):is(:hover, :focus-within)
+        > .arrow-right::after {
         transform: translateY(-75%) rotate(45deg);
     }
 }
@@ -474,12 +477,39 @@ would cover the entry that opened it */
 
     /* More, while closed, still lays its entries out without height, so that the menu opens as wide as they need
     and More opens below without wrapping them in a narrow column */
-    & > #torrentsTableMenuMore:not(:hover, :focus-within) > ul {
+    &
+        > #torrentsTableMenuMore:is(:not(:hover, :focus-within), .submenuClosed)
+        > ul {
         border-width: 0;
         display: block;
         height: 0;
         overflow: hidden;
         visibility: hidden;
+    }
+
+    /* More reads Less while it is open */
+    & > #torrentsTableMenuMore > a > .lessLabel,
+    &
+        > #torrentsTableMenuMore:not(.submenuClosed):is(:hover, :focus-within)
+        > a
+        > .moreLabel {
+        display: none;
+    }
+
+    &
+        > #torrentsTableMenuMore:not(.submenuClosed):is(:hover, :focus-within)
+        > a
+        > .lessLabel {
+        display: inline;
+    }
+
+    /* opened by a tap, More takes the place of the entries above it, which a tap on Less brings back; not while a
+    mouse only hovers it, as it would move away from under the pointer */
+    &
+        > li:not(.contextMenuHeader):has(
+            ~ #torrentsTableMenuMore[data-tapped-open="true"]
+        ) {
+        display: none;
     }
 
     & li a {

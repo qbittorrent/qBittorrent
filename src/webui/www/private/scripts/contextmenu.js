@@ -262,6 +262,27 @@ window.qBittorrent.ContextMenu ??= (() => {
                         this.menu.scrollTop += Math.min(below, entryTop);
                 });
             });
+            // a finger's tap leaves the entry hovered and focused, which keep its submenu open in place: a second tap
+            // on the entry closes it, a third opens it again. Leaving the entry forgets that
+            let pointerType = "mouse";
+            this.menu.addEventListener("pointerdown", (event) => {
+                pointerType = event.pointerType;
+            }, true);
+            this.menu.addEventListener("click", (event) => {
+                const item = event.target.closest("li");
+                const submenu = item?.querySelector(":scope > ul") ?? null;
+                if ((pointerType === "mouse") || (submenu === null) || (getComputedStyle(submenu).position !== "static"))
+                    return;
+
+                const close = item.dataset.tappedOpen === "true";
+                item.dataset.tappedOpen = !close;
+                item.classList.toggle("submenuClosed", close);
+            });
+            this.menu.addEventListener("focusout", (event) => {
+                const item = event.target.closest("li");
+                if ((item !== null) && !item.contains(event.relatedTarget))
+                    this.forgetTappedSubmenus(item);
+            });
 
             // hide on body click
             document.body.addEventListener("click", (event) => {
@@ -342,6 +363,14 @@ window.qBittorrent.ContextMenu ??= (() => {
             return [...list.querySelectorAll(":scope > li:not(.invisible, .disabled) > a")].filter((a) => a.getClientRects().length > 0);
         }
 
+        // submenus that a tap opened or closed open again as the pointer or the focus reaches them
+        forgetTappedSubmenus(root) {
+            for (const item of [root, ...root.querySelectorAll("li")]) {
+                item.classList.remove("submenuClosed");
+                delete item.dataset.tappedOpen;
+            }
+        }
+
         // the focus goes back to where it was when the menu opened
         returnFocus() {
             if (this.menu.contains(document.activeElement))
@@ -354,6 +383,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         show(trigger) {
             if (lastShownContextMenu && (lastShownContextMenu !== this))
                 lastShownContextMenu.hide();
+            this.forgetTappedSubmenus(this.menu);
             this.menu.classList.add("visible");
             this.options.onShow.call(this);
             lastShownContextMenu = this;
