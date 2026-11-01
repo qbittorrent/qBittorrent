@@ -1238,6 +1238,114 @@ speed limits; then the download and the upload speed, each in its half of the sc
     pointer-events: none;
 }
 
+/* Options on phones: a list of its sections, and the section chosen below a row back to that list (responsive.js) */
+.optionsSections,
+.optionsSectionHeader {
+    display: none;
+}
+
+:root.responsivePhone #preferencesPage {
+    & #preferencesTabs {
+        display: none;
+    }
+
+    &.responsiveOptionsList {
+        & .mochaToolbarWrapper,
+        & .PrefTab {
+            display: none;
+        }
+
+        & .optionsSections {
+            display: block;
+        }
+
+        /* the page, which then shows only its Save button, fills the room the list leaves rather than all of it */
+        & .mochaContentWrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        & .mochaContent {
+            flex: 1 0 auto;
+            height: auto; /* override Layout.css */
+            min-height: 0;
+        }
+    }
+
+    &:not(.responsiveOptionsList) .optionsSectionHeader {
+        display: block;
+    }
+}
+
+.optionsSections {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    & li + li {
+        border-top: var(--responsive-separator);
+    }
+
+    & button {
+        align-items: center;
+        background: none;
+        border: 0;
+        border-radius: 0;
+        display: flex;
+        font-size: var(--text-touch);
+        gap: var(--space-5);
+        min-height: calc(var(--responsive-touch-target, 44px) + var(--space-4));
+        padding: 0 var(--space-6);
+        text-align: start;
+        width: 100%;
+    }
+
+    & img {
+        height: 20px;
+        width: 20px;
+    }
+
+    /* a chevron towards the section */
+    & button::after {
+        border: solid currentcolor;
+        border-width: 0 2px 2px 0;
+        content: "";
+        margin-left: auto;
+        padding: 3px;
+        transform: rotate(-45deg);
+    }
+}
+
+.optionsSectionHeader {
+    padding: 0 var(--space-5) var(--space-4);
+
+    & .optionsBack {
+        align-items: center;
+        background: none;
+        border: 0;
+        color: var(--color-selection);
+        display: flex;
+        font-size: var(--text-touch);
+        gap: var(--space-4);
+        min-height: var(--responsive-touch-target, 44px);
+        padding: 0;
+    }
+
+    /* a chevron back */
+    & .optionsBack::before {
+        border: solid currentcolor;
+        border-width: 0 2px 2px 0;
+        content: "";
+        padding: 4px;
+        transform: rotate(135deg);
+    }
+
+    & h2 {
+        font-size: var(--text-touch);
+        margin: 0;
+    }
+}
+
 /* phones fit every window again, so a size the user drags would not stay */
 :root.responsivePhone .mocha .handle {
     display: none;

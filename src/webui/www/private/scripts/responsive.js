@@ -1140,6 +1140,95 @@ window.qBittorrent.Responsive ??= (() => {
         removeHistoryLayer(layer);
     };
 
+    // on phones Options opens on a list of its sections, as a phone's own settings do; the one chosen shows below a row
+    // back to the list, where the phone's Back goes too. The list and that row are built from Options' own tabs
+    const initOptionsSections = async (instance) => {
+        const windowEl = instance.windowEl;
+        windowEl.classList.add("responsiveOptionsList");
+        const tabs = await whenElement("preferencesTabs");
+        // Options was closed meanwhile, and maybe opened again
+        if (!windowEl.isConnected || !instance.toolbarWrapperEl.contains(tabs))
+            return;
+
+        const list = document.createElement("ul");
+        list.className = "optionsSections";
+        const back = document.createElement("button");
+        back.type = "button";
+        back.className = "optionsBack";
+        back.textContent = instance.titleEl.textContent;
+        const title = document.createElement("h2");
+        const header = document.createElement("div");
+        header.className = "optionsSectionHeader";
+        header.append(back, title);
+        tabs.closest(".toolbarTabs").after(header);
+        instance.contentWrapperEl.prepend(list);
+
+        let layer = null;
+        let chosen = null;
+        // the toolbar shows or hides that row: refit at once, so Save is not seen out of place until the next fit
+        const showView = (listShown) => {
+            windowEl.classList.toggle("responsiveOptionsList", listShown);
+            fitWindow(instance);
+        };
+        const showList = () => {
+            showView(true);
+            instance.contentWrapperEl.scrollTop = 0;
+            chosen?.focus({ preventScroll: true });
+        };
+        const addLayer = () => {
+            if ((layer === null) && queries.phone.matches) {
+                layer = addHistoryLayer(() => {
+                    layer = null;
+                    showList();
+                }, () => !windowEl.classList.contains("responsiveOptionsList"));
+            }
+        };
+        const dropLayer = () => {
+            if (layer === null)
+                return;
+
+            removeHistoryLayer(layer);
+            layer = null;
+        };
+
+        for (const tab of tabs.querySelectorAll(":scope > li")) {
+            const button = document.createElement("button");
+            button.type = "button";
+            const icon = tab.querySelector("img").cloneNode();
+            icon.alt = "";
+            button.append(icon, tab.textContent.trim());
+            // the tab's own click shows its section
+            button.addEventListener("click", (_event) => {
+                tab.click();
+                title.textContent = tab.textContent.trim();
+                chosen = button;
+                showView(false);
+                addLayer();
+                back.focus({ preventScroll: true });
+            });
+            const item = document.createElement("li");
+            item.append(button);
+            list.append(item);
+        }
+        back.addEventListener("click", (_event) => {
+            dropLayer();
+            showList();
+        });
+
+        // a section shown as the screen turns into a phone's gains its way back, and loses it as it turns back
+        const listening = new AbortController();
+        queries.phone.addEventListener("change", (_event) => {
+            if (!queries.phone.matches)
+                dropLayer();
+            else if (!windowEl.classList.contains("responsiveOptionsList"))
+                addLayer();
+        }, { signal: listening.signal });
+        instance.addEvent("closeComplete", () => {
+            listening.abort();
+            dropLayer();
+        });
+    };
+
     // fit a window as it opens, and again as its page or the screen changes; make its close control a button, give it
     // the focus, and on phones and touch screens let Back close it
     const watch = (node) => {
@@ -1165,6 +1254,8 @@ window.qBittorrent.Responsive ??= (() => {
         if (backCloses())
             addWindowLayer(instance);
         instance.addEvent("closeComplete", () => removeWindowLayer(instance));
+        if (node.id === "preferencesPage")
+            initOptionsSections(instance);
 
         // refit only when something the fit depends on has changed
         const fitSoon = window.qBittorrent.Misc.createDebounceHandler(50, () => {
