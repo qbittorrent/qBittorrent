@@ -1346,6 +1346,274 @@ speed limits; then the download and the upload speed, each in its half of the sc
     }
 }
 
+/* Options' settings on touch phones, in the size of their fields: each box is a list of its settings with a line
+between them, a box in a box a heading in that list, and the settings outside every box share a box. A choice, and a
+field the page gives no width, take the row's width below their name; a field with a width of its own stays at the end
+of its row where it fits */
+@media (pointer: coarse) {
+    :root.responsivePhone #preferencesPage .PrefTab {
+        font-size: var(--text-touch);
+
+        & fieldset.settings {
+            margin: 0 0 var(--space-5);
+            min-width: 0;
+            padding: 0;
+        }
+
+        & fieldset.settings fieldset.settings {
+            border: 0;
+            border-radius: 0;
+            border-top: var(--responsive-separator);
+            margin: 0;
+
+            /* laid out as a block, inside the box */
+            & > legend {
+                box-sizing: border-box;
+                float: left;
+                margin: 0;
+                padding: var(--space-5) var(--space-5) var(--space-1);
+                width: 100%;
+            }
+
+            & > legend + * {
+                clear: both;
+            }
+        }
+
+        & fieldset.settings > :not(legend, table, fieldset, .formRow) {
+            margin-inline: var(--space-5);
+        }
+
+        & fieldset.settings > i {
+            display: block;
+            margin-bottom: var(--space-4);
+        }
+
+        & fieldset.settings > :is(select, textarea) {
+            box-sizing: border-box;
+            min-width: calc(100% - (2 * var(--space-5)));
+            width: calc(100% - (2 * var(--space-5)));
+        }
+
+        & fieldset.settings > textarea {
+            margin-bottom: var(--space-5);
+        }
+
+        /* a button below its choice, as far as the rows' lines stand apart */
+        & fieldset.settings > select + input[type="button"] {
+            margin-top: var(--space-3);
+        }
+
+        /* a box's text field below its title, a name without a check box, as far as a row's field below its name */
+        & fieldset.settings fieldset.settings > legend:not(:has(input)) {
+            & + textarea {
+                margin-top: var(--space-2);
+            }
+        }
+
+        /* a watched folder's choice below its folder as far as the rows' lines stand apart, and as wide, so that its
+        choices show whole */
+        & #watched_folders_tab tbody tr:not([hidden]) {
+            row-gap: var(--space-3);
+
+            & > td {
+                flex: 1 0 100%;
+            }
+        }
+
+        & .select-watched-folder-editable {
+            width: calc(100% - 2px); /* less its border */
+
+            & select {
+                width: 100%;
+            }
+
+            & input {
+                width: calc(100% - 2em); /* clear of the choice's arrow */
+            }
+        }
+
+        & #watched_folders_tab {
+            margin: 0 var(--space-5) var(--space-5);
+        }
+
+        & .formRow:not([hidden]),
+        & table:where(:not(#watched_folders_tab)) tr:not([hidden]) {
+            align-items: center;
+            border-top: var(--responsive-separator);
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3) var(--space-5);
+            margin-bottom: 0 !important; /* override inline style */
+            margin-top: 0;
+            padding: var(--space-2) var(--space-5);
+        }
+
+        & :is(legend + .formRow, legend + table tr:first-child):not([hidden]) {
+            border-top: 0;
+        }
+
+        /* the box in it draws the line */
+        & .formRow:not([hidden]):has(> fieldset) {
+            border-top: 0;
+            display: block;
+            padding: 0;
+        }
+
+        & :is(label, td) {
+            padding: 0;
+        }
+
+        & :is(td:has(> label:only-child), .formRow > label:first-child) {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        /* a field with a button: both below its name, together */
+        & .formRow:has(> button) > label:first-child {
+            flex-basis: 100%;
+        }
+
+        /* a cell with a field and then another field's name, as the WebUI's address and port: spaced as a row is */
+        & td:has(> input:not([type="checkbox"], [type="radio"]) + label) {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3) var(--space-5);
+        }
+
+        /* the rows' gaps space their items, not a desktop's margins, inline ones included, nor its indents */
+        & :is(.formRow, td) > :is(label, input, select, button, span) {
+            margin-left: 0 !important;
+        }
+
+        & .formRow[style*="padding-left"] {
+            padding-left: var(--space-5) !important; /* override inline style */
+        }
+
+        & :is([type="checkbox"], [type="radio"]) {
+            flex: none;
+            margin: 0;
+        }
+
+        & :is(td, span, legend):has(> [type="checkbox"], > [type="radio"]) {
+            align-items: center;
+            display: flex;
+            flex: 1 1 0;
+            gap: var(--space-5);
+            min-width: 0;
+        }
+
+        & td:has(> [type="radio"]) {
+            flex-wrap: wrap;
+        }
+
+        & td:has(> [type="checkbox"]:only-child) {
+            flex: none;
+        }
+
+        /* a check box after its name goes before it, as everywhere else */
+        & td:has(> label:only-child):has(+ td > [type="checkbox"]:only-child) {
+            order: 1;
+        }
+
+        /* a check box's name takes the rest of its row, a finger's height, so that a tap anywhere on it changes it */
+        & :is([type="checkbox"], [type="radio"]) + label,
+        & td:has(> [type="checkbox"]:only-child) + td > label,
+        & td:has(+ td > [type="checkbox"]:only-child) > label {
+            align-content: center;
+            align-self: stretch;
+            display: block; /* not flex: a link in a name stays in its text */
+            flex: 1 1 0;
+            min-height: var(--responsive-touch-target);
+            min-width: 0;
+        }
+
+        & td:has(> [type="checkbox"]:only-child) + td:has(> label:only-child),
+        & td:has(+ td > [type="checkbox"]:only-child) {
+            flex: 1 1 0;
+        }
+
+        /* one radio button to a line; 24px is its size on touch screens */
+        & td:has(> [type="radio"]) > label {
+            flex-basis: calc(100% - 24px - var(--space-5));
+        }
+
+        & :is(select, textarea):not(input + select) {
+            box-sizing: border-box;
+            min-width: 100%; /* also where the page gives a choice a width */
+            width: 100%;
+        }
+
+        /* where the page gives a field a width, its own wins */
+        & input:is([type="text"], [type="password"]) {
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        & td:has(> :is(select, textarea):not(input + select)),
+        & td:has(> [type="text"]:not([style*="width"])),
+        & td:has(> [type="password"]:not([style*="width"])) {
+            flex: 1 0 100%;
+        }
+
+        /* the margin past the rows' reset above */
+        & td:has(> input[style*="width"]),
+        & .formRow > input[style*="width"] {
+            margin-left: auto !important;
+        }
+
+        & input[style*="width"] {
+            max-width: 100%;
+        }
+
+        & td:has(> input + select) {
+            align-items: center;
+            display: flex;
+            gap: var(--space-4);
+            margin-left: auto;
+        }
+
+        /* Advanced's fields are as wide as their row, beside their unit */
+        &#AdvancedTab td:has(> input[style*="width"]) {
+            align-items: center;
+            display: flex;
+            flex: 1 0 100%;
+            gap: var(--space-4);
+
+            & > input {
+                flex: 1 1 0;
+                min-width: 0;
+            }
+        }
+
+        /* the schedule: From and To on a line each, their times at its end */
+        & tr:has(> td > #schedule_from_hour) {
+            display: grid;
+            grid-template-columns: 1fr auto;
+        }
+
+        /* the settings outside every box share one */
+        & > .formRow:not([hidden]) {
+            border: var(--responsive-separator);
+            border-bottom: 0;
+        }
+
+        & > .formRow:is(:first-child, :not(.formRow) + .formRow) {
+            border-top-left-radius: var(--radius-control);
+            border-top-right-radius: var(--radius-control);
+        }
+
+        & > .formRow:is(:last-child, :has(+ :not(.formRow))) {
+            border-bottom: var(--responsive-separator);
+            border-bottom-left-radius: var(--radius-control);
+            border-bottom-right-radius: var(--radius-control);
+            margin-bottom: var(--space-5) !important; /* override the rows' */
+        }
+    }
+}
+
 /* phones fit every window again, so a size the user drags would not stay */
 :root.responsivePhone .mocha .handle {
     display: none;
