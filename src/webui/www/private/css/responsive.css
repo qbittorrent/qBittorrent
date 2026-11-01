@@ -86,14 +86,44 @@ div:has(> #setRatio) {
     gap: var(--space-3) 0.25em;
 }
 
-/* Options: a table's rows start where a box's other rows do */
+/* Options: a table's rows start where a box's other rows do, and the fields in them stand 6 px apart */
 #preferencesPage .PrefTab {
     & table {
         border-spacing: 0 2px;
     }
 
     & td {
-        padding: 1px 4px 1px 0;
+        padding: 2px 4px 2px 0;
+    }
+
+    /* a row with a field, 6 px clear of the rows and notes around it */
+    & .formRow {
+        &:has(> :is(select, textarea, button)),
+        &:has(> input:not([type="checkbox"], [type="radio"])) {
+            margin-block: var(--space-3);
+        }
+    }
+
+    /* a field that fills its row, below its name, and a box's button below its check box, 6 px below them */
+    & .formRow > label + input[style*="width: 100%"],
+    & fieldset.settings > .formRow + button {
+        margin-top: var(--space-3) !important; /* override inline style */
+    }
+
+    /* a box's name for its text field, on a line of its own, as far above the field as rows stand apart */
+    & fieldset.settings > label:has(+ br + textarea) {
+        display: block;
+        margin-bottom: var(--space-3);
+
+        & + br {
+            display: none;
+        }
+    }
+
+    /* a choice's radio button 12 px from the name of the choice before it: less that name's padding and the space
+    between them */
+    & label + input[type="radio"] {
+        margin-left: calc(var(--space-5) - 0.25em - 2px);
     }
 }
 
@@ -1560,6 +1590,12 @@ of its row where it fits */
 
         & .formRow[style*="padding-left"] {
             padding-left: var(--space-5) !important; /* override inline style */
+        }
+
+        /* nor the desktop's margin above a field wrapped below its name, or a button below a check box */
+        & .formRow > label + input[style*="width: 100%"],
+        & fieldset.settings > .formRow + button {
+            margin-top: 0 !important;
         }
 
         & :is([type="checkbox"], [type="radio"]) {
