@@ -19,10 +19,6 @@
         <translation>התחל טורנט</translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">דלג על בדיקת גיבוב</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>מצב ניהול טורנטים:</translation>
     </message>
@@ -73,10 +69,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>הורד בסדר עוקב</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation type="vanished">גודל:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -195,10 +187,6 @@
         <translation>הגבל קצב הורדה</translation>
     </message>
     <message>
-        <source>%1 (Free space on disk: %2)</source>
-        <translation type="vanished">%1 (שטח פנוי בדיסק: %2)</translation>
-    </message>
-    <message>
         <source>KiB/s</source>
         <translation>ק״ב/ש</translation>
     </message>
@@ -213,7 +201,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>הורד</translation>
     </message>
     <message>
         <source>%1 free</source>
@@ -691,14 +679,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>לא</translation>
     </message>
     <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="vanished">מגבלה כללית של מהירות העלאה</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="vanished">מגבלה כללית של מהירות הורדה</translation>
-    </message>
-    <message>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>האם אתה בטוח שאתה רוצה לצאת מ-qBittorrent?</translation>
     </message>
@@ -912,7 +892,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Global Speed Limits</source>
-        <translation type="unfinished" />
+        <translation>מגבלות מהירות כלליות</translation>
     </message>
     <message>
         <source>Pause session</source>
@@ -995,15 +975,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>שמור טורנטים בלתי שלמים ב:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">העתקת קובצי .torrent אל:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">העתקת קובצי torrent. עבור הורדות שהסתיימו אל:</translation>
+        <translation type="vanished">שמור טורנטים בלתי שלמים ב:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -2413,7 +2385,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Transfer List</source>
-        <translation type="unfinished" />
+        <translation>רשימת העברות</translation>
     </message>
     <message>
         <source>Start BitTorrent session in paused state:</source>
@@ -2437,7 +2409,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished" />
+        <translation>הצג תוכן טורנט ומספר אפשרויות</translation>
     </message>
     <message>
         <source>Separate multiple email addresses within each email with a comma.</source>
@@ -2453,7 +2425,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>חיפוש</translation>
     </message>
     <message>
         <source>BitTorrent session shutdown timeout [-1: unlimited]:</source>
@@ -2461,7 +2433,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example:</source>
-        <translation type="unfinished" />
+        <translation>דוגמה:</translation>
     </message>
     <message>
         <source>Provide the SMTP server address for sending email notifications.</source>
@@ -2509,6 +2481,34 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of tracker from all torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Any of the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also when addition is cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use another path for incomplete torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of all tags:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2933,7 +2933,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>הורד</translation>
     </message>
     <message>
         <source>Copy download URL</source>
@@ -3838,6 +3838,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Content Path</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Remove all tags from selected torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -3891,6 +3895,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Action when the limit is reached</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all the limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match any limit</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4624,6 +4644,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Blocked opening RSS article URL. Only http:// and https:// links can be opened.</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -4899,7 +4931,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished" />
+        <translation>ייבא</translation>
     </message>
 </context>
 <context>
@@ -5158,7 +5190,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent share limits</source>
-        <translation type="unfinished" />
+        <translation>מגבלות שיתוף של טורנט</translation>
     </message>
 </context>
 <context>
@@ -5432,7 +5464,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>כן</translation>
     </message>
     <message>
         <source>Ignore dotfiles</source>
@@ -5440,11 +5472,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Align to piece boundary for files larger than:</source>
-        <translation type="unfinished" />
+        <translation>יישר אל גבול חתיכה עבור קבצים שגדולים מן:</translation>
     </message>
     <message>
         <source>Private torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>טורנט פרטי (לא יופץ על רשת DHT)</translation>
     </message>
     <message>
         <source>Ignore Dotfiles</source>
@@ -5452,15 +5484,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Start seeding immediately</source>
-        <translation type="unfinished" />
+        <translation>התחל לזרוע באופן מיידי</translation>
     </message>
     <message>
         <source>Optimize alignment</source>
-        <translation type="unfinished" />
+        <translation>מטב יישור</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>לא</translation>
     </message>
     <message>
         <source>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</source>
@@ -5469,10 +5501,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </context>
 <context>
     <name>DownloadFromURLDialog</name>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">הורד</translation>
-    </message>
     <message>
         <source>Magnet link</source>
         <translation>קישור מגנט</translation>
@@ -5546,7 +5574,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Speed limits</source>
-        <translation type="unfinished" />
+        <translation>מגבלות מהירות</translation>
     </message>
     <message>
         <source>Alternative download speed</source>
@@ -5558,19 +5586,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>החל</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>העלאה:</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>מגבלות מהירות חלופיות</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>הורדה:</translation>
     </message>
     <message>
         <source>Failed to set speed limits</source>
@@ -5642,15 +5670,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TorrentShareLimitsWidget</name>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>דק'</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>ברירת מחדל</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>אפשר זריעת־על עבור טורנט</translation>
     </message>
     <message>
         <source>Inactive seeding time:</source>
@@ -5662,7 +5690,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Ratio:</source>
-        <translation type="unfinished" />
+        <translation>יחס:</translation>
     </message>
     <message>
         <source>Match any limit</source>
@@ -5706,7 +5734,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>עצור טורנט</translation>
     </message>
     <message>
         <source>Mode:</source>
@@ -5714,7 +5742,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>הסר טורנט</translation>
     </message>
 </context>
 <context>

@@ -19,10 +19,6 @@
         <translation>ტორენტის დაწყება</translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">ჰეშის შემოწმების გამოტოვება</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>ტორემტის მენეჯმენტის რეჟიმი:</translation>
     </message>
@@ -73,10 +69,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>თანმიმდევრული წესით გადმოწერა</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation type="vanished">ზომა:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -195,10 +187,6 @@
         <translation>ჩამოტვირთვის სიჩქარის ლიმიტი</translation>
     </message>
     <message>
-        <source>%1 (Free space on disk: %2)</source>
-        <translation type="vanished">%1 (თავისუფალი ადგილი დისკზე: %2)</translation>
-    </message>
-    <message>
         <source>KiB/s</source>
         <translation>კბ/წ</translation>
     </message>
@@ -213,7 +201,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>ჩამოტვირთვა</translation>
     </message>
     <message>
         <source>%1 free</source>
@@ -691,14 +679,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>არა</translation>
     </message>
     <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="vanished">ატვირთვის სიჩქარის საერთო ლიმიტი</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="vanished">ჩამოტვირთვის სიჩქარის საერთო ლიმიტი</translation>
-    </message>
-    <message>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>დარწყმუნებული ხართ რომ qBittorrent-იდან გასვლა გსურთ?</translation>
     </message>
@@ -912,7 +892,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Global Speed Limits</source>
-        <translation type="unfinished" />
+        <translation>გლობალური სიჩქარის ლიმიტები</translation>
     </message>
     <message>
         <source>Pause session</source>
@@ -995,15 +975,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>არასრული ტორენტების შენახვა მისამართით:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">.torrent ფაილების კომირება მისამართით:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">დასრულებული ჩამოტვირთვიანი .torrent ფაილების კოპირება შემდეგი მისიმართით:</translation>
+        <translation type="vanished">არასრული ტორენტების შენახვა მისამართით:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -2409,7 +2381,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Transfer List</source>
-        <translation type="unfinished" />
+        <translation>ტორენტების სია</translation>
     </message>
     <message>
         <source>Start BitTorrent session in paused state:</source>
@@ -2433,7 +2405,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის შიგთავსის და რამდენიმე პარამეტრის ჩვენება</translation>
     </message>
     <message>
         <source>Separate multiple email addresses within each email with a comma.</source>
@@ -2449,7 +2421,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>ძებნა</translation>
     </message>
     <message>
         <source>BitTorrent session shutdown timeout [-1: unlimited]:</source>
@@ -2457,7 +2429,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example:</source>
-        <translation type="unfinished" />
+        <translation>მაგალითი:</translation>
     </message>
     <message>
         <source>Provide the SMTP server address for sending email notifications.</source>
@@ -2505,6 +2477,34 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of tracker from all torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Any of the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also when addition is cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use another path for incomplete torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of all tags:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2929,7 +2929,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>ჩამოტვირთვა</translation>
     </message>
     <message>
         <source>Copy download URL</source>
@@ -3834,6 +3834,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Content Path</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Remove all tags from selected torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -3887,6 +3891,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Action when the limit is reached</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all the limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match any limit</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4620,6 +4640,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Blocked opening RSS article URL. Only http:// and https:// links can be opened.</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -4894,7 +4926,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished" />
+        <translation>შემოტანა</translation>
     </message>
 </context>
 <context>
@@ -5153,7 +5185,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent share limits</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის გაზიარების შეზღუდვები</translation>
     </message>
 </context>
 <context>
@@ -5427,7 +5459,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>კი</translation>
     </message>
     <message>
         <source>Ignore dotfiles</source>
@@ -5451,11 +5483,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Optimize alignment</source>
-        <translation type="unfinished" />
+        <translation>სწორების ოპტიმიზაცია</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>არა</translation>
     </message>
     <message>
         <source>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</source>
@@ -5464,10 +5496,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </context>
 <context>
     <name>DownloadFromURLDialog</name>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">ჩამოტვირთვა</translation>
-    </message>
     <message>
         <source>Magnet link</source>
         <translation>მაგნიტური ბმული</translation>
@@ -5541,7 +5569,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Speed limits</source>
-        <translation type="unfinished" />
+        <translation>სიჩქარის ლიმიტები</translation>
     </message>
     <message>
         <source>Alternative download speed</source>
@@ -5553,19 +5581,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>გამოყენება</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>ატვირთვა:</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>ალტერნატიული სიჩქარის ლიმიტები</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>ჩამოტვირთვა:</translation>
     </message>
     <message>
         <source>Failed to set speed limits</source>
@@ -5637,11 +5665,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TorrentShareLimitsWidget</name>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>წუთი</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>ნაგულისხმევი</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
@@ -5649,7 +5677,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Inactive seeding time:</source>
-        <translation type="unfinished" />
+        <translation>არააქტიური სიდინგის დრო:</translation>
     </message>
     <message>
         <source>Match all the limits</source>
@@ -5657,7 +5685,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Ratio:</source>
-        <translation type="unfinished" />
+        <translation>პროპორციები:</translation>
     </message>
     <message>
         <source>Match any limit</source>
@@ -5665,7 +5693,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის და მისი შემცველობის წაშლა</translation>
     </message>
     <message>
         <source>Share limit values cannot be empty or invalid.</source>
@@ -5673,35 +5701,35 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Action when the limit is reached:</source>
-        <translation type="unfinished" />
+        <translation>ქმედება ლიმიტის მიღწევისას:</translation>
     </message>
     <message>
         <source>From category (%1)</source>
-        <translation type="unfinished" />
+        <translation>კატეგორიიდან (%1)</translation>
     </message>
     <message>
         <source>Set to</source>
-        <translation type="unfinished" />
+        <translation>გაგზავნის მიმღები</translation>
     </message>
     <message>
         <source>From category</source>
-        <translation type="unfinished" />
+        <translation>კატეგორიიდან</translation>
     </message>
     <message>
         <source>Default (%1)</source>
-        <translation type="unfinished" />
+        <translation>ნაგულისხმევი (%1)</translation>
     </message>
     <message>
         <source>Seeding time:</source>
-        <translation type="unfinished" />
+        <translation>სიდინგის დრო:</translation>
     </message>
     <message>
         <source>Unlimited</source>
-        <translation type="unfinished" />
+        <translation>შეუზღუდავი</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის გაჩერება</translation>
     </message>
     <message>
         <source>Mode:</source>
@@ -5709,7 +5737,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის წაშლა</translation>
     </message>
 </context>
 <context>

@@ -19,10 +19,6 @@
         <translation>Käynnistä torrent</translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Ohita tarkistussumman lasku</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Torrentien hallintatila:</translation>
     </message>
@@ -73,10 +69,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>Lataa järjestyksessä</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation type="vanished">Koko:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -139,10 +131,6 @@
         <translation>Suodata tiedostoja...</translation>
     </message>
     <message>
-        <source>Add Torrent</source>
-        <translation type="vanished">Lisää torrent</translation>
-    </message>
-    <message>
         <source>Use another path for incomplete torrent</source>
         <translation>Käytä keskeneräisille torrenteille eri sijaintia</translation>
     </message>
@@ -199,10 +187,6 @@
         <translation>Rajoita latausnopeutta</translation>
     </message>
     <message>
-        <source>%1 (Free space on disk: %2)</source>
-        <translation type="vanished">%1 (Vapaata levytilaa: %2)</translation>
-    </message>
-    <message>
         <source>KiB/s</source>
         <translation>Kt/s</translation>
     </message>
@@ -217,7 +201,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Lataa</translation>
     </message>
     <message>
         <source>%1 free</source>
@@ -604,10 +588,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Virhe:</translation>
     </message>
     <message>
-        <source>Could not contact qBittorrent.</source>
-        <translation type="vanished">qBittorrentiin ei saatu yhteyttä.</translation>
-    </message>
-    <message>
         <source>BitTorrent session shutdown timeout must be between -1 and 2147483647.</source>
         <translation type="unfinished" />
     </message>
@@ -697,14 +677,6 @@ The piece hash will be checked when it is requested for the first time by a peer
     <message>
         <source>No</source>
         <translation>Ei</translation>
-    </message>
-    <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="vanished">Yleinen lähetysnopeusrajoitus</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="vanished">Yleinen latausnopeusrajoitus</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -920,7 +892,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Global Speed Limits</source>
-        <translation type="unfinished" />
+        <translation>Yleiset nopeusrajoitukset</translation>
     </message>
     <message>
         <source>Pause session</source>
@@ -1003,15 +975,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>Säilytä keskeneräiset torrentit kohteeseen:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">Kopioi .torrent-tiedostot kohteeseen:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">Kopioi valmistuneiden latausten .torrent-tiedostot kohteeseen:</translation>
+        <translation type="vanished">Säilytä keskeneräiset torrentit kohteeseen:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -2076,10 +2040,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>Väriteema:</translation>
     </message>
     <message>
-        <source>Show external IP in status bar</source>
-        <translation type="vanished">Näytä ulkoinen IP tilarivillä</translation>
-    </message>
-    <message>
         <source>Fetched trackers</source>
         <translation>Noudetut seurantapalvelimet</translation>
     </message>
@@ -2114,10 +2074,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>URL:</source>
         <translation>URL:</translation>
-    </message>
-    <message>
-        <source>Transfer list</source>
-        <translation type="vanished">Siirtoluettelo</translation>
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
@@ -2332,10 +2288,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>SMTP-salaus:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="vanished">Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</translation>
-    </message>
-    <message>
         <source>Default port</source>
         <translation>Oletusportti</translation>
     </message>
@@ -2409,7 +2361,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent.</source>
-        <translation type="unfinished" />
+        <translation>qBittorrentiin ei saatu yhteyttä.</translation>
     </message>
     <message>
         <source>Separate multiple emails with a semicolon.</source>
@@ -2433,7 +2385,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Transfer List</source>
-        <translation type="unfinished" />
+        <translation>Siirtolista</translation>
     </message>
     <message>
         <source>Start BitTorrent session in paused state:</source>
@@ -2457,7 +2409,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished" />
+        <translation>Näytä torrentin sisältö ja valinnat</translation>
     </message>
     <message>
         <source>Separate multiple email addresses within each email with a comma.</source>
@@ -2473,7 +2425,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Etsi</translation>
     </message>
     <message>
         <source>BitTorrent session shutdown timeout [-1: unlimited]:</source>
@@ -2481,7 +2433,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Example:</source>
-        <translation type="unfinished" />
+        <translation>Esimerkki:</translation>
     </message>
     <message>
         <source>Provide the SMTP server address for sending email notifications.</source>
@@ -2529,6 +2481,34 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of tracker from all torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Any of the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also when addition is cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use another path for incomplete torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of all tags:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2953,7 +2933,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Lataa</translation>
     </message>
     <message>
         <source>Copy download URL</source>
@@ -3858,6 +3838,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <source>Content Path</source>
         <translation>Sisällön polku</translation>
     </message>
+    <message>
+        <source>Remove all tags from selected torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -3912,6 +3896,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Action when the limit is reached</source>
         <translation>Toiminto rajan täyttyessä</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all the limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match any limit</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4644,6 +4644,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <source>Blocked opening RSS article URL. Only http:// and https:// links can be opened.</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -4919,7 +4931,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished" />
+        <translation>Tuo</translation>
     </message>
 </context>
 <context>
@@ -5178,7 +5190,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Torrent share limits</source>
-        <translation type="unfinished" />
+        <translation>Torrentin jakorajoitukset</translation>
     </message>
 </context>
 <context>
@@ -5299,12 +5311,6 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
         <translation>Torrentia ei voitu luoda.</translation>
     </message>
     <message>
-        <source>Private
-                torrent (Won't distribute on DHT network)</source>
-        <translation type="vanished">Yksityinen
-                torrent (ei jaeta DHT-verkossa)</translation>
-    </message>
-    <message>
         <source>Unable to export torrent file</source>
         <translation>Torrent-tiedostoa ei voitu viedä</translation>
     </message>
@@ -5353,12 +5359,6 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
         <translation>Tila</translation>
     </message>
     <message>
-        <source>Align to piece boundary for files larger
-                than:</source>
-        <translation type="vanished">Align to piece boundary for files larger
-                than:</translation>
-    </message>
-    <message>
         <source>Select file/folder to share:</source>
         <translation>Valitse jaettava tiedosto tai kansio:</translation>
     </message>
@@ -5381,12 +5381,6 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     <message>
         <source>Unable to load torrent creation tasks</source>
         <translation>Torrentin luontitehtäviä ei voitu ladata</translation>
-    </message>
-    <message>
-        <source>Optimize
-                    alignment</source>
-        <translation type="vanished">Optimize
-                    alignment</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -5419,14 +5413,6 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     <message>
         <source>Web Seeds</source>
         <translation>Web-jakolähteet</translation>
-    </message>
-    <message>
-        <source>Start
-                seeding
-                immediately</source>
-        <translation type="vanished">Aloita
-                jakaminen
-                heti</translation>
     </message>
     <message>
         <source>Format</source>
@@ -5478,7 +5464,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Kyllä</translation>
     </message>
     <message>
         <source>Ignore dotfiles</source>
@@ -5490,7 +5476,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Private torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>Yksityinen torrent (Ei jaeta DHT-verkossa)</translation>
     </message>
     <message>
         <source>Ignore Dotfiles</source>
@@ -5498,15 +5484,15 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Start seeding immediately</source>
-        <translation type="unfinished" />
+        <translation>Käynnistä jako välittömästi</translation>
     </message>
     <message>
         <source>Optimize alignment</source>
-        <translation type="unfinished" />
+        <translation>Optimoi kohdistus</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Ei</translation>
     </message>
     <message>
         <source>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</source>
@@ -5515,10 +5501,6 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
 </context>
 <context>
     <name>DownloadFromURLDialog</name>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Lataa</translation>
-    </message>
     <message>
         <source>Magnet link</source>
         <translation>Magnet-linkki</translation>
@@ -5592,7 +5574,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Speed limits</source>
-        <translation type="unfinished" />
+        <translation>Nopeusrajoitukset</translation>
     </message>
     <message>
         <source>Alternative download speed</source>
@@ -5604,19 +5586,19 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>Toteuta</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>Lähetys:</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>Vaihtoehtoiset nopeusrajoitukset</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>Lataus:</translation>
     </message>
     <message>
         <source>Failed to set speed limits</source>
@@ -5688,15 +5670,15 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     <name>TorrentShareLimitsWidget</name>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>min</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Oletus</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Käytä torrentille superjakoa</translation>
     </message>
     <message>
         <source>Inactive seeding time:</source>
@@ -5708,7 +5690,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Ratio:</source>
-        <translation type="unfinished" />
+        <translation>Jakosuhde:</translation>
     </message>
     <message>
         <source>Match any limit</source>
@@ -5716,7 +5698,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>Poista torrent ja sen sisältö</translation>
     </message>
     <message>
         <source>Share limit values cannot be empty or invalid.</source>
@@ -5752,7 +5734,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Pysäytä torrent</translation>
     </message>
     <message>
         <source>Mode:</source>
@@ -5760,7 +5742,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Poista torrentti</translation>
     </message>
 </context>
 <context>

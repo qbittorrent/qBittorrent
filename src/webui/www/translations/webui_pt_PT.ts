@@ -19,10 +19,6 @@
         <translation>Iniciar torrent</translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Ignorar verificação do hash</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Modo de gestão do torrent:</translation>
     </message>
@@ -73,10 +69,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>Transferir sequencialmente</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation type="vanished">Tamanho:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -139,10 +131,6 @@
         <translation>Filtrar ficheiros...</translation>
     </message>
     <message>
-        <source>Add Torrent</source>
-        <translation type="vanished">Adicionar torrent</translation>
-    </message>
-    <message>
         <source>Use another path for incomplete torrent</source>
         <translation>Usar outro caminho para torrent incompleto</translation>
     </message>
@@ -199,10 +187,6 @@
         <translation>Limitar velocidade de download</translation>
     </message>
     <message>
-        <source>%1 (Free space on disk: %2)</source>
-        <translation type="vanished">%1 (Espaço livre no disco: %2)</translation>
-    </message>
-    <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -217,7 +201,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Descarregar</translation>
     </message>
     <message>
         <source>%1 free</source>
@@ -604,10 +588,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Erro:</translation>
     </message>
     <message>
-        <source>Could not contact qBittorrent.</source>
-        <translation type="vanished">Não foi possível contactar o qBittorrent.</translation>
-    </message>
-    <message>
         <source>BitTorrent session shutdown timeout must be between -1 and 2147483647.</source>
         <translation type="unfinished" />
     </message>
@@ -697,14 +677,6 @@ The piece hash will be checked when it is requested for the first time by a peer
     <message>
         <source>No</source>
         <translation>Não</translation>
-    </message>
-    <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="vanished">Limite global da velocidade para os uploads</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="vanished">Limite global da velocidade para os downloads</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -920,7 +892,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Global Speed Limits</source>
-        <translation type="unfinished" />
+        <translation>Limite global de velocidade</translation>
     </message>
     <message>
         <source>Pause session</source>
@@ -1003,15 +975,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>Guardar os torrents incompletos em:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">Copiar os ficheiros .torrent para:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">Copiar os ficheiros .torrent das transferências terminadas para:</translation>
+        <translation type="vanished">Guardar os torrents incompletos em:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -2076,10 +2040,6 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
         <translation>Esquema de cor:</translation>
     </message>
     <message>
-        <source>Show external IP in status bar</source>
-        <translation type="vanished">Mostrar IP externo na barra de status</translation>
-    </message>
-    <message>
         <source>Fetched trackers</source>
         <translation>Trackers obtidos</translation>
     </message>
@@ -2114,10 +2074,6 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     <message>
         <source>URL:</source>
         <translation>URL:</translation>
-    </message>
-    <message>
-        <source>Transfer list</source>
-        <translation type="vanished">Lista de transferências</translation>
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
@@ -2332,10 +2288,6 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
         <translation>Encriptação SMTP:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="vanished">Tentativa de envio de e-mail de teste.\nVerifique a caixa de entrada para confirmar se foi enviado com sucesso.\nConsulte o registo de execução para ver eventuais erros.</translation>
-    </message>
-    <message>
         <source>Default port</source>
         <translation>Porta predefinida</translation>
     </message>
@@ -2409,7 +2361,7 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     </message>
     <message>
         <source>Could not contact qBittorrent.</source>
-        <translation type="unfinished" />
+        <translation>Não foi possível contactar o qBittorrent.</translation>
     </message>
     <message>
         <source>Separate multiple emails with a semicolon.</source>
@@ -2433,7 +2385,7 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     </message>
     <message>
         <source>Transfer List</source>
-        <translation type="unfinished" />
+        <translation>Lista de transferências</translation>
     </message>
     <message>
         <source>Start BitTorrent session in paused state:</source>
@@ -2473,7 +2425,7 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Procurar</translation>
     </message>
     <message>
         <source>BitTorrent session shutdown timeout [-1: unlimited]:</source>
@@ -2481,7 +2433,7 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     </message>
     <message>
         <source>Example:</source>
-        <translation type="unfinished" />
+        <translation>Exemplo:</translation>
     </message>
     <message>
         <source>Provide the SMTP server address for sending email notifications.</source>
@@ -2529,6 +2481,34 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     </message>
     <message>
         <source>a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of tracker from all torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Any of the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also when addition is cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use another path for incomplete torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of all tags:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2949,11 +2929,11 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     </message>
     <message>
         <source>Copy path</source>
-        <translation type="unfinished" />
+        <translation>Copiar caminho</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Descarregar</translation>
     </message>
     <message>
         <source>Copy download URL</source>
@@ -3858,6 +3838,10 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
         <source>Content Path</source>
         <translation>Caminho do conteúdo</translation>
     </message>
+    <message>
+        <source>Remove all tags from selected torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -3912,6 +3896,22 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     <message>
         <source>Action when the limit is reached</source>
         <translation>Ação ao atingir o limite</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all the limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match any limit</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4644,6 +4644,18 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
         <source>Blocked opening RSS article URL. Only http:// and https:// links can be opened.</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -5178,7 +5190,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     </message>
     <message>
         <source>Torrent share limits</source>
-        <translation type="unfinished" />
+        <translation>Limites de partilha de torrent</translation>
     </message>
 </context>
 <context>
@@ -5299,12 +5311,6 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
         <translation>Não foi possível criar o torrent.</translation>
     </message>
     <message>
-        <source>Private
-                torrent (Won't distribute on DHT network)</source>
-        <translation type="vanished">Torrent privado
-                (não será distribuído na rede DHT)</translation>
-    </message>
-    <message>
         <source>Unable to export torrent file</source>
         <translation>Não foi possível exportar o ficheiro torrent</translation>
     </message>
@@ -5353,12 +5359,6 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
         <translation>Estado</translation>
     </message>
     <message>
-        <source>Align to piece boundary for files larger
-                than:</source>
-        <translation type="vanished">Alinhar ao limite da peça para ficheiros maiores
-                do que:</translation>
-    </message>
-    <message>
         <source>Select file/folder to share:</source>
         <translation>Selecionar ficheiro/pasta a partilhar:</translation>
     </message>
@@ -5381,12 +5381,6 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     <message>
         <source>Unable to load torrent creation tasks</source>
         <translation>Não foi possível carregar as tarefas de criação de torrents</translation>
-    </message>
-    <message>
-        <source>Optimize
-                    alignment</source>
-        <translation type="vanished">Otimizar
-                    alinhamento</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -5419,14 +5413,6 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     <message>
         <source>Web Seeds</source>
         <translation>Web seeds</translation>
-    </message>
-    <message>
-        <source>Start
-                seeding
-                immediately</source>
-        <translation type="vanished">Iniciar
-                seed
-                imediatamente</translation>
     </message>
     <message>
         <source>Format</source>
@@ -5478,7 +5464,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Sim</translation>
     </message>
     <message>
         <source>Ignore dotfiles</source>
@@ -5486,11 +5472,11 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     </message>
     <message>
         <source>Align to piece boundary for files larger than:</source>
-        <translation type="unfinished" />
+        <translation>Alinhar os limites da peça para ficheiros maiores que:</translation>
     </message>
     <message>
         <source>Private torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>Torrent privado (Não distribuir em redes DHT)</translation>
     </message>
     <message>
         <source>Ignore Dotfiles</source>
@@ -5498,15 +5484,15 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     </message>
     <message>
         <source>Start seeding immediately</source>
-        <translation type="unfinished" />
+        <translation>Começar a seed imediatamente</translation>
     </message>
     <message>
         <source>Optimize alignment</source>
-        <translation type="unfinished" />
+        <translation>Otimizar alinhamento</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Não</translation>
     </message>
     <message>
         <source>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</source>
@@ -5515,10 +5501,6 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
 </context>
 <context>
     <name>DownloadFromURLDialog</name>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Transferir</translation>
-    </message>
     <message>
         <source>Magnet link</source>
         <translation>Ligação magnet</translation>
@@ -5592,7 +5574,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     </message>
     <message>
         <source>Speed limits</source>
-        <translation type="unfinished" />
+        <translation>Limites de velocidade</translation>
     </message>
     <message>
         <source>Alternative download speed</source>
@@ -5604,19 +5586,19 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>Aplicar</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>Envio:</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>Limites alternativos de velocidade</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>Transferência:</translation>
     </message>
     <message>
         <source>Failed to set speed limits</source>
@@ -5688,35 +5670,35 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     <name>TorrentShareLimitsWidget</name>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>min</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Predefinido</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Ativar o super-seeding para o torrent</translation>
     </message>
     <message>
         <source>Inactive seeding time:</source>
-        <translation type="unfinished" />
+        <translation>Tempo de seed inativo:</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Corresponder a todos os limites</translation>
     </message>
     <message>
         <source>Ratio:</source>
-        <translation type="unfinished" />
+        <translation>Rácio:</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Corresponder a qualquer limite</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>Remover o torrent e o respetivo conteúdo</translation>
     </message>
     <message>
         <source>Share limit values cannot be empty or invalid.</source>
@@ -5724,43 +5706,43 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     </message>
     <message>
         <source>Action when the limit is reached:</source>
-        <translation type="unfinished" />
+        <translation>Ação ao atingir o limite:</translation>
     </message>
     <message>
         <source>From category (%1)</source>
-        <translation type="unfinished" />
+        <translation>Da categoria (%1)</translation>
     </message>
     <message>
         <source>Set to</source>
-        <translation type="unfinished" />
+        <translation>Definir como</translation>
     </message>
     <message>
         <source>From category</source>
-        <translation type="unfinished" />
+        <translation>Da categoria</translation>
     </message>
     <message>
         <source>Default (%1)</source>
-        <translation type="unfinished" />
+        <translation>Predefinido (%1)</translation>
     </message>
     <message>
         <source>Seeding time:</source>
-        <translation type="unfinished" />
+        <translation>Tempo de seed:</translation>
     </message>
     <message>
         <source>Unlimited</source>
-        <translation type="unfinished" />
+        <translation>Ilimitado</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Parar torrent</translation>
     </message>
     <message>
         <source>Mode:</source>
-        <translation type="unfinished" />
+        <translation>Modo:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Remover torrent</translation>
     </message>
 </context>
 <context>
