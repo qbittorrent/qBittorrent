@@ -3,9 +3,10 @@ file(GLOB QBT_TS_FILES "${qBittorrent_SOURCE_DIR}/src/lang/*.ts")
 # Depends on Qt's LinguistTools
 get_target_property(QT_LUPDATE_EXECUTABLE Qt::lupdate IMPORTED_LOCATION)
 add_custom_target(qbt_update_translations
-                    COMMAND ${QT_LUPDATE_EXECUTABLE} -extensions ui,c,c++,cc,cpp,cxx,ch,h,h++,hh,hpp,hxx
-                                                     ${qBittorrent_SOURCE_DIR}
-                                                     -ts ${QBT_TS_FILES}
+                    COMMAND ${QT_LUPDATE_EXECUTABLE}
+                        -extensions ui,c,c++,cc,cpp,cxx,ch,h,h++,hh,hpp,hxx
+                        ${qBittorrent_SOURCE_DIR}
+                        -ts ${QBT_TS_FILES}
                     WORKING_DIRECTORY "${qBittorrent_SOURCE_DIR}"
                     VERBATIM
                     COMMAND_EXPAND_LISTS)
