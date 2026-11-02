@@ -620,7 +620,11 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_peerTurnover(BITTORRENT_SESSION_KEY(u"PeerTurnover"_s), 4)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY(u"PeerTurnoverCutOff"_s), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY(u"PeerTurnoverInterval"_s), 300)
+#if LIBTORRENT_VERSION_NUM >= 20103
+    , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_s), 1500)
+#else
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_s), 500)
+#endif
     , m_maxOutstandingBlockRequests(BITTORRENT_SESSION_KEY(u"MaxOutstandingBlockRequests"_s), 2000)
     , m_isExcludedFileNamesEnabled(BITTORRENT_KEY(u"ExcludedFileNamesEnabled"_s), false)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_s))
