@@ -96,6 +96,11 @@ div:has(> #setRatio) {
         padding: 2px 4px 2px 0;
     }
 
+    /* the watched folders' two fields, and their columns' names, 8 px apart */
+    & #watched_folders_tab :is(td, th) {
+        padding-inline: 0 var(--space-4);
+    }
+
     /* a row with a field, 6 px clear of the rows and notes around it */
     & .formRow {
         &:has(> :is(select, textarea, button)),
@@ -1528,11 +1533,25 @@ of its row where it fits */
         }
 
         /* a watched folder's choice below its folder as far as the rows' lines stand apart, and as wide, so that its
-        choices show whole */
+        choices show whole; a line between folders, and the columns' names above them, one below the other */
         & #watched_folders_tab tbody tr:not([hidden]) {
+            border-top: var(--responsive-separator);
+            padding: var(--space-5) 0 var(--space-3);
             row-gap: var(--space-3);
 
             & > td {
+                flex: 1 0 100%;
+            }
+        }
+
+        & #watched_folders_tab :is(td, th) {
+            padding: 0;
+        }
+
+        & #watched_folders_tab thead tr {
+            padding-bottom: var(--space-3);
+
+            & > th {
                 flex: 1 0 100%;
             }
         }

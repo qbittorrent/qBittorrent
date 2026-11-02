@@ -813,14 +813,10 @@ td.noWrap {
     scrollbar-gutter: stable;
 }
 
-#watched_folders_tab {
-    border-collapse: collapse;
-}
-
-#watched_folders_tab td,
+/* the watched folders: their columns' names above their fields, as Options' other names, without a grid */
 #watched_folders_tab th {
-    border: 1px solid black;
-    padding: 2px 4px;
+    font-weight: normal;
+    text-align: start;
 }
 
 .select-watched-folder-editable {
