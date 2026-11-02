@@ -98,5 +98,5 @@ inline const QString C_LOCALE_SWEDISH = u"Svenska"_s;
 inline const QString C_LOCALE_THAI = u"ไทย"_s;
 inline const QString C_LOCALE_TURKISH = u"Türkçe"_s;
 inline const QString C_LOCALE_UKRAINIAN = u"Українська"_s;
-inline const QString C_LOCALE_UZBEK = u"أۇزبېك‎"_s;
+inline const QString C_LOCALE_UZBEK = u"أۇزبېك"_s;
 inline const QString C_LOCALE_VIETNAMESE = u"Tiếng Việt"_s;

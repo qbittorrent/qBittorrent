@@ -1172,7 +1172,7 @@ void TorrentsController::addAction()
             ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
             : std::optional<BitTorrent::TorrentContentLayout> {});
 
-    const DataMap &torrents = data();
+    const DataList &torrents = data();
 
     QList<BitTorrent::DownloadPriority> filePriorities;
     const QStringList filePrioritiesParam = params()[u"filePriorities"_s].split(u',', Qt::SkipEmptyParts);
@@ -1313,9 +1313,9 @@ void TorrentsController::addAction()
     }
 
     // process uploaded .torrent files
-    for (auto it = torrents.constBegin(); it != torrents.constEnd(); ++it)
+    for (const Http::UploadedFile &torrent : torrents)
     {
-        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
+        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(torrent.data))
         {
             const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
             if (BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
@@ -1329,7 +1329,7 @@ void TorrentsController::addAction()
         }
         else
         {
-            throw APIError(APIErrorType::BadData, tr("Error: '%1' is not a valid torrent file.").arg(it.key()));
+            throw APIError(APIErrorType::BadData, tr("Error: '%1' is not a valid torrent file.").arg(torrent.filename));
         }
     }
 
@@ -2347,6 +2347,11 @@ void TorrentsController::fetchMetadataAction()
             }
             m_requestedTorrentSource.insert(source);
         }
+        else
+        {
+            // asking again takes back an earlier cancel
+            m_cancelledTorrentSource.remove(source);
+        }
 
         setResult(QJsonObject {});
         setStatus(APIStatus::Async);
@@ -2357,17 +2362,55 @@ void TorrentsController::fetchMetadataAction()
     }
 }
 
+void TorrentsController::cancelFetchMetadataAction()
+{
+    requireParams({u"source"_s});
+
+    const QString sourceParam = params()[u"source"_s].trimmed();
+    if (sourceParam.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Must specify URI or hash"));
+
+    const QString source = QUrl::fromPercentEncoding(sourceParam.toLatin1());
+
+    // a URL still being downloaded: its result is dropped when it arrives
+    if (m_requestedTorrentSource.contains(source))
+    {
+        if (m_cancelledTorrentSource.contains(source))
+            throw APIError(APIErrorType::NotFound);
+
+        m_cancelledTorrentSource.insert(source);
+        return;
+    }
+
+    BitTorrent::InfoHash infoHash;
+    if (const auto iter = m_torrentSourceCache.constFind(source); iter != m_torrentSourceCache.constEnd())
+        infoHash = iter.value();
+    else if (const auto sourceTorrentDescr = BitTorrent::TorrentDescriptor::parse(source))
+        infoHash = sourceTorrentDescr.value().infoHash();
+
+    if (!infoHash.isValid())
+        throw APIError(APIErrorType::NotFound);
+
+    const BitTorrent::TorrentID torrentID = infoHash.toTorrentID();
+    const bool isCancelled = BitTorrent::Session::instance()->cancelDownloadMetadata(torrentID);
+    const bool isCached = m_torrentMetadataCache.remove(torrentID);
+    m_torrentSourceCache.remove(source);
+
+    if (!isCancelled && !isCached)
+        throw APIError(APIErrorType::NotFound);
+}
+
 void TorrentsController::parseMetadataAction()
 {
-    const DataMap &uploadedTorrents = data();
+    const DataList &uploadedTorrents = data();
     // must provide some value to parse
     if (uploadedTorrents.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Must specify torrent file(s)"));
 
     QJsonArray result;
-    for (auto it = uploadedTorrents.constBegin(); it != uploadedTorrents.constEnd(); ++it)
+    for (const Http::UploadedFile &torrent : uploadedTorrents)
     {
-        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
+        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(torrent.data))
         {
             const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
             m_torrentMetadataCache.insert(torrentDescr.infoHash().toTorrentID(), torrentDescr);
@@ -2375,7 +2418,7 @@ void TorrentsController::parseMetadataAction()
         }
         else
         {
-            throw APIError(APIErrorType::BadData, tr("'%1' is not a valid torrent file.").arg(it.key()));
+            throw APIError(APIErrorType::BadData, tr("'%1' is not a valid torrent file.").arg(torrent.filename));
         }
     }
 
@@ -2465,6 +2508,8 @@ void TorrentsController::onDownloadFinished(const Net::DownloadResult &result)
 {
     const QString source = result.url;
     m_requestedTorrentSource.remove(source);
+    if (m_cancelledTorrentSource.remove(source))
+        return;
 
     switch (result.status)
     {
@@ -2513,6 +2558,8 @@ void TorrentsController::onMetadataDownloaded(const BitTorrent::TorrentInfo &inf
 void TorrentsController::onSearchPluginTorrentDownloaded(const QString &source, const QString &data)
 {
     m_requestedTorrentSource.remove(source);
+    if (m_cancelledTorrentSource.remove(source))
+        return;
 
     // magnet URI
     if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(data))

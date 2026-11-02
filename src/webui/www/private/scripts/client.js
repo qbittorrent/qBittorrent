@@ -222,6 +222,17 @@ window.qBittorrent.Client ??= (() => {
                         metadata,
                     }, window.origin);
                 }
+            },
+            onClose: () => {
+                // a lookup that is still running would otherwise go on after the window is gone
+                if (shouldFetchMetadata) {
+                    fetch("api/v2/torrents/cancelFetchMetadata", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            source: source
+                        })
+                    });
+                }
             }
         });
     };
