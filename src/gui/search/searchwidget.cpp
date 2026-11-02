@@ -754,6 +754,7 @@ void SearchWidget::restoreSession()
     connect(m_dataStorage, &DataStorage::sessionLoaded, this, [this](const SessionData &sessionData)
     {
         m_ui->tabWidget->setCurrentWidget(m_tabWidgets.value(sessionData.currentTabID));
+        saveSession();
     });
 
     QMetaObject::invokeMethod(m_dataStorage, [this] { m_dataStorage->loadSession(m_storeOpenedTabsResults); });
