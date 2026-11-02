@@ -301,7 +301,7 @@
                     if ((name === null) || (name === ""))
                         return false;
                     if (name.match("^([^\\\\\\/]|[^\\\\\\/]([^\\\\\\/]|\\/(?=[^\\/]))*[^\\\\\\/])$") === null) {
-                        alert("QBT_TR(Invalid category name:\nPlease do not use any special characters in the category name.)QBT_TR[CONTEXT=HttpServer]");
+                        window.parent.qBittorrent.Dialog.alert("QBT_TR(Invalid category name:\nPlease do not use any special characters in the category name.)QBT_TR[CONTEXT=HttpServer]");
                         return false;
                     }
                     return true;
@@ -324,7 +324,7 @@
                     const valueElem = document.getElementById(valueID);
                     const value = valueElem.value.trim();
                     if (!valueElem.disabled && ((value === "") || (Number(value) < 0))) {
-                        alert("QBT_TR(Share limit values cannot be empty or invalid.)QBT_TR[CONTEXT=TorrentShareLimitsWidget]");
+                        window.parent.qBittorrent.Dialog.alert("QBT_TR(Share limit values cannot be empty or invalid.)QBT_TR[CONTEXT=TorrentShareLimitsWidget]");
                         return;
                     }
                 }
@@ -354,7 +354,7 @@
                             .then(async (response) => {
                                 if (!response.ok) {
                                     const errorMessage = await response.text();
-                                    alert((errorMessage !== "")
+                                    window.parent.qBittorrent.Dialog.alert((errorMessage !== "")
                                         ? errorMessage
                                         : `QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category] ${window.qBittorrent.Misc.escapeHtml(categoryName)}`);
                                     return;
@@ -369,7 +369,7 @@
                                     })
                                     .then((response) => {
                                         if (!response.ok) {
-                                            alert("QBT_TR(Unable to set category)QBT_TR[CONTEXT=Category]");
+                                            window.parent.qBittorrent.Dialog.alert("QBT_TR(Unable to set category)QBT_TR[CONTEXT=Category]");
                                             return;
                                         }
 
@@ -395,7 +395,7 @@
                             .then(async (response) => {
                                 if (!response.ok) {
                                     const errorMessage = await response.text();
-                                    alert((errorMessage !== "")
+                                    window.parent.qBittorrent.Dialog.alert((errorMessage !== "")
                                         ? errorMessage
                                         : "QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category]");
                                     return;
@@ -419,11 +419,11 @@
                             .then(async (response) => {
                                 if (!response.ok) {
                                     if (response.status === 404) {
-                                        alert("QBT_TR(Category does not exist)QBT_TR[CONTEXT=Category]");
+                                        window.parent.qBittorrent.Dialog.alert("QBT_TR(Category does not exist)QBT_TR[CONTEXT=Category]");
                                     }
                                     else {
                                         const errorMessage = await response.text();
-                                        alert((errorMessage !== "")
+                                        window.parent.qBittorrent.Dialog.alert((errorMessage !== "")
                                             ? errorMessage
                                             : "QBT_TR(Unable to edit category)QBT_TR[CONTEXT=Category]");
                                     }

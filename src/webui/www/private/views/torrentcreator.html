@@ -216,7 +216,7 @@
                     const responseText = await response.text();
                     if (responseText.length > 0)
                         error += `: ${responseText}`;
-                    alert(error);
+                    window.qBittorrent.Dialog.alert(error);
                     return;
                 }
 

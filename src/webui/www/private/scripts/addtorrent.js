@@ -286,7 +286,7 @@ window.qBittorrent.AddTorrent ??= (() => {
                 if (!response.ok) {
                     metadataFailed();
                     if (response.status === 415)
-                        alert(await response.text());
+                        window.parent.qBittorrent.Dialog.alert(await response.text());
                     return;
                 }
 

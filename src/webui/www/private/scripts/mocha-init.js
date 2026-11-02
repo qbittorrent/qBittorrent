@@ -45,7 +45,8 @@ window.qBittorrent.Dialog ??= (() => {
             baseModalOptions: baseModalOptions,
             limitWidthToViewport: limitWidthToViewport,
             limitHeightToViewport: limitHeightToViewport,
-            confirm: confirm
+            confirm: confirm,
+            alert: alert
         };
     };
 
@@ -122,6 +123,52 @@ window.qBittorrent.Dialog ??= (() => {
                 onYes: onYes
             }
         });
+    };
+
+    // tells in a window of the WebUI's, rather than the browser's alert(); a message that comes while another shows
+    // waits until that one is closed, as alert()'s do
+    const messages = [];
+    const showMessage = () => {
+        new MochaUI.Modal({
+            ...baseModalOptions,
+            id: "messageDialog",
+            title: "qBittorrent",
+            contentURL: "views/message.html?v=${CACHEID}",
+            data: {
+                message: messages[0]
+            },
+            onCloseComplete: () => {
+                // once Mocha has let go of the window, which it does after this returns
+                setTimeout(() => {
+                    messages.shift();
+                    if (messages.length > 0) {
+                        showMessage();
+                        return;
+                    }
+
+                    // a modal window the message showed over, such as a question whose action failed, keeps the page
+                    // behind it covered, and is the one a click there closes
+                    const covered = Object.values(MochaUI.Windows.instances)
+                        .find((instance) => ((instance.options.type === "modal") || (instance.options.type === "modal2")) && !instance.isClosing);
+                    if (covered === undefined) {
+                        baseModalOptions.onCloseComplete();
+                        return;
+                    }
+                    MochaUI.currentModal = covered.windowEl;
+                    // above the cover again, as Mocha puts a modal window as it opens: focused anew, it was put
+                    // among the others
+                    covered.windowEl.style.zIndex = 11000;
+                    MochaUI.Modal.modalOverlayCloseMorph.cancel();
+                    document.getElementById("modalOverlay").style.display = "block";
+                    MochaUI.Modal.modalOverlayOpenMorph.start({ opacity: 0.6 });
+                }, 0);
+            }
+        });
+    };
+    const alert = (message) => {
+        messages.push(message);
+        if (messages.length === 1)
+            showMessage();
     };
 
     return exports();
@@ -572,7 +619,7 @@ const initializeWindows = () => {
                     })
                     .then((response) => {
                         if (!response.ok) {
-                            alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
+                            window.qBittorrent.Dialog.alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
                             return;
                         }
 
@@ -621,7 +668,7 @@ const initializeWindows = () => {
             method: "POST",
         }).then((response) => {
             if (!response.ok) {
-                alert("QBT_TR(Unable to pause the session.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Unable to pause the session.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             updateMainData();
@@ -633,7 +680,7 @@ const initializeWindows = () => {
             method: "POST",
         }).then((response) => {
             if (!response.ok) {
-                alert("QBT_TR(Unable to resume the session.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Unable to resume the session.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             updateMainData();
@@ -666,7 +713,7 @@ const initializeWindows = () => {
                     })
                     .then((response) => {
                         if (!response.ok) {
-                            alert("QBT_TR(Unable to set Auto Torrent Management for the selected torrents.)QBT_TR[CONTEXT=HttpServer]");
+                            window.qBittorrent.Dialog.alert("QBT_TR(Unable to set Auto Torrent Management for the selected torrents.)QBT_TR[CONTEXT=HttpServer]");
                             return;
                         }
 
@@ -697,7 +744,7 @@ const initializeWindows = () => {
                     })
                     .then((response) => {
                         if (!response.ok) {
-                            alert("QBT_TR(Unable to recheck torrents.)QBT_TR[CONTEXT=HttpServer]");
+                            window.qBittorrent.Dialog.alert("QBT_TR(Unable to recheck torrents.)QBT_TR[CONTEXT=HttpServer]");
                             return;
                         }
 
@@ -815,7 +862,7 @@ const initializeWindows = () => {
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alert("QBT_TR(Unable to start torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        window.qBittorrent.Dialog.alert("QBT_TR(Unable to start torrents.)QBT_TR[CONTEXT=HttpServer]");
                         return;
                     }
 
@@ -837,7 +884,7 @@ const initializeWindows = () => {
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alert("QBT_TR(Unable to force start torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        window.qBittorrent.Dialog.alert("QBT_TR(Unable to force start torrents.)QBT_TR[CONTEXT=HttpServer]");
                         return;
                     }
 
@@ -858,7 +905,7 @@ const initializeWindows = () => {
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alert("QBT_TR(Unable to stop torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        window.qBittorrent.Dialog.alert("QBT_TR(Unable to stop torrents.)QBT_TR[CONTEXT=HttpServer]");
                         return;
                     }
 
@@ -897,7 +944,7 @@ const initializeWindows = () => {
                     })
                     .then((response) => {
                         if (!response.ok) {
-                            alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
+                            window.qBittorrent.Dialog.alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
                             return;
                         }
 

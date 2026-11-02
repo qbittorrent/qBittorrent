@@ -603,7 +603,7 @@ window.qBittorrent.Search ??= (() => {
         }
 
         if (blockedUrls.length > 0)
-            alert(`QBT_TR(Blocked opening search result description page URL. Only http:// and https:// links can be opened.)QBT_TR[CONTEXT=SearchJobWidget]\n\n${blockedUrls.join("\n")}`);
+            window.qBittorrent.Dialog.alert(`QBT_TR(Blocked opening search result description page URL. Only http:// and https:// links can be opened.)QBT_TR[CONTEXT=SearchJobWidget]\n\n${blockedUrls.join("\n")}`);
     };
 
     const copySearchTorrentName = () => {
@@ -676,11 +676,11 @@ window.qBittorrent.Search ??= (() => {
         Promise.all(requests)
             .then((responses) => {
                 if (responses.some((response) => !response.ok))
-                    alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
             })
             .catch((error) => {
                 console.error("Failed to add torrents:", error);
-                alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
             });
     };
 

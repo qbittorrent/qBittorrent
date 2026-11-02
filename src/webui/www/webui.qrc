@@ -438,6 +438,7 @@
         <file>private/views/installsearchplugin.html</file>
         <file>private/views/log.html</file>
         <file>private/views/logTabs.html</file>
+        <file>private/views/message.html</file>
         <file>private/views/preferences.html</file>
         <file>private/views/preferencesToolbar.html</file>
         <file>private/views/properties.html</file>

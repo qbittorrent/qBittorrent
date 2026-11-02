@@ -90,7 +90,7 @@
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        window.qBittorrent.Dialog.alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
                         return;
                     }
 

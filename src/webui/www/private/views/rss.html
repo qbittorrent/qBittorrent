@@ -362,7 +362,7 @@
                         }
 
                         if (blockedUrls.length > 0)
-                            alert(`${blockedArticleUrlMessage}\n\n${blockedUrls.join("\n")}`);
+                            window.qBittorrent.Dialog.alert(`${blockedArticleUrlMessage}\n\n${blockedUrls.join("\n")}`);
                     }
                 },
                 offsets: {
@@ -852,7 +852,7 @@
                 .then(async (response) => {
                     if (!response.ok) {
                         if (response.status === 409)
-                            alert(await response.text());
+                            window.qBittorrent.Dialog.alert(await response.text());
                         return;
                     }
                 });
@@ -974,7 +974,7 @@
                 .then(async (response) => {
                     if (!response.ok) {
                         if (response.status === 409)
-                            alert(await response.text());
+                            window.qBittorrent.Dialog.alert(await response.text());
                         return;
                     }
                 });
@@ -1018,7 +1018,7 @@
                     .then(async (response) => {
                         if (!response.ok) {
                             if (response.status === 409)
-                                alert(await response.text());
+                                window.qBittorrent.Dialog.alert(await response.text());
                             return;
                         }
                     });

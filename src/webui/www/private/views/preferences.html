@@ -2468,7 +2468,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 return;
 
             interfaceListAlerts.add(combobox);
-            alert("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=OptionsDialog]");
+            window.qBittorrent.Dialog.alert("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=OptionsDialog]");
         };
 
         const updateNetworkInterfaces = (default_iface, default_iface_name) => {
@@ -3066,7 +3066,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         return;
 
                     console.error(error);
-                    alert("QBT_TR(Unable to load program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Unable to load program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
                 });
         };
 
@@ -3169,7 +3169,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Listening Port
             const listenPort = Number(document.getElementById("portValue").value);
             if (Number.isNaN(listenPort) || (listenPort < 0) || (listenPort > 65535)) {
-                alert("QBT_TR(The port used for incoming connections must be between 0 and 65535.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(The port used for incoming connections must be between 0 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["listen_port"] = listenPort;
@@ -3180,7 +3180,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxConnectionsCheckbox").checked) {
                 maxConnec = Number(document.getElementById("maxConnectionsValue").value);
                 if (Number.isNaN(maxConnec) || (maxConnec <= 0)) {
-                    alert("QBT_TR(Maximum number of connections limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Maximum number of connections limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3190,7 +3190,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxConnectionsPerTorrentCheckbox").checked) {
                 maxConnecPerTorrent = Number(document.getElementById("maxConnectionsPerTorrentValue").value);
                 if (Number.isNaN(maxConnecPerTorrent) || (maxConnecPerTorrent <= 0)) {
-                    alert("QBT_TR(Maximum number of connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Maximum number of connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3200,7 +3200,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxUploadsCheckbox").checked) {
                 maxUploads = Number(document.getElementById("max_uploads_value").value);
                 if (Number.isNaN(maxUploads) || (maxUploads <= 0)) {
-                    alert("QBT_TR(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3210,7 +3210,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxUploadsPerTorrentCheckbox").checked) {
                 maxUploadsPerTorrent = Number(document.getElementById("maxUploadsPerTorrentValue").value);
                 if (Number.isNaN(maxUploadsPerTorrent) || (maxUploadsPerTorrent <= 0)) {
-                    alert("QBT_TR(Maximum number of upload slots per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Maximum number of upload slots per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3246,14 +3246,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Global Rate Limits
             const upLimit = Number(document.getElementById("upLimitValue").value) * 1024;
             if (Number.isNaN(upLimit) || (upLimit < 0)) {
-                alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["up_limit"] = upLimit;
 
             const dlLimit = Number(document.getElementById("dlLimitValue").value) * 1024;
             if (Number.isNaN(dlLimit) || (dlLimit < 0)) {
-                alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["dl_limit"] = dlLimit;
@@ -3261,14 +3261,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Alternative Global Rate Limits
             const altUpLimit = Number(document.getElementById("altUpLimitValue").value) * 1024;
             if (Number.isNaN(altUpLimit) || (altUpLimit < 0)) {
-                alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["alt_up_limit"] = altUpLimit;
 
             const altDlLimit = Number(document.getElementById("altDlLimitValue").value) * 1024;
             if (Number.isNaN(altDlLimit) || (altDlLimit < 0)) {
-                alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["alt_dl_limit"] = altDlLimit;
@@ -3304,21 +3304,21 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("queueingCheckbox").checked) {
                 const maxActiveDownloads = Number(document.getElementById("maxActiveDlValue").value);
                 if (Number.isNaN(maxActiveDownloads) || (maxActiveDownloads < -1)) {
-                    alert("QBT_TR(Maximum active downloads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Maximum active downloads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["max_active_downloads"] = maxActiveDownloads;
 
                 const maxActiveUploads = Number(document.getElementById("maxActiveUpValue").value);
                 if (Number.isNaN(maxActiveUploads) || (maxActiveUploads < -1)) {
-                    alert("QBT_TR(Maximum active uploads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Maximum active uploads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["max_active_uploads"] = maxActiveUploads;
 
                 const maxActiveTorrents = Number(document.getElementById("maxActiveToValue").value);
                 if (Number.isNaN(maxActiveTorrents) || (maxActiveTorrents < -1)) {
-                    alert("QBT_TR(Maximum active torrents must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Maximum active torrents must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["max_active_torrents"] = maxActiveTorrents;
@@ -3326,21 +3326,21 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                 const dlRateThreshold = Number(document.getElementById("dlRateThresholdValue").value);
                 if (Number.isNaN(dlRateThreshold) || (dlRateThreshold < 1)) {
-                    alert("QBT_TR(Download rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Download rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["slow_torrent_dl_rate_threshold"] = dlRateThreshold;
 
                 const ulRateThreshold = Number(document.getElementById("ulRateThresholdValue").value);
                 if (Number.isNaN(ulRateThreshold) || (ulRateThreshold < 1)) {
-                    alert("QBT_TR(Upload rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Upload rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["slow_torrent_ul_rate_threshold"] = ulRateThreshold;
 
                 const torrentInactiveTimer = Number(document.getElementById("torrentInactiveTimerValue").value);
                 if (Number.isNaN(torrentInactiveTimer) || (torrentInactiveTimer < 1)) {
-                    alert("QBT_TR(Torrent inactivity timer must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Torrent inactivity timer must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["slow_torrent_inactive_timer"] = torrentInactiveTimer;
@@ -3351,7 +3351,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxRatioCheckbox").checked) {
                 maxRatio = Number(document.getElementById("maxRatioValue").value);
                 if (Number.isNaN(maxRatio) || (maxRatio < 0)) {
-                    alert("QBT_TR(Share ratio limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Share ratio limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3362,7 +3362,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxSeedingTimeCheckbox").checked) {
                 maxSeedingTime = Number(document.getElementById("maxSeedingTimeValue").value);
                 if (Number.isNaN(maxSeedingTime) || (maxSeedingTime < 0)) {
-                    alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3373,7 +3373,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxInactiveSeedingTimeCheckbox").checked) {
                 maxInactiveSeedingTime = Number(document.getElementById("maxInactiveSeedingTimeValue").value);
                 if (Number.isNaN(maxInactiveSeedingTime) || (maxInactiveSeedingTime < 0)) {
-                    alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3403,7 +3403,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const webUIAddress = document.getElementById("webuiAddressValue").value.toString();
             const webUIPort = Number(document.getElementById("webuiPortValue").value);
             if (Number.isNaN(webUIPort) || (webUIPort < 1) || (webUIPort > 65535)) {
-                alert("QBT_TR(The port used for the WebUI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(The port used for the WebUI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["web_ui_address"] = webUIAddress;
@@ -3416,30 +3416,30 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const httpsCertificate = document.getElementById("ssl_cert_text").value;
             settings["web_ui_https_cert_path"] = httpsCertificate;
             if (useHTTPS && (httpsCertificate.length === 0)) {
-                alert("QBT_TR(HTTPS certificate should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
+                window.qBittorrent.Dialog.alert("QBT_TR(HTTPS certificate should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
 
             const httpsKey = document.getElementById("ssl_key_text").value;
             settings["web_ui_https_key_path"] = httpsKey;
             if (useHTTPS && (httpsKey.length === 0)) {
-                alert("QBT_TR(HTTPS key should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
+                window.qBittorrent.Dialog.alert("QBT_TR(HTTPS key should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
 
             // Authentication
             const web_ui_username = document.getElementById("webui_username_text").value;
             if (web_ui_username.length < 3) {
-                alert("QBT_TR(The WebUI username must be at least 3 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
+                window.qBittorrent.Dialog.alert("QBT_TR(The WebUI username must be at least 3 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
             if (web_ui_username.includes(":")) {
-                alert("QBT_TR(The WebUI username must not contain a colon.)QBT_TR[CONTEXT=OptionsDialog]");
+                window.qBittorrent.Dialog.alert("QBT_TR(The WebUI username must not contain a colon.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
             const web_ui_password = document.getElementById("webui_password_text").value;
             if ((0 < web_ui_password.length) && (web_ui_password.length < 6)) {
-                alert("QBT_TR(The WebUI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
+                window.qBittorrent.Dialog.alert("QBT_TR(The WebUI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
 
@@ -3458,7 +3458,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const alternative_webui_enabled = document.getElementById("use_alt_webui_checkbox").checked;
             const webui_files_location_textarea = document.getElementById("webui_files_location_textarea").value;
             if (alternative_webui_enabled && (webui_files_location_textarea.trim() === "")) {
-                alert("QBT_TR(The alternative WebUI files location cannot be blank.)QBT_TR[CONTEXT=OptionsDialog]");
+                window.qBittorrent.Dialog.alert("QBT_TR(The alternative WebUI files location cannot be blank.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
             settings["alternative_webui_enabled"] = alternative_webui_enabled;
@@ -3514,7 +3514,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if ((pyPath.length > 0)
                 && (pyPath.startsWith("\"") || pyPath.startsWith("'")
                     || pyPath.endsWith("\"") || pyPath.endsWith("'"))) {
-                alert("QBT_TR(Invalid path to Python executable. Path contains unnecessary leading and trailing quotes.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Invalid path to Python executable. Path contains unnecessary leading and trailing quotes.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["python_executable_path"] = pyPath;
@@ -3524,7 +3524,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const shutdownTimeoutStr = document.getElementById("sessionShutdownTimeout").value.trim();
             const shutdownTimeout = (shutdownTimeoutStr === "") ? -1 : Number.parseInt(shutdownTimeoutStr, 10);
             if (Number.isNaN(shutdownTimeout) || (shutdownTimeout < -1) || (shutdownTimeout > 2147483647)) {
-                alert("QBT_TR(BitTorrent session shutdown timeout must be between -1 and 2147483647.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(BitTorrent session shutdown timeout must be between -1 and 2147483647.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["shutdown_timeout"] = shutdownTimeout;
@@ -3538,7 +3538,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             const outstandMemory = Number(document.getElementById("outstandMemoryWhenCheckingTorrents").value);
             if (Number.isNaN(outstandMemory) || (outstandMemory < 0) || (outstandMemory > 1024)) {
-                alert("QBT_TR(Outstanding memory when checking torrents must be greater than 0 and less than 1024.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Outstanding memory when checking torrents must be greater than 0 and less than 1024.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["checking_memory_use"] = outstandMemory;
@@ -3566,7 +3566,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             const peerDSCP = Number(document.getElementById("peerDSCP").value);
             if (Number.isNaN(peerDSCP) || (peerDSCP < 0) || (peerDSCP > 255)) {
-                alert("QBT_TR(Peer DSCP must be between 0 and 255.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Peer DSCP must be between 0 and 255.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["peer_tos"] = peerDSCP;
@@ -3586,7 +3586,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["announce_ip"] = document.getElementById("announceIP").value;
             const announcePort = Number(document.getElementById("announcePort").value);
             if (Number.isNaN(announcePort) || (announcePort < 0) || (announcePort > 65535)) {
-                alert("QBT_TR(The announce port must be between 0 and 65535.)QBT_TR[CONTEXT=OptionsDialog]");
+                window.qBittorrent.Dialog.alert("QBT_TR(The announce port must be between 0 and 65535.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
             settings["announce_port"] = announcePort;
@@ -3595,21 +3595,21 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             const peerTurnover = Number(document.getElementById("peerTurnover").value);
             if (Number.isNaN(peerTurnover) || (peerTurnover < 0) || (peerTurnover > 100)) {
-                alert("QBT_TR(Peer turnover must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Peer turnover must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["peer_turnover"] = peerTurnover;
 
             const peerTurnoverCutoff = Number(document.getElementById("peerTurnoverCutoff").value);
             if (Number.isNaN(peerTurnoverCutoff) || (peerTurnoverCutoff < 0) || (peerTurnoverCutoff > 100)) {
-                alert("QBT_TR(Peer turnover cutoff must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Peer turnover cutoff must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["peer_turnover_cutoff"] = peerTurnoverCutoff;
 
             const peerTurnoverInterval = Number(document.getElementById("peerTurnoverInterval").value);
             if (Number.isNaN(peerTurnoverInterval) || (peerTurnoverInterval < 0) || (peerTurnoverInterval > 3600)) {
-                alert("QBT_TR(Peer turnover interval must be greater than or equal to 0.)QBT_TR[CONTEXT=HttpServer]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Peer turnover interval must be greater than or equal to 0.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["peer_turnover_interval"] = peerTurnoverInterval;
@@ -3642,9 +3642,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const errors = results.filter((result) => result.status === "rejected").map((result) => result.reason);
                     const error = errors.find((reason) => reason.name === "ServerError") ?? errors[0];
                     if (error.name === "ServerError")
-                        alert(`QBT_TR(Error:)QBT_TR[CONTEXT=HttpServer] ${error.message}`);
+                        window.qBittorrent.Dialog.alert(`QBT_TR(Error:)QBT_TR[CONTEXT=HttpServer] ${error.message}`);
                     else
-                        alert("QBT_TR(Unable to save preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
+                        window.qBittorrent.Dialog.alert("QBT_TR(Unable to save preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
                 }
             });
         };
@@ -3738,7 +3738,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 })
                 .then(async (response) => {
                     if (!response.ok) {
-                        alert(await response.text());
+                        window.qBittorrent.Dialog.alert(await response.text());
                         return;
                     }
 
@@ -3753,7 +3753,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("webUIAPIKeyDeleteButton").disabled = false;
                 })
                 .catch((error) => {
-                    alert(`QBT_TR(Unable to rotate API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
+                    window.qBittorrent.Dialog.alert(`QBT_TR(Unable to rotate API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
                 });
         };
 
@@ -3763,7 +3763,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 })
                 .then(async (response) => {
                     if (!response.ok) {
-                        alert(await response.text());
+                        window.qBittorrent.Dialog.alert(await response.text());
                         return;
                     }
 
@@ -3777,7 +3777,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("webUIAPIKeyDeleteButton").disabled = true;
                 })
                 .catch((error) => {
-                    alert(`QBT_TR(Unable to delete API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
+                    window.qBittorrent.Dialog.alert(`QBT_TR(Unable to delete API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
                 });
         };
 

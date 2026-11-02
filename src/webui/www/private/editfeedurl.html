@@ -38,12 +38,12 @@
                 // check field
                 const newUrl = document.getElementById("url").value.trim();
                 if (newUrl === "") {
-                    alert("QBT_TR(URL cannot be empty)QBT_TR[CONTEXT=RSSWidget]");
+                    window.parent.qBittorrent.Dialog.alert("QBT_TR(URL cannot be empty)QBT_TR[CONTEXT=RSSWidget]");
                     return;
                 }
 
                 if (newUrl === currentUrl) {
-                    alert("QBT_TR(URL is unchanged)QBT_TR[CONTEXT=RSSWidget]");
+                    window.parent.qBittorrent.Dialog.alert("QBT_TR(URL is unchanged)QBT_TR[CONTEXT=RSSWidget]");
                     return;
                 }
 
@@ -58,7 +58,7 @@
                     })
                     .then(async (response) => {
                         if (!response.ok) {
-                            alert((response.status === 409)
+                            window.parent.qBittorrent.Dialog.alert((response.status === 409)
                                 ? await response.text()
                                 : "QBT_TR(Unable to update URL)QBT_TR[CONTEXT=RSSWidget]");
                             document.getElementById("submitButton").disabled = false;

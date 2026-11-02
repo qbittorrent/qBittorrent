@@ -304,7 +304,7 @@ window.qBittorrent.Client ??= (() => {
             })
             .then(async (response) => {
                 if (!response.ok) {
-                    alert(await response.text());
+                    window.qBittorrent.Dialog.alert(await response.text());
                     return;
                 }
 
@@ -324,10 +324,10 @@ window.qBittorrent.Client ??= (() => {
                             })
                             .then((response) => {
                                 if (!response.ok)
-                                    alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                                    window.qBittorrent.Dialog.alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
                             })
                             .catch((error) => {
-                                alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                                window.qBittorrent.Dialog.alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
                             });
                     }
                 }
@@ -347,7 +347,7 @@ window.qBittorrent.Client ??= (() => {
                 }
             })
             .catch((error) => {
-                alert(`QBT_TR(Unable to parse response.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
+                window.qBittorrent.Dialog.alert(`QBT_TR(Unable to parse response.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
             });
     };
 
@@ -1448,9 +1448,9 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     const registerMagnetHandler = () => {
         if (typeof navigator.registerProtocolHandler !== "function") {
             if (window.location.protocol !== "https:")
-                alert("QBT_TR(To use this feature, the WebUI needs to be accessed over HTTPS)QBT_TR[CONTEXT=MainWindow]");
+                window.qBittorrent.Dialog.alert("QBT_TR(To use this feature, the WebUI needs to be accessed over HTTPS)QBT_TR[CONTEXT=MainWindow]");
             else
-                alert("QBT_TR(Your browser does not support this feature)QBT_TR[CONTEXT=MainWindow]");
+                window.qBittorrent.Dialog.alert("QBT_TR(Your browser does not support this feature)QBT_TR[CONTEXT=MainWindow]");
             return;
         }
 

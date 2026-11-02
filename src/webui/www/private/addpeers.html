@@ -43,7 +43,7 @@
                     })
                     .then((response) => {
                         if (!response.ok) {
-                            alert("QBT_TR(Unable to add peers. Please ensure you are adhering to the IP:port format.)QBT_TR[CONTEXT=HttpServer]");
+                            window.parent.qBittorrent.Dialog.alert("QBT_TR(Unable to add peers. Please ensure you are adhering to the IP:port format.)QBT_TR[CONTEXT=HttpServer]");
                             return;
                         }
 

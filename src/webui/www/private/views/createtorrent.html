@@ -187,7 +187,7 @@
                 body: formData
             }).then((response) => {
                 if (!response.ok) {
-                    alert("QBT_TR(Unable to create torrent.)QBT_TR[CONTEXT=TorrentCreator]");
+                    window.qBittorrent.Dialog.alert("QBT_TR(Unable to create torrent.)QBT_TR[CONTEXT=TorrentCreator]");
                     return;
                 }
                 window.qBittorrent.Client.closeWindow(document.getElementById("createTorrentPage"));

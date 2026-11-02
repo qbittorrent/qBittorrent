@@ -37,12 +37,12 @@
                 // check field
                 const newName = document.getElementById("rename").value.trim();
                 if (newName === "") {
-                    alert("QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]");
+                    window.parent.qBittorrent.Dialog.alert("QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 
                 if (newName === oldName) {
-                    alert("QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]");
+                    window.parent.qBittorrent.Dialog.alert("QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 

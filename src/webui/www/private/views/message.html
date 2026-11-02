@@ -1,0 +1,43 @@
+<div id="messageDialog">
+    <div class="genericConfirmGrid">
+        <span class="confirmGridItem confirmDialogWarning"></span>
+        <span class="confirmGridItem dialogMessage"></span>
+    </div>
+</div>
+<div class="dialogFooter">
+    <input type="button" value="QBT_TR(OK)QBT_TR[CONTEXT=HttpServer]" id="messageOkButton">
+</div>
+
+<script>
+    "use strict";
+
+    (() => {
+        const { windowEl, options } = window.MUI.Windows.instances["messageDialog"];
+        const { message } = options.data;
+
+        const okButton = document.getElementById("messageOkButton");
+        const dialog = document.getElementById("messageDialog");
+
+        dialog.querySelector("span.dialogMessage").textContent = message;
+
+        okButton.addEventListener("click", (e) => {
+            window.qBittorrent.Client.closeWindow(dialog);
+        });
+
+        // set tabindex so window element receives keydown events
+        windowEl.setAttribute("tabindex", "-1");
+        windowEl.focus();
+        windowEl.addEventListener("keydown", (e) => {
+            switch (e.key) {
+                case "Enter":
+                case "Escape":
+                    // the key is the message's alone: the focus goes back as the window closes, and the key would then
+                    // press what has it, such as the Save that showed the message
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.qBittorrent.Client.closeWindow(dialog);
+                    break;
+            }
+        });
+    })();
+</script>

@@ -368,11 +368,16 @@ window.qBittorrent.Misc ??= (() => {
         });
     };
 
+    // in the WebUI's message window, which belongs to the main page: a dialog's frame reaches it there
+    const showMessage = (message) => {
+        (window.qBittorrent.Dialog ?? window.parent.qBittorrent.Dialog).alert(message);
+    };
+
     const downloadFile = async (url, defaultFileName, errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]") => {
         try {
             const response = await fetch(url, { method: "GET" });
             if (!response.ok) {
-                alert(errorMessage);
+                showMessage(errorMessage);
                 return;
             }
 
@@ -393,7 +398,7 @@ window.qBittorrent.Misc ??= (() => {
             link.remove();
         }
         catch (error) {
-            alert(errorMessage);
+            showMessage(errorMessage);
         }
     };
 
@@ -408,7 +413,7 @@ window.qBittorrent.Misc ??= (() => {
                 cache: "no-store"
             });
             if (!response.ok) {
-                alert(errorMessage);
+                showMessage(errorMessage);
                 return;
             }
 
@@ -419,7 +424,7 @@ window.qBittorrent.Misc ??= (() => {
             link.remove();
         }
         catch (error) {
-            alert(errorMessage);
+            showMessage(errorMessage);
         }
     };
 

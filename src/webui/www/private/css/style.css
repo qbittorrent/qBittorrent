@@ -1043,6 +1043,11 @@ td.statusBarSeparator {
     overflow-wrap: anywhere;
 }
 
+/* a message breaks its lines where it has line breaks, as alert() did */
+#messageDialog .dialogMessage {
+    white-space: pre-line;
+}
+
 .genericConfirmGrid,
 .confirmDeletionGrid {
     align-items: center;

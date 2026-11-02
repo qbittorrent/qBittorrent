@@ -37,12 +37,12 @@
                 // check field
                 const newPath = document.getElementById("rename").value.trim();
                 if (newPath === "") {
-                    alert("QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]");
+                    window.parent.qBittorrent.Dialog.alert("QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 
                 if (newPath === oldPath) {
-                    alert("QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]");
+                    window.parent.qBittorrent.Dialog.alert("QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 
@@ -58,7 +58,7 @@
                     .then(async (response) => {
                         if (!response.ok) {
                             if (response.status === 409)
-                                alert(await response.text());
+                                window.parent.qBittorrent.Dialog.alert(await response.text());
                             document.getElementById("renameButton").disabled = false;
                             return;
                         }
