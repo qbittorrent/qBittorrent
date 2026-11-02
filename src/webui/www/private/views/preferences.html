@@ -355,7 +355,19 @@
             <input type="checkbox" id="excludedFileNamesCheckbox" onclick="qBittorrent.Preferences.updateExcludedFileNamesEnabled();">
             <label id="excludedFileNamesLabel" for="excludedFileNamesCheckbox">QBT_TR(Excluded file names)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
-        <textarea id="excludedFileNamesTextarea" rows="6" cols="70" aria-labelledby="excludedFileNamesLabel"></textarea>
+        <textarea id="excludedFileNamesTextarea" rows="6" cols="70" aria-labelledby="excludedFileNamesLabel" title="QBT_TR(Blacklist filtered file names from being downloaded from torrent(s).
+Files matching any of the filters in this list will have their priority automatically set to &quot;Do not download&quot;.
+
+Use newlines to separate multiple entries. Can use wildcards as outlined below.
+*: matches zero or more of any characters.
+?: matches any single character.
+[...]: sets of characters can be represented in square brackets.
+
+Examples
+*.exe: filter '.exe' file extension.
+readme.txt: filter exact file name.
+?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
+readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.)QBT_TR[CONTEXT=OptionsDialog]"></textarea>
     </fieldset>
 
     <fieldset class="settings">
