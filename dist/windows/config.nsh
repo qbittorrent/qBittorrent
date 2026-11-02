@@ -35,6 +35,17 @@
 ;End of user configurable options
 ;==============================================================================
 
+; Official headers
+!include "FileFunc.nsh"
+!include "LogicLib.nsh"
+!include "MUI2.nsh"
+!include "WinVer.nsh"
+!include "x64.nsh"
+
+; 3rd-party headers
+!include "3rdparty\UAC.nsh"
+!include "3rdparty\VersionCompleteXXXX.nsi"
+
 ; QBT_CPU_ARCH (x64 or arm64)
 !define /ifndef QBT_CPU_ARCH "x64"
 
@@ -61,13 +72,6 @@ ManifestDPIAwareness "PerMonitorV2,System"
 ;Setting the compression
 SetCompressor /SOLID LZMA
 SetCompressorDictSize 64
-
-!include "3rdparty\UAC.nsh"
-!include "3rdparty\VersionCompleteXXXX.nsi"
-!include "FileFunc.nsh"
-!include "MUI2.nsh"
-!include "WinVer.nsh"
-!include "x64.nsh"
 
 ;For the file association
 !define SHCNE_ASSOCCHANGED 0x8000000
@@ -148,7 +152,7 @@ RequestExecutionLevel user
 ReserveFile /plugin FindProcDLL.dll
 ReserveFile /plugin UAC.dll
 
-!macro Init thing
+!macro ElevateUAC thing
 uac_tryagain:
 !insertmacro UAC_RunElevated
 ${Switch} $0
@@ -175,4 +179,13 @@ ${Default}
 ${EndSwitch}
 
 SetShellVarContext all
+!macroend
+
+!macro AdjustRegistryView
+  ${If} "${QBT_CPU_ARCH}" == "arm64"
+  ${OrIf} "${QBT_CPU_ARCH}" == "x64"
+    SetRegView 64
+  ${Else}
+    SetRegView 32
+  ${EndIf}
 !macroend
