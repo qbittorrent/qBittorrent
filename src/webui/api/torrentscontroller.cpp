@@ -40,6 +40,7 @@
 #include <QJsonObject>
 #include <QList>
 #include <QRegularExpression>
+#include <QSet>
 #include <QUrl>
 
 #include "base/addtorrentmanager.h"
@@ -1193,6 +1194,38 @@ void TorrentsController::addAction()
         }
     }
 
+    PathList filePaths;
+    QString filePathsParam = params()[u"filePaths"_s];
+    if (!filePathsParam.isEmpty())
+    {
+        filePathsParam.replace(QStringLiteral("\r\n"), QStringLiteral("\n"));
+        if (urls.size() > 1)
+            throw APIError(APIErrorType::BadParams, tr("Cannot specify filePaths when adding multiple torrents"));
+        if (!torrents.isEmpty())
+            throw APIError(APIErrorType::BadParams, tr("Cannot specify filePaths when uploading torrent files"));
+
+        const QStringList splitFilePaths = filePathsParam.split(u'\n', Qt::KeepEmptyParts);
+        filePaths.reserve(splitFilePaths.size());
+        QSet<Path> uniquePaths;
+        for (const QString &filePathStr : splitFilePaths)
+        {
+            const Path filePath {filePathStr};
+            const QStringList pathComponents = filePath.data().split(u'/');
+            const bool hasDotPathComponent = std::ranges::any_of(pathComponents, [](const QString &component)
+            {
+                return (component == QStringLiteral(".")) || (component == QStringLiteral(".."));
+            });
+            if (!filePath.isValid() || !filePath.isRelative() || hasDotPathComponent)
+                throw APIError(APIErrorType::BadParams, tr("Invalid file path"));
+
+            if (uniquePaths.contains(filePath))
+                throw APIError(APIErrorType::BadParams, tr("Duplicate file paths are not allowed"));
+
+            uniquePaths.insert(filePath);
+            filePaths.append(filePath);
+        }
+    }
+
     const QString downloaderParam = params()[u"downloader"_s];
     if (!downloaderParam.isEmpty() && !SearchPluginManager::instance()->allPlugins().contains(downloaderParam))
         throw APIError(APIErrorType::BadParams, tr("`downloader` must be a valid search plugin"));
@@ -1263,6 +1296,15 @@ void TorrentsController::addAction()
                 addTorrentParams.filePriorities = filePriorities;
             }
 
+            if (!filePaths.isEmpty())
+            {
+                const BitTorrent::TorrentInfo &info = torrentDescr.info().value();
+                if (filePaths.size() != info.filesCount())
+                    throw APIError(APIErrorType::BadParams, tr("Length of filePaths must equal number of files in torrent"));
+
+                addTorrentParams.filePaths = filePaths;
+            }
+
             if (BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
             {
                 addedTorrentIDs.append(torrentID);
@@ -1276,6 +1318,8 @@ void TorrentsController::addAction()
         {
             if (!filePriorities.isEmpty())
                 throw APIError(APIErrorType::BadParams, tr("`filePriorities` may only be specified when metadata has already been fetched"));
+            if (!filePaths.isEmpty())
+                throw APIError(APIErrorType::BadParams, tr("`filePaths` may only be specified when metadata has already been fetched"));
 
             SearchDownloadHandler *downloadHandler = SearchPluginManager::instance()->downloadTorrent(downloaderParam, url);
             connect(downloadHandler, &SearchDownloadHandler::downloadFinished
@@ -1291,6 +1335,8 @@ void TorrentsController::addAction()
         {
             if (!filePriorities.isEmpty())
                 throw APIError(APIErrorType::BadParams, tr("`filePriorities` may only be specified when metadata has already been fetched"));
+            if (!filePaths.isEmpty())
+                throw APIError(APIErrorType::BadParams, tr("`filePaths` may only be specified when metadata has already been fetched"));
 
             if (app()->addTorrentManager()->addTorrent(url, addTorrentParams))
             {
