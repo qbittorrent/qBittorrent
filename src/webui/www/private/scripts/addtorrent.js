@@ -312,7 +312,7 @@ window.qBittorrent.AddTorrent ??= (() => {
         clearTimeout(loadMetadataTimer);
         loadMetadataTimer = -1;
 
-        document.getElementById("metadataStatus").textContent = "Metadata retrieval failed";
+        document.getElementById("metadataStatus").textContent = "QBT_TR(Metadata retrieval failed)QBT_TR[CONTEXT=AddNewTorrentDialog]";
         document.getElementById("metadataStatus").classList.add("red");
         document.getElementById("loadingSpinner").style.display = "none";
         document.getElementById("errorIcon").classList.remove("invisible");
