@@ -1957,6 +1957,13 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     updateTabDisplay();
 
     const registerDragAndDrop = () => {
+        // the WebUI's images are its icons and buttons, never dragged: a click that moves a little still clicks, and no
+        // image is dropped below as a link to add
+        document.addEventListener("dragstart", (ev) => {
+            if (ev.target.nodeName === "IMG")
+                ev.preventDefault();
+        });
+
         document.getElementById("desktop").addEventListener("dragover", (ev) => {
             if (ev.preventDefault)
                 ev.preventDefault();

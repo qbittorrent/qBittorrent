@@ -34,6 +34,13 @@
                 }
             });
 
+            // its images are icons, never dragged: a click that moves a little still clicks, and no image is dropped on
+            // the WebUI as a link to add
+            window.addEventListener("dragstart", (event) => {
+                if (event.target.nodeName === "IMG")
+                    event.preventDefault();
+            });
+
             const searchParams = new URLSearchParams(window.location.search);
 
             const source = searchParams.get("source");
