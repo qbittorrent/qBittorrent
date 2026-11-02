@@ -43,6 +43,7 @@
 
 #include <QCoreApplication>
 #include <QMetaObject>
+#include <QSysInfo>
 
 #include "base/version.h"
 
@@ -128,15 +129,16 @@ void registerSignalHandlers()
     abnormalExitMessage = QStringLiteral(
         "\n\n*************************************************************\n"
         "Please file a bug report at https://bug.qbittorrent.org and provide the following information:\n\n"
-        "qBittorrent version: " QBT_VERSION "\n"
-        "Libtorrent version: %1\n"
-        "Qt version: %2\n"
-        "Boost version: %3\n"
-        "OpenSSL version: %4\n"
-        "zlib version: %5\n"
-        "OS version: %6\n\n"
+        "qBittorrent version: " QBT_VERSION " %1\n"
+        "Libtorrent version: %2\n"
+        "Qt version: %3\n"
+        "Boost version: %4\n"
+        "OpenSSL version: %5\n"
+        "zlib version: %6\n"
+        "OS version: %7\n\n"
         "Caught signal: ").arg(
-                Utils::Misc::libtorrentVersionString()
+                QSysInfo::buildCpuArchitecture()
+                , Utils::Misc::libtorrentVersionString()
                 , Utils::Misc::qtVersionString()
                 , Utils::Misc::boostVersionString()
                 , Utils::Misc::opensslVersionString()

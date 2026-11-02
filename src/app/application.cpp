@@ -49,6 +49,7 @@
 #include <QLibraryInfo>
 #include <QMetaObject>
 #include <QProcess>
+#include <QSysInfo>
 
 #ifndef DISABLE_GUI
 #include <QAbstractButton>
@@ -363,8 +364,8 @@ Application::Application(int &argc, char **argv)
     connect(this, &QGuiApplication::commitDataRequest, this, &Application::shutdownCleanup, Qt::DirectConnection);
 #endif
 
-    LogMsg(tr("qBittorrent %1 started. Process ID: %2", "qBittorrent v3.2.0alpha started")
-        .arg(QStringLiteral(QBT_VERSION), QString::number(QCoreApplication::applicationPid())));
+    LogMsg(tr("qBittorrent started. Version: \"%1\". Build architecture: %2. Process ID: %3.")
+        .arg(QStringLiteral(QBT_VERSION), QSysInfo::buildCpuArchitecture(), QString::number(QCoreApplication::applicationPid())));
     if (portableModeEnabled)
     {
         LogMsg(tr("Running in portable mode. Auto detected profile folder at: %1").arg(profileDir.toString()));
