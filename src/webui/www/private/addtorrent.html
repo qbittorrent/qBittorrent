@@ -143,6 +143,12 @@
 
 <body>
     <ul id="torrentFilesMenu" class="contextMenu">
+        <li>
+            <a href="#Rename">
+                <img src="images/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=AddNewTorrentDialog]">
+                QBT_TR(Rename...)QBT_TR[CONTEXT=AddNewTorrentDialog]
+            </a>
+        </li>
         <li class="separator">
             <a href="#FilePrio" class="arrow-right"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Priority)QBT_TR[CONTEXT=AddNewTorrentDialog]</a>
             <ul>
@@ -157,6 +163,7 @@
     <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center; padding: 10px 12px;" autocorrect="off" autocapitalize="none">
         <input type="hidden" id="urls" name="urls">
         <input type="hidden" id="filePriorities" name="filePriorities">
+        <input type="hidden" id="filePaths" name="filePaths">
         <div class="container">
             <div class="column">
                 <fieldset class="settings" style="text-align: left;">
