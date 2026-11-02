@@ -70,8 +70,10 @@ FunctionEnd
 
 Function un.onInit
 
-  !insertmacro Init "uninstaller"
+  !insertmacro ElevateUAC "uninstaller"
   !insertmacro MUI_UNGETLANGUAGE
+
+  !insertmacro AdjustRegistryView
 
 FunctionEnd
 
