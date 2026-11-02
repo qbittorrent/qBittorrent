@@ -849,6 +849,11 @@ td.noWrap {
     width: 140px;
 }
 
+/* the image that adds a folder: its width is the image's own, its padding beside it, setting it beside the list */
+.select-watched-folder-editable img {
+    box-sizing: content-box;
+}
+
 .select-watched-folder-editable select:focus,
 .select-watched-folder-editable input:focus {
     outline: none;

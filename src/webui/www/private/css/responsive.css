@@ -1547,6 +1547,25 @@ of its row where it fits */
             & input {
                 width: calc(100% - 2em); /* clear of the choice's arrow */
             }
+
+            /* on the row where the button that adds a folder shows, that button at the row's end, past the choice's
+            border, a touch target: its 16 px image and its border padded out, over its inline padding */
+            &:has(> img:not([style*="display: none"])) {
+                width: calc(
+                    100% - 2px - var(--responsive-touch-target) - var(--space-3)
+                );
+            }
+
+            & > img {
+                border: 1px solid var(--color-border-control);
+                border-radius: var(--radius-control);
+                left: calc(100% + 1px + var(--space-3));
+                padding: calc(
+                    (var(--responsive-touch-target) - 18px) / 2
+                ) !important;
+                position: absolute;
+                top: -2px;
+            }
         }
 
         & #watched_folders_tab {
