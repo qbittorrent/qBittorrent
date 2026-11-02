@@ -2049,14 +2049,17 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const localPreferences = new window.parent.qBittorrent.LocalPreferences.LocalPreferences();
 
         // the fields as Options loaded them; closing Options, or leaving the WebUI, with changes since asks first. Not the
-        // API key's, which rotating or deleting it changes and applies at once
+        // API key's, which rotating or deleting it changes and applies at once; and the watched folders as they would be
+        // saved, so that empty rows, added or cleared away, are no change
         let loadedState = null;
         const fieldsState = () => {
             const page = document.getElementById("preferencesPage");
             if (page === null)
                 return null;
-            const fields = [...page.querySelectorAll("input:not(#WebUIAPIKeyText), select, textarea")];
-            return JSON.stringify(fields.map((field) => (((field.type === "checkbox") || (field.type === "radio")) ? field.checked : field.value)));
+            const fields = [...page.querySelectorAll("input:not(#WebUIAPIKeyText), select, textarea")]
+                .filter((field) => (field.closest("#watched_folders_tab") === null));
+            const values = fields.map((field) => (((field.type === "checkbox") || (field.type === "radio")) ? field.checked : field.value));
+            return JSON.stringify([values, getWatchedFolders()]);
         };
         const hasUnsavedChanges = () => {
             const state = fieldsState();
@@ -2113,6 +2116,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         // Downloads tab
         let watchedFoldersTable;
+        // numbers the watched folders' rows apart, which rows that are removed leave gaps in
+        let nextWatchedFolderId = 0;
 
         const updateTempDirEnabled = () => {
             const isTempDirEnabled = document.getElementById("temppath_checkbox").checked;
@@ -2132,8 +2137,45 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }
         };
 
+        const watchedFolderRows = () => [...document.getElementById("watched_folders_tab").tBodies[0].rows];
+
+        // the last row offers to add another; with none left, an empty one to fill in
+        const updateWatchFolderRows = () => {
+            const rows = watchedFolderRows();
+            if (rows.length === 0) {
+                addWatchFolder();
+                return;
+            }
+            for (const row of rows)
+                row.querySelector(".addWatchedFolder").hidden = (row !== rows.at(-1));
+        };
+
+        // a folder filled in goes on a yes, an empty row at once
+        const removeWatchFolder = (row) => {
+            const remove = () => {
+                row.remove();
+                updateWatchFolderRows();
+            };
+            const folder = row.querySelector("input").value.trim();
+            if (folder.length === 0) {
+                remove();
+                return;
+            }
+            window.qBittorrent.Dialog.confirm("QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]",
+                "QBT_TR(Remove “%1” from the watched folders?)QBT_TR[CONTEXT=OptionsDialog]".replace("%1", folder), remove);
+        };
+
+        const removeEmptyWatchFolders = () => {
+            for (const row of watchedFolderRows()) {
+                if (row.querySelector("input").value.trim().length === 0)
+                    row.remove();
+            }
+            updateWatchFolderRows();
+        };
+
         const addWatchFolder = (folder = "", sel = "default_folder", other = "") => {
-            const pos = document.getElementById("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
+            const pos = nextWatchedFolderId;
+            ++nextWatchedFolderId;
             const disableInput = (sel !== "other");
 
             const folderInput = document.createElement("input");
@@ -2159,36 +2201,46 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 other = folderTypeSelect.options[folderTypeSelect.selectedIndex].textContent;
             otherInput.value = other;
 
+            const removeFolderImg = document.createElement("img");
+            removeFolderImg.className = "removeWatchedFolder";
+            removeFolderImg.src = "images/list-remove.svg";
+            removeFolderImg.alt = "QBT_TR(Remove)QBT_TR[CONTEXT=CookiesDialog]";
+            removeFolderImg.addEventListener("click", (e) => {
+                removeWatchFolder(e.target.closest("tr"));
+            });
+
             const addFolderImg = document.createElement("img");
             addFolderImg.id = `addFolderImg_${pos}`;
+            addFolderImg.className = "addWatchedFolder";
             addFolderImg.src = "images/list-add.svg";
             addFolderImg.alt = "Add";
-            addFolderImg.style.cssText = "padding-left:170px;width:16px;cursor:pointer;";
             addFolderImg.addEventListener("click", (e) => {
                 addWatchFolder();
             });
 
             const folderTypeContainer = document.createElement("div");
             folderTypeContainer.className = "select-watched-folder-editable";
-            folderTypeContainer.append(folderTypeSelect, otherInput, addFolderImg);
+            folderTypeContainer.append(folderTypeSelect, otherInput);
 
-            watchedFoldersTable.push([folderInput, folderTypeContainer]);
+            const folderButtons = document.createElement("div");
+            folderButtons.className = "watched-folder-buttons";
+            folderButtons.append(removeFolderImg, addFolderImg);
 
-            // hide previous img
-            if (pos > 0)
-                document.getElementById(`addFolderImg_${pos - 1}`).style.display = "none";
+            watchedFoldersTable.push([folderInput, folderTypeContainer, folderButtons]);
+
+            updateWatchFolderRows();
         };
 
         const getWatchedFolders = () => {
             const folders = {};
 
-            const entryCount = document.getElementById("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
-            for (let i = 0; i < entryCount; ++i) {
-                const fpath = document.getElementById(`text_watch_${i}`).value.trim();
+            for (const row of watchedFolderRows()) {
+                const fpath = row.querySelector("input").value.trim();
                 if (fpath.length <= 0)
                     continue;
 
-                const sel = document.getElementById(`cb_watch_${i}`).value.trim();
+                const folderTypeSelect = row.querySelector("select");
+                const sel = folderTypeSelect.value.trim();
 
                 let other;
                 switch (sel) {
@@ -2199,7 +2251,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         other = 1;
                         break;
                     case "other":
-                        other = document.getElementById(`cb_watch_txt_${i}`).value.trim();
+                        other = folderTypeSelect.nextElementSibling.value.trim();
                         break;
                 }
 
@@ -3687,6 +3739,21 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             };
 
             watchedFoldersTable = new HtmlTable(document.getElementById("watched_folders_tab"));
+
+            // empty watched folders are cleared away when their section is left: for another section, or on phones for
+            // the list of sections. Whether it shows is read from the page as drawn, which the list hides only on phones
+            const downloadsTab = document.getElementById("DownloadsTab");
+            const preferencesPage = document.getElementById("preferencesPage");
+            const downloadsShown = () => (downloadsTab.getClientRects().length > 0);
+            let wasShown = downloadsShown();
+            const sectionObserver = new MutationObserver(() => {
+                const shown = downloadsShown();
+                if (wasShown && !shown)
+                    removeEmptyWatchFolders();
+                wasShown = shown;
+            });
+            sectionObserver.observe(downloadsTab, { attributeFilter: ["class"] });
+            sectionObserver.observe(preferencesPage, { attributeFilter: ["class"] });
 
             const buildInfo = window.qBittorrent.Cache.buildInfo.get();
 

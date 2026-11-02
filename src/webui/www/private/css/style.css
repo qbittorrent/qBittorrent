@@ -845,9 +845,16 @@ td.noWrap {
     width: 140px;
 }
 
-/* the image that adds a folder: its width is the image's own, its padding beside it, setting it beside the list */
-.select-watched-folder-editable img {
-    box-sizing: content-box;
+/* a folder's buttons, after its choice: remove it, and on the last row add another */
+.watched-folder-buttons {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+}
+
+.watched-folder-buttons img {
+    cursor: pointer;
+    width: 16px;
 }
 
 .select-watched-folder-editable select:focus,

@@ -1532,16 +1532,50 @@ of its row where it fits */
             }
         }
 
-        /* a watched folder's choice below its folder as far as the rows' lines stand apart, and as wide, so that its
-        choices show whole; a line between folders, and the columns' names above them, one below the other */
+        /* each watched folder: its field with the button that removes it, below them its choice, as wide as the row but
+        for the button that adds another on the last folder, so that its choices show whole; the buttons in a column at
+        the row's end, a line between folders, and the columns' names above them, one below the other */
         & #watched_folders_tab tbody tr:not([hidden]) {
+            align-items: center;
             border-top: var(--responsive-separator);
+            display: grid;
+            gap: var(--space-3);
+            grid-template-columns: minmax(0, 1fr) auto;
             padding: var(--space-5) 0 var(--space-3);
-            row-gap: var(--space-3);
 
-            & > td {
-                flex: 1 0 100%;
+            & > td:first-child {
+                grid-area: 1 / 1;
             }
+
+            & > td:nth-child(2) {
+                grid-area: 2 / 1 / 3 / -1;
+            }
+
+            &:has(.addWatchedFolder:not([hidden])) > td:nth-child(2) {
+                grid-column: 1;
+            }
+
+            /* the buttons' cell and their box give the buttons to the row */
+            & > td:last-child,
+            & .watched-folder-buttons {
+                display: contents;
+            }
+
+            & .removeWatchedFolder {
+                grid-area: 1 / 2;
+            }
+
+            & .addWatchedFolder {
+                grid-area: 2 / 2;
+            }
+        }
+
+        /* touch targets: their 16 px image and its border padded out */
+        & .watched-folder-buttons img {
+            border: 1px solid var(--color-border-control);
+            border-radius: var(--radius-control);
+            box-sizing: content-box;
+            padding: calc((var(--responsive-touch-target) - 18px) / 2);
         }
 
         & #watched_folders_tab :is(td, th) {
@@ -1565,25 +1599,6 @@ of its row where it fits */
 
             & input {
                 width: calc(100% - 2em); /* clear of the choice's arrow */
-            }
-
-            /* on the row where the button that adds a folder shows, that button at the row's end, past the choice's
-            border, a touch target: its 16 px image and its border padded out, over its inline padding */
-            &:has(> img:not([style*="display: none"])) {
-                width: calc(
-                    100% - 2px - var(--responsive-touch-target) - var(--space-3)
-                );
-            }
-
-            & > img {
-                border: 1px solid var(--color-border-control);
-                border-radius: var(--radius-control);
-                left: calc(100% + 1px + var(--space-3));
-                padding: calc(
-                    (var(--responsive-touch-target) - 18px) / 2
-                ) !important;
-                position: absolute;
-                top: -2px;
             }
         }
 
