@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="en">
 <context>
     <name>APIController</name>
     <message>
@@ -11531,6 +11531,7 @@ Please choose a different name and try again.</source>
         <comment>There are 5 more renaming errors.</comment>
         <translation type="unfinished">
             <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -11603,6 +11604,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentcontentmodel.cpp" line="801"/>
         <source>Failed to rename folder &apos;%1&apos; to &apos;%2&apos;. There are %n file(s) left in the old folder.</source>
         <translation type="unfinished">
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
