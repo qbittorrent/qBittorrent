@@ -118,6 +118,9 @@ namespace
         LIBTORRENT_HEADER,
         BDECODE_DEPTH_LIMIT,
         BDECODE_TOKEN_LIMIT,
+#if LIBTORRENT_VERSION_NUM >= 20100
+        LOAD_TORRENT_MAX_DIRECTORY_DEPTH,
+#endif
         ASYNC_IO_THREADS,
 #ifdef QBT_USES_LIBTORRENT2
         HASHING_THREADS,
@@ -242,6 +245,10 @@ void AdvancedSettings::saveAdvancedSettings() const
     pref->setBdecodeDepthLimit(m_spinBoxBdecodeDepthLimit.value());
     // Bdecode token limit
     pref->setBdecodeTokenLimit(m_spinBoxBdecodeTokenLimit.value());
+#if LIBTORRENT_VERSION_NUM >= 20100
+    // Maximum directory depth when loading torrents
+    pref->setLoadTorrentMaxDirectoryDepth(m_spinBoxLoadTorrentMaxDirectoryDepth.value());
+#endif
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
 #ifdef QBT_USES_LIBTORRENT2
@@ -564,6 +571,14 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxBdecodeTokenLimit.setValue(pref->getBdecodeTokenLimit());
     addRow(BDECODE_TOKEN_LIMIT, (tr("Bdecode token limit") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Bdecoding.html#bdecode()", u"(?)"))
             , &m_spinBoxBdecodeTokenLimit);
+#if LIBTORRENT_VERSION_NUM >= 20100
+    // Maximum directory depth when loading torrents
+    m_spinBoxLoadTorrentMaxDirectoryDepth.setMinimum(0);
+    m_spinBoxLoadTorrentMaxDirectoryDepth.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxLoadTorrentMaxDirectoryDepth.setValue(pref->getLoadTorrentMaxDirectoryDepth());
+    addRow(LOAD_TORRENT_MAX_DIRECTORY_DEPTH, (tr("Maximum directory depth when loading torrents") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Torrent_Info.html#max_directory_depth", u"(?)"))
+        , &m_spinBoxLoadTorrentMaxDirectoryDepth);
+#endif
     // Async IO threads
     m_spinBoxAsyncIOThreads.setMinimum(1);
     m_spinBoxAsyncIOThreads.setMaximum(1024);

@@ -324,7 +324,8 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
         const lt::load_torrent_limits limits {
             .max_buffer_size = static_cast<int>(pref->getTorrentFileSizeLimit()),
             .max_decode_depth = pref->getBdecodeDepthLimit(),
-            .max_decode_tokens = pref->getBdecodeTokenLimit()};
+            .max_decode_tokens = pref->getBdecodeTokenLimit(),
+            .max_directory_depth = pref->getLoadTorrentMaxDirectoryDepth()};
         const lt::add_torrent_params atp = lt::load_torrent_parsed(torrentInfoRoot, ec, limits);
         if (ec)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
