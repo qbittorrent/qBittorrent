@@ -339,7 +339,8 @@ QStringList AutoDownloader::smartEpisodeFilters() const
             u"s(\\d+)e(\\d+)"_s,                       // Format 1: s01e01
             u"(\\d+)x(\\d+)"_s,                        // Format 2: 01x01
             u"(\\d{4}[.\\-]\\d{1,2}[.\\-]\\d{1,2})"_s, // Format 3: 2017.01.01
-            u"(\\d{1,2}[.\\-]\\d{1,2}[.\\-]\\d{4})"_s  // Format 4: 01.01.2017
+            u"(\\d{1,2}[.\\-]\\d{1,2}[.\\-]\\d{4})"_s, // Format 4: 01.01.2017
+            u"\\s-\\s(\\d{2,3})"_s                    // Format 5: Title - 01
         };
         return defaultFilters;
     }
