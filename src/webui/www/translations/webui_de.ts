@@ -2436,7 +2436,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Example:</source>
-        <translation>Beispiel: </translation>
+        <translation>Beispiel:</translation>
     </message>
     <message>
         <source>Provide the SMTP server address for sending email notifications.</source>

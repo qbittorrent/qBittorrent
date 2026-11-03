@@ -5501,7 +5501,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     </message>
     <message>
         <source>Align to piece boundary for files larger than:</source>
-        <translation>Alinear a límite de fragmento los ficheros mayores de: </translation>
+        <translation>Alinear a límite de fragmento los ficheros mayores de:</translation>
     </message>
     <message>
         <source>Private torrent (Won't distribute on DHT network)</source>

@@ -2945,7 +2945,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</so
     </message>
     <message>
         <source>Copy path</source>
-        <translation>Putanja kopiranja </translation>
+        <translation>Putanja kopiranja</translation>
     </message>
     <message>
         <source>Download</source>
