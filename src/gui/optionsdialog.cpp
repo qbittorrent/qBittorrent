@@ -68,6 +68,7 @@
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
+#include "base/utils/number.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
 #include "base/utils/sslkey.h"
@@ -1765,7 +1766,11 @@ bool OptionsDialog::isUPnPEnabled() const
 qreal OptionsDialog::getMaxRatio() const
 {
     if (m_ui->checkMaxRatio->isChecked())
-        return m_ui->spinMaxRatio->value();
+    {
+        // stepping the spin box accumulates a rounding error, so its value drifts away
+        // from the number it displays. Take the value the user actually sees.
+        return Utils::Number::roundToPrecision(m_ui->spinMaxRatio->value(), m_ui->spinMaxRatio->decimals());
+    }
     return -1;
 }
 

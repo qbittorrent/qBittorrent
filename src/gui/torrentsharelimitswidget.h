@@ -73,6 +73,7 @@ private:
     void onSeedingTimeLimitModeChanged(int currentIndex, int previousIndex);
     void onInactiveSeedingTimeLimitModeChanged(int currentIndex, int previousIndex);
     void resetDefaultItemsText();
+    qreal ratioLimitValue() const;
 
     Ui::TorrentShareLimitsWidget *m_ui = nullptr;
 

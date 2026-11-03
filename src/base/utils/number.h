@@ -32,4 +32,7 @@ namespace Utils::Number
 {
     // math addition that the result will never overflow/underflow
     int clampingAdd(int num1, int num2);
+
+    // rounds the number to `precision` digits after the decimal point
+    double roundToPrecision(double value, int precision);
 }
