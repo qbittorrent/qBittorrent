@@ -2,6 +2,7 @@
     <qresource prefix="/www">
         <file>private/addpeers.html</file>
         <file>private/addtorrent.html</file>
+        <file>private/addtorrent_rename.html</file>
         <file>private/addtrackers.html</file>
         <file>private/addwebseeds.html</file>
         <file>private/confirmaddtorrents.html</file>
