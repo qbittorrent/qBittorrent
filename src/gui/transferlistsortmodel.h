@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -57,6 +58,8 @@ public:
     void setTrackerFilter(const std::optional<QString> &trackerHost);
     void setAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus);
 
+    void allowHiddenTorrents(bool allow);
+
 private:
     int compare(const QModelIndex &left, const QModelIndex &right) const;
 
@@ -71,4 +74,6 @@ private:
     int m_lastSortOrder = 0;
 
     Utils::Compare::NaturalCompare<Qt::CaseInsensitive> m_naturalCompare;
+
+    bool m_allowHiddenTorrents = false;
 };
