@@ -889,7 +889,7 @@ O hash da parte será verificado quando for solicitado pela primeira vez por um 
     </message>
     <message>
         <source>[PAUSED]</source>
-        <translation>[PAUSADO] </translation>
+        <translation>[PAUSADO]</translation>
     </message>
     <message>
         <source>Global Speed Limits</source>

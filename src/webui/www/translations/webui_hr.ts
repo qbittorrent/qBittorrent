@@ -2929,7 +2929,7 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Copy path</source>
-        <translation>Putanja kopiranja </translation>
+        <translation>Putanja kopiranja</translation>
     </message>
     <message>
         <source>Download</source>

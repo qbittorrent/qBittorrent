@@ -2429,7 +2429,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example:</source>
-        <translation>Exemplu: </translation>
+        <translation>Exemplu:</translation>
     </message>
     <message>
         <source>Provide the SMTP server address for sending email notifications.</source>

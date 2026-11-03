@@ -5590,7 +5590,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Upload:</source>
-        <translation>Augšupielāde: </translation>
+        <translation>Augšupielāde:</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -5690,7 +5690,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Ratio:</source>
-        <translation>L/A Attiecība: </translation>
+        <translation>L/A Attiecība:</translation>
     </message>
     <message>
         <source>Match any limit</source>
