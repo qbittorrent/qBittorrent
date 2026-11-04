@@ -2374,7 +2374,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>Deneme e-postası gönderilmeye çalışıldı.&lt;br&gt;Başarılı olup olmadığını onaylamak için gelen kutunuzu gözden geçirin.&lt;br&gt;Hatalar için Çalıştırma Günlüğünü gözden geçirin.</translation>
+        <translation type="vanished">Deneme e-postası gönderilmeye çalışıldı.&lt;br&gt;Başarılı olup olmadığını onaylamak için gelen kutunuzu gözden geçirin.&lt;br&gt;Hatalar için Çalıştırma Günlüğünü gözden geçirin.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2510,6 +2510,10 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>

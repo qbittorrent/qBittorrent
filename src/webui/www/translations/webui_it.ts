@@ -2374,7 +2374,7 @@ Per dividere voci multiple usa ';'. Si può usare il carattere jolly '*'.</trans
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>Tentativo di invio di un'email di prova.&lt;br&gt;Controlla la casella di posta per confermare l'arrivo della mail.&lt;br&gt;Controlla il registro esecuzione per eventuali errori.</translation>
+        <translation type="vanished">Tentativo di invio di un'email di prova.&lt;br&gt;Controlla la casella di posta per confermare l'arrivo della mail.&lt;br&gt;Controlla il registro esecuzione per eventuali errori.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2510,6 +2510,10 @@ Per dividere voci multiple usa ';'. Si può usare il carattere jolly '*'.</trans
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>

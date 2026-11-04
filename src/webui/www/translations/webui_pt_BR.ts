@@ -2374,7 +2374,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>Tentativa de enviar e-mail de teste.&lt;br&gt;Verifique sua caixa de entrada para confirmar o recebimento.&lt;br&gt;Verifique se há erros no registro de execução.</translation>
+        <translation type="vanished">Tentativa de enviar e-mail de teste.&lt;br&gt;Verifique sua caixa de entrada para confirmar o recebimento.&lt;br&gt;Verifique se há erros no registro de execução.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2510,6 +2510,10 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>

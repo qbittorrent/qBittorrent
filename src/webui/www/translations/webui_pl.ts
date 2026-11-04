@@ -2374,7 +2374,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>Podjęto próbę wysłania wiadomości testowej. &lt;br&gt;Sprawdź skrzynkę odbiorczą, aby potwierdzić powodzenie. &lt;br&gt;Sprawdź dziennik wykonania pod kątem błędów.</translation>
+        <translation type="vanished">Podjęto próbę wysłania wiadomości testowej. &lt;br&gt;Sprawdź skrzynkę odbiorczą, aby potwierdzić powodzenie. &lt;br&gt;Sprawdź dziennik wykonania pod kątem błędów.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2510,6 +2510,10 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>

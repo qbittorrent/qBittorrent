@@ -2373,7 +2373,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>Tentative d'envoi d'un courriel de test.&lt;br&gt;Vérifiez votre boîte de réception pour confirmer la réussite.&lt;br&gt;Consultez le journal d'exécution pour détecter des erreurs.</translation>
+        <translation type="vanished">Tentative d'envoi d'un courriel de test.&lt;br&gt;Vérifiez votre boîte de réception pour confirmer la réussite.&lt;br&gt;Consultez le journal d'exécution pour détecter des erreurs.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2509,6 +2509,10 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>

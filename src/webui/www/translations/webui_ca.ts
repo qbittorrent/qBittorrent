@@ -2374,7 +2374,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>S'ha intentat enviar un correu electrònic de prova. &lt;br&gt; Comproveu la safata d'entrada per confirmar que s'ha enviat correctament. &lt;br&gt; Comproveu el registre d'execució per si hi ha errors.</translation>
+        <translation type="vanished">S'ha intentat enviar un correu electrònic de prova. &lt;br&gt; Comproveu la safata d'entrada per confirmar que s'ha enviat correctament. &lt;br&gt; Comproveu el registre d'execució per si hi ha errors.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2510,6 +2510,10 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>

@@ -2374,7 +2374,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>Предпринята попытка отправки проверочного письма.&lt;br&gt;Проверьте входящие для подтверждения успеха.&lt;br&gt;Проверьте журнал работы на наличие ошибок.</translation>
+        <translation type="vanished">Предпринята попытка отправки проверочного письма.&lt;br&gt;Проверьте входящие для подтверждения успеха.&lt;br&gt;Проверьте журнал работы на наличие ошибок.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2510,6 +2510,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>

@@ -2374,7 +2374,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>A program megkísérelte elküldeni a teszt e-mailt.&lt;br&gt;A sikeres kézbesítést a beérkező levelek között ellenőrizheti.&lt;br&gt;Az esetleges hibákat a naplóban ellenőrizheti.</translation>
+        <translation type="vanished">A program megkísérelte elküldeni a teszt e-mailt.&lt;br&gt;A sikeres kézbesítést a beérkező levelek között ellenőrizheti.&lt;br&gt;Az esetleges hibákat a naplóban ellenőrizheti.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2510,6 +2510,10 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>

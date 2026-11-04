@@ -2374,7 +2374,7 @@ Koristite ';' za razdvajanje više unosa. Možete koristiti džoker '*'.</transl
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>Pokušano slanje e-pošte.&lt;br&gt;Provjerite pristiglu poštu da potvrdite uspjeh.&lt;br&gt;Provjerite dnevnik izvršavanja za greške.</translation>
+        <translation type="vanished">Pokušano slanje e-pošte.&lt;br&gt;Provjerite pristiglu poštu da potvrdite uspjeh.&lt;br&gt;Provjerite dnevnik izvršavanja za greške.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2510,6 +2510,10 @@ Koristite ';' za razdvajanje više unosa. Možete koristiti džoker '*'.</transl
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>

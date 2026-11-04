@@ -2374,7 +2374,7 @@ Använd ”;” för att avgränsa flera poster. Jokertecknet ”*” kan använ
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>Ett försök att skicka ett testmeddelande har gjorts.&lt;br&gt;Kontrollera inkorgen för att se om det kom fram.&lt;br&gt;Kontrollera körningsloggen efter fel.</translation>
+        <translation type="vanished">Ett försök att skicka ett testmeddelande har gjorts.&lt;br&gt;Kontrollera inkorgen för att se om det kom fram.&lt;br&gt;Kontrollera körningsloggen efter fel.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2510,6 +2510,10 @@ Använd ”;” för att avgränsa flera poster. Jokertecknet ”*” kan använ
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>

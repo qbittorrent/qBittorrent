@@ -2374,7 +2374,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>Cố gắng gửi email kiểm tra. &lt;br&gt;Kiểm tra hộp thư đến của bạn để xác nhận thành công. &lt;br&gt;Kiểm tra Nhật ký Thực thi cho các lỗi.</translation>
+        <translation type="vanished">Cố gắng gửi email kiểm tra. &lt;br&gt;Kiểm tra hộp thư đến của bạn để xác nhận thành công. &lt;br&gt;Kiểm tra Nhật ký Thực thi cho các lỗi.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2510,6 +2510,10 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>

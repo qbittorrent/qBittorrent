@@ -2374,7 +2374,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation>Se intentó enviar un correo electrónico de prueba. &lt;br&gt;Compruebe su bandeja de entrada para confirmar que se realizó correctamente. &lt;br&gt;Consulte el registro de ejecución para ver si hay errores.</translation>
+        <translation type="vanished">Se intentó enviar un correo electrónico de prueba. &lt;br&gt;Compruebe su bandeja de entrada para confirmar que se realizó correctamente. &lt;br&gt;Consulte el registro de ejecución para ver si hay errores.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2510,6 +2510,10 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
 </context>
