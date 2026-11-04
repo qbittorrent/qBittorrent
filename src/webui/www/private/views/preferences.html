@@ -1992,9 +1992,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateTempDirEnabled: updateTempDirEnabled,
                 updateTorrentBackupControls: updateTorrentBackupControls,
                 updateFinishedTorrentBackupControls: updateFinishedTorrentBackupControls,
-                addWatchFolder: addWatchFolder,
                 updateExcludedFileNamesEnabled: updateExcludedFileNamesEnabled,
-                changeWatchFolderSelect: changeWatchFolderSelect,
                 updateMailNotification: updateMailNotification,
                 updateMailAuthSettings: updateMailAuthSettings,
                 sendTestEmail: sendTestEmail,
@@ -2097,25 +2095,45 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         const addWatchFolder = (folder = "", sel = "default_folder", other = "") => {
             const pos = document.getElementById("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
-            const myinput = `<input id='text_watch_${pos}' type='text' value='${folder}'>`;
             const disableInput = (sel !== "other");
-            const mycb = "<div class='select-watched-folder-editable'>"
-                + `<select id ='cb_watch_${pos}' onchange='qBittorrent.Preferences.changeWatchFolderSelect(this);'>`
-                + "<option value='watch_folder'>QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
-                + "<option value='default_folder'>QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
-                + "<option value='other'>QBT_TR(Other...)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
-                + "</select>"
-                + `<input id='cb_watch_txt_${pos}' type='text' ${disableInput ? "hidden " : ""}/>`
-                + `<img src='images/list-add.svg' id='addFolderImg_${pos}' alt='Add' style='padding-left:170px;width:16px;cursor:pointer;' onclick='qBittorrent.Preferences.addWatchFolder();'>`
-                + "</div>";
 
-            watchedFoldersTable.push([myinput, mycb]);
-            document.getElementById(`cb_watch_${pos}`).value = sel;
-            if (disableInput) {
-                const elt = document.getElementById(`cb_watch_${pos}`);
-                other = elt.options[elt.selectedIndex].textContent;
-            }
-            document.getElementById(`cb_watch_txt_${pos}`).value = other;
+            const folderInput = document.createElement("input");
+            folderInput.id = `text_watch_${pos}`;
+            folderInput.type = "text";
+            folderInput.value = folder;
+
+            const folderTypeSelect = document.createElement("select");
+            folderTypeSelect.id = `cb_watch_${pos}`;
+            folderTypeSelect.options.add(new Option("QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]", "watch_folder"));
+            folderTypeSelect.options.add(new Option("QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]", "default_folder"));
+            folderTypeSelect.options.add(new Option("QBT_TR(Other...)QBT_TR[CONTEXT=ScanFoldersModel]", "other"));
+            folderTypeSelect.value = sel;
+            folderTypeSelect.addEventListener("change", (e) => {
+                changeWatchFolderSelect(e.target);
+            });
+
+            const otherInput = document.createElement("input");
+            otherInput.id = `cb_watch_txt_${pos}`;
+            otherInput.type = "text";
+            otherInput.hidden = disableInput;
+            if (disableInput)
+                other = folderTypeSelect.options[folderTypeSelect.selectedIndex].textContent;
+            otherInput.value = other;
+
+            const addFolderImg = document.createElement("img");
+            addFolderImg.id = `addFolderImg_${pos}`;
+            addFolderImg.src = "images/list-add.svg";
+            addFolderImg.alt = "Add";
+            addFolderImg.style.cssText = "padding-left:170px;width:16px;cursor:pointer;";
+            addFolderImg.addEventListener("click", (e) => {
+                addWatchFolder();
+            });
+
+            const folderTypeContainer = document.createElement("div");
+            folderTypeContainer.className = "select-watched-folder-editable";
+            folderTypeContainer.append(folderTypeSelect, otherInput, addFolderImg);
+
+            watchedFoldersTable.push([folderInput, folderTypeContainer]);
 
             // hide previous img
             if (pos > 0)
@@ -2189,6 +2207,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         const sendTestEmail = () => {
             const showNotification = (text, width, height, duration) => {
+                const content = document.createElement("div");
+                content.style.whiteSpace = "pre-line";
+                content.textContent = text;
+
                 new MochaUI.Window({
                     id: "testEmailNotificationDialog",
                     icon: "images/qbittorrent-tray.svg",
@@ -2197,7 +2219,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     closeAfter: duration,
                     type: "notification",
                     addClass: "notification",
-                    content: text,
+                    content: content,
                     width: width,
                     height: height,
                     padding: { top: 10, right: 12, bottom: 10, left: 12 },
@@ -2213,7 +2235,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         return;
                     }
 
-                    showNotification("QBT_TR(Attempted to send test email.<br>Check your inbox to confirm success.<br>Check the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]", 300, 80, 5000);
+                    showNotification("QBT_TR(Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]", 300, 80, 5000);
                 });
         };
 

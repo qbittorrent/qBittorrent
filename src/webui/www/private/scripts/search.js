@@ -655,23 +655,32 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const downloadSearchTorrent = () => {
-        const urls = [];
+        // let each plugin download its own results, as the GUI does
+        const urlsByEngine = new Map();
         for (const rowID of searchResultsTable.selectedRowsIds()) {
-            const { fileUrl } = searchResultsTable.getRow(rowID).full_data;
-            urls.push(fileUrl);
+            const { engineName, fileUrl } = searchResultsTable.getRow(rowID).full_data;
+            if (!urlsByEngine.has(engineName))
+                urlsByEngine.set(engineName, []);
+            urlsByEngine.get(engineName).push(fileUrl);
         }
 
-        if (urls.length === 0)
+        if (urlsByEngine.size === 0)
             return;
 
-        fetch("api/v2/torrents/add", {
+        const requests = [];
+        for (const [engineName, urls] of urlsByEngine) {
+            requests.push(fetch("api/v2/torrents/add", {
                 method: "POST",
                 body: new URLSearchParams({
-                    urls: urls.join("\n")
+                    urls: urls.join("\n"),
+                    downloader: engineName
                 })
-            })
-            .then((response) => {
-                if (!response.ok)
+            }));
+        }
+
+        Promise.all(requests)
+            .then((responses) => {
+                if (responses.some((response) => !response.ok))
                     alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
             })
             .catch((error) => {

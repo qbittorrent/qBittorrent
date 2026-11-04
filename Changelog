@@ -1,3 +1,21 @@
+Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.1
+    - BUGFIX: Don't try to obtain pieces info when no metadata is available (glassez) #25070
+    - BUGFIX: Add mnemonic for Plugins menu item (vafada) #25111
+    - BUGFIX: Preserve encoded plus signs in HTTP queries (zepx) #25114
+    - BUGFIX: Treat a lockfile that names our own PID as stale (ghz-max) #25128
+    - BUGFIX: Correctly update item-by-path mapping on folder renamed (glassez) #25135
+    - BUGFIX: Fix unexpected drop behavior when dragging from Firefox on Windows (Chocobo1) #25140
+    - BUGFIX: Use system theme fallback icon for Open Destination Folder button (FTA7700) #25153
+    - BUGFIX: Fix content layout isn't applied on deduplicated filenames (glassez) #25183
+    - WEBUI: Preserve web seed URLs when editing (c8dhjp4tyv-bit) #25096
+    - WEBUI: Let search plugins download their own results (Piccirello) #25107
+    - WEBUI: Insert translated strings as text instead of HTML (Piccirello) #25145
+    - WEBAPI: Fix torrent ID changed event is unhandled (glassez) #25080
+    - WEBAPI: Preserve metadata source URI encoding (zepx) #25113
+    - WINDOWS: NSIS: Fix wrong registry view (Chocobo1) #25179
+    - WINDOWS: NSIS: Remove leftover registry value (Chocobo1) #25180
+    - MACOS: Add Homebrew prefix for Apple Silicon to PATH (MaxSiominDev) #25132
+
 Mon Oct 19th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0
     - FEATURE: Add an option to match all share limits (glassez) #24043
     - FEATURE: Put Email examples in placeholder text (Chocobo1) #23949
