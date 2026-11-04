@@ -35,6 +35,7 @@
 
 #include <QDialog>
 
+#include "base/bittorrent/fileschedulingmode.h"
 #include "base/bittorrent/sharelimits.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
@@ -101,5 +102,6 @@ private:
         Qt::CheckState disableLSD;
         Qt::CheckState sequential;
         Qt::CheckState firstLastPieces;
+        std::optional<BitTorrent::FileSchedulingMode> fileSchedulingMode;
     } m_initialValues;
 };

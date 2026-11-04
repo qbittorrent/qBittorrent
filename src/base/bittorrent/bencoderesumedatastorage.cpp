@@ -105,6 +105,29 @@ namespace
             entryList.emplace_back(setValue.toString().toStdString());
         return entryList;
     }
+
+    template <typename T>
+    ListType intListToEntryList(const QList<T> &input)
+    {
+        ListType entryList;
+        entryList.reserve(input.size());
+        for (const T value : input)
+            entryList.emplace_back(static_cast<lt::entry::integer_type>(value));
+        return entryList;
+    }
+
+    template <typename T>
+    QList<T> intListFromNode(const lt::bdecode_node &listNode)
+    {
+        QList<T> result;
+        if (listNode.type() != lt::bdecode_node::list_t)
+            return result;
+
+        result.reserve(listNode.list_size());
+        for (int i = 0; i < listNode.list_size(); ++i)
+            result.append(static_cast<T>(listNode.list_int_value_at(i)));
+        return result;
+    }
 }
 
 BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const Path &path, QObject *parent)
@@ -245,6 +268,10 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     torrentParams.comment = fromLTString(resumeDataRoot.dict_find_string_value("qBt-comment"));
     torrentParams.hasFinishedStatus = resumeDataRoot.dict_find_int_value("qBt-seedStatus");
     torrentParams.firstLastPiecePriority = resumeDataRoot.dict_find_int_value("qBt-firstLastPiecePriority");
+    torrentParams.fileOrder = intListFromNode<int>(resumeDataRoot.dict_find("qBt-fileOrder"));
+    torrentParams.fileSequential = intListFromNode<bool>(resumeDataRoot.dict_find("qBt-fileSequential"));
+    torrentParams.fileSchedulingMode = Utils::String::toEnum(
+            fromLTString(resumeDataRoot.dict_find_string_value("qBt-fileSchedulingMode")), FileSchedulingMode::Soft);
 
     const lt::string_view ratioLimitString = resumeDataRoot.dict_find_string_value("qBt-ratioLimit");
     torrentParams.shareLimits = {
@@ -465,6 +492,11 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     data["qBt-seedStatus"] = resumeData.hasFinishedStatus;
     data["qBt-contentLayout"] = Utils::String::fromEnum(resumeData.contentLayout).toStdString();
     data["qBt-firstLastPiecePriority"] = resumeData.firstLastPiecePriority;
+    data["qBt-fileSchedulingMode"] = Utils::String::fromEnum(resumeData.fileSchedulingMode).toStdString();
+    if (!resumeData.fileOrder.isEmpty())
+        data["qBt-fileOrder"] = intListToEntryList(resumeData.fileOrder);
+    if (!resumeData.fileSequential.isEmpty())
+        data["qBt-fileSequential"] = intListToEntryList(resumeData.fileSequential);
     data["qBt-stopCondition"] = Utils::String::fromEnum(resumeData.stopCondition).toStdString();
 
     if (!resumeData.sslParameters.certificate.isNull())

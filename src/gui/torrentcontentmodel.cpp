@@ -167,7 +167,7 @@ namespace
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
-    , m_rootItem {new TorrentContentModelFolder(QList<QString>({ tr("Name"), tr("Total Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") }))}
+    , m_rootItem {new TorrentContentModelFolder(QList<QString>({ tr("Name"), tr("Total Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability"), tr("Download Order"), tr("Sequential") }))}
 #if defined(Q_OS_WIN)
     , m_fileIconProvider {new QFileIconProvider}
 #elif defined(Q_OS_MACOS)
@@ -233,6 +233,65 @@ void TorrentContentModel::updateFilesAvailability()
     });
 }
 
+void TorrentContentModel::updateFilesScheduling()
+{
+    Q_ASSERT(m_contentHandler && m_contentHandler->hasMetadata());
+
+    // Both lists are either empty (nothing set) or have one entry per file
+    const QList<int> fileOrder = m_contentHandler->fileOrder();
+    const QList<bool> fileSequential = m_contentHandler->fileSequentialFlags();
+    for (qsizetype i = 0; i < m_filesIndex.size(); ++i)
+    {
+        m_filesIndex[i]->setOrder(fileOrder.value(i, 0));
+        m_filesIndex[i]->setSequential(fileSequential.value(i, false));
+    }
+}
+
+QList<int> TorrentContentModel::getFileOrder() const
+{
+    QList<int> order;
+    order.reserve(m_filesIndex.size());
+    for (const TorrentContentModelFile *file : asConst(m_filesIndex))
+        order.push_back(file->order());
+    return order;
+}
+
+QList<bool> TorrentContentModel::getFileSequentialFlags() const
+{
+    QList<bool> flags;
+    flags.reserve(m_filesIndex.size());
+    for (const TorrentContentModelFile *file : asConst(m_filesIndex))
+        flags.push_back(file->isSequential());
+    return flags;
+}
+
+void TorrentContentModel::setFileOrder(const QList<int> &order)
+{
+    if (!m_contentHandler || !m_contentHandler->hasMetadata() || (order.size() != m_filesIndex.size()))
+        return;
+
+    m_contentHandler->setFileOrder(order);
+    updateFilesScheduling();
+    notifyAllUpdated({{TorrentContentModelItem::COL_ORDER, TorrentContentModelItem::COL_ORDER}});
+}
+
+void TorrentContentModel::setFileSequentialFlags(const QList<bool> &flags)
+{
+    if (!m_contentHandler || !m_contentHandler->hasMetadata() || (flags.size() != m_filesIndex.size()))
+        return;
+
+    m_contentHandler->setFileSequentialFlags(flags);
+    updateFilesScheduling();
+    notifyAllUpdated({{TorrentContentModelItem::COL_SEQUENTIAL, TorrentContentModelItem::COL_SEQUENTIAL}});
+}
+
+void TorrentContentModel::notifyAllUpdated(const QList<ColumnInterval> &columns)
+{
+    const int topLevelCount = rowCount();
+    for (int row = 0; row < topLevelCount; ++row)
+        notifySubtreeUpdated(index(row, 0), columns);
+}
+
 bool TorrentContentModel::setItemPriority(const QModelIndex &index, BitTorrent::DownloadPriority priority)
 {
     Q_ASSERT(index.isValid());
@@ -290,6 +349,22 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
         return setItemPriority(index, newPrio);
     }
 
+    if ((index.column() == TorrentContentModelItem::COL_SEQUENTIAL) && (role == Qt::CheckStateRole))
+    {
+        const int fileIndex = getFileIndex(index);
+        if (fileIndex < 0)
+            return false;
+
+        const bool sequential = (static_cast<Qt::CheckState>(value.toInt()) == Qt::Checked);
+        QList<bool> flags = getFileSequentialFlags();
+        if (flags[fileIndex] == sequential)
+            return false;
+
+        flags[fileIndex] = sequential;
+        setFileSequentialFlags(flags);
+        return true;
+    }
+
     if (role == Qt::EditRole)
     {
         auto *item = static_cast<TorrentContentModelItem *>(index.internalPointer());
@@ -335,6 +410,23 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
             {
                 const auto newPrio = static_cast<BitTorrent::DownloadPriority>(value.toInt());
                 return setItemPriority(index, newPrio);
+            }
+            break;
+
+        case TorrentContentModelItem::COL_ORDER:
+            {
+                const int fileIndex = getFileIndex(index);
+                if (fileIndex < 0)
+                    return false;
+
+                const int newOrder = std::max(value.toInt(), 0);
+                QList<int> order = getFileOrder();
+                if (order[fileIndex] == newOrder)
+                    return false;
+
+                order[fileIndex] = newOrder;
+                setFileOrder(order);
+                return true;
             }
             break;
 
@@ -407,6 +499,14 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
         return m_fileIconProvider->icon(QFileInfo(item->name()));
 
     case Qt::CheckStateRole:
+        if (index.column() == TorrentContentModelItem::COL_SEQUENTIAL)
+        {
+            if (item->itemType() != TorrentContentModelItem::FileType)
+                return {};
+
+            return item->isSequential() ? Qt::Checked : Qt::Unchecked;
+        }
+
         if (index.column() != TorrentContentModelItem::COL_NAME)
             return {};
 
@@ -434,7 +534,8 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
 
     case Qt::TextAlignmentRole:
         if ((index.column() == TorrentContentModelItem::COL_SIZE)
-            || (index.column() == TorrentContentModelItem::COL_REMAINING))
+            || (index.column() == TorrentContentModelItem::COL_REMAINING)
+            || (index.column() == TorrentContentModelItem::COL_ORDER))
         {
             return QVariant {Qt::AlignRight | Qt::AlignVCenter};
         }
@@ -465,6 +566,8 @@ Qt::ItemFlags TorrentContentModel::flags(const QModelIndex &index) const
         flags |= Qt::ItemIsAutoTristate;
     if (index.column() == TorrentContentModelItem::COL_PRIO)
         flags |= Qt::ItemIsEditable;
+    if ((index.column() == TorrentContentModelItem::COL_ORDER) && (itemType(index) == TorrentContentModelItem::FileType))
+        flags |= Qt::ItemIsEditable;
 
     return flags;
 }
@@ -481,7 +584,8 @@ QVariant TorrentContentModel::headerData(int section, Qt::Orientation orientatio
 
     case Qt::TextAlignmentRole:
         if ((section == TorrentContentModelItem::COL_SIZE)
-            || (section == TorrentContentModelItem::COL_REMAINING))
+            || (section == TorrentContentModelItem::COL_REMAINING)
+            || (section == TorrentContentModelItem::COL_ORDER))
         {
             return QVariant {Qt::AlignRight | Qt::AlignVCenter};
         }
@@ -636,6 +740,7 @@ void TorrentContentModel::populate()
     updateFilesProgress();
     updateFilesPriorities();
     updateFilesAvailability();
+    updateFilesScheduling();
 }
 
 TorrentContentModelFolder *TorrentContentModel::populateFolder(const Path &folderPath, const PopulateFolderFlags flags)
@@ -856,11 +961,12 @@ void TorrentContentModel::refresh()
     updateFilesProgress();
     updateFilesPriorities();
     updateFilesAvailability();
+    updateFilesScheduling();
 
     const QList<ColumnInterval> columns =
     {
         {TorrentContentModelItem::COL_NAME, TorrentContentModelItem::COL_NAME},
-        {TorrentContentModelItem::COL_PROGRESS, TorrentContentModelItem::COL_AVAILABILITY}
+        {TorrentContentModelItem::COL_PROGRESS, TorrentContentModelItem::COL_SEQUENTIAL}
     };
     notifySubtreeUpdated(index(0, 0), columns);
 }

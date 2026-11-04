@@ -29,6 +29,10 @@
 
 #include "torrentcontentwidget.h"
 
+#include <algorithm>
+#include <functional>
+#include <limits>
+
 #include <QApplication>
 #include <QClipboard>
 #include <QDir>
@@ -44,6 +48,7 @@
 #include <QWheelEvent>
 
 #include "base/bittorrent/torrentcontenthandler.h"
+#include "base/global.h"
 #include "base/path.h"
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
@@ -70,6 +75,34 @@ namespace
             persistentIndexes.emplaceBack(index);
 
         return persistentIndexes;
+    }
+
+    // Returns ranked file indexes (rank > 0) ordered by rank, keeping the current relative order.
+    // Ties are kept in file index order.
+    QList<int> rankedFilesInOrder(const QList<int> &fileOrder)
+    {
+        QList<int> ranked;
+        for (int i = 0; i < fileOrder.size(); ++i)
+        {
+            if (fileOrder[i] > 0)
+                ranked.append(i);
+        }
+
+        std::ranges::stable_sort(ranked, [&fileOrder](const int left, const int right)
+        {
+            return fileOrder[left] < fileOrder[right];
+        });
+        return ranked;
+    }
+
+    // Assigns consecutive ranks starting from 1 to the given files, all other files become unranked.
+    QList<int> makeCompactOrder(const int filesCount, const QList<int> &orderedFiles)
+    {
+        QList<int> order(filesCount, 0);
+        int rank = 0;
+        for (const int fileIndex : orderedFiles)
+            order[fileIndex] = ++rank;
+        return order;
     }
 }
 
@@ -350,6 +383,131 @@ void TorrentContentWidget::applyPrioritiesByOrder()
     }
 }
 
+QList<int> TorrentContentWidget::selectedFileIndexesInDisplayOrder() const
+{
+    // Walk the (sorted and filtered) tree in the order the user sees it.
+    // A selected folder contributes all of its files.
+    QList<int> result;
+    QSet<int> seen;
+
+    const std::function<void (const QModelIndex &, bool)> visit = [&](const QModelIndex &parent, const bool parentSelected)
+    {
+        const int rows = m_filterModel->rowCount(parent);
+        for (int row = 0; row < rows; ++row)
+        {
+            const QModelIndex index = m_filterModel->index(row, 0, parent);
+            const bool selected = parentSelected || selectionModel()->isRowSelected(row, parent);
+            if (m_filterModel->itemType(index) == TorrentContentModelItem::FileType)
+            {
+                const int fileIndex = m_filterModel->getFileIndex(index);
+                if (selected && (fileIndex >= 0) && !seen.contains(fileIndex))
+                {
+                    seen.insert(fileIndex);
+                    result.append(fileIndex);
+                }
+            }
+            else
+            {
+                visit(index, selected);
+            }
+        }
+    };
+    visit({}, false);
+
+    return result;
+}
+
+void TorrentContentWidget::downloadSelectedFirst()
+{
+    const QList<int> selectedFiles = selectedFileIndexesInDisplayOrder();
+    if (selectedFiles.isEmpty())
+        return;
+
+    const QList<int> currentOrder = m_model->getFileOrder();
+    const QSet<int> selectedSet {selectedFiles.cbegin(), selectedFiles.cend()};
+
+    // Selected files go to the top (keeping their current rank order, unranked ones in shown order),
+    // followed by the other ranked files in their current order.
+    QList<int> selectedRanked;
+    QList<int> selectedUnranked;
+    for (const int fileIndex : selectedFiles)
+        ((currentOrder[fileIndex] > 0) ? selectedRanked : selectedUnranked).append(fileIndex);
+    std::ranges::stable_sort(selectedRanked, [&currentOrder](const int left, const int right)
+    {
+        return currentOrder[left] < currentOrder[right];
+    });
+
+    QList<int> newOrderedFiles = selectedRanked + selectedUnranked;
+    for (const int fileIndex : asConst(rankedFilesInOrder(currentOrder)))
+    {
+        if (!selectedSet.contains(fileIndex))
+            newOrderedFiles.append(fileIndex);
+    }
+
+    m_model->setFileOrder(makeCompactOrder(currentOrder.size(), newOrderedFiles));
+}
+
+void TorrentContentWidget::downloadSelectedLast()
+{
+    const QList<int> selectedFiles = selectedFileIndexesInDisplayOrder();
+    if (selectedFiles.isEmpty())
+        return;
+
+    const QList<int> currentOrder = m_model->getFileOrder();
+    const QSet<int> selectedSet {selectedFiles.cbegin(), selectedFiles.cend()};
+
+    // Other ranked files keep their order, selected files are appended after them.
+    QList<int> newOrderedFiles;
+    for (const int fileIndex : asConst(rankedFilesInOrder(currentOrder)))
+    {
+        if (!selectedSet.contains(fileIndex))
+            newOrderedFiles.append(fileIndex);
+    }
+    newOrderedFiles.append(selectedFiles);
+
+    m_model->setFileOrder(makeCompactOrder(currentOrder.size(), newOrderedFiles));
+}
+
+void TorrentContentWidget::rankSelectedByShownOrder()
+{
+    const QList<int> selectedFiles = selectedFileIndexesInDisplayOrder();
+    if (selectedFiles.isEmpty())
+        return;
+
+    // Selected files get consecutive ranks in the order they are shown, after all other ranked files.
+    QList<int> order = m_model->getFileOrder();
+    const QSet<int> selectedSet {selectedFiles.cbegin(), selectedFiles.cend()};
+    int maxRank = 0;
+    for (int i = 0; i < order.size(); ++i)
+    {
+        if (!selectedSet.contains(i))
+            maxRank = std::max(maxRank, order[i]);
+    }
+
+    for (const int fileIndex : selectedFiles)
+        order[fileIndex] = (maxRank < std::numeric_limits<int>::max()) ? ++maxRank : maxRank;
+
+    m_model->setFileOrder(order);
+}
+
+void TorrentContentWidget::clearSelectedOrder()
+{
+    QList<int> order = m_model->getFileOrder();
+    for (const int fileIndex : asConst(selectedFileIndexesInDisplayOrder()))
+        order[fileIndex] = 0;
+
+    m_model->setFileOrder(order);
+}
+
+void TorrentContentWidget::setSelectedSequential(const bool sequential)
+{
+    QList<bool> flags = m_model->getFileSequentialFlags();
+    for (const int fileIndex : asConst(selectedFileIndexesInDisplayOrder()))
+        flags[fileIndex] = sequential;
+
+    m_model->setFileSequentialFlags(flags);
+}
+
 void TorrentContentWidget::openSelectedFile()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows(0);
@@ -470,6 +628,28 @@ void TorrentContentWidget::displayContextMenu()
     });
     subMenu->addSeparator();
     subMenu->addAction(tr("By shown file order"), this, &TorrentContentWidget::applyPrioritiesByOrder);
+
+    QMenu *orderMenu = menu->addMenu(tr("Download order"));
+    orderMenu->setToolTipsVisible(true);
+    orderMenu->addAction(tr("Download first"), this, &TorrentContentWidget::downloadSelectedFirst)
+            ->setToolTip(tr("Move the selected files to the top of the download order"));
+    orderMenu->addAction(tr("Download last"), this, &TorrentContentWidget::downloadSelectedLast)
+            ->setToolTip(tr("Move the selected files to the bottom of the download order"));
+    orderMenu->addAction(tr("By shown file order"), this, &TorrentContentWidget::rankSelectedByShownOrder)
+            ->setToolTip(tr("Rank the selected files in the order they are shown, after the files that are already ranked"));
+    orderMenu->addSeparator();
+    orderMenu->addAction(tr("Remove from download order"), this, &TorrentContentWidget::clearSelectedOrder);
+
+    const QList<int> selectedFiles = selectedFileIndexesInDisplayOrder();
+    const QList<bool> sequentialFlags = m_model->getFileSequentialFlags();
+    const bool allSequential = !selectedFiles.isEmpty() && std::ranges::all_of(selectedFiles
+            , [&sequentialFlags](const int fileIndex) { return sequentialFlags.value(fileIndex); });
+    QAction *sequentialAction = menu->addAction(tr("Download in sequential order"), this, [this](const bool checked)
+    {
+        setSelectedSequential(checked);
+    });
+    sequentialAction->setCheckable(true);
+    sequentialAction->setChecked(allSequential);
 
     // The selected torrent might have disappeared during exec()
     // so we just close menu when an appropriate model is reset

@@ -72,7 +72,7 @@ namespace
 {
     const QString DB_CONNECTION_NAME = u"ResumeDataStorage"_s;
 
-    const int DB_VERSION = 10;
+    const int DB_VERSION = 11;
 
     const QString DB_TABLE_META = u"meta"_s;
     const QString DB_TABLE_TORRENTS = u"torrents"_s;
@@ -146,6 +146,9 @@ namespace
     const Column DB_COLUMN_SHARE_LIMITS_MODE = makeColumn(u"share_limits_mode"_s);
     const Column DB_COLUMN_SHARE_LIMIT_ACTION = makeColumn(u"share_limit_action"_s);
     const Column DB_COLUMN_HAS_OUTER_PIECES_PRIORITY = makeColumn(u"has_outer_pieces_priority"_s);
+    const Column DB_COLUMN_FILE_ORDER = makeColumn(u"file_order"_s);
+    const Column DB_COLUMN_FILE_SEQUENTIAL = makeColumn(u"file_sequential"_s);
+    const Column DB_COLUMN_FILE_SCHEDULING_MODE = makeColumn(u"file_scheduling_mode"_s);
     const Column DB_COLUMN_HAS_SEED_STATUS = makeColumn(u"has_seed_status"_s);
     const Column DB_COLUMN_OPERATING_MODE = makeColumn(u"operating_mode"_s);
     const Column DB_COLUMN_STOPPED = makeColumn(u"stopped"_s);
@@ -223,6 +226,31 @@ namespace
     QString makeColumnDefinition(const Column &column, const QString &definition)
     {
         return u"%1 %2"_s.arg(quoted(column.name), definition);
+    }
+
+    // Per-file values (download order, sequential flags) are stored as comma separated integers.
+    template <typename T>
+    QString serializeIntList(const QList<T> &values)
+    {
+        QStringList items;
+        items.reserve(values.size());
+        for (const T value : values)
+            items.append(QString::number(static_cast<qint64>(value)));
+        return items.join(u',');
+    }
+
+    template <typename T>
+    QList<T> parseIntList(const QString &data)
+    {
+        QList<T> result;
+        if (data.isEmpty())
+            return result;
+
+        const QStringList items = data.split(u',');
+        result.reserve(items.size());
+        for (const QString &item : items)
+            result.append(static_cast<T>(item.toLongLong()));
+        return result;
     }
 }
 
@@ -478,6 +506,9 @@ void BitTorrent::DBResumeDataStorage::createDB() const
             makeColumnDefinition(DB_COLUMN_SHARE_LIMITS_MODE, u"TEXT NOT NULL DEFAULT `Default`"_s),
             makeColumnDefinition(DB_COLUMN_SHARE_LIMIT_ACTION, u"TEXT NOT NULL DEFAULT `Default`"_s),
             makeColumnDefinition(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY, u"INTEGER NOT NULL"_s),
+            makeColumnDefinition(DB_COLUMN_FILE_ORDER, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_FILE_SEQUENTIAL, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_FILE_SCHEDULING_MODE, u"TEXT NOT NULL DEFAULT `Soft`"_s),
             makeColumnDefinition(DB_COLUMN_HAS_SEED_STATUS, u"INTEGER NOT NULL"_s),
             makeColumnDefinition(DB_COLUMN_OPERATING_MODE, u"TEXT NOT NULL"_s),
             makeColumnDefinition(DB_COLUMN_STOPPED, u"INTEGER NOT NULL"_s),
@@ -593,6 +624,13 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
         if (fromVersion <= 9)
             addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SHARE_LIMITS_MODE, u"TEXT NOT NULL DEFAULT `Default`"_s);
 
+        if (fromVersion <= 10)
+        {
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_FILE_ORDER, u"TEXT"_s);
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_FILE_SEQUENTIAL, u"TEXT"_s);
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_FILE_SCHEDULING_MODE, u"TEXT NOT NULL DEFAULT `Soft`"_s);
+        }
+
         const QString updateMetaVersionQuery = makeUpdateStatement(DB_TABLE_META, {DB_COLUMN_NAME, DB_COLUMN_VALUE});
         if (!query.prepare(updateMetaVersionQuery))
             throw RuntimeError(query.lastError().text());
@@ -643,6 +681,10 @@ LoadResumeDataResult DBResumeDataStorage::parseQueryResultRow(const QSqlQuery &q
     }
     resumeData.hasFinishedStatus = query.value(DB_COLUMN_HAS_SEED_STATUS.name).toBool();
     resumeData.firstLastPiecePriority = query.value(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY.name).toBool();
+    resumeData.fileOrder = parseIntList<int>(query.value(DB_COLUMN_FILE_ORDER.name).toString());
+    resumeData.fileSequential = parseIntList<bool>(query.value(DB_COLUMN_FILE_SEQUENTIAL.name).toString());
+    resumeData.fileSchedulingMode = Utils::String::toEnum(
+        query.value(DB_COLUMN_FILE_SCHEDULING_MODE.name).toString(), FileSchedulingMode::Soft);
     resumeData.shareLimits = {
         .ratioLimit = query.value(DB_COLUMN_RATIO_LIMIT.name).toInt() / 1000.0,
         .seedingTimeLimit = query.value(DB_COLUMN_SEEDING_TIME_LIMIT.name).toInt(),
@@ -872,6 +914,9 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
             DB_COLUMN_SHARE_LIMITS_MODE,
             DB_COLUMN_SHARE_LIMIT_ACTION,
             DB_COLUMN_HAS_OUTER_PIECES_PRIORITY,
+            DB_COLUMN_FILE_ORDER,
+            DB_COLUMN_FILE_SEQUENTIAL,
+            DB_COLUMN_FILE_SCHEDULING_MODE,
             DB_COLUMN_HAS_SEED_STATUS,
             DB_COLUMN_OPERATING_MODE,
             DB_COLUMN_STOPPED,
@@ -941,6 +986,11 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
             query.bindValue(DB_COLUMN_SHARE_LIMITS_MODE.placeholder, Utils::String::fromEnum(m_resumeData.shareLimits.mode));
             query.bindValue(DB_COLUMN_SHARE_LIMIT_ACTION.placeholder, Utils::String::fromEnum(m_resumeData.shareLimits.action));
             query.bindValue(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY.placeholder, m_resumeData.firstLastPiecePriority);
+            query.bindValue(DB_COLUMN_FILE_ORDER.placeholder, (m_resumeData.fileOrder.isEmpty()
+                    ? QString() : serializeIntList(m_resumeData.fileOrder)));
+            query.bindValue(DB_COLUMN_FILE_SEQUENTIAL.placeholder, (m_resumeData.fileSequential.isEmpty()
+                    ? QString() : serializeIntList(m_resumeData.fileSequential)));
+            query.bindValue(DB_COLUMN_FILE_SCHEDULING_MODE.placeholder, Utils::String::fromEnum(m_resumeData.fileSchedulingMode));
             query.bindValue(DB_COLUMN_HAS_SEED_STATUS.placeholder, m_resumeData.hasFinishedStatus);
             query.bindValue(DB_COLUMN_OPERATING_MODE.placeholder, Utils::String::fromEnum(m_resumeData.operatingMode));
             query.bindValue(DB_COLUMN_STOPPED.placeholder, m_resumeData.stopped);

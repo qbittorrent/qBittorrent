@@ -29,6 +29,8 @@
 
 #include "torrentcontentfiltermodel.h"
 
+#include <limits>
+
 #include "torrentcontentmodel.h"
 
 TorrentContentFilterModel::TorrentContentFilterModel(QObject *parent)
@@ -109,6 +111,17 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
             }
 
             return false;
+        }
+
+    case TorrentContentModelItem::COL_ORDER:
+        {
+            // Unranked items (0) are placed after ranked ones
+            const auto sortKey = [](const QModelIndex &index) -> qint64
+            {
+                const int order = index.data(TorrentContentModel::UnderlyingDataRole).toInt();
+                return (order > 0) ? order : (static_cast<qint64>(std::numeric_limits<int>::max()) + 1);
+            };
+            return sortKey(left) < sortKey(right);
         }
     }
 

@@ -143,6 +143,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_ETA, torrent.eta()},
         {KEY_TORRENT_SEQUENTIAL_DOWNLOAD, torrent.isSequentialDownload()},
         {KEY_TORRENT_FIRST_LAST_PIECE_PRIO, torrent.hasFirstLastPiecePriority()},
+        {KEY_TORRENT_FILE_SCHEDULING_MODE, Utils::String::fromEnum(torrent.fileSchedulingMode())},
 
         {KEY_TORRENT_CATEGORY, torrent.category()},
         {KEY_TORRENT_TAGS, Utils::String::joinIntoString(torrent.tags(), u", "_s)},

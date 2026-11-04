@@ -25,3 +25,7 @@ Remember to commit Markdown files (\*.md) and the generated man pages (\*.1 file
 To translate the man pages into a new language, create a new subdirectory here
 with the translated files and add it to the `manPageLanguages` list in
 [`dist/unix/CMakeLists.txt`](../dist/unix/CMakeLists.txt).
+
+## Other documents
+
+* [Per-file download order and sequential download](file-download-order.md)

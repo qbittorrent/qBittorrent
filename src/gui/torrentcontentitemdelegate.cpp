@@ -29,10 +29,13 @@
 
 #include "torrentcontentitemdelegate.h"
 
+#include <limits>
+
 #include <QComboBox>
 #include <QModelIndex>
 #include <QPainter>
 #include <QProgressBar>
+#include <QSpinBox>
 
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/torrent.h"
@@ -45,6 +48,13 @@ TorrentContentItemDelegate::TorrentContentItemDelegate(QWidget *parent)
 
 void TorrentContentItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
+    if (index.column() == TorrentContentModelItem::COL_ORDER)
+    {
+        auto *spinBox = static_cast<QSpinBox *>(editor);
+        spinBox->setValue(index.data(TorrentContentModel::UnderlyingDataRole).toInt());
+        return;
+    }
+
     auto *combobox = static_cast<QComboBox *>(editor);
     // Set combobox index
     const int priority = index.data(TorrentContentModel::UnderlyingDataRole).toInt();
@@ -70,6 +80,21 @@ void TorrentContentItemDelegate::setEditorData(QWidget *editor, const QModelInde
 
 QWidget *TorrentContentItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const
 {
+    if (index.column() == TorrentContentModelItem::COL_ORDER)
+    {
+        if (!(index.flags() & Qt::ItemIsEditable))
+            return nullptr;
+
+        // Download order (rank): 0 means "no order", lower values are downloaded first
+        auto *editor = new QSpinBox(parent);
+        editor->setAutoFillBackground(true);
+        editor->setFocusPolicy(Qt::StrongFocus);
+        editor->setRange(0, std::numeric_limits<int>::max());
+        editor->setSpecialValueText(tr("None", "None (download order)"));
+        editor->setToolTip(tr("Files with a lower number are downloaded first. Files with the same number are downloaded together."));
+        return editor;
+    }
+
     if (index.column() != TorrentContentModelItem::COL_PRIO)
         return nullptr;
 
@@ -98,6 +123,15 @@ QWidget *TorrentContentItemDelegate::createEditor(QWidget *parent, const QStyleO
 
 void TorrentContentItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
+    if (index.column() == TorrentContentModelItem::COL_ORDER)
+    {
+        auto *spinBox = static_cast<QSpinBox *>(editor);
+        spinBox->interpretText();
+        if (spinBox->value() != index.data(TorrentContentModel::UnderlyingDataRole).toInt())
+            model->setData(index, spinBox->value());
+        return;
+    }
+
     const auto *combobox = static_cast<QComboBox *>(editor);
 
     BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal; // NORMAL

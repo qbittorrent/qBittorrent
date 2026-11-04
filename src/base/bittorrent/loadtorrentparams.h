@@ -30,10 +30,12 @@
 
 #include <libtorrent/add_torrent_params.hpp>
 
+#include <QList>
 #include <QString>
 
 #include "base/path.h"
 #include "base/tagset.h"
+#include "fileschedulingmode.h"
 #include "sharelimits.h"
 #include "sslparameters.h"
 #include "torrent.h"
@@ -55,6 +57,11 @@ namespace BitTorrent
         TorrentOperatingMode operatingMode = TorrentOperatingMode::AutoManaged;
         bool useAutoTMM = false;
         bool firstLastPiecePriority = false;
+        // Per-file download order and sequential flags (indexed like `Torrent::filePaths()`).
+        // Empty lists mean "not set". See `filescheduler.h`.
+        QList<int> fileOrder;
+        QList<bool> fileSequential;
+        FileSchedulingMode fileSchedulingMode = FileSchedulingMode::Soft;
         bool hasFinishedStatus = false;
         bool stopped = false;
         Torrent::StopCondition stopCondition = Torrent::StopCondition::None;

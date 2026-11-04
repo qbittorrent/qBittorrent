@@ -31,6 +31,7 @@
 
 #include "base/pathfwd.h"
 
+class QComboBox;
 class QPixmap;
 class QPoint;
 class QSize;
@@ -56,4 +57,7 @@ namespace Utils::Gui
 
     QString tagToWidgetText(const Tag &tag);
     Tag widgetTextToTag(const QString &text);
+
+    // Fills the combo box with `BitTorrent::FileSchedulingMode` values (stored as item data) and sets a tooltip
+    void initFileSchedulingModeComboBox(QComboBox *comboBox);
 }

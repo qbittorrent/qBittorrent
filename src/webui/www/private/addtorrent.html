@@ -152,11 +152,23 @@
                 <li><a href="#FilePrioMaximum"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Maximum)QBT_TR[CONTEXT=AddNewTorrentDialog]</a></li>
             </ul>
         </li>
+        <li>
+            <a href="#FileOrder" class="arrow-right"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Download order)QBT_TR[CONTEXT=AddNewTorrentDialog]</a>
+            <ul>
+                <li title="QBT_TR(Move the selected files to the top of the download order)QBT_TR[CONTEXT=AddNewTorrentDialog]"><a href="#FileOrderFirst"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Download first)QBT_TR[CONTEXT=AddNewTorrentDialog]</a></li>
+                <li title="QBT_TR(Move the selected files to the bottom of the download order)QBT_TR[CONTEXT=AddNewTorrentDialog]"><a href="#FileOrderLast"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Download last)QBT_TR[CONTEXT=AddNewTorrentDialog]</a></li>
+                <li title="QBT_TR(Rank the selected files in the order they are shown, after the files that are already ranked)QBT_TR[CONTEXT=AddNewTorrentDialog]"><a href="#FileOrderShown"><span style="display: inline-block; width: 16px;"></span> QBT_TR(By shown file order)QBT_TR[CONTEXT=AddNewTorrentDialog]</a></li>
+                <li class="separator"><a href="#FileOrderRemove"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Remove from download order)QBT_TR[CONTEXT=AddNewTorrentDialog]</a></li>
+            </ul>
+        </li>
+        <li><a href="#FileSequential"><img src="images/checked-completed.svg" alt="QBT_TR(Download in sequential order)QBT_TR[CONTEXT=AddNewTorrentDialog]"> QBT_TR(Download in sequential order)QBT_TR[CONTEXT=AddNewTorrentDialog]</a></li>
     </ul>
 
     <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center; padding: 10px 12px;" autocorrect="off" autocapitalize="none">
         <input type="hidden" id="urls" name="urls">
         <input type="hidden" id="filePriorities" name="filePriorities">
+        <input type="hidden" id="fileOrder" name="fileOrder">
+        <input type="hidden" id="fileSequential" name="fileSequential">
         <div class="container">
             <div class="column">
                 <fieldset class="settings" style="text-align: left;">
@@ -294,6 +306,18 @@ The piece hash will be checked when it is requested for the first time by a peer
                                     <input type="checkbox" id="firstLastPiecePrio" name="firstLastPiecePrio" value="true">
                                 </td>
                             </tr>
+                            <tr title="QBT_TR(Controls how the &quot;Download Order&quot; of files is enforced. Files with a lower number are downloaded first.)QBT_TR[CONTEXT=AddNewTorrentDialog]">
+                                <td class="noWrap">
+                                    <label for="fileSchedulingMode">QBT_TR(File download order:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                                </td>
+                                <td class="fullWidth">
+                                    <select id="fileSchedulingMode" name="fileSchedulingMode">
+                                        <option selected value="Soft" title="QBT_TR(Ordered files are preferred in their order, but other files can still be downloaded at the same time, for example when their pieces are rare.)QBT_TR[CONTEXT=AddNewTorrentDialog]">QBT_TR(Soft)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                        <option value="RankedFirst" title="QBT_TR(Files without an order are not downloaded until all ordered files are complete.)QBT_TR[CONTEXT=AddNewTorrentDialog]">QBT_TR(Ordered files first)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                        <option value="Strict" title="QBT_TR(Only the next file in the order is downloaded. This may leave bandwidth unused when its pieces are rare.)QBT_TR[CONTEXT=AddNewTorrentDialog]">QBT_TR(Strict)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                    </select>
+                                </td>
+                            </tr>
                             <tr>
                                 <td class="noWrap">
                                     <label for="contentLayout">QBT_TR(Content layout:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
@@ -369,7 +393,7 @@ The piece hash will be checked when it is requested for the first time by a peer
                 </fieldset>
             </div>
             <div id="filesColumn" class="column" style="max-height: 750px; overflow-y: auto;">
-                <fieldset class="settings" style="text-align: left; display: flex; flex-direction: column; height: 100%; box-sizing: border-box;">
+                <fieldset class="settings" style="text-align: left; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; min-width: 0;">
                     <legend style="width: fit-content;">QBT_TR(Files)QBT_TR[CONTEXT=AddNewTorrentDialog]</legend>
                     <div style="text-align: right; padding-bottom: 10px;">
                         <input type="text" id="torrentFilesFilterInput" placeholder="QBT_TR(Filter files...)QBT_TR[CONTEXT=AddNewTorrentDialog]" aria-label="QBT_TR(Filter files...)QBT_TR[CONTEXT=AddNewTorrentDialog]" autocorrect="off" autocapitalize="none">

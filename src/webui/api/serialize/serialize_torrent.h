@@ -60,6 +60,7 @@ inline const QString KEY_TORRENT_STATE = u"state"_s;
 inline const QString KEY_TORRENT_ERROR = u"error"_s;
 inline const QString KEY_TORRENT_SEQUENTIAL_DOWNLOAD = u"seq_dl"_s;
 inline const QString KEY_TORRENT_FIRST_LAST_PIECE_PRIO = u"f_l_piece_prio"_s;
+inline const QString KEY_TORRENT_FILE_SCHEDULING_MODE = u"file_scheduling_mode"_s;
 inline const QString KEY_TORRENT_CATEGORY = u"category"_s;
 inline const QString KEY_TORRENT_TAGS = u"tags"_s;
 inline const QString KEY_TORRENT_SUPER_SEEDING = u"super_seeding"_s;

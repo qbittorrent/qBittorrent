@@ -54,6 +54,8 @@ public:
         COL_PRIO,
         COL_REMAINING,
         COL_AVAILABILITY,
+        COL_ORDER,
+        COL_SEQUENTIAL,
         NB_COL
     };
 
@@ -82,6 +84,11 @@ public:
     BitTorrent::DownloadPriority priority() const;
     virtual void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) = 0;
 
+    // Download order ("rank") of a file, 0 = unranked. Always 0 for folders.
+    int order() const;
+    // "Download in sequential order" flag of a file. Always false for folders.
+    bool isSequential() const;
+
     int columnCount() const;
     QString displayData(int column) const;
     QVariant underlyingData(int column) const;
@@ -97,6 +104,8 @@ protected:
     BitTorrent::DownloadPriority m_priority = BitTorrent::DownloadPriority::Normal;
     qreal m_progress = 0;
     qreal m_availability = -1;
+    int m_order = 0;
+    bool m_sequential = false;
 
 private:
     TorrentContentModelFolder *m_parentItem = nullptr;

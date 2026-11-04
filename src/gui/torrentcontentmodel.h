@@ -69,6 +69,11 @@ public:
     void refresh();
 
     QList<BitTorrent::DownloadPriority> getFilePriorities() const;
+    QList<int> getFileOrder() const;
+    QList<bool> getFileSequentialFlags() const;
+    // Apply per-file download order / sequential flags to all files at once
+    void setFileOrder(const QList<int> &order);
+    void setFileSequentialFlags(const QList<bool> &flags);
     TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;
     int getFileIndex(const QModelIndex &index) const;
     QSet<int> getFileIndexes(const QModelIndex &itemIndex) const;
@@ -114,6 +119,8 @@ private:
     void updateFilesProgress();
     void updateFilesPriorities();
     void updateFilesAvailability();
+    void updateFilesScheduling();
+    void notifyAllUpdated(const QList<ColumnInterval> &columns);
     bool setItemPriority(const QModelIndex &index, BitTorrent::DownloadPriority priority);
     void notifySubtreeUpdated(const QModelIndex &index, const QList<ColumnInterval> &columns);
 

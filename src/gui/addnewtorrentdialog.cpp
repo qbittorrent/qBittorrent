@@ -70,6 +70,7 @@
 #include "filterpatternformatmenu.h"
 #include "lineedit.h"
 #include "torrenttagsdialog.h"
+#include "utils.h"
 
 #include "ui_addnewtorrentdialog.h"
 
@@ -132,7 +133,8 @@ class AddNewTorrentDialog::TorrentContentAdaptor final : public BitTorrent::Torr
 {
 public:
     TorrentContentAdaptor(const BitTorrent::TorrentInfo &torrentInfo, PathList &filePaths
-            , QList<BitTorrent::DownloadPriority> &filePriorities, std::function<void ()> onFilePrioritiesChanged);
+            , QList<BitTorrent::DownloadPriority> &filePriorities, QList<int> &fileOrder, QList<bool> &fileSequential
+            , std::function<void ()> onFilePrioritiesChanged);
 
     bool hasMetadata() const override;
     int filesCount() const override;
@@ -140,6 +142,8 @@ public:
     Path filePath(int index) const override;
     PathList filePaths() const;
     QList<BitTorrent::DownloadPriority> filePriorities() const override;
+    QList<int> fileOrder() const override;
+    QList<bool> fileSequentialFlags() const override;
     QList<qreal> filesProgress() const override;
     QFuture<QList<qreal>> fetchAvailableFileFractions() const override;
     Path actualStorageLocation() const override;
@@ -149,6 +153,8 @@ public:
     void renameFile(int index, const Path &newFilePath) override;
     void applyContentLayout(const BitTorrent::TorrentContentLayout contentLayout);
     void prioritizeFiles(const QList<BitTorrent::DownloadPriority> &priorities) override;
+    void setFileOrder(const QList<int> &order) override;
+    void setFileSequentialFlags(const QList<bool> &flags) override;
 
 private:
     void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath) override;
@@ -157,6 +163,8 @@ private:
     const BitTorrent::TorrentInfo &m_torrentInfo;
     PathList &m_filePaths;
     QList<BitTorrent::DownloadPriority> &m_filePriorities;
+    QList<int> &m_fileOrder;
+    QList<bool> &m_fileSequential;
     std::function<void ()> m_onFilePrioritiesChanged;
     Path m_originalRootFolder;
     BitTorrent::TorrentContentLayout m_currentContentLayout;
@@ -201,6 +209,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
             + u" <em>" + tr("This will also download metadata if it wasn't there initially.") + u"</em></p></body></html>");
     m_ui->stopConditionComboBox->addItem(tr("None"), QVariant::fromValue(BitTorrent::Torrent::StopCondition::None));
     m_ui->stopConditionComboBox->addItem(tr("Files checked"), QVariant::fromValue(BitTorrent::Torrent::StopCondition::FilesChecked));
+
+    Utils::Gui::initFileSchedulingModeComboBox(m_ui->fileSchedulingModeComboBox);
+    m_ui->fileSchedulingModeLabel->setToolTip(m_ui->fileSchedulingModeComboBox->toolTip());
 
     m_ui->checkBoxRememberLastSavePath->setChecked(m_storeRememberLastSavePath);
     m_ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
@@ -336,6 +347,8 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
             static_cast<int>(addTorrentParams.contentLayout.value_or(session->torrentContentLayout())));
     m_ui->sequentialCheckBox->setChecked(addTorrentParams.sequential);
     m_ui->firstLastCheckBox->setChecked(addTorrentParams.firstLastPiecePriority);
+    m_ui->fileSchedulingModeComboBox->setCurrentIndex(m_ui->fileSchedulingModeComboBox->findData(
+            QVariant::fromValue(addTorrentParams.fileSchedulingMode.value_or(BitTorrent::FileSchedulingMode::Soft))));
     m_ui->seedModeCheckBox->setChecked(addTorrentParams.seedMode);
     m_ui->tagsLineEdit->setText(Utils::String::joinIntoString(addTorrentParams.tags, u", "_s));
 
@@ -434,6 +447,7 @@ void AddNewTorrentDialog::updateCurrentContext()
 
     addTorrentParams.sequential = m_ui->sequentialCheckBox->isChecked();
     addTorrentParams.firstLastPiecePriority = m_ui->firstLastCheckBox->isChecked();
+    addTorrentParams.fileSchedulingMode = m_ui->fileSchedulingModeComboBox->currentData().value<BitTorrent::FileSchedulingMode>();
 
     const bool useAutoTMM = (m_ui->comboTMM->currentIndex() == 1); // 1 is Automatic mode. Handle all non 1 values as manual mode.
     addTorrentParams.useAutoTMM = useAutoTMM;
@@ -831,7 +845,8 @@ void AddNewTorrentDialog::setupTreeview()
     }
 
     m_contentAdaptor = std::make_unique<TorrentContentAdaptor>(torrentInfo, addTorrentParams.filePaths
-            , addTorrentParams.filePriorities, [this] { updateDiskSpaceLabel(); });
+            , addTorrentParams.filePriorities, addTorrentParams.fileOrder, addTorrentParams.fileSequential
+            , [this] { updateDiskSpaceLabel(); });
 
     const auto contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
     m_contentAdaptor->applyContentLayout(contentLayout);
@@ -882,10 +897,13 @@ void AddNewTorrentDialog::TMMChanged(int index)
 }
 
 AddNewTorrentDialog::TorrentContentAdaptor::TorrentContentAdaptor(const BitTorrent::TorrentInfo &torrentInfo
-        , PathList &filePaths, QList<BitTorrent::DownloadPriority> &filePriorities, std::function<void ()> onFilePrioritiesChanged)
+        , PathList &filePaths, QList<BitTorrent::DownloadPriority> &filePriorities, QList<int> &fileOrder
+        , QList<bool> &fileSequential, std::function<void ()> onFilePrioritiesChanged)
     : m_torrentInfo {torrentInfo}
     , m_filePaths {filePaths}
     , m_filePriorities {filePriorities}
+    , m_fileOrder {fileOrder}
+    , m_fileSequential {fileSequential}
     , m_onFilePrioritiesChanged {std::move(onFilePrioritiesChanged)}
 {
     Q_ASSERT(filePaths.isEmpty() || (filePaths.size() == m_torrentInfo.filesCount()));
@@ -897,6 +915,12 @@ AddNewTorrentDialog::TorrentContentAdaptor::TorrentContentAdaptor(const BitTorre
 
     if (const int fileCount = filesCount(); !m_filePriorities.isEmpty() && (fileCount >= 0))
         m_filePriorities.resize(fileCount, BitTorrent::DownloadPriority::Normal);
+
+    // Per-file download order and sequential flags are either empty (not set) or have one entry per file
+    if (m_fileOrder.size() != filesCount())
+        m_fileOrder.clear();
+    if (m_fileSequential.size() != filesCount())
+        m_fileSequential.clear();
 }
 
 bool AddNewTorrentDialog::TorrentContentAdaptor::hasMetadata() const
@@ -931,6 +955,28 @@ QList<BitTorrent::DownloadPriority> AddNewTorrentDialog::TorrentContentAdaptor::
     return m_filePriorities.isEmpty()
             ? QList<BitTorrent::DownloadPriority>(filesCount(), BitTorrent::DownloadPriority::Normal)
             : m_filePriorities;
+}
+
+QList<int> AddNewTorrentDialog::TorrentContentAdaptor::fileOrder() const
+{
+    return m_fileOrder.isEmpty() ? QList<int>(filesCount(), 0) : m_fileOrder;
+}
+
+QList<bool> AddNewTorrentDialog::TorrentContentAdaptor::fileSequentialFlags() const
+{
+    return m_fileSequential.isEmpty() ? QList<bool>(filesCount(), false) : m_fileSequential;
+}
+
+void AddNewTorrentDialog::TorrentContentAdaptor::setFileOrder(const QList<int> &order)
+{
+    Q_ASSERT(order.size() == filesCount());
+    m_fileOrder = order;
+}
+
+void AddNewTorrentDialog::TorrentContentAdaptor::setFileSequentialFlags(const QList<bool> &flags)
+{
+    Q_ASSERT(flags.size() == filesCount());
+    m_fileSequential = flags;
 }
 
 QList<qreal> AddNewTorrentDialog::TorrentContentAdaptor::filesProgress() const

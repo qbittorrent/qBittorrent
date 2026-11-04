@@ -38,6 +38,8 @@
 #endif
 
 #include <QApplication>
+#include <QComboBox>
+#include <QCoreApplication>
 #include <QDesktopServices>
 #include <QPixmap>
 #include <QPixmapCache>
@@ -60,6 +62,7 @@
 #include <QDBusPendingReply>
 #endif
 
+#include "base/bittorrent/fileschedulingmode.h"
 #include "base/global.h"
 #include "base/path.h"
 #include "base/tag.h"
@@ -312,4 +315,25 @@ Tag Utils::Gui::widgetTextToTag(const QString &text)
     }
 
     return Tag(cleanedText);
+}
+
+void Utils::Gui::initFileSchedulingModeComboBox(QComboBox *comboBox)
+{
+    const QString softText = QCoreApplication::translate("FileSchedulingMode", "Soft");
+    const QString rankedFirstText = QCoreApplication::translate("FileSchedulingMode", "Ordered files first");
+    const QString strictText = QCoreApplication::translate("FileSchedulingMode", "Strict");
+
+    comboBox->clear();
+    comboBox->addItem(softText, QVariant::fromValue(BitTorrent::FileSchedulingMode::Soft));
+    comboBox->addItem(rankedFirstText, QVariant::fromValue(BitTorrent::FileSchedulingMode::RankedFirst));
+    comboBox->addItem(strictText, QVariant::fromValue(BitTorrent::FileSchedulingMode::Strict));
+    comboBox->setToolTip(u"<html><body><p>"_s
+            + QCoreApplication::translate("FileSchedulingMode", "Controls how the \"Download Order\" of files is enforced. Files with a lower number are downloaded first.")
+            + u"</p><p><b>"_s + softText + u"</b> - "_s
+            + QCoreApplication::translate("FileSchedulingMode", "Ordered files are preferred in their order, but other files can still be downloaded at the same time, for example when their pieces are rare.")
+            + u"</p><p><b>"_s + rankedFirstText + u"</b> - "_s
+            + QCoreApplication::translate("FileSchedulingMode", "Files without an order are not downloaded until all ordered files are complete.")
+            + u"</p><p><b>"_s + strictText + u"</b> - "_s
+            + QCoreApplication::translate("FileSchedulingMode", "Only the next file in the order is downloaded. This may leave bandwidth unused when its pieces are rare.")
+            + u"</p></body></html>"_s);
 }

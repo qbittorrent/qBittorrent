@@ -37,6 +37,7 @@
 #include "base/3rdparty/expected.hpp"
 #include "base/pathfwd.h"
 #include "base/tagset.h"
+#include "fileschedulingmode.h"
 #include "sharelimits.h"
 #include "torrentannouncestatus.h"
 #include "torrentcontenthandler.h"
@@ -241,6 +242,10 @@ namespace BitTorrent
         virtual bool isErrored() const = 0;
         virtual bool isSequentialDownload() const = 0;
         virtual bool hasFirstLastPiecePriority() const = 0;
+        virtual FileSchedulingMode fileSchedulingMode() const = 0;
+        // True if per-file download order or per-file sequential download is in effect, i.e.
+        // some file is ranked or sequential and torrent-wide sequential download is disabled.
+        virtual bool isFileSchedulingActive() const = 0;
         virtual TorrentState state() const = 0;
         virtual bool hasMissingFiles() const = 0;
         virtual bool hasError() const = 0;
@@ -279,6 +284,7 @@ namespace BitTorrent
         virtual void setName(const QString &name) = 0;
         virtual void setSequentialDownload(bool enable) = 0;
         virtual void setFirstLastPiecePriority(bool enabled) = 0;
+        virtual void setFileSchedulingMode(FileSchedulingMode mode) = 0;
         virtual void stop() = 0;
         virtual void start(TorrentOperatingMode mode = TorrentOperatingMode::AutoManaged) = 0;
         virtual void forceReannounce(int index = -1) = 0;
