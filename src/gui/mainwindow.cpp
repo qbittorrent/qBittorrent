@@ -1041,6 +1041,12 @@ void MainWindow::on_actionExit_triggered()
 #ifdef Q_OS_MACOS
 void MainWindow::on_actionCloseWindow_triggered()
 {
+    if (QWidget *active = qApp->activeWindow(); active && (active != this))
+    {
+        active->close();
+        return;
+    }
+
     // On macOS window close is basically equivalent to window hide.
     // If you decide to implement this functionality for other OS,
     // then you will also need ui lock checks like in actionExit.
