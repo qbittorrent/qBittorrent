@@ -26,3 +26,19 @@ updates:
       - "CI"
     schedule:
       interval: "monthly"
+
+  - package-ecosystem: "npm"
+    directory: "/src/webui/www"
+    commit-message:
+      prefix: "WebUI"
+    cooldown:
+      default-days: 7
+    groups:
+      WebUI-dependency-update:
+        update-types:
+          - "minor"
+          - "patch"
+    labels:
+      - "WebUI"
+    schedule:
+      interval: "monthly"
