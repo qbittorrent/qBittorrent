@@ -11,7 +11,7 @@
 1. Setup development environment
 
    ```shell
-   npm install --allow-remote=root
+   npm ci --allow-remote=root
    ```
 
 2. Run static analyzer
