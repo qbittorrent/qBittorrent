@@ -26,3 +26,18 @@ updates:
       - "CI"
     schedule:
       interval: "monthly"
+
+  - package-ecosystem: "pip"
+    directory: "/.github/workflows/helper/zizmor"
+    commit-message:
+      prefix: "GHA CI"
+    cooldown:
+      default-days: 7
+    groups:
+      GHA_CI-dependency-update:
+        patterns:
+          - "*"
+    labels:
+      - "CI"
+    schedule:
+      interval: "monthly"
