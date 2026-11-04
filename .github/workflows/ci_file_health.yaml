@@ -23,10 +23,12 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: "*"
+          python-version: "3.15"
 
       - name: Check files
         uses: j178/prek-action@5337cb91e0fa35a7ff31b9ca345126d8bbbcdf16 # v2.0.6
+        with:
+          prek-version: "0.5.9"
 
       - name: Check doc
         env:
@@ -52,7 +54,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install zizmor
+          pip install --require-hashes --only-binary :all: -r .github/workflows/helper/zizmor/requirements.txt
           IGNORE_RULEID='(.ruleId != "zizmor/template-injection")'
           IGNORE_ID='(.id != "zizmor/template-injection")'
           zizmor \
