@@ -16,17 +16,17 @@ jobs:
       security-events: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "*"
 
       - name: Check files
-        uses: j178/prek-action@v2
+        uses: j178/prek-action@5337cb91e0fa35a7ff31b9ca345126d8bbbcdf16 # v2.0.6
 
       - name: Check doc
         env:
@@ -53,10 +53,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install zizmor
-          IGNORE_RULEID='(.ruleId != "zizmor/template-injection")
-            and (.ruleId != "zizmor/unpinned-uses")'
-          IGNORE_ID='(.id != "zizmor/template-injection")
-            and (.id != "zizmor/unpinned-uses")'
+          IGNORE_RULEID='(.ruleId != "zizmor/template-injection")'
+          IGNORE_ID='(.id != "zizmor/template-injection")'
           zizmor \
             --format sarif \
             --persona auditor \
@@ -66,7 +64,7 @@ jobs:
             > "${{ runner.temp }}/zizmor_results.sarif"
 
       - name: Upload zizmor results
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
         with:
           category: zizmor
           sarif_file: "${{ runner.temp }}/zizmor_results.sarif"
