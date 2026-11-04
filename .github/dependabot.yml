@@ -28,7 +28,9 @@ updates:
       interval: "monthly"
 
   - package-ecosystem: "pip"
-    directory: "/.github/workflows/helper/zizmor"
+    directories:
+      - "/.github/workflows/helper/python-tools"
+      - "/.github/workflows/helper/zizmor"
     commit-message:
       prefix: "GHA CI"
     cooldown:
