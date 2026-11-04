@@ -673,6 +673,12 @@ BitTorrent::Torrent *TransferListModel::torrentHandle(const QModelIndex &index) 
     return m_torrents.get<ByIndex>().at(index.row());
 }
 
+QModelIndex TransferListModel::torrentIndex(const BitTorrent::Torrent *torrent) const
+{
+    const int row = getTorrentRow(torrent);
+    return (row < 0) ? QModelIndex() : index(row);
+}
+
 void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
 {
     const int row = getTorrentRow(torrent);
@@ -713,9 +719,10 @@ void TransferListModel::handleTorrentsUpdated(const QList<BitTorrent::Torrent *>
     }
 }
 
-int TransferListModel::getTorrentRow(BitTorrent::Torrent *const torrent) const
+int TransferListModel::getTorrentRow(const BitTorrent::Torrent *torrent) const
 {
-    const auto iter = m_torrents.get<ByHandle>().find(torrent);
+    // the container holds non-const pointers, the lookup only uses the pointer value
+    const auto iter = m_torrents.get<ByHandle>().find(const_cast<BitTorrent::Torrent *>(torrent));
     const int row = (iter != m_torrents.get<ByHandle>().end())
         ? std::distance(m_torrents.get<ByIndex>().begin(), m_torrents.project<ByIndex>(iter)) : -1;
     return row;
