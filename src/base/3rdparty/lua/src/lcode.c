@@ -663,11 +663,11 @@ static int boolT (FuncState *fs) {
 ** Add nil to list of constants and return its index.
 */
 static int nilK (FuncState *fs) {
-  TValue k, v;
-  setnilvalue(&v);
+  lua_State *L = fs->ls->L;
+  TValue k;
   /* cannot use nil as key; instead use table itself */
-  sethvalue(fs->ls->L, &k, fs->kcache);
-  return k2proto(fs, &k, &v);
+  sethvalue(L, &k, fs->kcache);
+  return k2proto(fs, &k, &G(L)->nilvalue);
 }
 
 
@@ -827,7 +827,7 @@ void luaK_dischargevars (FuncState *fs, expdesc *e) {
     }  /* FALLTHROUGH */
     case VLOCAL: {  /* already in a register */
       int temp = e->u.var.ridx;
-      e->u.info = temp;  /* (can't do a direct assignment; values overlap) */
+      e->u.info = temp;  /* (avoid a direct assignment; values overlap) */
       e->k = VNONRELOC;  /* becomes a non-relocatable value */
       break;
     }
@@ -1365,7 +1365,7 @@ void luaK_indexed (FuncState *fs, expdesc *t, expdesc *k) {
     luaK_exp2anyreg(fs, t);  /* put it in a register */
   if (t->k == VUPVAL) {
     lu_byte temp = cast_byte(t->u.info);  /* upvalue index */
-    t->u.ind.t = temp;  /* (can't do a direct assignment; values overlap) */
+    t->u.ind.t = temp;  /* (avoid a direct assignment; values overlap) */
     lua_assert(isKstr(fs, k));
     fillidxk(t, k->u.info, VINDEXUP);  /* literal short string */
   }
@@ -1373,12 +1373,13 @@ void luaK_indexed (FuncState *fs, expdesc *t, expdesc *k) {
     int kreg = luaK_exp2anyreg(fs, k);  /* put key in some register */
     lu_byte vreg = cast_byte(t->u.var.ridx);  /* register with vararg param. */
     lua_assert(vreg == fs->f->numparams);
-    t->u.ind.t = vreg;  /* (avoid a direct assignment; values may overlap) */
+    t->u.ind.t = vreg;  /* (avoid a direct assignment; values may overlap?) */
     fillidxk(t, kreg, VVARGIND);  /* 't' represents 'vararg[k]' */
   }
   else {
     /* register index of the table */
-    t->u.ind.t = cast_byte((t->k == VLOCAL) ? t->u.var.ridx: t->u.info);
+    lu_byte temp = cast_byte((t->k == VLOCAL) ? t->u.var.ridx: t->u.info);
+    t->u.ind.t = temp;  /* (avoid a direct assignment; values may overlap?) */
     if (isKstr(fs, k))
       fillidxk(t, k->u.info, VINDEXSTR);  /* literal short string */
     else if (isCint(k))  /* int. constant in proper range? */
@@ -1933,8 +1934,6 @@ void luaK_finish (FuncState *fs) {
     p->flag &= cast_byte(~PF_VAHID);  /* then it will not use hidden args. */
   for (i = 0; i < fs->pc; i++) {
     Instruction *pc = &p->code[i];
-    /* avoid "not used" warnings when assert is off (for 'onelua.c') */
-    (void)luaP_isOT; (void)luaP_isIT;
     lua_assert(i == 0 || luaP_isOT(*(pc - 1)) == luaP_isIT(*pc));
     switch (GET_OPCODE(*pc)) {
       case OP_RETURN0: case OP_RETURN1: {
