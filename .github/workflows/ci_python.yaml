@@ -22,10 +22,11 @@ jobs:
       - name: Setup python (auxiliary scripts)
         uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: '3'  # use default version
+          python-version: '3.14'
 
       - name: Install tools (auxiliary scripts)
-        run: pip install bandit mypy pycodestyle pyflakes pyright ruff
+        run: |
+          pip install --require-hashes --only-binary :all: -r .github/workflows/helper/python-tools/requirements.txt
 
       - name: Gather files (auxiliary scripts)
         run: |
