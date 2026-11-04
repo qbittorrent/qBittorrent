@@ -33,6 +33,7 @@ jobs:
       - name: Check doc
         env:
           pandoc_path: "${{ github.workspace }}/../pandoc"
+          pandoc_sha256: "a69abfababda8a56969a254b09f9553a7be89ddec00d4e0fe9fd585d71a67508"
           pandoc_version: "3.9.0.2"
         run: |
           # install pandoc
@@ -40,6 +41,7 @@ jobs:
             -L \
             -o "${{ runner.temp }}/pandoc.tar.gz" \
             "https://github.com/jgm/pandoc/releases/download/${{ env.pandoc_version }}/pandoc-${{ env.pandoc_version }}-linux-amd64.tar.gz"
+          echo "${{ env.pandoc_sha256 }}  ${{ runner.temp }}/pandoc.tar.gz" | sha256sum -c -
           tar -xf "${{ runner.temp }}/pandoc.tar.gz" -C "${{ github.workspace }}/.."
           mv "${{ github.workspace }}/.."/pandoc-* "${{ env.pandoc_path }}"
           # run pandoc
