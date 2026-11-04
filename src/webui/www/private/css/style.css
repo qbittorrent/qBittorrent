@@ -359,6 +359,10 @@ a.propButton img {
     user-select: none;
 }
 
+.contextMenu li.checkableMenuItem {
+    position: relative;
+}
+
 .contextMenu li.disabled {
     background-color: transparent;
     cursor: default;
@@ -378,6 +382,10 @@ a.propButton img {
     position: relative;
     text-decoration: none;
     white-space: nowrap;
+}
+
+.contextMenu li.checkableMenuItem > a {
+    padding-left: 27px;
 }
 
 .contextMenu li a:hover {
@@ -430,6 +438,16 @@ a.propButton img {
 .contextMenu li input[type="checkbox"] {
     margin: 0 0.5em 0 0;
     width: 16px;
+}
+
+.contextMenu li.checkableMenuItem > input[type="checkbox"] {
+    left: 5px;
+    margin: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
 }
 
 #contextCategoryList img {
