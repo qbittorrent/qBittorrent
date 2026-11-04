@@ -187,7 +187,8 @@ TorrentContentModel::~TorrentContentModel()
 
 void TorrentContentModel::updateFilesProgress()
 {
-    Q_ASSERT(m_contentHandler && m_contentHandler->hasMetadata());
+    if (!m_contentHandler || !m_contentHandler->hasMetadata())
+        return;
 
     const QList<qreal> &filesProgress = m_contentHandler->filesProgress();
     Q_ASSERT(m_filesIndex.size() == filesProgress.size());
@@ -204,7 +205,8 @@ void TorrentContentModel::updateFilesProgress()
 
 void TorrentContentModel::updateFilesPriorities()
 {
-    Q_ASSERT(m_contentHandler && m_contentHandler->hasMetadata());
+    if (!m_contentHandler || !m_contentHandler->hasMetadata())
+        return;
 
     const QList<BitTorrent::DownloadPriority> fprio = m_contentHandler->filePriorities();
     Q_ASSERT(m_filesIndex.size() == fprio.size());
