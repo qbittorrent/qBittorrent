@@ -70,6 +70,8 @@ namespace BitTorrent
     signals:
         void loadStarted(const QList<BitTorrent::TorrentID> &torrents);
         void loadFinished();
+        void metadataStored(const BitTorrent::TorrentID &torrentID);
+        void storeFailed(const BitTorrent::TorrentID &torrentID);
 
     protected:
         void onResumeDataLoaded(const TorrentID &torrentID, LoadResumeDataResult loadResumeDataResult) const;
