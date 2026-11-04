@@ -69,6 +69,7 @@
 #include "base/addtorrentmanager.h"
 #include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/infohash.h"
+#include "base/bittorrent/listenentry.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/exceptions.h"
@@ -381,10 +382,26 @@ Application::Application(int &argc, char **argv)
     if (m_commandLineArgs.webUIPort > 0) // it will be -1 when user did not set any value
         Preferences::instance()->setWebUIPort(m_commandLineArgs.webUIPort);
 
-    if (m_commandLineArgs.torrentingPort > 0) // it will be -1 when user did not set any value
+    // It will be -1 when user did not set any value. The environment variable is not range-checked.
+    if ((m_commandLineArgs.torrentingPort >= 1) && (m_commandLineArgs.torrentingPort <= 65535))
     {
-        SettingValue<int> port {u"BitTorrent/Session/Port"_s};
-        port = m_commandLineArgs.torrentingPort;
+        SettingValue<QStringList> storedListenEntries {u"BitTorrent/Session/ListenEntries"_s};
+        QList<BitTorrent::ListenEntry> listenEntries = BitTorrent::deserializeListenEntries(storedListenEntries);
+        if (listenEntries.isEmpty())
+            listenEntries.append(BitTorrent::makeDefaultListenEntry(m_commandLineArgs.torrentingPort));
+
+        // The option replaced the port of all non-SSL addresses before. SSL ports keep their purpose.
+        const BitTorrent::ListenPort newPort {.port = m_commandLineArgs.torrentingPort};
+        for (BitTorrent::ListenEntry &entry : listenEntries)
+        {
+            const auto isPlain = [](const BitTorrent::ListenPort &port) { return !port.isSSL; };
+            if (!std::ranges::any_of(entry.ports, isPlain))
+                continue;
+
+            entry.ports.removeIf(isPlain);
+            entry.ports.prepend(newPort);
+        }
+        storedListenEntries = BitTorrent::serializeListenEntries(listenEntries);
     }
 }
 

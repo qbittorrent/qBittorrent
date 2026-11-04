@@ -28,10 +28,14 @@
 
 #include "upgrade.h"
 
+#include <algorithm>
+
 #include <QtSystemDetection>
 #include <QCoreApplication>
+#include <QHostAddress>
 #include <QMetaEnum>
 
+#include "base/bittorrent/listenentry.h"
 #include "base/bittorrent/sharelimits.h"
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/logger.h"
@@ -42,13 +46,14 @@
 #include "base/settingsstorage.h"
 #include "base/settingvalue.h"
 #include "base/utils/io.h"
+#include "base/utils/random.h"
 #include "base/utils/string.h"
 
 using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
-    const int MIGRATION_VERSION = 12;
+    const int MIGRATION_VERSION = 13;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()
@@ -637,6 +642,103 @@ namespace
             settingsStorage->removeValue(oldKey2);
         }
     }
+
+    void migrateListenSettings()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+
+        const auto portKey = u"BitTorrent/Session/Port"_s;
+        const auto ifaceKey = u"BitTorrent/Session/Interface"_s;
+        const auto ifaceNameKey = u"BitTorrent/Session/InterfaceName"_s;
+        const auto addressKey = u"BitTorrent/Session/InterfaceAddress"_s;
+        const auto sslEnabledKey = u"BitTorrent/Session/SSL/Enabled"_s;
+        const auto sslPortKey = u"BitTorrent/Session/SSL/Port"_s;
+        const QStringList oldKeys {portKey, ifaceKey, ifaceNameKey, addressKey, sslEnabledKey, sslPortKey};
+        if (std::ranges::none_of(oldKeys, [settingsStorage](const QString &key) { return settingsStorage->hasKey(key); }))
+            return;
+
+        const auto loadPort = [settingsStorage](const QString &key, const int otherPort) -> int
+        {
+            const int port = settingsStorage->loadValue<int>(key, -1);
+            if ((port >= 1) && (port <= 65535))
+                return port;
+
+            // The session picked a random port when the setting was missing.
+            // Port 0 let the system pick a port, but a listen port must be a real port now.
+            int randomPort = Utils::Random::rand(1024, 65535);
+            while (randomPort == otherPort)
+                randomPort = Utils::Random::rand(1024, 65535);
+            return randomPort;
+        };
+
+        // A listen entry refuses the characters that can separate the items of `outgoing_interfaces`.
+        // Interface names never have them, so a replaced name still matches no interface, as before.
+        const auto toInterfaceName = [](QString name) -> QString
+        {
+            for (QChar &ch : name)
+            {
+                if ((ch == u',') || ch.isSpace())
+                    ch = u'_';
+            }
+            return name;
+        };
+
+        BitTorrent::InterfaceSelection selection;
+        selection.iface = toInterfaceName(settingsStorage->loadValue<QString>(ifaceKey));
+        if (!selection.iface.isEmpty())
+            selection.ifaceName = settingsStorage->loadValue<QString>(ifaceNameKey);
+        selection.ipv4.allAddresses = true;
+        selection.ipv6.allAddresses = true;
+
+        // The old setting held "" (all addresses), "0.0.0.0" (all IPv4 addresses),
+        // "::" (all IPv6 addresses) or one IP address
+        if (const auto address = settingsStorage->loadValue<QString>(addressKey); !address.isEmpty())
+        {
+            QHostAddress addr {address};
+            // `toIPv4Address()` also converts "::" to "0.0.0.0", so check the wildcards first
+            if ((addr.protocol() == QAbstractSocket::IPv6Protocol) && (addr != QHostAddress(QHostAddress::AnyIPv6)))
+            {
+                bool isIPv4Mapped = false;
+                if (const quint32 ipv4 = addr.toIPv4Address(&isIPv4Mapped); isIPv4Mapped)
+                    addr = QHostAddress(ipv4);
+            }
+
+            if (addr.isNull())
+            {
+                // libtorrent took an invalid address for the name of a device
+                selection.iface = toInterfaceName(address);
+                selection.ifaceName = selection.iface;
+            }
+            else if (addr == QHostAddress(QHostAddress::AnyIPv4))
+            {
+                selection.ipv6 = {};
+            }
+            else if (addr == QHostAddress(QHostAddress::AnyIPv6))
+            {
+                selection.ipv4 = {};
+            }
+            else
+            {
+                selection.ipv4 = {};
+                selection.ipv6 = {};
+                BitTorrent::AddressSelection &family = (addr.protocol() == QAbstractSocket::IPv6Protocol)
+                    ? selection.ipv6 : selection.ipv4;
+                family.fixedAddresses = {addr};
+            }
+        }
+
+        BitTorrent::ListenEntry entry;
+        entry.interfaces = {selection};
+        const int port = loadPort(portKey, -1);
+        entry.ports = {BitTorrent::ListenPort {.port = port}};
+        if (settingsStorage->loadValue<bool>(sslEnabledKey, false))
+            entry.ports.append(BitTorrent::ListenPort {.port = loadPort(sslPortKey, port), .isSSL = true});
+
+        const QList<BitTorrent::ListenEntry> entries {entry};
+        settingsStorage->storeValue(u"BitTorrent/Session/ListenEntries"_s, BitTorrent::serializeListenEntries(entries));
+        for (const QString &key : oldKeys)
+            settingsStorage->removeValue(key);
+    }
 }
 
 bool upgrade()
@@ -697,6 +799,9 @@ bool upgrade()
 
         if (version < 12)
             migrateSearchSettingKeys();
+
+        if (version < 13)
+            migrateListenSettings();
 
         version = MIGRATION_VERSION;
     }

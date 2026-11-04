@@ -64,6 +64,11 @@
       </item>
       <item>
        <property name="text">
+        <string>Listening</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Speed</string>
        </property>
       </item>
@@ -1909,69 +1914,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
              </layout>
             </item>
             <item>
-             <widget class="QGroupBox" name="ListeningPortBox">
-              <property name="title">
-               <string>Listening Port</string>
-              </property>
-              <layout class="QVBoxLayout" name="listeningPortLayout">
-               <item>
-                <layout class="QHBoxLayout" name="listeningPortLayout2">
-                 <item>
-                  <widget class="QLabel" name="lbl_ports">
-                   <property name="text">
-                    <string>Port used for incoming connections:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QSpinBox" name="spinPort">
-                   <property name="toolTip">
-                    <string>Set to 0 to let your system pick an unused port</string>
-                   </property>
-                   <property name="specialValueText">
-                    <string>Any</string>
-                   </property>
-                   <property name="maximum">
-                    <number>65535</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="randomButton">
-                   <property name="text">
-                    <string>Random</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_4">
-                   <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkUPnP">
-                 <property name="text">
-                  <string>Use UPnP / NAT-PMP port forwarding from my router</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
              <widget class="QGroupBox" name="nbConnecBox">
               <property name="title">
                <string>Connections Limits</string>
@@ -2412,6 +2354,180 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                </size>
               </property>
              </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabListeningPage">
+       <layout class="QVBoxLayout" name="listeningPageLayout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QScrollArea" name="scrollAreaListening">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContentsListening">
+           <layout class="QVBoxLayout" name="listeningLayout">
+            <item>
+             <widget class="QGroupBox" name="groupListenEntries">
+              <property name="title">
+               <string>Listen on</string>
+              </property>
+              <layout class="QHBoxLayout" name="listenEntriesLayout">
+               <item>
+                <widget class="QTreeWidget" name="treeListenEntries">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>1</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>250</width>
+                   <height>150</height>
+                  </size>
+                 </property>
+                 <property name="editTriggers">
+                  <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+                 </property>
+                 <property name="selectionMode">
+                  <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+                 </property>
+                 <property name="selectionBehavior">
+                  <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+                 </property>
+                 <property name="uniformRowHeights">
+                  <bool>true</bool>
+                 </property>
+                 <attribute name="headerStretchLastSection">
+                  <bool>false</bool>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>Interfaces and addresses</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Ports</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="listenEntriesButtonsLayout">
+                 <item>
+                  <widget class="QPushButton" name="addListenEntryButton">
+                   <property name="text">
+                    <string>Add...</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="editListenEntryButton">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="text">
+                    <string>Edit...</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="removeListenEntryButton">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="text">
+                    <string>Remove</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="listenEntriesButtonsSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupOutgoingInterfaces">
+              <property name="title">
+               <string>Outgoing connections</string>
+              </property>
+              <layout class="QVBoxLayout" name="outgoingInterfacesLayout">
+               <item>
+                <widget class="QRadioButton" name="radioOutgoingListenAddresses">
+                 <property name="text">
+                  <string>Use the listen addresses</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioOutgoingAny">
+                 <property name="text">
+                  <string>Use any interface</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioOutgoingSelected">
+                 <property name="text">
+                  <string>Use these interfaces and addresses:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="AddressSelectionTree" name="treeOutgoingInterfaces">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>250</width>
+                   <height>150</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkUPnP">
+              <property name="text">
+               <string>Use UPnP / NAT-PMP port forwarding from my router</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -4447,6 +4563,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
    <extends>QWidget</extends>
    <header>gui/fspathedit.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AddressSelectionTree</class>
+   <extends>QTreeWidget</extends>
+   <header>gui/addressselectiontree.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -33,6 +33,7 @@
 
 #include <algorithm>
 #include <chrono>
+#include <optional>
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -41,12 +42,14 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonValue>
 #include <QNetworkCookie>
 #include <QNetworkInterface>
 #include <QRegularExpression>
 #include <QStringList>
 #include <QTimer>
 
+#include "base/bittorrent/listenentry.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/interfaces/iapplication.h"
@@ -239,11 +242,12 @@ void AppController::preferencesAction()
     data[u"autorun_program"_s] = pref->getAutoRunOnTorrentFinishedProgram();
 
     // Connection
-    // Listening Port
-    data[u"listen_port"_s] = session->port();
-    data[u"ssl_enabled"_s] = session->isSSLEnabled();
-    data[u"ssl_listen_port"_s] = session->sslPort();
-    data[u"random_port"_s] = (session->port() == 0);  // deprecated
+    // Listening
+    QJsonArray listenEntries;
+    for (const BitTorrent::ListenEntry &entry : asConst(session->listenEntries()))
+        listenEntries.append(BitTorrent::toJsonObject(entry));
+    data[u"listen_entries"_s] = listenEntries;
+    data[u"outgoing_interfaces"_s] = BitTorrent::toJsonObject(session->outgoingInterfaces());
     data[u"upnp"_s] = Net::PortForwarder::instance()->isEnabled();
     // Connections Limits
     data[u"max_connec"_s] = session->maxConnections();
@@ -402,12 +406,6 @@ void AppController::preferencesAction()
     data[u"torrent_content_remove_option"_s] = Utils::String::fromEnum(session->torrentContentRemoveOption());
     // Physical memory (RAM) usage limit
     data[u"memory_working_set_limit"_s] = app()->memoryWorkingSetLimit();
-    // Current network interface
-    data[u"current_network_interface"_s] = session->networkInterface();
-    // Current network interface name
-    data[u"current_interface_name"_s] = session->networkInterfaceName();
-    // Current network interface address
-    data[u"current_interface_address"_s] = session->networkInterfaceAddress();
     // Save resume data interval
     data[u"save_resume_data_interval"_s] = session->saveResumeDataInterval();
     // Save statistics interval
@@ -555,6 +553,67 @@ void AppController::setPreferencesAction()
         it = m.constFind(key);
         return (it != m.constEnd());
     };
+
+    // The name is shown while the interface is missing
+    const auto fillInterfaceNames = [session](QList<BitTorrent::InterfaceSelection> &interfaces)
+    {
+        QList<BitTorrent::InterfaceSelection> knownInterfaces = session->outgoingInterfaces().interfaces;
+        for (const BitTorrent::ListenEntry &entry : asConst(session->listenEntries()))
+            knownInterfaces.append(entry.interfaces);
+
+        for (BitTorrent::InterfaceSelection &selection : interfaces)
+        {
+            if (selection.iface.isEmpty() || !selection.ifaceName.isEmpty())
+                continue;
+
+            const auto iter = std::ranges::find(knownInterfaces, selection.iface, &BitTorrent::InterfaceSelection::iface);
+            if (const QNetworkInterface iface = QNetworkInterface::interfaceFromName(selection.iface); iface.isValid())
+                selection.ifaceName = iface.humanReadableName();
+            else if (iter != knownInterfaces.cend())
+                selection.ifaceName = iter->ifaceName;
+            else
+                selection.ifaceName = selection.iface;
+        }
+    };
+
+    // Parse them before any change, so that an invalid value changes nothing
+    std::optional<QList<BitTorrent::ListenEntry>> listenEntries;
+    if (hasKey(u"listen_entries"_s))
+    {
+        const QJsonValue jsonValue = QJsonValue::fromVariant(it.value());
+        if (!jsonValue.isArray())
+            throw APIError(APIErrorType::BadParams, tr("listen_entries must be an array"));
+
+        const QJsonArray jsonArray = jsonValue.toArray();
+        // Without an entry, qBittorrent listens on nothing
+        if (jsonArray.isEmpty())
+            throw APIError(APIErrorType::BadParams, tr("listen_entries must not be empty"));
+
+        QList<BitTorrent::ListenEntry> entries;
+        entries.reserve(jsonArray.size());
+        for (qsizetype i = 0; i < jsonArray.size(); ++i)
+        {
+            const QJsonValue item = jsonArray.at(i);
+            std::optional<BitTorrent::ListenEntry> entry = item.isObject() ? BitTorrent::parseListenEntry(item.toObject()) : std::nullopt;
+            if (!entry)
+                throw APIError(APIErrorType::BadParams, tr("Invalid listen entry. Index: %1").arg(i));
+
+            fillInterfaceNames(entry->interfaces);
+            entries.append(*entry);
+        }
+        listenEntries = entries;
+    }
+
+    std::optional<BitTorrent::OutgoingInterfaces> outgoingInterfaces;
+    if (hasKey(u"outgoing_interfaces"_s))
+    {
+        const QJsonValue jsonValue = QJsonValue::fromVariant(it.value());
+        outgoingInterfaces = jsonValue.isObject() ? BitTorrent::parseOutgoingInterfaces(jsonValue.toObject()) : std::nullopt;
+        if (!outgoingInterfaces)
+            throw APIError(APIErrorType::BadParams, tr("Invalid outgoing_interfaces"));
+
+        fillInterfaceNames(outgoingInterfaces->interfaces);
+    }
 
     // Behavior
     // Language
@@ -734,20 +793,11 @@ void AppController::setPreferencesAction()
         pref->setAutoRunOnTorrentFinishedProgram(it.value().toString().trimmed());
 
     // Connection
-    // Listening Port
-    if (hasKey(u"random_port"_s) && it.value().toBool())  // deprecated
-    {
-        session->setPort(0);
-    }
-    else if (hasKey(u"listen_port"_s))
-    {
-        session->setPort(it.value().toInt());
-    }
-    // SSL Torrents
-    if (hasKey(u"ssl_enabled"_s))
-        session->setSSLEnabled(it.value().toBool());
-    if (hasKey(u"ssl_listen_port"_s))
-        session->setSSLPort(it.value().toInt());
+    // Listening
+    if (listenEntries)
+        session->setListenEntries(*listenEntries);
+    if (outgoingInterfaces)
+        session->setOutgoingInterfaces(*outgoingInterfaces);
     if (hasKey(u"upnp"_s))
         Net::PortForwarder::instance()->setEnabled(it.value().toBool());
     // Connections Limits
@@ -1042,28 +1092,6 @@ void AppController::setPreferencesAction()
     // Physical memory (RAM) usage limit
     if (hasKey(u"memory_working_set_limit"_s))
         app()->setMemoryWorkingSetLimit(it.value().toInt());
-    // Current network interface
-    if (hasKey(u"current_network_interface"_s))
-    {
-        const QString ifaceValue {it.value().toString()};
-
-        const QList<QNetworkInterface> ifaces = QNetworkInterface::allInterfaces();
-        const auto ifacesIter = std::ranges::find_if(ifaces, [&ifaceValue](const QNetworkInterface &iface)
-        {
-            return (!iface.addressEntries().isEmpty()) && (iface.name() == ifaceValue);
-        });
-        const QString ifaceName = (ifacesIter != ifaces.cend()) ? ifacesIter->humanReadableName() : QString();
-
-        session->setNetworkInterface(ifaceValue);
-        if (!ifaceName.isEmpty() || ifaceValue.isEmpty())
-            session->setNetworkInterfaceName(ifaceName);
-    }
-    // Current network interface address
-    if (hasKey(u"current_interface_address"_s))
-    {
-        const QHostAddress ifaceAddress {it.value().toString().trimmed()};
-        session->setNetworkInterfaceAddress(ifaceAddress.isNull() ? QString() : ifaceAddress.toString());
-    }
     // Save resume data interval
     if (hasKey(u"save_resume_data_interval"_s))
         session->setSaveResumeDataInterval(it.value().toInt());
@@ -1485,4 +1513,45 @@ void AppController::networkInterfaceAddressListAction()
     }
 
     setResult(addressList);
+}
+
+void AppController::networkInterfacesAction()
+{
+    // One call, because each call lists all interfaces and probes the addresses
+    const QList<QHostAddress> allTemporaryAddresses = Utils::Net::temporaryIPv6Addresses();
+
+    QJsonArray ifaceList;
+    for (const QNetworkInterface &iface : asConst(QNetworkInterface::allInterfaces()))
+    {
+        QList<QHostAddress> ifaceAddresses;
+        QJsonArray addresses;
+        for (const QNetworkAddressEntry &entry : asConst(iface.addressEntries()))
+        {
+            // The session does not use deprecated addresses, so they cannot be selected
+            if (Utils::Net::isDeprecatedAddressEntry(entry))
+                continue;
+
+            ifaceAddresses.append(entry.ip());
+            addresses.append(entry.ip().toString());
+        }
+
+        QJsonArray temporaryAddresses;
+        for (const QHostAddress &addr : allTemporaryAddresses)
+        {
+            if (Utils::Net::containsIPv6Address(ifaceAddresses, addr))
+                temporaryAddresses.append(addr.toString());
+        }
+
+        ifaceList.append(QJsonObject {
+            {u"name"_s, iface.humanReadableName()},
+            {u"value"_s, iface.name()},
+            {u"addresses"_s, addresses},
+            {u"temporary_ipv6_addresses"_s, temporaryAddresses}
+        });
+    }
+
+    setResult(QJsonObject {
+        {u"interfaces"_s, ifaceList},
+        {u"temporary_ipv6_supported"_s, Utils::Net::isTemporaryIPv6Supported()}
+    });
 }
