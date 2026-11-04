@@ -1064,6 +1064,14 @@ int Application::exec()
     if (!params.torrentSources.isEmpty())
         m_paramsQueue.append(params);
 
+#ifdef Q_OS_WIN
+    if (Profile::instance()->rootPath().isEmpty() && !Utils::OS::isMagnetProtocolRegistered())
+    {
+        if (!Utils::OS::registerMagnetProtocol())
+            LogMsg(tr("Failed to restore magnet protocol registration."), Log::WARNING);
+    }
+#endif
+
     return BaseApplication::exec();
 }
 
