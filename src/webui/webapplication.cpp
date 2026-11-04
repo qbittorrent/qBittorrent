@@ -768,6 +768,7 @@ void WebApplication::cookieSessionInitialize(const QString &authScheme, const QS
 {
     Q_ASSERT(!m_currentSession);
 
+    bool hasStaleSessionCookie = false;
     if (const QString sessionId = parseCookie(m_request.headers.value(Http::HEADER_COOKIE)).value(m_sessionCookieName);
         !sessionId.isEmpty())
     {
@@ -788,6 +789,8 @@ void WebApplication::cookieSessionInitialize(const QString &authScheme, const QS
                 delete m_sessions.take(sessionId);
             }
         }
+
+        hasStaleSessionCookie = !m_currentSession;
     }
 
     if (!m_currentSession)
@@ -798,6 +801,10 @@ void WebApplication::cookieSessionInitialize(const QString &authScheme, const QS
         }
         else if (authScheme.compare(BASIC_AUTH, Qt::CaseInsensitive) == 0)
         {
+            // clients that ignore 'Set-Cookie' must log in again, or they start a new session on every request
+            if (hasStaleSessionCookie && !canRestartSessionViaBasicAuth())
+                return;
+
             if (!validateBasicAuth(authData))
                 throw UnauthorizedHTTPError();
 
@@ -957,13 +964,18 @@ bool WebApplication::isOriginTrustworthy() const
     return false;
 }
 
+QString WebApplication::requestTargetOrigin(const Http::Request &request) const
+{
+    return m_isReverseProxySupportEnabled
+        ? request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST))
+        : request.headers.value(Http::HEADER_HOST);
+}
+
 bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
 {
     // https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#Verifying_Same_Origin_with_Standard_Headers
 
-    const QString targetOrigin = m_isReverseProxySupportEnabled
-        ? request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST))
-        : request.headers.value(Http::HEADER_HOST);
+    const QString targetOrigin = requestTargetOrigin(request);
 
     // owasp.org recommends to block requests without any of these headers, but doing so will inevitably lead Web API users
     // to spoof headers so let's be permissive here (Web API clients don't send any of these headers)
@@ -993,6 +1005,18 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
     }
 
     return true;
+}
+
+bool WebApplication::canRestartSessionViaBasicAuth() const
+{
+    if (!m_request.path.startsWith(API_PATH))
+        return true;
+
+    if (m_request.path.sliced(API_PATH.size()) == u"auth/login")
+        return true;
+
+    // browsers always store the renewed session cookie
+    return (RequestOrigin::classify(m_request, requestTargetOrigin(m_request)).type == RequestOrigin::Type::SameOrigin);
 }
 
 bool WebApplication::validateHostHeader() const
