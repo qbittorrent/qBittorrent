@@ -9,11 +9,9 @@ concurrency:
   cancel-in-progress: ${{ github.head_ref != '' }}
 
 jobs:
-  ci:
+  check:
     name: Check
     runs-on: ubuntu-latest
-    permissions:
-      security-events: write
 
     defaults:
       run:
@@ -53,13 +51,23 @@ jobs:
           npm run format
           git diff --exit-code
 
+  ci:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
-        if: ${{ !cancelled() }}
         with:
           config-file: .github/workflows/helper/codeql/js.yaml
           languages: javascript
 
       - name: Run CodeQL analysis
-        if: ${{ !cancelled() }}
         uses: github/codeql-action/analyze@v4
