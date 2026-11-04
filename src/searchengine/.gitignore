@@ -1,4 +1,3 @@
 *.egg-info
-*.lock
 *.pyc
 *.pyi

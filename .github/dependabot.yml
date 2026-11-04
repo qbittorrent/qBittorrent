@@ -30,6 +30,7 @@ updates:
   - package-ecosystem: "pip"
     directories:
       - "/.github/workflows/helper/python-tools"
+      - "/.github/workflows/helper/uv"
       - "/.github/workflows/helper/zizmor"
     commit-message:
       prefix: "GHA CI"
@@ -41,5 +42,20 @@ updates:
           - "*"
     labels:
       - "CI"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "uv"
+    directory: "/src/searchengine/nova3"
+    commit-message:
+      prefix: "Search"
+    cooldown:
+      default-days: 7
+    groups:
+      Search-dependency-update:
+        patterns:
+          - "*"
+    labels:
+      - "Search engine"
     schedule:
       interval: "monthly"
