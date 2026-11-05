@@ -29,6 +29,7 @@
 #pragma once
 
 #include <QHash>
+#include <QSet>
 #include <QTextBrowser>
 
 class QNetworkAccessManager;
@@ -45,11 +46,17 @@ public:
     ~HtmlBrowser() = default;
 
     QVariant loadResource(int type, const QUrl &name) override;
+    void setHtml(const QString &html);
+    void clear();
 
 protected:
     QNetworkAccessManager *m_netManager = nullptr;
     QNetworkDiskCache *m_diskCache = nullptr;
-    QHash<QUrl, bool> m_activeRequests;
+    QHash<QUrl, QNetworkReply *> m_activeRequests;
+    QSet<QUrl> m_failedResources;
+
+    void startRequest(const QUrl &url);
+    void updateResource(const QUrl &url, const QVariant &resource);
 
 protected slots:
     void resourceLoaded(QNetworkReply *reply);

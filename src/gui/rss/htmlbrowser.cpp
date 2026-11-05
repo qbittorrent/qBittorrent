@@ -29,14 +29,11 @@
 
 #include "htmlbrowser.h"
 
-#include <QApplication>
-#include <QDateTime>
+#include <QImage>
 #include <QDebug>
 #include <QNetworkDiskCache>
 #include <QNetworkReply>
 #include <QNetworkRequest>
-#include <QScrollBar>
-#include <QStyle>
 
 #include "base/path.h"
 #include "base/profile.h"
@@ -56,72 +53,76 @@ HtmlBrowser::HtmlBrowser(QWidget *parent)
     connect(m_netManager, &QNetworkAccessManager::finished, this, &HtmlBrowser::resourceLoaded);
 }
 
-QVariant HtmlBrowser::loadResource(int type, const QUrl &name)
+void HtmlBrowser::setHtml(const QString &html)
 {
-    if (type == QTextDocument::ImageResource)
-    {
-        QUrl url {name};
-        if (url.scheme().isEmpty())
-            url.setScheme(u"http"_s);
+    clear();
+    QTextBrowser::setHtml(html);
+}
 
-        QIODevice *dev = m_diskCache->data(url);
-        if (dev)
-        {
-            qDebug() << "HtmlBrowser::loadResource() cache " << url.toString();
-            QByteArray res = dev->readAll();
-            delete dev;
-            return res;
-        }
+void HtmlBrowser::clear()
+{
+    // Remove ownership before abort(): finished() can be emitted synchronously.
+    const auto requests = m_activeRequests;
+    m_activeRequests.clear();
+    m_failedResources.clear();
+    for (auto *reply : requests)
+        reply->abort();
+    QTextBrowser::clear();
+}
 
-        if (!m_activeRequests.contains(url))
-        {
-            m_activeRequests.insert(url, true);
-            qDebug() << "HtmlBrowser::loadResource() get " << url.toString();
-            QNetworkRequest req {url};
-            req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
-            m_netManager->get(req);
-        }
+void HtmlBrowser::startRequest(const QUrl &url)
+{
+    if (m_activeRequests.contains(url))
+        return;
+    QNetworkRequest request {url};
+    request.setAttribute(QNetworkRequest::CacheLoadControlAttribute,
+        QNetworkRequest::PreferCache);
+    m_activeRequests.insert(url, m_netManager->get(request));
+}
 
-        return {};
-    }
+QVariant HtmlBrowser::loadResource(const int type, const QUrl &name)
+{
+    if (type != QTextDocument::ImageResource)
+        return QTextBrowser::loadResource(type, name);
 
-    return QTextBrowser::loadResource(type, name);
+    const QUrl url = document()->baseUrl().resolved(name);
+    if ((url.scheme() != u"http") && (url.scheme() != u"https"))
+        return QTextBrowser::loadResource(type, name);
+
+    if (m_failedResources.contains(url))
+        return QByteArray {};
+    startRequest(url);
+    // Keep Qt's original resource-missing layout while the request is pending.
+    return {};
+}
+
+void HtmlBrowser::updateResource(const QUrl &url, const QVariant &resource)
+{
+    document()->addResource(QTextDocument::ImageResource, url, resource);
+    document()->markContentsDirty(0, document()->characterCount());
+    viewport()->update();
 }
 
 void HtmlBrowser::resourceLoaded(QNetworkReply *reply)
 {
-    m_activeRequests.remove(reply->request().url());
+    reply->deleteLater();
+    const QUrl url = reply->request().url();
+    // Ignore aborted responses from an article that is no longer displayed,
+    // including old responses for a URL also used by the new article.
+    if (m_activeRequests.value(url) != reply)
+        return;
+    m_activeRequests.remove(url);
 
-    if ((reply->error() == QNetworkReply::NoError) && (reply->size() > 0))
+    QImage image;
+    if (reply->error() == QNetworkReply::NoError)
+        image = QImage::fromData(reply->readAll());
+    if (image.isNull())
     {
-        qDebug() << "HtmlBrowser::resourceLoaded() save " << reply->request().url().toString();
+        m_failedResources.insert(url);
+        // A valid, empty byte resource lets Qt draw its native missing-image
+        // icon without calling our network loader again.
+        updateResource(url, QByteArray {});
+        return;
     }
-    else
-    {
-        // If resource failed to load, replace it with warning icon and store it in cache for 1 day.
-        // Otherwise HTMLBrowser will keep trying to download it every time article is displayed,
-        // since it's not possible to cache error responses.
-        QNetworkCacheMetaData metaData;
-        QNetworkCacheMetaData::AttributesMap atts;
-        metaData.setUrl(reply->request().url());
-        metaData.setSaveToDisk(true);
-        atts[QNetworkRequest::HttpStatusCodeAttribute] = 200;
-        atts[QNetworkRequest::HttpReasonPhraseAttribute] = u"Ok"_s;
-        metaData.setAttributes(atts);
-        const auto currentDateTime = QDateTime::currentDateTime();
-        metaData.setLastModified(currentDateTime);
-        metaData.setExpirationDate(currentDateTime.addDays(1));
-        QIODevice *dev = m_diskCache->prepare(metaData);
-        if (!dev)
-            return;
-
-        QApplication::style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32, 32).save(dev, "PNG");
-        m_diskCache->insert(dev);
-    }
-    // Refresh the document display and keep scrollbars where they are
-    const int sx = horizontalScrollBar()->value();
-    const int sy = verticalScrollBar()->value();
-    document()->setHtml(document()->toHtml());
-    horizontalScrollBar()->setValue(sx);
-    verticalScrollBar()->setValue(sy);
+    updateResource(url, image);
 }
