@@ -13,6 +13,9 @@
 * [#25231](https://github.com/qbittorrent/qBittorrent/pull/25231)
   * `app/preferences` endpoint includes `load_torrent_max_directory_depth` (int) option
   * `app/setPreferences` endpoint allows to set `load_torrent_max_directory_depth` (int) option
+* [#25213](https://github.com/qbittorrent/qBittorrent/pull/25213)
+  * `app/preferences` endpoint includes `exclude_files_without_extension` (bool) option
+  * `app/setPreferences` endpoint allows to set `exclude_files_without_extension` (bool) option
 
 ## 2.16.2
 
