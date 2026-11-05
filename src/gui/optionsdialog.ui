@@ -1619,6 +1619,17 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkExcludeFilesWithoutExtension">
+                 <property name="toolTip">
+                  <string>Files whose name has no extension (e.g. 'readme', 'setup.') will have their priority automatically set to &quot;Do not download&quot;.
+Folder names are not checked.</string>
+                 </property>
+                 <property name="text">
+                  <string>Also exclude files without an extension</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
