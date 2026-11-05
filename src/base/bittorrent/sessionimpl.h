@@ -435,6 +435,8 @@ namespace BitTorrent
         void setExcludedFileNamesEnabled(bool enabled) override;
         QStringList excludedFileNames() const override;
         void setExcludedFileNames(const QStringList &excludedFileNames) override;
+        bool isExcludeFilesWithoutExtensionEnabled() const override;
+        void setExcludeFilesWithoutExtensionEnabled(bool enabled) override;
         void applyFilenameFilter(const PathList &files, QList<BitTorrent::DownloadPriority> &priorities) override;
         QStringList bannedIPs() const override;
         void setBannedIPs(const QStringList &newList) override;
@@ -801,6 +803,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_maxOutstandingBlockRequests;
         CachedSettingValue<bool> m_isExcludedFileNamesEnabled;
         CachedSettingValue<QStringList> m_excludedFileNames;
+        CachedSettingValue<bool> m_isExcludeFilesWithoutExtensionEnabled;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
         CachedSettingValue<bool> m_isMergeTrackersEnabled;

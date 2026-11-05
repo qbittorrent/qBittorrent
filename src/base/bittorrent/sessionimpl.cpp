@@ -628,6 +628,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_maxOutstandingBlockRequests(BITTORRENT_SESSION_KEY(u"MaxOutstandingBlockRequests"_s), 2000)
     , m_isExcludedFileNamesEnabled(BITTORRENT_KEY(u"ExcludedFileNamesEnabled"_s), false)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_s))
+    , m_isExcludeFilesWithoutExtensionEnabled(BITTORRENT_SESSION_KEY(u"ExcludeFilesWithoutExtension"_s), false)
     , m_bannedIPs(u"State/BannedIPs"_s, QStringList(), Algorithm::sorted<QStringList>)
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_s), ResumeDataStorageType::Legacy)
     , m_isMergeTrackersEnabled(BITTORRENT_KEY(u"MergeTrackersEnabled"_s), false)
@@ -4332,6 +4333,16 @@ void SessionImpl::setExcludedFileNames(const QStringList &excludedFileNames)
     }
 }
 
+bool SessionImpl::isExcludeFilesWithoutExtensionEnabled() const
+{
+    return m_isExcludeFilesWithoutExtensionEnabled;
+}
+
+void SessionImpl::setExcludeFilesWithoutExtensionEnabled(const bool enabled)
+{
+    m_isExcludeFilesWithoutExtensionEnabled = enabled;
+}
+
 void SessionImpl::populateExcludedFileNamesRegExpList()
 {
     const QStringList excludedNames = excludedFileNames();
@@ -4352,8 +4363,13 @@ void SessionImpl::applyFilenameFilter(const PathList &files, QList<DownloadPrior
     if (!isExcludedFileNamesEnabled())
         return;
 
-    const auto isFilenameExcluded = [patterns = m_excludedFileNamesRegExpList](const Path &fileName)
+    const bool excludeFilesWithoutExtension = isExcludeFilesWithoutExtensionEnabled();
+    const auto isFilenameExcluded = [patterns = m_excludedFileNamesRegExpList, excludeFilesWithoutExtension](const Path &fileName)
     {
+        // Only the file itself is checked for an extension; its parent folders never have one
+        if (excludeFilesWithoutExtension && fileName.extension().isEmpty())
+            return true;
+
         return std::ranges::any_of(patterns, [&fileName](const QRegularExpression &re)
         {
             Path path = fileName;
