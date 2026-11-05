@@ -298,6 +298,8 @@
             };
 
             const addRowsToTable = (rows, selectedRows) => {
+                // Opened from the transfer list (no rows given): start with every file selected
+                const isRowSelected = (rowId) => ((selectedRows === undefined) || selectedRows.includes(rowId.toString()));
                 let rowId = 0;
                 const rootNode = new window.qBittorrent.FileTree.FolderNode();
                 rootNode.autoCalculateCheckedState = false;
@@ -329,7 +331,7 @@
                             folderNode.path = (parent.path === "")
                                 ? folderName
                                 : [parent.path, folderName].join(window.qBittorrent.Filesystem.PathSeparator);
-                            folderNode.checked = selectedRows.includes(rowId.toString()) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
+                            folderNode.checked = isRowSelected(rowId) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
                             folderNode.original = folderName;
                             folderNode.renamed = "";
                             folderNode.root = parent;
@@ -344,7 +346,7 @@
                     const childNode = new window.qBittorrent.FileTree.FileNode();
                     childNode.rowId = rowId;
                     childNode.path = row.path;
-                    childNode.checked = selectedRows.includes(rowId.toString()) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
+                    childNode.checked = isRowSelected(rowId) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
                     childNode.original = row.original;
                     childNode.renamed = "";
                     childNode.root = parent;
@@ -356,6 +358,7 @@
 
                 bulkRenameFilesTable.populateTable(rootNode);
                 bulkRenameFilesTable.updateTable(false);
+                bulkRenameFilesTable.updateHeaderCheckbox();
 
                 if (selectedRows !== undefined)
                     bulkRenameFilesTable.reselectRows(selectedRows);
