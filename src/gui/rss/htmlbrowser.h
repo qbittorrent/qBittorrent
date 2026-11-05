@@ -42,11 +42,11 @@ class HtmlBrowser final : public QTextBrowser
     Q_DISABLE_COPY_MOVE(HtmlBrowser)
 
 public:
-    explicit HtmlBrowser(QWidget* parent = nullptr);
+    explicit HtmlBrowser(QWidget *parent = nullptr);
     ~HtmlBrowser() = default;
 
     QVariant loadResource(int type, const QUrl &name) override;
-    void setHtml(const QString &html);
+    void setHtml(const QString &html, const QUrl &baseUrl = {});
     void clear();
 
 protected:

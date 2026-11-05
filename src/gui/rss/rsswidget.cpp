@@ -59,54 +59,6 @@
 #include "rssfeeddialog.h"
 #include "ui_rsswidget.h"
 
-namespace
-{
-    void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl)
-    {
-        const QRegularExpression rx {uR"(((<a\s+[^>]*?href|<img\s+[^>]*?src)\s*=\s*["'])((https?|ftp|magnet):)?(\/\/[^\/]*)?(\/?[^\/"].*?)(["']))"_s
-            , QRegularExpression::CaseInsensitiveOption};
-
-        const QString normalizedBaseUrl = baseUrl.endsWith(u'/') ? baseUrl : (baseUrl + u'/');
-        const QUrl url {normalizedBaseUrl};
-        const QString defaultScheme = url.scheme();
-        QRegularExpressionMatchIterator iter = rx.globalMatch(html);
-
-        while (iter.hasNext())
-        {
-            const QRegularExpressionMatch match = iter.next();
-            const QStringView scheme = match.capturedView(4);
-            const QStringView host = match.capturedView(5);
-            if (!scheme.isEmpty())
-            {
-                if (host.isEmpty())
-                    break; // invalid URL, should never happen
-
-                // already absolute URL
-                continue;
-            }
-
-            QStringView relativePath = match.capturedView(6);
-            if (relativePath.startsWith(u'/'))
-            {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
-                relativePath.slice(1);
-#else
-                relativePath = relativePath.sliced(1);
-#endif
-            }
-
-            const QString absoluteUrl = !host.isEmpty()
-                    ? QString(defaultScheme + u':' + host) : (normalizedBaseUrl + relativePath);
-            const QString fullMatch = match.captured(0);
-            const QStringView prefix = match.capturedView(1);
-            const QStringView suffix = match.capturedView(7);
-
-            html.replace(fullMatch, (prefix + absoluteUrl + suffix));
-        }
-    }
-}
-
-
 RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     : GUIApplicationComponent(app, parent)
     , m_ui {new Ui::RSSWidget}
@@ -193,17 +145,18 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     m_ui->textBrowser->installEventFilter(this);
     m_ui->textBrowser->setOpenLinks(false);
 
-    connect(m_ui->textBrowser, &QTextBrowser::anchorClicked, this, [app](const QUrl &link)
+    connect(m_ui->textBrowser, &QTextBrowser::anchorClicked, this, [this, app](const QUrl &link)
     {
-        const QString urlStr = link.toString();
-        if ((Net::DownloadManager::hasSupportedScheme(urlStr) && link.path().endsWith(u".torrent"))
-                || (link.scheme() == u"magnet"))
+        const QUrl resolvedLink = m_ui->textBrowser->document()->baseUrl().resolved(link);
+        const QString urlStr = resolvedLink.toString();
+        if ((Net::DownloadManager::hasSupportedScheme(urlStr) && resolvedLink.path().endsWith(u".torrent"))
+                || (resolvedLink.scheme() == u"magnet"))
         {
             app->addTorrentManager()->addTorrent(urlStr);
         }
         else
         {
-            QDesktopServices::openUrl(link);
+            QDesktopServices::openUrl(resolvedLink);
         }
     });
 }
@@ -786,10 +739,15 @@ void RSSWidget::renderArticle(const RSS::Article *article) const
     }
     html += u"</div>";
 
-    // Supplement relative URLs to absolute ones
-    const QUrl url {articleLink};
-    const QString baseUrl = url.toString(QUrl::RemovePath | QUrl::RemoveQuery);
-    convertRelativeUrlToAbsolute(html, baseUrl);
-
-    m_ui->textBrowser->setHtml(html);
+    // Let the document resolve HTML resources against their source page.
+    QUrl baseUrl {articleLink};
+    if (!baseUrl.isEmpty() && baseUrl.isRelative())
+        baseUrl = QUrl {article->feed()->url()}.resolved(baseUrl);
+    if (!baseUrl.isValid() || baseUrl.host().isEmpty()
+        || ((baseUrl.scheme() != u"http") && (baseUrl.scheme() != u"https")))
+    {
+        baseUrl = QUrl {article->feed()->url()};
+    }
+    baseUrl = baseUrl.adjusted(QUrl::RemoveUserInfo | QUrl::RemoveQuery | QUrl::RemoveFragment);
+    m_ui->textBrowser->setHtml(html, baseUrl);
 }

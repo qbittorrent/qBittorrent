@@ -29,8 +29,8 @@
 
 #include "htmlbrowser.h"
 
-#include <QImage>
 #include <QDebug>
+#include <QImage>
 #include <QNetworkDiskCache>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -53,9 +53,10 @@ HtmlBrowser::HtmlBrowser(QWidget *parent)
     connect(m_netManager, &QNetworkAccessManager::finished, this, &HtmlBrowser::resourceLoaded);
 }
 
-void HtmlBrowser::setHtml(const QString &html)
+void HtmlBrowser::setHtml(const QString &html, const QUrl &baseUrl)
 {
     clear();
+    document()->setBaseUrl(baseUrl);
     QTextBrowser::setHtml(html);
 }
 
