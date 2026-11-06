@@ -1712,7 +1712,7 @@ void TorrentImpl::forceRecheck()
 
     // The files of a torrent that has not downloaded anything yet can be in its save path or in its download path,
     // so they are searched for in the same way as when the torrent is added
-    const auto canChangeLocation = [this]
+    const auto canChangeLocation = [this]() -> bool
     {
         return (m_nativeStatus.num_pieces == 0) && (totalDownload() == 0) && !isChecking() && !isMoveInProgress()
                 && m_renamingFiles.isEmpty();
