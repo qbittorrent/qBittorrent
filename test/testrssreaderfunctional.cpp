@@ -57,11 +57,11 @@ private slots:
         browser.show();
         browser.document()->documentLayout()->documentSize();
         const QList<QUrl> expected {
-            QUrl {u"https://example.invalid:8443/news/pic/a.jpg"_s},
-            QUrl {u"https://example.invalid:8443/root.jpg"_s},
-            QUrl {u"https://example.invalid:8443/parent.jpg"_s},
-            QUrl {u"https://cdn.invalid/a.jpg"_s},
-            QUrl {u"https://other.invalid/b.jpg"_s}};
+            QUrl(u"https://example.invalid:8443/news/pic/a.jpg"_s),
+            QUrl(u"https://example.invalid:8443/root.jpg"_s),
+            QUrl(u"https://example.invalid:8443/parent.jpg"_s),
+            QUrl(u"https://cdn.invalid/a.jpg"_s),
+            QUrl(u"https://other.invalid/b.jpg"_s)};
         const auto replies = browser.findChildren<QNetworkReply *>();
         QCOMPARE(replies.size(), expected.size());
         for (const auto &url : expected)
@@ -115,6 +115,7 @@ private slots:
                         heldSockets.append(socket);
                         return;
                     }
+
                     socket->write(response);
                     socket->disconnectFromHost();
                 });
