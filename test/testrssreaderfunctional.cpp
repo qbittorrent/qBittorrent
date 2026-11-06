@@ -64,7 +64,7 @@ private slots:
             QUrl(u"https://other.invalid/b.jpg"_s)};
         const auto replies = browser.findChildren<QNetworkReply *>();
         QCOMPARE(replies.size(), expected.size());
-        for (const auto &url : expected)
+        for (const QUrl &url : expected)
         {
             QVERIFY(std::any_of(replies.cbegin(), replies.cend(), [&url](const QNetworkReply *reply)
             {
@@ -105,7 +105,7 @@ private slots:
         {
             while (server.hasPendingConnections())
             {
-                auto *socket = server.nextPendingConnection();
+                QTcpSocket *socket = server.nextPendingConnection();
                 connect(socket, &QTcpSocket::readyRead, socket, [&, socket]
                 {
                     const QByteArray request = socket->readAll();
@@ -164,7 +164,7 @@ private slots:
         QSignalSpy destroyed {manager->findChildren<QNetworkReply *>().last(), &QObject::destroyed};
         browser.setHtml(u"<p>Next article</p>"_s);
         QTRY_COMPARE(destroyed.count(), 1);
-        for (auto *socket : heldSockets)
+        for (QTcpSocket *socket : heldSockets)
         {
             if (server.children().contains(socket) && socket->state() == QAbstractSocket::ConnectedState)
             {
