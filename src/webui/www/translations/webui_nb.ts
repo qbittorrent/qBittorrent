@@ -19,10 +19,6 @@
         <translation>Start torrent</translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Hopp over sjekksummering</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Torrentbehandlingsmodus:</translation>
     </message>
@@ -73,10 +69,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>Last ned i rekkefølge</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation type="vanished">Størrelse:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -195,10 +187,6 @@
         <translation>Begrens nedlastingshastighet</translation>
     </message>
     <message>
-        <source>%1 (Free space on disk: %2)</source>
-        <translation type="vanished">%1 (Ledig diskplass: %2)</translation>
-    </message>
-    <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -213,7 +201,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Last ned</translation>
     </message>
     <message>
         <source>%1 free</source>
@@ -691,14 +679,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Nei</translation>
     </message>
     <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="vanished">Global grense for opplastingshastighet</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="vanished">Global grense for nedlastingshastighet</translation>
-    </message>
-    <message>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>Er du sikker på at du vil avslutte qBittorrent?</translation>
     </message>
@@ -912,7 +892,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Global Speed Limits</source>
-        <translation type="unfinished" />
+        <translation>Globale hastighetsgrenser</translation>
     </message>
     <message>
         <source>Pause session</source>
@@ -995,15 +975,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>Behold ufullstendige torrenter i:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">Kopier .torrent-filer til:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">Kopier .torrent-filer for fullførte nedlastinger til:</translation>
+        <translation type="vanished">Behold ufullstendige torrenter i:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -2068,10 +2040,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>Palett:</translation>
     </message>
     <message>
-        <source>Show external IP in status bar</source>
-        <translation type="vanished">Vis ekstern IP i statuslinja</translation>
-    </message>
-    <message>
         <source>Fetched trackers</source>
         <translation>Hentet sporere</translation>
     </message>
@@ -2106,10 +2074,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     <message>
         <source>URL:</source>
         <translation>URL:</translation>
-    </message>
-    <message>
-        <source>Transfer list</source>
-        <translation type="vanished">Overføringsliste</translation>
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
@@ -2408,10 +2372,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation type="unfinished" />
     </message>
@@ -2421,7 +2381,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Transfer List</source>
-        <translation type="unfinished" />
+        <translation>Overføringsliste</translation>
     </message>
     <message>
         <source>Start BitTorrent session in paused state:</source>
@@ -2445,7 +2405,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished" />
+        <translation>Vis torrentinnhold og noen alternativer</translation>
     </message>
     <message>
         <source>Separate multiple email addresses within each email with a comma.</source>
@@ -2461,7 +2421,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Søk</translation>
     </message>
     <message>
         <source>BitTorrent session shutdown timeout [-1: unlimited]:</source>
@@ -2469,7 +2429,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Example:</source>
-        <translation type="unfinished" />
+        <translation>Eksempel:</translation>
     </message>
     <message>
         <source>Provide the SMTP server address for sending email notifications.</source>
@@ -2517,6 +2477,54 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also when addition is cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use another path for incomplete torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of tracker from all torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Any of the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Blacklist filtered file names from being downloaded from torrent(s).
+Files matching any of the filters in this list will have their priority automatically set to &amp;quot;Do not download&amp;quot;.
+
+Use newlines to separate multiple entries. Can use wildcards as outlined below.
+*: matches zero or more of any characters.
+?: matches any single character.
+[...]: sets of characters can be represented in square brackets.
+
+Examples
+*.exe: filter '.exe' file extension.
+readme.txt: filter exact file name.
+?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
+readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2941,7 +2949,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Last ned</translation>
     </message>
     <message>
         <source>Copy download URL</source>
@@ -3846,6 +3854,10 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <source>Content Path</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Remove all tags from selected torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -3899,6 +3911,22 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Action when the limit is reached</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match any limit</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all the limits</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3997,6 +4025,10 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     <message>
         <source>%1y %2d</source>
         <translation>%1y %2d</translation>
+    </message>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4210,7 +4242,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Url</source>
-        <translation>Url</translation>
+        <translation type="vanished">Url</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -4227,6 +4259,10 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     <message>
         <source>No</source>
         <translation>Nei</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4632,6 +4668,18 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <source>Blocked opening RSS article URL. Only http:// and https:// links can be opened.</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -4907,7 +4955,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished" />
+        <translation>Importer</translation>
     </message>
 </context>
 <context>
@@ -5166,7 +5214,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Torrent share limits</source>
-        <translation type="unfinished" />
+        <translation>Delingsgrenser for torrent</translation>
     </message>
 </context>
 <context>
@@ -5287,12 +5335,6 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
         <translation>Klarte ikke opprette torrent.</translation>
     </message>
     <message>
-        <source>Private
-                torrent (Won't distribute on DHT network)</source>
-        <translation type="vanished">Privat
-                torrent (vil ikke distribueres på DHT-nettverk)</translation>
-    </message>
-    <message>
         <source>Unable to export torrent file</source>
         <translation>Klarte ikke eksportere torrentfil</translation>
     </message>
@@ -5341,12 +5383,6 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
         <translation>Status</translation>
     </message>
     <message>
-        <source>Align to piece boundary for files larger
-                than:</source>
-        <translation type="vanished">Juster til delgrense for filer større
-                enn:</translation>
-    </message>
-    <message>
         <source>Select file/folder to share:</source>
         <translation>Velg en fil/mappe å dele:</translation>
     </message>
@@ -5369,12 +5405,6 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     <message>
         <source>Unable to load torrent creation tasks</source>
         <translation>Klarte ikke laste oppgaver for opprettelse av torrent</translation>
-    </message>
-    <message>
-        <source>Optimize
-                    alignment</source>
-        <translation type="vanished">Optimaliser
-                    justering</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -5407,14 +5437,6 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     <message>
         <source>Web Seeds</source>
         <translation>Nettdelere</translation>
-    </message>
-    <message>
-        <source>Start
-                seeding
-                immediately</source>
-        <translation type="vanished">Start
-                deler
-                umiddelbart</translation>
     </message>
     <message>
         <source>Format</source>
@@ -5466,7 +5488,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Ja</translation>
     </message>
     <message>
         <source>Ignore dotfiles</source>
@@ -5474,11 +5496,11 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Align to piece boundary for files larger than:</source>
-        <translation type="unfinished" />
+        <translation>Juster til delgrense for filer større enn:</translation>
     </message>
     <message>
         <source>Private torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>Privat torrent (vil ikke distribueres på DHT-nettverk)</translation>
     </message>
     <message>
         <source>Ignore Dotfiles</source>
@@ -5486,15 +5508,15 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Start seeding immediately</source>
-        <translation type="unfinished" />
+        <translation>Begynn deling umiddelbart</translation>
     </message>
     <message>
         <source>Optimize alignment</source>
-        <translation type="unfinished" />
+        <translation>Optimaliser fildatajusteringen</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nei</translation>
     </message>
     <message>
         <source>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</source>
@@ -5503,10 +5525,6 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
 </context>
 <context>
     <name>DownloadFromURLDialog</name>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Last ned</translation>
-    </message>
     <message>
         <source>Magnet link</source>
         <translation>Magnetlenke</translation>
@@ -5580,7 +5598,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Speed limits</source>
-        <translation type="unfinished" />
+        <translation>Hastighetsgrenser</translation>
     </message>
     <message>
         <source>Alternative download speed</source>
@@ -5592,19 +5610,19 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>Bruk</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>Opplasting:</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>Alternative hastighetsgrenser</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>Nedlasting:</translation>
     </message>
     <message>
         <source>Failed to set speed limits</source>
@@ -5676,19 +5694,19 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     <name>TorrentShareLimitsWidget</name>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation> min</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Forvalgt</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Skru på superdeling av torrent</translation>
     </message>
     <message>
         <source>Inactive seeding time:</source>
-        <translation type="unfinished" />
+        <translation>Inaktiv delingstid:</translation>
     </message>
     <message>
         <source>Match all the limits</source>
@@ -5696,7 +5714,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Ratio:</source>
-        <translation type="unfinished" />
+        <translation>Forhold:</translation>
     </message>
     <message>
         <source>Match any limit</source>
@@ -5704,7 +5722,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>Fjern torrenten og innholdet</translation>
     </message>
     <message>
         <source>Share limit values cannot be empty or invalid.</source>
@@ -5712,7 +5730,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Action when the limit is reached:</source>
-        <translation type="unfinished" />
+        <translation>Handling når grensen er nådd:</translation>
     </message>
     <message>
         <source>From category (%1)</source>
@@ -5720,7 +5738,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Set to</source>
-        <translation type="unfinished" />
+        <translation>Velg</translation>
     </message>
     <message>
         <source>From category</source>
@@ -5732,15 +5750,15 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Seeding time:</source>
-        <translation type="unfinished" />
+        <translation>Delingstid:</translation>
     </message>
     <message>
         <source>Unlimited</source>
-        <translation type="unfinished" />
+        <translation>Ubegrenset</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Stopp torrent</translation>
     </message>
     <message>
         <source>Mode:</source>
@@ -5748,7 +5766,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Fjern torrent</translation>
     </message>
 </context>
 <context>

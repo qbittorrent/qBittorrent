@@ -448,6 +448,7 @@ void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
 //  - "ratio": Torrent share ratio
 //  - "eta": Torrent ETA
 //  - "state": Torrent state
+//  - "error": Torrent error message (empty if the torrent is not in error state)
 //  - "seq_dl": Torrent sequential download state
 //  - "f_l_piece_prio": Torrent first last piece priority state
 //  - "completion_on": Torrent completion time

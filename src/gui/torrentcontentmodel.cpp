@@ -699,6 +699,20 @@ void TorrentContentModel::removeEmptyBranch(const Path &folderPath)
     }
 }
 
+void TorrentContentModel::updateItemByPathMapping(const Path &oldFolderPath, const Path &newFolderPath)
+{
+    m_itemByPath.insert(newFolderPath, m_itemByPath.take(oldFolderPath));
+
+    for (const Path &oldPath : asConst(m_itemByPath.keys()))
+    {
+        if (oldPath.hasAncestor(oldFolderPath, Qt::CaseSensitive))
+        {
+            const Path relativePath = oldFolderPath.relativePathOf(oldPath);
+            m_itemByPath.insert((newFolderPath / relativePath), m_itemByPath.take(oldPath));
+        }
+    }
+}
+
 void TorrentContentModel::onMetadataReceived()
 {
     beginResetModel();
@@ -719,7 +733,7 @@ void TorrentContentModel::onFileRenamed(const int fileIndex, const Path &oldFile
         return;
     }
 
-    Path oldParentPath = oldFilePath.parentPath();
+    const Path oldParentPath = oldFilePath.parentPath();
     auto *parentFolderItem = static_cast<TorrentContentModelFolder *>(m_itemByPath.value(oldParentPath));
     const int fileItemRow = fileItem->row();
     beginRemoveRows(index(parentFolderItem), fileItemRow, fileItemRow);
@@ -747,21 +761,21 @@ void TorrentContentModel::onFolderRenamed(const Path &newFolderPath, const Path 
 {
     auto *folderItem = static_cast<TorrentContentModelFolder *>(m_itemByPath.value(oldFolderPath));
     folderItem->setName(newFolderPath.filename());
-    if (newFolderPath.parentPath() == oldFolderPath.parentPath())
+    updateItemByPathMapping(oldFolderPath, newFolderPath);
+
+    const Path oldParentPath = oldFolderPath.parentPath();
+    if (newFolderPath.parentPath() == oldParentPath)
     {
-        m_itemByPath.insert(newFolderPath, m_itemByPath.take(oldFolderPath));
         const QModelIndex itemIndex = index(newFolderPath);
         emit dataChanged(itemIndex, itemIndex);
         return;
     }
 
-    Path oldParentPath = oldFolderPath.parentPath();
     auto *parentFolderItem = static_cast<TorrentContentModelFolder *>(m_itemByPath.value(oldParentPath));
     const int folderItemRow = folderItem->row();
     beginRemoveRows(index(parentFolderItem), folderItemRow, folderItemRow);
     parentFolderItem->removeChild(folderItem);
     parentFolderItem->updatePriority();
-    m_itemByPath.remove(oldFolderPath);
     endRemoveRows();
 
     removeEmptyBranch(oldParentPath);
@@ -775,7 +789,6 @@ void TorrentContentModel::onFolderRenamed(const Path &newFolderPath, const Path 
     beginInsertRows(index(newParentFolderItem), row, row);
     newParentFolderItem->appendChild(folderItem);
     newParentFolderItem->updatePriority();
-    m_itemByPath.insert(newFolderPath, folderItem);
     endInsertRows();
 }
 

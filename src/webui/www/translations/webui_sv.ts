@@ -19,10 +19,6 @@
         <translation>Starta torrent</translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Hoppa över hashkontroll</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Torrenthanteringsläge:</translation>
     </message>
@@ -73,10 +69,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>Hämta i sekventiell ordning</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation type="vanished">Storlek:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -139,10 +131,6 @@
         <translation>Filtrera filer...</translation>
     </message>
     <message>
-        <source>Add Torrent</source>
-        <translation type="vanished">Lägg till torrent</translation>
-    </message>
-    <message>
         <source>Use another path for incomplete torrent</source>
         <translation>Använd en annan sökväg för ofullständig torrent</translation>
     </message>
@@ -199,33 +187,30 @@
         <translation>Begränsa hämtningshastighet</translation>
     </message>
     <message>
-        <source>%1 (Free space on disk: %2)</source>
-        <translation type="vanished">%1 (Ledigt utrymme på disken: %2)</translation>
-    </message>
-    <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
     <message>
         <source>If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.
 The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.</source>
-        <translation type="unfinished" />
+        <translation>Om detta är aktiverat antar qBittorrent att alla filer för torrenten finns och att deras hashvärden stämmer överens med dem i torrentfilen. Läget kan användas när en torrent skapas och distribueras, eller när användaren redan vet att alla filer är fullständiga. Då utförs endast grundläggande filkontroller och de inledande hashkontrollerna hoppas över.
+Varje datadels hashvärde kontrolleras när en jämlike begär delen för första gången. Om en hashkontroll misslyckas kontrolleras alla filer i torrenten på nytt.</translation>
     </message>
     <message>
         <source>Seed mode</source>
-        <translation type="unfinished" />
+        <translation>Distributionsläge</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Hämta</translation>
     </message>
     <message>
         <source>%1 free</source>
-        <translation type="unfinished" />
+        <translation>%1 ledigt</translation>
     </message>
     <message>
         <source>%1 needed · %2 free</source>
-        <translation type="unfinished" />
+        <translation>%1 behövs · %2 ledigt</translation>
     </message>
 </context>
 <context>
@@ -279,7 +264,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Tvinga start av torrenter</translation>
     </message>
 </context>
 <context>
@@ -401,7 +386,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>Globalt antal sändningsplatser måste vara större än 0 eller inaktiverad.</translation>
+        <translation>Det globala högsta antalet sändningsplatser måste vara större än 0 eller gränsen vara inaktiverad.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -421,7 +406,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation>Torrentinaktivitetstidtagare måste vara större än 0.</translation>
+        <translation>Tidsgränsen för torrentinaktivitet måste vara större än 0.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -429,7 +414,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation>Hämtningshastighetsgränsen måste vara större än 0.</translation>
+        <translation>Tröskeln för hämtningshastighet måste vara större än 0.</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -509,7 +494,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Edit web seed</source>
-        <translation>Redigera webbdistribution</translation>
+        <translation>Redigera webbdistributör</translation>
     </message>
     <message>
         <source>Are you sure you want to remove %1 from the transfer list?</source>
@@ -537,7 +522,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>List of web seeds to add (one per line):</source>
-        <translation>Lista över webbdistributioner att lägga till (en per rad):</translation>
+        <translation>Lista över webbdistributörer att lägga till (en per rad):</translation>
     </message>
     <message>
         <source>Unable to start torrents.</source>
@@ -545,7 +530,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Add web seeds</source>
-        <translation>Lägg till webbdistributioner</translation>
+        <translation>Lägg till webbdistributörer</translation>
     </message>
     <message>
         <source>Unable to delete API key.</source>
@@ -557,11 +542,11 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation>Gränsen för utdelningskvot får inte ha ett negativt värde.</translation>
+        <translation>Gränsen för delningskvot får inte ha ett negativt värde.</translation>
     </message>
     <message>
         <source>Peer turnover interval must be greater than or equal to 0.</source>
-        <translation>Intervallet för omsättning av jämlikar måste vara större än eller lika med 0.</translation>
+        <translation>Frånkopplingsintervallet vid byte av jämlikar måste vara större än eller lika med 0.</translation>
     </message>
     <message>
         <source>Unable to parse response.</source>
@@ -573,19 +558,19 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Peer turnover must be between 0 and 100.</source>
-        <translation>Jämlikeomsättningen måste vara mellan 0 och 100.</translation>
+        <translation>Procentandelen som kopplas från vid byte av jämlikar måste vara mellan 0 och 100.</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents must be greater than 0 and less than 1024.</source>
-        <translation>Utestående minne vid kontroll av torrenter måste vara större än 0 och mindre än 1024.</translation>
+        <translation>Minnet för väntande block vid torrentkontroll måste vara större än 0 och mindre än 1024.</translation>
     </message>
     <message>
         <source>Unable to load program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Det gick inte att läsa in programinställningarna, qBittorrent är förmodligen inte nåbar.</translation>
+        <translation>Det gick inte att läsa in programinställningarna, qBittorrent går förmodligen inte att nå.</translation>
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
-        <translation>Gränsvärdet för omsättning av jämlikar måste vara mellan 0 och 100.</translation>
+        <translation>Tröskeln i procent för byte av jämlikar måste vara mellan 0 och 100.</translation>
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
@@ -604,28 +589,24 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Fel:</translation>
     </message>
     <message>
-        <source>Could not contact qBittorrent.</source>
-        <translation type="vanished">Det gick inte att kontakta qBittorrent.</translation>
-    </message>
-    <message>
         <source>BitTorrent session shutdown timeout must be between -1 and 2147483647.</source>
-        <translation type="unfinished" />
+        <translation>Tidsgränsen för att avsluta BitTorrent-sessionen måste vara mellan -1 och 2147483647.</translation>
     </message>
     <message>
         <source>Unable to resume the session.</source>
-        <translation type="unfinished" />
+        <translation>Det gick inte att återuppta sessionen.</translation>
     </message>
     <message>
         <source>Unable to force start torrents.</source>
-        <translation type="unfinished" />
+        <translation>Det gick inte att tvinga start av torrenter.</translation>
     </message>
     <message>
         <source>Invalid path to Python executable. Path contains unnecessary leading and trailing quotes.</source>
-        <translation type="unfinished" />
+        <translation>Ogiltig sökväg till den körbara Python-filen. Sökvägen innehåller onödiga inledande och avslutande citattecken.</translation>
     </message>
     <message>
         <source>Unable to pause the session.</source>
-        <translation type="unfinished" />
+        <translation>Det gick inte att pausa sessionen.</translation>
     </message>
 </context>
 <context>
@@ -699,14 +680,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Nej</translation>
     </message>
     <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="vanished">Global hastighetsgräns för sändning</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="vanished">Global hastighetsgräns för hämtning</translation>
-    </message>
-    <message>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>Är du säker på att du vill avsluta qBittorrent?</translation>
     </message>
@@ -768,7 +741,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation>För att använda den här funktionen måste WebUI nås via HTTPS</translation>
+        <translation>För att använda den här funktionen måste webbgränssnittet nås via HTTPS</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
@@ -912,27 +885,27 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Resume session</source>
-        <translation type="unfinished" />
+        <translation>Återuppta session</translation>
     </message>
     <message>
         <source>[PAUSED]</source>
-        <translation type="unfinished" />
+        <translation>[PAUSAD]</translation>
     </message>
     <message>
         <source>Global Speed Limits</source>
-        <translation type="unfinished" />
+        <translation>Globala hastighetsgränser</translation>
     </message>
     <message>
         <source>Pause session</source>
-        <translation type="unfinished" />
+        <translation>Pausa session</translation>
     </message>
     <message>
         <source>Pause Session</source>
-        <translation type="unfinished" />
+        <translation>Pausa session</translation>
     </message>
     <message>
         <source>Resume Session</source>
-        <translation type="unfinished" />
+        <translation>Återuppta session</translation>
     </message>
 </context>
 <context>
@@ -995,7 +968,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation>Kringgå autentisering för klienter i tillåtna IP-undernät</translation>
+        <translation>Kringgå autentisering för klienter i vitlistade IP-delnät</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
@@ -1003,15 +976,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>Behåll ofullständiga torrenter i:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">Kopiera .torrent-filer till:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">Kopiera .torrent-filer för slutförda hämtningar till:</translation>
+        <translation type="vanished">Behåll ofullständiga torrenter i:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -1055,7 +1020,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Använd UPnP / NAT-PMP-portomdirigering från min router</translation>
+        <translation>Använd UPnP / NAT-PMP-portvidarebefordran från min router</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -1221,7 +1186,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation>Räkna inte långsamma torrenter med dessa gränser</translation>
+        <translation>Räkna inte in långsamma torrenter i dessa gränser</translation>
     </message>
     <message>
         <source>then</source>
@@ -1261,11 +1226,11 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation>%F: Innehållssökväg (samma som root-sökväg för flerfilig torrent)</translation>
+        <translation>%F: Innehållssökväg (samma som rotsökvägen för en torrent med flera filer)</translation>
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation>%R: Root-sökväg (första torrentundermappsökväg)</translation>
+        <translation>%R: Rotsökväg (sökvägen till torrentens första undermapp)</translation>
     </message>
     <message>
         <source>%D: Save path</source>
@@ -1285,7 +1250,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tips: Inkapsla parametern med citattecken för att undvika att text skärs av vid blanktecknet (t. ex. "%N")</translation>
+        <translation>Tips: Omge parametern med citattecken så att texten inte bryts vid blanksteg (t.ex. "%N")</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1309,15 +1274,15 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Download rate threshold:</source>
-        <translation>Hämtningshastighetsgräns:</translation>
+        <translation>Tröskel för hämtningshastighet:</translation>
     </message>
     <message>
         <source>Upload rate threshold:</source>
-        <translation>Sändningshastighetsgräns:</translation>
+        <translation>Tröskel för sändningshastighet:</translation>
     </message>
     <message>
         <source>Change current password</source>
-        <translation>Byt aktuellt lösenord</translation>
+        <translation>Ändra nuvarande lösenord</translation>
     </message>
     <message>
         <source>Automatic</source>
@@ -1361,7 +1326,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation>Aktivera validering av värdrubrik</translation>
+        <translation>Aktivera validering av HTTP-headern Host</translation>
     </message>
     <message>
         <source>Security</source>
@@ -1385,11 +1350,11 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Manual</source>
-        <translation>Manuellt</translation>
+        <translation>Manuell</translation>
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
-        <translation>Torrentinaktivitetstidtagare:</translation>
+        <translation>Tidsgräns för torrentinaktivitet:</translation>
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
@@ -1425,7 +1390,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation>Utestående minne vid kontroll av torrenter:</translation>
+        <translation>Minne för väntande block vid torrentkontroll:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1469,7 +1434,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation>Skicka buffertvattenstämpelsfaktor:</translation>
+        <translation>Faktor för sändbuffertens gränsvärde:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1477,7 +1442,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation>Återkontrollera torrenter vid slutförning:</translation>
+        <translation>Kontrollera torrenter igen när de har hämtats färdigt:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
@@ -1501,11 +1466,11 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation>Skicka buffertvattenstämpel:</translation>
+        <translation>Övre gräns för sändbuffert:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation>Proportionell jämlike (stryper TCP)</translation>
+        <translation>Proportionellt mot antalet jämlikar (stryper TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1545,7 +1510,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation>Skicka låg buffertvattenstämpel:</translation>
+        <translation>Nedre gräns för sändbuffert:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
@@ -1565,7 +1530,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>ban for:</source>
-        <translation>förbud för:</translation>
+        <translation>förbjud i:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1573,11 +1538,11 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation>Rubrik: värdepar, en per rad</translation>
+        <translation>HTTP-header och värde, åtskilda med kolon, ett par per rad</translation>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
-        <translation>Lägg till anpassade HTTP-rubriker</translation>
+        <translation>Lägg till anpassade HTTP-headrar</translation>
     </message>
     <message>
         <source>Filters:</source>
@@ -1589,7 +1554,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation>Procenttröskelandel av jämlikeomsättning:</translation>
+        <translation>Tröskel i procent för byte av jämlikar:</translation>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1621,7 +1586,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation>Procentandel för bortkoppling av jämlikeomsättning:</translation>
+        <translation>Procentandel som kopplas från vid byte av jämlikar:</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1633,7 +1598,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation>Intervall för bortkoppling av jämlikeomsättning:</translation>
+        <translation>Frånkopplingsintervall vid byte av jämlikar:</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1669,7 +1634,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Original</source>
-        <translation>Ursprunglig</translation>
+        <translation>Original</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -1689,7 +1654,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Återannonsera alla spårare när IP eller port ändrats:</translation>
+        <translation>Återannonsera till alla spårare när IP-adressen eller porten ändras:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1717,7 +1682,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation>Begränsning av förfalskning av förfrågningar på serversidan (SSRF):</translation>
+        <translation>Skydd mot förfalskade serverförfrågningar (SSRF):</translation>
     </message>
     <message>
         <source>Disk queue size:</source>
@@ -1765,7 +1730,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation>Använd affinitet för delar:</translation>
+        <translation>Prioritera sammanhängande grupper av datadelar:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
@@ -1797,11 +1762,11 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation>Vitlista för filtrering av HTTP-värdrubrikvärden.
-För att försvara dig mot DNS-återbindingsattack, bör du lägga in
-domännamn som används av webbanvändargränssnittsservern.
+        <translation>Vitlista för filtrering av värden i HTTP-headern Host.
+För att skydda mot DNS-återbindningsattacker bör du ange
+domännamnen som används av webbgränssnittets server.
 
-Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".</translation>
+Använd ”;” för att avgränsa flera poster. Jokertecknet ”*” kan användas.</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
@@ -1809,7 +1774,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Ange IP-adresser för omvänd proxy (eller undernät, t.ex. 0.0.0.0/24) för att använda vidarebefordrad klientadress (X-Forwarded-For-rubrik). Använd ';' för att dela upp flera poster.</translation>
+        <translation>Ange IP-adresser för omvända proxyservrar (eller delnät, t.ex. 0.0.0.0/24) för att använda den vidarebefordrade klientadressen (HTTP-headern X-Forwarded-For). Använd ”;” för att avgränsa flera poster.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1873,7 +1838,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation>Ta bort säkerhetskopieringsloggar äldre än:</translation>
+        <translation>Ta bort säkerhetskopior av loggar som är äldre än:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1929,7 +1894,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation>UPnP-leasetid [0: permanent lease]:</translation>
+        <translation>Giltighetstid för UPnP-portmappning [0: permanent tilldelning]:</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
@@ -1953,7 +1918,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation>Återställ till standard om den är tom</translation>
+        <translation>Återställs till standard om fältet är tomt</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
@@ -1997,11 +1962,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>I2P outbound quantity:</source>
-        <translation>I2P utgående kvantitet:</translation>
+        <translation>Antal utgående I2P-tunnlar:</translation>
     </message>
     <message>
         <source>I2P inbound quantity:</source>
-        <translation>I2P inkommande kvantitet:</translation>
+        <translation>Antal inkommande I2P-tunnlar:</translation>
     </message>
     <message>
         <source>Hashing threads:</source>
@@ -2017,11 +1982,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
-        <translation>Utgångsintervall för diskcache:</translation>
+        <translation>Giltighetstid för diskcache:</translation>
     </message>
     <message>
         <source>I2P outbound length:</source>
-        <translation>I2P utgående längd:</translation>
+        <translation>Längd på utgående I2P-tunnlar:</translation>
     </message>
     <message>
         <source>I2P (Experimental)</source>
@@ -2053,11 +2018,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes:</source>
-        <translation>Coalesce läser &amp;amp; skriver:</translation>
+        <translation>Slå samman läsningar &amp;amp; skrivningar:</translation>
     </message>
     <message>
         <source>I2P inbound length:</source>
-        <translation>I2P inkommande längd:</translation>
+        <translation>Längd på inkommande I2P-tunnlar:</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2074,10 +2039,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>Color scheme:</source>
         <translation>Färgschema:</translation>
-    </message>
-    <message>
-        <source>Show external IP in status bar</source>
-        <translation type="vanished">Visa extern IP i statusfältet</translation>
     </message>
     <message>
         <source>Fetched trackers</source>
@@ -2116,10 +2077,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>URL:</translation>
     </message>
     <message>
-        <source>Transfer list</source>
-        <translation type="vanished">Överföringslista</translation>
-    </message>
-    <message>
         <source>The announce port must be between 0 and 65535.</source>
         <translation>Annonseringsporten måste vara mellan 0 och 65535.</translation>
     </message>
@@ -2133,7 +2090,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation>Hämtar torrenter:</translation>
+        <translation>Torrenter som hämtas:</translation>
     </message>
     <message>
         <source>Start / stop torrent</source>
@@ -2141,7 +2098,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Send test email</source>
-        <translation>Skicka e-posttest</translation>
+        <translation>Skicka testmeddelande via e-post</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
@@ -2149,7 +2106,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation>Aktivera säkerhetsflaggan för kakor (kräver HTTPS eller localhost-anslutning)</translation>
+        <translation>Aktivera flaggan Secure för kakor (kräver HTTPS- eller localhost-anslutning)</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2157,7 +2114,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Save statistics interval:</source>
-        <translation>Spara statistikintervall:</translation>
+        <translation>Intervall för att spara statistik:</translation>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
@@ -2165,7 +2122,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Run on torrent finished:</source>
-        <translation>Kör på slutförd torrent:</translation>
+        <translation>Kör när en torrent har hämtats färdigt:</translation>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
@@ -2189,11 +2146,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>List of alternative WebUI</source>
-        <translation>Lista över alternativa WebUI</translation>
+        <translation>Lista över alternativa webbgränssnitt</translation>
     </message>
     <message>
         <source>Run on torrent added:</source>
-        <translation>Kör på tillagd torrent:</translation>
+        <translation>Kör när en torrent läggs till:</translation>
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
@@ -2213,11 +2170,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Custom WebUI settings</source>
-        <translation>Anpassade webbanvändargränssnitt-inställningar</translation>
+        <translation>Inställningar för anpassat webbgränssnitt</translation>
     </message>
     <message>
         <source>Following settings are WebUI only</source>
-        <translation>Följande inställningar är endast för webbanvändargränssittet</translation>
+        <translation>Följande inställningar gäller endast webbgränssnittet</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
@@ -2225,7 +2182,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation>Lös relativ sparsökväg mot lämplig kategorisökväg istället för standardsökväg</translation>
+        <translation>Tolka relativa sparsökvägar utifrån den tillhörande kategorins sökväg i stället för standardsökvägen</translation>
     </message>
     <message>
         <source>No action</source>
@@ -2233,7 +2190,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Auto hide zero status filters</source>
-        <translation>Dölj nollstatusfilter automatiskt</translation>
+        <translation>Dölj automatiskt statusfilter med noll torrenter</translation>
     </message>
     <message>
         <source>Interface</source>
@@ -2249,7 +2206,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation>Utgångsintervall för cache för intern värdnamnsresolver</translation>
+        <translation>Giltighetstid för den interna värdnamnsresolverns cache</translation>
     </message>
     <message>
         <source>sec</source>
@@ -2325,15 +2282,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Display density:</source>
-        <translation>Visningsdensitet:</translation>
+        <translation>Visningstäthet:</translation>
     </message>
     <message>
         <source>SMTP encryption:</source>
         <translation>SMTP-kryptering:</translation>
-    </message>
-    <message>
-        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="vanished">Försökte skicka test-e-post.\nKontrollera din inkorg för att bekräfta att det lyckades.\nKontrollera körningsloggen för fel.</translation>
     </message>
     <message>
         <source>Default port</source>
@@ -2369,7 +2322,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Resolve peer host names:</source>
-        <translation>Slå upp jämlikevärdnamn:</translation>
+        <translation>Slå upp jämlikarnas värdnamn:</translation>
     </message>
     <message>
         <source>Pread/pwrite</source>
@@ -2393,142 +2346,190 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Provide the sending email address.</source>
-        <translation type="unfinished" />
+        <translation>Ange avsändarens e-postadress.</translation>
     </message>
     <message>
         <source>Enable I2P Peer Exchange (I2P PeX) to find more peers (requires restart)</source>
-        <translation type="unfinished" />
+        <translation>Aktivera utbyte av I2P-jämlikar (I2P PeX) för att hitta fler jämlikar (kräver omstart)</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished" />
+        <translation>Statusfält</translation>
     </message>
     <message>
         <source>Notification</source>
-        <translation type="unfinished" />
+        <translation>Avisering</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent.</source>
-        <translation type="unfinished" />
+        <translation>Det gick inte att kontakta qBittorrent.</translation>
     </message>
     <message>
         <source>Separate multiple emails with a semicolon.</source>
-        <translation type="unfinished" />
+        <translation>Avgränsa separata e-postmeddelanden med semikolon.</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same Peer ID:</source>
-        <translation type="unfinished" />
+        <translation>Tillåt flera anslutningar från samma jämlike-ID:</translation>
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Ett försök att skicka ett testmeddelande har gjorts.&lt;br&gt;Kontrollera inkorgen för att se om det kom fram.&lt;br&gt;Kontrollera körningsloggen efter fel.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
-        <translation type="unfinished" />
+        <translation>Högsta antal sessioner:</translation>
     </message>
     <message>
         <source>I2P outbound length variance:</source>
-        <translation type="unfinished" />
+        <translation>Längdvariation för utgående I2P-tunnlar:</translation>
     </message>
     <message>
         <source>Transfer List</source>
-        <translation type="unfinished" />
+        <translation>Överföringslista</translation>
     </message>
     <message>
         <source>Start BitTorrent session in paused state:</source>
-        <translation type="unfinished" />
+        <translation>Starta BitTorrent-sessionen i pausat tillstånd:</translation>
     </message>
     <message>
         <source>Store backup in:</source>
-        <translation type="unfinished" />
+        <translation>Spara säkerhetskopia i:</translation>
     </message>
     <message>
         <source>Save search tabs</source>
-        <translation type="unfinished" />
+        <translation>Spara sökflikar</translation>
     </message>
     <message>
         <source>Store backup .torrent file</source>
-        <translation type="unfinished" />
+        <translation>Spara en säkerhetskopia av .torrent-filen</translation>
     </message>
     <message>
         <source>Note: b@y.com &amp; c@z.com will both see each other's email addresses, whereas a@x.com will not see them nor be seen.</source>
-        <translation type="unfinished" />
+        <translation>Obs! b@y.com och c@z.com ser varandras e-postadresser, medan a@x.com varken ser dem eller syns för dem.</translation>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished" />
+        <translation>Visa torrentens innehåll och alternativ</translation>
     </message>
     <message>
         <source>Separate multiple email addresses within each email with a comma.</source>
-        <translation type="unfinished" />
+        <translation>Avgränsa flera e-postadresser i samma meddelande med kommatecken.</translation>
     </message>
     <message>
         <source>Provide the recipient email address or addresses.</source>
-        <translation type="unfinished" />
+        <translation>Ange mottagarens eller mottagarnas e-postadresser.</translation>
     </message>
     <message>
         <source>Show external IP</source>
-        <translation type="unfinished" />
+        <translation>Visa extern IP-adress</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Sök</translation>
     </message>
     <message>
         <source>BitTorrent session shutdown timeout [-1: unlimited]:</source>
-        <translation type="unfinished" />
+        <translation>Tidsgräns för att avsluta BitTorrent-sessionen [-1: obegränsat]:</translation>
     </message>
     <message>
         <source>Example:</source>
-        <translation type="unfinished" />
+        <translation>Exempel:</translation>
     </message>
     <message>
         <source>Provide the SMTP server address for sending email notifications.</source>
-        <translation type="unfinished" />
+        <translation>Ange SMTP-serverns adress för att skicka e-postaviseringar.</translation>
     </message>
     <message>
         <source>smtp.example.com:465 - connect to server smtp.example.com on port 465</source>
-        <translation type="unfinished" />
+        <translation>smtp.example.com:465 - anslut till servern smtp.example.com på port 465</translation>
     </message>
     <message>
         <source>Maximum outstanding block requests from a peer:</source>
-        <translation type="unfinished" />
+        <translation>Högsta antal utestående blockförfrågningar från en jämlike:</translation>
     </message>
     <message>
         <source>Also save search results</source>
-        <translation type="unfinished" />
+        <translation>Spara även sökresultat</translation>
     </message>
     <message>
         <source>I2P inbound length variance:</source>
-        <translation type="unfinished" />
+        <translation>Längdvariation för inkommande I2P-tunnlar:</translation>
     </message>
     <message>
         <source>To manually specify the server port, add a colon and then the port number to the end.</source>
-        <translation type="unfinished" />
+        <translation>För att ange serverporten manuellt lägger du till ett kolon följt av portnumret i slutet.</translation>
     </message>
     <message>
         <source>Remove backup when removing torrent</source>
-        <translation type="unfinished" />
+        <translation>Ta bort säkerhetskopian när torrenten tas bort</translation>
     </message>
     <message>
         <source>When torrent finished move backup to:</source>
-        <translation type="unfinished" />
+        <translation>Flytta säkerhetskopian hit när torrenten är klar:</translation>
     </message>
     <message>
         <source>STUN server for WebTorrent NAT traversal:</source>
-        <translation type="unfinished" />
+        <translation>STUN-server för NAT-traversering i WebTorrent:</translation>
     </message>
     <message>
         <source>The server address can be entered either as a DNS name or an IP address (DNS name recommended).</source>
-        <translation type="unfinished" />
+        <translation>Serveradressen kan anges som antingen ett DNS-namn eller en IP-adress (DNS-namn rekommenderas).</translation>
     </message>
     <message>
         <source>Allow outgoing connections when seeding:</source>
-        <translation type="unfinished" />
+        <translation>Tillåt utgående anslutningar under distribution:</translation>
     </message>
     <message>
         <source>a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com</source>
+        <translation>a@x.com;b@y.com,c@z.com - skicka två e-postmeddelanden: det första endast till a@x.com, det andra till både b@y.com och c@z.com</translation>
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also when addition is cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use another path for incomplete torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of tracker from all torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Any of the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Blacklist filtered file names from being downloaded from torrent(s).
+Files matching any of the filters in this list will have their priority automatically set to &amp;quot;Do not download&amp;quot;.
+
+Use newlines to separate multiple entries. Can use wildcards as outlined below.
+*: matches zero or more of any characters.
+?: matches any single character.
+[...]: sets of characters can be represented in square brackets.
+
+Examples
+*.exe: filter '.exe' file extension.
+readme.txt: filter exact file name.
+?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
+readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2608,7 +2609,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation>Jämlikens klient-ID</translation>
+        <translation>Klient enligt jämlike-ID</translation>
     </message>
     <message>
         <source>IP/Address</source>
@@ -2616,7 +2617,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Contribution</source>
-        <translation type="unfinished" />
+        <translation>Bidrag</translation>
     </message>
 </context>
 <context>
@@ -2638,7 +2639,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Mixed</source>
-        <translation>Blandat</translation>
+        <translation>Blandad</translation>
     </message>
     <message>
         <source>Do not download</source>
@@ -2693,7 +2694,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Seeds:</source>
-        <translation>Distributioner:</translation>
+        <translation>Distributörer:</translation>
     </message>
     <message>
         <source>Download Speed:</source>
@@ -2845,7 +2846,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation>Räkna upp filer</translation>
+        <translation>Numrera filer</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
@@ -2885,27 +2886,27 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation>Skiftlägeskänsliga</translation>
+        <translation>Skiftlägeskänsligt</translation>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation>Matcha alla händelser</translation>
+        <translation>Matcha alla förekomster</translation>
     </message>
     <message>
         <source>Copy web seed URL</source>
-        <translation>Kopiera URL för webbdistribution</translation>
+        <translation>Kopiera webbdistributörens URL</translation>
     </message>
     <message>
         <source>Replace option</source>
-        <translation>Ersätt alternativ</translation>
+        <translation>Ersättningsalternativ</translation>
     </message>
     <message>
         <source>Edit web seed URL...</source>
-        <translation>Redigera URL för webbdistribution...</translation>
+        <translation>Redigera webbdistributörens URL...</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation>URL för webbdistribution:</translation>
+        <translation>Webbdistributörens URL:</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -2929,15 +2930,15 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Remove web seed</source>
-        <translation>Ta bort webbdistribution</translation>
+        <translation>Ta bort webbdistributör</translation>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation>Redigering av webbdistribution</translation>
+        <translation>Redigering av webbdistributör</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
-        <translation>Lägg till webbdistribution...</translation>
+        <translation>Lägg till webbdistributörer...</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2945,19 +2946,19 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Availability:</source>
-        <translation>Tillgängligt:</translation>
+        <translation>Tillgänglighet:</translation>
     </message>
     <message>
         <source>Copy path</source>
-        <translation type="unfinished" />
+        <translation>Kopiera sökväg</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Hämta</translation>
     </message>
     <message>
         <source>Copy download URL</source>
-        <translation type="unfinished" />
+        <translation>Kopiera hämtnings-URL</translation>
     </message>
 </context>
 <context>
@@ -2968,7 +2969,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Override Save Location</source>
-        <translation>Åsidosatt sparningsplats</translation>
+        <translation>Åsidosätt sparplats</translation>
     </message>
     <message>
         <source>Monitored folder</source>
@@ -2976,7 +2977,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Default save location</source>
-        <translation>Standard sparningsplats</translation>
+        <translation>Standardsparplats</translation>
     </message>
     <message>
         <source>Other...</source>
@@ -3018,11 +3019,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation>Alla tiders delningskvot:</translation>
+        <translation>Total delningskvot:</translation>
     </message>
     <message>
         <source>All-time download:</source>
-        <translation>Alla tiders hämtning:</translation>
+        <translation>Totalt hämtat:</translation>
     </message>
     <message>
         <source>Session waste:</source>
@@ -3030,11 +3031,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation>Alla tiders sändning:</translation>
+        <translation>Totalt skickat:</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
-        <translation>Total bufferstorlek:</translation>
+        <translation>Total buffertstorlek:</translation>
     </message>
     <message>
         <source>Performance statistics</source>
@@ -3046,11 +3047,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Write cache overload:</source>
-        <translation>Överbelastad skrivcache:</translation>
+        <translation>Överbelastning av skrivcache:</translation>
     </message>
     <message>
         <source>Read cache overload:</source>
-        <translation>Överbelastad läscache:</translation>
+        <translation>Överbelastning av läscache:</translation>
     </message>
     <message>
         <source>Total queued size:</source>
@@ -3062,15 +3063,15 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Queued tracker announces:</source>
-        <translation>Köada spårarannonseringar:</translation>
+        <translation>Köade spårarannonseringar:</translation>
     </message>
     <message>
         <source>Request latency:</source>
-        <translation type="unfinished" />
+        <translation>Svarstid för förfrågningar:</translation>
     </message>
     <message>
         <source>The time it takes from receiving a request from a peer until we're sending the response back on the socket</source>
-        <translation type="unfinished" />
+        <translation>Tiden från att en förfrågan tas emot från en jämlike tills svaret skickas tillbaka via socketen</translation>
     </message>
 </context>
 <context>
@@ -3109,7 +3110,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Errored (0)</source>
-        <translation>Fallerande (0)</translation>
+        <translation>Fel (0)</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3137,7 +3138,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Errored (%1)</source>
-        <translation>Fallerande (%1)</translation>
+        <translation>Fel (%1)</translation>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
@@ -3209,7 +3210,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Tvinga start av torrenter</translation>
     </message>
 </context>
 <context>
@@ -3235,7 +3236,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Distributioner</translation>
+        <translation>Distributörer</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -3322,7 +3323,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation>Slutförd</translation>
+        <translation>Slutfört</translation>
     </message>
     <message>
         <source>Ratio Limit</source>
@@ -3342,7 +3343,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation>Total storlek:</translation>
+        <translation>Total storlek</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -3370,7 +3371,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation>Ofullständig sparsökväg</translation>
+        <translation>Sparsökväg för ofullständiga torrenter</translation>
     </message>
     <message>
         <source>Popularity</source>
@@ -3390,7 +3391,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Created On</source>
-        <translation>Skapad:</translation>
+        <translation>Skapad</translation>
     </message>
 </context>
 <context>
@@ -3417,7 +3418,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Working</source>
-        <translation>Arbetar</translation>
+        <translation>Fungerar</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -3425,7 +3426,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>Inte ännu kontaktad</translation>
+        <translation>Inte kontaktad ännu</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -3433,11 +3434,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Seeds</source>
-        <translation>Distributioner</translation>
+        <translation>Distributörer</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation>Arbetar inte</translation>
+        <translation>Fungerar inte</translation>
     </message>
     <message>
         <source>Copy tracker URL</source>
@@ -3453,7 +3454,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Leeches</source>
-        <translation>Reciprokörer</translation>
+        <translation>Hämtare</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -3529,15 +3530,15 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Force reannounce to selected tracker(s)</source>
-        <translation>Tvinga återannonsera till valda spårare</translation>
+        <translation>Tvinga återannonsering till valda spårare</translation>
     </message>
     <message>
         <source>Min Announce</source>
-        <translation>Minimal annonsering</translation>
+        <translation>Tidigaste annonsering</translation>
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
-        <translation>Tvinga återannonsera till alla spårare</translation>
+        <translation>Tvinga återannonsering till alla spårare</translation>
     </message>
 </context>
 <context>
@@ -3560,7 +3561,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Completed</source>
-        <translation>Klar</translation>
+        <translation>Slutfört</translation>
     </message>
     <message>
         <source>Moving</source>
@@ -3568,7 +3569,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation>[T] Distribuerar</translation>
+        <translation>[F] Distribuerar</translation>
     </message>
     <message>
         <source>Seeding</source>
@@ -3576,15 +3577,15 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Queued</source>
-        <translation>Köar</translation>
+        <translation>I kö</translation>
     </message>
     <message>
         <source>Errored</source>
-        <translation>Fallerande</translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation>[T] Hämtar</translation>
+        <translation>[F] Hämtar</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
@@ -3600,7 +3601,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation>Köar för kontroll</translation>
+        <translation>I kö för kontroll</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -3620,7 +3621,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation>[T] Hämtar metadata</translation>
+        <translation>[F] Hämtar metadata</translation>
     </message>
     <message>
         <source>Stopped</source>
@@ -3651,11 +3652,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation>Komprimera/expandera</translation>
+        <translation>Fäll ihop/ut</translation>
     </message>
     <message>
         <source>Collapse/expand category</source>
-        <translation>Komprimera/expandera kategori</translation>
+        <translation>Fäll ihop/ut kategori</translation>
     </message>
 </context>
 <context>
@@ -3756,7 +3757,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Tvinga återannonsera</translation>
+        <translation>Tvinga återannonsering</translation>
     </message>
     <message>
         <source>Edit Category</source>
@@ -3858,12 +3859,16 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <source>Content Path</source>
         <translation>Innehållssökväg</translation>
     </message>
+    <message>
+        <source>Remove all tags from selected torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Gränser för sändning/hämtning</translation>
+        <translation>Begränsning av torrentens delningskvot</translation>
     </message>
     <message>
         <source>Use global share limit</source>
@@ -3912,6 +3917,22 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>Action when the limit is reached</source>
         <translation>Åtgärd när gränsen är nådd</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match any limit</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all the limits</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3984,12 +4005,12 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1h %2m</translation>
+        <translation>%1 h %2 min</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1d %2h</translation>
+        <translation>%1 d %2 h</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -4008,7 +4029,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation>%1å %2d</translation>
+        <translation>%1 år %2 d</translation>
+    </message>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4038,14 +4063,14 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation>Distributioner:</translation>
+        <translation>Distributörer:</translation>
     </message>
     <message>
         <source>All plugins</source>
@@ -4117,7 +4142,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Klicka på knappen "Sök insticksmoduler..." längst ner till höger i fönstret för att installera några.</translation>
+        <translation>Klicka på knappen ”Sökinsticksmoduler...” längst ner till höger i fönstret för att installera några.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
@@ -4129,7 +4154,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Min size prefix</source>
-        <translation>Min storlek prefix</translation>
+        <translation>Prefix för minimistorlek</translation>
     </message>
     <message>
         <source>Start a search above.</source>
@@ -4137,7 +4162,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Max size prefix</source>
-        <translation>Prefix för maxstorlek</translation>
+        <translation>Prefix för maximistorlek</translation>
     </message>
     <message>
         <source>Select plugins</source>
@@ -4195,7 +4220,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Leechers</source>
-        <translation>Reciprokörer</translation>
+        <translation>Hämtare</translation>
     </message>
     <message>
         <source>Seeders</source>
@@ -4207,11 +4232,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Engine URL</source>
-        <translation>Motor-URL</translation>
+        <translation>Sökmotorns URL</translation>
     </message>
     <message>
         <source>Engine</source>
-        <translation>Motor</translation>
+        <translation>Sökmotor</translation>
     </message>
 </context>
 <context>
@@ -4222,7 +4247,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Url</source>
-        <translation>URL</translation>
+        <translation type="vanished">URL</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -4239,6 +4264,10 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>No</source>
         <translation>Nej</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4257,7 +4286,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -4304,7 +4333,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Tvinga start av torrenter</translation>
     </message>
 </context>
 <context>
@@ -4488,23 +4517,23 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Blocked opening search result description page URL. Only http:// and https:// links can be opened.</source>
-        <translation type="unfinished" />
+        <translation>Öppning av beskrivningssidans URL för sökresultatet blockerades. Endast http://- och https://-länkar kan öppnas.</translation>
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Lägg till torrenter (%1)</translation>
     </message>
     <message>
         <source>Search results are no longer available</source>
-        <translation type="unfinished" />
+        <translation>Sökresultaten är inte längre tillgängliga</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Öppna separata hämtningsfönster</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Öppna ett gemensamt hämtningsfönster</translation>
     </message>
 </context>
 <context>
@@ -4602,11 +4631,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Deletion confirmation</source>
-        <translation>Borttagningsbekräftelse</translation>
+        <translation>Bekräftelse på borttagning</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation>Är du säker på att du vill ta bort valda RSS-flöden?</translation>
+        <translation>Är du säker på att du vill ta bort de valda RSS-flödena?</translation>
     </message>
     <message>
         <source>New subscription...</source>
@@ -4642,6 +4671,18 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Blocked opening RSS article URL. Only http:// and https:// links can be opened.</source>
+        <translation>Öppning av RSS-artikelns URL blockerades. Endast http://- och https://-länkar kan öppnas.</translation>
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open shared download window</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4665,11 +4706,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation>Regler för avsnittsfilter:</translation>
+        <translation>Regler för avsnittsfilter: </translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>Automatisk hämtning av RSS-torrenter är inaktiverad nu! Du kan aktivera den i programinställningar.</translation>
+        <translation>Automatisk hämtning av RSS-torrenter är för närvarande inaktiverad! Du kan aktivera den i programinställningarna.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -4717,7 +4758,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation>Mellanslag räknas som AND-operatorer (alla ord, valfri ordning)</translation>
+        <translation>Blanksteg räknas som AND-operatorer (alla ord, valfri ordning)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
@@ -4741,7 +4782,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation>Oändligt intervall: &lt;b&gt;1x25-;&lt;/b&gt; matchar avsnitt 25 och uppåt för säsong ett, och alla avsnitt av senare säsonger</translation>
+        <translation>Oändligt intervall: &lt;b&gt;1x25-;&lt;/b&gt; matchar avsnitt 25 och framåt i säsong ett, samt alla avsnitt i senare säsonger</translation>
     </message>
     <message>
         <source>Save to a Different Directory</source>
@@ -4753,7 +4794,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation>Ensamma siffror: &lt;b&gt;1x25;&lt;/b&gt; matchar avsnitt 25 av säsong ett</translation>
+        <translation>Enstaka nummer: &lt;b&gt;1x25;&lt;/b&gt; matchar avsnitt 25 i säsong ett</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
@@ -4777,7 +4818,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation>Regelnamnbyte</translation>
+        <translation>Byt namn på regel</translation>
     </message>
     <message>
         <source>Always</source>
@@ -4785,7 +4826,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation>Avsnittnummer är ett obligatoriskt positivt värde</translation>
+        <translation>Avsnittsnumret måste anges och vara positivt</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
@@ -4809,7 +4850,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Säsongnummer är ett obligatoriskt värde som inte är noll</translation>
+        <translation>Säsongsnumret måste anges och vara skilt från noll</translation>
     </message>
     <message>
         <source>Never</source>
@@ -4849,7 +4890,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation>Ignorera efterföljande matchningar för (0 för att inaktivera)</translation>
+        <translation>Ignorera efterföljande matchningar under (0 för att inaktivera)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
@@ -4866,8 +4907,8 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>Smart avsnittsfilter kommer att kontrollera avsnittets nummer för att förhindra hämtning av dubbletter.
-Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder även - som avskiljare)</translation>
+        <translation>Det smarta avsnittsfiltret kontrollerar avsnittsnumret för att förhindra hämtning av dubbletter.
+Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformaten stöder även - som avskiljare)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -4915,11 +4956,11 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished" />
+        <translation>Exportera</translation>
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished" />
+        <translation>Importera</translation>
     </message>
 </context>
 <context>
@@ -4962,7 +5003,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Tvinga start av torrenter</translation>
     </message>
 </context>
 <context>
@@ -5076,7 +5117,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Banned</source>
-        <translation>Bannad</translation>
+        <translation>Förbjuden</translation>
     </message>
     <message>
         <source>Normal Messages</source>
@@ -5178,7 +5219,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Torrent share limits</source>
-        <translation type="unfinished" />
+        <translation>Torrentdelningsgränser</translation>
     </message>
 </context>
 <context>
@@ -5249,7 +5290,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <name>Login</name>
     <message>
         <source>qBittorrent WebUI</source>
-        <translation>qBittorrent-webbanvändargränssnitt</translation>
+        <translation>qBittorrents webbgränssnitt</translation>
     </message>
     <message>
         <source>Password</source>
@@ -5261,7 +5302,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Login</source>
-        <translation>Inloggning</translation>
+        <translation>Logga in</translation>
     </message>
     <message>
         <source>Server response:</source>
@@ -5292,17 +5333,11 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Queued</source>
-        <translation>Köar</translation>
+        <translation>I kö</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
         <translation>Det gick inte att skapa torrent.</translation>
-    </message>
-    <message>
-        <source>Private
-                torrent (Won't distribute on DHT network)</source>
-        <translation type="vanished">Privat
-                torrent (distribueras inte på DHT-nätverk)</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -5326,7 +5361,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation>URL:er för webbdistribution:</translation>
+        <translation>URL:er för webbdistributörer:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -5353,12 +5388,6 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>Status</translation>
     </message>
     <message>
-        <source>Align to piece boundary for files larger
-                than:</source>
-        <translation type="vanished">Justera till delgränsen för filer större
-                än:</translation>
-    </message>
-    <message>
         <source>Select file/folder to share:</source>
         <translation>Välj fil/mapp att dela:</translation>
     </message>
@@ -5381,12 +5410,6 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <source>Unable to load torrent creation tasks</source>
         <translation>Det går inte att läsa in åtgärder för skapande av torrent</translation>
-    </message>
-    <message>
-        <source>Optimize
-                    alignment</source>
-        <translation type="vanished">Optimera
-                    justering</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -5418,15 +5441,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Web Seeds</source>
-        <translation>Webbdistribution</translation>
-    </message>
-    <message>
-        <source>Start
-                seeding
-                immediately</source>
-        <translation type="vanished">Börja
-                distribuera
-                direkt</translation>
+        <translation>Webbdistributörer</translation>
     </message>
     <message>
         <source>Format</source>
@@ -5446,7 +5461,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Running</source>
-        <translation>Kör</translation>
+        <translation>Körs</translation>
     </message>
     <message>
         <source>Torrent Creator</source>
@@ -5478,47 +5493,43 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Ja</translation>
     </message>
     <message>
         <source>Ignore dotfiles</source>
-        <translation type="unfinished" />
+        <translation>Ignorera filer vars namn börjar med punkt</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger than:</source>
-        <translation type="unfinished" />
+        <translation>Justera till delgränsen för filer större än:</translation>
     </message>
     <message>
         <source>Private torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>Privat torrent (delas inte via DHT-nätverket)</translation>
     </message>
     <message>
         <source>Ignore Dotfiles</source>
-        <translation type="unfinished" />
+        <translation>Ignorera filer vars namn börjar med punkt</translation>
     </message>
     <message>
         <source>Start seeding immediately</source>
-        <translation type="unfinished" />
+        <translation>Börja distribuera direkt</translation>
     </message>
     <message>
         <source>Optimize alignment</source>
-        <translation type="unfinished" />
+        <translation>Optimera justering</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nej</translation>
     </message>
     <message>
         <source>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</source>
-        <translation type="unfinished" />
+        <translation>Om detta är markerat läggs filer vars namn börjar med en punkt `.` inte till i den skapade torrenten.</translation>
     </message>
 </context>
 <context>
     <name>DownloadFromURLDialog</name>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Hämta</translation>
-    </message>
     <message>
         <source>Magnet link</source>
         <translation>Magnetlänk</translation>
@@ -5533,7 +5544,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>URLs</source>
-        <translation>URLer</translation>
+        <translation>URL:er</translation>
     </message>
     <message>
         <source>Add Torrent Links</source>
@@ -5541,23 +5552,23 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Lägg till torrenter (%1)</translation>
     </message>
     <message>
         <source>Open separate dialog for each torrent</source>
-        <translation type="unfinished" />
+        <translation>Öppna en separat dialog för varje torrent</translation>
     </message>
     <message>
         <source>Add Torrents</source>
-        <translation type="unfinished" />
+        <translation>Lägg till torrenter</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished" />
+        <translation>Fortsätt</translation>
     </message>
     <message>
         <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
-        <translation type="unfinished" />
+        <translation>Alla torrenter använder samma alternativdialog. Markera rutan nedan för att ställa in varje torrent separat.</translation>
     </message>
 </context>
 <context>
@@ -5584,43 +5595,43 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Upload speed</source>
-        <translation type="unfinished" />
+        <translation>Sändningshastighet</translation>
     </message>
     <message>
         <source>Download speed</source>
-        <translation type="unfinished" />
+        <translation>Hämtningshastighet</translation>
     </message>
     <message>
         <source>Speed limits</source>
-        <translation type="unfinished" />
+        <translation>Hastighetsgränser</translation>
     </message>
     <message>
         <source>Alternative download speed</source>
-        <translation type="unfinished" />
+        <translation>Alternativ hämtningshastighet</translation>
     </message>
     <message>
         <source>Alternative upload speed</source>
-        <translation type="unfinished" />
+        <translation>Alternativ sändningshastighet</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>Tillämpa</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>Sändning:</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>Alternativa hastighetsgränser</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>Hämtning:</translation>
     </message>
     <message>
         <source>Failed to set speed limits</source>
-        <translation type="unfinished" />
+        <translation>Det gick inte att ange hastighetsgränserna</translation>
     </message>
 </context>
 <context>
@@ -5642,7 +5653,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation>Ta bort denna API-nyckel? Den aktuella nyckel kommer omedelbart att sluta fungera.</translation>
+        <translation>Ta bort denna API-nyckel? Den aktuella nyckeln slutar omedelbart att fungera.</translation>
     </message>
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
@@ -5657,11 +5668,11 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Alert</source>
-        <translation>Varna</translation>
+        <translation>Varning</translation>
     </message>
     <message>
         <source>The cloned rule will be set as disabled and the downloaded episodes history will be cleared.</source>
-        <translation>Den klonade regeln kommer att inaktiveras och historiken för nedladdade avsnitt kommer att rensas.</translation>
+        <translation>Den klonade regeln inaktiveras och historiken över hämtade avsnitt rensas.</translation>
     </message>
     <message>
         <source>The rule name is unchanged. You must type a new rule name for the clone.</source>
@@ -5688,90 +5699,90 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <name>TorrentShareLimitsWidget</name>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>min</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Standard</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Aktivera superdistribution för torrent</translation>
     </message>
     <message>
         <source>Inactive seeding time:</source>
-        <translation type="unfinished" />
+        <translation>Inaktiv distributionstid:</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Alla gränser måste uppnås</translation>
     </message>
     <message>
         <source>Ratio:</source>
-        <translation type="unfinished" />
+        <translation>Kvot:</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Minst en gräns måste uppnås</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>Ta bort torrenten och dess innehåll</translation>
     </message>
     <message>
         <source>Share limit values cannot be empty or invalid.</source>
-        <translation type="unfinished" />
+        <translation>Värdena för delningsgränserna får inte vara tomma eller ogiltiga.</translation>
     </message>
     <message>
         <source>Action when the limit is reached:</source>
-        <translation type="unfinished" />
+        <translation>Åtgärd när gränsen är nådd:</translation>
     </message>
     <message>
         <source>From category (%1)</source>
-        <translation type="unfinished" />
+        <translation>Från kategori (%1)</translation>
     </message>
     <message>
         <source>Set to</source>
-        <translation type="unfinished" />
+        <translation>Ställ in på</translation>
     </message>
     <message>
         <source>From category</source>
-        <translation type="unfinished" />
+        <translation>Från kategori</translation>
     </message>
     <message>
         <source>Default (%1)</source>
-        <translation type="unfinished" />
+        <translation>Standard (%1)</translation>
     </message>
     <message>
         <source>Seeding time:</source>
-        <translation type="unfinished" />
+        <translation>Distributionstid:</translation>
     </message>
     <message>
         <source>Unlimited</source>
-        <translation type="unfinished" />
+        <translation>Obegränsat</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Stoppa torrent</translation>
     </message>
     <message>
         <source>Mode:</source>
-        <translation type="unfinished" />
+        <translation>Läge:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Ta bort torrent</translation>
     </message>
 </context>
 <context>
     <name>TorrentContent</name>
     <message>
         <source>Unavailable until all selected files are downloaded</source>
-        <translation type="unfinished" />
+        <translation>Inte tillgängligt förrän alla valda filer har hämtats</translation>
     </message>
     <message>
         <source>Not available for folders</source>
-        <translation type="unfinished" />
+        <translation>Inte tillgängligt för mappar</translation>
     </message>
 </context>
 </TS>

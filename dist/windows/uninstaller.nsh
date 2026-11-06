@@ -24,6 +24,7 @@ Section "un.$(remove_registry)" ;"un.Remove registry keys"
   ; Remove registry keys
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent"
   DeleteRegKey HKLM "Software\qBittorrent"
+  DeleteRegValue HKLM "Software\RegisteredApplications" "qBittorrent"
   ; Remove ProgIDs
   DeleteRegKey HKLM "Software\Classes\qBittorrent.File.Torrent"
   DeleteRegKey HKLM "Software\Classes\qBittorrent.Url.Magnet"
@@ -70,8 +71,10 @@ FunctionEnd
 
 Function un.onInit
 
-  !insertmacro Init "uninstaller"
+  !insertmacro ElevateUAC "uninstaller"
   !insertmacro MUI_UNGETLANGUAGE
+
+  !insertmacro AdjustRegistryView
 
 FunctionEnd
 

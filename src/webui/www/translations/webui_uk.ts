@@ -19,10 +19,6 @@
         <translation>Запустити торрент</translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Пропустити перевірку хешу</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Режим керування торрентом:</translation>
     </message>
@@ -73,10 +69,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>Завантажувати послідовно</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation type="vanished">Розмір:</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -139,10 +131,6 @@
         <translation>Фільтр файлів…</translation>
     </message>
     <message>
-        <source>Add Torrent</source>
-        <translation type="vanished">Додати торрент</translation>
-    </message>
-    <message>
         <source>Use another path for incomplete torrent</source>
         <translation>Використовувати інший шлях для неповних торрентів</translation>
     </message>
@@ -199,10 +187,6 @@
         <translation>Обмеження швидкості завантаження</translation>
     </message>
     <message>
-        <source>%1 (Free space on disk: %2)</source>
-        <translation type="vanished">%1 (Вільно на диску: %2)</translation>
-    </message>
-    <message>
         <source>KiB/s</source>
         <translation>КіБ/с</translation>
     </message>
@@ -217,7 +201,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Завантажити</translation>
     </message>
     <message>
         <source>%1 free</source>
@@ -604,10 +588,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Помилка:</translation>
     </message>
     <message>
-        <source>Could not contact qBittorrent.</source>
-        <translation type="vanished">Не вдалося встановити зв'язок із qBittorrent.</translation>
-    </message>
-    <message>
         <source>BitTorrent session shutdown timeout must be between -1 and 2147483647.</source>
         <translation type="unfinished" />
     </message>
@@ -697,14 +677,6 @@ The piece hash will be checked when it is requested for the first time by a peer
     <message>
         <source>No</source>
         <translation>Ні</translation>
-    </message>
-    <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="vanished">Глобальний ліміт відвантаження</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="vanished">Глобальний ліміт завантаження</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -920,7 +892,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Global Speed Limits</source>
-        <translation type="unfinished" />
+        <translation>Глобальний ліміт швидкості</translation>
     </message>
     <message>
         <source>Pause session</source>
@@ -1003,15 +975,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>Тримати незавершені торренти у:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">Копіювати torrent-файли до:</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">Копіювати torrent-файли для завершених завантажень до:</translation>
+        <translation type="vanished">Тримати незавершені торренти у:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -2076,10 +2040,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Колірна схема:</translation>
     </message>
     <message>
-        <source>Show external IP in status bar</source>
-        <translation type="vanished">Показати зовнішній IP у рядку стану</translation>
-    </message>
-    <message>
         <source>Fetched trackers</source>
         <translation>Отримані трекери</translation>
     </message>
@@ -2114,10 +2074,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>URL:</source>
         <translation>Адреса:</translation>
-    </message>
-    <message>
-        <source>Transfer list</source>
-        <translation type="vanished">Список передач</translation>
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
@@ -2332,10 +2288,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Шифрування SMTP:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="vanished">Здійснено спробу надіслати тестовий лист.\nПеревірте свою поштову скриньку, щоб переконатися, що операція пройшла успішно.\nПеревірте журнал виконання на наявність помилок.</translation>
-    </message>
-    <message>
         <source>Default port</source>
         <translation>Порт за замовчуванням</translation>
     </message>
@@ -2409,7 +2361,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Could not contact qBittorrent.</source>
-        <translation type="unfinished" />
+        <translation>Не вдалося встановити зв'язок із qBittorrent.</translation>
     </message>
     <message>
         <source>Separate multiple emails with a semicolon.</source>
@@ -2417,10 +2369,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Allow multiple connections from the same Peer ID:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2433,7 +2381,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Transfer List</source>
-        <translation type="unfinished" />
+        <translation>Список завантажень</translation>
     </message>
     <message>
         <source>Start BitTorrent session in paused state:</source>
@@ -2457,7 +2405,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished" />
+        <translation>Відображати вміст торрента і деякі налаштування</translation>
     </message>
     <message>
         <source>Separate multiple email addresses within each email with a comma.</source>
@@ -2473,7 +2421,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Пошук</translation>
     </message>
     <message>
         <source>BitTorrent session shutdown timeout [-1: unlimited]:</source>
@@ -2481,7 +2429,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example:</source>
-        <translation type="unfinished" />
+        <translation>Наприклад:</translation>
     </message>
     <message>
         <source>Provide the SMTP server address for sending email notifications.</source>
@@ -2529,6 +2477,54 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also when addition is cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use another path for incomplete torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of tracker from all torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Any of the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Blacklist filtered file names from being downloaded from torrent(s).
+Files matching any of the filters in this list will have their priority automatically set to &amp;quot;Do not download&amp;quot;.
+
+Use newlines to separate multiple entries. Can use wildcards as outlined below.
+*: matches zero or more of any characters.
+?: matches any single character.
+[...]: sets of characters can be represented in square brackets.
+
+Examples
+*.exe: filter '.exe' file extension.
+readme.txt: filter exact file name.
+?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
+readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2949,11 +2945,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copy path</source>
-        <translation type="unfinished" />
+        <translation>Копіювати шлях</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Завантажити</translation>
     </message>
     <message>
         <source>Copy download URL</source>
@@ -3858,6 +3854,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Content Path</source>
         <translation>Шлях до вмісту</translation>
     </message>
+    <message>
+        <source>Remove all tags from selected torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -3912,6 +3912,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Action when the limit is reached</source>
         <translation>Дії при досягненні обмеження</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match any limit</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all the limits</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4009,6 +4025,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1y %2d</source>
         <translation>%1y %2d</translation>
+    </message>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4222,7 +4242,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Url</source>
-        <translation>URL</translation>
+        <translation type="vanished">URL</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -4239,6 +4259,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>No</source>
         <translation>Ні</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4644,6 +4668,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Blocked opening RSS article URL. Only http:// and https:// links can be opened.</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open shared download window</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -4919,7 +4955,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished" />
+        <translation>Імпорт</translation>
     </message>
 </context>
 <context>
@@ -5178,7 +5214,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent share limits</source>
-        <translation type="unfinished" />
+        <translation>Обмеження роздачі торрента</translation>
     </message>
 </context>
 <context>
@@ -5299,12 +5335,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Неможливо створити торрент.</translation>
     </message>
     <message>
-        <source>Private
-                torrent (Won't distribute on DHT network)</source>
-        <translation type="vanished">Приватний
-                торрент (не поширюється в мережі DHT)</translation>
-    </message>
-    <message>
         <source>Unable to export torrent file</source>
         <translation>Неможливо експортувати торрент файл</translation>
     </message>
@@ -5353,12 +5383,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Статус</translation>
     </message>
     <message>
-        <source>Align to piece boundary for files larger
-                than:</source>
-        <translation type="vanished">Вирівняти по межі фрагмента для файлів, розмір яких перевищує
-                :</translation>
-    </message>
-    <message>
         <source>Select file/folder to share:</source>
         <translation>Вибрати файл/папку для спільного використання:</translation>
     </message>
@@ -5381,12 +5405,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Unable to load torrent creation tasks</source>
         <translation>Неможливо завантажити завдання створення торрента</translation>
-    </message>
-    <message>
-        <source>Optimize
-                    alignment</source>
-        <translation type="vanished">Оптимізувати
-                    вирівнювання</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -5419,14 +5437,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Web Seeds</source>
         <translation>Веб роздачі</translation>
-    </message>
-    <message>
-        <source>Start
-                seeding
-                immediately</source>
-        <translation type="vanished">Розпочати
-                роздачу
-                негайно</translation>
     </message>
     <message>
         <source>Format</source>
@@ -5478,7 +5488,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Так</translation>
     </message>
     <message>
         <source>Ignore dotfiles</source>
@@ -5486,11 +5496,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Align to piece boundary for files larger than:</source>
-        <translation type="unfinished" />
+        <translation>Вирівнювати за розміром частин файли більше ніж:</translation>
     </message>
     <message>
         <source>Private torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>Приватний торрент (не буде передаватись через мережу DHT)</translation>
     </message>
     <message>
         <source>Ignore Dotfiles</source>
@@ -5498,15 +5508,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Start seeding immediately</source>
-        <translation type="unfinished" />
+        <translation>Почати роздачу одразу</translation>
     </message>
     <message>
         <source>Optimize alignment</source>
-        <translation type="unfinished" />
+        <translation>Оптимізувати вирівнювання</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Ні</translation>
     </message>
     <message>
         <source>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</source>
@@ -5515,10 +5525,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </context>
 <context>
     <name>DownloadFromURLDialog</name>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Завантажити</translation>
-    </message>
     <message>
         <source>Magnet link</source>
         <translation>Magnet-посилання</translation>
@@ -5592,7 +5598,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Speed limits</source>
-        <translation type="unfinished" />
+        <translation>Обмеження швидкості</translation>
     </message>
     <message>
         <source>Alternative download speed</source>
@@ -5604,19 +5610,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>Застосувати</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>Відвантаження:</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>Альтернативні обмеження швидкості</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>Завантаження:</translation>
     </message>
     <message>
         <source>Failed to set speed limits</source>
@@ -5688,35 +5694,35 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TorrentShareLimitsWidget</name>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>хв</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Типово</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Увімкнути режим супер-сід для торрента</translation>
     </message>
     <message>
         <source>Inactive seeding time:</source>
-        <translation type="unfinished" />
+        <translation>Неактивний час роздачі:</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Відповідати всім обмеженням</translation>
     </message>
     <message>
         <source>Ratio:</source>
-        <translation type="unfinished" />
+        <translation>Співвідношення:</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Відповідати будь-якому обмеженню</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>Видаліть торрент і його вміст</translation>
     </message>
     <message>
         <source>Share limit values cannot be empty or invalid.</source>
@@ -5724,43 +5730,43 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Action when the limit is reached:</source>
-        <translation type="unfinished" />
+        <translation>Дія при досягненні ліміту:</translation>
     </message>
     <message>
         <source>From category (%1)</source>
-        <translation type="unfinished" />
+        <translation>З категорії (%1)</translation>
     </message>
     <message>
         <source>Set to</source>
-        <translation type="unfinished" />
+        <translation>Встановити на</translation>
     </message>
     <message>
         <source>From category</source>
-        <translation type="unfinished" />
+        <translation>З категорії</translation>
     </message>
     <message>
         <source>Default (%1)</source>
-        <translation type="unfinished" />
+        <translation>Типово (%1)</translation>
     </message>
     <message>
         <source>Seeding time:</source>
-        <translation type="unfinished" />
+        <translation>Час роздачі:</translation>
     </message>
     <message>
         <source>Unlimited</source>
-        <translation type="unfinished" />
+        <translation>Без обмежень</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Зупинити торрент</translation>
     </message>
     <message>
         <source>Mode:</source>
-        <translation type="unfinished" />
+        <translation>Режим:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Видалити торрент</translation>
     </message>
 </context>
 <context>
