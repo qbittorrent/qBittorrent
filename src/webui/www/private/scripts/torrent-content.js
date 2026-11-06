@@ -39,6 +39,10 @@ window.qBittorrent.TorrentContent ??= (() => {
             updateDownloadCheckbox: updateDownloadCheckbox,
             createPriorityCombo: createPriorityCombo,
             updatePriorityCombo: updatePriorityCombo,
+            createOrderInput: createOrderInput,
+            updateOrderInput: updateOrderInput,
+            createSequentialCheckbox: createSequentialCheckbox,
+            updateSequentialCheckbox: updateSequentialCheckbox,
             updateData: updateData,
             clearFilterInputTimer: clearFilterInputTimer
         };
@@ -49,6 +53,10 @@ window.qBittorrent.TorrentContent ??= (() => {
     const TriState = window.qBittorrent.FileTree.TriState;
     let torrentFilesFilterInputTimer = -1;
     let onFilePriorityChanged = null;
+    let onFileOrderChanged = null;
+    let onFileSequentialChanged = null;
+
+    const MaxFileOrder = 2147483647;
 
     const normalizePriority = (priority) => {
         priority = Number(priority);
@@ -215,6 +223,89 @@ window.qBittorrent.TorrentContent ??= (() => {
         return normalizePriority(node.priority);
     };
 
+    const fileOrderInputChanged = (e) => {
+        const input = e.target;
+        const node = torrentFilesTable.getNode(input.getAttribute("data-id"));
+        if ((node === null) || node.isFolder)
+            return;
+
+        const text = input.value.trim();
+        const order = (text === "") ? 0 : Number(text);
+        if (input.validity.badInput || !Number.isInteger(order) || (order < 0)) {
+            input.value = (node.order > 0) ? node.order.toString() : "";
+            return;
+        }
+
+        const newOrder = Math.min(order, MaxFileOrder);
+        input.value = (newOrder > 0) ? newOrder.toString() : "";
+        setFileOrder(new Map([[node.fileId, newOrder]]));
+    };
+
+    const fileOrderInputKeyDown = (e) => {
+        // prevent the table from handling the keys (e.g. collapsing folders) while editing
+        e.stopPropagation();
+
+        if (e.key === "Escape") {
+            const input = e.target;
+            const node = torrentFilesTable.getNode(input.getAttribute("data-id"));
+            if (node !== null)
+                input.value = (node.order > 0) ? node.order.toString() : "";
+            input.blur();
+        }
+    };
+
+    const createOrderInput = (id, fileId, order, isFolder) => {
+        const input = document.createElement("input");
+        input.type = "number";
+        input.min = "0";
+        input.max = MaxFileOrder.toString();
+        input.step = "1";
+        input.classList.add("fileOrderInput");
+        input.addEventListener("change", (event) => fileOrderInputChanged(event));
+        input.addEventListener("keydown", (event) => fileOrderInputKeyDown(event));
+
+        updateOrderInput(input, id, fileId, order, isFolder);
+        return input;
+    };
+
+    const updateOrderInput = (input, id, fileId, order, isFolder) => {
+        // don't overwrite the value while the user is editing it
+        const isEditing = (document.activeElement === input) && (input.getAttribute("data-id") === id.toString());
+
+        input.setAttribute("data-id", id);
+        input.setAttribute("data-file-id", fileId);
+        input.classList.toggle("invisible", isFolder);
+        if (!isEditing)
+            input.value = (order > 0) ? order.toString() : "";
+    };
+
+    const fileSequentialCheckboxClicked = (e) => {
+        e.stopPropagation();
+
+        const checkbox = e.target;
+        const node = torrentFilesTable.getNode(checkbox.getAttribute("data-id"));
+        if ((node === null) || node.isFolder)
+            return;
+
+        setFileSequential([node], checkbox.checked);
+    };
+
+    const createSequentialCheckbox = (id, fileId, sequential, isFolder) => {
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.addEventListener("click", (event) => fileSequentialCheckboxClicked(event));
+
+        updateSequentialCheckbox(checkbox, id, fileId, sequential, isFolder);
+        return checkbox;
+    };
+
+    const updateSequentialCheckbox = (checkbox, id, fileId, sequential, isFolder) => {
+        checkbox.setAttribute("data-id", id);
+        checkbox.setAttribute("data-file-id", fileId);
+        checkbox.classList.toggle("invisible", isFolder);
+        checkbox.checked = sequential;
+    };
+
     const switchGlobalCheckboxState = (e) => {
         e.stopPropagation();
 
@@ -275,6 +366,144 @@ window.qBittorrent.TorrentContent ??= (() => {
             node.calculateRemaining();
     };
 
+    const getFileNodes = () => {
+        return torrentFilesTable.getFileTreeArray().filter((node) => !node.isFolder);
+    };
+
+    /**
+     * Returns the selected files in the order they are shown. A selected folder means all of its files.
+     */
+    const getSelectedFileNodes = () => {
+        const selectedRowIds = new Set(torrentFilesTable.selectedRowsIds().map(Number));
+        if (selectedRowIds.size === 0)
+            return [];
+
+        const isSelected = (node) => {
+            for (let current = node; ((current !== null) && (current.rowId !== null)); current = current.root) {
+                if (selectedRowIds.has(current.rowId))
+                    return true;
+            }
+            return false;
+        };
+
+        return getFileNodes().filter(isSelected);
+    };
+
+    /**
+     * Applies new download order values to files.
+     * @param {Map<number, number>} newOrders - maps file ids to their new download order
+     */
+    const setFileOrder = (newOrders) => {
+        // group the changed files by their new order, since the API accepts one order value per request
+        const changes = new Map();
+        for (const node of getFileNodes()) {
+            const order = newOrders.get(node.fileId);
+            if ((order === undefined) || (order === node.order))
+                continue;
+
+            node.order = order;
+            const fileIds = changes.get(order);
+            if (fileIds === undefined)
+                changes.set(order, [node.fileId]);
+            else
+                fileIds.push(node.fileId);
+        }
+
+        if (changes.size === 0)
+            return;
+
+        torrentFilesTable.updateTable(true);
+
+        if (onFileOrderChanged)
+            onFileOrderChanged(changes);
+    };
+
+    const setFileSequential = (nodes, sequential) => {
+        const changedNodes = nodes.filter((node) => !node.isFolder && (node.sequential !== sequential));
+        if (changedNodes.length === 0)
+            return;
+
+        for (const node of changedNodes)
+            node.sequential = sequential;
+        torrentFilesTable.updateTable(true);
+
+        if (onFileSequentialChanged)
+            onFileSequentialChanged(changedNodes.map((node) => node.fileId), sequential);
+    };
+
+    /**
+     * Returns the ranked files ordered by their download order. Ties are kept in file id order.
+     */
+    const rankedFilesInOrder = (nodes) => {
+        return nodes
+            .filter((node) => node.order > 0)
+            .sort((node1, node2) => ((node1.order !== node2.order) ? (node1.order - node2.order) : (node1.fileId - node2.fileId)));
+    };
+
+    /**
+     * Returns new download order values where `orderedNodes` are ranked 1..n and all other files are unranked.
+     */
+    const makeCompactOrder = (nodes, orderedNodes) => {
+        const newOrders = new Map(nodes.map((node) => [node.fileId, 0]));
+        let rank = 0;
+        for (const node of orderedNodes)
+            newOrders.set(node.fileId, Math.min(++rank, MaxFileOrder));
+        return newOrders;
+    };
+
+    const downloadSelectedFirst = () => {
+        const selectedNodes = getSelectedFileNodes();
+        if (selectedNodes.length === 0)
+            return;
+
+        // Selected files go to the top (keeping their current rank order, unranked ones in shown order),
+        // followed by the other ranked files in their current order.
+        const fileNodes = getFileNodes();
+        const selectedSet = new Set(selectedNodes);
+        const selectedRanked = rankedFilesInOrder(selectedNodes);
+        const selectedUnranked = selectedNodes.filter((node) => node.order <= 0);
+        const otherRanked = rankedFilesInOrder(fileNodes).filter((node) => !selectedSet.has(node));
+
+        setFileOrder(makeCompactOrder(fileNodes, [...selectedRanked, ...selectedUnranked, ...otherRanked]));
+    };
+
+    const downloadSelectedLast = () => {
+        const selectedNodes = getSelectedFileNodes();
+        if (selectedNodes.length === 0)
+            return;
+
+        // Other ranked files keep their order, selected files are appended after them in shown order.
+        const fileNodes = getFileNodes();
+        const selectedSet = new Set(selectedNodes);
+        const otherRanked = rankedFilesInOrder(fileNodes).filter((node) => !selectedSet.has(node));
+
+        setFileOrder(makeCompactOrder(fileNodes, [...otherRanked, ...selectedNodes]));
+    };
+
+    const rankSelectedByShownOrder = () => {
+        const selectedNodes = getSelectedFileNodes();
+        if (selectedNodes.length === 0)
+            return;
+
+        // Selected files get consecutive ranks in the order they are shown, after all other ranked files.
+        const selectedSet = new Set(selectedNodes);
+        let maxRank = 0;
+        for (const node of getFileNodes()) {
+            if (!selectedSet.has(node))
+                maxRank = Math.max(maxRank, node.order);
+        }
+
+        const newOrders = new Map();
+        for (const node of selectedNodes)
+            newOrders.set(node.fileId, ((maxRank < MaxFileOrder) ? ++maxRank : maxRank));
+
+        setFileOrder(newOrders);
+    };
+
+    const clearSelectedOrder = () => {
+        setFileOrder(new Map(getSelectedFileNodes().map((node) => [node.fileId, 0])));
+    };
+
     const updateData = (files) => {
         const rows = files.map((file, index) => {
             const ignore = (file.priority === FilePriority.Ignored);
@@ -286,7 +515,9 @@ window.qBittorrent.TorrentContent ??= (() => {
                 size: file.size,
                 progress: window.qBittorrent.Misc.toFixedPointString((file.progress * 100), 1),
                 priority: normalizePriority(file.priority),
-                availability: file.availability
+                availability: file.availability,
+                order: file.order ?? 0,
+                sequential: file.sequential ?? false
             };
 
             return row;
@@ -349,6 +580,8 @@ window.qBittorrent.TorrentContent ??= (() => {
             childNode.progress = row.progress;
             childNode.priority = row.priority;
             childNode.availability = row.availability;
+            childNode.order = row.order;
+            childNode.sequential = row.sequential;
             childNode.root = parent;
             parent.addChild(childNode);
 
@@ -449,9 +682,13 @@ window.qBittorrent.TorrentContent ??= (() => {
         }
     };
 
-    const init = (tableId, tableClass, onFilePriorityChangedHandler = undefined, onFileRenameHandler = undefined) => {
+    const init = (tableId, tableClass, onFilePriorityChangedHandler = undefined, onFileRenameHandler = undefined, onFileOrderChangedHandler = undefined, onFileSequentialChangedHandler = undefined) => {
         if (onFilePriorityChangedHandler !== undefined)
             onFilePriorityChanged = onFilePriorityChangedHandler;
+        if (onFileOrderChangedHandler !== undefined)
+            onFileOrderChanged = onFileOrderChangedHandler;
+        if (onFileSequentialChangedHandler !== undefined)
+            onFileSequentialChanged = onFileSequentialChangedHandler;
 
         torrentFilesTable = new tableClass();
 
@@ -509,6 +746,21 @@ window.qBittorrent.TorrentContent ??= (() => {
                 },
                 FilePrioMaximum: (element, ref) => {
                     filesPriorityMenuClicked(FilePriority.Maximum);
+                },
+                FileOrderFirst: (element, ref) => {
+                    downloadSelectedFirst();
+                },
+                FileOrderLast: (element, ref) => {
+                    downloadSelectedLast();
+                },
+                FileOrderShown: (element, ref) => {
+                    rankSelectedByShownOrder();
+                },
+                FileOrderRemove: (element, ref) => {
+                    clearSelectedOrder();
+                },
+                FileSequential: (element, ref) => {
+                    setFileSequential(getSelectedFileNodes(), !ref.getItemChecked("FileSequential"));
                 }
             },
             offsets: {
@@ -527,6 +779,9 @@ window.qBittorrent.TorrentContent ??= (() => {
                     if (!isFullyDownloaded)
                         isAllComplete = false;
                 }
+
+                const selectedFileNodes = getSelectedFileNodes();
+                this.setItemChecked("FileSequential", ((selectedFileNodes.length > 0) && selectedFileNodes.every((node) => node.sequential)));
 
                 // add torrent file list doesn't have "CopyDownloadURL", "Download" actions yet
                 if (torrentFilesTable.constructor.name === "AddTorrentFilesTable")

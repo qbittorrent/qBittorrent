@@ -147,6 +147,8 @@ const QString KEY_FILE_PRIORITY = u"priority"_s;
 const QString KEY_FILE_IS_SEED = u"is_seed"_s;
 const QString KEY_FILE_PIECE_RANGE = u"piece_range"_s;
 const QString KEY_FILE_AVAILABILITY = u"availability"_s;
+const QString KEY_FILE_ORDER = u"order"_s;
+const QString KEY_FILE_SEQUENTIAL = u"sequential"_s;
 
 // Torrent info
 const QString KEY_TORRENTINFO_FILE_LENGTH = u"length"_s;
@@ -405,6 +407,8 @@ namespace
 
         QJsonArray fileList;
         const QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
+        const QList<int> fileOrder = torrent->fileOrder();
+        const QList<bool> fileSequential = torrent->fileSequentialFlags();
         const QList<qreal> fp = torrent->filesProgress();
         const QList<qreal> fileAvailability = torrent->fetchAvailableFileFractions().takeResult();
         const BitTorrent::TorrentInfo info = torrent->info();
@@ -421,7 +425,9 @@ namespace
                 {KEY_FILE_AVAILABILITY, fileAvailability[index]},
                 // need to provide paths using a platform-independent separator format
                 {KEY_FILE_NAME, torrent->filePath(index).data()},
-                {KEY_FILE_PIECE_RANGE, QJsonArray {idx.first(), idx.last()}}
+                {KEY_FILE_PIECE_RANGE, QJsonArray {idx.first(), idx.last()}},
+                {KEY_FILE_ORDER, fileOrder.value(index, 0)},
+                {KEY_FILE_SEQUENTIAL, fileSequential.value(index, false)}
             };
 
             fileList.append(fileDict);
@@ -1144,6 +1150,13 @@ void TorrentsController::addAction()
     const bool seedMode = parseBool(params()[u"seedMode"_s]).value_or(false);
     const bool seqDownload = parseBool(params()[u"sequentialDownload"_s]).value_or(false);
     const bool firstLastPiece = parseBool(params()[u"firstLastPiecePrio"_s]).value_or(false);
+    std::optional<BitTorrent::FileSchedulingMode> fileSchedulingMode;
+    if (const QString modeParam = params()[u"fileSchedulingMode"_s]; !modeParam.isEmpty())
+    {
+        fileSchedulingMode = Utils::String::toEnum(modeParam, BitTorrent::FileSchedulingMode::Soft);
+        if (Utils::String::fromEnum(*fileSchedulingMode) != modeParam)
+            throw APIError(APIErrorType::BadParams, tr("`fileSchedulingMode` must be one of: Soft, RankedFirst, Strict"));
+    }
     const bool addForced = parseBool(params()[u"forced"_s]).value_or(false);
     const std::optional<bool> addToQueueTop = parseBool(params()[u"addToTopOfQueue"_s]);
     const std::optional<bool> addStopped = parseBool(params()[u"stopped"_s]);
@@ -1193,6 +1206,47 @@ void TorrentsController::addAction()
         }
     }
 
+    QList<int> fileOrder;
+    const QStringList fileOrderParam = params()[u"fileOrder"_s].split(u',', Qt::SkipEmptyParts);
+    if (!fileOrderParam.isEmpty())
+    {
+        if (urls.size() > 1)
+            throw APIError(APIErrorType::BadParams, tr("Cannot specify fileOrder when adding multiple torrents"));
+        if (!torrents.isEmpty())
+            throw APIError(APIErrorType::BadParams, tr("Cannot specify fileOrder when uploading torrent files"));
+
+        fileOrder.reserve(fileOrderParam.size());
+        for (const QString &orderStr : fileOrderParam)
+        {
+            bool ok = false;
+            const int order = orderStr.trimmed().toInt(&ok);
+            if (!ok || (order < 0))
+                throw APIError(APIErrorType::BadParams, tr("`fileOrder` must be a list of non-negative integers"));
+            fileOrder << order;
+        }
+    }
+
+    QList<bool> fileSequential;
+    const QStringList fileSequentialParam = params()[u"fileSequential"_s].split(u',', Qt::SkipEmptyParts);
+    if (!fileSequentialParam.isEmpty())
+    {
+        if (urls.size() > 1)
+            throw APIError(APIErrorType::BadParams, tr("Cannot specify fileSequential when adding multiple torrents"));
+        if (!torrents.isEmpty())
+            throw APIError(APIErrorType::BadParams, tr("Cannot specify fileSequential when uploading torrent files"));
+
+        fileSequential.reserve(fileSequentialParam.size());
+        for (const QString &valueStr : fileSequentialParam)
+        {
+            const std::optional<bool> value = parseBool(valueStr.trimmed());
+            if (!value)
+                throw APIError(APIErrorType::BadParams, tr("`fileSequential` must be a list of booleans"));
+            fileSequential << *value;
+        }
+    }
+
+    const bool hasPerFileParams = !filePriorities.isEmpty() || !fileOrder.isEmpty() || !fileSequential.isEmpty();
+
     const QString downloaderParam = params()[u"downloader"_s];
     if (!downloaderParam.isEmpty() && !SearchPluginManager::instance()->allPlugins().contains(downloaderParam))
         throw APIError(APIErrorType::BadParams, tr("`downloader` must be a valid search plugin"));
@@ -1213,6 +1267,9 @@ void TorrentsController::addAction()
         .stopCondition = stopCondition,
         .filePaths = {},
         .filePriorities = {},
+        .fileOrder = {},
+        .fileSequential = {},
+        .fileSchedulingMode = fileSchedulingMode,
         .seedMode = seedMode,
         .contentLayout = contentLayout,
         .useAutoTMM = autoTMM,
@@ -1254,13 +1311,27 @@ void TorrentsController::addAction()
         const BitTorrent::TorrentID torrentID = infoHash.toTorrentID();
         if (const BitTorrent::TorrentDescriptor &torrentDescr = m_torrentMetadataCache.value(torrentID); torrentDescr.info().has_value())
         {
+            const BitTorrent::TorrentInfo &info = torrentDescr.info().value();
             if (!filePriorities.isEmpty())
             {
-                const BitTorrent::TorrentInfo &info = torrentDescr.info().value();
                 if (filePriorities.size() != info.filesCount())
                     throw APIError(APIErrorType::BadParams, tr("Length of filePriorities must equal number of files in torrent"));
 
                 addTorrentParams.filePriorities = filePriorities;
+            }
+            if (!fileOrder.isEmpty())
+            {
+                if (fileOrder.size() != info.filesCount())
+                    throw APIError(APIErrorType::BadParams, tr("Length of fileOrder must equal number of files in torrent"));
+
+                addTorrentParams.fileOrder = fileOrder;
+            }
+            if (!fileSequential.isEmpty())
+            {
+                if (fileSequential.size() != info.filesCount())
+                    throw APIError(APIErrorType::BadParams, tr("Length of fileSequential must equal number of files in torrent"));
+
+                addTorrentParams.fileSequential = fileSequential;
             }
 
             if (BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams))
@@ -1274,8 +1345,8 @@ void TorrentsController::addAction()
         }
         else if (!downloaderParam.isEmpty() && !infoHash.isValid())
         {
-            if (!filePriorities.isEmpty())
-                throw APIError(APIErrorType::BadParams, tr("`filePriorities` may only be specified when metadata has already been fetched"));
+            if (hasPerFileParams)
+                throw APIError(APIErrorType::BadParams, tr("`filePriorities`, `fileOrder` and `fileSequential` may only be specified when metadata has already been fetched"));
 
             SearchDownloadHandler *downloadHandler = SearchPluginManager::instance()->downloadTorrent(downloaderParam, url);
             connect(downloadHandler, &SearchDownloadHandler::downloadFinished
@@ -1289,8 +1360,8 @@ void TorrentsController::addAction()
         }
         else
         {
-            if (!filePriorities.isEmpty())
-                throw APIError(APIErrorType::BadParams, tr("`filePriorities` may only be specified when metadata has already been fetched"));
+            if (hasPerFileParams)
+                throw APIError(APIErrorType::BadParams, tr("`filePriorities`, `fileOrder` and `fileSequential` may only be specified when metadata has already been fetched"));
 
             if (app()->addTorrentManager()->addTorrent(url, addTorrentParams))
             {
@@ -1557,6 +1628,93 @@ void TorrentsController::filePrioAction()
 
     if (priorityChanged)
         torrent->prioritizeFiles(priorities);
+
+    setResult(QString());
+}
+
+namespace
+{
+    // Parses a "|" separated list of file indexes, as used by `torrents/filePrio`
+    QList<int> parseFileIDs(const QString &idsParam, const int filesCount)
+    {
+        QList<int> fileIDs;
+        for (const QString &fileID : idsParam.split(u'|'))
+        {
+            bool ok = false;
+            const int id = fileID.toInt(&ok);
+            if (!ok)
+                throw APIError(APIErrorType::BadParams, TorrentsController::tr("File IDs must be integers"));
+            if ((id < 0) || (id >= filesCount))
+                throw APIError(APIErrorType::Conflict, TorrentsController::tr("File ID is not valid"));
+            fileIDs.append(id);
+        }
+        return fileIDs;
+    }
+
+    BitTorrent::Torrent *getTorrentWithMetadata(const QString &hash)
+    {
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(BitTorrent::TorrentID::fromString(hash));
+        if (!torrent)
+            throw APIError(APIErrorType::NotFound);
+        if (!torrent->hasMetadata())
+            throw APIError(APIErrorType::Conflict, TorrentsController::tr("Torrent's metadata has not yet downloaded"));
+        return torrent;
+    }
+}
+
+void TorrentsController::setFileOrderAction()
+{
+    // Sets the download order ("rank") of files. `order` = 0 removes the files from the download order.
+    requireParams({u"hash"_s, u"id"_s, u"order"_s});
+
+    bool ok = false;
+    const int order = params()[u"order"_s].toInt(&ok);
+    if (!ok || (order < 0))
+        throw APIError(APIErrorType::BadParams, tr("Download order must be a non-negative integer"));
+
+    BitTorrent::Torrent *const torrent = getTorrentWithMetadata(params()[u"hash"_s]);
+    const QList<int> fileIDs = parseFileIDs(params()[u"id"_s], torrent->filesCount());
+
+    QList<int> fileOrder = torrent->fileOrder();
+    fileOrder.resize(torrent->filesCount(), 0);
+    for (const int id : fileIDs)
+        fileOrder[id] = order;
+    torrent->setFileOrder(fileOrder);
+
+    setResult(QString());
+}
+
+void TorrentsController::setFileSequentialAction()
+{
+    requireParams({u"hash"_s, u"id"_s, u"value"_s});
+
+    const std::optional<bool> value = parseBool(params()[u"value"_s]);
+    if (!value)
+        throw APIError(APIErrorType::BadParams, tr("`value` must be a boolean"));
+
+    BitTorrent::Torrent *const torrent = getTorrentWithMetadata(params()[u"hash"_s]);
+    const QList<int> fileIDs = parseFileIDs(params()[u"id"_s], torrent->filesCount());
+
+    QList<bool> fileSequential = torrent->fileSequentialFlags();
+    fileSequential.resize(torrent->filesCount(), false);
+    for (const int id : fileIDs)
+        fileSequential[id] = *value;
+    torrent->setFileSequentialFlags(fileSequential);
+
+    setResult(QString());
+}
+
+void TorrentsController::setFileSchedulingModeAction()
+{
+    requireParams({u"hashes"_s, u"mode"_s});
+
+    const QString modeParam = params()[u"mode"_s];
+    const auto mode = Utils::String::toEnum(modeParam, BitTorrent::FileSchedulingMode::Soft);
+    if (Utils::String::fromEnum(mode) != modeParam)
+        throw APIError(APIErrorType::BadParams, tr("`mode` must be one of: Soft, RankedFirst, Strict"));
+
+    const QStringList hashes {params()[u"hashes"_s].split(u'|')};
+    applyToTorrents(hashes, [mode](BitTorrent::Torrent *const torrent) { torrent->setFileSchedulingMode(mode); });
 
     setResult(QString());
 }

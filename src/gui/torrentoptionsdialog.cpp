@@ -89,6 +89,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     bool allSameLSD = true;
     bool allSameSequential = true;
     bool allSameFirstLastPieces = true;
+    bool allSameFileSchedulingMode = true;
     bool allSameAutoTMM = true;
     bool allSameSavePath = true;
     bool allSameDownloadPath = true;
@@ -108,6 +109,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     const bool isFirstTorrentLSDDisabled = torrents[0]->isLSDDisabled();
     const bool isFirstTorrentSequentialEnabled = torrents[0]->isSequentialDownload();
     const bool isFirstTorrentFirstLastPiecesEnabled = torrents[0]->hasFirstLastPiecePriority();
+    const BitTorrent::FileSchedulingMode firstTorrentFileSchedulingMode = torrents[0]->fileSchedulingMode();
 
     m_torrentIDs.reserve(torrents.size());
     for (const BitTorrent::Torrent *torrent : torrents)
@@ -200,6 +202,11 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
         {
             if (torrent->hasFirstLastPiecePriority() != isFirstTorrentFirstLastPiecesEnabled)
                 allSameFirstLastPieces = false;
+        }
+        if (allSameFileSchedulingMode)
+        {
+            if (torrent->fileSchedulingMode() != firstTorrentFileSchedulingMode)
+                allSameFileSchedulingMode = false;
         }
     }
 
@@ -349,6 +356,20 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     else
         m_ui->checkFirstLastPieces->setCheckState(Qt::PartiallyChecked);
 
+    Utils::Gui::initFileSchedulingModeComboBox(m_ui->comboFileSchedulingMode);
+    m_ui->labelFileSchedulingMode->setToolTip(m_ui->comboFileSchedulingMode->toolTip());
+    if (allSameFileSchedulingMode)
+    {
+        m_ui->comboFileSchedulingMode->setCurrentIndex(m_ui->comboFileSchedulingMode->findData(
+                QVariant::fromValue(firstTorrentFileSchedulingMode)));
+    }
+    else
+    {
+        // An item without data means "keep the current mode of each torrent"
+        m_ui->comboFileSchedulingMode->insertItem(0, tr("Mixed", "Mixed (file download order modes)"));
+        m_ui->comboFileSchedulingMode->setCurrentIndex(0);
+    }
+
     m_initialValues =
     {
         .savePath = m_ui->savePath->selectedPath(),
@@ -367,7 +388,9 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
         .disablePEX = m_ui->checkDisablePEX->checkState(),
         .disableLSD = m_ui->checkDisableLSD->checkState(),
         .sequential = m_ui->checkSequential->checkState(),
-        .firstLastPieces = m_ui->checkFirstLastPieces->checkState()
+        .firstLastPieces = m_ui->checkFirstLastPieces->checkState(),
+        .fileSchedulingMode = (allSameFileSchedulingMode
+                ? std::optional<BitTorrent::FileSchedulingMode>(firstTorrentFileSchedulingMode) : std::nullopt)
     };
 
     // Needs to be called after the initial values struct is initialized
@@ -501,6 +524,13 @@ void TorrentOptionsDialog::accept()
             torrent->setSequentialDownload(m_ui->checkSequential->isChecked());
         if (m_initialValues.firstLastPieces != m_ui->checkFirstLastPieces->checkState())
             torrent->setFirstLastPiecePriority(m_ui->checkFirstLastPieces->isChecked());
+
+        if (const QVariant modeData = m_ui->comboFileSchedulingMode->currentData(); modeData.isValid())
+        {
+            const auto mode = modeData.value<BitTorrent::FileSchedulingMode>();
+            if (m_initialValues.fileSchedulingMode != mode)
+                torrent->setFileSchedulingMode(mode);
+        }
     }
 
     QDialog::accept();

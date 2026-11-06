@@ -2840,6 +2840,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
 
     loadTorrentParams.name = addTorrentParams.name;
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
+    loadTorrentParams.fileSchedulingMode = addTorrentParams.fileSchedulingMode.value_or(FileSchedulingMode::Soft);
     loadTorrentParams.hasFinishedStatus = addTorrentParams.seedMode; // do not react on 'torrent_finished_alert' when skipping
     loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
     loadTorrentParams.operatingMode = (addTorrentParams.addForced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
@@ -3022,6 +3023,13 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
             applyFilenameFilter(filePaths, filePriorities);
         }
 
+        // Per-file download order and sequential flags are only meaningful with metadata
+        // and are ignored if they don't match the number of files.
+        if (addTorrentParams.fileOrder.size() == nativeIndexes.size())
+            loadTorrentParams.fileOrder = addTorrentParams.fileOrder;
+        if (addTorrentParams.fileSequential.size() == nativeIndexes.size())
+            loadTorrentParams.fileSequential = addTorrentParams.fileSequential;
+
         if (!loadTorrentParams.hasFinishedStatus)
             needFindIncompleteFiles = true;
 
@@ -3088,7 +3096,11 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
     // Preallocation mode
     p.storage_mode = isPreallocationEnabled() ? lt::storage_mode_allocate : lt::storage_mode_sparse;
 
-    if (addTorrentParams.sequential)
+    // Torrent-wide sequential download would suspend per-file download order / sequential download,
+    // so it is not enabled if the latter is requested explicitly.
+    const bool hasFileScheduling = std::ranges::any_of(loadTorrentParams.fileOrder, [](const int rank) { return rank > 0; })
+            || loadTorrentParams.fileSequential.contains(true);
+    if (addTorrentParams.sequential && !hasFileScheduling)
         p.flags |= lt::torrent_flags::sequential_download;
     else
         p.flags &= ~lt::torrent_flags::sequential_download;
@@ -6858,7 +6870,7 @@ void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a
 void SessionImpl::handleFilePrioAlert(const lt::file_prio_alert *alert)
 {
     if (TorrentImpl *torrent = getTorrent(alert->handle)) [[likely]]
-        torrent->deferredRequestResumeData();
+        torrent->handleFilePrioritiesApplied();
 }
 #endif
 

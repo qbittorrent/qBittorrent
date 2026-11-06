@@ -2,6 +2,14 @@
 
 ## 2.17.0
 
+* Per-file download order and sequential download (PR number to be filled in)
+  * `torrents/files` endpoint includes `order` (int) and `sequential` (bool) data for each file; `order` is `0` when the file has no download order, files with a lower `order` are downloaded first
+  * Add `torrents/setFileOrder` endpoint with `hash` (string), `id` (string, file indexes separated by `|`) and `order` (int, `0` removes the files from the download order) as parameters (accepts `POST` requests only)
+  * Add `torrents/setFileSequential` endpoint with `hash` (string), `id` (string, file indexes separated by `|`) and `value` (bool) as parameters (accepts `POST` requests only)
+  * Add `torrents/setFileSchedulingMode` endpoint with `hashes` (string, separated by `|`) and `mode` (string, `Soft`, `RankedFirst` or `Strict`) as parameters (accepts `POST` requests only)
+  * `torrents/info` and `sync/maindata` endpoints include `file_scheduling_mode` (string) data
+  * `torrents/add` endpoint accepts `fileSchedulingMode` (string) parameter
+  * `torrents/add` endpoint accepts `fileOrder` (string, download order of each file separated by `,`) and `fileSequential` (string, `true` or `false` for each file separated by `,`) parameters, with the same restrictions as `filePriorities`
 * [#24955](https://github.com/qbittorrent/qBittorrent/pull/24955)
   * `search/results` endpoint includes `engineFullName` (string) data as the display name of the engine
 * [#25093](https://github.com/qbittorrent/qBittorrent/pull/25093)

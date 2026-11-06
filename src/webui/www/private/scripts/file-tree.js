@@ -123,6 +123,8 @@ window.qBittorrent.FileTree ??= (() => {
         progress = 0;
         priority = FilePriority.Normal;
         availability = 0;
+        order = 0; // download order ("rank") of a file, 0 = unranked. Always 0 for folders.
+        sequential = false; // always false for folders
         depth = 0;
         root = null;
         isFolder = false;
@@ -146,7 +148,9 @@ window.qBittorrent.FileTree ??= (() => {
                 remaining: this.remaining,
                 progress: this.progress,
                 priority: this.priority,
-                availability: this.availability
+                availability: this.availability,
+                order: this.order,
+                sequential: this.sequential
             };
         }
     }

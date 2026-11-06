@@ -36,6 +36,7 @@
 
 #include "base/path.h"
 #include "base/tagset.h"
+#include "fileschedulingmode.h"
 #include "sharelimits.h"
 #include "sslparameters.h"
 #include "torrent.h"
@@ -63,6 +64,9 @@ namespace BitTorrent
         std::optional<Torrent::StopCondition> stopCondition;
         PathList filePaths; // used if TorrentInfo is set
         QList<DownloadPriority> filePriorities; // used if TorrentInfo is set
+        QList<int> fileOrder; // used if TorrentInfo is set, see `TorrentContentHandler::fileOrder()`
+        QList<bool> fileSequential; // used if TorrentInfo is set, see `TorrentContentHandler::fileSequentialFlags()`
+        std::optional<FileSchedulingMode> fileSchedulingMode;
         bool seedMode = false;
         std::optional<BitTorrent::TorrentContentLayout> contentLayout;
         std::optional<bool> useAutoTMM;

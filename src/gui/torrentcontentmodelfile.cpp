@@ -29,6 +29,8 @@
 
 #include "torrentcontentmodelfile.h"
 
+#include <algorithm>
+
 #include "torrentcontentmodelfolder.h"
 
 TorrentContentModelFile::TorrentContentModelFile(const QString &fileName
@@ -69,6 +71,16 @@ void TorrentContentModelFile::setAvailability(const qreal availability)
 {
     m_availability = availability;
     Q_ASSERT(m_availability <= 1.);
+}
+
+void TorrentContentModelFile::setOrder(const int order)
+{
+    m_order = std::max(order, 0);
+}
+
+void TorrentContentModelFile::setSequential(const bool sequential)
+{
+    m_sequential = sequential;
 }
 
 TorrentContentModelItem::ItemType TorrentContentModelFile::itemType() const

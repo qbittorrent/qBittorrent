@@ -45,6 +45,8 @@ public:
     void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) override;
     void setProgress(qreal progress);
     void setAvailability(qreal availability);
+    void setOrder(int order);
+    void setSequential(bool sequential);
     ItemType itemType() const override;
 
 private:

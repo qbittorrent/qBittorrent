@@ -117,6 +117,7 @@ let uploadLimitFN = () => {};
 let shareRatioFN = () => {};
 let toggleSequentialDownloadFN = () => {};
 let toggleFirstLastPiecePrioFN = () => {};
+let setFileSchedulingModeFN = () => {};
 let setSuperSeedingFN = () => {};
 let setForceStartFN = () => {};
 let StatisticsLinkFN = () => {};
@@ -437,6 +438,20 @@ const initializeWindows = () => {
                 method: "POST",
                 body: new URLSearchParams({
                     hashes: hashes.join("|")
+                })
+            });
+            updateMainData();
+        }
+    };
+
+    setFileSchedulingModeFN = (mode) => {
+        const hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length) {
+            fetch("api/v2/torrents/setFileSchedulingMode", {
+                method: "POST",
+                body: new URLSearchParams({
+                    hashes: hashes.join("|"),
+                    mode: mode
                 })
             });
             updateMainData();

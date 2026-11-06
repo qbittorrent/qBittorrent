@@ -60,7 +60,9 @@ public:
         Progress,
         Priority,
         Remaining,
-        Availability
+        Availability,
+        DownloadOrder,
+        Sequential
     };
 
     enum class DoubleClickAction
@@ -122,6 +124,13 @@ private:
     void batchRenameFiles();
     void applyPriorities(BitTorrent::DownloadPriority priority);
     void applyPrioritiesByOrder();
+    // Per-file download order ("rank") and sequential download, see `base/bittorrent/filescheduler.h`
+    QList<int> selectedFileIndexesInDisplayOrder() const;
+    void downloadSelectedFirst();
+    void downloadSelectedLast();
+    void rankSelectedByShownOrder();
+    void clearSelectedOrder();
+    void setSelectedSequential(bool sequential);
     Path getFullPath(const QModelIndex &index) const;
     void onItemDoubleClicked(const QModelIndex &index);
     // Expand single-item folders recursively.

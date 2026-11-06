@@ -792,6 +792,15 @@ td.noWrap {
     vertical-align: top;
 }
 
+.fileOrderInput {
+    box-sizing: border-box;
+    font-size: 1em;
+    height: 1.5em;
+    padding: 0 6px;
+    vertical-align: top;
+    width: 100%;
+}
+
 td.statusBarSeparator {
     background-image: url("../images/toolbox-divider.svg");
     background-position: center 1px;

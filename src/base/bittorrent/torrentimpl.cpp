@@ -30,6 +30,7 @@
 #include "torrentimpl.h"
 
 #include <algorithm>
+#include <cmath>
 #include <memory>
 
 #ifdef Q_OS_WIN
@@ -69,6 +70,7 @@
 #include "common.h"
 #include "downloadpriority.h"
 #include "extensiondata.h"
+#include "filescheduler.h"
 #include "filesearcher.h"
 #include "loadtorrentparams.h"
 #include "ltqbitarray.h"
@@ -90,6 +92,21 @@ using namespace BitTorrent;
 
 namespace
 {
+    // Size of the sliding window of a sequential file (see `filescheduler.h`).
+    // It is computed from the piece size and limited to a reasonable number of pieces.
+    // libtorrent picks pieces of equal priority in any order, so a small window keeps the
+    // download close to the start-to-end order. Bandwidth is not lost: the rest of a sequential
+    // file at the head of the queue stays wanted just below the window.
+    const qint64 SEQUENTIAL_WINDOW_BYTES = 8 * 1024 * 1024;
+    const int SEQUENTIAL_WINDOW_MIN_PIECES = 4;
+    const int SEQUENTIAL_WINDOW_MAX_PIECES = 16;
+
+    bool hasFileScheduling(const QList<int> &fileOrder, const QList<bool> &fileSequential)
+    {
+        return std::ranges::any_of(fileOrder, [](const int rank) { return rank != FileScheduler::UNRANKED; })
+                || fileSequential.contains(true);
+    }
+
     lt::announce_entry makeNativeAnnounceEntry(const QString &url, const int tier)
     {
         lt::announce_entry entry {url.toStdString()};
@@ -323,6 +340,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeH
     , m_contentLayout {params.contentLayout}
     , m_hasFinishedStatus {params.hasFinishedStatus}
     , m_hasFirstLastPiecePriority {params.firstLastPiecePriority}
+    , m_fileSchedulingMode {params.fileSchedulingMode}
     , m_useAutoTMM {params.useAutoTMM}
     , m_isStopped {params.stopped}
     , m_sslParams {params.sslParameters}
@@ -379,6 +397,10 @@ TorrentImpl::TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeH
     if (!params.comment.isEmpty())
         m_comment = params.comment;
 
+    m_fileOrder = params.fileOrder;
+    m_fileSequential = params.fileSequential;
+    normalizeFileSchedulingData();
+
     setStopCondition(params.stopCondition);
 
     const auto *extensionData = static_cast<ExtensionData *>(m_ltAddTorrentParams.userdata);
@@ -401,8 +423,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeH
 
     updateState();
 
-    if (hasMetadata())
-        applyFirstLastPiecePriority(m_hasFirstLastPiecePriority);
+    applyPiecePriorities(true);
 }
 
 TorrentImpl::~TorrentImpl() = default;
@@ -474,11 +495,36 @@ qlonglong TorrentImpl::totalSize() const
 // size without the "don't download" files
 qlonglong TorrentImpl::wantedSize() const
 {
+    if (m_fileScheduleHoldsPieces)
+    {
+        // libtorrent doesn't count pieces with priority 0 as "wanted", but pieces held back by
+        // the file schedule are still wanted from the user's point of view.
+        qlonglong size = 0;
+        for (int i = 0; i < m_filePriorities.size(); ++i)
+        {
+            if (m_filePriorities[i] > DownloadPriority::Ignored)
+                size += fileSize(i);
+        }
+        return size;
+    }
+
     return m_nativeStatus.total_wanted;
 }
 
 qlonglong TorrentImpl::completedSize() const
 {
+    if (m_fileScheduleHoldsPieces)
+    {
+        // See `wantedSize()`
+        qlonglong size = 0;
+        for (int i = 0; (i < m_filePriorities.size()) && (i < m_filesProgress.size()); ++i)
+        {
+            if (m_filePriorities[i] > DownloadPriority::Ignored)
+                size += std::min<qlonglong>(m_filesProgress[i], fileSize(i));
+        }
+        return size;
+    }
+
     return m_nativeStatus.total_wanted_done;
 }
 
@@ -929,17 +975,20 @@ qreal TorrentImpl::progress() const
     if (isChecking())
         return m_nativeStatus.progress;
 
-    if (m_nativeStatus.total_wanted == 0)
+    const qlonglong totalWanted = wantedSize();
+    const qlonglong totalWantedDone = completedSize();
+
+    if (totalWanted == 0)
         return 0.;
 
-    if (m_nativeStatus.total_wanted_done == m_nativeStatus.total_wanted)
+    if (totalWantedDone == totalWanted)
         return 1.;
 
-    const qreal progress = static_cast<qreal>(m_nativeStatus.total_wanted_done) / m_nativeStatus.total_wanted;
+    const qreal progress = static_cast<qreal>(totalWantedDone) / totalWanted;
     if ((progress < 0.f) || (progress > 1.f))
     {
         LogMsg(tr("Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.")
-                .arg(name(), QString::number(m_nativeStatus.total_wanted), QString::number(m_nativeStatus.total_wanted_done))
+                .arg(name(), QString::number(totalWanted), QString::number(totalWantedDone))
                 , Log::WARNING);
     }
 
@@ -1154,6 +1203,16 @@ QList<DownloadPriority> TorrentImpl::filePriorities() const
     return m_filePriorities;
 }
 
+QList<int> TorrentImpl::fileOrder() const
+{
+    return m_fileOrder;
+}
+
+QList<bool> TorrentImpl::fileSequentialFlags() const
+{
+    return m_fileSequential;
+}
+
 TorrentInfo TorrentImpl::info() const
 {
     return m_torrentInfo;
@@ -1276,6 +1335,24 @@ bool TorrentImpl::isSequentialDownload() const
 bool TorrentImpl::hasFirstLastPiecePriority() const
 {
     return m_hasFirstLastPiecePriority;
+}
+
+FileSchedulingMode TorrentImpl::fileSchedulingMode() const
+{
+    return m_fileSchedulingMode;
+}
+
+bool TorrentImpl::isFileSchedulingActive() const
+{
+    if (!hasMetadata())
+        return false;
+
+    // Torrent-wide sequential download overrides per-file scheduling. Both cannot work at the same time
+    // since libtorrent's sequential mode ignores piece priorities other than 0 and 7.
+    if (isSequentialDownload())
+        return false;
+
+    return hasFileScheduling(m_fileOrder, m_fileSequential);
 }
 
 TorrentState TorrentImpl::state() const
@@ -1762,6 +1839,9 @@ void TorrentImpl::setSequentialDownload(const bool enable)
         m_nativeStatus.flags &= ~lt::torrent_flags::sequential_download;  // prevent return cached value
     }
 
+    // Torrent-wide sequential download suspends per-file scheduling (and disabling it resumes it)
+    applyPiecePriorities();
+
     deferredRequestResumeData();
 }
 
@@ -1771,8 +1851,7 @@ void TorrentImpl::setFirstLastPiecePriority(const bool enabled)
         return;
 
     m_hasFirstLastPiecePriority = enabled;
-    if (hasMetadata())
-        applyFirstLastPiecePriority(enabled);
+    applyPiecePriorities(true);
 
     LogMsg(tr("Download first and last piece first: %1, torrent: '%2'")
         .arg((enabled ? tr("On") : tr("Off")), name()));
@@ -1815,6 +1894,193 @@ void TorrentImpl::applyFirstLastPiecePriority(const bool enabled)
     }
 
     m_nativeHandle.prioritize_pieces(piecePriorities);
+}
+
+void TorrentImpl::setFileSchedulingMode(const FileSchedulingMode mode)
+{
+    if (m_fileSchedulingMode == mode)
+        return;
+
+    m_fileSchedulingMode = mode;
+    LogMsg(tr("File download order mode: %1, torrent: '%2'").arg(Utils::String::fromEnum(mode), name()));
+
+    updateFileSchedule();
+    deferredRequestResumeData();
+}
+
+void TorrentImpl::setFileOrder(const QList<int> &order)
+{
+    if (!hasMetadata())
+        return;
+
+    Q_ASSERT(order.size() == filesCount());
+    if (order.size() != filesCount()) [[unlikely]]
+        return;
+
+    QList<int> newOrder = order;
+    for (int &rank : newOrder)
+    {
+        if (rank < 0)
+            rank = FileScheduler::UNRANKED;
+    }
+
+    if (newOrder == m_fileOrder)
+        return;
+
+    m_fileOrder = newOrder;
+    handleFileSchedulingDataChanged();
+}
+
+void TorrentImpl::setFileSequentialFlags(const QList<bool> &flags)
+{
+    if (!hasMetadata())
+        return;
+
+    Q_ASSERT(flags.size() == filesCount());
+    if (flags.size() != filesCount()) [[unlikely]]
+        return;
+
+    if (flags == m_fileSequential)
+        return;
+
+    m_fileSequential = flags;
+    handleFileSchedulingDataChanged();
+}
+
+void TorrentImpl::handleFileSchedulingDataChanged()
+{
+    // The user asked for per-file scheduling, which cannot work together with torrent-wide
+    // sequential download, so we turn the latter off (it updates piece priorities itself).
+    if (hasFileScheduling(m_fileOrder, m_fileSequential) && isSequentialDownload())
+        setSequentialDownload(false);
+    else
+        updateFileSchedule();
+
+    deferredRequestResumeData();
+}
+
+void TorrentImpl::normalizeFileSchedulingData()
+{
+    // Internally the per-file lists are either empty (no metadata yet) or have one entry per file.
+    if (!hasMetadata())
+        return;
+
+    const int count = filesCount();
+    if (m_fileOrder.size() != count)
+        m_fileOrder = QList<int>(count, FileScheduler::UNRANKED);
+    for (int &rank : m_fileOrder)
+    {
+        if (rank < 0)
+            rank = FileScheduler::UNRANKED;
+    }
+
+    if (m_fileSequential.size() != count)
+        m_fileSequential = QList<bool>(count, false);
+}
+
+int TorrentImpl::sequentialWindowSize() const
+{
+    const qlonglong pieceSize = std::max<qlonglong>(pieceLength(), 1);
+    const qlonglong windowPieces = (SEQUENTIAL_WINDOW_BYTES + pieceSize - 1) / pieceSize;
+    return static_cast<int>(std::clamp<qlonglong>(windowPieces, SEQUENTIAL_WINDOW_MIN_PIECES, SEQUENTIAL_WINDOW_MAX_PIECES));
+}
+
+void TorrentImpl::applyPiecePriorities(const bool forceRegular)
+{
+    if (!hasMetadata())
+        return;
+
+    if (isFileSchedulingActive() || m_fileScheduleApplied)
+    {
+        updateFileSchedule(true);
+        return;
+    }
+
+    if (forceRegular || m_hasFirstLastPiecePriority)
+        applyFirstLastPiecePriority(m_hasFirstLastPiecePriority);
+}
+
+void TorrentImpl::updateFileSchedule(const bool force)
+{
+    // During metadata handling the file lists are incomplete. The schedule is applied when it is finished.
+    if (!hasMetadata() || (m_maintenanceJob != MaintenanceJob::None))
+        return;
+
+    if (!isFileSchedulingActive())
+    {
+        if (!m_fileScheduleApplied)
+            return;
+
+        // Scheduling has just been turned off. Go back to the regular piece priorities.
+        m_appliedPiecePriorities.clear();
+        m_fileScheduleApplied = false;
+        m_fileScheduleHoldsPieces = false;
+        applyFirstLastPiecePriority(m_hasFirstLastPiecePriority);
+        return;
+    }
+
+    const int filesCount = this->filesCount();
+    if ((m_filePriorities.size() != filesCount) || (m_fileOrder.size() != filesCount)
+            || (m_fileSequential.size() != filesCount)) [[unlikely]]
+    {
+        return;
+    }
+
+    FileScheduler::Input input;
+    input.pieceCount = m_torrentInfo.piecesCount();
+    input.mode = m_fileSchedulingMode;
+    input.windowSize = sequentialWindowSize();
+    input.havePieces.resize(static_cast<std::size_t>(m_pieces.size()));
+    for (qsizetype i = 0; i < m_pieces.size(); ++i)
+        input.havePieces[i] = m_pieces.testBit(i);
+
+    input.files.reserve(filesCount);
+    for (int i = 0; i < filesCount; ++i)
+    {
+        const TorrentInfo::PieceRange pieceRange = m_torrentInfo.filePieces(i);
+        const bool hasPieces = !pieceRange.isEmpty();
+        // Same rule as in `applyFirstLastPiecePriority()`
+        const int edgePieces = (m_hasFirstLastPiecePriority && hasPieces)
+                ? static_cast<int>(std::ceil(fileSize(i) * 0.01 / pieceLength())) : 0;
+
+        input.files.push_back({
+            .firstPiece = pieceRange.first(),
+            .lastPiece = (hasPieces ? pieceRange.last() : (pieceRange.first() - 1)),
+            .priority = static_cast<int>(m_filePriorities[i]),
+            .rank = m_fileOrder[i],
+            .sequential = m_fileSequential[i],
+            .edgePieces = edgePieces
+        });
+    }
+
+    const FileScheduler::Plan plan = FileScheduler::makePlan(input);
+
+    std::vector<lt::download_priority_t> piecePriorities;
+    piecePriorities.reserve(plan.piecePriorities.size());
+    for (const std::uint8_t priority : plan.piecePriorities)
+        piecePriorities.emplace_back(priority);
+
+    // `m_appliedPiecePriorities` mirrors what libtorrent has, so unchanged plans are not sent again.
+    // Whenever libtorrent recomputes piece priorities itself (e.g. after file priorities are applied),
+    // the plan has to be applied with `force`.
+    if (force || !m_fileScheduleApplied || (piecePriorities != m_appliedPiecePriorities))
+    {
+        m_nativeHandle.prioritize_pieces(piecePriorities);
+        m_appliedPiecePriorities = std::move(piecePriorities);
+    }
+
+    m_fileScheduleApplied = true;
+    m_fileScheduleHoldsPieces = plan.holdsPieces;
+}
+
+void TorrentImpl::handleFilePrioritiesApplied()
+{
+    deferredRequestResumeData();
+
+    // libtorrent applies `prioritize_files()` asynchronously (it needs a round-trip to the disk thread)
+    // and then recomputes all piece priorities from the file priorities. This replaces the piece
+    // priorities set in the meantime, so the piece level priorities have to be applied again.
+    applyPiecePriorities();
 }
 
 TrackerEntryStatus TorrentImpl::updateTrackerEntryStatus(const lt::announce_entry &announceEntry, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo)
@@ -1931,6 +2197,8 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     for (qsizetype i = 0; i < m_filePriorities.size(); ++i)
         p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(m_filePriorities[i]);
 
+    normalizeFileSchedulingData();
+
     p.save_path = savePath.toString().toStdString();
     p.ti = metadata;
 
@@ -1947,12 +2215,11 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
 
     reload();
 
-    // If first/last piece priority was specified when adding this torrent,
-    // we should apply it now that we have metadata:
-    if (m_hasFirstLastPiecePriority)
-        applyFirstLastPiecePriority(true);
-
     m_maintenanceJob = MaintenanceJob::None;
+
+    // If first/last piece priority (or file scheduling) was specified when adding this torrent,
+    // we should apply it now that we have metadata:
+    applyPiecePriorities();
     prepareResumeData(std::move(p));
 
     emit metadataReceived();
@@ -1999,6 +2266,11 @@ void TorrentImpl::reload()
         m_pieces.fill(false);
         m_nativeStatus.pieces.clear_all();
         m_nativeStatus.num_pieces = 0;
+
+        // The reloaded torrent doesn't have our piece priorities
+        m_appliedPiecePriorities.clear();
+        if (m_fileScheduleApplied)
+            updateFileSchedule(true);
 
         updateState();
     }
@@ -2199,6 +2471,17 @@ void TorrentImpl::handleTorrentFinished()
 
     m_statusUpdatedTriggers.enqueue([this]()
     {
+        if (m_fileScheduleApplied)
+        {
+            // libtorrent considers the torrent finished when all pieces with non-zero priority
+            // are downloaded. If the file schedule still holds back pieces of wanted files,
+            // this is not the real end of the download: only the head of the queue has completed.
+            // Move the schedule forward (it makes held pieces wanted again) and ignore the event.
+            updateFileSchedule();
+            if (m_fileScheduleHoldsPieces)
+                return;
+        }
+
         adjustStorageLocation();
         manageActualFilePaths();
 
@@ -2342,6 +2625,9 @@ void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
         .operatingMode = m_operatingMode,
         .useAutoTMM = m_useAutoTMM,
         .firstLastPiecePriority = m_hasFirstLastPiecePriority,
+        .fileOrder = (hasFileScheduling(m_fileOrder, {}) ? m_fileOrder : QList<int>()),
+        .fileSequential = (m_fileSequential.contains(true) ? m_fileSequential : QList<bool>()),
+        .fileSchedulingMode = m_fileSchedulingMode,
         .hasFinishedStatus = m_hasFinishedStatus,
         .stopped = m_isStopped,
         .stopCondition = m_stopCondition,
@@ -2753,6 +3039,10 @@ void TorrentImpl::updateProgress()
             pieceOffset += add;
         }
     }
+
+    // Move the file schedule forward as pieces complete
+    if (m_fileScheduleApplied)
+        updateFileSchedule();
 }
 
 void TorrentImpl::setUploadLimit(const int limit)
@@ -3067,9 +3357,9 @@ void TorrentImpl::prioritizeFiles(const QList<DownloadPriority> &priorities)
     m_nativeHandle.prioritize_files(nativePriorities);
 
     m_filePriorities = priorities;
-    // Restore first/last piece first option if necessary
-    if (m_hasFirstLastPiecePriority)
-        applyFirstLastPiecePriority(true);
+    // `prioritize_files()` resets piece priorities, so restore "first/last piece first"
+    // or the file schedule if necessary
+    applyPiecePriorities();
     manageActualFilePaths();
 }
 

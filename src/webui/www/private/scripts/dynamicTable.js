@@ -2658,6 +2658,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("priority", "", "QBT_TR(Download Priority)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
             this.newColumn("remaining", "", "QBT_TR(Remaining)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("availability", "", "QBT_TR(Availability)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
+            this.newColumn("order", "", "QBT_TR(Download Order)QBT_TR[CONTEXT=TrackerListWidget]", 100, true);
+            this.newColumn("sequential", "", "QBT_TR(Sequential)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
 
             this.initColumnsFunctions();
         }
@@ -2799,6 +2801,47 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.columns["remaining"].updateTd = displaySize;
             if (this.columns["availability"] !== undefined)
                 this.columns["availability"].updateTd = displayPercentage;
+
+            // order
+            if (this.columns["order"] !== undefined) {
+                this.columns["order"].updateTd = function(td, row) {
+                    const id = row.rowId;
+                    const node = that.getNode(id);
+                    const value = this.getRowValue(row);
+
+                    const orderInput = td.firstElementChild;
+                    if (orderInput === null)
+                        td.append(window.qBittorrent.TorrentContent.createOrderInput(id, node.fileId, value, node.isFolder));
+                    else
+                        window.qBittorrent.TorrentContent.updateOrderInput(orderInput, id, node.fileId, value, node.isFolder);
+                };
+                this.columns["order"].compareRows = function(row1, row2) {
+                    // unranked files (0) are placed after ranked ones
+                    const sortKey = (row) => {
+                        const value = this.getRowValue(row);
+                        return (value > 0) ? value : Infinity;
+                    };
+                    return compareNumbers(sortKey(row1), sortKey(row2));
+                };
+            }
+
+            // sequential
+            if (this.columns["sequential"] !== undefined) {
+                this.columns["sequential"].updateTd = function(td, row) {
+                    const id = row.rowId;
+                    const node = that.getNode(id);
+                    const value = this.getRowValue(row);
+
+                    const sequentialCheckbox = td.firstElementChild;
+                    if (sequentialCheckbox === null)
+                        td.append(window.qBittorrent.TorrentContent.createSequentialCheckbox(id, node.fileId, value, node.isFolder));
+                    else
+                        window.qBittorrent.TorrentContent.updateSequentialCheckbox(sequentialCheckbox, id, node.fileId, value, node.isFolder);
+                };
+                this.columns["sequential"].compareRows = function(row1, row2) {
+                    return compareNumbers(Number(this.getRowValue(row1)), Number(this.getRowValue(row2)));
+                };
+            }
 
             for (const column of this.columns) {
                 column["getRowValue"] = function(row, pos = 0) {
@@ -3196,6 +3239,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("name", "", "QBT_TR(Name)QBT_TR[CONTEXT=TrackerListWidget]", 190, true);
             this.newColumn("size", "", "QBT_TR(Total Size)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("priority", "", "QBT_TR(Download Priority)QBT_TR[CONTEXT=TrackerListWidget]", 140, true);
+            this.newColumn("order", "", "QBT_TR(Download Order)QBT_TR[CONTEXT=TrackerListWidget]", 100, true);
+            this.newColumn("sequential", "", "QBT_TR(Sequential)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
 
             this.initColumnsFunctions();
         }

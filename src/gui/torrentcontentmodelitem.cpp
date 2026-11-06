@@ -88,6 +88,18 @@ BitTorrent::DownloadPriority TorrentContentModelItem::priority() const
     return m_priority;
 }
 
+int TorrentContentModelItem::order() const
+{
+    Q_ASSERT(!isRootItem());
+    return m_order;
+}
+
+bool TorrentContentModelItem::isSequential() const
+{
+    Q_ASSERT(!isRootItem());
+    return m_sequential;
+}
+
 int TorrentContentModelItem::columnCount() const
 {
     return NB_COL;
@@ -135,6 +147,10 @@ QString TorrentContentModelItem::displayData(const int column) const
                     : Utils::String::fromDouble((avail * 100), 1);
             return (value + u'%');
         }
+    case COL_ORDER:
+        return (m_order > 0) ? QString::number(m_order) : QString();
+    case COL_SEQUENTIAL:
+        return {}; // represented by a check box
     default:
         Q_UNREACHABLE();
         break;
@@ -162,6 +178,10 @@ QVariant TorrentContentModelItem::underlyingData(const int column) const
         return remaining();
     case COL_AVAILABILITY:
         return availability();
+    case COL_ORDER:
+        return m_order;
+    case COL_SEQUENTIAL:
+        return m_sequential;
     default:
         Q_UNREACHABLE();
         break;

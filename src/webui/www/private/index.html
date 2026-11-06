@@ -207,6 +207,14 @@
         <li><a href="#superSeeding"><img src="images/checked-completed.svg" alt="QBT_TR(Super seeding mode)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Super seeding mode)QBT_TR[CONTEXT=TransferListWidget]</a></li>
         <li class="separator"><a href="#sequentialDownload"><img src="images/checked-completed.svg" alt="QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]</a></li>
         <li><a href="#firstLastPiecePrio"><img src="images/checked-completed.svg" alt="QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li title="QBT_TR(Controls how the &quot;Download Order&quot; of files is enforced. Files with a lower number are downloaded first.)QBT_TR[CONTEXT=TransferListWidget]">
+            <a href="#fileSchedulingMode" class="arrow-right"><span style="display: inline-block; width: 16px;"></span> QBT_TR(File download order)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <ul>
+                <li title="QBT_TR(Ordered files are preferred in their order, but other files can still be downloaded at the same time, for example when their pieces are rare.)QBT_TR[CONTEXT=TransferListWidget]"><a href="#fileSchedulingModeSoft"><img src="images/checked-completed.svg" alt="QBT_TR(Soft)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Soft)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li title="QBT_TR(Files without an order are not downloaded until all ordered files are complete.)QBT_TR[CONTEXT=TransferListWidget]"><a href="#fileSchedulingModeRankedFirst"><img src="images/checked-completed.svg" alt="QBT_TR(Ordered files first)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Ordered files first)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li title="QBT_TR(Only the next file in the order is downloaded. This may leave bandwidth unused when its pieces are rare.)QBT_TR[CONTEXT=TransferListWidget]"><a href="#fileSchedulingModeStrict"><img src="images/checked-completed.svg" alt="QBT_TR(Strict)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Strict)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+            </ul>
+        </li>
         <li class="separator"><a href="#forceRecheck"><img src="images/force-recheck.svg" alt="QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]</a></li>
         <li><a href="#forceReannounce"><img src="images/reannounce.svg" alt="QBT_TR(Force reannounce)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Force reannounce)QBT_TR[CONTEXT=TransferListWidget]</a></li>
         <li id="queueingMenuItems" class="separator">
@@ -300,6 +308,16 @@
                 <li><a href="#FilePrioMaximum"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]</a></li>
             </ul>
         </li>
+        <li>
+            <a href="#FileOrder" class="arrow-right"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Download order)QBT_TR[CONTEXT=PropertiesWidget]</a>
+            <ul>
+                <li title="QBT_TR(Move the selected files to the top of the download order)QBT_TR[CONTEXT=PropertiesWidget]"><a href="#FileOrderFirst"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Download first)QBT_TR[CONTEXT=PropertiesWidget]</a></li>
+                <li title="QBT_TR(Move the selected files to the bottom of the download order)QBT_TR[CONTEXT=PropertiesWidget]"><a href="#FileOrderLast"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Download last)QBT_TR[CONTEXT=PropertiesWidget]</a></li>
+                <li title="QBT_TR(Rank the selected files in the order they are shown, after the files that are already ranked)QBT_TR[CONTEXT=PropertiesWidget]"><a href="#FileOrderShown"><span style="display: inline-block; width: 16px;"></span> QBT_TR(By shown file order)QBT_TR[CONTEXT=PropertiesWidget]</a></li>
+                <li class="separator"><a href="#FileOrderRemove"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Remove from download order)QBT_TR[CONTEXT=PropertiesWidget]</a></li>
+            </ul>
+        </li>
+        <li><a href="#FileSequential"><img src="images/checked-completed.svg" alt="QBT_TR(Download in sequential order)QBT_TR[CONTEXT=PropertiesWidget]"> QBT_TR(Download in sequential order)QBT_TR[CONTEXT=PropertiesWidget]</a></li>
     </ul>
     <ul id="multiRenameFilesMenu" class="contextMenu">
         <li><a href="#ToggleSelection"><img src="images/edit-rename.svg" alt="QBT_TR(Toggle Selection)QBT_TR[CONTEXT=PropertiesWidget]"> QBT_TR(Toggle Selection)QBT_TR[CONTEXT=PropertiesWidget]</a></li>

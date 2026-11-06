@@ -61,8 +61,27 @@ namespace BitTorrent
          */
         virtual QFuture<QList<qreal>> fetchAvailableFileFractions() const = 0;
 
+        /**
+         * @brief per-file download order ("rank")
+         *
+         * `0` means the file is unranked. Any positive value (up to INT_MAX) is a rank:
+         * files with a lower rank are downloaded before files with a higher rank and
+         * files with the same rank are downloaded together.
+         * An empty list means that no file is ranked.
+         * See `filescheduler.h` for how ranks are applied.
+         */
+        virtual QList<int> fileOrder() const = 0;
+        /**
+         * @brief per-file "download in sequential order" flags
+         *
+         * An empty list means that no file is sequential.
+         */
+        virtual QList<bool> fileSequentialFlags() const = 0;
+
         virtual void renameFile(int index, const Path &newPath) = 0;
         virtual void prioritizeFiles(const QList<DownloadPriority> &priorities) = 0;
+        virtual void setFileOrder(const QList<int> &order) = 0;
+        virtual void setFileSequentialFlags(const QList<bool> &flags) = 0;
         virtual void flushCache() const = 0;
 
         void renameFile(const Path &oldPath, const Path &newPath);

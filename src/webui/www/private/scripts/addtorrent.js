@@ -359,10 +359,16 @@ window.qBittorrent.AddTorrent ??= (() => {
         document.getElementById("upLimitHidden").value = Number(document.getElementById("upLimitText").value) * 1024;
 
         if (table !== null) {
-            document.getElementById("filePriorities").value = table.getFileTreeArray()
+            const fileNodes = table.getFileTreeArray()
                 .filter((node) => !node.isFolder)
-                .sort((node1, node2) => (node1.fileId - node2.fileId))
-                .map((node) => node.priority);
+                .sort((node1, node2) => (node1.fileId - node2.fileId));
+            document.getElementById("filePriorities").value = fileNodes.map((node) => node.priority);
+
+            // only send the download order and sequential flags when they are used
+            const hasFileOrder = fileNodes.some((node) => (node.order > 0));
+            const hasFileSequential = fileNodes.some((node) => node.sequential);
+            document.getElementById("fileOrder").value = hasFileOrder ? fileNodes.map((node) => node.order ?? 0) : "";
+            document.getElementById("fileSequential").value = hasFileSequential ? fileNodes.map((node) => (node.sequential ? "true" : "false")) : "";
         }
 
         if (!isAutoTMMEnabled())

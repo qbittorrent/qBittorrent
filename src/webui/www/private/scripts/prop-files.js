@@ -62,6 +62,51 @@ window.qBittorrent.PropFiles ??= (() => {
             });
     };
 
+    const onFileOrderChanged = async (fileIdsByOrder) => {
+        clearTimeout(loadTorrentFilesDataTimer);
+        loadTorrentFilesDataTimer = -1;
+
+        const hash = current_hash;
+        try {
+            // the API sets one order value per request
+            for (const [order, fileIds] of fileIdsByOrder) {
+                const response = await fetch("api/v2/torrents/setFileOrder", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        hash: hash,
+                        id: fileIds.join("|"),
+                        order: order
+                    })
+                });
+                if (!response.ok)
+                    break;
+            }
+        }
+        finally {
+            clearTimeout(loadTorrentFilesDataTimer);
+            loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1000);
+        }
+    };
+
+    const onFileSequentialChanged = (fileIds, sequential) => {
+        clearTimeout(loadTorrentFilesDataTimer);
+        loadTorrentFilesDataTimer = -1;
+
+        fetch("api/v2/torrents/setFileSequential", {
+                method: "POST",
+                body: new URLSearchParams({
+                    hash: current_hash,
+                    id: fileIds.join("|"),
+                    value: sequential
+                })
+            })
+            .finally(() => {
+                // refresh even on failure so that the table doesn't keep showing a value that wasn't applied
+                clearTimeout(loadTorrentFilesDataTimer);
+                loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1000);
+            });
+    };
+
     let loadTorrentFilesDataTimer = -1;
     const loadTorrentFilesData = () => {
         if (document.hidden)
@@ -173,7 +218,7 @@ window.qBittorrent.PropFiles ??= (() => {
             multiFileRename(current_hash, selectedRows);
     };
 
-    const torrentFilesTable = window.qBittorrent.TorrentContent.init("torrentFilesTableDiv", window.qBittorrent.DynamicTable.TorrentFilesTable, onFilePriorityChanged, onFileRenameHandler);
+    const torrentFilesTable = window.qBittorrent.TorrentContent.init("torrentFilesTableDiv", window.qBittorrent.DynamicTable.TorrentFilesTable, onFilePriorityChanged, onFileRenameHandler, onFileOrderChanged, onFileSequentialChanged);
 
     const clear = () => {
         torrentFilesTable.clear();

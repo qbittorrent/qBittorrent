@@ -81,6 +81,15 @@
                 firstLastPiecePrio: (element, ref) => {
                     toggleFirstLastPiecePrioFN();
                 },
+                fileSchedulingModeSoft: (element, ref) => {
+                    setFileSchedulingModeFN("Soft");
+                },
+                fileSchedulingModeRankedFirst: (element, ref) => {
+                    setFileSchedulingModeFN("RankedFirst");
+                },
+                fileSchedulingModeStrict: (element, ref) => {
+                    setFileSchedulingModeFN("Strict");
+                },
 
                 autoTorrentManagement: (element, ref) => {
                     autoTorrentManagementFN();

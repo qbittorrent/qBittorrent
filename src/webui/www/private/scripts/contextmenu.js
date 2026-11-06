@@ -346,6 +346,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             let all_are_auto_tmm = true;
             let thereAreV1Hashes = false;
             let thereAreV2Hashes = false;
+            let fileSchedulingMode = null;
             const tagCount = new Map();
             const categoryCount = new Map();
 
@@ -387,6 +388,12 @@ window.qBittorrent.ContextMenu ??= (() => {
                 if (data["infohash_v2"] !== "")
                     thereAreV2Hashes = true;
 
+                // `fileSchedulingMode` is set to an empty string when the selected torrents use different modes
+                if (fileSchedulingMode === null)
+                    fileSchedulingMode = data["file_scheduling_mode"];
+                else if (fileSchedulingMode !== data["file_scheduling_mode"])
+                    fileSchedulingMode = "";
+
                 const torrentTags = data["tags"].split(", ");
                 for (const tag of torrentTags) {
                     const count = tagCount.get(tag);
@@ -419,6 +426,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.menu.querySelector("a[href$=uploadLimit]").parentNode.classList.add("separator");
                 this.hideItem("sequentialDownload");
                 this.hideItem("firstLastPiecePrio");
+                this.hideItem("fileSchedulingMode");
                 this.showItem("superSeeding");
                 this.setItemChecked("superSeeding", all_are_super_seeding);
             }
@@ -440,6 +448,12 @@ window.qBittorrent.ContextMenu ??= (() => {
 
                 this.setItemChecked("sequentialDownload", all_are_seq_dl);
                 this.setItemChecked("firstLastPiecePrio", all_are_f_l_piece_prio);
+
+                this.showItem("fileSchedulingMode");
+                this.menu.querySelector("a[href$=fileSchedulingMode]").parentNode.classList.toggle("separator", (!show_seq_dl && !show_f_l_piece_prio));
+                this.setItemChecked("fileSchedulingModeSoft", (fileSchedulingMode === "Soft"));
+                this.setItemChecked("fileSchedulingModeRankedFirst", (fileSchedulingMode === "RankedFirst"));
+                this.setItemChecked("fileSchedulingModeStrict", (fileSchedulingMode === "Strict"));
 
                 this.showItem("downloadLimit");
                 this.menu.querySelector("a[href$=uploadLimit]").parentNode.classList.remove("separator");

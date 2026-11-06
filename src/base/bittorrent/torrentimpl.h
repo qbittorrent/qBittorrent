@@ -31,6 +31,7 @@
 
 #include <functional>
 #include <memory>
+#include <vector>
 
 #include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
@@ -158,6 +159,8 @@ namespace BitTorrent
         PathList filePaths() const override;
         PathList actualFilePaths() const override;
         QList<DownloadPriority> filePriorities() const override;
+        QList<int> fileOrder() const override;
+        QList<bool> fileSequentialFlags() const override;
 
         TorrentInfo info() const override;
         bool isFinished() const override;
@@ -174,6 +177,8 @@ namespace BitTorrent
         bool isErrored() const override;
         bool isSequentialDownload() const override;
         bool hasFirstLastPiecePriority() const override;
+        FileSchedulingMode fileSchedulingMode() const override;
+        bool isFileSchedulingActive() const override;
         TorrentState state() const override;
         bool hasMetadata() const override;
         bool hasMissingFiles() const override;
@@ -214,6 +219,7 @@ namespace BitTorrent
         void setName(const QString &name) override;
         void setSequentialDownload(bool enable) override;
         void setFirstLastPiecePriority(bool enabled) override;
+        void setFileSchedulingMode(FileSchedulingMode mode) override;
         void stop() override;
         void start(TorrentOperatingMode mode = TorrentOperatingMode::AutoManaged) override;
         void forceReannounce(int index = -1) override;
@@ -221,6 +227,8 @@ namespace BitTorrent
         void forceRecheck() override;
         void renameFile(int index, const Path &path) override;
         void prioritizeFiles(const QList<DownloadPriority> &priorities) override;
+        void setFileOrder(const QList<int> &order) override;
+        void setFileSequentialFlags(const QList<bool> &flags) override;
         void setUploadLimit(int limit) override;
         void setDownloadLimit(int limit) override;
         void setSuperSeeding(bool enable) override;
@@ -264,6 +272,7 @@ namespace BitTorrent
         void handleFastResumeRejected();
         void handleFileCompleted(lt::file_index_t nativeFileIndex);
         void handleFileError(FileErrorInfo fileError);
+        void handleFilePrioritiesApplied();
         void handleFileRenamed(lt::file_index_t nativeFileIndex, const Path &newActualFilePath, const Path &oldActualFilePath);
         void handleFileRenameFailed(lt::file_index_t nativeFileIndex);
         void handleMetadataReceived();
@@ -318,6 +327,19 @@ namespace BitTorrent
         void manageActualFilePaths();
         void applyFirstLastPiecePriority(bool enabled);
 
+        // Per-file download order / sequential download, see `filescheduler.h`.
+        // Recomputes the schedule and applies it to libtorrent if it changed (or always if `force`).
+        // If scheduling has just become inactive, restores the regular piece priorities.
+        void updateFileSchedule(bool force = false);
+        // Applies the file schedule or the regular piece priorities, whichever is in effect.
+        // Use it when libtorrent piece priorities may have been reset (e.g. file priorities changed).
+        // Regular piece priorities are only (re)applied if "first and last piece first" is enabled,
+        // unless `forceRegular` is set.
+        void applyPiecePriorities(bool forceRegular = false);
+        void normalizeFileSchedulingData();
+        void handleFileSchedulingDataChanged();
+        int sequentialWindowSize() const;
+
         void prepareResumeData(lt::add_torrent_params resumeData);
         void endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames);
         void reload();
@@ -335,6 +357,8 @@ namespace BitTorrent
         PathList m_filePaths;
         QHash<lt::file_index_t, int> m_indexMap;
         QList<DownloadPriority> m_filePriorities;
+        QList<int> m_fileOrder;
+        QList<bool> m_fileSequential;
         QBitArray m_completedFiles;
         SpeedMonitor m_payloadRateMonitor;
 
@@ -378,6 +402,7 @@ namespace BitTorrent
         bool m_hasFinishedStatus = false;
         bool m_hasMissingFiles = false;
         bool m_hasFirstLastPiecePriority = false;
+        FileSchedulingMode m_fileSchedulingMode = FileSchedulingMode::Soft;
         bool m_useAutoTMM = false;
         bool m_isStopped = false;
         StopCondition m_stopCondition = StopCondition::None;
@@ -394,5 +419,10 @@ namespace BitTorrent
         QList<std::int64_t> m_filesProgress;
 
         bool m_deferredRequestResumeDataInvoked = false;
+
+        // State of the file schedule last applied to libtorrent (see `updateFileSchedule()`)
+        bool m_fileScheduleApplied = false;
+        bool m_fileScheduleHoldsPieces = false;
+        std::vector<lt::download_priority_t> m_appliedPiecePriorities;
     };
 }
