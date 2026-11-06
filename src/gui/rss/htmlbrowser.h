@@ -47,7 +47,7 @@ public:
 
     QVariant loadResource(int type, const QUrl &name) override;
     void setHtml(const QString &html, const QUrl &baseUrl = {});
-    void clearArticle();
+    void clearContent();
 
 private slots:
     void resourceLoaded(QNetworkReply *reply);

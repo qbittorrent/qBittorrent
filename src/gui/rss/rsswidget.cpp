@@ -600,7 +600,7 @@ void RSSWidget::on_markReadButton_clicked()
 // display a news
 void RSSWidget::handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QListWidgetItem *previousItem)
 {
-    m_ui->textBrowser->clearArticle();
+    m_ui->textBrowser->clearContent();
 
     if (previousItem)
     {

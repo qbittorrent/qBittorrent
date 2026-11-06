@@ -55,18 +55,18 @@ HtmlBrowser::HtmlBrowser(QWidget *parent)
 
 void HtmlBrowser::setHtml(const QString &html, const QUrl &baseUrl)
 {
-    clearArticle();
+    clearContent();
     document()->setBaseUrl(baseUrl);
     QTextBrowser::setHtml(html);
 }
 
-void HtmlBrowser::clearArticle()
+void HtmlBrowser::clearContent()
 {
     // Remove ownership before abort(): finished() can be emitted synchronously.
     const auto requests = m_activeRequests;
     m_activeRequests.clear();
     m_failedResources.clear();
-    for (auto *reply : requests)
+    for (QNetworkReply *reply : requests)
         reply->abort();
 
     QTextBrowser::clear();
