@@ -191,6 +191,19 @@ void TransferController::banPeersAction()
     setResult(QString());
 }
 
+void TransferController::shadowbanPeersAction()
+{
+    requireParams({u"peers"_s});
+
+    const QStringList peers = params()[u"peers"_s].split(u'|');
+    for (const QString &peer : peers)
+    {
+        const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(peer.trimmed());
+        if (!addr.ip.isNull())
+            BitTorrent::Session::instance()->shadowbanIP(addr.ip.toString());
+    }
+}
+
 void TransferController::pauseSessionAction()
 {
     BitTorrent::Session::instance()->pause();

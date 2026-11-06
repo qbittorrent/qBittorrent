@@ -52,4 +52,5 @@ private slots:
     void banPeersAction();
     void pauseSessionAction();
     void resumeSessionAction();
+    void shadowbanPeersAction();
 };
