@@ -200,7 +200,9 @@ jobs:
 
       - name: Package AppImage
         run: |
-          rm -f "$QT_PLUGIN_PATH/sqldrivers/libqsqlmimer.so"
+          rm -f \
+            "$QT_PLUGIN_PATH/sqldrivers/libqsqlmimer.so" \
+            "$QT_PLUGIN_PATH/sqldrivers/libqsqlmysql.so"
           ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --plugin qt
           mkdir -p qbittorrent/apprun-hooks
           rm -f qbittorrent/apprun-hooks/*

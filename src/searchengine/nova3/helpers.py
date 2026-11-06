@@ -1,4 +1,4 @@
-# VERSION: 1.60
+# VERSION: 1.61
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -57,11 +57,11 @@ def _getBrowserUserAgent() -> str:
     # https://whattrainisitnow.com/calendar/
     # https://wiki.mozilla.org/index.php?title=Release_Management/Calendar&redirect=no
 
-    baseDate = datetime.date(2024, 4, 16)
-    baseVersion = 125
+    baseDate = datetime.date(2026, 10, 13)
+    baseVersion = 158
 
     nowDate = datetime.datetime.now(datetime.UTC).date()
-    nowVersion = baseVersion + ((nowDate - baseDate).days // 30)
+    nowVersion = baseVersion + ((nowDate - baseDate).days // 15)
 
     return f"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:{nowVersion}.0) Gecko/20100101 Firefox/{nowVersion}.0"
 

@@ -243,8 +243,8 @@ bool RequestParser::parseRequestLine(const QByteArrayView line)
             const QByteArrayView nameComponent = param.first(eqCharPos);
             const QByteArrayView valueComponent = param.sliced(eqCharPos + 1);
             const QString paramName = QString::fromUtf8(
-                QByteArray::fromPercentEncoding(asQByteArray(nameComponent)).replace('+', ' '));
-            const QByteArray paramValue = QByteArray::fromPercentEncoding(asQByteArray(valueComponent)).replace('+', ' ');
+                QByteArray::fromPercentEncoding(asQByteArray(nameComponent).replace('+', ' ')));
+            const QByteArray paramValue = QByteArray::fromPercentEncoding(asQByteArray(valueComponent).replace('+', ' '));
 
             m_request.query[paramName] = paramValue;
         }

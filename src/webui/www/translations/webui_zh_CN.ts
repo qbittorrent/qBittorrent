@@ -19,10 +19,6 @@
         <translation>开始 Torrent</translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">跳过哈希校验</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Torrent 管理模式：</translation>
     </message>
@@ -73,10 +69,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>按顺序下载</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation type="vanished">大小：</translation>
     </message>
     <message>
         <source>Save at</source>
@@ -139,10 +131,6 @@
         <translation>过滤文件...</translation>
     </message>
     <message>
-        <source>Add Torrent</source>
-        <translation type="vanished">添加种子</translation>
-    </message>
-    <message>
         <source>Use another path for incomplete torrent</source>
         <translation>对不完整的 Torrent 使用另一个路径</translation>
     </message>
@@ -199,33 +187,30 @@
         <translation>限制下载速率</translation>
     </message>
     <message>
-        <source>%1 (Free space on disk: %2)</source>
-        <translation type="vanished">%1（剩余磁盘空间：%2）</translation>
-    </message>
-    <message>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
     <message>
         <source>If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.
 The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.</source>
-        <translation type="unfinished" />
+        <translation>如果设置，qBittorrent 将假定此种子的所有文件都存在，并且它们都与种子文件中的哈希值匹配。此模式的用例是，如果种子已创建并在做种，或者如果用户已经知道所有文件都已完成，这是一种只执行基本文件检查并跳过初始哈希检查的方法。
+当对等节点首次请求时，将检查文件块哈希。如果哈希检查失败，将重新检查此种子中的所有文件。</translation>
     </message>
     <message>
         <source>Seed mode</source>
-        <translation type="unfinished" />
+        <translation>种子模式</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>下载</translation>
     </message>
     <message>
         <source>%1 free</source>
-        <translation type="unfinished" />
+        <translation>%1 可用</translation>
     </message>
     <message>
         <source>%1 needed · %2 free</source>
-        <translation type="unfinished" />
+        <translation>需要 %1 · %2 可用</translation>
     </message>
 </context>
 <context>
@@ -271,7 +256,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Start torrents</source>
-        <translation>启动 torrent</translation>
+        <translation>开始 Torrent</translation>
     </message>
     <message>
         <source>Stop torrents</source>
@@ -279,7 +264,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>强制开始 Torrent</translation>
     </message>
 </context>
 <context>
@@ -541,7 +526,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Unable to start torrents.</source>
-        <translation>无法开始 torrents。</translation>
+        <translation>无法开始 Torrent。</translation>
     </message>
     <message>
         <source>Add web seeds</source>
@@ -597,35 +582,31 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation>无法保存偏好设置，qBittorrent 可能无法访问。</translation>
+        <translation>无法保存首选项，qBittorrent 可能无法访问。</translation>
     </message>
     <message>
         <source>Error:</source>
         <translation>错误：</translation>
     </message>
     <message>
-        <source>Could not contact qBittorrent.</source>
-        <translation type="vanished">无法联系 qBittorrent。</translation>
-    </message>
-    <message>
         <source>BitTorrent session shutdown timeout must be between -1 and 2147483647.</source>
-        <translation type="unfinished" />
+        <translation>BitTorrent 会话关闭超时时间必须介于 -1 和 2147483647 之间。</translation>
     </message>
     <message>
         <source>Unable to resume the session.</source>
-        <translation type="unfinished" />
+        <translation>无法恢复会话。</translation>
     </message>
     <message>
         <source>Unable to force start torrents.</source>
-        <translation type="unfinished" />
+        <translation>无法强制开始 Torrent。</translation>
     </message>
     <message>
         <source>Invalid path to Python executable. Path contains unnecessary leading and trailing quotes.</source>
-        <translation type="unfinished" />
+        <translation>Python 可执行文件的路径无效。路径包含多余的前导和尾随引号。</translation>
     </message>
     <message>
         <source>Unable to pause the session.</source>
-        <translation type="unfinished" />
+        <translation>无法暂停会话。</translation>
     </message>
 </context>
 <context>
@@ -697,14 +678,6 @@ The piece hash will be checked when it is requested for the first time by a peer
     <message>
         <source>No</source>
         <translation>否</translation>
-    </message>
-    <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="vanished">全局上传速度限制</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="vanished">全局下载速度限制</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -848,7 +821,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
-        <translation>你要启动所有 torrent 吗？</translation>
+        <translation>您要开始所有 Torrent 吗？</translation>
     </message>
     <message>
         <source>Start</source>
@@ -856,7 +829,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Manage Cookies...</source>
-        <translation>管理 Cookies...</translation>
+        <translation>管理 Cookie…</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -912,27 +885,27 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Resume session</source>
-        <translation type="unfinished" />
+        <translation>恢复会话</translation>
     </message>
     <message>
         <source>[PAUSED]</source>
-        <translation type="unfinished" />
+        <translation>[已暂停]</translation>
     </message>
     <message>
         <source>Global Speed Limits</source>
-        <translation type="unfinished" />
+        <translation>全局速度限制</translation>
     </message>
     <message>
         <source>Pause session</source>
-        <translation type="unfinished" />
+        <translation>暂停会话</translation>
     </message>
     <message>
         <source>Pause Session</source>
-        <translation type="unfinished" />
+        <translation>暂停会话</translation>
     </message>
     <message>
         <source>Resume Session</source>
-        <translation type="unfinished" />
+        <translation>恢复会话</translation>
     </message>
 </context>
 <context>
@@ -1003,15 +976,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>保存未完成的 torrent 到：</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">复制 .torrent 文件到：</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">复制下载完成的 .torrent 文件到：</translation>
+        <translation type="vanished">保存未完成的 torrent 到：</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -1561,7 +1526,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation>解析对等节点所在国家：</translation>
+        <translation>解析对等节点所在国家/地区：</translation>
     </message>
     <message>
         <source>ban for:</source>
@@ -1729,7 +1694,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>单一 对等节点的最大未完成请求：</translation>
+        <translation>单一对等节点的最大未完成请求：</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
@@ -2076,10 +2041,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>配色方案：</translation>
     </message>
     <message>
-        <source>Show external IP in status bar</source>
-        <translation type="vanished">在状态栏展示外部 IP</translation>
-    </message>
-    <message>
         <source>Fetched trackers</source>
         <translation>获取 tracker</translation>
     </message>
@@ -2116,10 +2077,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>网址：</translation>
     </message>
     <message>
-        <source>Transfer list</source>
-        <translation type="vanished">传输列表</translation>
-    </message>
-    <message>
         <source>The announce port must be between 0 and 65535.</source>
         <translation>公告端口必须为 0 到 65535 之间。</translation>
     </message>
@@ -2137,7 +2094,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start / stop torrent</source>
-        <translation>开始 / 停止 torrent</translation>
+        <translation>开始/停止 Torrent</translation>
     </message>
     <message>
         <source>Send test email</source>
@@ -2149,7 +2106,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation>启用 cookie 安全标志（需要 HTTPS或本地连接）</translation>
+        <translation>启用 Cookie 安全标志（需要 HTTPS 或本地主机连接）</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2332,10 +2289,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>SMTP 加密：</translation>
     </message>
     <message>
-        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="vanished">已尝试发送测试邮件。\n检查你的收件箱确认是否发送成功。\n错误信息请查看执行日志。</translation>
-    </message>
-    <message>
         <source>Default port</source>
         <translation>默认端口</translation>
     </message>
@@ -2393,142 +2346,190 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Provide the sending email address.</source>
-        <translation type="unfinished" />
+        <translation>提供发送电子邮件地址。</translation>
     </message>
     <message>
         <source>Enable I2P Peer Exchange (I2P PeX) to find more peers (requires restart)</source>
-        <translation type="unfinished" />
+        <translation>启用 I2P 对等节点交换（I2P PeX）以查找更多对等节点（需要重启）</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished" />
+        <translation>状态栏</translation>
     </message>
     <message>
         <source>Notification</source>
-        <translation type="unfinished" />
+        <translation>通知</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent.</source>
-        <translation type="unfinished" />
+        <translation>无法联系 qBittorrent。</translation>
     </message>
     <message>
         <source>Separate multiple emails with a semicolon.</source>
-        <translation type="unfinished" />
+        <translation>用分号分隔多个电子邮件地址。</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same Peer ID:</source>
-        <translation type="unfinished" />
+        <translation>允许来自同一对等节点 ID 的多个连接：</translation>
     </message>
     <message>
         <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation type="vanished">已尝试发送测试邮件。&lt;br&gt;请检查您的收件箱以确认是否成功。&lt;br&gt;请检查执行日志是否有错误。</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
-        <translation type="unfinished" />
+        <translation>会话计数限制：</translation>
     </message>
     <message>
         <source>I2P outbound length variance:</source>
-        <translation type="unfinished" />
+        <translation>I2P 传出长度偏差：</translation>
     </message>
     <message>
         <source>Transfer List</source>
-        <translation type="unfinished" />
+        <translation>传输列表</translation>
     </message>
     <message>
         <source>Start BitTorrent session in paused state:</source>
-        <translation type="unfinished" />
+        <translation>以暂停状态启动 BitTorrent 会话：</translation>
     </message>
     <message>
         <source>Store backup in:</source>
-        <translation type="unfinished" />
+        <translation>将备份存储在：</translation>
     </message>
     <message>
         <source>Save search tabs</source>
-        <translation type="unfinished" />
+        <translation>保存搜索标签页</translation>
     </message>
     <message>
         <source>Store backup .torrent file</source>
-        <translation type="unfinished" />
+        <translation>存储备份 .torrent 文件</translation>
     </message>
     <message>
         <source>Note: b@y.com &amp; c@z.com will both see each other's email addresses, whereas a@x.com will not see them nor be seen.</source>
-        <translation type="unfinished" />
+        <translation>注意：b@y.com 和 c@z.com 都能看到对方的电子邮件地址，而 a@x.com 既看不到对方的电子邮件地址，对方也看不到它的电子邮件地址。</translation>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished" />
+        <translation>显示 torrent 内容及选项</translation>
     </message>
     <message>
         <source>Separate multiple email addresses within each email with a comma.</source>
-        <translation type="unfinished" />
+        <translation>在每封邮件中，用逗号分隔多个电子邮件地址。</translation>
     </message>
     <message>
         <source>Provide the recipient email address or addresses.</source>
-        <translation type="unfinished" />
+        <translation>提供收件人电子邮件地址。</translation>
     </message>
     <message>
         <source>Show external IP</source>
-        <translation type="unfinished" />
+        <translation>显示外部 IP</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>搜索</translation>
     </message>
     <message>
         <source>BitTorrent session shutdown timeout [-1: unlimited]:</source>
-        <translation type="unfinished" />
+        <translation>BitTorrent 会话关闭超时时间 [-1：无限制]：</translation>
     </message>
     <message>
         <source>Example:</source>
-        <translation type="unfinished" />
+        <translation>例如：</translation>
     </message>
     <message>
         <source>Provide the SMTP server address for sending email notifications.</source>
-        <translation type="unfinished" />
+        <translation>提供用于发送电子邮件通知的 SMTP 服务器地址。</translation>
     </message>
     <message>
         <source>smtp.example.com:465 - connect to server smtp.example.com on port 465</source>
-        <translation type="unfinished" />
+        <translation>smtp.example.com:465 - 连接到端口 465 上的 smtp.example.com 服务器</translation>
     </message>
     <message>
         <source>Maximum outstanding block requests from a peer:</source>
-        <translation type="unfinished" />
+        <translation>来自一个对等节点的最大未完成块请求：</translation>
     </message>
     <message>
         <source>Also save search results</source>
-        <translation type="unfinished" />
+        <translation>同时保存搜索结果</translation>
     </message>
     <message>
         <source>I2P inbound length variance:</source>
-        <translation type="unfinished" />
+        <translation>I2P 传入长度偏差：</translation>
     </message>
     <message>
         <source>To manually specify the server port, add a colon and then the port number to the end.</source>
-        <translation type="unfinished" />
+        <translation>要手动指定服务器端口，请添加英文冒号，然后在末尾添加端口号。</translation>
     </message>
     <message>
         <source>Remove backup when removing torrent</source>
-        <translation type="unfinished" />
+        <translation>移除种子时删除备份</translation>
     </message>
     <message>
         <source>When torrent finished move backup to:</source>
-        <translation type="unfinished" />
+        <translation>种子完成后，将备份移动到：</translation>
     </message>
     <message>
         <source>STUN server for WebTorrent NAT traversal:</source>
-        <translation type="unfinished" />
+        <translation>用于 WebTorrent NAT 穿透的 STUN 服务器：</translation>
     </message>
     <message>
         <source>The server address can be entered either as a DNS name or an IP address (DNS name recommended).</source>
-        <translation type="unfinished" />
+        <translation>服务器地址既可以输入 DNS 名称，也可以输入 IP 地址（建议使用 DNS 名称）。</translation>
     </message>
     <message>
         <source>Allow outgoing connections when seeding:</source>
-        <translation type="unfinished" />
+        <translation>做种时允许传出连接：</translation>
     </message>
     <message>
         <source>a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com</source>
+        <translation>a@x.com;b@y.com,c@z.com - 发送两封邮件：第一封仅发送给 a@x.com，第二封同时发送给 b@y.com 和 c@z.com</translation>
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of all tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also delete .torrent files whose addition was cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Also when addition is cancelled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use another path for incomplete torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Confirm removal of tracker from all torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Any of the above</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Blacklist filtered file names from being downloaded from torrent(s).
+Files matching any of the filters in this list will have their priority automatically set to &amp;quot;Do not download&amp;quot;.
+
+Use newlines to separate multiple entries. Can use wildcards as outlined below.
+*: matches zero or more of any characters.
+?: matches any single character.
+[...]: sets of characters can be represented in square brackets.
+
+Examples
+*.exe: filter '.exe' file extension.
+readme.txt: filter exact file name.
+?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
+readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2616,7 +2617,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Contribution</source>
-        <translation type="unfinished" />
+        <translation>贡献</translation>
     </message>
 </context>
 <context>
@@ -2949,15 +2950,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copy path</source>
-        <translation type="unfinished" />
+        <translation>复制路径</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>下载</translation>
     </message>
     <message>
         <source>Copy download URL</source>
-        <translation type="unfinished" />
+        <translation>复制下载 URL</translation>
     </message>
 </context>
 <context>
@@ -3066,11 +3067,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Request latency:</source>
-        <translation type="unfinished" />
+        <translation>请求延迟：</translation>
     </message>
     <message>
         <source>The time it takes from receiving a request from a peer until we're sending the response back on the socket</source>
-        <translation type="unfinished" />
+        <translation>从接收到对等节点发来的请求到通过套接字发送回响应所花费的时间</translation>
     </message>
 </context>
 <context>
@@ -3201,7 +3202,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation>启动 torrent</translation>
+        <translation>开始 Torrent</translation>
     </message>
     <message>
         <source>Stop torrents</source>
@@ -3209,7 +3210,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>强制开始 Torrent</translation>
     </message>
 </context>
 <context>
@@ -3858,6 +3859,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Content Path</source>
         <translation>内容路径</translation>
     </message>
+    <message>
+        <source>Remove all tags from selected torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -3912,6 +3917,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Action when the limit is reached</source>
         <translation>达到限制时采取的操作</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match any limit</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default (Match any limit)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all the limits</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4009,6 +4030,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1y %2d</source>
         <translation>%1 年 %2 天</translation>
+    </message>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4222,7 +4247,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Url</source>
-        <translation>Url</translation>
+        <translation type="vanished">Url</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -4239,6 +4264,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>No</source>
         <translation>否</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4296,7 +4325,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation>启动 torrent</translation>
+        <translation>开始 Torrent</translation>
     </message>
     <message>
         <source>Stop torrents</source>
@@ -4304,7 +4333,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>强制开始 Torrent</translation>
     </message>
 </context>
 <context>
@@ -4386,7 +4415,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>由 DB-IP 提供的免费 IP to Country Lite 数据库，用于解析对等节点所在的国家。该数据库已根据知识共享署名 4.0 国际许可协议获得许可</translation>
+        <translation>由 DB-IP 提供的免费 IP to Country Lite 数据库，用于解析对等节点所在的国家/地区。该数据库已根据知识共享署名 4.0 国际许可协议获得许可</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -4456,7 +4485,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Close tab</source>
-        <translation>关闭标签</translation>
+        <translation>关闭标签页</translation>
     </message>
     <message>
         <source>Searching...</source>
@@ -4468,7 +4497,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Close all tabs</source>
-        <translation>关闭所有标签</translation>
+        <translation>关闭所有标签页</translation>
     </message>
     <message>
         <source>Refresh tab</source>
@@ -4488,23 +4517,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Blocked opening search result description page URL. Only http:// and https:// links can be opened.</source>
-        <translation type="unfinished" />
+        <translation>阻止了打开搜索结果描述页面 URL。只能打开 http:// 和 https:// 链接。</translation>
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>添加 %1 个种子</translation>
     </message>
     <message>
         <source>Search results are no longer available</source>
-        <translation type="unfinished" />
+        <translation>搜索结果不再可用</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>打开单独的下载窗口</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>打开共享下载窗口</translation>
     </message>
 </context>
 <context>
@@ -4642,6 +4671,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Blocked opening RSS article URL. Only http:// and https:// links can be opened.</source>
+        <translation>阻止了打开 RSS 文章 URL。只能打开 http:// 和 https:// 链接。</translation>
+    </message>
+    <message>
+        <source>Add %1 torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open separate download windows</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open shared download window</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4915,11 +4956,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished" />
+        <translation>导出</translation>
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished" />
+        <translation>导入</translation>
     </message>
 </context>
 <context>
@@ -4938,7 +4979,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Start torrents</source>
-        <translation>启动 torrent</translation>
+        <translation>开始 Torrent</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -4962,7 +5003,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>强制开始 Torrent</translation>
     </message>
 </context>
 <context>
@@ -5178,7 +5219,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent share limits</source>
-        <translation type="unfinished" />
+        <translation>Torrent 分享限制</translation>
     </message>
 </context>
 <context>
@@ -5189,7 +5230,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Manage Cookies</source>
-        <translation>管理</translation>
+        <translation>管理 Cookie</translation>
     </message>
     <message>
         <source>Add Cookie</source>
@@ -5242,7 +5283,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation>关闭标签</translation>
+        <translation>关闭标签页</translation>
     </message>
 </context>
 <context>
@@ -5299,11 +5340,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>无法创建 Torrent。</translation>
     </message>
     <message>
-        <source>Private
-                torrent (Won't distribute on DHT network)</source>
-        <translation type="vanished">私有 torrent 文件（不会在 DHT 网络上分发）</translation>
-    </message>
-    <message>
         <source>Unable to export torrent file</source>
         <translation>无法导出 torrent 文件</translation>
     </message>
@@ -5352,11 +5388,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>状态</translation>
     </message>
     <message>
-        <source>Align to piece boundary for files larger
-                than:</source>
-        <translation type="vanished">大于下列数值的文件启用文件块边界对齐：</translation>
-    </message>
-    <message>
         <source>Select file/folder to share:</source>
         <translation>选择要分享的文件/文件夹：</translation>
     </message>
@@ -5379,11 +5410,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Unable to load torrent creation tasks</source>
         <translation>无法加载 Torrent 创建任务</translation>
-    </message>
-    <message>
-        <source>Optimize
-                    alignment</source>
-        <translation type="vanished">对齐优化</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -5416,12 +5442,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Web Seeds</source>
         <translation>Web Seeds</translation>
-    </message>
-    <message>
-        <source>Start
-                seeding
-                immediately</source>
-        <translation type="vanished">立即开始做种</translation>
     </message>
     <message>
         <source>Format</source>
@@ -5473,47 +5493,43 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>是</translation>
     </message>
     <message>
         <source>Ignore dotfiles</source>
-        <translation type="unfinished" />
+        <translation>忽略点文件</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger than:</source>
-        <translation type="unfinished" />
+        <translation>当文件大于指定大小时对齐文件块边界：</translation>
     </message>
     <message>
         <source>Private torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>私有 torrent  (不会在 DHT 网络上分发)</translation>
     </message>
     <message>
         <source>Ignore Dotfiles</source>
-        <translation type="unfinished" />
+        <translation>忽略点文件</translation>
     </message>
     <message>
         <source>Start seeding immediately</source>
-        <translation type="unfinished" />
+        <translation>完成后开始做种</translation>
     </message>
     <message>
         <source>Optimize alignment</source>
-        <translation type="unfinished" />
+        <translation>优化对齐</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>否</translation>
     </message>
     <message>
         <source>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</source>
-        <translation type="unfinished" />
+        <translation>如果勾选此项，以句点 `.` 开头的文件名将不会被添加到创建的 Torrent 中。</translation>
     </message>
 </context>
 <context>
     <name>DownloadFromURLDialog</name>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">下载</translation>
-    </message>
     <message>
         <source>Magnet link</source>
         <translation>磁力链接</translation>
@@ -5536,23 +5552,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>添加 %1 个种子</translation>
     </message>
     <message>
         <source>Open separate dialog for each torrent</source>
-        <translation type="unfinished" />
+        <translation>为每个种子打开单独的对话框</translation>
     </message>
     <message>
         <source>Add Torrents</source>
-        <translation type="unfinished" />
+        <translation>添加种子</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished" />
+        <translation>继续</translation>
     </message>
     <message>
         <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
-        <translation type="unfinished" />
+        <translation>所有种子都将使用同一个选项对话框。如需单独配置各项设置，请选中对应选项。</translation>
     </message>
 </context>
 <context>
@@ -5579,43 +5595,43 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Upload speed</source>
-        <translation type="unfinished" />
+        <translation>上传速度</translation>
     </message>
     <message>
         <source>Download speed</source>
-        <translation type="unfinished" />
+        <translation>下载速度</translation>
     </message>
     <message>
         <source>Speed limits</source>
-        <translation type="unfinished" />
+        <translation>速度限制</translation>
     </message>
     <message>
         <source>Alternative download speed</source>
-        <translation type="unfinished" />
+        <translation>备用下载速度</translation>
     </message>
     <message>
         <source>Alternative upload speed</source>
-        <translation type="unfinished" />
+        <translation>备用上传速度</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>确定</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>上传：</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>备用速率限制</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>下载：</translation>
     </message>
     <message>
         <source>Failed to set speed limits</source>
-        <translation type="unfinished" />
+        <translation>无法设置速度限制</translation>
     </message>
 </context>
 <context>
@@ -5683,90 +5699,90 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TorrentShareLimitsWidget</name>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>分钟</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>默认</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>为 torrent 启用超级做种</translation>
     </message>
     <message>
         <source>Inactive seeding time:</source>
-        <translation type="unfinished" />
+        <translation>不活跃的做种时间：</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>符合所有限制</translation>
     </message>
     <message>
         <source>Ratio:</source>
-        <translation type="unfinished" />
+        <translation>比率</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>符合任何限制</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>删除种子及文件</translation>
     </message>
     <message>
         <source>Share limit values cannot be empty or invalid.</source>
-        <translation type="unfinished" />
+        <translation>共享限值不能为空或无效。</translation>
     </message>
     <message>
         <source>Action when the limit is reached:</source>
-        <translation type="unfinished" />
+        <translation>达到限制时采取的操作：</translation>
     </message>
     <message>
         <source>From category (%1)</source>
-        <translation type="unfinished" />
+        <translation>来自分类 (%1)</translation>
     </message>
     <message>
         <source>Set to</source>
-        <translation type="unfinished" />
+        <translation>已设为</translation>
     </message>
     <message>
         <source>From category</source>
-        <translation type="unfinished" />
+        <translation>来自分类</translation>
     </message>
     <message>
         <source>Default (%1)</source>
-        <translation type="unfinished" />
+        <translation>默认 (%1)</translation>
     </message>
     <message>
         <source>Seeding time:</source>
-        <translation type="unfinished" />
+        <translation>做种时间：</translation>
     </message>
     <message>
         <source>Unlimited</source>
-        <translation type="unfinished" />
+        <translation>无限制的</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>停止 torrent</translation>
     </message>
     <message>
         <source>Mode:</source>
-        <translation type="unfinished" />
+        <translation>模式：</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>删除 torrent</translation>
     </message>
 </context>
 <context>
     <name>TorrentContent</name>
     <message>
         <source>Unavailable until all selected files are downloaded</source>
-        <translation type="unfinished" />
+        <translation>在所有选定文件下载完成之前不可用</translation>
     </message>
     <message>
         <source>Not available for folders</source>
-        <translation type="unfinished" />
+        <translation>不适用于文件夹</translation>
     </message>
 </context>
 </TS>
