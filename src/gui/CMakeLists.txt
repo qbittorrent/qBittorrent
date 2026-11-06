@@ -24,6 +24,7 @@ qt_wrap_ui(UI_HEADERS
     search/searchpluginselectdialog.ui
     search/searchpluginsourcedialog.ui
     search/searchwidget.ui
+    shadowbanlistoptionsdialog.ui
     shutdownconfirmdialog.ui
     speedlimitdialog.ui
     statsdialog.ui
@@ -98,6 +99,7 @@ add_library(qbt_gui STATIC
     search/searchpluginsourcedialog.h
     search/searchsortmodel.h
     search/searchwidget.h
+    shadowbanlistoptionsdialog.h
     shutdownconfirmdialog.h
     speedlimitdialog.h
     statsdialog.h
@@ -204,6 +206,7 @@ add_library(qbt_gui STATIC
     search/searchpluginsourcedialog.cpp
     search/searchsortmodel.cpp
     search/searchwidget.cpp
+    shadowbanlistoptionsdialog.cpp
     shutdownconfirmdialog.cpp
     speedlimitdialog.cpp
     statsdialog.cpp
