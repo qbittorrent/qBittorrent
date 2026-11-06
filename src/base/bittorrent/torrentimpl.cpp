@@ -1710,6 +1710,31 @@ void TorrentImpl::forceRecheck()
     if (!hasMetadata())
         return;
 
+    // The files of a torrent that has not downloaded anything yet can be in its save path or in its download path,
+    // so they are searched for in the same way as when the torrent is added
+    const auto canChangeLocation = [this]
+    {
+        return (m_nativeStatus.num_pieces == 0) && (totalDownload() == 0) && !isChecking() && !isMoveInProgress()
+                && m_renamingFiles.isEmpty();
+    };
+    if (canChangeLocation())
+    {
+        m_session->findIncompleteFiles(savePath(), downloadPath(), filePaths()).then(this
+                , [this, canChangeLocation](const FileSearchResult &result)
+        {
+            if (canChangeLocation() && ((result.savePath != actualStorageLocation()) || (result.fileNames != actualFilePaths())))
+                checkFilesAt(result.savePath, result.fileNames);
+            else
+                recheckCurrentLocation();
+        });
+        return;
+    }
+
+    recheckCurrentLocation();
+}
+
+void TorrentImpl::recheckCurrentLocation()
+{
     const lt::queue_position_t queuePos = m_nativeHandle.queue_position();
 
     m_nativeHandle.force_recheck();
@@ -2094,6 +2119,39 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageContext cont
             updateState();
             m_session->handleTorrentStorageMovingStateChanged(this);
         }
+    }
+}
+
+void TorrentImpl::checkFilesAt(const Path &path, const PathList &fileNames)
+{
+    // libtorrent checks the existing files of a torrent that is added,
+    // so it is reloaded with the found files instead of moving its storage
+    m_ltAddTorrentParams.save_path = path.toString().toStdString();
+    m_ltAddTorrentParams.ti = std::const_pointer_cast<lt::torrent_info>(nativeTorrentInfo());
+    const auto nativeIndexes = m_torrentInfo.nativeIndexes();
+    for (qsizetype i = 0; i < fileNames.size(); ++i)
+        m_ltAddTorrentParams.renamed_files[nativeIndexes[i]] = fileNames[i].toString().toStdString();
+    m_ltAddTorrentParams.have_pieces.clear();
+    m_ltAddTorrentParams.verified_pieces.clear();
+    m_ltAddTorrentParams.unfinished_pieces.clear();
+    m_hasMissingFiles = false;
+    m_unchecked = false;
+
+    try
+    {
+        reload();
+    }
+    catch (const RuntimeError &err)
+    {
+        LogMsg(err.message(), Log::WARNING);
+        return;
+    }
+
+    if (isStopped())
+    {
+        // When "force recheck" is applied on Stopped torrent, we start them to perform checking
+        start();
+        m_stopCondition = StopCondition::FilesChecked;
     }
 }
 
