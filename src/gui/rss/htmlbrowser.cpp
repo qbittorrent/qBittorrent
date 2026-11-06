@@ -78,8 +78,7 @@ void HtmlBrowser::startRequest(const QUrl &url)
         return;
 
     QNetworkRequest request {url};
-    request.setAttribute(QNetworkRequest::CacheLoadControlAttribute,
-        QNetworkRequest::PreferCache);
+    request.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
     m_activeRequests.insert(url, m_netManager->get(request));
 }
 
