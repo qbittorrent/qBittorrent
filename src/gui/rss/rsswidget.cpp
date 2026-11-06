@@ -742,12 +742,14 @@ void RSSWidget::renderArticle(const RSS::Article *article) const
     // Let the document resolve HTML resources against their source page.
     QUrl baseUrl {articleLink};
     if (!baseUrl.isEmpty() && baseUrl.isRelative())
-        baseUrl = QUrl {article->feed()->url()}.resolved(baseUrl);
+        baseUrl = QUrl(article->feed()->url()).resolved(baseUrl);
+
     if (!baseUrl.isValid() || baseUrl.host().isEmpty()
         || ((baseUrl.scheme() != u"http") && (baseUrl.scheme() != u"https")))
     {
-        baseUrl = QUrl {article->feed()->url()};
+        baseUrl = QUrl(article->feed()->url());
     }
+
     baseUrl = baseUrl.adjusted(QUrl::RemoveUserInfo | QUrl::RemoveQuery | QUrl::RemoveFragment);
     m_ui->textBrowser->setHtml(html, baseUrl);
 }

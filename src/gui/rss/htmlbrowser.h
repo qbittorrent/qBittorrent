@@ -49,15 +49,15 @@ public:
     void setHtml(const QString &html, const QUrl &baseUrl = {});
     void clear();
 
-protected:
+private slots:
+    void resourceLoaded(QNetworkReply *reply);
+
+private:
+    void startRequest(const QUrl &url);
+    void updateImageResource(const QUrl &url, const QVariant &resource);
+
     QNetworkAccessManager *m_netManager = nullptr;
     QNetworkDiskCache *m_diskCache = nullptr;
     QHash<QUrl, QNetworkReply *> m_activeRequests;
     QSet<QUrl> m_failedResources;
-
-    void startRequest(const QUrl &url);
-    void updateResource(const QUrl &url, const QVariant &resource);
-
-protected slots:
-    void resourceLoaded(QNetworkReply *reply);
 };

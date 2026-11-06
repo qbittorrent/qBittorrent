@@ -68,6 +68,7 @@ void HtmlBrowser::clear()
     m_failedResources.clear();
     for (auto *reply : requests)
         reply->abort();
+
     QTextBrowser::clear();
 }
 
@@ -75,6 +76,7 @@ void HtmlBrowser::startRequest(const QUrl &url)
 {
     if (m_activeRequests.contains(url))
         return;
+
     QNetworkRequest request {url};
     request.setAttribute(QNetworkRequest::CacheLoadControlAttribute,
         QNetworkRequest::PreferCache);
@@ -91,13 +93,14 @@ QVariant HtmlBrowser::loadResource(const int type, const QUrl &name)
         return QTextBrowser::loadResource(type, name);
 
     if (m_failedResources.contains(url))
-        return QByteArray {};
+        return QByteArray();
+
     startRequest(url);
     // Keep Qt's original resource-missing layout while the request is pending.
     return {};
 }
 
-void HtmlBrowser::updateResource(const QUrl &url, const QVariant &resource)
+void HtmlBrowser::updateImageResource(const QUrl &url, const QVariant &resource)
 {
     document()->addResource(QTextDocument::ImageResource, url, resource);
     document()->markContentsDirty(0, document()->characterCount());
@@ -112,18 +115,21 @@ void HtmlBrowser::resourceLoaded(QNetworkReply *reply)
     // including old responses for a URL also used by the new article.
     if (m_activeRequests.value(url) != reply)
         return;
+
     m_activeRequests.remove(url);
 
     QImage image;
     if (reply->error() == QNetworkReply::NoError)
         image = QImage::fromData(reply->readAll());
+
     if (image.isNull())
     {
         m_failedResources.insert(url);
         // A valid, empty byte resource lets Qt draw its native missing-image
         // icon without calling our network loader again.
-        updateResource(url, QByteArray {});
+        updateImageResource(url, QByteArray());
         return;
     }
-    updateResource(url, image);
+
+    updateImageResource(url, image);
 }
