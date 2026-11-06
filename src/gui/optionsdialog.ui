@@ -1626,7 +1626,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
 Folder names are not checked.</string>
                  </property>
                  <property name="text">
-                  <string>Also exclude files without an extension</string>
+                  <string>Exclude files without an extension</string>
                  </property>
                 </widget>
                </item>
