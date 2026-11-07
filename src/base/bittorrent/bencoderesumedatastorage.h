@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,7 +32,6 @@
 #include <QList>
 
 #include "base/pathfwd.h"
-#include "base/utils/thread.h"
 
 #include "resumedatastorage.h"
 
@@ -47,6 +46,7 @@ namespace BitTorrent
 
     public:
         explicit BencodeResumeDataStorage(const Path &path, QObject *parent = nullptr);
+        ~BencodeResumeDataStorage() override;
 
         QList<TorrentID> registeredTorrents() const override;
         LoadResumeDataResult load(const TorrentID &id) const override;
@@ -60,7 +60,6 @@ namespace BitTorrent
         LoadResumeDataResult loadTorrentResumeData(const QByteArray &data, const QByteArray &metadata) const;
 
         QList<TorrentID> m_registeredTorrents;
-        Utils::Thread::UniquePtr m_ioThread;
 
         class Worker;
         Worker *m_asyncWorker = nullptr;

@@ -38,6 +38,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QModelIndexList>
+#include <QOverload>
 #include <QSet>
 #include <QShortcut>
 #include <QWheelEvent>
