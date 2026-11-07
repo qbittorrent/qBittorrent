@@ -46,6 +46,7 @@ namespace BitTorrent
         {
             Original,
             Subfolder,
+            UniqueSubfolder, // top-level "Name <12-hex-hash>" directory
             NoSubfolder
         };
 
