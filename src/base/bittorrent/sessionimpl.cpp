@@ -4363,8 +4363,8 @@ void SessionImpl::applyFilenameFilter(const PathList &files, QList<DownloadPrior
     if (!isExcludedFileNamesEnabled())
         return;
 
-    const bool excludeFilesWithoutExtension = isExcludeFilesWithoutExtensionEnabled();
-    const auto isFilenameExcluded = [patterns = m_excludedFileNamesRegExpList, excludeFilesWithoutExtension](const Path &fileName)
+    const auto isFilenameExcluded = [patterns = m_excludedFileNamesRegExpList
+        , excludeFilesWithoutExtension = isExcludeFilesWithoutExtensionEnabled()](const Path &fileName)
     {
         // Only the file itself is checked for an extension; its parent folders never have one
         if (excludeFilesWithoutExtension && fileName.extension().isEmpty())
