@@ -122,6 +122,14 @@ void registerSignalHandlers()
     signal(SIGINT, normalExitHandler);
     signal(SIGTERM, normalExitHandler);
 
+#ifdef Q_OS_UNIX
+    // Session shutdown may send SIGHUP immediately after SIGTERM.
+    // Preserve an inherited SIG_IGN disposition, e.g. when started with nohup.
+    struct sigaction action {};
+    if ((sigaction(SIGHUP, nullptr, &action) == 0) && (action.sa_handler != SIG_IGN))
+        signal(SIGHUP, normalExitHandler);
+#endif
+
 #ifdef STACKTRACE
     signal(SIGABRT, abnormalExitHandler);
     signal(SIGSEGV, abnormalExitHandler);

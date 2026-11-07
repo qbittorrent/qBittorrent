@@ -40,3 +40,13 @@ foreach(testFile ${testFiles})
 
     add_dependencies(check "${testFilename}")
 endforeach()
+
+if (UNIX)
+    add_executable(testsignalhandler
+        testsignalhandler.cpp
+        ../src/app/signalhandler.cpp
+    )
+    target_link_libraries(testsignalhandler PRIVATE Qt::Test qbt_common_cfg)
+    add_test(NAME testsignalhandler COMMAND testsignalhandler)
+    add_dependencies(check testsignalhandler)
+endif()
