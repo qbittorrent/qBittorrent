@@ -274,8 +274,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
         m_ui->spinUploadLimit->setSpecialValueText(C_INEQUALITY);
         m_ui->spinUploadLimit->setMinimum(-1);
         m_ui->spinUploadLimit->setValue(-1);
-        connect(m_ui->spinUploadLimit, qOverload<int>(&QSpinBox::valueChanged)
-                           , this, &TorrentOptionsDialog::handleUpSpeedLimitChanged);
+        connect(m_ui->spinUploadLimit, &QSpinBox::valueChanged, this, &TorrentOptionsDialog::handleUpSpeedLimitChanged);
     }
 
     m_ui->sliderDownloadLimit->setMaximum(maxDownload);
@@ -289,8 +288,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
         m_ui->spinDownloadLimit->setSpecialValueText(C_INEQUALITY);
         m_ui->spinDownloadLimit->setMinimum(-1);
         m_ui->spinDownloadLimit->setValue(-1);
-        connect(m_ui->spinDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
-                           , this, &TorrentOptionsDialog::handleDownSpeedLimitChanged);
+        connect(m_ui->spinDownloadLimit, &QSpinBox::valueChanged, this, &TorrentOptionsDialog::handleDownSpeedLimitChanged);
     }
 
     if (m_allSameCategory)
@@ -383,10 +381,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     // Sync up/down speed limit sliders with their corresponding spinboxes
     connect(m_ui->sliderUploadLimit, &QSlider::valueChanged, m_ui->spinUploadLimit, &QSpinBox::setValue);
     connect(m_ui->sliderDownloadLimit, &QSlider::valueChanged, m_ui->spinDownloadLimit, &QSpinBox::setValue);
-    connect(m_ui->spinUploadLimit, qOverload<int>(&QSpinBox::valueChanged)
-            , this, [this](const int value) { updateSliderValue(m_ui->sliderUploadLimit, value); });
-    connect(m_ui->spinDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
-            , this, [this](const int value) { updateSliderValue(m_ui->sliderDownloadLimit, value); });
+    connect(m_ui->spinUploadLimit, &QSpinBox::valueChanged, this, [this](const int value) { updateSliderValue(m_ui->sliderUploadLimit, value); });
+    connect(m_ui->spinDownloadLimit, &QSpinBox::valueChanged, this, [this](const int value) { updateSliderValue(m_ui->sliderDownloadLimit, value); });
 
     m_ui->scrollArea->widget()->adjustSize();
 
@@ -599,14 +595,12 @@ void TorrentOptionsDialog::handleUpSpeedLimitChanged()
 {
     m_ui->spinUploadLimit->setMinimum(0);
     m_ui->spinUploadLimit->setSpecialValueText(C_INFINITY);
-    disconnect(m_ui->spinUploadLimit, qOverload<int>(&QSpinBox::valueChanged)
-                   , this, &TorrentOptionsDialog::handleUpSpeedLimitChanged);
+    disconnect(m_ui->spinUploadLimit, &QSpinBox::valueChanged, this, &TorrentOptionsDialog::handleUpSpeedLimitChanged);
 }
 
 void TorrentOptionsDialog::handleDownSpeedLimitChanged()
 {
     m_ui->spinDownloadLimit->setMinimum(0);
     m_ui->spinDownloadLimit->setSpecialValueText(C_INFINITY);
-    disconnect(m_ui->spinDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
-                   , this, &TorrentOptionsDialog::handleDownSpeedLimitChanged);
+    disconnect(m_ui->spinDownloadLimit, &QSpinBox::valueChanged, this, &TorrentOptionsDialog::handleDownSpeedLimitChanged);
 }

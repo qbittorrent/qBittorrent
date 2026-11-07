@@ -4,6 +4,7 @@
 
 Read [README.md] first if you need a project overview. \
 For BitTorrent protocol, consult [Wikipedia article] for a high-level overview and [bittorrent.org] for protocol specification.
+Additionally, consult the README and CODING_GUIDELINES files in each respective folder if you need to work within them.
 
 [bittorrent.org]: https://www.bittorrent.org/beps/bep_0000.html
 [README.md]: README.md

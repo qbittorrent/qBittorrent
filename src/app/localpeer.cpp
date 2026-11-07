@@ -69,10 +69,13 @@
 
 #include "localpeer.h"
 
+#include <memory>
+
 #include <QtSystemDetection>
 
 #include <QByteArray>
 #include <QByteArrayView>
+#include <QCoreApplication>
 #include <QDataStream>
 #include <QFile>
 #include <QLocalServer>
@@ -149,8 +152,14 @@ bool LocalPeer::isClient()
 
         if (const std::optional<LockInfo> lockInfo = getLockInfo())
         {
+            // A lockfile that names our own PID is stale: we do not hold the lock, and no other
+            // process in our PID namespace can have our PID. `QLockFile` keeps it anyway, because
+            // that PID is alive (it is us). It happens after an unclean exit when qBittorrent starts
+            // as the same PID every time: in a container restarted with the same hostname (PID 1),
+            // or in Flatpak (PID 2).
             if ((lockInfo->hostid == QSysInfo::machineUniqueId())
-                    && (lockInfo->hostname == QSysInfo::machineHostName()))
+                    && (lockInfo->hostname == QSysInfo::machineHostName())
+                    && (lockInfo->pid != QCoreApplication::applicationPid()))
             {
                 return true;
             }
@@ -238,14 +247,8 @@ void LocalPeer::receivedConnection()
     if (!socket) [[unlikely]]
         return;
 
-    auto *buffer = new QByteArray;
-
-    connect(socket, &QLocalSocket::disconnected, this, [buffer, socket]
-    {
-        socket->deleteLater();
-        delete buffer;
-    });
-    connect(socket, &QIODevice::readyRead, this, [this, buffer, socket]
+    connect(socket, &QLocalSocket::disconnected, socket, &QObject::deleteLater);
+    connect(socket, &QIODevice::readyRead, this, [this, socket, buffer = std::make_unique<QByteArray>()]
     {
         const qint64 bytes = socket->bytesAvailable();
         if ((buffer->size() + bytes) > MAX_MESSAGE_SIZE)
@@ -274,7 +277,7 @@ void LocalPeer::receivedConnection()
         socket->write(ACK);
         socket->disconnectFromServer();
 
-        emit messageReceived(result.value()); // might take a long time to return
+        emit messageReceived(result.value());
     });
 }
 

@@ -953,13 +953,10 @@ QString TorrentImpl::category() const
 
 bool TorrentImpl::belongsToCategory(const QString &category) const
 {
-    if (m_category.isEmpty())
-        return category.isEmpty();
+    if (const qsizetype testLength = category.size(); testLength < m_category.size())
+        return (m_category.at(testLength) == u'/') && m_category.startsWith(category);
 
-    if (m_category == category)
-        return true;
-
-    return m_category.startsWith(category + u'/');
+    return (m_category == category);
 }
 
 TagSet TorrentImpl::tags() const
@@ -1713,7 +1710,12 @@ void TorrentImpl::forceRecheck()
     if (!hasMetadata())
         return;
 
+    const lt::queue_position_t queuePos = m_nativeHandle.queue_position();
+
     m_nativeHandle.force_recheck();
+
+    if (queuePos >= lt::queue_position_t(0))
+        m_nativeHandle.queue_position_set(queuePos);
 
     // We have to force update the cached state, otherwise someone will be able to get
     // an incorrect one during the interval until the cached state is updated in a regular way.
@@ -2234,6 +2236,7 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
         Q_ASSERT(m_indexMap.isEmpty());
 
         const auto isSeedMode = static_cast<bool>(m_ltAddTorrentParams.flags & lt::torrent_flags::seed_mode);
+        const bool needApplyContentLayout = m_ltAddTorrentParams.renamed_files.empty();
         m_ltAddTorrentParams = std::move(params);
         if (isSeedMode)
             m_ltAddTorrentParams.flags |= lt::torrent_flags::seed_mode;
@@ -2247,8 +2250,19 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
         const auto metadata = TorrentInfo(*m_ltAddTorrentParams.ti);
 
         const auto &renamedFiles = m_ltAddTorrentParams.renamed_files;
+        const auto nativeIndexes = metadata.nativeIndexes();
         PathList filePaths = metadata.filePaths();
-        if (renamedFiles.empty() && (m_contentLayout != TorrentContentLayout::Original))
+        m_indexMap.reserve(filePaths.size());
+        for (qsizetype i = 0; i < filePaths.size(); ++i)
+        {
+            const auto nativeIndex = nativeIndexes.at(i);
+            m_indexMap[nativeIndex] = i;
+
+            if (const auto it = renamedFiles.find(nativeIndex); it != renamedFiles.cend())
+                filePaths[i] = Path(it->second);
+        }
+
+        if (needApplyContentLayout && (m_contentLayout != TorrentContentLayout::Original))
         {
             const Path originalRootFolder = Path::findRootFolder(filePaths);
             const auto originalContentLayout = (originalRootFolder.isEmpty()
@@ -2260,17 +2274,6 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
                 else
                     Path::addRootFolder(filePaths, filePaths.at(0).removedExtension());
             }
-        }
-
-        const auto nativeIndexes = metadata.nativeIndexes();
-        m_indexMap.reserve(filePaths.size());
-        for (qsizetype i = 0; i < filePaths.size(); ++i)
-        {
-            const auto nativeIndex = nativeIndexes.at(i);
-            m_indexMap[nativeIndex] = i;
-
-            if (const auto it = renamedFiles.find(nativeIndex); it != renamedFiles.cend())
-                filePaths[i] = Path(it->second);
         }
 
         m_session->findIncompleteFiles(savePath(), downloadPath(), filePaths).then(this
@@ -2950,6 +2953,9 @@ QFuture<QList<QUrl>> TorrentImpl::fetchURLSeeds() const
 
 QFuture<QList<int>> TorrentImpl::fetchPieceAvailability() const
 {
+    if (!hasMetadata())
+        return QtFuture::makeReadyValueFuture(QList<int>());
+
     return invokeAsync([nativeHandle = m_nativeHandle]() -> QList<int>
     {
         try
@@ -2966,6 +2972,9 @@ QFuture<QList<int>> TorrentImpl::fetchPieceAvailability() const
 
 QFuture<QBitArray> TorrentImpl::fetchDownloadingPieces() const
 {
+    if (!hasMetadata())
+        return QtFuture::makeReadyValueFuture(QBitArray());
+
     return invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QBitArray
     {
         try
@@ -2990,11 +2999,11 @@ QFuture<QBitArray> TorrentImpl::fetchDownloadingPieces() const
 
 QFuture<QList<qreal>> TorrentImpl::fetchAvailableFileFractions() const
 {
+    if (!hasMetadata())
+        return QtFuture::makeReadyValueFuture(QList<qreal>());
+
     return invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QList<qreal>
     {
-        if (!torrentInfo.isValid() || (torrentInfo.filesCount() <= 0))
-            return {};
-
         try
         {
             std::vector<int> piecesAvailability;

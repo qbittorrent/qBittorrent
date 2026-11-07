@@ -50,11 +50,12 @@ namespace
         // (or, if the dialog is larger than the current screen, at least make sure that
         // the upper/left coordinates of the dialog are inside it).
 
-        QRect dialogGeometry = dialog->geometry();
-
-        dialogGeometry.moveCenter(parentWindow->geometry().center());
-
         const QRect screenGeometry = parentWindow->screen()->availableGeometry();
+        const QRect parentGeometry = (parentWindow->isMaximized() || parentWindow->isFullScreen())
+                ? screenGeometry : parentWindow->geometry();
+
+        QRect dialogGeometry = dialog->geometry();
+        dialogGeometry.moveCenter(parentGeometry.center());
 
         QPoint delta = screenGeometry.bottomRight() - dialogGeometry.bottomRight();
         if (delta.x() > 0)
