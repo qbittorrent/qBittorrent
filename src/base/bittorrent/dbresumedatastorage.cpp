@@ -825,7 +825,7 @@ namespace
 {
     using namespace BitTorrent;
 
-StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
+    StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
         : m_torrentID {torrentID}
         , m_resumeData {std::move(resumeData)}
     {
