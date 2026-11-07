@@ -786,6 +786,11 @@ td.noWrap {
     width: 140px;
 }
 
+/* the padding beside the image, not inside its width */
+.select-watched-folder-editable img {
+    box-sizing: content-box;
+}
+
 .select-watched-folder-editable select:focus,
 .select-editable input:focus {
     outline: none;
