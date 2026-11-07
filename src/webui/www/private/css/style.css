@@ -578,6 +578,15 @@ fieldset.settings + div.formRow {
     margin-top: 10px;
 }
 
+/* the same label column in both sections, so their fields line up */
+#AdvancedTab fieldset.settings > table {
+    width: 100%;
+}
+
+#AdvancedTab fieldset.settings > table > tbody > tr > td:first-child {
+    width: 65%;
+}
+
 div.formRow {
     clear: left;
     display: block;
