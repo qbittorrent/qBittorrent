@@ -29,6 +29,7 @@
 #pragma once
 
 #include <QHash>
+#include <QSet>
 #include <QTextBrowser>
 
 class QNetworkAccessManager;
@@ -41,16 +42,22 @@ class HtmlBrowser final : public QTextBrowser
     Q_DISABLE_COPY_MOVE(HtmlBrowser)
 
 public:
-    explicit HtmlBrowser(QWidget* parent = nullptr);
+    explicit HtmlBrowser(QWidget *parent = nullptr);
     ~HtmlBrowser() = default;
 
     QVariant loadResource(int type, const QUrl &name) override;
+    void setHtml(const QString &html, const QUrl &baseUrl = {});
+    void clearContent();
 
-protected:
+private slots:
+    void resourceLoaded(QNetworkReply *reply);
+
+private:
+    void startRequest(const QUrl &url);
+    void updateImageResource(const QUrl &url, const QVariant &resource);
+
     QNetworkAccessManager *m_netManager = nullptr;
     QNetworkDiskCache *m_diskCache = nullptr;
-    QHash<QUrl, bool> m_activeRequests;
-
-protected slots:
-    void resourceLoaded(QNetworkReply *reply);
+    QHash<QUrl, QNetworkReply *> m_activeRequests;
+    QSet<QUrl> m_failedResources;
 };
