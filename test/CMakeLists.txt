@@ -31,11 +31,22 @@ set(testFiles
     testutilsversion.cpp
 )
 
+set(webuiTestFiles
+    testwebuitranslationutils.cpp
+)
+
+if (WEBUI)
+    list(APPEND testFiles ${webuiTestFiles})
+endif()
+
 foreach(testFile ${testFiles})
     get_filename_component(testFilename "${testFile}" NAME_WLE)
 
     add_executable("${testFilename}" "${testFile}")
     target_link_libraries("${testFilename}" PRIVATE Qt::Test qbt_base)
+    if (testFile IN_LIST webuiTestFiles)
+        target_link_libraries("${testFilename}" PRIVATE qbt_webui)
+    endif()
     add_test(NAME "${testFilename}" COMMAND "${testFilename}")
 
     add_dependencies(check "${testFilename}")
