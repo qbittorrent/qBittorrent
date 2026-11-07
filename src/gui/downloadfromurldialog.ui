@@ -24,6 +24,9 @@
      <property name="text">
       <string>Add torrent links</string>
      </property>
+     <property name="buddy">
+      <cstring>textUrls</cstring>
+     </property>
     </widget>
    </item>
    <item>

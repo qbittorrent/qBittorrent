@@ -19,6 +19,9 @@
      <property name="text">
       <string>List of peers to add (one IP per line):</string>
      </property>
+     <property name="buddy">
+      <cstring>textEditPeers</cstring>
+     </property>
     </widget>
    </item>
    <item>
