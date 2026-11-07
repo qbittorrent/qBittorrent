@@ -8,6 +8,8 @@
   * `torrents/info` and `sync/maindata` endpoints include `error` (string) data, the reason why the torrent is in `error` state (empty otherwise)
 * [#25092](https://github.com/qbittorrent/qBittorrent/pull/25092)
   * Add `torrents/cancelFetchMetadata` endpoint with `source` (string) as parameter for cancelling a metadata lookup started by `torrents/fetchMetadata` (accepts `POST` requests only)
+* [#25210](https://github.com/qbittorrent/qBittorrent/pull/25210)
+  * Requests with an invalid API key (via `Authorization: Bearer` or `X-API-Key`), or with any API key when none is configured, respond with `401` and a `WWW-Authenticate: Bearer` challenge, instead of `403` on API endpoints and `404` elsewhere
 
 ## 2.16.2
 
