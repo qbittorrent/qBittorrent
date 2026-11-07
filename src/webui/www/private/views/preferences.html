@@ -3635,6 +3635,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             });
 
             document.getElementById("deleteTorrentFileAfterCheckbox").addEventListener("change", (e) => { updateDeleteCancelledTorrentEnabled(); });
+            setupAPIKeyButtons();
 
             loadPreferences();
 
@@ -3693,57 +3694,60 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 });
         };
 
-        document.getElementById("webUIAPIKeyCopyButton").addEventListener("click", async (e) => {
-            const apiKey = document.getElementById("WebUIAPIKeyText").dataset.apiKey;
-            await clipboardCopy(apiKey);
+        // the buttons are new in every Options window
+        const setupAPIKeyButtons = () => {
+            document.getElementById("webUIAPIKeyCopyButton").addEventListener("click", async (e) => {
+                const apiKey = document.getElementById("WebUIAPIKeyText").dataset.apiKey;
+                await clipboardCopy(apiKey);
 
-            const copyImg = document.querySelector("#webUIAPIKeyCopyButton img.copyImg");
-            const checkImg = document.querySelector("#webUIAPIKeyCopyButton img.checkImg");
+                const copyImg = document.querySelector("#webUIAPIKeyCopyButton img.copyImg");
+                const checkImg = document.querySelector("#webUIAPIKeyCopyButton img.checkImg");
 
-            copyImg.style.display = "none";
-            checkImg.style.display = "inline";
+                copyImg.style.display = "none";
+                checkImg.style.display = "inline";
 
-            setTimeout(() => {
-                copyImg.style.display = "inline";
-                checkImg.style.display = "none";
-            }, 2000);
-        });
-
-        document.getElementById("webUIAPIKeyRotateButton").addEventListener("click", (e) => {
-            const hasKey = e.currentTarget.dataset.hasKey === "true";
-            const title = hasKey
-                ? "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]"
-                : "QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
-            const message = hasKey
-                ? "QBT_TR(Rotate this API key? The current key will immediately stop working and a new key will be generated.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]"
-                : "QBT_TR(Generate an API key? This key can be used to interact with qBittorrent's API.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
-
-            new MochaUI.Modal({
-                ...window.qBittorrent.Dialog.baseModalOptions,
-                title: title,
-                id: "confirmAPIKeyDialog",
-                contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
-                data: {
-                    action: "rotate",
-                    message: message,
-                },
+                setTimeout(() => {
+                    copyImg.style.display = "inline";
+                    checkImg.style.display = "none";
+                }, 2000);
             });
-        });
 
-        document.getElementById("webUIAPIKeyDeleteButton").addEventListener("click", (e) => {
-            const title = "QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]";
-            const message = "QBT_TR(Delete this API key? The current key will immediately stop working.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
-            new MochaUI.Modal({
-                ...window.qBittorrent.Dialog.baseModalOptions,
-                title: title,
-                id: "confirmAPIKeyDialog",
-                contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
-                data: {
-                    action: "delete",
-                    message: message,
-                },
+            document.getElementById("webUIAPIKeyRotateButton").addEventListener("click", (e) => {
+                const hasKey = e.currentTarget.dataset.hasKey === "true";
+                const title = hasKey
+                    ? "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]"
+                    : "QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                const message = hasKey
+                    ? "QBT_TR(Rotate this API key? The current key will immediately stop working and a new key will be generated.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]"
+                    : "QBT_TR(Generate an API key? This key can be used to interact with qBittorrent's API.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
+
+                new MochaUI.Modal({
+                    ...window.qBittorrent.Dialog.baseModalOptions,
+                    title: title,
+                    id: "confirmAPIKeyDialog",
+                    contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
+                    data: {
+                        action: "rotate",
+                        message: message,
+                    },
+                });
             });
-        });
+
+            document.getElementById("webUIAPIKeyDeleteButton").addEventListener("click", (e) => {
+                const title = "QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]";
+                const message = "QBT_TR(Delete this API key? The current key will immediately stop working.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
+                new MochaUI.Modal({
+                    ...window.qBittorrent.Dialog.baseModalOptions,
+                    title: title,
+                    id: "confirmAPIKeyDialog",
+                    contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
+                    data: {
+                        action: "delete",
+                        message: message,
+                    },
+                });
+            });
+        };
 
         return exports();
     })();
