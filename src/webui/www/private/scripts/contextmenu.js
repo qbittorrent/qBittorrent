@@ -46,6 +46,28 @@ window.qBittorrent.ContextMenu ??= (() => {
     };
 
     let lastShownContextMenu = null;
+
+    // only the last shown menu can be visible, so all menus share this listener
+    document.body.addEventListener("click", (event) => {
+        if (lastShownContextMenu === null)
+            return;
+
+        const parentNode = event.target.parentNode;
+
+        // make sure the click was on a context menu item
+        if ((parentNode !== null) && (parentNode.tagName.toLowerCase() === "li")) {
+            const grandParentNode = parentNode.parentNode;
+            if ((grandParentNode !== null) && (grandParentNode.classList.contains("contextMenu"))) {
+                const submenuNodes = parentNode.getElementsByTagName("ul");
+                if (submenuNodes.length > 0)
+                    return;
+            }
+        }
+
+        lastShownContextMenu.hide();
+        lastShownContextMenu.options.element = null;
+    });
+
     class ContextMenu {
         constructor(options) {
             this.options = {
@@ -217,24 +239,6 @@ window.qBittorrent.ContextMenu ??= (() => {
                 else {
                     e.stopPropagation();
                 }
-            });
-
-            // hide on body click
-            document.body.addEventListener("click", (event) => {
-                const parentNode = event.target.parentNode;
-
-                // make sure the click was on a context menu item
-                if ((parentNode !== null) && (parentNode.tagName.toLowerCase() === "li")) {
-                    const grandParentNode = parentNode.parentNode;
-                    if ((grandParentNode !== null) && (grandParentNode.classList.contains("contextMenu"))) {
-                        const submenuNodes = parentNode.getElementsByTagName("ul");
-                        if (submenuNodes.length > 0)
-                            return;
-                    }
-                }
-
-                this.hide();
-                this.options.element = null;
             });
         }
 
