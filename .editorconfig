@@ -19,6 +19,9 @@ indent_size = 4
 [**.json]
 indent_size = 2
 
+[**.{nsi,nsh}]
+indent_size = 4
+
 [**.plist]
 indent_style = tab
 
