@@ -765,8 +765,11 @@ void BitTorrent::DBResumeDataStorage::Worker::run()
                     break;
 
                 m_waitCondition.wait(&m_jobsMutex);
-                if (isInterruptionRequested())
+                if (m_jobs.empty())
+                {
+                    Q_ASSERT(isInterruptionRequested());
                     break;
+                }
 
                 m_dbLock.lockForWrite();
                 if (!db.transaction())
@@ -793,6 +796,7 @@ void BitTorrent::DBResumeDataStorage::Worker::run()
 
 void DBResumeDataStorage::Worker::requestInterruption()
 {
+    const QMutexLocker jobsLocker {&m_jobsMutex};
     QThread::requestInterruption();
     m_waitCondition.wakeAll();
 }
@@ -814,10 +818,8 @@ void BitTorrent::DBResumeDataStorage::Worker::storeQueue(const QList<TorrentID> 
 
 void BitTorrent::DBResumeDataStorage::Worker::addJob(std::unique_ptr<Job> job)
 {
-    m_jobsMutex.lock();
+    const QMutexLocker jobsLocker {&m_jobsMutex};
     m_jobs.push(std::move(job));
-    m_jobsMutex.unlock();
-
     m_waitCondition.wakeAll();
 }
 
