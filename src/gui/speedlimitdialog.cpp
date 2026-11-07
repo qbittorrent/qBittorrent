@@ -100,16 +100,12 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     // Sync up/down speed limit sliders with their corresponding spinboxes
     connect(m_ui->sliderUploadLimit, &QSlider::valueChanged, m_ui->spinUploadLimit, &QSpinBox::setValue);
     connect(m_ui->sliderDownloadLimit, &QSlider::valueChanged, m_ui->spinDownloadLimit, &QSpinBox::setValue);
-    connect(m_ui->spinUploadLimit, qOverload<int>(&QSpinBox::valueChanged)
-            , this, [this](const int value) { updateSliderValue(m_ui->sliderUploadLimit, value); });
-    connect(m_ui->spinDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
-            , this, [this](const int value) { updateSliderValue(m_ui->sliderDownloadLimit, value); });
+    connect(m_ui->spinUploadLimit, &QSpinBox::valueChanged, this, [this](const int value) { updateSliderValue(m_ui->sliderUploadLimit, value); });
+    connect(m_ui->spinDownloadLimit, &QSpinBox::valueChanged, this, [this](const int value) { updateSliderValue(m_ui->sliderDownloadLimit, value); });
     connect(m_ui->sliderAltUploadLimit, &QSlider::valueChanged, m_ui->spinAltUploadLimit, &QSpinBox::setValue);
     connect(m_ui->sliderAltDownloadLimit, &QSlider::valueChanged, m_ui->spinAltDownloadLimit, &QSpinBox::setValue);
-    connect(m_ui->spinAltUploadLimit, qOverload<int>(&QSpinBox::valueChanged)
-            , this, [this](const int value) { updateSliderValue(m_ui->sliderAltUploadLimit, value); });
-    connect(m_ui->spinAltDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
-            , this, [this](const int value) { updateSliderValue(m_ui->sliderAltDownloadLimit, value); });
+    connect(m_ui->spinAltUploadLimit, &QSpinBox::valueChanged, this, [this](const int value) { updateSliderValue(m_ui->sliderAltUploadLimit, value); });
+    connect(m_ui->spinAltDownloadLimit, &QSpinBox::valueChanged, this, [this](const int value) { updateSliderValue(m_ui->sliderAltDownloadLimit, value); });
 
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
         resize(dialogSize);
