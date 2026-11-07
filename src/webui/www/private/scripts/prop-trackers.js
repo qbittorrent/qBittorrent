@@ -44,6 +44,8 @@ window.qBittorrent.PropTrackers ??= (() => {
     let loadTrackersDataTimer = -1;
 
     const trackerStatusText = (tracker) => {
+        if (tracker.disabled_for_torrent)
+            return "QBT_TR(Disabled for this torrent)QBT_TR[CONTEXT=TrackerListModel]";
         if (tracker.updating)
             return "QBT_TR(Updating...)QBT_TR[CONTEXT=TrackerListWidget]";
         switch (tracker.status) {
