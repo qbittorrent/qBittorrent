@@ -217,8 +217,9 @@ window.qBittorrent.ContextMenu ??= (() => {
                 }
             });
 
-            // hide on body click
+            // hide on body click, and on Escape
             document.body.addEventListener("click", ContextMenu.#onBodyClick);
+            window.addEventListener("keydown", ContextMenu.#onEscape, true);
         }
 
         // only the last shown menu can be visible, so all menus share this listener
@@ -238,6 +239,16 @@ window.qBittorrent.ContextMenu ??= (() => {
                 }
             }
 
+            lastShownContextMenu.hide();
+            lastShownContextMenu.options.element = null;
+        }
+
+        // hide on Escape, without closing the window below
+        static #onEscape(event) {
+            if ((event.key !== "Escape") || (lastShownContextMenu === null) || !lastShownContextMenu.menu.classList.contains("visible"))
+                return;
+
+            event.stopPropagation();
             lastShownContextMenu.hide();
             lastShownContextMenu.options.element = null;
         }
