@@ -119,7 +119,9 @@ private:
     bool isPublicAPI(const QString &scope, const QString &action) const;
 
     bool isOriginTrustworthy() const;
+    QString requestTargetOrigin(const Http::Request &request) const;
     bool isCrossSiteRequest(const Http::Request &request) const;
+    bool canRestartSessionViaBasicAuth() const;
     bool validateHostHeader() const;
 
     bool validateCredentials(QStringView username, QStringView password) const override;
