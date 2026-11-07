@@ -68,6 +68,17 @@ window.qBittorrent.ContextMenu ??= (() => {
         lastShownContextMenu.options.element = null;
     });
 
+    // hide on Escape, without closing the window below
+    window.addEventListener("keydown", (event) => {
+        if ((event.key !== "Escape") || (lastShownContextMenu === null) || !lastShownContextMenu.menu.classList.contains("visible"))
+            return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        lastShownContextMenu.hide();
+        lastShownContextMenu.options.element = null;
+    }, true);
+
     class ContextMenu {
         constructor(options) {
             this.options = {
