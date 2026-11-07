@@ -89,8 +89,8 @@ window.qBittorrent.ContextMenu ??= (() => {
             this.menu.style.top = "-999em";
 
             // position the menu
-            let xPosMenu = e.pageX + this.options.offsets.x;
-            let yPosMenu = e.pageY + this.options.offsets.y;
+            let xPosMenu = e.clientX + this.options.offsets.x;
+            let yPosMenu = e.clientY + this.options.offsets.y;
             if ((xPosMenu + this.menu.offsetWidth) > document.documentElement.clientWidth)
                 xPosMenu -= this.menu.offsetWidth;
             if ((yPosMenu + this.menu.offsetHeight) > document.documentElement.clientHeight)
@@ -101,7 +101,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 yPosMenu = 0;
             this.menu.style.left = `${xPosMenu}px`;
             this.menu.style.top = `${yPosMenu}px`;
-            this.menu.style.position = "absolute";
+            this.menu.style.position = "fixed";
             this.menu.style.zIndex = "2000";
 
             // position the sub-menu
@@ -744,28 +744,6 @@ window.qBittorrent.ContextMenu ??= (() => {
     }
 
     class RssDownloaderRuleContextMenu extends ContextMenu {
-        adjustMenuPosition(e) {
-            const rssDownloaderPage = document.getElementById("rssdownloaderpage");
-            this.updateMenuItems();
-
-            // draw the menu off-screen to know the menu dimensions
-            this.menu.style.left = "-999em";
-            this.menu.style.top = "-999em";
-            // position the menu
-            let xPosMenu = e.pageX + this.options.offsets.x - rssDownloaderPage.offsetLeft;
-            let yPosMenu = e.pageY + this.options.offsets.y - rssDownloaderPage.offsetTop;
-            if ((xPosMenu + this.menu.offsetWidth) > rssDownloaderPage.clientWidth)
-                xPosMenu -= this.menu.offsetWidth;
-            if ((yPosMenu + this.menu.offsetHeight) > rssDownloaderPage.clientHeight)
-                yPosMenu = rssDownloaderPage.clientHeight - this.menu.offsetHeight;
-            xPosMenu = Math.max(xPosMenu, 0);
-            yPosMenu = Math.max(yPosMenu, 0);
-
-            this.menu.style.left = `${xPosMenu}px`;
-            this.menu.style.top = `${yPosMenu}px`;
-            this.menu.style.position = "absolute";
-            this.menu.style.zIndex = "2000";
-        }
         updateMenuItems() {
             const selectedRows = window.qBittorrent.RssDownloader.rssDownloaderRulesTable.selectedRowsIds();
             this.showItem("addRule");
