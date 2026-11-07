@@ -2448,6 +2448,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         // Advanced Tab
+        // the interface and address lists are fetched together: when both fail, tell once per window
+        const interfaceListAlerts = new WeakSet();
+        const alertInterfaceListFailure = () => {
+            // a new element in each Options window
+            const combobox = document.getElementById("networkInterface");
+            if (interfaceListAlerts.has(combobox))
+                return;
+
+            interfaceListAlerts.add(combobox);
+            alert("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=OptionsDialog]");
+        };
+
         const updateNetworkInterfaces = (default_iface, default_iface_name) => {
             for (const el of [...document.getElementById("networkInterface").children])
                 el.remove();
@@ -2458,7 +2470,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 })
                 .then(async (response) => {
                     if (!response.ok) {
-                        alert("Could not contact qBittorrent");
+                        alertInterfaceListFailure();
                         return;
                     }
 
@@ -2491,7 +2503,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 })
                 .then(async (response) => {
                     if (!response.ok) {
-                        alert("Could not contact qBittorrent");
+                        alertInterfaceListFailure();
                         return;
                     }
 
