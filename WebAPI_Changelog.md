@@ -8,6 +8,8 @@
   * `torrents/info` and `sync/maindata` endpoints include `error` (string) data, the reason why the torrent is in `error` state (empty otherwise)
 * [#25092](https://github.com/qbittorrent/qBittorrent/pull/25092)
   * Add `torrents/cancelFetchMetadata` endpoint with `source` (string) as parameter for cancelling a metadata lookup started by `torrents/fetchMetadata` (accepts `POST` requests only)
+* [#25207](https://github.com/qbittorrent/qBittorrent/pull/25207)
+  * A request with Basic auth and an expired or unknown session cookie no longer starts a new session, except for `auth/login` and same-origin browser requests; it is rejected with `403` so the client logs in again
 
 ## 2.16.2
 

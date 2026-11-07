@@ -70,6 +70,7 @@
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
 #include "clientdatastorage.h"
+#include "requestorigin.h"
 #include "searchjobmanager.h"
 #include "websession.h"
 
@@ -123,13 +124,6 @@ namespace
             return std::make_tuple(match.captured(u"scheme"), match.captured(u"value"));
 
         return {};
-    }
-
-    QUrl urlFromHostHeader(const QString &hostHeader)
-    {
-        if (!hostHeader.contains(u"://"))
-            return {u"http://"_s + hostHeader};
-        return hostHeader;
     }
 
     QString getCachingInterval(QString contentType)
@@ -774,6 +768,7 @@ void WebApplication::cookieSessionInitialize(const QString &authScheme, const QS
 {
     Q_ASSERT(!m_currentSession);
 
+    bool hasStaleSessionCookie = false;
     if (const QString sessionId = parseCookie(m_request.headers.value(Http::HEADER_COOKIE)).value(m_sessionCookieName);
         !sessionId.isEmpty())
     {
@@ -794,6 +789,8 @@ void WebApplication::cookieSessionInitialize(const QString &authScheme, const QS
                 delete m_sessions.take(sessionId);
             }
         }
+
+        hasStaleSessionCookie = !m_currentSession;
     }
 
     if (!m_currentSession)
@@ -804,6 +801,10 @@ void WebApplication::cookieSessionInitialize(const QString &authScheme, const QS
         }
         else if (authScheme.compare(BASIC_AUTH, Qt::CaseInsensitive) == 0)
         {
+            // clients that ignore 'Set-Cookie' must log in again, or they start a new session on every request
+            if (hasStaleSessionCookie && !canRestartSessionViaBasicAuth())
+                return;
+
             if (!validateBasicAuth(authData))
                 throw UnauthorizedHTTPError();
 
@@ -963,75 +964,64 @@ bool WebApplication::isOriginTrustworthy() const
     return false;
 }
 
+QString WebApplication::requestTargetOrigin(const Http::Request &request) const
+{
+    return m_isReverseProxySupportEnabled
+        ? request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST))
+        : request.headers.value(Http::HEADER_HOST);
+}
+
 bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
 {
     // https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#Verifying_Same_Origin_with_Standard_Headers
 
-    const auto isSameOrigin = [](const QUrl &left, const QUrl &right) -> bool
-    {
-        // [rfc6454] 5. Comparing Origins
-        return ((left.port() == right.port())
-                // && (left.scheme() == right.scheme())  // not present in this context
-                && (left.host() == right.host()));
-    };
+    const QString targetOrigin = requestTargetOrigin(request);
 
-    const QString targetOrigin = m_isReverseProxySupportEnabled
-        ? request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST))
-        : request.headers.value(Http::HEADER_HOST);
+    // owasp.org recommends to block requests without any of these headers, but doing so will inevitably lead Web API users
+    // to spoof headers so let's be permissive here (Web API clients don't send any of these headers)
+    const RequestOrigin::Result origin = RequestOrigin::classify(request, targetOrigin);
+    if (origin.type != RequestOrigin::Type::CrossOrigin)
+        return false;
 
-    // Prefer 'Sec-Fetch-Site' when present: it is set by the browser itself, cannot be suppressed or tampered with
-    // by the requesting page, and doesn't rely on the 'Host' header (e.g. behind a reverse proxy).
-    // Browsers only send it to potentially trustworthy origins (HTTPS or localhost).
-    if (const QString secFetchSiteValue = request.headers.value(Http::HEADER_SEC_FETCH_SITE); !secFetchSiteValue.isEmpty())
+    switch (origin.header)
     {
-        // "none" means the request wasn't initiated by a page (typed URL, bookmark, etc.)
-        const bool isValid = (secFetchSiteValue.compare(u"same-origin", Qt::CaseInsensitive) == 0)
-                || (secFetchSiteValue.compare(u"none", Qt::CaseInsensitive) == 0);
-        if (!isValid)
-        {
-            LogMsg(tr("WebUI: Cross-site request blocked. Source IP: '%1'. Sec-Fetch-Site header: '%2'. Target origin: '%3'")
-                   .arg(m_env.clientAddress.toString(), secFetchSiteValue, targetOrigin)
-                   , Log::WARNING);
-        }
-        return !isValid;
+    case RequestOrigin::Header::SecFetchSite:
+        LogMsg(tr("WebUI: Cross-site request blocked. Source IP: '%1'. Sec-Fetch-Site header: '%2'. Target origin: '%3'")
+               .arg(m_env.clientAddress.toString(), origin.headerValue, targetOrigin)
+               , Log::WARNING);
+        break;
+    case RequestOrigin::Header::Origin:
+        LogMsg(tr("WebUI: Origin header & Target origin mismatch! Source IP: '%1'. Origin header: '%2'. Target origin: '%3'")
+               .arg(m_env.clientAddress.toString(), origin.headerValue, targetOrigin)
+               , Log::WARNING);
+        break;
+    case RequestOrigin::Header::Referer:
+        LogMsg(tr("WebUI: Referer header & Target origin mismatch! Source IP: '%1'. Referer header: '%2'. Target origin: '%3'")
+               .arg(m_env.clientAddress.toString(), origin.headerValue, targetOrigin)
+               , Log::WARNING);
+        break;
+    case RequestOrigin::Header::None:
+        break;
     }
 
-    const QString originValue = request.headers.value(Http::HEADER_ORIGIN);
-    const QString refererValue = request.headers.value(Http::HEADER_REFERER);
+    return true;
+}
 
-    // sent with CORS requests, as well as with POST requests
-    if (!originValue.isEmpty())
-    {
-        const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), originValue);
-        if (isInvalid)
-        {
-            LogMsg(tr("WebUI: Origin header & Target origin mismatch! Source IP: '%1'. Origin header: '%2'. Target origin: '%3'")
-                   .arg(m_env.clientAddress.toString(), originValue, targetOrigin)
-                   , Log::WARNING);
-        }
-        return isInvalid;
-    }
+bool WebApplication::canRestartSessionViaBasicAuth() const
+{
+    if (!m_request.path.startsWith(API_PATH))
+        return true;
 
-    if (!refererValue.isEmpty())
-    {
-        const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), refererValue);
-        if (isInvalid)
-        {
-            LogMsg(tr("WebUI: Referer header & Target origin mismatch! Source IP: '%1'. Referer header: '%2'. Target origin: '%3'")
-                   .arg(m_env.clientAddress.toString(), refererValue, targetOrigin)
-                   , Log::WARNING);
-        }
-        return isInvalid;
-    }
+    if (m_request.path.sliced(API_PATH.size()) == u"auth/login")
+        return true;
 
-    // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
-    // so let's be permissive here (Web API clients don't send any of these headers)
-    return false;
+    // browsers always store the renewed session cookie
+    return (RequestOrigin::classify(m_request, requestTargetOrigin(m_request)).type == RequestOrigin::Type::SameOrigin);
 }
 
 bool WebApplication::validateHostHeader() const
 {
-    const QUrl hostHeader = urlFromHostHeader(m_request.headers[Http::HEADER_HOST]);
+    const QUrl hostHeader = RequestOrigin::urlFromHostHeader(m_request.headers[Http::HEADER_HOST]);
     const QString requestHost = hostHeader.host();
 
     // (if present) try matching host header's port with local port
