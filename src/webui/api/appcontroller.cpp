@@ -118,6 +118,7 @@ void AppController::buildInfoAction()
         {u"openssl"_s, Utils::Misc::opensslVersionString()},
         {u"zlib"_s, Utils::Misc::zlibVersionString()},
         {u"bitness"_s, (QT_POINTER_SIZE * 8)},
+        {u"architecture"_s, QSysInfo::buildCpuArchitecture()},
         {u"platform"_s, platformName}
     };
     setResult(versions);
