@@ -47,6 +47,7 @@
 #include "base/version.h"
 
 #ifdef STACKTRACE
+#include "base/utils/misc.h"
 #include "stacktrace.h"
 
 #ifndef DISABLE_GUI
@@ -56,6 +57,10 @@
 
 namespace
 {
+#ifdef STACKTRACE
+    QByteArray abnormalExitMessage;
+#endif
+
     // sys_signame[] is only defined in BSD
     const char *const sysSigName[] =
     {
@@ -95,14 +100,10 @@ namespace
 #ifdef STACKTRACE
     void abnormalExitHandler(const int signum)
     {
-        const char msg[] = "\n\n*************************************************************\n"
-            "Please file a bug report at https://bug.qbittorrent.org and provide the following information:\n\n"
-            "qBittorrent version: " QBT_VERSION "\n\n"
-            "Caught signal: ";
         const char *sigName = sysSigName[signum];
         const std::string stacktrace = getStacktrace();
 
-        const char *msgs[] = {msg, sigName, "\n```\n", stacktrace.c_str(), "```\n\n"};
+        const char *msgs[] = {abnormalExitMessage.constData(), sigName, "\n```\n", stacktrace.c_str(), "```\n\n"};
         std::ranges::for_each(msgs, safePrint);
 
 #ifndef DISABLE_GUI
@@ -123,6 +124,26 @@ void registerSignalHandlers()
     signal(SIGTERM, normalExitHandler);
 
 #ifdef STACKTRACE
+    // initialize resources beforehand
+    abnormalExitMessage = QStringLiteral(
+        "\n\n*************************************************************\n"
+        "Please file a bug report at https://bug.qbittorrent.org and provide the following information:\n\n"
+        "qBittorrent version: " QBT_VERSION "\n"
+        "Libtorrent version: %1\n"
+        "Qt version: %2\n"
+        "Boost version: %3\n"
+        "OpenSSL version: %4\n"
+        "zlib version: %5\n"
+        "OS version: %6\n\n"
+        "Caught signal: ").arg(
+                Utils::Misc::libtorrentVersionString()
+                , Utils::Misc::qtVersionString()
+                , Utils::Misc::boostVersionString()
+                , Utils::Misc::opensslVersionString()
+                , Utils::Misc::zlibVersionString()
+                , Utils::Misc::osName())
+            .toUtf8();
+
     signal(SIGABRT, abnormalExitHandler);
     signal(SIGSEGV, abnormalExitHandler);
 #endif
