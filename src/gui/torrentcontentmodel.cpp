@@ -31,6 +31,7 @@
 
 #include <algorithm>
 
+#include <QDebug>
 #include <QFileIconProvider>
 #include <QFileInfo>
 #include <QFuture>
@@ -791,6 +792,20 @@ void TorrentContentModel::onFolderRenamingFailed(const Path &newFolderPath, cons
 
 void TorrentContentModel::setContentHandler(BitTorrent::TorrentContentHandler *contentHandler)
 {
+    // Instrumentation: detect unexpected destruction of the content handler
+    if (contentHandler)
+    {
+        connect(contentHandler, &QObject::destroyed, this
+                , [this, handler = contentHandler](QObject *obj)
+        {
+            if (m_contentHandler && (m_contentHandler == handler))
+            {
+                qWarning("[LIFETIME] TorrentContentHandler destroyed while still assigned! handler=%p, filesIndex.size=%lld"
+                        , static_cast<void *>(obj), static_cast<long long>(m_filesIndex.size()));
+            }
+        });
+    }
+
     beginResetModel();
     [[maybe_unused]] const auto modelResetGuard = qScopeGuard([this] { endResetModel(); });
 
