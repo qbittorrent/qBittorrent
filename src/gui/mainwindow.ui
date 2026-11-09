@@ -81,6 +81,7 @@
     </widget>
     <addaction name="actionCreateTorrent"/>
     <addaction name="separator"/>
+    <addaction name="actionRSSDownloader"/>
     <addaction name="actionManageCookies"/>
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
@@ -172,6 +173,7 @@
    <addaction name="separator"/>
    <addaction name="actionCreateTorrent"/>
    <addaction name="separator"/>
+   <addaction name="actionRSSDownloader"/>
    <addaction name="actionOptions"/>
    <addaction name="actionLock"/>
   </widget>
@@ -513,6 +515,11 @@
    </property>
    <property name="toolTip">
     <string>Manage installed plugins</string>
+   </property>
+  </action>
+  <action name="actionRSSDownloader">
+   <property name="text">
+    <string>RSS Downloader</string>
    </property>
   </action>
  </widget>
