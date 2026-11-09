@@ -66,6 +66,7 @@ namespace Utils::Misc
     QString boostVersionString();
     QString libtorrentVersionString();
     QString opensslVersionString();
+    QString qtVersionString();
     QString zlibVersionString();
 
     QString unitString(SizeUnit unit, bool isSpeed = false);
