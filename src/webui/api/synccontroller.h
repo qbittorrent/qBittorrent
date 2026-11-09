@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -65,16 +65,17 @@ private:
     void onSubcategoriesSupportChanged();
     void onTagAdded(const Tag &tag);
     void onTagRemoved(const Tag &tag);
-    void onTorrentAdded(BitTorrent::Torrent *torrent);
-    void onTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
-    void onTorrentCategoryChanged(BitTorrent::Torrent *torrent, const QString &oldCategory);
-    void onTorrentMetadataReceived(BitTorrent::Torrent *torrent);
-    void onTorrentStopped(BitTorrent::Torrent *torrent);
-    void onTorrentStarted(BitTorrent::Torrent *torrent);
-    void onTorrentSavePathChanged(BitTorrent::Torrent *torrent);
-    void onTorrentSavingModeChanged(BitTorrent::Torrent *torrent);
-    void onTorrentTagAdded(BitTorrent::Torrent *torrent, const Tag &tag);
-    void onTorrentTagRemoved(BitTorrent::Torrent *torrent, const Tag &tag);
+    void onTorrentAdded(const BitTorrent::Torrent *torrent);
+    void onTorrentAboutToBeRemoved(const BitTorrent::Torrent *torrent);
+    void onTorrentCategoryChanged(const BitTorrent::Torrent *torrent, const QString &oldCategory);
+    void onTorrentMetadataReceived(const BitTorrent::Torrent *torrent);
+    void onTorrentStopped(const BitTorrent::Torrent *torrent);
+    void onTorrentStarted(const BitTorrent::Torrent *torrent);
+    void onTorrentSavePathChanged(const BitTorrent::Torrent *torrent);
+    void onTorrentSavingModeChanged(const BitTorrent::Torrent *torrent);
+    void onTorrentTagAdded(const BitTorrent::Torrent *torrent, const Tag &tag);
+    void onTorrentTagRemoved(const BitTorrent::Torrent *torrent, const Tag &tag);
+    void onTorrentInfoHashChanged(const BitTorrent::Torrent *torrent, const BitTorrent::InfoHash &prevInfoHash);
     void onTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
     void onTorrentTrackersChanged(BitTorrent::Torrent *torrent);
     void onTorrentTrackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent

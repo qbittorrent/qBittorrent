@@ -118,6 +118,9 @@ namespace
         LIBTORRENT_HEADER,
         BDECODE_DEPTH_LIMIT,
         BDECODE_TOKEN_LIMIT,
+#if LIBTORRENT_VERSION_NUM >= 20100
+        LOAD_TORRENT_MAX_DIRECTORY_DEPTH,
+#endif
         ASYNC_IO_THREADS,
 #ifdef QBT_USES_LIBTORRENT2
         HASHING_THREADS,
@@ -242,6 +245,10 @@ void AdvancedSettings::saveAdvancedSettings() const
     pref->setBdecodeDepthLimit(m_spinBoxBdecodeDepthLimit.value());
     // Bdecode token limit
     pref->setBdecodeTokenLimit(m_spinBoxBdecodeTokenLimit.value());
+#if LIBTORRENT_VERSION_NUM >= 20100
+    // Maximum directory depth when loading torrents
+    pref->setLoadTorrentMaxDirectoryDepth(m_spinBoxLoadTorrentMaxDirectoryDepth.value());
+#endif
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
 #ifdef QBT_USES_LIBTORRENT2
@@ -564,6 +571,14 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxBdecodeTokenLimit.setValue(pref->getBdecodeTokenLimit());
     addRow(BDECODE_TOKEN_LIMIT, (tr("Bdecode token limit") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Bdecoding.html#bdecode()", u"(?)"))
             , &m_spinBoxBdecodeTokenLimit);
+#if LIBTORRENT_VERSION_NUM >= 20100
+    // Maximum directory depth when loading torrents
+    m_spinBoxLoadTorrentMaxDirectoryDepth.setMinimum(0);
+    m_spinBoxLoadTorrentMaxDirectoryDepth.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxLoadTorrentMaxDirectoryDepth.setValue(pref->getLoadTorrentMaxDirectoryDepth());
+    addRow(LOAD_TORRENT_MAX_DIRECTORY_DEPTH, (tr("Maximum directory depth when loading torrents") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Torrent_Info.html#max_directory_depth", u"(?)"))
+        , &m_spinBoxLoadTorrentMaxDirectoryDepth);
+#endif
     // Async IO threads
     m_spinBoxAsyncIOThreads.setMinimum(1);
     m_spinBoxAsyncIOThreads.setMaximum(1024);
@@ -612,8 +627,7 @@ void AdvancedSettings::loadAdvancedSettings()
 #endif
     m_spinBoxCache.setValue(session->diskCacheSize());
     updateCacheSpinSuffix(m_spinBoxCache.value());
-    connect(&m_spinBoxCache, qOverload<int>(&QSpinBox::valueChanged)
-            , this, &AdvancedSettings::updateCacheSpinSuffix);
+    connect(&m_spinBoxCache, &QSpinBox::valueChanged, this, &AdvancedSettings::updateCacheSpinSuffix);
     addRow(DISK_CACHE, (tr("Disk cache") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#cache_size", u"(?)"))
             , &m_spinBoxCache);
     // Disk cache expiry
@@ -856,8 +870,7 @@ void AdvancedSettings::loadAdvancedSettings()
         m_comboBoxInterface.setCurrentIndex(m_comboBoxInterface.count() - 1);
     }
 
-    connect(&m_comboBoxInterface, qOverload<int>(&QComboBox::currentIndexChanged)
-        , this, &AdvancedSettings::updateInterfaceAddressCombo);
+    connect(&m_comboBoxInterface, &QComboBox::currentIndexChanged, this, &AdvancedSettings::updateInterfaceAddressCombo);
     addRow(NETWORK_IFACE, tr("Network interface"), &m_comboBoxInterface);
     // Network interface address
     updateInterfaceAddressCombo();
@@ -897,8 +910,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxNotificationTimeout.setMinimum(-1);
     m_spinBoxNotificationTimeout.setMaximum(std::numeric_limits<int>::max());
     m_spinBoxNotificationTimeout.setValue(app()->desktopIntegration()->notificationTimeout());
-    connect(&m_spinBoxNotificationTimeout, qOverload<int>(&QSpinBox::valueChanged)
-        , this, &AdvancedSettings::updateNotificationTimeoutSuffix);
+    connect(&m_spinBoxNotificationTimeout, &QSpinBox::valueChanged, this, &AdvancedSettings::updateNotificationTimeoutSuffix);
     updateNotificationTimeoutSuffix(m_spinBoxNotificationTimeout.value());
     addRow(NOTIFICATION_TIMEOUT, tr("Notification timeout [0: infinite, -1: system default]"), &m_spinBoxNotificationTimeout);
 #endif
@@ -1102,9 +1114,9 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
 #endif
     }
     else if constexpr (std::is_same_v<T, QComboBox>)
-        connect(widget, qOverload<int>(&QComboBox::currentIndexChanged), this, &AdvancedSettings::settingsChanged);
+        connect(widget, &QComboBox::currentIndexChanged, this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QLineEdit>)
         connect(widget, &QLineEdit::textChanged, this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QSpinBox>)
-        connect(widget, qOverload<int>(&QSpinBox::valueChanged), this, &AdvancedSettings::settingsChanged);
+        connect(widget, &QSpinBox::valueChanged, this, &AdvancedSettings::settingsChanged);
 }

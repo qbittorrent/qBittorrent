@@ -45,7 +45,7 @@ APIController::APIController(IApplication *app, QObject *parent)
 {
 }
 
-APIResult APIController::run(const QString &action, const StringMap &params, const DataMap &data)
+APIResult APIController::run(const QString &action, const StringMap &params, const DataList &data)
 {
     m_params = params;
     m_data = data;
@@ -67,7 +67,7 @@ const StringMap &APIController::params() const
     return m_params;
 }
 
-const DataMap &APIController::data() const
+const DataList &APIController::data() const
 {
     return m_data;
 }

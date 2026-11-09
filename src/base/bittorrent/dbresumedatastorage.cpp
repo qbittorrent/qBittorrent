@@ -700,7 +700,8 @@ LoadResumeDataResult DBResumeDataStorage::parseQueryResultRow(const QSqlQuery &q
         const lt::load_torrent_limits limits {
             .max_buffer_size = static_cast<int>(pref->getTorrentFileSizeLimit()),
             .max_decode_depth = bdecodeDepthLimit,
-            .max_decode_tokens = bdecodeTokenLimit};
+            .max_decode_tokens = bdecodeTokenLimit,
+            .max_directory_depth = pref->getLoadTorrentMaxDirectoryDepth()};
         const lt::add_torrent_params atp = lt::load_torrent_parsed(torrentInfoRoot, ec, limits);
         if (ec)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
@@ -765,8 +766,11 @@ void BitTorrent::DBResumeDataStorage::Worker::run()
                     break;
 
                 m_waitCondition.wait(&m_jobsMutex);
-                if (isInterruptionRequested())
+                if (m_jobs.empty())
+                {
+                    Q_ASSERT(isInterruptionRequested());
                     break;
+                }
 
                 m_dbLock.lockForWrite();
                 if (!db.transaction())
@@ -793,6 +797,7 @@ void BitTorrent::DBResumeDataStorage::Worker::run()
 
 void DBResumeDataStorage::Worker::requestInterruption()
 {
+    const QMutexLocker jobsLocker {&m_jobsMutex};
     QThread::requestInterruption();
     m_waitCondition.wakeAll();
 }
@@ -814,10 +819,8 @@ void BitTorrent::DBResumeDataStorage::Worker::storeQueue(const QList<TorrentID> 
 
 void BitTorrent::DBResumeDataStorage::Worker::addJob(std::unique_ptr<Job> job)
 {
-    m_jobsMutex.lock();
+    const QMutexLocker jobsLocker {&m_jobsMutex};
     m_jobs.push(std::move(job));
-    m_jobsMutex.unlock();
-
     m_waitCondition.wakeAll();
 }
 
@@ -825,7 +828,7 @@ namespace
 {
     using namespace BitTorrent;
 
-StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
+    StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
         : m_torrentID {torrentID}
         , m_resumeData {std::move(resumeData)}
     {

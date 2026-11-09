@@ -34,6 +34,7 @@
 
 #include <QHash>
 #include <QMutex>
+#include <QMutexLocker>
 #include <QPromise>
 #include <QReadWriteLock>
 #include <QSqlDatabase>
@@ -356,8 +357,11 @@ void KeyValueDataStorage::Worker::run()
                     break;
 
                 m_waitCondition.wait(&m_jobsMutex);
-                if (isInterruptionRequested())
+                if (m_jobs.empty())
+                {
+                    Q_ASSERT(isInterruptionRequested());
                     break;
+                }
 
                 m_dbLock.lockForWrite();
                 if (!initDB(db))
@@ -380,6 +384,7 @@ void KeyValueDataStorage::Worker::run()
 
 void KeyValueDataStorage::Worker::requestInterruption()
 {
+    const QMutexLocker jobsLocker {&m_jobsMutex};
     QThread::requestInterruption();
     m_waitCondition.wakeAll();
 }
@@ -431,9 +436,7 @@ bool KeyValueDataStorage::Worker::initDB(QSqlDatabase &db)
 
 void KeyValueDataStorage::Worker::addJob(std::unique_ptr<Job> job)
 {
-    m_jobsMutex.lock();
+    const QMutexLocker jobsLocker {&m_jobsMutex};
     m_jobs.push(std::move(job));
-    m_jobsMutex.unlock();
-
     m_waitCondition.wakeAll();
 }

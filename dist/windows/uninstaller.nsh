@@ -1,95 +1,84 @@
 Section "un.$(remove_files)" ;"un.Remove files"
-  SectionIn RO
+    SectionIn RO
 
-; Remove files and uninstaller
-  Delete "$INSTDIR\qbittorrent.exe"
-  Delete "$INSTDIR\qbittorrent.pdb"
-  Delete "$INSTDIR\qt.conf"
-  Delete "$INSTDIR\uninst.exe"
+    ; Remove files and uninstaller
+    Delete "$INSTDIR\qbittorrent.exe"
+    Delete "$INSTDIR\qbittorrent.pdb"
+    Delete "$INSTDIR\qt.conf"
+    Delete "$INSTDIR\uninst.exe"
 
-  ; Remove directories used
-  RMDir /r "$INSTDIR\translations"
-  RMDir "$INSTDIR"
+    ; Remove directories used
+    RMDir /r "$INSTDIR\translations"
+    RMDir "$INSTDIR"
 SectionEnd
 
 Section "un.$(remove_shortcuts)" ;"un.Remove shortcuts"
-  SectionIn RO
-; Remove shortcuts, if any
-  RMDir /r "$SMPROGRAMS\qBittorrent"
-  Delete "$DESKTOP\qBittorrent.lnk"
+    SectionIn RO
+    ; Remove shortcuts, if any
+    RMDir /r "$SMPROGRAMS\qBittorrent"
+    Delete "$DESKTOP\qBittorrent.lnk"
 SectionEnd
 
 Section "un.$(remove_registry)" ;"un.Remove registry keys"
-  SectionIn RO
-  ; Remove registry keys
-  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent"
-  DeleteRegKey HKLM "Software\qBittorrent"
-  ; Remove ProgIDs
-  DeleteRegKey HKLM "Software\Classes\qBittorrent.File.Torrent"
-  DeleteRegKey HKLM "Software\Classes\qBittorrent.Url.Magnet"
-  System::Call 'shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, p 0, p 0)'
+    SectionIn RO
+    ; Remove registry keys
+    DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent"
+    DeleteRegKey HKLM "Software\qBittorrent"
+    DeleteRegValue HKLM "Software\RegisteredApplications" "qBittorrent"
+    ; Remove ProgIDs
+    DeleteRegKey HKLM "Software\Classes\qBittorrent.File.Torrent"
+    DeleteRegKey HKLM "Software\Classes\qBittorrent.Url.Magnet"
+    System::Call 'shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, p 0, p 0)'
 SectionEnd
 
 Section "un.$(remove_firewall)" ;
-
-  DetailPrint $(remove_firewallinfo)
-  nsisFirewallW::RemoveAuthorizedApplication "$INSTDIR\qbittorrent.exe"
-
+    DetailPrint $(remove_firewallinfo)
+    nsisFirewallW::RemoveAuthorizedApplication "$INSTDIR\qbittorrent.exe"
 SectionEnd
 
 Section /o "un.$(remove_conf)" ;"un.Remove configuration files"
-
-  !insertmacro UAC_AsUser_Call Function un.remove_conf_user ${UAC_SYNCREGISTERS}|${UAC_SYNCOUTDIR}|${UAC_SYNCINSTDIR}
-
+    !insertmacro UAC_AsUser_Call Function un.remove_conf_user ${UAC_SYNCREGISTERS}|${UAC_SYNCOUTDIR}|${UAC_SYNCINSTDIR}
 SectionEnd
 
 Function un.remove_conf_user
-
-  System::Call 'shell32::SHGetKnownFolderPath(g "${FOLDERID_RoamingAppData}", i 0, p 0, *w . r1) i . r0'
-  RMDir /r "$1\qBittorrent"
-  System::Call 'ole32::CoTaskMemFree(p r1)'
-
+    System::Call 'shell32::SHGetKnownFolderPath(g "${FOLDERID_RoamingAppData}", i 0, p 0, *w . r1) i . r0'
+    RMDir /r "$1\qBittorrent"
+    System::Call 'ole32::CoTaskMemFree(p r1)'
 FunctionEnd
 
 Section /o "un.$(remove_cache)"
-
-  !insertmacro UAC_AsUser_Call Function un.remove_cache_user ${UAC_SYNCREGISTERS}|${UAC_SYNCOUTDIR}|${UAC_SYNCINSTDIR}
-
+    !insertmacro UAC_AsUser_Call Function un.remove_cache_user ${UAC_SYNCREGISTERS}|${UAC_SYNCOUTDIR}|${UAC_SYNCINSTDIR}
 SectionEnd
 
 Function un.remove_cache_user
-
-  System::Call 'shell32::SHGetKnownFolderPath(g "${FOLDERID_LocalAppData}", i 0, p 0, *w . r1) i . r0'
-  RMDir /r "$1\qBittorrent"
-  System::Call 'ole32::CoTaskMemFree(p r1)'
-
+    System::Call 'shell32::SHGetKnownFolderPath(g "${FOLDERID_LocalAppData}", i 0, p 0, *w . r1) i . r0'
+    RMDir /r "$1\qBittorrent"
+    System::Call 'ole32::CoTaskMemFree(p r1)'
 FunctionEnd
 
 ;--------------------------------
 ;Uninstaller Functions
 
 Function un.onInit
+    !insertmacro ElevateUAC "uninstaller"
+    !insertmacro MUI_UNGETLANGUAGE
 
-  !insertmacro Init "uninstaller"
-  !insertmacro MUI_UNGETLANGUAGE
-
+    !insertmacro AdjustRegistryView
 FunctionEnd
 
 Function un.check_instance
+    check:
+    FindProcDLL::FindProc "qbittorrent.exe"
+    StrCmp $R0 "1" 0 notfound
+    MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION $(uninst_warning) /SD IDCANCEL IDRETRY check IDCANCEL canceled
 
-  check:
-  FindProcDLL::FindProc "qbittorrent.exe"
-  StrCmp $R0 "1" 0 notfound
-  MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION $(uninst_warning) /SD IDCANCEL IDRETRY check IDCANCEL canceled
+    canceled:
+    SetErrorLevel 15618 # WinError.h: `ERROR_PACKAGES_IN_USE`
+    Abort
 
-  canceled:
-  SetErrorLevel 15618 # WinError.h: `ERROR_PACKAGES_IN_USE`
-  Abort
-
-  notfound:
-
+    notfound:
 FunctionEnd
 
 Function un.onUninstSuccess
-  SetErrorLevel 0
+    SetErrorLevel 0
 FunctionEnd

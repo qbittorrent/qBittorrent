@@ -83,6 +83,7 @@ const QString INDEX_HTML = u"/index.html"_s;
 
 const QString BASIC_AUTH = u"Basic"_s;
 const QString BEARER_AUTH = u"Bearer"_s;
+const QString BEARER_AUTH_CHALLENGE = u"Bearer realm=\"qBittorrent\", error=\"invalid_token\""_s;
 
 const QString API_PATH = u"/api/v2/"_s;
 
@@ -372,13 +373,9 @@ void WebApplication::processAPIRequest(const QString &endpoint, const Http::Head
         params = m_request.posts;
     }
 
-    DataMap data;
-    for (const Http::UploadedFile &torrent : request().files)
-        data[torrent.filename] = torrent.data;
-
     try
     {
-        const APIResult apiResult = controller->run(action, params, data);
+        const APIResult apiResult = controller->run(action, params, request().files);
         if (std::holds_alternative<StreamFileAPIResult>(apiResult))
         {
             const auto result = std::get<StreamFileAPIResult>(apiResult);
@@ -711,6 +708,11 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
         if (isUsingApiKey)
         {
             apiKeySessionInitialize(!apiKeyHeader.isEmpty() ? apiKeyHeader : authData);
+            if (!m_currentSession)
+            {
+                commonHeaders.insert(Http::HEADER_WWW_AUTHENTICATE, BEARER_AUTH_CHALLENGE);
+                throw UnauthorizedHTTPError();
+            }
         }
         else
         {
