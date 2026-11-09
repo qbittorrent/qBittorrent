@@ -452,6 +452,8 @@ void AppController::preferencesAction()
     data[u"bdecode_depth_limit"_s] = pref->getBdecodeDepthLimit();
     // Bdecode token limit
     data[u"bdecode_token_limit"_s] = pref->getBdecodeTokenLimit();
+    // Maximum directory depth when loading torrents
+    data[u"load_torrent_max_directory_depth"_s] = pref->getLoadTorrentMaxDirectoryDepth();
     // Async IO threads
     data[u"async_io_threads"_s] = session->asyncIOThreads();
     // Hashing threads
@@ -1136,6 +1138,9 @@ void AppController::setPreferencesAction()
     // Bdecode token limit
     if (hasKey(u"bdecode_token_limit"_s))
         pref->setBdecodeTokenLimit(it.value().toInt());
+    // Maximum directory depth when loading torrents
+    if (hasKey(u"load_torrent_max_directory_depth"_s))
+        pref->setLoadTorrentMaxDirectoryDepth(it.value().toInt());
     // Async IO threads
     if (hasKey(u"async_io_threads"_s))
         session->setAsyncIOThreads(it.value().toInt());
