@@ -30,8 +30,9 @@
 #include <QStringList>
 #include <QTest>
 
-#include "base/global.h"
 #include "base/rss/rss_autodownloadrule.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 class TestRSSAutoDownloadRule final : public QObject
 {
