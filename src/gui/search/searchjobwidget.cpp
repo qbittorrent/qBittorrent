@@ -46,6 +46,7 @@
 #include "base/search/searchhandler.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "gui/interfaces/iguiapplication.h"
 #include "gui/lineedit.h"
 #include "gui/uithememanager.h"
@@ -167,6 +168,7 @@ SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidge
 
     m_lineEditSearchResultsFilter = new LineEdit(this);
     m_lineEditSearchResultsFilter->setPlaceholderText(tr("Filter search results..."));
+    m_lineEditSearchResultsFilter->setToolTip(tr("All space separated terms must match. Use double quotes for an exact phrase."));
     m_lineEditSearchResultsFilter->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_lineEditSearchResultsFilter, &QWidget::customContextMenuRequested, this, &SearchJobWidget::showFilterContextMenu);
     connect(m_lineEditSearchResultsFilter, &LineEdit::textUpdated, this, &SearchJobWidget::filterSearchResults);
@@ -516,8 +518,8 @@ void SearchJobWidget::fillFilterComboBoxes()
 
 void SearchJobWidget::filterSearchResults(const QString &name)
 {
-    const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForSearchJob()
-        ? name : Utils::String::wildcardToRegexPattern(name));
+    const QString pattern = Utils::String::searchTermsToRegexPattern(name
+        , Preferences::instance()->getRegexAsFilteringPatternForSearchJob());
     m_proxyModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
     updateResultsCount();
 }

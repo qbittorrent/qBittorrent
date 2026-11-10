@@ -105,6 +105,73 @@ QStringList Utils::String::splitCommand(const QString &command)
     return ret;
 }
 
+namespace
+{
+    QStringList tokenizeSearchPattern(const QString &pattern, const bool stripQuotes)
+    {
+        QStringList tokens;
+        QString token;
+        bool inQuotes = false;
+
+        for (const QChar c : pattern)
+        {
+            if ((c == u' ') && !inQuotes)
+            {
+                if (!token.isEmpty())
+                {
+                    tokens.append(stripQuotes ? Utils::String::unquote(token) : token);
+                    token.clear();
+                }
+
+                continue;
+            }
+
+            if (c == u'"')
+                inQuotes = !inQuotes;
+
+            token.append(c);
+        }
+
+        if (!token.isEmpty())
+            tokens.append(stripQuotes ? Utils::String::unquote(token) : token);
+
+        return tokens;
+    }
+}
+
+QString Utils::String::normalizeSearchPattern(const QString &pattern)
+{
+    QStringList normalized;
+    for (const QString &token : tokenizeSearchPattern(pattern, false))
+    {
+        // Space separated terms are already combined with AND, so the explicit
+        // keyword is redundant. Quoted phrases are kept as a single token.
+        if (token.compare(u"AND", Qt::CaseInsensitive) == 0)
+            continue;
+
+        normalized.append(token);
+    }
+
+    return normalized.join(u' ');
+}
+
+QStringList Utils::String::splitSearchPattern(const QString &pattern)
+{
+    return tokenizeSearchPattern(pattern, true);
+}
+
+QString Utils::String::searchTermsToRegexPattern(const QString &pattern, const bool regexTerms)
+{
+    QStringList lookaheads;
+    for (const QString &term : splitSearchPattern(normalizeSearchPattern(pattern)))
+    {
+        const QString termPattern = (regexTerms ? term : wildcardToRegexPattern(term));
+        lookaheads.append(u"(?=.*%1)"_s.arg(termPattern));
+    }
+
+    return lookaheads.join(u"");
+}
+
 std::optional<bool> Utils::String::parseBool(const QString &string)
 {
     if (string.compare(u"true", Qt::CaseInsensitive) == 0)
