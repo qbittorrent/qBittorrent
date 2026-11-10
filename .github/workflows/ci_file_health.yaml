@@ -26,7 +26,9 @@ jobs:
           python-version: "*"
 
       - name: Check files
-        uses: j178/prek-action@5337cb91e0fa35a7ff31b9ca345126d8bbbcdf16 # v2.0.6
+        uses: j178/prek-action@7b101f8338a08d2bd6fdb3625e4e7692428763a3 # v3.1.1
+        with:
+          prek-version: "latest-known"
 
       - name: Check doc
         env:
@@ -52,7 +54,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install zizmor
+          pip install \
+            --uploaded-prior-to P3D \
+            zizmor
           IGNORE_RULEID='(.ruleId != "zizmor/template-injection")'
           IGNORE_ID='(.id != "zizmor/template-injection")'
           zizmor \
