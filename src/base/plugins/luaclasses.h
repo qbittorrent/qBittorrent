@@ -28,6 +28,6 @@
 
 #pragma once
 
-#include <lua/lua.hpp>
+#include <lua.hpp>
 
 void registerLuaClasses(lua_State *luaState);
