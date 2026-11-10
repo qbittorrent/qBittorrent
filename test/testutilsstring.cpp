@@ -172,6 +172,10 @@ private slots:
         QVERIFY(matches(u"2026 "_s, u"Movie.2026.1080p.x265"_s, true));
         QVERIFY(matches(u"doe -john"_s, u"jane doe"_s, true));
         QVERIFY(!matches(u"doe -john"_s, u"john doe"_s, true));
+
+        // A top-level operator must not escape the term's lookahead
+        QVERIFY(matches(u"foo|bar baz"_s, u"baz bar"_s, true));
+        QVERIFY(!matches(u"foo|bar baz"_s, u"baz qux"_s, true));
     }
 };
 

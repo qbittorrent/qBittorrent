@@ -184,11 +184,12 @@ QString Utils::String::searchTermsToRegexPattern(const QString &pattern, const b
     for (const SearchTerm &term : parseSearchTerms(normalizeSearchPattern(pattern)))
     {
         const QString termPattern = (regexTerms ? term.text : wildcardToRegexPattern(term.text));
-        // An excluded term needs an anchor: an unanchored negative lookahead
-        // would succeed again at a later position of the subject.
+        // Group the term so that top-level operators (e.g. alternation) cannot
+        // escape the lookahead. An excluded term needs an anchor as well: an
+        // unanchored negative lookahead would succeed at a later position.
         lookaheads.append(term.excluded
-            ? u"\\A(?!.*%1)"_s.arg(termPattern)
-            : u"(?=.*%1)"_s.arg(termPattern));
+            ? u"\\A(?!.*(?:%1))"_s.arg(termPattern)
+            : u"(?=.*(?:%1))"_s.arg(termPattern));
     }
 
     return lookaheads.join(u"");

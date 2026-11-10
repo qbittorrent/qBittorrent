@@ -61,7 +61,9 @@ void SearchSortModel::setNameFilter(const QString &searchTerm)
 
     QStringList includedWords;
     QStringList excludedWords;
-    for (const Utils::String::SearchTerm &term : Utils::String::parseSearchTerms(searchTerm))
+    // Normalize here as well: a session restored from an older version may
+    // still contain the redundant AND keyword.
+    for (const Utils::String::SearchTerm &term : Utils::String::parseSearchTerms(Utils::String::normalizeSearchPattern(searchTerm)))
     {
         if (term.excluded)
             excludedWords.append(term.text);
