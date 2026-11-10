@@ -373,7 +373,8 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     const QString searchPatternHint = u"<html><head/><body><p>"
         + tr("A phrase to search for.") + u"<br>"
         + tr("Spaces in a search term may be protected by double quotes.") + u"<br>"
-        + tr("The AND keyword is optional; foo AND bar is the same as foo bar.")
+        + tr("The AND keyword is optional; foo AND bar is the same as foo bar.") + u"<br>"
+        + tr("Prefix a word with - to exclude it; foo -bar searches for foo without bar.")
         + u"</p><p>"
         + tr("Example:", "Search phrase example")
         + u"<br>"

@@ -96,6 +96,7 @@ private:
     bool m_isNameFilterEnabled = false;
     QString m_searchTerm;
     QStringList m_searchTermWords;
+    QStringList m_excludedTermWords;
     int m_minSeeds = 0, m_maxSeeds = -1;
     int m_minLeeches = 0, m_maxLeeches = -1;
     qint64 m_minSize = 0, m_maxSize = -1;

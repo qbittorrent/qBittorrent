@@ -155,18 +155,40 @@ QString Utils::String::normalizeSearchPattern(const QString &pattern)
     return normalized.join(u' ');
 }
 
-QStringList Utils::String::splitSearchPattern(const QString &pattern)
+QList<Utils::String::SearchTerm> Utils::String::parseSearchTerms(const QString &pattern)
 {
-    return tokenizeSearchPattern(pattern, true);
+    QList<SearchTerm> terms;
+    for (QString token : tokenizeSearchPattern(pattern, false))
+    {
+        // A lone sign carries no term and is ignored
+        if ((token == u"-") || (token == u"+"))
+            continue;
+
+        const bool excluded = token.startsWith(u'-');
+        if (excluded || token.startsWith(u'+'))
+            token.remove(0, 1);
+
+        token = unquote(token);
+        if (token.isEmpty())
+            continue;
+
+        terms.append({token, excluded});
+    }
+
+    return terms;
 }
 
 QString Utils::String::searchTermsToRegexPattern(const QString &pattern, const bool regexTerms)
 {
     QStringList lookaheads;
-    for (const QString &term : splitSearchPattern(normalizeSearchPattern(pattern)))
+    for (const SearchTerm &term : parseSearchTerms(normalizeSearchPattern(pattern)))
     {
-        const QString termPattern = (regexTerms ? term : wildcardToRegexPattern(term));
-        lookaheads.append(u"(?=.*%1)"_s.arg(termPattern));
+        const QString termPattern = (regexTerms ? term.text : wildcardToRegexPattern(term.text));
+        // An excluded term needs an anchor: an unanchored negative lookahead
+        // would succeed again at a later position of the subject.
+        lookaheads.append(term.excluded
+            ? u"\\A(?!.*%1)"_s.arg(termPattern)
+            : u"(?=.*%1)"_s.arg(termPattern));
     }
 
     return lookaheads.join(u"");

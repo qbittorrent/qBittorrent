@@ -107,16 +107,25 @@ private slots:
         QCOMPARE(Utils::String::normalizeSearchPattern(uR"(2026 AND "h265 1080")"_s), uR"(2026 "h265 1080")"_s);
     }
 
-    void testSplitSearchPattern() const
+    void testParseSearchTerms() const
     {
-        QCOMPARE(Utils::String::splitSearchPattern({}), {});
-        QCOMPARE(Utils::String::splitSearchPattern(u"   "_s), {});
-        QCOMPARE(Utils::String::splitSearchPattern(u"1080 2026 265"_s)
-            , QStringList({u"1080"_s, u"2026"_s, u"265"_s}));
-        QCOMPARE(Utils::String::splitSearchPattern(uR"("1080 2026" 265)"_s)
-            , QStringList({u"1080 2026"_s, u"265"_s}));
-        QCOMPARE(Utils::String::splitSearchPattern(u"\"unterminated"_s)
-            , QStringList({u"\"unterminated"_s}));
+        const auto terms = [](const QString &pattern) -> QStringList
+        {
+            QStringList result;
+            for (const Utils::String::SearchTerm &term : Utils::String::parseSearchTerms(pattern))
+                result.append((term.excluded ? u"-"_s : u""_s) + term.text);
+            return result;
+        };
+
+        QCOMPARE(terms({}), {});
+        QCOMPARE(terms(u"   "_s), {});
+        QCOMPARE(terms(u"1080 2026 265"_s), QStringList({u"1080"_s, u"2026"_s, u"265"_s}));
+        QCOMPARE(terms(uR"("1080 2026" 265)"_s), QStringList({u"1080 2026"_s, u"265"_s}));
+        QCOMPARE(terms(u"doe -john"_s), QStringList({u"doe"_s, u"-john"_s}));
+        QCOMPARE(terms(u"doe +john"_s), QStringList({u"doe"_s, u"john"_s}));
+        QCOMPARE(terms(u"doe -"_s), QStringList({u"doe"_s}));
+        QCOMPARE(terms(uR"(doe -"john doe")"_s), QStringList({u"doe"_s, u"-john doe"_s}));
+        QCOMPARE(terms(u"\"unterminated"_s), QStringList({u"\"unterminated"_s}));
     }
 
     void testSearchTermsToRegexPattern() const
@@ -150,11 +159,19 @@ private slots:
         QVERIFY(matches(u"1080*"_s, u"Movie.2026.1080p.H265"_s));
         QVERIFY(!matches(u"1080*"_s, u"Movie.2026.720p.H265"_s));
 
+        QVERIFY(matches(u"doe -john"_s, u"jane doe"_s));
+        QVERIFY(!matches(u"doe -john"_s, u"john doe"_s));
+        QVERIFY(matches(u"doe +john"_s, u"john doe"_s));
+        QVERIFY(matches(uR"(doe -"john doe")"_s, u"jane doe"_s));
+        QVERIFY(!matches(uR"(doe -"john doe")"_s, u"john doe"_s));
+
         // In regex mode each term is a regular expression, still combined with AND
         QVERIFY(matches(u"2026 x265"_s, u"Movie.2026.1080p.x265"_s, true));
         QVERIFY(matches(u"2026 (x265|hevc)"_s, u"Movie.2026.1080p.x265"_s, true));
         QVERIFY(!matches(u"2026 av1"_s, u"Movie.2026.1080p.x265"_s, true));
         QVERIFY(matches(u"2026 "_s, u"Movie.2026.1080p.x265"_s, true));
+        QVERIFY(matches(u"doe -john"_s, u"jane doe"_s, true));
+        QVERIFY(!matches(u"doe -john"_s, u"john doe"_s, true));
     }
 };
 

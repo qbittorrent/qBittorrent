@@ -70,8 +70,15 @@ namespace Utils::String
     //! \brief Removes redundant boolean AND keywords from a search pattern
     QString normalizeSearchPattern(const QString &pattern);
 
-    //! \brief Splits a search pattern into terms, keeping quoted phrases together
-    QStringList splitSearchPattern(const QString &pattern);
+    //! \brief A search term, optionally excluded from the results
+    struct SearchTerm
+    {
+        QString text;
+        bool excluded = false;
+    };
+
+    //! \brief Splits a search pattern into terms, honoring quotes and +/- prefixes
+    QList<SearchTerm> parseSearchTerms(const QString &pattern);
 
     //! \brief Converts space separated terms into an AND regular expression
     //! \param regexTerms treat each term as a regular expression instead of a wildcard pattern

@@ -168,7 +168,7 @@ SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidge
 
     m_lineEditSearchResultsFilter = new LineEdit(this);
     m_lineEditSearchResultsFilter->setPlaceholderText(tr("Filter search results..."));
-    m_lineEditSearchResultsFilter->setToolTip(tr("All space separated terms must match. Use double quotes for an exact phrase."));
+    m_lineEditSearchResultsFilter->setToolTip(tr("All space separated terms must match. Prefix a term with - to exclude it. Use double quotes for an exact phrase."));
     m_lineEditSearchResultsFilter->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_lineEditSearchResultsFilter, &QWidget::customContextMenuRequested, this, &SearchJobWidget::showFilterContextMenu);
     connect(m_lineEditSearchResultsFilter, &LineEdit::textUpdated, this, &SearchJobWidget::filterSearchResults);
