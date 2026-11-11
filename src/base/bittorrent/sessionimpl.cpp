@@ -3250,7 +3250,11 @@ void SessionImpl::addMappedPorts(const QSet<quint16> &ports)
         for (const quint16 port : ports)
         {
             if (!m_mappedPorts.contains(port))
-                m_mappedPorts.insert(port, m_nativeSession->add_port_mapping(lt::session::tcp, port, port));
+            {
+                std::vector<lt::port_mapping_t> handles = m_nativeSession->add_port_mapping(lt::session::tcp, port, port);
+                std::erase_if(handles, [](const lt::port_mapping_t handle) { return (handle < lt::port_mapping_t {0}); });
+                m_mappedPorts.insert(port, std::move(handles));
+            }
         }
     });
 }
@@ -3268,7 +3272,10 @@ void SessionImpl::removeMappedPorts(const QSet<quint16> &ports)
                 return false;
 
             for (const lt::port_mapping_t &handle : handles)
-                m_nativeSession->delete_port_mapping(handle);
+            {
+                if (handle >= lt::port_mapping_t {0})
+                    m_nativeSession->delete_port_mapping(handle);
+            }
 
             return true;
         });
