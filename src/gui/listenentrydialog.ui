@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ListenEntryDialog</class>
+ <widget class="QDialog" name="ListenEntryDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>460</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Listen Entry</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="labelAddresses">
+     <property name="text">
+      <string>Interfaces and addresses:</string>
+     </property>
+     <property name="buddy">
+      <cstring>treeAddresses</cstring>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="AddressSelectionTree" name="treeAddresses"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="layoutPorts">
+     <item>
+      <widget class="QLabel" name="labelPorts">
+       <property name="text">
+        <string>Ports:</string>
+       </property>
+       <property name="buddy">
+        <cstring>lineEditPorts</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditPorts">
+       <property name="toolTip">
+        <string>Separate the ports with commas. Add &quot;s&quot; to a port to accept only SSL connections on it, e.g. 6881, 6882s</string>
+       </property>
+       <property name="placeholderText">
+        <string>e.g. 6881, 6882s</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonRandomPort">
+       <property name="toolTip">
+        <string>Replace the ports that are not SSL ports with one random port</string>
+       </property>
+       <property name="text">
+        <string>Random</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>AddressSelectionTree</class>
+   <extends>QTreeWidget</extends>
+   <header>gui/addressselectiontree.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
