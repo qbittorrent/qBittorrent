@@ -81,8 +81,6 @@
 
         let searchPluginsTable;
         let searchPluginsTableContextMenu;
-        let prevOffsetLeft;
-        let prevOffsetTop;
 
         const setup = () => {
             searchPluginsTable = new window.qBittorrent.DynamicTable.SearchPluginsTable();
@@ -92,15 +90,11 @@
                 actions: {
                     Enabled: enablePlugin,
                     Uninstall: uninstallPlugin
-                },
-                offsets: calculateContextMenuOffsets()
+                }
             });
             searchPluginsTable.setup("searchPluginsTableDiv", "searchPluginsTableFixedHeaderDiv", searchPluginsTableContextMenu);
 
             searchPluginsTable.dynamicTableDiv.addEventListener("dblclick", (e) => { enablePlugin(); });
-            searchPluginsTable.dynamicTableDiv.addEventListener("contextmenu", (e) => {
-                updateSearchPluginsTableContextMenuOffset();
-            }, true);
 
             updateTable();
         };
@@ -150,22 +144,6 @@
             fetch("api/v2/search/updatePlugins", {
                 method: "POST"
             });
-        };
-
-        const calculateContextMenuOffsets = () => {
-            prevOffsetLeft = document.getElementById("searchPlugins").getBoundingClientRect().left;
-            prevOffsetTop = document.getElementById("searchPlugins").getBoundingClientRect().top;
-
-            return {
-                x: -prevOffsetLeft,
-                y: -prevOffsetTop
-            };
-        };
-
-        const updateSearchPluginsTableContextMenuOffset = () => {
-            // only re-calculate if window has moved
-            if ((prevOffsetLeft !== document.getElementById("searchPlugins").getBoundingClientRect().left) || (prevOffsetTop !== document.getElementById("searchPlugins").getBoundingClientRect().top))
-                searchPluginsTableContextMenu.options.offsets = calculateContextMenuOffsets();
         };
 
         const updateTable = () => {

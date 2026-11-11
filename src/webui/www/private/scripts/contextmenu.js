@@ -89,8 +89,9 @@ window.qBittorrent.ContextMenu ??= (() => {
             this.menu.style.top = "-999em";
 
             // position the menu
-            let xPosMenu = e.pageX + this.options.offsets.x;
-            let yPosMenu = e.pageY + this.options.offsets.y;
+            const point = e.changedTouches?.[0] ?? e;
+            let xPosMenu = point.clientX + this.options.offsets.x;
+            let yPosMenu = point.clientY + this.options.offsets.y;
             if ((xPosMenu + this.menu.offsetWidth) > document.documentElement.clientWidth)
                 xPosMenu -= this.menu.offsetWidth;
             if ((yPosMenu + this.menu.offsetHeight) > document.documentElement.clientHeight)
@@ -101,7 +102,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 yPosMenu = 0;
             this.menu.style.left = `${xPosMenu}px`;
             this.menu.style.top = `${yPosMenu}px`;
-            this.menu.style.position = "absolute";
+            this.menu.style.position = "fixed";
             this.menu.style.zIndex = "2000";
 
             // position the sub-menu
@@ -143,15 +144,22 @@ window.qBittorrent.ContextMenu ??= (() => {
             elem.addEventListener("touchend", (e) => {
                 const now = performance.now();
                 const touchStartAt = this.touchStartAt;
-                const touchStartEvent = this.touchStartEvent;
+                // unset before the first touchstart
+                const touchStartEvent = this.touchStartEvent ?? null;
 
                 this.touchStartAt = null;
                 this.touchStartEvent = null;
 
+                if (touchStartEvent === null)
+                    return;
+
                 const isTargetUnchanged = (Math.abs(e.changedTouches[0].pageX - touchStartEvent.changedTouches[0].pageX) <= 10) && (Math.abs(e.changedTouches[0].pageY - touchStartEvent.changedTouches[0].pageY) <= 10);
-                if (((now - touchStartAt) >= this.options.touchTimer) && isTargetUnchanged)
+                if (((now - touchStartAt) >= this.options.touchTimer) && isTargetUnchanged) {
+                    // the click that follows the touch would close the menu again
+                    e.preventDefault();
                     this.triggerMenu(touchStartEvent, elem);
-            }, { passive: true });
+                }
+            });
         }
 
         addTarget(t) {
@@ -209,23 +217,40 @@ window.qBittorrent.ContextMenu ??= (() => {
                 }
             });
 
-            // hide on body click
-            document.body.addEventListener("click", (event) => {
-                const parentNode = event.target.parentNode;
+            // hide on body click, and on Escape
+            document.body.addEventListener("click", ContextMenu.#onBodyClick);
+            window.addEventListener("keydown", ContextMenu.#onEscape, true);
+        }
 
-                // make sure the click was on a context menu item
-                if ((parentNode !== null) && (parentNode.tagName.toLowerCase() === "li")) {
-                    const grandParentNode = parentNode.parentNode;
-                    if ((grandParentNode !== null) && (grandParentNode.classList.contains("contextMenu"))) {
-                        const submenuNodes = parentNode.getElementsByTagName("ul");
-                        if (submenuNodes.length > 0)
-                            return;
-                    }
+        // only the last shown menu can be visible, so all menus share this listener
+        static #onBodyClick(event) {
+            if (lastShownContextMenu === null)
+                return;
+
+            const parentNode = event.target.parentNode;
+
+            // make sure the click was on a context menu item
+            if ((parentNode !== null) && (parentNode.tagName.toLowerCase() === "li")) {
+                const grandParentNode = parentNode.parentNode;
+                if ((grandParentNode !== null) && (grandParentNode.classList.contains("contextMenu"))) {
+                    const submenuNodes = parentNode.getElementsByTagName("ul");
+                    if (submenuNodes.length > 0)
+                        return;
                 }
+            }
 
-                this.hide();
-                this.options.element = null;
-            });
+            lastShownContextMenu.hide();
+            lastShownContextMenu.options.element = null;
+        }
+
+        // hide on Escape, without closing the window below
+        static #onEscape(event) {
+            if ((event.key !== "Escape") || (lastShownContextMenu === null) || !lastShownContextMenu.menu.classList.contains("visible"))
+                return;
+
+            event.stopPropagation();
+            lastShownContextMenu.hide();
+            lastShownContextMenu.options.element = null;
         }
 
         updateMenuItems() {}
@@ -744,28 +769,6 @@ window.qBittorrent.ContextMenu ??= (() => {
     }
 
     class RssDownloaderRuleContextMenu extends ContextMenu {
-        adjustMenuPosition(e) {
-            const rssDownloaderPage = document.getElementById("rssdownloaderpage");
-            this.updateMenuItems();
-
-            // draw the menu off-screen to know the menu dimensions
-            this.menu.style.left = "-999em";
-            this.menu.style.top = "-999em";
-            // position the menu
-            let xPosMenu = e.pageX + this.options.offsets.x - rssDownloaderPage.offsetLeft;
-            let yPosMenu = e.pageY + this.options.offsets.y - rssDownloaderPage.offsetTop;
-            if ((xPosMenu + this.menu.offsetWidth) > rssDownloaderPage.clientWidth)
-                xPosMenu -= this.menu.offsetWidth;
-            if ((yPosMenu + this.menu.offsetHeight) > rssDownloaderPage.clientHeight)
-                yPosMenu = rssDownloaderPage.clientHeight - this.menu.offsetHeight;
-            xPosMenu = Math.max(xPosMenu, 0);
-            yPosMenu = Math.max(yPosMenu, 0);
-
-            this.menu.style.left = `${xPosMenu}px`;
-            this.menu.style.top = `${yPosMenu}px`;
-            this.menu.style.position = "absolute";
-            this.menu.style.zIndex = "2000";
-        }
         updateMenuItems() {
             const selectedRows = window.qBittorrent.RssDownloader.rssDownloaderRulesTable.selectedRowsIds();
             this.showItem("addRule");

@@ -69,8 +69,6 @@
 
         let table;
         let contextMenu;
-        let prevOffsetLeft;
-        let prevOffsetTop;
         let timer = -1;
 
         const init = () => {
@@ -101,7 +99,6 @@
                     },
                     exportTorrent: exportTorrents,
                 },
-                offsets: calculateContextMenuOffsets(),
             });
             contextMenu.updateMenuItems = () => {
                 const selectedRows = table.selectedRowsIds();
@@ -127,31 +124,11 @@
 
             table.setup("torrentCreationTasksTableDiv", "torrentCreationTasksTableFixedHeaderDiv", contextMenu);
 
-            table.dynamicTableDiv.addEventListener("contextmenu", (e) => {
-                updateContextMenuOffset();
-            }, true);
-
             document.getElementById("addTaskButton").addEventListener("click", (event) => {
                 showCreateTorrentPage();
             });
 
             load();
-        };
-
-        const calculateContextMenuOffsets = () => {
-            prevOffsetLeft = document.getElementById("torrentCreatorPage").getBoundingClientRect().left;
-            prevOffsetTop = document.getElementById("torrentCreatorPage").getBoundingClientRect().top;
-
-            return {
-                x: -prevOffsetLeft,
-                y: -prevOffsetTop
-            };
-        };
-
-        const updateContextMenuOffset = () => {
-            // only re-calculate if window has moved
-            if ((prevOffsetLeft !== document.getElementById("torrentCreatorPage").getBoundingClientRect().left) || (prevOffsetTop !== document.getElementById("torrentCreatorPage").getBoundingClientRect().top))
-                contextMenu.options.offsets = calculateContextMenuOffsets();
         };
 
         const showCreateTorrentPage = () => {

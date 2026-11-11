@@ -110,7 +110,7 @@ window.qBittorrent.Search ??= (() => {
         },
         offsets: {
             x: 2,
-            y: -60
+            y: 0
         },
         onShow: function() {
             const tab = this.options.element;
@@ -138,7 +138,7 @@ window.qBittorrent.Search ??= (() => {
             },
             offsets: {
                 x: 0,
-                y: -60
+                y: 0
             },
             onShow: function() {
                 const multiSelect = searchResultsTable.selectedRowsIds().length > 1;
