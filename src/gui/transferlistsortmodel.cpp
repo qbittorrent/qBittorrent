@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -99,7 +100,7 @@ namespace
     int adjustSubSortColumn(const int column)
     {
         return ((column >= 0) && (column < TransferListModel::NB_COLUMNS))
-                   ? column : TransferListModel::TR_NAME;
+                ? column : TransferListModel::TR_NAME;
     }
 }
 
@@ -208,6 +209,20 @@ void TransferListSortModel::setAnnounceStatusFilter(const std::optional<BitTorre
 #endif
 }
 
+void TransferListSortModel::allowHiddenTorrents(const bool allow)
+{
+    if (allow == m_allowHiddenTorrents)
+        return;
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_allowHiddenTorrents = allow;
+    endFilterChange(Direction::Rows);
+#else
+    invalidateRowsFilter();
+#endif
+}
+
 int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &right) const
 {
     const int compareColumn = left.column();
@@ -270,6 +285,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
         return customCompare(leftValue.toInt(), rightValue.toInt());
 
     case TransferListModel::TR_PRIVATE:
+    case TransferListModel::TR_HIDDEN:
         return compareAsBool(leftValue, rightValue);
 
     case TransferListModel::TR_PEERS:
@@ -321,10 +337,16 @@ bool TransferListSortModel::filterAcceptsRow(const int sourceRow, const QModelIn
 bool TransferListSortModel::matchFilter(const int sourceRow, const QModelIndex &sourceParent) const
 {
     const auto *model = qobject_cast<TransferListModel *>(sourceModel());
-    if (!model) return false;
+    if (!model)
+        return false;
 
-    const BitTorrent::Torrent *torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));
-    if (!torrent) return false;
+    const QModelIndex sourceIndex = model->index(sourceRow, 0, sourceParent);
+    const BitTorrent::Torrent *torrent = model->torrentHandle(sourceIndex);
+    if (!torrent)
+        return false;
+
+    if (!m_allowHiddenTorrents && model->isTorrentHidden(torrent))
+        return false;
 
     return m_filter.match(torrent);
 }
