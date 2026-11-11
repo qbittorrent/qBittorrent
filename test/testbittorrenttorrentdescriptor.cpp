@@ -46,18 +46,26 @@ public:
 private slots:
     void testParseMagnetFiltersUnsupportedTrackers() const
     {
-        const QString httpTracker = u"http://tracker.example.com/announce"_s;
-        const QString udpTracker = u"udp://tracker.example.com:1337/announce"_s;
-        const QString i2pTracker = u"http://tracker.example.i2p/announce"_s;
-        const QUrlQuery query {
+        const QStringList trackerURLs {
+            u"http://tracker.example.com/announce"_s,
+            u"https://tracker.example.com/announce"_s,
+            u"udp://tracker.example.com:1337/announce"_s,
+            u"http://tracker.example.i2p/announce"_s,
+#if TORRENT_USE_RTC
+            u"ws://tracker.example.com/announce"_s,
+            u"wss://tracker.example.com/announce"_s,
+#endif
+        };
+
+        QUrlQuery query {
             {u"xt"_s, u"urn:btih:c58645e2e922428dceb1f98f51ffa424810570f0"_s},
-            {u"tr"_s, httpTracker},
-            {u"tr"_s, udpTracker},
-            {u"tr"_s, i2pTracker},
             {u"tr"_s, u"<!DOCTYPE html><html>"_s},
             {u"tr"_s, u"ftp://tracker.example.com/announce"_s},
             {u"tr"_s, u"313131"_s}
         };
+        for (qsizetype i = 0; i < trackerURLs.size(); ++i)
+            query.addQueryItem(u"tr"_s, trackerURLs.at(i));
+
         QUrl magnet {u"magnet:"_s};
         magnet.setQuery(query);
 
@@ -65,14 +73,13 @@ private slots:
         QVERIFY(parseResult);
 
         const QList<BitTorrent::TrackerEntry> trackers = parseResult.value().trackers();
-        QCOMPARE(trackers.size(), 3);
-        QCOMPARE(trackers.at(0).url, httpTracker);
-        QCOMPARE(trackers.at(1).url, udpTracker);
-        QCOMPARE(trackers.at(2).url, i2pTracker);
+        QCOMPARE(trackers.size(), trackerURLs.size());
+        for (qsizetype i = 0; i < trackers.size(); ++i)
+            QCOMPARE(trackers.at(i).url, trackerURLs.at(i));
 
         const lt::add_torrent_params &nativeParams = parseResult.value().ltAddTorrentParams();
-        QCOMPARE(nativeParams.trackers.size(), 3);
-        QCOMPARE(nativeParams.tracker_tiers.size(), 3);
+        QCOMPARE(nativeParams.trackers.size(), trackerURLs.size());
+        QCOMPARE(nativeParams.tracker_tiers.size(), trackerURLs.size());
     }
 };
 
