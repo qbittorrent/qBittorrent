@@ -368,6 +368,10 @@ Examples
 readme.txt: filter exact file name.
 ?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
 readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.)QBT_TR[CONTEXT=OptionsDialog]"></textarea>
+        <div class="formRow">
+            <input type="checkbox" id="excludeFilesWithoutExtensionCheckbox">
+            <label for="excludeFilesWithoutExtensionCheckbox" title="QBT_TR(Files whose name has no extension (e.g. 'readme', 'setup.') will have their priority automatically set to &quot;Do not download&quot;.)QBT_TR[CONTEXT=OptionsDialog]">QBT_TR(Exclude files without an extension)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -2193,6 +2197,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateExcludedFileNamesEnabled = () => {
             const isAExcludedFileNamesEnabled = document.getElementById("excludedFileNamesCheckbox").checked;
             document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
+            document.getElementById("excludeFilesWithoutExtensionCheckbox").disabled = !isAExcludedFileNamesEnabled;
         };
 
         const updateTorrentBackupControls = () => {
@@ -2661,6 +2666,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Excluded file names
                     document.getElementById("excludedFileNamesCheckbox").checked = pref.excluded_file_names_enabled;
                     document.getElementById("excludedFileNamesTextarea").value = pref.excluded_file_names;
+                    document.getElementById("excludeFilesWithoutExtensionCheckbox").checked = pref.exclude_files_without_extension;
                     updateExcludedFileNamesEnabled();
 
                     // Email notification upon download completion
@@ -3085,6 +3091,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Excluded file names
             settings["excluded_file_names_enabled"] = document.getElementById("excludedFileNamesCheckbox").checked;
             settings["excluded_file_names"] = document.getElementById("excludedFileNamesTextarea").value;
+            settings["exclude_files_without_extension"] = document.getElementById("excludeFilesWithoutExtensionCheckbox").checked;
 
             // Email notification upon download completion
             settings["mail_notification_enabled"] = document.getElementById("mail_notification_checkbox").checked;
