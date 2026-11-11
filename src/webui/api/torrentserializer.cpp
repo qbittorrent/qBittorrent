@@ -63,6 +63,15 @@ TorrentSerializer::TorrentSerializer(QObject *parent)
     connect(session, &BitTorrent::Session::torrentTagRemoved, this, &TorrentSerializer::invalidate);
     connect(session, &BitTorrent::Session::torrentContentFileRenamed, this, &TorrentSerializer::invalidate);
     connect(session, &BitTorrent::Session::torrentContentFolderRenamed, this, &TorrentSerializer::invalidate);
+    // the caches are keyed by torrent ID, so entries stored under the previous ID
+    // would never be evicted otherwise
+    connect(session, &BitTorrent::Session::torrentInfoHashChanged, this
+            , [this]([[maybe_unused]] const BitTorrent::Torrent *torrent, const BitTorrent::InfoHash &prevInfoHash)
+    {
+        const BitTorrent::TorrentID prevTorrentID = prevInfoHash.toTorrentID();
+        m_torrentsCache.remove(prevTorrentID);
+        m_trackersCache.remove(prevTorrentID);
+    });
     // tracker changes also affect fields of the serialized torrent itself
     // ("tracker", "trackers_count", "reannounce"), so they invalidate both caches
     connect(session, &BitTorrent::Session::trackersAdded, this, &TorrentSerializer::invalidateWithTrackers);
