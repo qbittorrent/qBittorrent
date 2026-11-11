@@ -63,6 +63,7 @@ public:
         Checking,
         Moving,
         Errored,
+        InsufficientDiskSpace,
 
         _Count
     };
