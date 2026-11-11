@@ -262,7 +262,7 @@ static void buildhiddenargs (lua_State *L, CallInfo *ci, const Proto *p,
   /* move fixed parameters to after the copied function */
   for (i = 1; i <= nfixparams; i++) {
     setobjs2s(L, L->top.p++, ci->func.p + i);
-    setnilvalue(s2v(ci->func.p + i));  /* erase original parameter (for GC) */
+    setnilvalue2s(ci->func.p + i);  /* erase original parameter (for GC) */
   }
   ci->func.p += totalargs + 1;  /* 'func' now lives after hidden arguments */
   ci->top.p += totalargs + 1;
@@ -283,7 +283,7 @@ void luaT_adjustvarargs (lua_State *L, CallInfo *ci, const Proto *p) {
     lua_assert(p->flag & PF_VAHID);
     buildhiddenargs(L, ci, p, totalargs, nfixparams, nextra);
     /* set vararg parameter to nil */
-    setnilvalue(s2v(ci->func.p + nfixparams + 1));
+    setnilvalue2s(ci->func.p + nfixparams + 1);
     lua_assert(L->top.p <= ci->top.p && ci->top.p <= L->stack_last.p);
   }
 }
@@ -307,7 +307,7 @@ void luaT_getvararg (CallInfo *ci, StkId ra, TValue *rc) {
       return;
     }
   }
-  setnilvalue(s2v(ra));  /* else produce nil */
+  setnilvalue2s(ra);  /* else produce nil */
 }
 
 
@@ -355,10 +355,10 @@ void luaT_getvarargs (lua_State *L, CallInfo *ci, StkId where, int wanted,
     for (i = 0; i < touse; i++) {
       lu_byte tag = luaH_getint(h, i + 1, s2v(where + i));
       if (tagisempty(tag))
-       setnilvalue(s2v(where + i));
+       setnilvalue2s(where + i);
     }
   }
   for (; i < wanted; i++)   /* complete required results with nil */
-    setnilvalue(s2v(where + i));
+    setnilvalue2s(where + i);
 }
 

@@ -268,9 +268,9 @@ static int forprep (lua_State *L, StkId ra) {
 /*
 ** Execute a step of a float numerical for loop, returning
 ** true iff the loop must continue. (The integer case is
-** written online with opcode OP_FORLOOP, for performance.)
+** written inline with opcode OP_FORLOOP, for performance.)
 */
-static int floatforloop (StkId ra) {
+static int floatforloop (lua_State *L, StkId ra) {
   lua_Number step = fltvalue(s2v(ra + 1));
   lua_Number limit = fltvalue(s2v(ra));
   lua_Number idx = fltvalue(s2v(ra + 2));  /* control variable */
@@ -303,7 +303,7 @@ lu_byte luaV_finishget (lua_State *L, const TValue *t, TValue *key,
     else {  /* 't' is a table */
       tm = fasttm(L, hvalue(t)->metatable, TM_INDEX);  /* table's metamethod */
       if (tm == NULL) {  /* no metamethod? */
-        setnilvalue(s2v(val));  /* result is nil */
+        setnilvalue2s(val);  /* result is nil */
         return LUA_VNIL;
       }
       /* else will try the metamethod */
@@ -360,13 +360,19 @@ void luaV_finishset (lua_State *L, const TValue *t, TValue *key,
       luaT_callTM(L, tm, t, key, val);
       return;
     }
-    t = tm;  /* else repeat assignment over 'tm' */
-    luaV_fastset(t, key, val, hres, luaH_pset);
-    if (hres == HOK) {
-      luaV_finishfastset(L, t, val);
-      return;  /* done */
+    t = tm;  /* else must repeat assignment over 'tm' */
+    /* do the equivalent to 'luaV_fastset', but saving 'h' */
+    if (!ttistable(t))
+      hres = HNOTATABLE;
+    else {
+      Table *h = hvalue(t);  /* next call can change the value at 't' */
+      hres = luaH_pset(h, key, val);
+      if (hres == HOK) {
+        luaC_barrierback(L, obj2gco(h), val);  /* luaV_finishfastset */
+        return;  /* done */
+      }
     }
-    /* else 'return luaV_finishset(L, t, key, val, slot)' (loop) */
+    /* else 'return luaV_finishset(L, t, key, val, hres)' (loop) */
   }
   luaG_runerror(L, "'__newindex' chain too long; possible loop");
 }
@@ -919,7 +925,7 @@ void luaV_finishOp (lua_State *L) {
 ** Macros for arithmetic/bitwise/comparison opcodes in 'luaV_execute'
 **
 ** All these macros are to be used exclusively inside the main
-** iterpreter loop (function luaV_execute) and may access directly
+** interpreter loop (function luaV_execute) and may access directly
 ** the local variables of that function (L, i, pc, ci, etc.).
 ** ===================================================================
 */
@@ -1841,7 +1847,7 @@ void luaV_execute (lua_State *L, CallInfo *ci) {
             pc -= GETARG_Bx(i);  /* jump back */
           }
         }
-        else if (floatforloop(ra))  /* float loop */
+        else if (floatforloop(L, ra))  /* float loop */
           pc -= GETARG_Bx(i);  /* jump back */
         updatetrap(ci);  /* allows a signal to break the loop */
         vmbreak;
