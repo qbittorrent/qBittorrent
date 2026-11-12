@@ -47,6 +47,8 @@ namespace BitTorrent
     class InfoHash;
 }
 
+class QTimer;
+
 class TransferListModel final : public QAbstractListModel
 {
     Q_OBJECT
@@ -119,6 +121,7 @@ private slots:
     void handleTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
     void handleTorrentStatusUpdated(BitTorrent::Torrent *torrent);
     void handleTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
+    void refreshRelativeDateColumns();
 
 private:
     int getTorrentRow(BitTorrent::Torrent *torrent) const;
@@ -148,6 +151,7 @@ private:
 
     HideZeroValuesMode m_hideZeroValuesMode = HideZeroValuesMode::Never;
     bool m_useTorrentStatesColors = false;
+    bool m_useRelativeDates = false;
 
     // cached icons
     QIcon m_checkingIcon;
@@ -160,6 +164,7 @@ private:
     QIcon m_stalledDLIcon;
     QIcon m_stalledUPIcon;
     QIcon m_uploadingIcon;
+    QTimer *m_relativeDateRefreshTimer = nullptr;
 };
 
 Q_DECLARE_METATYPE(TransferListModel::Column)
