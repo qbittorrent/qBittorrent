@@ -152,6 +152,8 @@ window.qBittorrent.FileTree ??= (() => {
     }
 
     class FolderNode extends FileNode {
+        #wantedSize = 0;
+
         /**
          * When true, the folder's `checked` state will be calculately automatically based on its children
          */
@@ -185,6 +187,7 @@ window.qBittorrent.FileTree ??= (() => {
 
                     // process children
                     root.size = 0;
+                    root.#wantedSize = 0;
                     root.remaining = 0;
                     root.progress = 0;
                     root.availability = 0;
@@ -208,15 +211,17 @@ window.qBittorrent.FileTree ??= (() => {
                         }
 
                         if (!child.isIgnored()) {
+                            const wantedSize = child.isFolder ? child.#wantedSize : child.size;
+                            root.#wantedSize += wantedSize;
                             root.remaining += child.remaining;
-                            root.progress += (child.progress * child.size);
-                            root.availability += (child.availability * child.size);
+                            root.progress += (child.progress * wantedSize);
+                            root.availability += (child.availability * wantedSize);
                         }
                     }
 
                     root.checked = root.autoCalculateCheckedState ? root.checked : TriState.Checked;
-                    root.progress = (root.size > 0) ? (root.progress / root.size) : 0;
-                    root.availability = (root.size > 0) ? (root.availability / root.size) : 0;
+                    root.progress = (root.#wantedSize > 0) ? (root.progress / root.#wantedSize) : 100;
+                    root.availability = (root.#wantedSize > 0) ? (root.availability / root.#wantedSize) : 0;
                 }
 
                 stack.pop();
