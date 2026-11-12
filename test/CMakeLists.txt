@@ -32,12 +32,26 @@ set(testFiles
     testutilsversion.cpp
 )
 
-foreach(testFile ${testFiles})
+set(guiTestFiles)
+if (GUI)
+    list(APPEND guiTestFiles testrssreaderfunctional.cpp)
+endif()
+
+foreach(testFile IN LISTS testFiles guiTestFiles)
     get_filename_component(testFilename "${testFile}" NAME_WLE)
 
     add_executable("${testFilename}" "${testFile}")
     target_link_libraries("${testFilename}" PRIVATE Qt::Test qbt_base)
+    if (testFile IN_LIST guiTestFiles)
+        target_link_libraries("${testFilename}" PRIVATE qbt_gui)
+        if (WEBUI)
+            target_link_libraries("${testFilename}" PRIVATE qbt_webui)
+        endif()
+    endif()
     add_test(NAME "${testFilename}" COMMAND "${testFilename}")
+    if (testFile IN_LIST guiTestFiles)
+        set_tests_properties("${testFilename}" PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen")
+    endif()
 
     add_dependencies(check "${testFilename}")
 endforeach()
