@@ -42,6 +42,13 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     )
 endif()
 
+if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    feature_option_dependent(MACOS_NATIVE_UI
+        "Build the native macOS (SwiftUI) user interface instead of the Qt Widgets one"
+        OFF "NOT GUI" OFF
+    )
+endif()
+
 if (MSVC)
     feature_option(MSVC_RUNTIME_DYNAMIC "Use MSVC dynamic runtime library (-MD) instead of static (-MT)" ON)
 endif()

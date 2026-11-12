@@ -1,0 +1,20 @@
+module QBTBridge {
+    header "qbtbridge.h"
+    header "qbtentry.h"
+    header "qbtdetails.h"
+    header "qbtsettings.h"
+    header "qbtdownloadsettings.h"
+    header "qbtadvancedsettings.h"
+    header "qbtbehaviorsettings.h"
+    header "qbtbittorrentsettings.h"
+    header "qbtconnectionsettings.h"
+    header "qbtspeedsettings.h"
+    header "qbtwebuisettings.h"
+    header "qbtaddtorrent.h"
+    header "qbttorrentoptions.h"
+    header "qbtdesktop.h"
+    header "qbtrss.h"
+    header "qbtrssrules.h"
+    header "qbtsearch.h"
+    export *
+}

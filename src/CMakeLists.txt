@@ -10,3 +10,7 @@ endif()
 if (WEBUI)
     add_subdirectory(webui)
 endif()
+
+if (MACOS_NATIVE_UI)
+    add_subdirectory(macos)
+endif()
