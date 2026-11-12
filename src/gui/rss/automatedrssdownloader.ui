@@ -57,6 +57,9 @@
            <property name="text">
             <string>Download Rules</string>
            </property>
+           <property name="buddy">
+            <cstring>ruleList</cstring>
+           </property>
           </widget>
          </item>
          <item>
@@ -66,6 +69,9 @@
              <width>24</width>
              <height>20</height>
             </size>
+           </property>
+           <property name="accessibleName">
+            <string>Clone rule...</string>
            </property>
           </widget>
          </item>
@@ -83,6 +89,9 @@
              <height>20</height>
             </size>
            </property>
+           <property name="accessibleName">
+            <string>Rename rule...</string>
+           </property>
           </widget>
          </item>
          <item>
@@ -93,6 +102,9 @@
              <height>20</height>
             </size>
            </property>
+           <property name="accessibleName">
+            <string>Delete rule</string>
+           </property>
           </widget>
          </item>
          <item>
@@ -102,6 +114,9 @@
              <width>24</width>
              <height>20</height>
             </size>
+           </property>
+           <property name="accessibleName">
+            <string>Add new rule...</string>
            </property>
           </widget>
          </item>
@@ -156,6 +171,9 @@
              <property name="text">
               <string>Priority:</string>
              </property>
+             <property name="buddy">
+              <cstring>prioritySpinBox</cstring>
+             </property>
             </widget>
            </item>
            <item>
@@ -190,6 +208,9 @@
              <property name="text">
               <string>Must Contain:</string>
              </property>
+             <property name="buddy">
+              <cstring>lineContains</cstring>
+             </property>
             </widget>
            </item>
            <item row="0" column="1">
@@ -210,6 +231,9 @@
              <property name="text">
               <string>Must Not Contain:</string>
              </property>
+             <property name="buddy">
+              <cstring>lineNotContains</cstring>
+             </property>
             </widget>
            </item>
            <item row="1" column="1">
@@ -229,6 +253,9 @@
             <widget class="QLabel" name="lblEFilter">
              <property name="text">
               <string>Episode Filter:</string>
+             </property>
+             <property name="buddy">
+              <cstring>lineEFilter</cstring>
              </property>
             </widget>
            </item>
@@ -274,6 +301,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             <widget class="QLabel" name="lblIgnoreDays">
              <property name="text">
               <string extracomment="... X days">Ignore Subsequent Matches for (0 to Disable)</string>
+             </property>
+             <property name="buddy">
+              <cstring>spinIgnorePeriod</cstring>
              </property>
             </widget>
            </item>
@@ -363,6 +393,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
           <property name="text">
            <string>Apply Rule to Feeds:</string>
           </property>
+          <property name="buddy">
+           <cstring>listFeeds</cstring>
+          </property>
          </widget>
         </item>
         <item>
@@ -382,6 +415,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
          </property>
          <property name="text">
           <string>Matching RSS Articles</string>
+         </property>
+         <property name="buddy">
+          <cstring>matchingArticlesTree</cstring>
          </property>
         </widget>
        </item>

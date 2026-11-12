@@ -34,6 +34,9 @@
        <property name="text">
         <string>Name:</string>
        </property>
+       <property name="buddy">
+        <cstring>textCategoryName</cstring>
+       </property>
       </widget>
      </item>
      <item row="0" column="1">
@@ -43,6 +46,9 @@
       <widget class="QLabel" name="labelSavePath">
        <property name="text">
         <string>Save path:</string>
+       </property>
+       <property name="buddy">
+        <cstring>comboSavePath</cstring>
        </property>
       </widget>
      </item>
@@ -70,6 +76,9 @@
          <widget class="QLabel" name="labelUseDownloadPath">
           <property name="text">
            <string>Use another path for incomplete torrents:</string>
+          </property>
+          <property name="buddy">
+           <cstring>comboUseDownloadPath</cstring>
           </property>
          </widget>
         </item>
@@ -122,6 +131,9 @@
           </property>
           <property name="text">
            <string>Path:</string>
+          </property>
+          <property name="buddy">
+           <cstring>comboDownloadPath</cstring>
           </property>
          </widget>
         </item>
