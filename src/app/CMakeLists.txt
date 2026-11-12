@@ -149,6 +149,40 @@ if (MACOS_NATIVE_UI)
             "${qBittorrent_BINARY_DIR}/src/macos/strings"
             "$<TARGET_FILE_DIR:qbt_app>/../Resources"
     )
+
+    # Compile the layered Icon Composer icon (Liquid Glass, dark and tinted
+    # variants). The Qt GUI build keeps using the flat .icns.
+    set(QBT_APP_ICON_DIR "${qBittorrent_BINARY_DIR}/app-icon")
+    set(QBT_APP_ICON_SOURCE "${qBittorrent_SOURCE_DIR}/dist/mac/AppIcon.icon")
+    add_custom_command(
+        OUTPUT "${QBT_APP_ICON_DIR}/Assets.car" "${QBT_APP_ICON_DIR}/AppIcon.icns"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${QBT_APP_ICON_DIR}"
+        COMMAND xcrun actool "${QBT_APP_ICON_SOURCE}"
+            --compile "${QBT_APP_ICON_DIR}" --platform macosx
+            --minimum-deployment-target ${CMAKE_OSX_DEPLOYMENT_TARGET}
+            --app-icon AppIcon
+            --output-partial-info-plist "${QBT_APP_ICON_DIR}/partial-info.plist"
+        DEPENDS "${QBT_APP_ICON_SOURCE}/icon.json"
+            "${QBT_APP_ICON_SOURCE}/Assets/background.svg"
+            "${QBT_APP_ICON_SOURCE}/Assets/border.svg"
+            "${QBT_APP_ICON_SOURCE}/Assets/qb.svg"
+        VERBATIM
+    )
+    # A separate target, so the bundle is patched on every build: CMake
+    # rewrites Info.plist without relinking, which a POST_BUILD step would miss.
+    add_custom_target(qbt_app_icon ALL
+        DEPENDS "${QBT_APP_ICON_DIR}/Assets.car"
+        COMMAND ${CMAKE_COMMAND} -E copy
+            "${QBT_APP_ICON_DIR}/Assets.car" "${QBT_APP_ICON_DIR}/AppIcon.icns"
+            "$<TARGET_FILE_DIR:qbt_app>/../Resources"
+        # CFBundleIconName selects the asset on macOS 26; the .icns is the fallback.
+        COMMAND plutil -replace CFBundleIconFile -string AppIcon
+            "$<TARGET_FILE_DIR:qbt_app>/../Info.plist"
+        COMMAND plutil -replace CFBundleIconName -string AppIcon
+            "$<TARGET_FILE_DIR:qbt_app>/../Info.plist"
+        VERBATIM
+    )
+    add_dependencies(qbt_app_icon qbt_app)
 endif()
 
 if (STACKTRACE)
