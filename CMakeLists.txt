@@ -67,6 +67,10 @@ include(CommonConfig)
 # Generate version header
 configure_file("src/base/version.h.in" "${CMAKE_CURRENT_SOURCE_DIR}/src/base/version.h" @ONLY)
 
+if (MACOS_NATIVE_UI)
+    enable_language(Swift)
+endif()
+
 add_subdirectory(src)
 add_subdirectory(dist)
 

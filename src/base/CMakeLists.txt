@@ -285,6 +285,10 @@ if (NOT WEBUI)
     target_compile_definitions(qbt_base PUBLIC DISABLE_WEBUI)
 endif()
 
+if (MACOS_NATIVE_UI)
+    target_compile_definitions(qbt_base PUBLIC QBT_MACOS_NATIVE_UI)
+endif()
+
 if (DBUS)
     target_link_libraries(qbt_base PUBLIC Qt::DBus)
 endif()

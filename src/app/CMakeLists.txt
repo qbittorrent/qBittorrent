@@ -67,7 +67,7 @@ target_link_libraries(qbt_app PRIVATE
 )
 
 set_target_properties(qbt_app PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
-if (GUI)
+if (GUI OR MACOS_NATIVE_UI)
     set_target_properties(qbt_app PROPERTIES OUTPUT_NAME qbittorrent)
 else()
     set_target_properties(qbt_app PROPERTIES OUTPUT_NAME qbittorrent-nox)
@@ -137,6 +137,18 @@ if (GUI)
     if ((CMAKE_SYSTEM_NAME STREQUAL "Windows") OR (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
         qt_import_plugins(qbt_app INCLUDE Qt::QSvgIconPlugin Qt::QSvgPlugin)
     endif()
+endif()
+
+if (MACOS_NATIVE_UI)
+    target_link_libraries(qbt_app PRIVATE qbt_macos_bridge qbt_macos_ui)
+    # swiftc would be picked as the linker and choke on C++ flags.
+    set_target_properties(qbt_app PROPERTIES LINKER_LANGUAGE CXX)
+    add_dependencies(qbt_app qbt_macos_strings)
+    add_custom_command(TARGET qbt_app POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${qBittorrent_BINARY_DIR}/src/macos/strings"
+            "$<TARGET_FILE_DIR:qbt_app>/../Resources"
+    )
 endif()
 
 if (STACKTRACE)
