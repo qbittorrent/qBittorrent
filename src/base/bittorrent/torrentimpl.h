@@ -45,6 +45,7 @@
 #include <QMap>
 #include <QObject>
 #include <QQueue>
+#include <QSet>
 #include <QString>
 
 #include "base/path.h"
@@ -277,7 +278,7 @@ namespace BitTorrent
         void requestResumeData(lt::resume_data_flags_t flags = {});
         void deferredRequestResumeData();
         void handleMoveStorageJobFinished(const Path &path, MoveStorageContext context, bool hasOutstandingJob);
-        TrackerEntryStatus updateTrackerEntryStatus(const lt::announce_entry &announceEntry, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo);
+        TrackerEntryStatus updateTrackerEntryStatus(const lt::announce_entry &announceEntry, int trackerIndex, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo);
         void resetTrackerEntryStatuses();
 
     private:
@@ -362,6 +363,7 @@ namespace BitTorrent
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
         QList<TrackerEntryStatus> m_trackerEntryStatuses;
+        QSet<QString> m_trackersToScrape;
         mutable std::optional<TorrentAnnounceStatus> m_announceStatus;
         QList<QUrl> m_urlSeeds;
         FileErrorInfo m_lastFileError;

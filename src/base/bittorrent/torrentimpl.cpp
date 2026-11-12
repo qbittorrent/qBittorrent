@@ -97,6 +97,20 @@ namespace
         return entry;
     }
 
+    bool isScrapeSupported(const QString &trackerURL)
+    {
+        const QUrl url {trackerURL};
+        const QString scheme = url.scheme();
+        if (scheme == u"udp")
+            return true;
+
+        // libtorrent doesn't support webtorrent scraping
+        if ((scheme != u"http") && (scheme != u"https"))
+            return false;
+
+        return url.path().contains(u"announce");
+    }
+
     QString toString(const lt::tcp::endpoint &ltTCPEndpoint)
     {
         static QCache<lt::tcp::endpoint, QString> cache;
@@ -708,6 +722,9 @@ void TorrentImpl::removeTrackers(const QStringList &trackers)
 
     if (!removedTrackers.isEmpty())
     {
+        for (const QString &tracker : asConst(removedTrackers))
+            m_trackersToScrape.remove(tracker);
+
         m_nativeHandle.replace_trackers(nativeTrackers);
         m_announceStatus.reset();
 
@@ -729,6 +746,7 @@ void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
     std::vector<lt::announce_entry> nativeTrackers;
     nativeTrackers.reserve(trackers.size());
     const auto oldEntries = std::exchange(m_trackerEntryStatuses, {});
+    m_trackersToScrape.clear();
 
     for (const TrackerEntry &tracker : asConst(trackers))
     {
@@ -1817,7 +1835,7 @@ void TorrentImpl::applyFirstLastPiecePriority(const bool enabled)
     m_nativeHandle.prioritize_pieces(piecePriorities);
 }
 
-TrackerEntryStatus TorrentImpl::updateTrackerEntryStatus(const lt::announce_entry &announceEntry, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo)
+TrackerEntryStatus TorrentImpl::updateTrackerEntryStatus(const lt::announce_entry &announceEntry, const int trackerIndex, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo)
 {
     const auto it = std::ranges::find_if(m_trackerEntryStatuses
             , [&announceEntry](const TrackerEntryStatus &trackerEntryStatus)
@@ -1842,6 +1860,18 @@ TrackerEntryStatus TorrentImpl::updateTrackerEntryStatus(const lt::announce_entr
 
     ::updateTrackerEntryStatus(*it, announceEntry, btProtocols, updateInfo);
     m_announceStatus.reset();
+
+    const bool isAnnounceResponse = std::ranges::any_of(updateInfo
+            , [](const QMap<int, int> &endpointUpdateInfo) { return !endpointUpdateInfo.isEmpty(); });
+    if (isAnnounceResponse)
+    {
+        // remember trackers whose announces lack seeds/leeches to keep scraping them
+        if (((it->numSeeds < 0) || (it->numLeeches < 0)) && isScrapeSupported(it->url))
+            m_trackersToScrape.insert(it->url);
+
+        if (m_trackersToScrape.contains(it->url))
+            m_nativeHandle.scrape_tracker(trackerIndex);
+    }
 
     return *it;
 }
