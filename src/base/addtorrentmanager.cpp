@@ -229,5 +229,11 @@ bool AddTorrentManager::processTorrent(const QString &source, const BitTorrent::
         return false;
     }
 
+    if (btSession()->findArchivedTorrent(infoHash))
+    {
+        handleAddTorrentFailed(source, tr("A torrent with the same info hash is already archived. Restore it from History instead."));
+        return false;
+    }
+
     return addTorrentToSession(source, torrentDescr, addTorrentParams);
 }

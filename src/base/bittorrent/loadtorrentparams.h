@@ -57,6 +57,7 @@ namespace BitTorrent
         bool firstLastPiecePriority = false;
         bool hasFinishedStatus = false;
         bool stopped = false;
+        bool archived = false;
         Torrent::StopCondition stopCondition = Torrent::StopCondition::None;
 
         bool addToQueueTop = false; // only for new torrents

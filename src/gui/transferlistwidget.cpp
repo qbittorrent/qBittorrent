@@ -427,6 +427,13 @@ void TransferListWidget::permDeleteSelectedTorrents()
     deleteSelectedTorrents(true);
 }
 
+void TransferListWidget::archiveSelectedTorrents()
+{
+    const QList<BitTorrent::Torrent *> torrents = getSelectedTorrents();
+    for (const BitTorrent::Torrent *torrent : torrents)
+        BitTorrent::Session::instance()->archiveTorrent(torrent->id());
+}
+
 void TransferListWidget::deleteSelectedTorrents(const bool deleteLocalFiles)
 {
     if (app()->mainWindow()->currentTabWidget() != this) return;
@@ -1007,6 +1014,9 @@ void TransferListWidget::displayListMenu()
     connect(actionForceStart, &QAction::triggered, this, &TransferListWidget::forceStartSelectedTorrents);
     auto *actionDelete = new QAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("&Remove", "Remove the torrent"), listMenu);
     connect(actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
+    auto *actionArchive = new QAction(UIThemeManager::instance()->getIcon(u"folder-archive"_s, u"folder"_s), tr("&Archive"), listMenu);
+    actionArchive->setToolTip(tr("Unload the torrent and move it to History"));
+    connect(actionArchive, &QAction::triggered, this, &TransferListWidget::archiveSelectedTorrents);
     auto *actionPreviewFile = new QAction(UIThemeManager::instance()->getIcon(u"view-preview"_s), tr("Pre&view file..."), listMenu);
     connect(actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
     auto *actionTorrentOptions = new QAction(UIThemeManager::instance()->getIcon(u"configure"_s), tr("Torrent &options..."), listMenu);
@@ -1190,6 +1200,7 @@ void TransferListWidget::displayListMenu()
         listMenu->addAction(actionForceStart);
     listMenu->addSeparator();
     listMenu->addAction(actionDelete);
+    listMenu->addAction(actionArchive);
     listMenu->addSeparator();
     listMenu->addAction(actionSetTorrentPath);
     if (selectedIndexes.size() == 1)

@@ -88,6 +88,9 @@ private slots:
     void tagsAction();
     void addAction();
     void deleteAction();
+    void archiveAction();
+    void unarchiveAction();
+    void archivedAction();
     void addTrackersAction();
     void editTrackerAction();
     void removeTrackersAction();

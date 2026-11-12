@@ -80,6 +80,7 @@ public slots:
     void permDeleteSelectedTorrents();
     void deleteSelectedTorrents(bool deleteLocalFiles);
     void deleteVisibleTorrents();
+    void archiveSelectedTorrents();
     void increaseQueuePosSelectedTorrents();
     void decreaseQueuePosSelectedTorrents();
     void topQueuePosSelectedTorrents();
