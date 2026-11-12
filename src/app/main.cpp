@@ -49,6 +49,10 @@
 #include <QString>
 #include <QThread>
 
+#ifdef QBT_MACOS_NATIVE_UI
+#include "macos/bridge/mainloopdispatcher.h"
+#endif
+
 #ifndef DISABLE_GUI
 // GUI-only includes
 #include <QFont>
@@ -191,6 +195,11 @@ int main(int argc, char *argv[])
     std::unique_ptr<Application> app;
     try
     {
+#ifdef QBT_MACOS_NATIVE_UI
+        // Must be set before the application object is created.
+        QCoreApplication::setEventDispatcher(new MainLoopDispatcher);
+#endif
+
         // Create Application
         app = std::make_unique<Application>(argc, argv);
 
@@ -256,6 +265,7 @@ int main(int argc, char *argv[])
         if (params.confirmLegalNotice)
             legalNoticeShown = true;
 
+#ifndef QBT_MACOS_NATIVE_UI  // shows the notice itself, in an alert, once its main loop runs
         if (!legalNoticeShown)
         {
 #ifndef DISABLE_GUI
@@ -271,6 +281,7 @@ int main(int argc, char *argv[])
             if (isInteractive)
                 legalNoticeShown = true;
         }
+#endif
 
 #ifdef Q_OS_MACOS
         // Since Apple made difficult for users to set PATH, we set here for convenience.

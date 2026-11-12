@@ -891,7 +891,7 @@ void Application::processParams(const QBtCommandLineParameters &params)
 
 int Application::exec()
 {
-#if !defined(DISABLE_WEBUI) && defined(DISABLE_GUI)
+#if !defined(DISABLE_WEBUI) && defined(DISABLE_GUI) && !defined(QBT_MACOS_NATIVE_UI)
     const QString loadingStr = tr("WebUI will be started shortly after internal preparations. Please wait...");
     printf("%s\n", qUtf8Printable(loadingStr));
 #endif
@@ -1010,7 +1010,9 @@ int Application::exec()
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
-#ifndef DISABLE_GUI
+#if !defined(DISABLE_GUI) || defined(QBT_MACOS_NATIVE_UI)
+        // A user interface is there to set the password, so there is no
+        // temporary one to print on the console.
         m_webui = new WebUI(this);
 #else
         const auto *pref = Preferences::instance();

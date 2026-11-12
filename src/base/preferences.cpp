@@ -781,7 +781,7 @@ void Preferences::setCloseSearchTabWithMiddleClick(const bool enabled)
 
 bool Preferences::isWebUIEnabled() const
 {
-#ifdef DISABLE_GUI
+#if defined(DISABLE_GUI) && !defined(QBT_MACOS_NATIVE_UI)
     const bool defaultValue = true;
 #else
     const bool defaultValue = false;
