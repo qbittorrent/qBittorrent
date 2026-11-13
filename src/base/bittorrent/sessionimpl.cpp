@@ -6217,6 +6217,8 @@ void SessionImpl::handleAlert(lt::alert *alert)
         case lt::tracker_error_alert::alert_type:
         case lt::tracker_reply_alert::alert_type:
         case lt::tracker_warning_alert::alert_type:
+        case lt::scrape_reply_alert::alert_type:
+        case lt::scrape_failed_alert::alert_type:
             handleTrackerAlert(static_cast<const lt::tracker_alert *>(alert));
             break;
         case lt::add_torrent_alert::alert_type:
@@ -7030,14 +7032,16 @@ void SessionImpl::updateTrackerEntryStatuses(lt::torrent_handle torrentHandle)
 
                 QHash<QString, TrackerEntryStatus> trackers;
                 trackers.reserve(updatedTrackers.size());
+                int trackerIndex = 0;
                 for (const lt::announce_entry &announceEntry : nativeTrackers)
                 {
+                    const int index = trackerIndex++;
                     const auto updatedTrackersIter = updatedTrackers.find(announceEntry.url);
                     if (updatedTrackersIter == updatedTrackers.end())
                         continue;
 
                     const auto &updateInfo = updatedTrackersIter.value();
-                    TrackerEntryStatus status = torrent->updateTrackerEntryStatus(announceEntry, updateInfo);
+                    TrackerEntryStatus status = torrent->updateTrackerEntryStatus(announceEntry, index, updateInfo);
                     const QString url = status.url;
                     trackers.emplace(url, std::move(status));
                 }
