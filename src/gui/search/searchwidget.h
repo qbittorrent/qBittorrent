@@ -97,7 +97,7 @@ private:
     void loadHistory();
     void restoreSession();
     void updateHistory(const QString &newSearchPattern);
-    void saveSession() const;
+    void saveSession();
 
     void createSearchPatternCompleter();
 
@@ -108,6 +108,8 @@ private:
 
     bool m_storeOpenedTabs = false;
     bool m_storeOpenedTabsResults = false;
+    bool m_isSessionRestored = false;
+    bool m_isSessionChanged = false;
     int m_historyLength = 0;
 
     Utils::Thread::UniquePtr m_ioThread;
