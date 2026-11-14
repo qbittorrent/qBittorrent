@@ -30,6 +30,7 @@
 #include "searchsortmodel.h"
 
 #include "base/global.h"
+#include "base/utils/string.h"
 
 SearchSortModel::SearchSortModel(QObject *parent)
     : base(parent)
@@ -58,22 +59,30 @@ void SearchSortModel::setNameFilter(const QString &searchTerm)
     if (m_searchTerm == searchTerm)
         return;
 
+    QStringList includedWords;
+    QStringList excludedWords;
+    // Normalize here as well: a session restored from an older version may
+    // still contain the redundant AND keyword.
+    for (const Utils::String::SearchTerm &term : Utils::String::parseSearchTerms(Utils::String::normalizeSearchPattern(searchTerm)))
+    {
+        if (term.excluded)
+            excludedWords.append(term.text);
+        else
+            includedWords.append(term.text);
+    }
+
 #if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
     beginFilterChange();
 
     m_searchTerm = searchTerm;
-    if ((searchTerm.length() > 2) && searchTerm.startsWith(u'"') && searchTerm.endsWith(u'"'))
-        m_searchTermWords = QStringList(m_searchTerm.sliced(1, (m_searchTerm.length() - 2)));
-    else
-        m_searchTermWords = searchTerm.split(u' ', Qt::SkipEmptyParts);
+    m_searchTermWords = includedWords;
+    m_excludedTermWords = excludedWords;
 
     endFilterChange(Direction::Rows);
 #else
     m_searchTerm = searchTerm;
-    if ((searchTerm.length() > 2) && searchTerm.startsWith(u'"') && searchTerm.endsWith(u'"'))
-        m_searchTermWords = QStringList(m_searchTerm.sliced(1, (m_searchTerm.length() - 2)));
-    else
-        m_searchTermWords = searchTerm.split(u' ', Qt::SkipEmptyParts);
+    m_searchTermWords = includedWords;
+    m_excludedTermWords = excludedWords;
 
     invalidateRowsFilter();
 #endif
@@ -196,6 +205,12 @@ bool SearchSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &s
         for (const QString &word : asConst(m_searchTermWords))
         {
             if (!name.contains(word, Qt::CaseInsensitive))
+                return false;
+        }
+
+        for (const QString &word : asConst(m_excludedTermWords))
+        {
+            if (name.contains(word, Qt::CaseInsensitive))
                 return false;
         }
     }

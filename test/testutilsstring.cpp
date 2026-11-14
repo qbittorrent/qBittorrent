@@ -28,6 +28,7 @@
 
 #include <QList>
 #include <QObject>
+#include <QRegularExpression>
 #include <QTest>
 
 #include "base/global.h"
@@ -89,6 +90,92 @@ private slots:
         QCOMPARE(Utils::String::splitCommand(u" app a b c  "_s), QStringList({u"app"_s, u"a"_s, u"b"_s, u"c"_s}));
         QCOMPARE(Utils::String::splitCommand(u"   cmd.exe /d --arg2 \"arg3\" \"\" arg5 \"\"arg6 \"arg7 "_s)
             , QStringList({u"cmd.exe"_s, u"/d"_s, u"--arg2"_s, u"\"arg3\""_s, u"\"\""_s, u"arg5"_s, u"\"\"arg6"_s, u"\"arg7 "_s}));
+    }
+
+    void testNormalizeSearchPattern() const
+    {
+        QCOMPARE(Utils::String::normalizeSearchPattern({}), u""_s);
+        QCOMPARE(Utils::String::normalizeSearchPattern(u"   "_s), u""_s);
+        QCOMPARE(Utils::String::normalizeSearchPattern(u"2026 h265 1080"_s), u"2026 h265 1080"_s);
+        QCOMPARE(Utils::String::normalizeSearchPattern(u"2026 AND h265"_s), u"2026 h265"_s);
+        QCOMPARE(Utils::String::normalizeSearchPattern(u"2026 AND h265 AND 1080"_s), u"2026 h265 1080"_s);
+        QCOMPARE(Utils::String::normalizeSearchPattern(u"2026   AND   h265"_s), u"2026 h265"_s);
+        QCOMPARE(Utils::String::normalizeSearchPattern(u"2026 and h265"_s), u"2026 h265"_s);
+        QCOMPARE(Utils::String::normalizeSearchPattern(u"AND 2026 h265 AND"_s), u"2026 h265"_s);
+        QCOMPARE(Utils::String::normalizeSearchPattern(u"AND"_s), u""_s);
+        QCOMPARE(Utils::String::normalizeSearchPattern(uR"("2026 AND h265")"_s), uR"("2026 AND h265")"_s);
+        QCOMPARE(Utils::String::normalizeSearchPattern(uR"(2026 AND "h265 1080")"_s), uR"(2026 "h265 1080")"_s);
+    }
+
+    void testParseSearchTerms() const
+    {
+        const auto terms = [](const QString &pattern) -> QStringList
+        {
+            QStringList result;
+            for (const Utils::String::SearchTerm &term : Utils::String::parseSearchTerms(pattern))
+                result.append((term.excluded ? u"-"_s : u""_s) + term.text);
+            return result;
+        };
+
+        QCOMPARE(terms({}), {});
+        QCOMPARE(terms(u"   "_s), {});
+        QCOMPARE(terms(u"1080 2026 265"_s), QStringList({u"1080"_s, u"2026"_s, u"265"_s}));
+        QCOMPARE(terms(uR"("1080 2026" 265)"_s), QStringList({u"1080 2026"_s, u"265"_s}));
+        QCOMPARE(terms(u"doe -john"_s), QStringList({u"doe"_s, u"-john"_s}));
+        QCOMPARE(terms(u"doe +john"_s), QStringList({u"doe"_s, u"john"_s}));
+        QCOMPARE(terms(u"doe -"_s), QStringList({u"doe"_s}));
+        QCOMPARE(terms(uR"(doe -"john doe")"_s), QStringList({u"doe"_s, u"-john doe"_s}));
+        QCOMPARE(terms(u"\"unterminated"_s), QStringList({u"\"unterminated"_s}));
+    }
+
+    void testSearchTermsToRegexPattern() const
+    {
+        // Compare behavior rather than the exact pattern: Qt is free to wrap
+        // the wildcard conversion in extra groups (e.g. "(?s:...)").
+        const auto matches = [](const QString &pattern, const QString &name, const bool regexTerms = false) -> bool
+        {
+            const QRegularExpression regex {Utils::String::searchTermsToRegexPattern(pattern, regexTerms)
+                , QRegularExpression::CaseInsensitiveOption};
+            return regex.isValid() && regex.match(name).hasMatch();
+        };
+
+        QVERIFY(matches({}, u"anything"_s));
+        QVERIFY(matches(u"1080"_s, u"Movie.2026.1080p.H265"_s));
+        QVERIFY(!matches(u"1080"_s, u"Movie.2026.720p.H265"_s));
+
+        QVERIFY(matches(u"1080 2026 265"_s, u"Movie.2026.1080p.H265"_s));
+        QVERIFY(matches(u"265 1080"_s, u"Movie.2026.1080p.H265"_s));
+        QVERIFY(!matches(u"1080 2026 265"_s, u"Movie.2025.1080p.H265"_s));
+
+        QVERIFY(matches(u"2026 x265"_s, u"Movie.2026.1080p.x265"_s));
+        QVERIFY(matches(u"2026 "_s, u"Movie.2026.1080p.x265"_s));
+
+        QVERIFY(matches(u"1080 AND 2026"_s, u"Movie.2026.1080p.H265"_s));
+        QVERIFY(!matches(u"1080 AND 2026"_s, u"Movie.2025.1080p.H265"_s));
+
+        QVERIFY(matches(uR"("1080 2026")"_s, u"Movie.1080 2026.H265"_s));
+        QVERIFY(!matches(uR"("1080 2026")"_s, u"Movie.2026.1080p.H265"_s));
+
+        QVERIFY(matches(u"1080*"_s, u"Movie.2026.1080p.H265"_s));
+        QVERIFY(!matches(u"1080*"_s, u"Movie.2026.720p.H265"_s));
+
+        QVERIFY(matches(u"doe -john"_s, u"jane doe"_s));
+        QVERIFY(!matches(u"doe -john"_s, u"john doe"_s));
+        QVERIFY(matches(u"doe +john"_s, u"john doe"_s));
+        QVERIFY(matches(uR"(doe -"john doe")"_s, u"jane doe"_s));
+        QVERIFY(!matches(uR"(doe -"john doe")"_s, u"john doe"_s));
+
+        // In regex mode each term is a regular expression, still combined with AND
+        QVERIFY(matches(u"2026 x265"_s, u"Movie.2026.1080p.x265"_s, true));
+        QVERIFY(matches(u"2026 (x265|hevc)"_s, u"Movie.2026.1080p.x265"_s, true));
+        QVERIFY(!matches(u"2026 av1"_s, u"Movie.2026.1080p.x265"_s, true));
+        QVERIFY(matches(u"2026 "_s, u"Movie.2026.1080p.x265"_s, true));
+        QVERIFY(matches(u"doe -john"_s, u"jane doe"_s, true));
+        QVERIFY(!matches(u"doe -john"_s, u"john doe"_s, true));
+
+        // A top-level operator must not escape the term's lookahead
+        QVERIFY(matches(u"foo|bar baz"_s, u"baz bar"_s, true));
+        QVERIFY(!matches(u"foo|bar baz"_s, u"baz qux"_s, true));
     }
 };
 

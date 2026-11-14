@@ -66,6 +66,7 @@
 #include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
+#include "base/utils/string.h"
 #include "gui/desktopintegration.h"
 #include "gui/interfaces/iguiapplication.h"
 #include "gui/uithememanager.h"
@@ -371,7 +372,9 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
 
     const QString searchPatternHint = u"<html><head/><body><p>"
         + tr("A phrase to search for.") + u"<br>"
-        + tr("Spaces in a search term may be protected by double quotes.")
+        + tr("Spaces in a search term may be protected by double quotes.") + u"<br>"
+        + tr("The AND keyword is optional; foo AND bar is the same as foo bar.") + u"<br>"
+        + tr("Prefix a word with - to exclude it; foo -bar searches for foo without bar.")
         + u"</p><p>"
         + tr("Example:", "Search phrase example")
         + u"<br>"
@@ -877,7 +880,7 @@ void SearchWidget::searchTextEdited(const QString &text)
 {
     if (m_currentSearchTab)
     {
-        m_isNewQueryString = m_currentSearchTab->searchPattern() != text;
+        m_isNewQueryString = m_currentSearchTab->searchPattern() != Utils::String::normalizeSearchPattern(text);
         adjustSearchButton();
     }
 }
@@ -892,7 +895,7 @@ void SearchWidget::searchButtonClicked()
 {
     m_isNewQueryString = false;
 
-    const QString pattern = m_ui->lineEditSearchPattern->text().trimmed();
+    const QString pattern = Utils::String::normalizeSearchPattern(m_ui->lineEditSearchPattern->text().trimmed());
     // No search pattern entered
     if (pattern.isEmpty())
     {
