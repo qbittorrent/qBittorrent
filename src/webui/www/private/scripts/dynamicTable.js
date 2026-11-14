@@ -2298,6 +2298,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const status = this.getRowValue(row);
                 switch (status) {
                     case "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]":
+                    case "QBT_TR(Disabled for this torrent)QBT_TR[CONTEXT=TrackerListWidget]":
                         statusClass = "trackerDisabled";
                         break;
                     case "QBT_TR(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]":
