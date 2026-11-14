@@ -2113,7 +2113,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <item>
                   <widget class="QLabel" name="labelI2PPort">
                    <property name="text">
-                    <string>Port:</string>
+                    <string>SAM port:</string>
                    </property>
                   </widget>
                  </item>
