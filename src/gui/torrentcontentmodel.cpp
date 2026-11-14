@@ -259,6 +259,46 @@ bool TorrentContentModel::setItemPriority(const QModelIndex &index, BitTorrent::
     return true;
 }
 
+bool TorrentContentModel::setItemsPriority(const QModelIndexList &indexes, const BitTorrent::DownloadPriority priority)
+{
+    Q_ASSERT(priority != BitTorrent::DownloadPriority::Mixed);
+
+    QSet<TorrentContentModelFolder *> parents;
+    for (const QModelIndex &index : indexes)
+    {
+        auto *item = static_cast<TorrentContentModelItem *>(index.internalPointer());
+        if (item->priority() == priority)
+            continue;
+
+        // The parents are updated below, once for all their children
+        item->setPriority(priority, false);
+        parents.insert(item->parent());
+    }
+
+    if (parents.isEmpty())
+        return false;
+
+    for (TorrentContentModelFolder *parent : asConst(parents))
+        parent->updatePriority();
+
+    m_contentHandler->prioritizeFiles(getFilePriorities());
+
+    // Update folders progress in the tree
+    m_rootItem->recalculateProgress();
+    m_rootItem->recalculateAvailability();
+
+    const QList<ColumnInterval> columns =
+    {
+        {TorrentContentModelItem::COL_NAME, TorrentContentModelItem::COL_NAME},
+        {TorrentContentModelItem::COL_PROGRESS, TorrentContentModelItem::COL_AVAILABILITY}
+    };
+    for (int row = 0; row < rowCount(); ++row)
+        notifySubtreeUpdated(index(row, 0), columns);
+
+    return true;
+}
+
+
 QList<BitTorrent::DownloadPriority> TorrentContentModel::getFilePriorities() const
 {
     QList<BitTorrent::DownloadPriority> prio;
