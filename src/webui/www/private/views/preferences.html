@@ -2453,8 +2453,21 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         // Advanced Tab
+        // the interface and address lists are fetched together: when both fail, tell once per window
+        const interfaceListAlerts = new WeakSet();
+        const alertInterfaceListFailure = () => {
+            // a new element in each Options window
+            const combobox = document.getElementById("networkInterface");
+            if (interfaceListAlerts.has(combobox))
+                return;
+
+            interfaceListAlerts.add(combobox);
+            alert("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=OptionsDialog]");
+        };
+
         const updateNetworkInterfaces = (default_iface, default_iface_name) => {
-            for (const el of [...document.getElementById("networkInterface").children])
+            const combobox = document.getElementById("networkInterface");
+            for (const el of [...combobox.children])
                 el.remove();
 
             fetch("api/v2/app/networkInterfaceList", {
@@ -2462,8 +2475,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     cache: "no-store"
                 })
                 .then(async (response) => {
+                    // Options was closed
+                    if (!combobox.isConnected)
+                        return;
+
                     if (!response.ok) {
-                        alert("Could not contact qBittorrent");
+                        alertInterfaceListFailure();
                         return;
                     }
 
@@ -2475,15 +2492,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     if (default_iface && !ifaces.some((item) => item.value === default_iface))
                         ifaces.push({ name: default_iface_name || default_iface, value: default_iface });
 
-                    document.getElementById("networkInterface").options.add(new Option("QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]", ""));
+                    combobox.options.add(new Option("QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]", ""));
                     for (const item of ifaces)
-                        document.getElementById("networkInterface").options.add(new Option(item.name, item.value));
-                    document.getElementById("networkInterface").value = default_iface;
+                        combobox.options.add(new Option(item.name, item.value));
+                    combobox.value = default_iface;
+                })
+                .catch(() => {
+                    // Options was closed
+                    if (!combobox.isConnected)
+                        return;
+
+                    alertInterfaceListFailure();
                 });
         };
 
         const updateInterfaceAddresses = (iface, default_addr) => {
-            for (const el of [...document.getElementById("optionalIPAddressToBind").children])
+            const combobox = document.getElementById("optionalIPAddressToBind");
+            for (const el of [...combobox.children])
                 el.remove();
 
             const url = new URL("api/v2/app/networkInterfaceAddressList", window.location);
@@ -2495,8 +2520,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     cache: "no-store"
                 })
                 .then(async (response) => {
+                    // Options was closed
+                    if (!combobox.isConnected)
+                        return;
+
                     if (!response.ok) {
-                        alert("Could not contact qBittorrent");
+                        alertInterfaceListFailure();
                         return;
                     }
 
@@ -2504,12 +2533,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     if (!addresses)
                         return;
 
-                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]", ""));
-                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]", "0.0.0.0"));
-                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv6 addresses)QBT_TR[CONTEXT=OptionDialog]", "::"));
+                    combobox.options.add(new Option("QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]", ""));
+                    combobox.options.add(new Option("QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]", "0.0.0.0"));
+                    combobox.options.add(new Option("QBT_TR(All IPv6 addresses)QBT_TR[CONTEXT=OptionDialog]", "::"));
                     for (const item of addresses)
-                        document.getElementById("optionalIPAddressToBind").options.add(new Option(item, item));
-                    document.getElementById("optionalIPAddressToBind").value = default_addr;
+                        combobox.options.add(new Option(item, item));
+                    combobox.value = default_addr;
+                })
+                .catch(() => {
+                    // Options was closed
+                    if (!combobox.isConnected)
+                        return;
+
+                    alertInterfaceListFailure();
                 });
         };
 
@@ -2536,8 +2572,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const loadPreferences = () => {
+            // Options may be closed before the preferences arrive
+            const page = document.getElementById("preferencesPage");
             window.parent.qBittorrent.Cache.preferences.init()
                 .then((pref) => {
+                    if (!page.isConnected)
+                        return;
+
                     const clientData = window.parent.qBittorrent.ClientData;
                     const dateFormat = clientData.get("date_format");
                     const colorScheme = clientData.get("color_scheme");
@@ -3009,6 +3050,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("i2pInboundLengthVariance").value = pref.i2p_inbound_length_variance;
                     document.getElementById("i2pOutboundLengthVariance").value = pref.i2p_outbound_length_variance;
                 }).catch((error) => {
+                    if (!page.isConnected)
+                        return;
+
                     console.error(error);
                     alert("QBT_TR(Unable to load program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
                 });
@@ -3582,6 +3626,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 }
                 else {
                     // keep window open so user can reattempt saving
+                    // prefer the server's message
+                    const errors = results.filter((result) => result.status === "rejected").map((result) => result.reason);
+                    const error = errors.find((reason) => reason.name === "ServerError") ?? errors[0];
                     if (error.name === "ServerError")
                         alert(`QBT_TR(Error:)QBT_TR[CONTEXT=HttpServer] ${error.message}`);
                     else
@@ -3591,6 +3638,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const setup = () => {
+            // Options was closed while loading, and maybe opened again: a late page finds no page, or one already set up
+            const firstTab = document.getElementById("BehaviorTab");
+            if ((firstTab === null) || (firstTab.dataset.setUp === "true"))
+                return;
+            firstTab.dataset.setUp = "true";
+
             watchedFoldersTable = new HtmlTable(document.getElementById("watched_folders_tab"));
 
             const buildInfo = window.qBittorrent.Cache.buildInfo.get();
@@ -3642,6 +3695,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             });
 
             document.getElementById("deleteTorrentFileAfterCheckbox").addEventListener("change", (e) => { updateDeleteCancelledTorrentEnabled(); });
+            setupAPIKeyButtons();
 
             loadPreferences();
 
@@ -3700,57 +3754,60 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 });
         };
 
-        document.getElementById("webUIAPIKeyCopyButton").addEventListener("click", async (e) => {
-            const apiKey = document.getElementById("WebUIAPIKeyText").dataset.apiKey;
-            await clipboardCopy(apiKey);
+        // the buttons are new in every Options window
+        const setupAPIKeyButtons = () => {
+            document.getElementById("webUIAPIKeyCopyButton").addEventListener("click", async (e) => {
+                const apiKey = document.getElementById("WebUIAPIKeyText").dataset.apiKey;
+                await clipboardCopy(apiKey);
 
-            const copyImg = document.querySelector("#webUIAPIKeyCopyButton img.copyImg");
-            const checkImg = document.querySelector("#webUIAPIKeyCopyButton img.checkImg");
+                const copyImg = document.querySelector("#webUIAPIKeyCopyButton img.copyImg");
+                const checkImg = document.querySelector("#webUIAPIKeyCopyButton img.checkImg");
 
-            copyImg.style.display = "none";
-            checkImg.style.display = "inline";
+                copyImg.style.display = "none";
+                checkImg.style.display = "inline";
 
-            setTimeout(() => {
-                copyImg.style.display = "inline";
-                checkImg.style.display = "none";
-            }, 2000);
-        });
-
-        document.getElementById("webUIAPIKeyRotateButton").addEventListener("click", (e) => {
-            const hasKey = e.target.parentElement.dataset.hasKey === "true";
-            const title = hasKey
-                ? "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]"
-                : "QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
-            const message = hasKey
-                ? "QBT_TR(Rotate this API key? The current key will immediately stop working and a new key will be generated.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]"
-                : "QBT_TR(Generate an API key? This key can be used to interact with qBittorrent's API.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
-
-            new MochaUI.Modal({
-                ...window.qBittorrent.Dialog.baseModalOptions,
-                title: title,
-                id: "confirmAPIKeyDialog",
-                contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
-                data: {
-                    action: "rotate",
-                    message: message,
-                },
+                setTimeout(() => {
+                    copyImg.style.display = "inline";
+                    checkImg.style.display = "none";
+                }, 2000);
             });
-        });
 
-        document.getElementById("webUIAPIKeyDeleteButton").addEventListener("click", (e) => {
-            const title = "QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]";
-            const message = "QBT_TR(Delete this API key? The current key will immediately stop working.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
-            new MochaUI.Modal({
-                ...window.qBittorrent.Dialog.baseModalOptions,
-                title: title,
-                id: "confirmAPIKeyDialog",
-                contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
-                data: {
-                    action: "delete",
-                    message: message,
-                },
+            document.getElementById("webUIAPIKeyRotateButton").addEventListener("click", (e) => {
+                const hasKey = e.currentTarget.dataset.hasKey === "true";
+                const title = hasKey
+                    ? "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]"
+                    : "QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                const message = hasKey
+                    ? "QBT_TR(Rotate this API key? The current key will immediately stop working and a new key will be generated.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]"
+                    : "QBT_TR(Generate an API key? This key can be used to interact with qBittorrent's API.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
+
+                new MochaUI.Modal({
+                    ...window.qBittorrent.Dialog.baseModalOptions,
+                    title: title,
+                    id: "confirmAPIKeyDialog",
+                    contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
+                    data: {
+                        action: "rotate",
+                        message: message,
+                    },
+                });
             });
-        });
+
+            document.getElementById("webUIAPIKeyDeleteButton").addEventListener("click", (e) => {
+                const title = "QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]";
+                const message = "QBT_TR(Delete this API key? The current key will immediately stop working.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
+                new MochaUI.Modal({
+                    ...window.qBittorrent.Dialog.baseModalOptions,
+                    title: title,
+                    id: "confirmAPIKeyDialog",
+                    contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
+                    data: {
+                        action: "delete",
+                        message: message,
+                    },
+                });
+            });
+        };
 
         return exports();
     })();
