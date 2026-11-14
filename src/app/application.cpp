@@ -1001,6 +1001,7 @@ int Application::exec()
                 ? WindowState::Minimized : WindowState::Normal;
 #endif
         m_window = new MainWindow(this, windowState, instanceName());
+
 #ifdef Q_OS_MACOS
         // macOS convention: Cmd+0 brings the main window to the front (e.g. Apple Mail).
         const auto *showMainWindowShortcut = new QShortcut((Qt::CTRL | Qt::Key_0), this, nullptr, nullptr, Qt::ApplicationShortcut);
