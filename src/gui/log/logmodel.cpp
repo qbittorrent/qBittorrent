@@ -30,6 +30,9 @@
 
 #include "logmodel.h"
 
+#include <algorithm>
+#include <utility>
+
 #include <QApplication>
 #include <QDateTime>
 #include <QColor>
@@ -108,18 +111,33 @@ QVariant BaseLogModel::data(const QModelIndex &index, const int role) const
 
 void BaseLogModel::addNewMessage(const BaseLogModel::Message &message)
 {
-    // if row is inserted on filled up buffer, the size will not change
+    // Insert pending messages at once. Some consumers (e.g. the macOS accessibility bridge)
+    // rebuild their whole state on each row insertion or removal.
+    if (m_pendingMessages.isEmpty())
+        QMetaObject::invokeMethod(this, &BaseLogModel::processPendingMessages, Qt::QueuedConnection);
+    m_pendingMessages.append(message);
+}
+
+void BaseLogModel::processPendingMessages()
+{
+    const QList<Message> messages = std::exchange(m_pendingMessages, {});
+    const int count = std::min(static_cast<int>(messages.size()), MAX_VISIBLE_MESSAGES);
+    if (count <= 0)
+        return;
+
+    // if rows are inserted on filled up buffer, the size will not change
     // but because of calling of beginInsertRows function we'll have ghost rows.
-    if (m_messages.size() == MAX_VISIBLE_MESSAGES)
+    const int size = static_cast<int>(m_messages.size());
+    if (const int overflow = (size + count - MAX_VISIBLE_MESSAGES); overflow > 0)
     {
-        const int lastMessage = static_cast<int>(m_messages.size()) - 1;
-        beginRemoveRows(QModelIndex(), lastMessage, lastMessage);
-        m_messages.pop_back();
+        beginRemoveRows(QModelIndex(), (size - overflow), (size - 1));
+        m_messages.erase((m_messages.end() - overflow), m_messages.end());
         endRemoveRows();
     }
 
-    beginInsertRows(QModelIndex(), 0, 0);
-    m_messages.push_front(message);
+    beginInsertRows(QModelIndex(), 0, (count - 1));
+    for (auto iter = (messages.cend() - count); iter != messages.cend(); ++iter)
+        m_messages.push_front(*iter);
     endInsertRows();
 }
 
@@ -139,6 +157,7 @@ void BaseLogModel::reset()
 {
     beginResetModel();
     m_messages.clear();
+    m_pendingMessages.clear();
     endResetModel();
 }
 

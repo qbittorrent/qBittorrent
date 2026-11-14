@@ -35,6 +35,7 @@
 #include <QAbstractListModel>
 #include <QColor>
 #include <QHash>
+#include <QList>
 
 #include "base/logger.h"
 
@@ -81,8 +82,10 @@ protected:
 
 private:
     void loadColors();
+    void processPendingMessages();
 
     boost::circular_buffer_space_optimized<Message> m_messages;
+    QList<Message> m_pendingMessages;
     QColor m_timeForeground;
 };
 
