@@ -63,8 +63,8 @@ private slots:
             {u"tr"_s, u"ftp://tracker.example.com/announce"_s},
             {u"tr"_s, u"313131"_s}
         };
-        for (qsizetype i = 0; i < trackerURLs.size(); ++i)
-            query.addQueryItem(u"tr"_s, trackerURLs.at(i));
+        for (const QString &url : trackerURLs)
+            query.addQueryItem(u"tr"_s, url);
 
         QUrl magnet {u"magnet:"_s};
         magnet.setQuery(query);
