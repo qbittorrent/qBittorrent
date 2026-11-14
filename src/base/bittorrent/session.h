@@ -31,12 +31,15 @@
 
 #include <libtorrent/version.hpp>
 
+#include <optional>
+
 #include <QtContainerFwd>
 #include <QObject>
 
 #include "base/pathfwd.h"
 #include "base/tagset.h"
 #include "addtorrentparams.h"
+#include "archivedtorrent.h"
 #include "categoryoptions.h"
 #include "sharelimits.h"
 #include "torrentcontentremoveoption.h"
@@ -486,6 +489,14 @@ namespace BitTorrent
         virtual const CacheStatus &cacheStatus() const = 0;
         virtual bool isListening() const = 0;
 
+        virtual QList<ArchivedTorrent> archivedTorrents() const = 0;
+        virtual std::optional<ArchivedTorrent> findArchivedTorrent(const InfoHash &infoHash) const = 0;
+        virtual bool archiveTorrent(const TorrentID &id) = 0;
+        virtual bool unarchiveTorrent(const TorrentID &id) = 0;
+        virtual bool removeArchivedTorrent(const TorrentID &id
+                , TorrentRemoveOption deleteOption = TorrentRemoveOption::KeepContent) = 0;
+        virtual QByteArray exportArchivedTorrent(const TorrentID &id) const = 0;
+
         virtual void banIP(const QString &ip) = 0;
 
         virtual bool isKnownTorrent(const InfoHash &infoHash) const = 0;
@@ -524,6 +535,12 @@ namespace BitTorrent
         void torrentsLoaded(const QList<Torrent *> &torrents);
         void torrentsUpdated(const QList<Torrent *> &torrents);
         void freeDiskSpaceChecked(qint64 result);
+
+        void archivedTorrentsLoaded();
+        void torrentArchived(const TorrentID &id);
+        void torrentUnarchived(const TorrentID &id);
+        void archivedTorrentRemoved(const TorrentID &id);
+        void torrentArchiveFailed(const TorrentID &id, const QString &reason);
 
         void torrentAboutToBeRemoved(Torrent *torrent);
         void torrentAdded(Torrent *torrent);

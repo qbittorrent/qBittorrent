@@ -32,6 +32,7 @@
 #include <chrono>
 #include <cmath>
 #include <concepts>
+#include <optional>
 
 #include <QBitArray>
 #include <QFileInfo>
@@ -40,9 +41,11 @@
 #include <QJsonObject>
 #include <QList>
 #include <QRegularExpression>
+#include <QSet>
 #include <QUrl>
 
 #include "base/addtorrentmanager.h"
+#include "base/bittorrent/archivedtorrent.h"
 #include "base/bittorrent/categoryoptions.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
@@ -636,7 +639,11 @@ TorrentsController::TorrentsController(IApplication *app, QObject *parent)
 
 void TorrentsController::countAction()
 {
-    setResult(QString::number(BitTorrent::Session::instance()->torrentsCount()));
+    const BitTorrent::Session *const session = BitTorrent::Session::instance();
+    if (params().value(u"filter"_s) == u"archived")
+        setResult(QString::number(session->archivedTorrents().size()));
+    else
+        setResult(QString::number(session->torrentsCount()));
 }
 
 // Returns all the torrents in JSON format.
@@ -1709,12 +1716,124 @@ void TorrentsController::deleteAction()
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     const BitTorrent::TorrentRemoveOption deleteOption = parseBool(params()[u"deleteFiles"_s]).value_or(false)
             ? BitTorrent::TorrentRemoveOption::RemoveContent : BitTorrent::TorrentRemoveOption::KeepContent;
-    applyToTorrents(hashes, [deleteOption](const BitTorrent::Torrent *torrent)
+
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    if ((hashes.size() == 1) && (hashes[0] == u"all"))
     {
-        BitTorrent::Session::instance()->removeTorrent(torrent->id(), deleteOption);
-    });
+        for (const BitTorrent::Torrent *const torrent : asConst(session->torrents()))
+            session->removeTorrent(torrent->id(), deleteOption);
+
+        for (const BitTorrent::ArchivedTorrent &torrent : asConst(session->archivedTorrents()))
+            session->removeArchivedTorrent(torrent.id, deleteOption);
+    }
+    else
+    {
+        for (const QString &hash : hashes)
+        {
+            const auto id = BitTorrent::TorrentID::fromString(hash);
+            if (!session->removeTorrent(id, deleteOption))
+                session->removeArchivedTorrent(id, deleteOption);
+        }
+    }
 
     setResult(QString());
+}
+
+void TorrentsController::archiveAction()
+{
+    requireParams({u"hashes"_s});
+
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    const QStringList hashes {params()[u"hashes"_s].split(u'|', Qt::SkipEmptyParts)};
+    if ((hashes.size() == 1) && (hashes[0] == u"all"))
+    {
+        for (const BitTorrent::Torrent *const torrent : asConst(session->torrents()))
+            session->archiveTorrent(torrent->id());
+    }
+    else
+    {
+        for (const QString &hash : hashes)
+            session->archiveTorrent(BitTorrent::TorrentID::fromString(hash));
+    }
+
+    setResult(QString());
+}
+
+void TorrentsController::unarchiveAction()
+{
+    requireParams({u"hashes"_s});
+
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    const QStringList hashes {params()[u"hashes"_s].split(u'|', Qt::SkipEmptyParts)};
+    if ((hashes.size() == 1) && (hashes[0] == u"all"))
+    {
+        for (const BitTorrent::ArchivedTorrent &torrent : asConst(session->archivedTorrents()))
+            session->unarchiveTorrent(torrent.id);
+    }
+    else
+    {
+        for (const QString &hash : hashes)
+            session->unarchiveTorrent(BitTorrent::TorrentID::fromString(hash));
+    }
+
+    setResult(QString());
+}
+
+void TorrentsController::archivedAction()
+{
+    const QStringList hashes {params()[u"hashes"_s].split(u'|', Qt::SkipEmptyParts)};
+    const QString category {params()[u"category"_s]};
+    const std::optional<Tag> tag = getOptionalTag(params(), u"tag"_s);
+
+    std::optional<QSet<BitTorrent::TorrentID>> idSet;
+    if (!hashes.isEmpty() && !((hashes.size() == 1) && (hashes[0] == u"all")))
+    {
+        idSet = QSet<BitTorrent::TorrentID>();
+        for (const QString &hash : hashes)
+            idSet->insert(BitTorrent::TorrentID::fromString(hash));
+    }
+
+    QVariantList torrentList;
+    for (const BitTorrent::ArchivedTorrent &torrent : asConst(BitTorrent::Session::instance()->archivedTorrents()))
+    {
+        if (idSet && !idSet->contains(torrent.id))
+            continue;
+        if (!category.isEmpty() && (torrent.category != category))
+            continue;
+        if (tag && !torrent.tags.contains(*tag))
+            continue;
+
+        QVariantMap item;
+        item.insert(KEY_TORRENT_ID, torrent.id.toString());
+        item.insert(KEY_TORRENT_INFOHASHV1, torrent.infoHash.v1().toString());
+        item.insert(KEY_TORRENT_INFOHASHV2, torrent.infoHash.v2().toString());
+        item.insert(KEY_TORRENT_NAME, torrent.name);
+        item.insert(KEY_TORRENT_SIZE, torrent.totalSize);
+        item.insert(KEY_TORRENT_TOTAL_SIZE, torrent.totalSize);
+        item.insert(KEY_TORRENT_PROGRESS, torrent.progress);
+        item.insert(KEY_TORRENT_AMOUNT_COMPLETED, torrent.completedSize);
+        item.insert(KEY_TORRENT_AMOUNT_DOWNLOADED, torrent.totalDownload);
+        item.insert(KEY_TORRENT_AMOUNT_UPLOADED, torrent.totalUpload);
+        item.insert(KEY_TORRENT_RATIO, torrent.ratio);
+        item.insert(KEY_TORRENT_STATE, u"stopped"_s);
+        item.insert(KEY_TORRENT_CATEGORY, torrent.category);
+        QStringList tagList;
+        for (const Tag &torrentTag : torrent.tags)
+            tagList.append(torrentTag.toString());
+        item.insert(KEY_TORRENT_TAGS, tagList.join(u", "));
+        item.insert(KEY_TORRENT_SAVE_PATH, torrent.savePath.toString());
+        item.insert(KEY_TORRENT_DOWNLOAD_PATH, torrent.downloadPath.toString());
+        item.insert(KEY_TORRENT_COMMENT, torrent.comment);
+        item.insert(KEY_TORRENT_CREATION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent.creationDate));
+        item.insert(KEY_TORRENT_ADDED_ON, Utils::DateTime::toSecsSinceEpoch(torrent.addedTime));
+        item.insert(KEY_TORRENT_COMPLETION_ON, Utils::DateTime::toSecsSinceEpoch(torrent.completedTime));
+        item.insert(KEY_TORRENT_TIME_ACTIVE, torrent.activeTime);
+        item.insert(KEY_TORRENT_SEEDING_TIME, torrent.finishedTime);
+        item.insert(KEY_TORRENT_HAS_METADATA, torrent.hasMetadata);
+        torrentList.append(item);
+    }
+
+    setResult(QJsonArray::fromVariantList(torrentList));
 }
 
 void TorrentsController::increasePrioAction()
@@ -2220,20 +2339,43 @@ void TorrentsController::exportAction()
     requireParams({u"hash"_s});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
-    const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
-    if (!torrent)
-        throw APIError(APIErrorType::NotFound);
+    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    const BitTorrent::Torrent *const torrent = session->getTorrent(id);
 
-    const nonstd::expected<QByteArray, QString> result = torrent->exportToBuffer();
-    if (!result)
-        throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(result.error()));
+    QByteArray torrentData;
+    QString torrentName;
+    if (torrent)
+    {
+        const nonstd::expected<QByteArray, QString> result = torrent->exportToBuffer();
+        if (!result)
+            throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(result.error()));
 
-    QString filename = Utils::Fs::toValidFileName(torrent->name(), {});
+        torrentData = result.value();
+        torrentName = torrent->name();
+    }
+    else
+    {
+        const QList<BitTorrent::ArchivedTorrent> archivedTorrents = session->archivedTorrents();
+        const auto iter = std::ranges::find_if(archivedTorrents, [&id](const BitTorrent::ArchivedTorrent &archivedTorrent)
+        {
+            return archivedTorrent.id == id;
+        });
+        if (iter == archivedTorrents.cend())
+            throw APIError(APIErrorType::NotFound);
+
+        torrentData = session->exportArchivedTorrent(id);
+        if (torrentData.isEmpty())
+            throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(tr("Missing metadata")));
+
+        torrentName = iter->name;
+    }
+
+    QString filename = Utils::Fs::toValidFileName(torrentName, {});
     if (filename.isEmpty())
         filename = id.toString();
     filename += u".torrent";
 
-    setResult(result.value(), u"application/x-bittorrent"_s, filename);
+    setResult(torrentData, u"application/x-bittorrent"_s, filename);
 }
 
 void TorrentsController::SSLParametersAction()
@@ -2309,6 +2451,17 @@ void TorrentsController::fetchMetadataAction()
                 torrent && torrent->info().isValid())
         {
             setResult(serializeTorrentInfo(*torrent));
+        }
+        // check archived torrents
+        else if (const std::optional<BitTorrent::ArchivedTorrent> archivedTorrent = BitTorrent::Session::instance()->findArchivedTorrent(infoHash);
+                archivedTorrent && archivedTorrent->hasMetadata)
+        {
+            const QByteArray torrentFile = BitTorrent::Session::instance()->exportArchivedTorrent(archivedTorrent->id);
+            const auto torrentDescr = BitTorrent::TorrentDescriptor::load(torrentFile);
+            if (!torrentDescr)
+                throw APIError(APIErrorType::Conflict, tr("Unable to read archived torrent metadata"));
+
+            setResult(serializeTorrentInfo(torrentDescr.value()));
         }
         // check request cache
         else if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))

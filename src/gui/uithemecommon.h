@@ -81,6 +81,7 @@ inline QHash<QString, UIThemeColor> defaultUIThemeColors()
         {u"TransferList.Moving"_s, {Color::Primer::Light::successFg, Color::Primer::Dark::successFg}},
         {u"TransferList.MissingFiles"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}},
         {u"TransferList.Error"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}},
+        {u"TransferList.Archived"_s, {Color::Primer::Light::fgMuted, Color::Primer::Dark::fgMuted}},
 
         {u"PiecesBar.Border"_s, {{}, {}}},
         {u"PiecesBar.Piece"_s, {{}, {}}},

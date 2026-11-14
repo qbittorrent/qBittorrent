@@ -463,6 +463,14 @@ namespace BitTorrent
         const CacheStatus &cacheStatus() const override;
         bool isListening() const override;
 
+        QList<ArchivedTorrent> archivedTorrents() const override;
+        std::optional<ArchivedTorrent> findArchivedTorrent(const InfoHash &infoHash) const override;
+        bool archiveTorrent(const TorrentID &id) override;
+        bool unarchiveTorrent(const TorrentID &id) override;
+        bool removeArchivedTorrent(const TorrentID &id
+                , TorrentRemoveOption deleteOption = TorrentRemoveOption::KeepContent) override;
+        QByteArray exportArchivedTorrent(const TorrentID &id) const override;
+
         void banIP(const QString &ip) override;
 
         bool isKnownTorrent(const InfoHash &infoHash) const override;
@@ -595,6 +603,9 @@ namespace BitTorrent
         void handleLoadedResumeData(ResumeSessionContext *context);
         void processNextResumeData(ResumeSessionContext *context);
         void endStartup(ResumeSessionContext *context);
+
+        bool unloadArchivedTorrent(const TorrentID &id);
+        bool addTorrentFromResumeData(const TorrentID &torrentID, LoadTorrentParams resumeData);
 
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
         bool addTorrent_impl(const TorrentDescriptor &source, const AddTorrentParams &addTorrentParams);
@@ -876,6 +887,10 @@ namespace BitTorrent
         QHash<TorrentID, TorrentImpl *> m_hybridTorrentsByAltID;
         QHash<TorrentID, RemovingTorrentData> m_removingTorrents;
         QHash<TorrentID, TorrentID> m_changedTorrentIDs;
+        QHash<TorrentID, LoadTorrentParams> m_archivedTorrents;
+        QSet<TorrentID> m_archivingTorrents;
+        QSet<TorrentID> m_restoringTorrents;
+        QSet<TorrentID> m_pendingArchiveUnload;
         QMap<QString, CategoryOptions> m_categories;
         TagSet m_tags;
 

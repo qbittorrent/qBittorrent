@@ -84,6 +84,7 @@
 #include "downloadfromurldialog.h"
 #include "executionlogwidget.h"
 #include "hidabletabwidget.h"
+#include "history/historywidget.h"
 #include "interfaces/iguiapplication.h"
 #include "lineedit.h"
 #include "optionsdialog.h"
@@ -283,6 +284,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         UIThemeManager::instance()->getIcon(u"folder-remote"_s),
 #endif
         tr("Transfers"));
+
+    // History tab
+    m_historyWidget = new HistoryWidget(this);
+    m_tabs->addTab(m_historyWidget, tr("History"));
+
     // Filter types
     const QList<TransferListModel::Column> filterTypes = {
         TransferListModel::Column::TR_NAME

@@ -63,6 +63,8 @@ add_library(qbt_gui STATIC
     guiaddtorrentmanager.h
     guiapplicationcomponent.h
     hidabletabwidget.h
+    history/historymodel.h
+    history/historywidget.h
     interfaces/iguiapplication.h
     ipsubnetwhitelistoptionsdialog.h
     lineedit.h
@@ -170,6 +172,8 @@ add_library(qbt_gui STATIC
     fspathedit_p.cpp
     guiaddtorrentmanager.cpp
     hidabletabwidget.cpp
+    history/historymodel.cpp
+    history/historywidget.cpp
     ipsubnetwhitelistoptionsdialog.cpp
     lineedit.cpp
     log/logfiltermodel.cpp
