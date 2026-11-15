@@ -93,7 +93,7 @@ QString TranslationUtils::escapeJSString(const QStringView str)
             return u"\\u2029"_s;
         default:
             if (c < 0x20)
-                return u"\\u%1"_s.arg(static_cast<int>(c), 4, 16, u'0');
+                return u"\\u%1"_s.arg(static_cast<int>(c), 4, 16, QChar(u'0'));
             return QChar(c);
         }
     };
