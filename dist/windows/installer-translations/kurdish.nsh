@@ -34,6 +34,9 @@ LangString inst_requires_win10 ${LANG_KURDISH}  "ئەم دامەزرێنەرە �
 LangString inst_uninstall_link_description ${LANG_KURDISH} "کیووبیتتۆرێنت بسڕەوە"
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 LangString inst_arch_mismatch_arm64_on_x64 ${LANG_KURDISH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
+;LangString inst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString inst_findproc_other_error ${LANG_KURDISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+
 
 ;------------------------------------
 ;Uninstaller strings
@@ -60,3 +63,5 @@ LangString uninst_warning ${LANG_KURDISH} "کیووبیتتۆرێنت کارای
 LangString uninst_tor_warn ${LANG_KURDISH} "پەیوەندیی .torrent ناسڕێتەوە. پەیوەندیی هەیە بە:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"
 LangString uninst_mag_warn ${LANG_KURDISH} "پەیوەندیی موگناتیسی ناسڕێتەوە. پەیوەیندیی هەیە بە:"
+;LangString uninst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString uninst_findproc_other_error ${LANG_KURDISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"

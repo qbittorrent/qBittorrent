@@ -34,6 +34,9 @@ LangString inst_requires_win10 ${LANG_THAI}  "โปรแกรมติดต�
 LangString inst_uninstall_link_description ${LANG_THAI} "ถอนการติดตั้ง qBittorrent"
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 LangString inst_arch_mismatch_arm64_on_x64 ${LANG_THAI} "qBittorrent เวอร์ชัน ARM64 นี้ไม่สามารถใช้งานบนระบบ x64 ได้ โปรดดาวน์โหลดตัวติดตั้งเวอร์ชัน x64 แทน"
+;LangString inst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString inst_findproc_other_error ${LANG_THAI} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+
 
 ;------------------------------------
 ;Uninstaller strings
@@ -60,3 +63,5 @@ LangString uninst_warning ${LANG_THAI} "qBittorrent กำลังทำงา�
 LangString uninst_tor_warn ${LANG_THAI} "ไม่ได้ลบการเชื่อมโยงกับไฟล์ .torrent ออก เนื่องจากไฟล์นี้เชื่อมโยงกับ:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"
 LangString uninst_mag_warn ${LANG_THAI} "ไม่ได้ลบการเชื่อมโยง magnet ออก มันเชื่อมโยงกับ:"
+;LangString uninst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString uninst_findproc_other_error ${LANG_THAI} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"

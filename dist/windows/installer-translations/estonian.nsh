@@ -34,6 +34,9 @@ LangString inst_requires_win10 ${LANG_ESTONIAN}  "Selle installeri jaoks on vaja
 LangString inst_uninstall_link_description ${LANG_ESTONIAN} "Desinstalli qBittorrent"
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ESTONIAN} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
+;LangString inst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString inst_findproc_other_error ${LANG_ESTONIAN} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+
 
 ;------------------------------------
 ;Uninstaller strings
@@ -60,3 +63,5 @@ LangString uninst_warning ${LANG_ESTONIAN} "qBittorrent töötab. Palun sulge pr
 LangString uninst_tor_warn ${LANG_ESTONIAN} "Ei eemaldata .torrent seotust. Mis on seotud:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"
 LangString uninst_mag_warn ${LANG_ESTONIAN} "Ei eemaldata magnetitega seotust. Mis on seotud:"
+;LangString uninst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString uninst_findproc_other_error ${LANG_ESTONIAN} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
