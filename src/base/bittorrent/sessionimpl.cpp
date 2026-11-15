@@ -3252,12 +3252,10 @@ void SessionImpl::addMappedPorts(const QSet<quint16> &ports)
             if (!m_mappedPorts.contains(port))
             {
                 std::vector<lt::port_mapping_t> handles = m_nativeSession->add_port_mapping(lt::session::tcp, port, port);
-                const size_t handleCount = handles.size();
-                std::erase_if(handles, [](const lt::port_mapping_t handle) { return (handle < lt::port_mapping_t {0}); });
-                if (handles.size() < handleCount)
+                if (std::erase_if(handles, [](const lt::port_mapping_t handle) { return (handle < lt::port_mapping_t {0}); }) > 0)
                     LogMsg(tr("Failed to add port mapping. Port: %1").arg(QString::number(port)), Log::WARNING);
 
-                m_mappedPorts.insert(port, std::move(handles));
+                m_mappedPorts.insert(port, handles);
             }
         }
     });
