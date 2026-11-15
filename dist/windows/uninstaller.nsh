@@ -22,6 +22,7 @@ SectionEnd
 Section "un.$(remove_registry)" ;"un.Remove registry keys"
     SectionIn RO
     ; Remove registry keys
+    DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "qBittorrent"
     DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent"
     DeleteRegKey HKLM "Software\qBittorrent"
     DeleteRegValue HKLM "Software\RegisteredApplications" "qBittorrent"
