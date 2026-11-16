@@ -30,56 +30,56 @@
 </style>
 <form id="createTorrentForm" autocorrect="off" autocapitalize="none">
     <fieldset class="settings">
-        <legend>QBT_TR(Select file/folder to share:)QBT_TR[CONTEXT=TorrentCreator]</legend>
+        <legend>QBT_TR_HTML(Select file/folder to share:)QBT_TR[CONTEXT=TorrentCreator]</legend>
         <div id="sourcePathBox">
-            <label for="sourcePath">QBT_TR(Path:)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <label for="sourcePath">QBT_TR_HTML(Path:)QBT_TR[CONTEXT=TorrentCreator]</label>
             <input type="text" id="sourcePath" name="sourcePath" class="pathDirectory">
         </div>
     </fieldset>
     <fieldset class="settings">
-        <legend>QBT_TR(Settings)QBT_TR[CONTEXT=TorrentCreator]</legend>
+        <legend>QBT_TR_HTML(Settings)QBT_TR[CONTEXT=TorrentCreator]</legend>
         <div id="torrentFormatBox">
-            <label for="torrentFormat">QBT_TR(Torrent format:)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <label for="torrentFormat">QBT_TR_HTML(Torrent format:)QBT_TR[CONTEXT=TorrentCreator]</label>
             <select id="torrentFormat" name="format">
                 <option value="v2">V2</option>
-                <option selected value="hybrid">QBT_TR(Hybrid)QBT_TR[CONTEXT=TorrentCreator]</option>
+                <option selected value="hybrid">QBT_TR_HTML(Hybrid)QBT_TR[CONTEXT=TorrentCreator]</option>
                 <option value="v1">V1</option>
             </select>
         </div>
         <div>
-            <label for="pieceSize">QBT_TR(Piece size:)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <label for="pieceSize">QBT_TR_HTML(Piece size:)QBT_TR[CONTEXT=TorrentCreator]</label>
             <select id="pieceSize" name="pieceSize">
 
             </select>
         </div>
         <div>
             <input type="hidden" id="ignoreDotfilesHidden" name="ignoreDotfiles" value="0">
-            <input type="checkbox" id="ignoreDotfiles"><label for="ignoreDotfiles" title="QBT_TR(If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.)QBT_TR[CONTEXT=TorrentCreator]">QBT_TR(Ignore dotfiles)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <input type="checkbox" id="ignoreDotfiles"><label for="ignoreDotfiles" title="QBT_TR_HTML(If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.)QBT_TR[CONTEXT=TorrentCreator]">QBT_TR_HTML(Ignore dotfiles)QBT_TR[CONTEXT=TorrentCreator]</label>
         </div>
         <div>
             <input type="hidden" id="privateTorrentHidden" name="private" value="0">
-            <input type="checkbox" id="privateTorrent"><label for="privateTorrent">QBT_TR(Private torrent (Won't distribute on DHT network))QBT_TR[CONTEXT=TorrentCreator]</label>
+            <input type="checkbox" id="privateTorrent"><label for="privateTorrent">QBT_TR_HTML(Private torrent (Won't distribute on DHT network))QBT_TR[CONTEXT=TorrentCreator]</label>
         </div>
         <div>
             <input type="hidden" id="startSeedingHidden" name="startSeeding" value="0">
-            <input type="checkbox" id="startSeeding"><label for="startSeeding">QBT_TR(Start seeding immediately)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <input type="checkbox" id="startSeeding"><label for="startSeeding">QBT_TR_HTML(Start seeding immediately)QBT_TR[CONTEXT=TorrentCreator]</label>
         </div>
         <fieldset id="optimizeAlignmentBox">
             <legend>
                 <input type="hidden" id="optimizeAlignmentHidden" name="optimizeAlignment" value="0">
-                <input type="checkbox" id="optimizeAlignment"><label for="optimizeAlignment">QBT_TR(Optimize alignment)QBT_TR[CONTEXT=TorrentCreator]</label>
+                <input type="checkbox" id="optimizeAlignment"><label for="optimizeAlignment">QBT_TR_HTML(Optimize alignment)QBT_TR[CONTEXT=TorrentCreator]</label>
             </legend>
-            <label for="paddedFileSizeLimit">QBT_TR(Align to piece boundary for files larger than:)QBT_TR[CONTEXT=TorrentCreator]</label>
-            <input type="number" id="paddedFileSizeLimit" name="paddedFileSizeLimit" disabled value="0">QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]
+            <label for="paddedFileSizeLimit">QBT_TR_HTML(Align to piece boundary for files larger than:)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <input type="number" id="paddedFileSizeLimit" name="paddedFileSizeLimit" disabled value="0">QBT_TR_HTML(KiB)QBT_TR[CONTEXT=OptionsDialog]
         </fieldset>
     </fieldset>
     <fieldset class="settings">
-        <legend>QBT_TR(Fields)QBT_TR[CONTEXT=TorrentCreator]</legend>
+        <legend>QBT_TR_HTML(Fields)QBT_TR[CONTEXT=TorrentCreator]</legend>
         <table>
             <tbody>
                 <tr>
                     <td>
-                        <label for="trackerURLs">QBT_TR(Tracker URLs:)QBT_TR[CONTEXT=TorrentCreator]</label>
+                        <label for="trackerURLs">QBT_TR_HTML(Tracker URLs:)QBT_TR[CONTEXT=TorrentCreator]</label>
                     </td>
                     <td>
                         <textarea rows="7" type="text" id="trackerURLs" name="trackers"></textarea>
@@ -87,7 +87,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="webSeedURLs">QBT_TR(Web seed URLs:)QBT_TR[CONTEXT=TorrentCreator]</label>
+                        <label for="webSeedURLs">QBT_TR_HTML(Web seed URLs:)QBT_TR[CONTEXT=TorrentCreator]</label>
                     </td>
                     <td>
                         <textarea rows="7" type="text" id="webSeedURLs" name="urlSeeds"></textarea>
@@ -95,7 +95,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="comments">QBT_TR(Comments:)QBT_TR[CONTEXT=TorrentCreator]</label>
+                        <label for="comments">QBT_TR_HTML(Comments:)QBT_TR[CONTEXT=TorrentCreator]</label>
                     </td>
                     <td>
                         <textarea rows="7" type="text" id="comments" name="comment"></textarea>
@@ -104,7 +104,7 @@
 
                 <tr>
                     <td>
-                        <label for="source">QBT_TR(Source:)QBT_TR[CONTEXT=TorrentCreator]</label>
+                        <label for="source">QBT_TR_HTML(Source:)QBT_TR[CONTEXT=TorrentCreator]</label>
                     </td>
                     <td>
                         <input type="text" id="source" name="source">
@@ -113,7 +113,7 @@
             </tbody>
         </table>
     </fieldset>
-    <button type="submit" id="createTorrentButton">QBT_TR(Create Torrent)QBT_TR[CONTEXT=TorrentCreator]</button>
+    <button type="submit" id="createTorrentButton">QBT_TR_HTML(Create Torrent)QBT_TR[CONTEXT=TorrentCreator]</button>
 </form>
 <div id="download_spinner" class="mochaSpinner"></div>
 
