@@ -70,6 +70,9 @@ void showLegalNotice(const bool isInteractive)
 #else // DISABLE_GUI
     const QString messageBody = noticeBody + u"\n\n" + noticeEnd;
     QMessageBox msgBox {QMessageBox::NoIcon, noticeTitle, messageBody, QMessageBox::Ok};
+#ifdef Q_OS_MACOS
+    msgBox.setOption(QMessageBox::Option::DontUseNativeDialog);
+#endif
     msgBox.show();  // Need to be shown first or moveToCenter does not work
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
