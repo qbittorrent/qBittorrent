@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>QBT_TR(Remove tracker)QBT_TR[CONTEXT=confirmDeletionDlg]</title>
+    <title>QBT_TR_HTML(Remove tracker)QBT_TR[CONTEXT=confirmDeletionDlg]</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
@@ -23,7 +23,7 @@
             const searchParams = new URLSearchParams(window.location.search);
             const host = searchParams.get("host");
 
-            document.getElementById("confirmDeleteTrackerText").textContent = "QBT_TR(Are you sure you want to remove tracker %1 from all torrents?)QBT_TR[CONTEXT=TrackersFilterWidget]".replace("%1", host);
+            document.getElementById("confirmDeleteTrackerText").textContent = "QBT_TR_JS(Are you sure you want to remove tracker %1 from all torrents?)QBT_TR[CONTEXT=TrackersFilterWidget]".replace("%1", host);
 
             document.getElementById("cancelBtn").focus();
             document.getElementById("cancelBtn").addEventListener("click", (e) => {
@@ -55,8 +55,8 @@
     <div style="padding: 10px 10px 0px 10px;">
         <p id="confirmDeleteTrackerText"></p>
         <div style="text-align: right;">
-            <input type="button" id="cancelBtn" value="QBT_TR(Cancel)QBT_TR[CONTEXT=MainWindow]">
-            <input type="button" id="confirmBtn" value="QBT_TR(Remove)QBT_TR[CONTEXT=MainWindow]">
+            <input type="button" id="cancelBtn" value="QBT_TR_HTML(Cancel)QBT_TR[CONTEXT=MainWindow]">
+            <input type="button" id="confirmBtn" value="QBT_TR_HTML(Remove)QBT_TR[CONTEXT=MainWindow]">
         </div>
     </div>
 </body>

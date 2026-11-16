@@ -130,22 +130,22 @@
 <div id="rssView">
     <div id="rssTopBar">
         <div id="rssFetchingDisabled" class="invisible">
-            QBT_TR(Fetching of RSS feeds is disabled now! You can enable it in application settings.)QBT_TR[CONTEXT=RSSWidget]
+            QBT_TR_HTML(Fetching of RSS feeds is disabled now! You can enable it in application settings.)QBT_TR[CONTEXT=RSSWidget]
         </div>
         <div id="rssButtonBar">
             <button type="button" id="newSubscriptionButton" onclick="qBittorrent.Rss.addRSSFeed()">
-                <img alt="QBT_TR(New subscription)QBT_TR[CONTEXT=RSSWidget]" src="images/list-add.svg" width="16" height="16">QBT_TR(New subscription)QBT_TR[CONTEXT=RSSWidget]
+                <img alt="QBT_TR_HTML(New subscription)QBT_TR[CONTEXT=RSSWidget]" src="images/list-add.svg" width="16" height="16">QBT_TR_HTML(New subscription)QBT_TR[CONTEXT=RSSWidget]
             </button>
             <button type="button" id="markReadButton" onclick="qBittorrent.Rss.markSelectedAsRead()">
-                <img alt="QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]" src="images/task-complete.svg" width="16" height="16">QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]
+                <img alt="QBT_TR_HTML(Mark items read)QBT_TR[CONTEXT=RSSWidget]" src="images/task-complete.svg" width="16" height="16">QBT_TR_HTML(Mark items read)QBT_TR[CONTEXT=RSSWidget]
             </button>
             <button type="button" id="updateAllButton" onclick="qBittorrent.Rss.refreshAllFeeds()">
-                <img alt="QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]" src="images/view-refresh.svg" width="16" height="16">QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]
+                <img alt="QBT_TR_HTML(Update all)QBT_TR[CONTEXT=RSSWidget]" src="images/view-refresh.svg" width="16" height="16">QBT_TR_HTML(Update all)QBT_TR[CONTEXT=RSSWidget]
             </button>
             <div id="rssFilterToolbar" class="alignRight">
-                <input type="search" id="rssFilterInput" placeholder="QBT_TR(Filter feed items...)QBT_TR[CONTEXT=MainWindow]" aria-label="QBT_TR(Filter feed items...)QBT_TR[CONTEXT=MainWindow]" autocorrect="off" autocapitalize="none">
+                <input type="search" id="rssFilterInput" placeholder="QBT_TR_HTML(Filter feed items...)QBT_TR[CONTEXT=MainWindow]" aria-label="QBT_TR_HTML(Filter feed items...)QBT_TR[CONTEXT=MainWindow]" autocorrect="off" autocapitalize="none">
                 <button type="button" id="rssDownloaderButton" onclick="qBittorrent.Rss.openRssDownloader()">
-                    <img alt="QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]" src="images/downloading.svg" width="16" height="16">QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]
+                    <img alt="QBT_TR_HTML(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]" src="images/downloading.svg" width="16" height="16">QBT_TR_HTML(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]
                 </button>
             </div>
         </div>
@@ -186,23 +186,23 @@
 </div>
 
 <ul id="rssFeedMenu" class="contextMenu">
-    <li><a href="#update"><img src="images/view-refresh.svg" alt="QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#markRead"><img src="images/task-complete.svg" alt="QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li class="separator"><a href="#rename"><img src="images/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#edit"><img src="images/edit-rename.svg" alt="QBT_TR(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#delete"><img src="images/edit-clear.svg" alt="QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#update"><img src="images/view-refresh.svg" alt="QBT_TR_HTML(Update)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(Update)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#markRead"><img src="images/task-complete.svg" alt="QBT_TR_HTML(Mark items read)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(Mark items read)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#rename"><img src="images/edit-rename.svg" alt="QBT_TR_HTML(Rename...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(Rename...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#edit"><img src="images/edit-rename.svg" alt="QBT_TR_HTML(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#delete"><img src="images/edit-clear.svg" alt="QBT_TR_HTML(Delete)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(Delete)QBT_TR[CONTEXT=RSSWidget]</a></li>
 
-    <li class="separator"><a href="#newSubscription"><img src="images/list-add.svg" alt="QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#newFolder"><img src="images/folder-new.svg" alt="QBT_TR(New folder...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(New folder...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li class="separator"><a href="#updateAll"><img src="images/view-refresh.svg" alt="QBT_TR(Update all feeds)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Update all feeds)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#newSubscription"><img src="images/list-add.svg" alt="QBT_TR_HTML(New subscription...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(New subscription...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#newFolder"><img src="images/folder-new.svg" alt="QBT_TR_HTML(New folder...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(New folder...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#updateAll"><img src="images/view-refresh.svg" alt="QBT_TR_HTML(Update all feeds)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(Update all feeds)QBT_TR[CONTEXT=RSSWidget]</a></li>
 
-    <li class="separator"><a href="#copyFeedURL" id="CopyFeedURL"><img src="images/edit-copy.svg" alt="QBT_TR(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#copyFeedURL" id="CopyFeedURL"><img src="images/edit-copy.svg" alt="QBT_TR_HTML(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
 </ul>
 
 <ul id="rssArticleMenu" class="contextMenu">
-    <li><a href="#Download"><img src="images/downloading.svg" alt="QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#OpenSharedDownloadWindow"><img src="images/downloading.svg" alt="QBT_TR(Open shared download window)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Open shared download window)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#OpenNews"><img src="images/application-url.svg" alt="QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#Download"><img src="images/downloading.svg" alt="QBT_TR_HTML(Download torrent)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(Download torrent)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#OpenSharedDownloadWindow"><img src="images/downloading.svg" alt="QBT_TR_HTML(Open shared download window)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(Open shared download window)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#OpenNews"><img src="images/application-url.svg" alt="QBT_TR_HTML(Open news URL)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR_HTML(Open news URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
 </ul>
 
 <script>
@@ -231,7 +231,7 @@
         const serverSyncRssDataInterval = 1.5 * 1000; // in milliseconds
         const serverSyncRssDataMaxInterval = 5 * 60 * 1000; // in milliseconds
         let currentServerSyncRssDataInterval = serverSyncRssDataInterval;
-        const blockedArticleUrlMessage = "QBT_TR(Blocked opening RSS article URL. Only http:// and https:// links can be opened.)QBT_TR[CONTEXT=RSSWidget]";
+        const blockedArticleUrlMessage = "QBT_TR_JS(Blocked opening RSS article URL. Only http:// and https:// links can be opened.)QBT_TR[CONTEXT=RSSWidget]";
         let feedData = {};
         let pathByFeedId = new Map();
         let feedRefreshTimer = -1;
@@ -344,7 +344,7 @@
                         }
                         if (urls.length === 0)
                             return;
-                        const title = "QBT_TR(Add %1 torrents)QBT_TR[CONTEXT=RSSWidget]".replace("%1", urls.length);
+                        const title = "QBT_TR_JS(Add %1 torrents)QBT_TR[CONTEXT=RSSWidget]".replace("%1", urls.length);
                         window.qBittorrent.Client.createAddTorrentWindow(title, urls.join("\n"), undefined, { shared: true });
                     },
                     OpenNews: (el) => {
@@ -410,7 +410,7 @@
             new MochaUI.Window({
                 id: "newFeed",
                 icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
+                title: "QBT_TR_JS(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: `newfeed.html?v=${CACHEID}&path=${encodeURIComponent(path)}`,
                 scrollbars: false,
@@ -438,7 +438,7 @@
             new MochaUI.Window({
                 id: "newFolder",
                 icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Please choose a folder name)QBT_TR[CONTEXT=RSSWidget]",
+                title: "QBT_TR_JS(Please choose a folder name)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: `newfolder.html?v=${CACHEID}&path=${encodeURIComponent(path)}`,
                 scrollbars: false,
@@ -526,7 +526,7 @@
                 torrentDate.id = "rssTorrentDetailsDate";
 
                 const torrentDateDesc = document.createElement("b");
-                torrentDateDesc.textContent = "QBT_TR(Date: )QBT_TR[CONTEXT=RSSWidget]";
+                torrentDateDesc.textContent = "QBT_TR_JS(Date: )QBT_TR[CONTEXT=RSSWidget]";
                 torrentDate.append(torrentDateDesc);
 
                 const torrentDateData = document.createElement("span");
@@ -542,7 +542,7 @@
                 divElement.id = "rssTorrentDetailsAuthor";
 
                 const header = document.createElement("b");
-                header.textContent = "QBT_TR(Author: )QBT_TR[CONTEXT=RSSWidget]";
+                header.textContent = "QBT_TR_JS(Author: )QBT_TR[CONTEXT=RSSWidget]";
                 divElement.append(header);
 
                 const span = document.createElement("span");
@@ -562,7 +562,7 @@
                     anchorElement.href = articleLink;
                 else
                     anchorElement.title = blockedArticleUrlMessage;
-                anchorElement.textContent = "QBT_TR(Open link)QBT_TR[CONTEXT=RSSWidget]";
+                anchorElement.textContent = "QBT_TR_JS(Open link)QBT_TR[CONTEXT=RSSWidget]";
                 anchorElement.target = "_blank";
                 anchorElement.style = "font-weight: bold;";
                 divElement.append(anchorElement);
@@ -772,7 +772,7 @@
                 // Unread entry at top
                 rssFeedTable.updateRowData({
                     rowId: 0,
-                    name: "QBT_TR(Unread)QBT_TR[CONTEXT=FeedListWidget]",
+                    name: "QBT_TR_JS(Unread)QBT_TR[CONTEXT=FeedListWidget]",
                     unread: 0,
                     status: "unread",
                     indentation: 0,
@@ -879,7 +879,7 @@
             new MochaUI.Window({
                 id: "renamePage",
                 icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]",
+                title: "QBT_TR_JS(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: `rename_feed.html?v=${CACHEID}&oldPath=${encodeURIComponent(oldPath)}`,
                 scrollbars: false,
@@ -900,7 +900,7 @@
             new MochaUI.Window({
                 id: "editFeedURL",
                 icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
+                title: "QBT_TR_JS(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: contentURL.toString(),
                 scrollbars: false,
@@ -916,7 +916,7 @@
             new MochaUI.Window({
                 id: "confirmFeedDeletionPage",
                 icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]",
+                title: "QBT_TR_JS(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: `confirmfeeddeletion.html?v=${CACHEID}&paths=${encodeURIComponent(encodedPaths.join("|"))}`,
                 scrollbars: false,
@@ -1041,7 +1041,7 @@
             new MochaUI.Window({
                 id: id,
                 icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Rss Downloader)QBT_TR[CONTEXT=AutomatedRssDownloader]",
+                title: "QBT_TR_JS(Rss Downloader)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "xhr",
                 contentURL: "views/rssDownloader.html?v=${CACHEID}",
                 maximizable: false,

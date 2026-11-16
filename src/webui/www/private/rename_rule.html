@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>QBT_TR(Rule renaming)QBT_TR[CONTEXT=AutomatedRssDownloader]</title>
+    <title>QBT_TR_HTML(Rule renaming)QBT_TR[CONTEXT=AutomatedRssDownloader]</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
@@ -37,12 +37,12 @@
                 // check field
                 const newName = document.getElementById("rename").value.trim();
                 if (newName === "") {
-                    alert("QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 
                 if (newName === oldName) {
-                    alert("QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Name is unchanged)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 
@@ -69,10 +69,10 @@
 
 <body>
     <div style="padding: 10px 10px 0px 10px;">
-        <label for="rename">QBT_TR(Please type the new rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+        <label for="rename">QBT_TR_HTML(Please type the new rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
         <input type="text" id="rename" style="width: 320px;">
         <div style="text-align: center; padding-top: 10px;">
-            <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="renameButton">
+            <input type="button" value="QBT_TR_HTML(Save)QBT_TR[CONTEXT=HttpServer]" id="renameButton">
         </div>
     </div>
 </body>

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>QBT_TR(Speed limit)QBT_TR[CONTEXT=SpeedLimit]</title>
+    <title>QBT_TR_HTML(Speed limit)QBT_TR[CONTEXT=SpeedLimit]</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
@@ -81,8 +81,8 @@
 
             document.getElementById("limitUpdateLabel").textContent =
                 isUpload
-                ? "QBT_TR(Upload limit:)QBT_TR[CONTEXT=SpeedLimit]"
-                : "QBT_TR(Download limit:)QBT_TR[CONTEXT=SpeedLimit]";
+                ? "QBT_TR_JS(Upload limit:)QBT_TR[CONTEXT=SpeedLimit]"
+                : "QBT_TR_JS(Download limit:)QBT_TR[CONTEXT=SpeedLimit]";
 
             fetch(`api/v2/transfer/${getLimitMethod}`, {
                     method: "GET",
@@ -127,13 +127,13 @@
     <div style="padding-top: 10px; width: 100%; text-align: center; margin: 0 auto; overflow: hidden">
         <div class="slider">
             <div class="update">
-                <label id="limitUpdateLabel" for="limitUpdateValue">QBT_TR(Limit:)QBT_TR[CONTEXT=SpeedLimit]</label>
+                <label id="limitUpdateLabel" for="limitUpdateValue">QBT_TR_HTML(Limit:)QBT_TR[CONTEXT=SpeedLimit]</label>
                 <input type="text" id="limitUpdateValue" size="6" placeholder="∞" style="text-align: center;">
-                <span id="limitUnit">QBT_TR(KiB/s)QBT_TR[CONTEXT=SpeedLimit]</span>
+                <span id="limitUnit">QBT_TR_HTML(KiB/s)QBT_TR[CONTEXT=SpeedLimit]</span>
             </div>
-            <input type="range" id="limitSliderInput" min="0" value="0" style="width: 100%;" aria-label="QBT_TR(Speed limit)QBT_TR[CONTEXT=SpeedLimit]">
+            <input type="range" id="limitSliderInput" min="0" value="0" style="width: 100%;" aria-label="QBT_TR_HTML(Speed limit)QBT_TR[CONTEXT=SpeedLimit]">
         </div>
-        <input type="button" id="applyButton" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]">
+        <input type="button" id="applyButton" value="QBT_TR_HTML(Apply)QBT_TR[CONTEXT=HttpServer]">
     </div>
 </body>
 

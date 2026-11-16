@@ -178,13 +178,13 @@ window.qBittorrent.TorrentContent ??= (() => {
         select.classList.add("combo_priority");
         select.addEventListener("change", (event) => fileComboboxChanged(event));
 
-        select.appendChild(createOption(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), "QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]"));
-        select.appendChild(createOption(FilePriority.Normal, (FilePriority.Normal === selectedPriority), "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]"));
-        select.appendChild(createOption(FilePriority.High, (FilePriority.High === selectedPriority), "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]"));
-        select.appendChild(createOption(FilePriority.Maximum, (FilePriority.Maximum === selectedPriority), "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]"));
+        select.appendChild(createOption(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), "QBT_TR_JS(Do not download)QBT_TR[CONTEXT=PropListDelegate]"));
+        select.appendChild(createOption(FilePriority.Normal, (FilePriority.Normal === selectedPriority), "QBT_TR_JS(Normal)QBT_TR[CONTEXT=PropListDelegate]"));
+        select.appendChild(createOption(FilePriority.High, (FilePriority.High === selectedPriority), "QBT_TR_JS(High)QBT_TR[CONTEXT=PropListDelegate]"));
+        select.appendChild(createOption(FilePriority.Maximum, (FilePriority.Maximum === selectedPriority), "QBT_TR_JS(Maximum)QBT_TR[CONTEXT=PropListDelegate]"));
 
         // "Mixed" priority is for display only; it shouldn't be selectable
-        const mixedPriorityOption = createOption(FilePriority.Mixed, (FilePriority.Mixed === selectedPriority), "QBT_TR(Mixed)QBT_TR[CONTEXT=PropListDelegate]");
+        const mixedPriorityOption = createOption(FilePriority.Mixed, (FilePriority.Mixed === selectedPriority), "QBT_TR_JS(Mixed)QBT_TR[CONTEXT=PropListDelegate]");
         mixedPriorityOption.disabled = true;
         select.appendChild(mixedPriorityOption);
 
@@ -536,14 +536,14 @@ window.qBittorrent.TorrentContent ??= (() => {
                 if (hasFolder) {
                     for (const action of fileOnlyActions) {
                         this.setEnabled(action, false)
-                            .setTooltip(action, "QBT_TR(Not available for folders)QBT_TR[CONTEXT=TorrentContent]");
+                            .setTooltip(action, "QBT_TR_JS(Not available for folders)QBT_TR[CONTEXT=TorrentContent]");
                     }
                 }
                 else {
                     // only files are selected
                     for (const action of fileOnlyActions) {
                         this.setEnabled(action, isAllComplete)
-                            .setTooltip(action, (isAllComplete ? "" : "QBT_TR(Unavailable until all selected files are downloaded)QBT_TR[CONTEXT=TorrentContent]"));
+                            .setTooltip(action, (isAllComplete ? "" : "QBT_TR_JS(Unavailable until all selected files are downloaded)QBT_TR[CONTEXT=TorrentContent]"));
                     }
                 }
             }

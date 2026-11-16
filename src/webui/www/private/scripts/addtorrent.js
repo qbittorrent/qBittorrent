@@ -80,7 +80,7 @@ window.qBittorrent.AddTorrent ??= (() => {
             search: false,
             disableSelectAll: true,
             translations: {
-                all: (window.parent.qBittorrent.Client.tagMap.length === 0) ? "" : "QBT_TR(All)QBT_TR[CONTEXT=AddNewTorrentDialog]",
+                all: (window.parent.qBittorrent.Client.tagMap.length === 0) ? "" : "QBT_TR_JS(All)QBT_TR[CONTEXT=AddNewTorrentDialog]",
             },
             keepInlineStyles: false
         });
@@ -229,13 +229,13 @@ window.qBittorrent.AddTorrent ??= (() => {
             return;
         const free = window.qBittorrent.Misc.friendlyUnit(freeSpaceBytes, false);
         if (torrentSizeBytes === null) {
-            el.textContent = "QBT_TR(%1 free)QBT_TR[CONTEXT=AddNewTorrentDialog]".replace("%1", free);
+            el.textContent = "QBT_TR_JS(%1 free)QBT_TR[CONTEXT=AddNewTorrentDialog]".replace("%1", free);
             el.classList.remove("red");
         }
         else {
             const size = window.qBittorrent.Misc.friendlyUnit(torrentSizeBytes, false);
             const fits = torrentSizeBytes <= freeSpaceBytes;
-            el.textContent = "QBT_TR(%1 needed · %2 free)QBT_TR[CONTEXT=AddNewTorrentDialog]"
+            el.textContent = "QBT_TR_JS(%1 needed · %2 free)QBT_TR[CONTEXT=AddNewTorrentDialog]"
                 .replace("%1", size).replace("%2", free);
             el.classList.toggle("red", !fits);
         }
@@ -323,8 +323,8 @@ window.qBittorrent.AddTorrent ??= (() => {
         if (metadata.info?.name !== undefined)
             window.parent.document.getElementById(`${windowId}_title`).textContent = metadata.info.name;
 
-        const notAvailable = "QBT_TR(Not available)QBT_TR[CONTEXT=AddNewTorrentDialog]";
-        const notApplicable = "QBT_TR(N/A)QBT_TR[CONTEXT=AddNewTorrentDialog]";
+        const notAvailable = "QBT_TR_JS(Not available)QBT_TR[CONTEXT=AddNewTorrentDialog]";
+        const notApplicable = "QBT_TR_JS(N/A)QBT_TR[CONTEXT=AddNewTorrentDialog]";
         document.getElementById("infoHashV1").textContent = (metadata.infohash_v1 === undefined) ? notAvailable : (metadata.infohash_v1 || notApplicable);
         document.getElementById("infoHashV2").textContent = (metadata.infohash_v2 === undefined) ? notAvailable : (metadata.infohash_v2 || notApplicable);
 
