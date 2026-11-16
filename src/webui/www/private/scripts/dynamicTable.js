@@ -2445,7 +2445,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.id = this.headerCheckboxId;
-            checkbox.addEventListener("click", this.headerCheckboxClickHandler);
+            checkbox.addEventListener("click", (event) => this.headerCheckboxClickHandler(event));
             checkboxTH.appendChild(checkbox);
 
             this.updateHeaderCheckbox();
