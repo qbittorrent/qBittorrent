@@ -40,6 +40,7 @@ window.qBittorrent.TorrentContent ??= (() => {
             createPriorityCombo: createPriorityCombo,
             updatePriorityCombo: updatePriorityCombo,
             updateData: updateData,
+            clearCollapseState: clearCollapseState,
             clearFilterInputTimer: clearFilterInputTimer
         };
     };
@@ -294,6 +295,10 @@ window.qBittorrent.TorrentContent ??= (() => {
 
         addRowsToTable(rows);
         torrentFilesTable.updateHeaderCheckbox();
+    };
+
+    const clearCollapseState = () => {
+        torrentFilesTable.clearCollapseState();
     };
 
     const addRowsToTable = (rows) => {
