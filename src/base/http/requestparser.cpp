@@ -99,8 +99,21 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArrayView data)
     const qsizetype headerEnd = data.indexOf(EOH);
     if (headerEnd < 0)
     {
+        if (data.size() > MAX_HEADER_SIZE)
+        {
+            qWarning() << Q_FUNC_INFO << "request header too long";
+            return {ParseStatus::HeaderTooLarge, Request(), 0};
+        }
+
         qDebug() << Q_FUNC_INFO << "incomplete request";
-        return {ParseStatus::Incomplete, Request(), 0};
+        return {ParseStatus::IncompleteHeader, Request(), 0};
+    }
+
+    const qsizetype headerLength = headerEnd + EOH.length();
+    if (headerLength > MAX_HEADER_SIZE)
+    {
+        qWarning() << Q_FUNC_INFO << "request header too long";
+        return {ParseStatus::HeaderTooLarge, Request(), 0};
     }
 
     const QByteArrayView httpHeaders = data.first(headerEnd);
@@ -109,8 +122,6 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArrayView data)
         qWarning() << Q_FUNC_INFO << "header parsing error";
         return {ParseStatus::BadRequest, Request(), 0};
     }
-
-    const qsizetype headerLength = headerEnd + EOH.length();
 
     // handle supported methods
     if ((m_request.method == HEADER_REQUEST_METHOD_GET) || (m_request.method == HEADER_REQUEST_METHOD_HEAD))
@@ -146,7 +157,7 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArrayView data)
             if (httpBodyView.length() < contentLength)
             {
                 qDebug() << Q_FUNC_INFO << "incomplete request";
-                return {ParseStatus::Incomplete, Request(), 0};
+                return {ParseStatus::IncompleteBody, Request(), 0};
             }
 
             if (!parsePostMessage(httpBodyView))
