@@ -2412,9 +2412,16 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
         const Path commonBasePath = Path::commonPath(oldParentPath, newFilePath.parentPath());
         while (oldParentPath != commonBasePath)
         {
+            Utils::Fs::rmdir(actualStorageLocation() / oldParentPath / Path(UNWANTED_FOLDER_NAME));
             Utils::Fs::rmdir(actualStorageLocation() / oldParentPath);
             oldParentPath = oldParentPath.parentPath();
         }
+
+        // The loop above stops at the common base path, which may still contain
+        // the (now empty) ".unwanted" folder the file was moved out of
+        const Path oldActualParentPath = oldActualFilePath.parentPath();
+        if (oldActualParentPath.filename() == UNWANTED_FOLDER_NAME)
+            Utils::Fs::rmdir(actualStorageLocation() / oldActualParentPath);
 
         if (currentFileRenameInfo.folderRenameJobID >= 0)
         {
