@@ -30,7 +30,7 @@
             new MochaUI.Window({
                 id: "alertDialog",
                 icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Alert)QBT_TR[CONTEXT=RSSCloneRule]",
+                title: "QBT_TR_JS(Alert)QBT_TR[CONTEXT=RSSCloneRule]",
                 loadMethod: "html",
                 closeAfter: 3000,
                 type: "notification",
@@ -48,12 +48,12 @@
         cloneButton.addEventListener("click", (e) => {
             const cloneName = cloneText.value.trim();
             if (cloneName === "") {
-                alertDialog("QBT_TR(The rule name cannot be empty.)QBT_TR[CONTEXT=RSSCloneRule]");
+                alertDialog("QBT_TR_JS(The rule name cannot be empty.)QBT_TR[CONTEXT=RSSCloneRule]");
                 return;
             }
 
             if (cloneName === sourceName) {
-                alertDialog("QBT_TR(The rule name is unchanged. You must type a new rule name for the clone.)QBT_TR[CONTEXT=RSSCloneRule]");
+                alertDialog("QBT_TR_JS(The rule name is unchanged. You must type a new rule name for the clone.)QBT_TR[CONTEXT=RSSCloneRule]");
                 return;
             }
 
@@ -67,7 +67,7 @@
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alertDialog("QBT_TR(Unable to clone the selected rule.)QBT_TR[CONTEXT=RSSCloneRule]");
+                        alertDialog("QBT_TR_JS(Unable to clone the selected rule.)QBT_TR[CONTEXT=RSSCloneRule]");
                         return;
                     }
 

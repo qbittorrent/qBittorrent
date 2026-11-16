@@ -49,11 +49,11 @@ const submitLoginForm = () => {
                 }
                 else {
                     const responseText = await response.text();
-                    errorMsgElement.textContent = `QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=Login]\nQBT_TR(Server response:)QBT_TR[CONTEXT=Login] ${responseText}`;
+                    errorMsgElement.textContent = `QBT_TR_JS(Invalid Username or Password.)QBT_TR[CONTEXT=Login]\nQBT_TR_JS(Server response:)QBT_TR[CONTEXT=Login] ${responseText}`;
                 }
             },
             (error) => {
-                errorMsgElement.textContent = `QBT_TR(Unable to log in, server is probably unreachable.)QBT_TR[CONTEXT=Login]\n${error}`;
+                errorMsgElement.textContent = `QBT_TR_JS(Unable to log in, server is probably unreachable.)QBT_TR[CONTEXT=Login]\n${error}`;
             });
 
     passwordElement.value = ""; // clear previous value

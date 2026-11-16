@@ -23,7 +23,7 @@
             const searchParams = new URLSearchParams(window.location.search);
             const host = searchParams.get("host");
 
-            document.getElementById("confirmDeleteTrackerText").textContent = "QBT_TR(Are you sure you want to remove tracker %1 from all torrents?)QBT_TR[CONTEXT=TrackersFilterWidget]".replace("%1", host);
+            document.getElementById("confirmDeleteTrackerText").textContent = "QBT_TR_JS(Are you sure you want to remove tracker %1 from all torrents?)QBT_TR[CONTEXT=TrackersFilterWidget]".replace("%1", host);
 
             document.getElementById("cancelBtn").focus();
             document.getElementById("cancelBtn").addEventListener("click", (e) => {

@@ -22,7 +22,7 @@
             windowEl
         } = window.MUI.Windows.instances["confirmRecheckDialog"];
 
-        confirmText.textContent = "QBT_TR(Are you sure you want to recheck the selected torrent(s)?)QBT_TR[CONTEXT=confirmRecheckDialog]";
+        confirmText.textContent = "QBT_TR_JS(Are you sure you want to recheck the selected torrent(s)?)QBT_TR[CONTEXT=confirmRecheckDialog]";
 
         cancelButton.addEventListener("click", (e) => {
             window.qBittorrent.Client.closeWindow(document.getElementById("confirmRecheckDialog"));
@@ -36,7 +36,7 @@
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alert("QBT_TR(Unable to recheck torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        alert("QBT_TR_JS(Unable to recheck torrents.)QBT_TR[CONTEXT=HttpServer]");
                         return;
                     }
 

@@ -108,7 +108,7 @@ window.qBittorrent.PropGeneral ??= (() => {
             })
             .then(async (response) => {
                 if (!response.ok) {
-                    document.getElementById("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
+                    document.getElementById("error_div").textContent = "QBT_TR_JS(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                     clearTimeout(loadTorrentDataTimer);
                     loadTorrentDataTimer = loadTorrentData.delay(10000);
                     return;
@@ -126,7 +126,7 @@ window.qBittorrent.PropGeneral ??= (() => {
                     document.getElementById("averageAvailability").textContent = avgAvailability;
 
                     const timeElapsed = (data.seeding_time > 0)
-                        ? "QBT_TR(%1 (seeded for %2))QBT_TR[CONTEXT=PropertiesWidget]"
+                        ? "QBT_TR_JS(%1 (seeded for %2))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", window.qBittorrent.Misc.friendlyDuration(data.time_elapsed))
                         .replace("%2", window.qBittorrent.Misc.friendlyDuration(data.seeding_time))
                         : window.qBittorrent.Misc.friendlyDuration(data.time_elapsed);
@@ -134,27 +134,27 @@ window.qBittorrent.PropGeneral ??= (() => {
 
                     document.getElementById("eta").textContent = window.qBittorrent.Misc.friendlyDuration(data.eta, window.qBittorrent.Misc.MAX_ETA, window.qBittorrent.Misc.TIME_RESOLUTION.Seconds);
 
-                    const nbConnections = "QBT_TR(%1 (%2 max))QBT_TR[CONTEXT=PropertiesWidget]"
+                    const nbConnections = "QBT_TR_JS(%1 (%2 max))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", data.nb_connections)
                         .replace("%2", ((data.nb_connections_limit < 0) ? "∞" : data.nb_connections_limit));
                     document.getElementById("nb_connections").textContent = nbConnections;
 
-                    const totalDownloaded = "QBT_TR(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
+                    const totalDownloaded = "QBT_TR_JS(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", window.qBittorrent.Misc.friendlyUnit(data.total_downloaded))
                         .replace("%2", window.qBittorrent.Misc.friendlyUnit(data.total_downloaded_session));
                     document.getElementById("total_downloaded").textContent = totalDownloaded;
 
-                    const totalUploaded = "QBT_TR(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
+                    const totalUploaded = "QBT_TR_JS(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", window.qBittorrent.Misc.friendlyUnit(data.total_uploaded))
                         .replace("%2", window.qBittorrent.Misc.friendlyUnit(data.total_uploaded_session));
                     document.getElementById("total_uploaded").textContent = totalUploaded;
 
-                    const dlSpeed = "QBT_TR(%1 (%2 avg.))QBT_TR[CONTEXT=PropertiesWidget]"
+                    const dlSpeed = "QBT_TR_JS(%1 (%2 avg.))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", window.qBittorrent.Misc.friendlyUnit(data.dl_speed, true))
                         .replace("%2", window.qBittorrent.Misc.friendlyUnit(data.dl_speed_avg, true));
                     document.getElementById("dl_speed").textContent = dlSpeed;
 
-                    const upSpeed = "QBT_TR(%1 (%2 avg.))QBT_TR[CONTEXT=PropertiesWidget]"
+                    const upSpeed = "QBT_TR_JS(%1 (%2 avg.))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", window.qBittorrent.Misc.friendlyUnit(data.up_speed, true))
                         .replace("%2", window.qBittorrent.Misc.friendlyUnit(data.up_speed_avg, true));
                     document.getElementById("up_speed").textContent = upSpeed;
@@ -171,12 +171,12 @@ window.qBittorrent.PropGeneral ??= (() => {
 
                     document.getElementById("total_wasted").textContent = window.qBittorrent.Misc.friendlyUnit(data.total_wasted);
 
-                    const seeds = "QBT_TR(%1 (%2 total))QBT_TR[CONTEXT=PropertiesWidget]"
+                    const seeds = "QBT_TR_JS(%1 (%2 total))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", data.seeds)
                         .replace("%2", data.seeds_total);
                     document.getElementById("seeds").textContent = seeds;
 
-                    const peers = "QBT_TR(%1 (%2 total))QBT_TR[CONTEXT=PropertiesWidget]"
+                    const peers = "QBT_TR_JS(%1 (%2 total))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", data.peers)
                         .replace("%2", data.peers_total);
                     document.getElementById("peers").textContent = peers;
@@ -189,14 +189,14 @@ window.qBittorrent.PropGeneral ??= (() => {
 
                     const lastSeen = (data.last_seen >= 0)
                         ? window.qBittorrent.Misc.formatDate(new Date(data.last_seen * 1000))
-                        : "QBT_TR(Never)QBT_TR[CONTEXT=PropertiesWidget]";
+                        : "QBT_TR_JS(Never)QBT_TR[CONTEXT=PropertiesWidget]";
                     document.getElementById("last_seen").textContent = lastSeen;
 
                     const totalSize = (data.total_size >= 0) ? window.qBittorrent.Misc.friendlyUnit(data.total_size) : "";
                     document.getElementById("total_size").textContent = totalSize;
 
                     const pieces = (data.pieces_num >= 0)
-                        ? "QBT_TR(%1 x %2 (have %3))QBT_TR[CONTEXT=PropertiesWidget]"
+                        ? "QBT_TR_JS(%1 x %2 (have %3))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", data.pieces_num)
                         .replace("%2", window.qBittorrent.Misc.friendlyUnit(data.piece_size))
                         .replace("%3", data.pieces_have)
@@ -207,7 +207,7 @@ window.qBittorrent.PropGeneral ??= (() => {
 
                     const additionDate = (data.addition_date >= 0)
                         ? window.qBittorrent.Misc.formatDate(new Date(data.addition_date * 1000))
-                        : "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
+                        : "QBT_TR_JS(Unknown)QBT_TR[CONTEXT=HttpServer]";
                     document.getElementById("addition_date").textContent = additionDate;
 
                     const completionDate = (data.completion_date >= 0)
@@ -222,12 +222,12 @@ window.qBittorrent.PropGeneral ??= (() => {
 
                     const torrentHashV1 = (data.infohash_v1 !== "")
                         ? data.infohash_v1
-                        : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
+                        : "QBT_TR_JS(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
                     document.getElementById("torrent_hash_v1").textContent = torrentHashV1;
 
                     const torrentHashV2 = (data.infohash_v2 !== "")
                         ? data.infohash_v2
-                        : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
+                        : "QBT_TR_JS(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
                     document.getElementById("torrent_hash_v2").textContent = torrentHashV2;
 
                     document.getElementById("save_path").textContent = data.save_path;
@@ -236,9 +236,9 @@ window.qBittorrent.PropGeneral ??= (() => {
 
                     document.getElementById("private").textContent = (data.has_metadata
                         ? (data.private
-                            ? "QBT_TR(Yes)QBT_TR[CONTEXT=PropertiesWidget]"
-                            : "QBT_TR(No)QBT_TR[CONTEXT=PropertiesWidget]")
-                        : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]");
+                            ? "QBT_TR_JS(Yes)QBT_TR[CONTEXT=PropertiesWidget]"
+                            : "QBT_TR_JS(No)QBT_TR[CONTEXT=PropertiesWidget]")
+                        : "QBT_TR_JS(N/A)QBT_TR[CONTEXT=PropertiesWidget]");
 
                     const row = torrentsTable.getRow(currentID);
                     const state = row?.full_data?.state || "";
@@ -259,7 +259,7 @@ window.qBittorrent.PropGeneral ??= (() => {
             }, (error) => {
                 console.error(error);
 
-                document.getElementById("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
+                document.getElementById("error_div").textContent = "QBT_TR_JS(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                 clearTimeout(loadTorrentDataTimer);
                 loadTorrentDataTimer = loadTorrentData.delay(10000);
             });
@@ -274,7 +274,7 @@ window.qBittorrent.PropGeneral ??= (() => {
             })
             .then(async (response) => {
                 if (!response.ok) {
-                    document.getElementById("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
+                    document.getElementById("error_div").textContent = "QBT_TR_JS(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                     clearTimeout(loadTorrentDataTimer);
                     loadTorrentDataTimer = loadTorrentData.delay(10000);
                     return;
@@ -293,7 +293,7 @@ window.qBittorrent.PropGeneral ??= (() => {
             }, (error) => {
                 console.error(error);
 
-                document.getElementById("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
+                document.getElementById("error_div").textContent = "QBT_TR_JS(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                 clearTimeout(loadTorrentDataTimer);
                 loadTorrentDataTimer = loadTorrentData.delay(10000);
             });

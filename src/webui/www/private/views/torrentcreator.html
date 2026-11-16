@@ -85,7 +85,7 @@
                         if (selectedTasks.length === 0)
                             return;
 
-                        if (!confirm("QBT_TR(Are you sure you want to delete selected tasks?)QBT_TR[CONTEXT=TorrentCreator]"))
+                        if (!confirm("QBT_TR_JS(Are you sure you want to delete selected tasks?)QBT_TR[CONTEXT=TorrentCreator]"))
                             return;
 
                         for (const task of selectedTasks) {
@@ -160,7 +160,7 @@
             new MochaUI.Window({
                 id: id,
                 icon: "images/list-add.svg",
-                title: "QBT_TR(Create New Torrent)QBT_TR[CONTEXT=TorrentCreator]",
+                title: "QBT_TR_JS(Create New Torrent)QBT_TR[CONTEXT=TorrentCreator]",
                 loadMethod: "xhr",
                 contentURL: "views/createtorrent.html?v=${CACHEID}",
                 scrollbars: true,
@@ -195,7 +195,7 @@
                 });
 
                 // download response to file
-                await window.qBittorrent.Misc.downloadFile(url, `${task}.torrent`, "QBT_TR(Unable to export torrent file)QBT_TR[CONTEXT=TorrentCreator]");
+                await window.qBittorrent.Misc.downloadFile(url, `${task}.torrent`, "QBT_TR_JS(Unable to export torrent file)QBT_TR[CONTEXT=TorrentCreator]");
 
                 // https://stackoverflow.com/questions/53560991/automatic-file-downloads-limited-to-10-files-on-chrome-browser
                 await window.qBittorrent.Misc.sleep(200);
@@ -224,7 +224,7 @@
                 cache: "no-store"
             }).then(async (response) => {
                 if (!response.ok) {
-                    let error = "QBT_TR(Unable to load torrent creation tasks)QBT_TR[CONTEXT=TorrentCreator]";
+                    let error = "QBT_TR_JS(Unable to load torrent creation tasks)QBT_TR[CONTEXT=TorrentCreator]";
                     const responseText = await response.text();
                     if (responseText.length > 0)
                         error += `: ${responseText}`;

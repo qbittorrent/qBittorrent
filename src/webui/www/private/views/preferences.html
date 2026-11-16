@@ -2107,7 +2107,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const changeWatchFolderSelect = (item) => {
             if (item.value === "other") {
                 item.nextElementSibling.hidden = false;
-                item.nextElementSibling.value = "QBT_TR(Type folder here)QBT_TR[CONTEXT=ScanFoldersModel]";
+                item.nextElementSibling.value = "QBT_TR_JS(Type folder here)QBT_TR[CONTEXT=ScanFoldersModel]";
                 item.nextElementSibling.select();
             }
             else {
@@ -2128,9 +2128,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             const folderTypeSelect = document.createElement("select");
             folderTypeSelect.id = `cb_watch_${pos}`;
-            folderTypeSelect.options.add(new Option("QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]", "watch_folder"));
-            folderTypeSelect.options.add(new Option("QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]", "default_folder"));
-            folderTypeSelect.options.add(new Option("QBT_TR(Other...)QBT_TR[CONTEXT=ScanFoldersModel]", "other"));
+            folderTypeSelect.options.add(new Option("QBT_TR_JS(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]", "watch_folder"));
+            folderTypeSelect.options.add(new Option("QBT_TR_JS(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]", "default_folder"));
+            folderTypeSelect.options.add(new Option("QBT_TR_JS(Other...)QBT_TR[CONTEXT=ScanFoldersModel]", "other"));
             folderTypeSelect.value = sel;
             folderTypeSelect.addEventListener("change", (e) => {
                 changeWatchFolderSelect(e.target);
@@ -2239,7 +2239,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 new MochaUI.Window({
                     id: "testEmailNotificationDialog",
                     icon: "images/qbittorrent-tray.svg",
-                    title: "QBT_TR(Notification)QBT_TR[CONTEXT=OptionsDialog]",
+                    title: "QBT_TR_JS(Notification)QBT_TR[CONTEXT=OptionsDialog]",
                     loadMethod: "html",
                     closeAfter: duration,
                     type: "notification",
@@ -2256,11 +2256,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        showNotification("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=OptionsDialog]", 300, 60, 5000);
+                        showNotification("QBT_TR_JS(Could not contact qBittorrent.)QBT_TR[CONTEXT=OptionsDialog]", 300, 60, 5000);
                         return;
                     }
 
-                    showNotification("QBT_TR(Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]", 300, 80, 5000);
+                    showNotification("QBT_TR_JS(Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]", 300, 80, 5000);
                 });
         };
 
@@ -2475,7 +2475,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     if (default_iface && !ifaces.some((item) => item.value === default_iface))
                         ifaces.push({ name: default_iface_name || default_iface, value: default_iface });
 
-                    document.getElementById("networkInterface").options.add(new Option("QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]", ""));
+                    document.getElementById("networkInterface").options.add(new Option("QBT_TR_JS(Any interface)QBT_TR[CONTEXT=OptionsDialog]", ""));
                     for (const item of ifaces)
                         document.getElementById("networkInterface").options.add(new Option(item.name, item.value));
                     document.getElementById("networkInterface").value = default_iface;
@@ -2504,9 +2504,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     if (!addresses)
                         return;
 
-                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]", ""));
-                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]", "0.0.0.0"));
-                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv6 addresses)QBT_TR[CONTEXT=OptionDialog]", "::"));
+                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR_JS(All addresses)QBT_TR[CONTEXT=OptionDialog]", ""));
+                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR_JS(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]", "0.0.0.0"));
+                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR_JS(All IPv6 addresses)QBT_TR[CONTEXT=OptionDialog]", "::"));
                     for (const item of addresses)
                         document.getElementById("optionalIPAddressToBind").options.add(new Option(item, item));
                     document.getElementById("optionalIPAddressToBind").value = default_addr;
@@ -2889,7 +2889,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         document.getElementById("WebUIAPIKeyText").dataset.apiKey = pref.web_ui_api_key;
                         document.getElementById("webUIAPIKeyCopyButton").disabled = false;
                         document.getElementById("webUIAPIKeyRotateButton").dataset.hasKey = "true";
-                        document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                        document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR_JS(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]";
                         document.getElementById("webUIAPIKeyDeleteButton").disabled = false;
                     }
 
@@ -3010,7 +3010,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("i2pOutboundLengthVariance").value = pref.i2p_outbound_length_variance;
                 }).catch((error) => {
                     console.error(error);
-                    alert("QBT_TR(Unable to load program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Unable to load program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
                 });
         };
 
@@ -3114,7 +3114,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Listening Port
             const listenPort = Number(document.getElementById("portValue").value);
             if (Number.isNaN(listenPort) || (listenPort < 0) || (listenPort > 65535)) {
-                alert("QBT_TR(The port used for incoming connections must be between 0 and 65535.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(The port used for incoming connections must be between 0 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["listen_port"] = listenPort;
@@ -3125,7 +3125,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxConnectionsCheckbox").checked) {
                 maxConnec = Number(document.getElementById("maxConnectionsValue").value);
                 if (Number.isNaN(maxConnec) || (maxConnec <= 0)) {
-                    alert("QBT_TR(Maximum number of connections limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Maximum number of connections limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3135,7 +3135,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxConnectionsPerTorrentCheckbox").checked) {
                 maxConnecPerTorrent = Number(document.getElementById("maxConnectionsPerTorrentValue").value);
                 if (Number.isNaN(maxConnecPerTorrent) || (maxConnecPerTorrent <= 0)) {
-                    alert("QBT_TR(Maximum number of connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Maximum number of connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3145,7 +3145,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxUploadsCheckbox").checked) {
                 maxUploads = Number(document.getElementById("max_uploads_value").value);
                 if (Number.isNaN(maxUploads) || (maxUploads <= 0)) {
-                    alert("QBT_TR(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3155,7 +3155,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxUploadsPerTorrentCheckbox").checked) {
                 maxUploadsPerTorrent = Number(document.getElementById("maxUploadsPerTorrentValue").value);
                 if (Number.isNaN(maxUploadsPerTorrent) || (maxUploadsPerTorrent <= 0)) {
-                    alert("QBT_TR(Maximum number of upload slots per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Maximum number of upload slots per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3191,14 +3191,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Global Rate Limits
             const upLimit = Number(document.getElementById("upLimitValue").value) * 1024;
             if (Number.isNaN(upLimit) || (upLimit < 0)) {
-                alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["up_limit"] = upLimit;
 
             const dlLimit = Number(document.getElementById("dlLimitValue").value) * 1024;
             if (Number.isNaN(dlLimit) || (dlLimit < 0)) {
-                alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["dl_limit"] = dlLimit;
@@ -3206,14 +3206,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Alternative Global Rate Limits
             const altUpLimit = Number(document.getElementById("altUpLimitValue").value) * 1024;
             if (Number.isNaN(altUpLimit) || (altUpLimit < 0)) {
-                alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["alt_up_limit"] = altUpLimit;
 
             const altDlLimit = Number(document.getElementById("altDlLimitValue").value) * 1024;
             if (Number.isNaN(altDlLimit) || (altDlLimit < 0)) {
-                alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["alt_dl_limit"] = altDlLimit;
@@ -3249,21 +3249,21 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("queueingCheckbox").checked) {
                 const maxActiveDownloads = Number(document.getElementById("maxActiveDlValue").value);
                 if (Number.isNaN(maxActiveDownloads) || (maxActiveDownloads < -1)) {
-                    alert("QBT_TR(Maximum active downloads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Maximum active downloads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["max_active_downloads"] = maxActiveDownloads;
 
                 const maxActiveUploads = Number(document.getElementById("maxActiveUpValue").value);
                 if (Number.isNaN(maxActiveUploads) || (maxActiveUploads < -1)) {
-                    alert("QBT_TR(Maximum active uploads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Maximum active uploads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["max_active_uploads"] = maxActiveUploads;
 
                 const maxActiveTorrents = Number(document.getElementById("maxActiveToValue").value);
                 if (Number.isNaN(maxActiveTorrents) || (maxActiveTorrents < -1)) {
-                    alert("QBT_TR(Maximum active torrents must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Maximum active torrents must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["max_active_torrents"] = maxActiveTorrents;
@@ -3271,21 +3271,21 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                 const dlRateThreshold = Number(document.getElementById("dlRateThresholdValue").value);
                 if (Number.isNaN(dlRateThreshold) || (dlRateThreshold < 1)) {
-                    alert("QBT_TR(Download rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Download rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["slow_torrent_dl_rate_threshold"] = dlRateThreshold;
 
                 const ulRateThreshold = Number(document.getElementById("ulRateThresholdValue").value);
                 if (Number.isNaN(ulRateThreshold) || (ulRateThreshold < 1)) {
-                    alert("QBT_TR(Upload rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Upload rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["slow_torrent_ul_rate_threshold"] = ulRateThreshold;
 
                 const torrentInactiveTimer = Number(document.getElementById("torrentInactiveTimerValue").value);
                 if (Number.isNaN(torrentInactiveTimer) || (torrentInactiveTimer < 1)) {
-                    alert("QBT_TR(Torrent inactivity timer must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Torrent inactivity timer must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["slow_torrent_inactive_timer"] = torrentInactiveTimer;
@@ -3296,7 +3296,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxRatioCheckbox").checked) {
                 maxRatio = Number(document.getElementById("maxRatioValue").value);
                 if (Number.isNaN(maxRatio) || (maxRatio < 0)) {
-                    alert("QBT_TR(Share ratio limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Share ratio limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3307,7 +3307,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxSeedingTimeCheckbox").checked) {
                 maxSeedingTime = Number(document.getElementById("maxSeedingTimeValue").value);
                 if (Number.isNaN(maxSeedingTime) || (maxSeedingTime < 0)) {
-                    alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3318,7 +3318,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxInactiveSeedingTimeCheckbox").checked) {
                 maxInactiveSeedingTime = Number(document.getElementById("maxInactiveSeedingTimeValue").value);
                 if (Number.isNaN(maxInactiveSeedingTime) || (maxInactiveSeedingTime < 0)) {
-                    alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -3348,7 +3348,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const webUIAddress = document.getElementById("webuiAddressValue").value.toString();
             const webUIPort = Number(document.getElementById("webuiPortValue").value);
             if (Number.isNaN(webUIPort) || (webUIPort < 1) || (webUIPort > 65535)) {
-                alert("QBT_TR(The port used for the WebUI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(The port used for the WebUI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["web_ui_address"] = webUIAddress;
@@ -3361,30 +3361,30 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const httpsCertificate = document.getElementById("ssl_cert_text").value;
             settings["web_ui_https_cert_path"] = httpsCertificate;
             if (useHTTPS && (httpsCertificate.length === 0)) {
-                alert("QBT_TR(HTTPS certificate should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
+                alert("QBT_TR_JS(HTTPS certificate should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
 
             const httpsKey = document.getElementById("ssl_key_text").value;
             settings["web_ui_https_key_path"] = httpsKey;
             if (useHTTPS && (httpsKey.length === 0)) {
-                alert("QBT_TR(HTTPS key should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
+                alert("QBT_TR_JS(HTTPS key should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
 
             // Authentication
             const web_ui_username = document.getElementById("webui_username_text").value;
             if (web_ui_username.length < 3) {
-                alert("QBT_TR(The WebUI username must be at least 3 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
+                alert("QBT_TR_JS(The WebUI username must be at least 3 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
             if (web_ui_username.includes(":")) {
-                alert("QBT_TR(The WebUI username must not contain a colon.)QBT_TR[CONTEXT=OptionsDialog]");
+                alert("QBT_TR_JS(The WebUI username must not contain a colon.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
             const web_ui_password = document.getElementById("webui_password_text").value;
             if ((0 < web_ui_password.length) && (web_ui_password.length < 6)) {
-                alert("QBT_TR(The WebUI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
+                alert("QBT_TR_JS(The WebUI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
 
@@ -3403,7 +3403,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const alternative_webui_enabled = document.getElementById("use_alt_webui_checkbox").checked;
             const webui_files_location_textarea = document.getElementById("webui_files_location_textarea").value;
             if (alternative_webui_enabled && (webui_files_location_textarea.trim() === "")) {
-                alert("QBT_TR(The alternative WebUI files location cannot be blank.)QBT_TR[CONTEXT=OptionsDialog]");
+                alert("QBT_TR_JS(The alternative WebUI files location cannot be blank.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
             settings["alternative_webui_enabled"] = alternative_webui_enabled;
@@ -3459,7 +3459,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if ((pyPath.length > 0)
                 && (pyPath.startsWith("\"") || pyPath.startsWith("'")
                     || pyPath.endsWith("\"") || pyPath.endsWith("'"))) {
-                alert("QBT_TR(Invalid path to Python executable. Path contains unnecessary leading and trailing quotes.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(Invalid path to Python executable. Path contains unnecessary leading and trailing quotes.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["python_executable_path"] = pyPath;
@@ -3469,7 +3469,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const shutdownTimeoutStr = document.getElementById("sessionShutdownTimeout").value.trim();
             const shutdownTimeout = (shutdownTimeoutStr === "") ? -1 : Number.parseInt(shutdownTimeoutStr, 10);
             if (Number.isNaN(shutdownTimeout) || (shutdownTimeout < -1) || (shutdownTimeout > 2147483647)) {
-                alert("QBT_TR(BitTorrent session shutdown timeout must be between -1 and 2147483647.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(BitTorrent session shutdown timeout must be between -1 and 2147483647.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["shutdown_timeout"] = shutdownTimeout;
@@ -3484,7 +3484,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             const outstandMemory = Number(document.getElementById("outstandMemoryWhenCheckingTorrents").value);
             if (Number.isNaN(outstandMemory) || (outstandMemory < 0) || (outstandMemory > 1024)) {
-                alert("QBT_TR(Outstanding memory when checking torrents must be greater than 0 and less than 1024.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(Outstanding memory when checking torrents must be greater than 0 and less than 1024.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["checking_memory_use"] = outstandMemory;
@@ -3512,7 +3512,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             const peerDSCP = Number(document.getElementById("peerDSCP").value);
             if (Number.isNaN(peerDSCP) || (peerDSCP < 0) || (peerDSCP > 255)) {
-                alert("QBT_TR(Peer DSCP must be between 0 and 255.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(Peer DSCP must be between 0 and 255.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["peer_tos"] = peerDSCP;
@@ -3532,7 +3532,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["announce_ip"] = document.getElementById("announceIP").value;
             const announcePort = Number(document.getElementById("announcePort").value);
             if (Number.isNaN(announcePort) || (announcePort < 0) || (announcePort > 65535)) {
-                alert("QBT_TR(The announce port must be between 0 and 65535.)QBT_TR[CONTEXT=OptionsDialog]");
+                alert("QBT_TR_JS(The announce port must be between 0 and 65535.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
             settings["announce_port"] = announcePort;
@@ -3541,21 +3541,21 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             const peerTurnover = Number(document.getElementById("peerTurnover").value);
             if (Number.isNaN(peerTurnover) || (peerTurnover < 0) || (peerTurnover > 100)) {
-                alert("QBT_TR(Peer turnover must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(Peer turnover must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["peer_turnover"] = peerTurnover;
 
             const peerTurnoverCutoff = Number(document.getElementById("peerTurnoverCutoff").value);
             if (Number.isNaN(peerTurnoverCutoff) || (peerTurnoverCutoff < 0) || (peerTurnoverCutoff > 100)) {
-                alert("QBT_TR(Peer turnover cutoff must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(Peer turnover cutoff must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["peer_turnover_cutoff"] = peerTurnoverCutoff;
 
             const peerTurnoverInterval = Number(document.getElementById("peerTurnoverInterval").value);
             if (Number.isNaN(peerTurnoverInterval) || (peerTurnoverInterval < 0) || (peerTurnoverInterval > 3600)) {
-                alert("QBT_TR(Peer turnover interval must be greater than or equal to 0.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(Peer turnover interval must be greater than or equal to 0.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["peer_turnover_interval"] = peerTurnoverInterval;
@@ -3583,9 +3583,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 else {
                     // keep window open so user can reattempt saving
                     if (error.name === "ServerError")
-                        alert(`QBT_TR(Error:)QBT_TR[CONTEXT=HttpServer] ${error.message}`);
+                        alert(`QBT_TR_JS(Error:)QBT_TR[CONTEXT=HttpServer] ${error.message}`);
                     else
-                        alert("QBT_TR(Unable to save preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
+                        alert("QBT_TR_JS(Unable to save preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
                 }
             });
         };
@@ -3668,11 +3668,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                     document.getElementById("webUIAPIKeyCopyButton").disabled = false;
                     document.getElementById("webUIAPIKeyRotateButton").dataset.hasKey = "true";
-                    document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                    document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR_JS(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]";
                     document.getElementById("webUIAPIKeyDeleteButton").disabled = false;
                 })
                 .catch((error) => {
-                    alert(`QBT_TR(Unable to rotate API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
+                    alert(`QBT_TR_JS(Unable to rotate API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
                 });
         };
 
@@ -3692,11 +3692,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                     document.getElementById("webUIAPIKeyCopyButton").disabled = true;
                     document.getElementById("webUIAPIKeyRotateButton").dataset.hasKey = "false";
-                    document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                    document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR_JS(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
                     document.getElementById("webUIAPIKeyDeleteButton").disabled = true;
                 })
                 .catch((error) => {
-                    alert(`QBT_TR(Unable to delete API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
+                    alert(`QBT_TR_JS(Unable to delete API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
                 });
         };
 
@@ -3719,11 +3719,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         document.getElementById("webUIAPIKeyRotateButton").addEventListener("click", (e) => {
             const hasKey = e.target.parentElement.dataset.hasKey === "true";
             const title = hasKey
-                ? "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]"
-                : "QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                ? "QBT_TR_JS(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]"
+                : "QBT_TR_JS(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
             const message = hasKey
-                ? "QBT_TR(Rotate this API key? The current key will immediately stop working and a new key will be generated.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]"
-                : "QBT_TR(Generate an API key? This key can be used to interact with qBittorrent's API.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
+                ? "QBT_TR_JS(Rotate this API key? The current key will immediately stop working and a new key will be generated.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]"
+                : "QBT_TR_JS(Generate an API key? This key can be used to interact with qBittorrent's API.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
 
             new MochaUI.Modal({
                 ...window.qBittorrent.Dialog.baseModalOptions,
@@ -3738,8 +3738,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         });
 
         document.getElementById("webUIAPIKeyDeleteButton").addEventListener("click", (e) => {
-            const title = "QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]";
-            const message = "QBT_TR(Delete this API key? The current key will immediately stop working.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
+            const title = "QBT_TR_JS(Delete API key)QBT_TR[CONTEXT=OptionsDialog]";
+            const message = "QBT_TR_JS(Delete this API key? The current key will immediately stop working.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
             new MochaUI.Modal({
                 ...window.qBittorrent.Dialog.baseModalOptions,
                 title: title,

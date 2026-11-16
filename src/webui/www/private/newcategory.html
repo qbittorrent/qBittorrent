@@ -217,8 +217,8 @@
                 inheritedShareLimits = categoryShareLimits(parentName);
 
                 const inheritedFromLabel = inheritsFromParentCategory
-                    ? "QBT_TR(From category)QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
-                    : "QBT_TR(Default)QBT_TR[CONTEXT=TorrentShareLimitsWidget]";
+                    ? "QBT_TR_JS(From category)QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
+                    : "QBT_TR_JS(Default)QBT_TR[CONTEXT=TorrentShareLimitsWidget]";
 
                 for (const [modeID, valueID, limitKey] of shareLimitFields) {
                     const modeElem = document.getElementById(modeID);
@@ -238,8 +238,8 @@
                         return;
                     }
                     selectElem.options[0].textContent = (inheritsFromParentCategory
-                        ? "QBT_TR(From category (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
-                        : "QBT_TR(Default (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]").replace("%1", inheritedOption.textContent);
+                        ? "QBT_TR_JS(From category (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]"
+                        : "QBT_TR_JS(Default (%1))QBT_TR[CONTEXT=TorrentShareLimitsWidget]").replace("%1", inheritedOption.textContent);
                 };
 
                 setInheritedLabel("categoryShareLimitsMode", inheritedShareLimits.shareLimitsMode);
@@ -301,7 +301,7 @@
                     if ((name === null) || (name === ""))
                         return false;
                     if (name.match("^([^\\\\\\/]|[^\\\\\\/]([^\\\\\\/]|\\/(?=[^\\/]))*[^\\\\\\/])$") === null) {
-                        alert("QBT_TR(Invalid category name:\nPlease do not use any special characters in the category name.)QBT_TR[CONTEXT=HttpServer]");
+                        alert("QBT_TR_JS(Invalid category name:\nPlease do not use any special characters in the category name.)QBT_TR[CONTEXT=HttpServer]");
                         return false;
                     }
                     return true;
@@ -324,7 +324,7 @@
                     const valueElem = document.getElementById(valueID);
                     const value = valueElem.value.trim();
                     if (!valueElem.disabled && ((value === "") || (Number(value) < 0))) {
-                        alert("QBT_TR(Share limit values cannot be empty or invalid.)QBT_TR[CONTEXT=TorrentShareLimitsWidget]");
+                        alert("QBT_TR_JS(Share limit values cannot be empty or invalid.)QBT_TR[CONTEXT=TorrentShareLimitsWidget]");
                         return;
                     }
                 }
@@ -356,7 +356,7 @@
                                     const errorMessage = await response.text();
                                     alert((errorMessage !== "")
                                         ? errorMessage
-                                        : `QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category] ${window.qBittorrent.Misc.escapeHtml(categoryName)}`);
+                                        : `QBT_TR_JS(Unable to create category)QBT_TR[CONTEXT=Category] ${window.qBittorrent.Misc.escapeHtml(categoryName)}`);
                                     return;
                                 }
 
@@ -369,7 +369,7 @@
                                     })
                                     .then((response) => {
                                         if (!response.ok) {
-                                            alert("QBT_TR(Unable to set category)QBT_TR[CONTEXT=Category]");
+                                            alert("QBT_TR_JS(Unable to set category)QBT_TR[CONTEXT=Category]");
                                             return;
                                         }
 
@@ -397,7 +397,7 @@
                                     const errorMessage = await response.text();
                                     alert((errorMessage !== "")
                                         ? errorMessage
-                                        : "QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category]");
+                                        : "QBT_TR_JS(Unable to create category)QBT_TR[CONTEXT=Category]");
                                     return;
                                 }
 
@@ -419,13 +419,13 @@
                             .then(async (response) => {
                                 if (!response.ok) {
                                     if (response.status === 404) {
-                                        alert("QBT_TR(Category does not exist)QBT_TR[CONTEXT=Category]");
+                                        alert("QBT_TR_JS(Category does not exist)QBT_TR[CONTEXT=Category]");
                                     }
                                     else {
                                         const errorMessage = await response.text();
                                         alert((errorMessage !== "")
                                             ? errorMessage
-                                            : "QBT_TR(Unable to edit category)QBT_TR[CONTEXT=Category]");
+                                            : "QBT_TR_JS(Unable to edit category)QBT_TR[CONTEXT=Category]");
                                     }
                                     return;
                                 }
