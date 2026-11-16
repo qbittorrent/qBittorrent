@@ -2448,6 +2448,16 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
 
             m_session->handleTorrentContentFileRenamed(this, fileIndex, oldFilePath);
         }
+
+        // The file could have been completed while it was waiting for this rename,
+        // in this case the ".!qB" extension is still there and has to be removed
+        if (m_session->isAppendExtensionEnabled() && m_completedFiles.at(fileIndex)
+                && (newActualFilePath != newActualFilePath.removedExtension(QB_EXT)))
+        {
+            const Path targetActualPath = makeActualPath(fileIndex, newFilePath);
+            if (targetActualPath != newActualFilePath)
+                doRenameFile(fileIndex, targetActualPath);
+        }
     }
 
     while (!isMoveInProgress() && m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
@@ -2509,6 +2519,14 @@ void TorrentImpl::handleFileCompleted(const lt::file_index_t nativeFileIndex)
 
     if (m_session->isAppendExtensionEnabled())
     {
+        // A queued rename (e.g. caused by a content layout change) is based on the previous state
+        // of the file path, so renaming the file back here would revert it.
+        // `handleFileRenamed()` removes the extension once the queued rename is finished.
+        const bool hasPendingRename = std::ranges::any_of(m_renamingFiles
+                , [fileIndex](const FileRenameInfo &info) { return (info.index == fileIndex); });
+        if (hasPendingRename)
+            return;
+
         const Path path = filePath(fileIndex);
         if (actualPath != path)
         {
