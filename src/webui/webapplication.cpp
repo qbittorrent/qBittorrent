@@ -184,7 +184,7 @@ namespace
 WebApplication::WebApplication(IApplication *app, QObject *parent)
     : ApplicationComponent(app, parent)
     , m_cacheID {QString::number(Utils::Random::rand(), 36)}
-    , m_trRegex {u"QBT_TR(?:_(HTML|JS))?\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s}
+    , m_trRegex {u"QBT_TR_(HTML|JS)\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s}
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
     , m_searchJobManager {new SearchJobManager(this)}
@@ -290,22 +290,9 @@ void WebApplication::translateDocument(QString &data) const
             // it should fallback to `sourceText`
             QString translation = loadedText.isEmpty() ? sourceText.toString() : loadedText;
 
-            if (mode == u"HTML")
-            {
-                translation = TranslationUtils::escapeHTML(translation);
-            }
-            else if (mode == u"JS")
-            {
-                translation = TranslationUtils::escapeJSString(translation);
-            }
-            else
-            {
-                // Escape quotes to workaround issues with HTML attributes
-                // FIXME: this is a dirty workaround to deal with broken translation strings:
-                // 1. Translation strings is the culprit of the issue, they should be fixed instead
-                // 2. The escaped quote/string is wrong for JS. JS use backslash to escape the quote: "\""
-                translation.replace(u'"', u"&#34;"_s);
-            }
+            translation = (mode == u"HTML")
+                ? TranslationUtils::escapeHTML(translation)
+                : TranslationUtils::escapeJSString(translation);
 
             data.replace(i, regexMatch.capturedLength(), translation);
             i += translation.length();

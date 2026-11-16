@@ -87,5 +87,20 @@ export default [
             "Unicorn/prefer-single-call": "error",
             "Unicorn/switch-case-braces": ["error", "avoid"]
         }
+    },
+    {
+        files: [
+            "**/*.html",
+            "**/*.js"
+        ],
+        rules: {
+            "no-restricted-syntax": [
+                "error",
+                {
+                    selector: "Literal[value=/QBT_TR(_HTML)?\\(/], TemplateElement[value.raw=/QBT_TR(_HTML)?\\(/]",
+                    message: "Use `QBT_TR_JS()` for translations in JavaScript."
+                }
+            ]
+        }
     }
 ];
