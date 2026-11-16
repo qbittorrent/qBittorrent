@@ -315,6 +315,8 @@ namespace BitTorrent
         Path makeUserPath(const Path &path) const;
         void adjustStorageLocation();
         void moveStorage(const Path &newPath, MoveStorageContext context);
+        void recheckCurrentLocation();
+        void checkFilesAt(const Path &path, const PathList &fileNames);
         void manageActualFilePaths();
         void applyFirstLastPiecePriority(bool enabled);
 
