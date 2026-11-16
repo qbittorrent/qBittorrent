@@ -72,7 +72,11 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_18">
         <item>
-         <widget class="QLineEdit" name="txtIP"/>
+         <widget class="QLineEdit" name="txtIP">
+          <property name="accessibleName">
+           <string>IP address</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QPushButton" name="buttonBanIP">

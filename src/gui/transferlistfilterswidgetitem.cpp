@@ -79,6 +79,8 @@ TransferListFiltersWidgetItem::TransferListFiltersWidgetItem(const QString &capt
     layout->addWidget(m_caption);
     layout->addWidget(m_filterWidget);
 
+    m_filterWidget->setAccessibleName(caption);
+
     m_filterWidget->setVisible(m_caption->isChecked());
 
     connect(m_caption, &QCheckBox::toggled, m_filterWidget, &QWidget::setVisible);

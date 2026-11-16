@@ -63,6 +63,9 @@
               <property name="text">
                <string>Path:</string>
               </property>
+              <property name="buddy">
+               <cstring>textInputPath</cstring>
+              </property>
              </widget>
             </item>
             <item>
@@ -140,6 +143,9 @@
                <property name="text">
                 <string>Torrent format:</string>
                </property>
+               <property name="buddy">
+                <cstring>comboTorrentFormat</cstring>
+               </property>
               </widget>
              </item>
              <item>
@@ -183,6 +189,9 @@
              <widget class="QLabel" name="txtPieceSize">
               <property name="text">
                <string>Piece size:</string>
+              </property>
+              <property name="buddy">
+               <cstring>comboPieceSize</cstring>
               </property>
              </widget>
             </item>
@@ -278,6 +287,9 @@
                  <property name="text">
                   <string>Align to piece boundary for files larger than:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>spinPaddedFileSizeLimit</cstring>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -331,6 +343,9 @@
             <property name="text">
              <string>Tracker URLs:</string>
             </property>
+            <property name="buddy">
+             <cstring>trackersList</cstring>
+            </property>
            </widget>
           </item>
           <item row="0" column="1">
@@ -351,6 +366,9 @@
             <property name="text">
              <string>Web seed URLs:</string>
             </property>
+            <property name="buddy">
+             <cstring>URLSeedsList</cstring>
+            </property>
            </widget>
           </item>
           <item row="1" column="1">
@@ -368,6 +386,9 @@
             <property name="text">
              <string>Comments:</string>
             </property>
+            <property name="buddy">
+             <cstring>txtComment</cstring>
+            </property>
            </widget>
           </item>
           <item row="2" column="1">
@@ -384,6 +405,9 @@
            <widget class="QLabel" name="labelSource">
             <property name="text">
              <string>Source:</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEditSource</cstring>
             </property>
            </widget>
           </item>
