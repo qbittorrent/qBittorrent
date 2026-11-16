@@ -244,7 +244,7 @@
             };
             fileRenamer.onRenameError = (response, row) => {
                 if (response.status === 409)
-                    document.getElementById("rename_error").textContent = `QBT_TR(Rename failed: file or folder already exists)QBT_TR[CONTEXT=PropertiesWidget] \`${row.renamed}\``;
+                    document.getElementById("rename_error").textContent = `QBT_TR_JS(Rename failed: file or folder already exists)QBT_TR[CONTEXT=PropertiesWidget] \`${row.renamed}\``;
             };
             document.getElementById("renameOptions").addEventListener("change", (e) => {
                 const combobox = e.target;

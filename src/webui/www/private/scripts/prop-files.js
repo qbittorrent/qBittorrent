@@ -128,7 +128,7 @@ window.qBittorrent.PropFiles ??= (() => {
         new MochaUI.Window({
             id: "renamePage",
             icon: "images/qbittorrent-tray.svg",
-            title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
+            title: "QBT_TR_JS(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
             loadMethod: "iframe",
             contentURL: `rename_file.html?v=${CACHEID}&hash=${hash}&isFolder=${node.isFolder}&path=${encodeURIComponent(path)}`,
             scrollbars: false,
@@ -148,7 +148,7 @@ window.qBittorrent.PropFiles ??= (() => {
         new MochaUI.Window({
             id: "multiRenamePage",
             icon: "images/qbittorrent-tray.svg",
-            title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
+            title: "QBT_TR_JS(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
             data: { hash: hash, selectedRows: selectedRows },
             loadMethod: "xhr",
             contentURL: "rename_files.html?v=${CACHEID}",

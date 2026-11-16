@@ -133,16 +133,16 @@ window.qBittorrent.Misc ??= (() => {
      */
     const friendlyUnit = (value, isSpeed) => {
         if ((value === undefined) || (value === null) || Number.isNaN(value) || (value < 0))
-            return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
+            return "QBT_TR_JS(Unknown)QBT_TR[CONTEXT=misc]";
 
         const units = [
-            "QBT_TR(B)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(KiB)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(MiB)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(GiB)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(TiB)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(PiB)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(EiB)QBT_TR[CONTEXT=misc]"
+            "QBT_TR_JS(B)QBT_TR[CONTEXT=misc]",
+            "QBT_TR_JS(KiB)QBT_TR[CONTEXT=misc]",
+            "QBT_TR_JS(MiB)QBT_TR[CONTEXT=misc]",
+            "QBT_TR_JS(GiB)QBT_TR[CONTEXT=misc]",
+            "QBT_TR_JS(TiB)QBT_TR[CONTEXT=misc]",
+            "QBT_TR_JS(PiB)QBT_TR[CONTEXT=misc]",
+            "QBT_TR_JS(EiB)QBT_TR[CONTEXT=misc]"
         ];
 
         const friendlyUnitPrecision = (sizeUnit) => {
@@ -171,7 +171,7 @@ window.qBittorrent.Misc ??= (() => {
         }
 
         if (isSpeed)
-            ret += "QBT_TR(/s)QBT_TR[CONTEXT=misc]";
+            ret += "QBT_TR_JS(/s)QBT_TR[CONTEXT=misc]";
         return ret;
     };
 
@@ -185,23 +185,23 @@ window.qBittorrent.Misc ??= (() => {
             return "0";
         if (seconds < 60) {
             if (timeResolution === TIME_RESOLUTION.Minutes)
-                return "QBT_TR(< 1m)QBT_TR[CONTEXT=misc]";
-            return "QBT_TR(%1s)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(seconds));
+                return "QBT_TR_JS(< 1m)QBT_TR[CONTEXT=misc]";
+            return "QBT_TR_JS(%1s)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(seconds));
         }
         let minutes = seconds / 60;
         if (minutes < 60)
-            return "QBT_TR(%1m)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(minutes));
+            return "QBT_TR_JS(%1m)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(minutes));
         let hours = minutes / 60;
         minutes %= 60;
         if (hours < 24)
-            return "QBT_TR(%1h %2m)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(hours)).replace("%2", Math.floor(minutes));
+            return "QBT_TR_JS(%1h %2m)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(hours)).replace("%2", Math.floor(minutes));
         let days = hours / 24;
         hours %= 24;
         if (days < 365)
-            return "QBT_TR(%1d %2h)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(days)).replace("%2", Math.floor(hours));
+            return "QBT_TR_JS(%1d %2h)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(days)).replace("%2", Math.floor(hours));
         const years = days / 365;
         days %= 365;
-        return "QBT_TR(%1y %2d)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(years)).replace("%2", Math.floor(days));
+        return "QBT_TR_JS(%1y %2d)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(years)).replace("%2", Math.floor(days));
     };
 
     const friendlyPercentage = (value) => {
@@ -368,7 +368,7 @@ window.qBittorrent.Misc ??= (() => {
         });
     };
 
-    const downloadFile = async (url, defaultFileName, errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]") => {
+    const downloadFile = async (url, defaultFileName, errorMessage = "QBT_TR_JS(Unable to download file)QBT_TR[CONTEXT=HttpServer]") => {
         try {
             const response = await fetch(url, { method: "GET" });
             if (!response.ok) {
@@ -398,7 +398,7 @@ window.qBittorrent.Misc ??= (() => {
     };
 
     const downloadFileStream = async (url) => {
-        const errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]";
+        const errorMessage = "QBT_TR_JS(Unable to download file)QBT_TR[CONTEXT=HttpServer]";
 
         try {
             // Pre-flight HEAD request to check for errors before triggering download

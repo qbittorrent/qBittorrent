@@ -49,7 +49,7 @@ window.qBittorrent.Search ??= (() => {
     let loadSearchPluginsTimer = -1;
     const searchPlugins = [];
     let prevSearchPluginsResponse;
-    let selectedCategory = "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]";
+    let selectedCategory = "QBT_TR_JS(All categories)QBT_TR[CONTEXT=SearchEngineWidget]";
     let selectedPlugin = "enabled";
     let prevSelectedPlugin;
 
@@ -145,8 +145,8 @@ window.qBittorrent.Search ??= (() => {
 
                 const openDownloadAnchor = this.menu.querySelector("a[href=\"#OpenDownloadWindow\"]");
                 const label = multiSelect
-                    ? "QBT_TR(Open separate download windows)QBT_TR[CONTEXT=SearchJobWidget]"
-                    : "QBT_TR(Open download window)QBT_TR[CONTEXT=SearchJobWidget]";
+                    ? "QBT_TR_JS(Open separate download windows)QBT_TR[CONTEXT=SearchJobWidget]"
+                    : "QBT_TR_JS(Open download window)QBT_TR[CONTEXT=SearchJobWidget]";
                 openDownloadAnchor.querySelector("img").alt = label;
                 openDownloadAnchor.lastChild.nodeValue = ` ${label}`;
 
@@ -242,8 +242,8 @@ window.qBittorrent.Search ??= (() => {
         const tabElem = document.createElement("a");
 
         const closeTabElem = document.createElement("img");
-        closeTabElem.alt = "QBT_TR(Close tab)QBT_TR[CONTEXT=SearchWidget]";
-        closeTabElem.title = "QBT_TR(Close tab)QBT_TR[CONTEXT=SearchWidget]";
+        closeTabElem.alt = "QBT_TR_JS(Close tab)QBT_TR[CONTEXT=SearchWidget]";
+        closeTabElem.title = "QBT_TR_JS(Close tab)QBT_TR[CONTEXT=SearchWidget]";
         closeTabElem.src = "images/application-exit.svg";
         closeTabElem.width = "10";
         closeTabElem.height = "10";
@@ -258,7 +258,7 @@ window.qBittorrent.Search ??= (() => {
         tabTitleElem.textContent = pattern;
 
         tabElem.appendChild(tabTitleElem);
-        tabElem.appendChild(getStatusIconElement("QBT_TR(Searching...)QBT_TR[CONTEXT=SearchJobWidget]", "images/queued.svg"));
+        tabElem.appendChild(getStatusIconElement("QBT_TR_JS(Searching...)QBT_TR[CONTEXT=SearchJobWidget]", "images/queued.svg"));
 
         const listItem = document.createElement("li");
         listItem.id = newTabId;
@@ -316,7 +316,7 @@ window.qBittorrent.Search ??= (() => {
         const tab = document.getElementById(`${searchTabIdPrefix}${oldSearchId}`);
         tab.id = `${searchTabIdPrefix}${searchId}`;
 
-        updateStatusIconElement(searchId, "QBT_TR(Searching...)QBT_TR[CONTEXT=SearchJobWidget]", "images/queued.svg");
+        updateStatusIconElement(searchId, "QBT_TR_JS(Searching...)QBT_TR[CONTEXT=SearchJobWidget]", "images/queued.svg");
 
         // copy over relevant state
         const state = searchState.get(oldSearchId);
@@ -550,7 +550,7 @@ window.qBittorrent.Search ??= (() => {
 
                 resetSearchState(searchId);
                 // not strictly necessary to do this when the tab is being closed, but there's no harm in it
-                updateStatusIconElement(searchId, "QBT_TR(Search aborted)QBT_TR[CONTEXT=SearchJobWidget]", "images/task-reject.svg");
+                updateStatusIconElement(searchId, "QBT_TR_JS(Search aborted)QBT_TR[CONTEXT=SearchJobWidget]", "images/task-reject.svg");
             });
     };
 
@@ -570,8 +570,8 @@ window.qBittorrent.Search ??= (() => {
         const currentSearchPattern = document.getElementById("searchPattern").value.trim();
 
         document.getElementById("startSearchButton").lastChild.textContent = canStopSearch(currentSearchId, currentSearchPattern)
-            ? "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]"
-            : "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
+            ? "QBT_TR_JS(Stop)QBT_TR[CONTEXT=SearchEngineWidget]"
+            : "QBT_TR_JS(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
     };
 
     const startStopSearch = () => {
@@ -608,7 +608,7 @@ window.qBittorrent.Search ??= (() => {
         }
 
         if (blockedUrls.length > 0)
-            alert(`QBT_TR(Blocked opening search result description page URL. Only http:// and https:// links can be opened.)QBT_TR[CONTEXT=SearchJobWidget]\n\n${blockedUrls.join("\n")}`);
+            alert(`QBT_TR_JS(Blocked opening search result description page URL. Only http:// and https:// links can be opened.)QBT_TR[CONTEXT=SearchJobWidget]\n\n${blockedUrls.join("\n")}`);
     };
 
     const copySearchTorrentName = () => {
@@ -650,7 +650,7 @@ window.qBittorrent.Search ??= (() => {
             urls.push(row.fileUrl);
             engines.push(row.engineName);
         }
-        const title = "QBT_TR(Add %1 torrents)QBT_TR[CONTEXT=SearchJobWidget]".replace("%1", urls.length);
+        const title = "QBT_TR_JS(Add %1 torrents)QBT_TR[CONTEXT=SearchJobWidget]".replace("%1", urls.length);
         qBittorrent.Client.createAddTorrentWindow(title, urls.join("\n"), undefined, { shared: true, engines: engines });
     };
 
@@ -681,11 +681,11 @@ window.qBittorrent.Search ??= (() => {
         Promise.all(requests)
             .then((responses) => {
                 if (responses.some((response) => !response.ok))
-                    alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR_JS(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
             })
             .catch((error) => {
                 console.error("Failed to add torrents:", error);
-                alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR_JS(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
             });
     };
 
@@ -694,7 +694,7 @@ window.qBittorrent.Search ??= (() => {
         if (!document.getElementById(id)) {
             new MochaUI.Window({
                 id: id,
-                title: "QBT_TR(Search plugins)QBT_TR[CONTEXT=PluginSelectDlg]",
+                title: "QBT_TR_JS(Search plugins)QBT_TR[CONTEXT=PluginSelectDlg]",
                 icon: "images/qbittorrent-tray.svg",
                 loadMethod: "xhr",
                 contentURL: "views/searchplugins.html?v=${CACHEID}",
@@ -842,7 +842,7 @@ window.qBittorrent.Search ??= (() => {
                     for (const plugin of responseJSON)
                         searchPlugins.push(plugin);
 
-                    const pluginOptions = [createOption("QBT_TR(Only enabled)QBT_TR[CONTEXT=SearchEngineWidget]", "enabled"), createOption("QBT_TR(All plugins)QBT_TR[CONTEXT=SearchEngineWidget]", "all")];
+                    const pluginOptions = [createOption("QBT_TR_JS(Only enabled)QBT_TR[CONTEXT=SearchEngineWidget]", "enabled"), createOption("QBT_TR_JS(All plugins)QBT_TR[CONTEXT=SearchEngineWidget]", "all")];
 
                     const searchPluginsEmpty = (searchPlugins.length === 0);
                     if (!searchPluginsEmpty) {
@@ -969,11 +969,11 @@ window.qBittorrent.Search ??= (() => {
                     if ((response.status === 400) || (response.status === 404)) {
                         // bad params. search id is invalid
                         resetSearchState(searchId);
-                        updateStatusIconElement(searchId, "QBT_TR(An error occurred during search...)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
+                        updateStatusIconElement(searchId, "QBT_TR_JS(An error occurred during search...)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
                     }
                     else if (response.status === 409) {
                         // offset out of range, the server no longer has the results
-                        updateStatusIconElement(searchId, "QBT_TR(Search results are no longer available)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
+                        updateStatusIconElement(searchId, "QBT_TR_JS(Search results are no longer available)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
                         resetSearchState(searchId);
                     }
                     else if (state) {
@@ -989,7 +989,7 @@ window.qBittorrent.Search ??= (() => {
                 if (!state || !state.running) {
                     if (state)
                         clearTimeout(state.loadResultsTimer);
-                    updateStatusIconElement(searchId, "QBT_TR(Search aborted)QBT_TR[CONTEXT=SearchJobWidget]", "images/task-reject.svg");
+                    updateStatusIconElement(searchId, "QBT_TR_JS(Search aborted)QBT_TR[CONTEXT=SearchJobWidget]", "images/task-reject.svg");
                     return;
                 }
 
@@ -1037,7 +1037,7 @@ window.qBittorrent.Search ??= (() => {
 
                     if ((responseJSON.status === "Stopped") && (state.rowId >= responseJSON.total)) {
                         resetSearchState(searchId);
-                        updateStatusIconElement(searchId, "QBT_TR(Search has finished)QBT_TR[CONTEXT=SearchJobWidget]", "images/task-complete.svg");
+                        updateStatusIconElement(searchId, "QBT_TR_JS(Search has finished)QBT_TR[CONTEXT=SearchJobWidget]", "images/task-complete.svg");
                         return;
                     }
 

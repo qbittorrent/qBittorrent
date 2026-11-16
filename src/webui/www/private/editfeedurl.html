@@ -38,12 +38,12 @@
                 // check field
                 const newUrl = document.getElementById("url").value.trim();
                 if (newUrl === "") {
-                    alert("QBT_TR(URL cannot be empty)QBT_TR[CONTEXT=RSSWidget]");
+                    alert("QBT_TR_JS(URL cannot be empty)QBT_TR[CONTEXT=RSSWidget]");
                     return;
                 }
 
                 if (newUrl === currentUrl) {
-                    alert("QBT_TR(URL is unchanged)QBT_TR[CONTEXT=RSSWidget]");
+                    alert("QBT_TR_JS(URL is unchanged)QBT_TR[CONTEXT=RSSWidget]");
                     return;
                 }
 
@@ -60,7 +60,7 @@
                         if (!response.ok) {
                             alert((response.status === 409)
                                 ? await response.text()
-                                : "QBT_TR(Unable to update URL)QBT_TR[CONTEXT=RSSWidget]");
+                                : "QBT_TR_JS(Unable to update URL)QBT_TR[CONTEXT=RSSWidget]");
                             document.getElementById("submitButton").disabled = false;
                             return;
                         }
