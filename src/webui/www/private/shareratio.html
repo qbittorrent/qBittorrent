@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]</title>
+    <title>QBT_TR_HTML(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
@@ -183,45 +183,45 @@
 
 <body>
     <div style="padding: 10px 10px 0px 10px;">
-        <input type="radio" name="shareLimit" id="default" value="default" onchange="shareLimitChanged()" checked style="margin-bottom: 5px;"><label for="default">QBT_TR(Use global share limit)QBT_TR[CONTEXT=UpDownRatioDialog]</label><br>
-        <input type="radio" name="shareLimit" id="shareLimitNone" value="none" onchange="shareLimitChanged()" style="margin-bottom: 5px;"><label for="shareLimitNone">QBT_TR(Set no share limit)QBT_TR[CONTEXT=UpDownRatioDialog]</label><br>
-        <input type="radio" name="shareLimit" id="shareLimitCustom" value="custom" onchange="shareLimitChanged()" style="margin-bottom: 5px;"><label for="shareLimitCustom">QBT_TR(Set share limit to)QBT_TR[CONTEXT=UpDownRatioDialog]</label><br>
+        <input type="radio" name="shareLimit" id="default" value="default" onchange="shareLimitChanged()" checked style="margin-bottom: 5px;"><label for="default">QBT_TR_HTML(Use global share limit)QBT_TR[CONTEXT=UpDownRatioDialog]</label><br>
+        <input type="radio" name="shareLimit" id="shareLimitNone" value="none" onchange="shareLimitChanged()" style="margin-bottom: 5px;"><label for="shareLimitNone">QBT_TR_HTML(Set no share limit)QBT_TR[CONTEXT=UpDownRatioDialog]</label><br>
+        <input type="radio" name="shareLimit" id="shareLimitCustom" value="custom" onchange="shareLimitChanged()" style="margin-bottom: 5px;"><label for="shareLimitCustom">QBT_TR_HTML(Set share limit to)QBT_TR[CONTEXT=UpDownRatioDialog]</label><br>
 
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setRatio" class="shareLimitInput" onclick="enableInputBoxes()">
-            <label id="ratioLabel" for="setRatio">QBT_TR(ratio)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label id="ratioLabel" for="setRatio">QBT_TR_HTML(ratio)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <input type="number" id="ratio" value="0.00" step=".01" min="0" class="shareLimitInput" aria-labelledby="ratioLabel">
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setTotalMinutes" class="shareLimitInput" onclick="enableInputBoxes()">
-            <label id="totalMinutesLabel" for="setTotalMinutes">QBT_TR(total minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label id="totalMinutesLabel" for="setTotalMinutes">QBT_TR_HTML(total minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <input type="number" id="totalMinutes" value="0" step="1" min="0" class="shareLimitInput" aria-labelledby="totalMinutesLabel">
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setInactiveMinutes" class="shareLimitInput" onclick="enableInputBoxes()">
-            <label id="inactiveMinutesLabel" for="setInactiveMinutes">QBT_TR(inactive minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label id="inactiveMinutesLabel" for="setInactiveMinutes">QBT_TR_HTML(inactive minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <input type="number" id="inactiveMinutes" value="0" step="1" min="0" class="shareLimitInput" aria-labelledby="inactiveMinutesLabel">
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
-            <label id="shareLimitsModeLabel" for="shareLimitsModeActions">QBT_TR(Mode)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label id="shareLimitsModeLabel" for="shareLimitsModeActions">QBT_TR_HTML(Mode)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <select id="shareLimitsModeActions" aria-labelledby="shareLimitsModeLabel">
-                <option value="Default">QBT_TR(Default (Match any limit))QBT_TR[CONTEXT=UpDownRatioDialog]</option>
-                <option value="MatchAny">QBT_TR(Match any limit)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
-                <option value="MatchAll">QBT_TR(Match all the limits)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="Default">QBT_TR_HTML(Default (Match any limit))QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="MatchAny">QBT_TR_HTML(Match any limit)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="MatchAll">QBT_TR_HTML(Match all the limits)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
             </select>
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
-            <label id="actionListLabel" for="limitReachedActions">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label id="actionListLabel" for="limitReachedActions">QBT_TR_HTML(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <select id="limitReachedActions" aria-labelledby="actionListLabel">
-                <option value="Default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
-                <option value="Stop">QBT_TR(Stop torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
-                <option value="Remove">QBT_TR(Remove torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
-                <option value="RemoveWithContent">QBT_TR(Remove torrent and its content)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
-                <option value="EnableSuperSeeding">QBT_TR(Enable super seeding for torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="Default">QBT_TR_HTML(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="Stop">QBT_TR_HTML(Stop torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="Remove">QBT_TR_HTML(Remove torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="RemoveWithContent">QBT_TR_HTML(Remove torrent and its content)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="EnableSuperSeeding">QBT_TR_HTML(Enable super seeding for torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
             </select>
         </div>
         <div style="text-align: center; padding-top: 10px;">
-            <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="save">
+            <input type="button" value="QBT_TR_HTML(Save)QBT_TR[CONTEXT=HttpServer]" id="save">
         </div>
     </div>
 </body>
