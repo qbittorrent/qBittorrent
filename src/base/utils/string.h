@@ -67,6 +67,23 @@ namespace Utils::String
 
     QStringList splitCommand(const QString &command);
 
+    //! \brief Removes redundant boolean AND keywords from a search pattern
+    QString normalizeSearchPattern(const QString &pattern);
+
+    //! \brief A search term, optionally excluded from the results
+    struct SearchTerm
+    {
+        QString text;
+        bool excluded = false;
+    };
+
+    //! \brief Splits a search pattern into terms, honoring quotes and +/- prefixes
+    QList<SearchTerm> parseSearchTerms(const QString &pattern);
+
+    //! \brief Converts space separated terms into an AND regular expression
+    //! \param regexTerms treat each term as a regular expression instead of a wildcard pattern
+    QString searchTermsToRegexPattern(const QString &pattern, bool regexTerms = false);
+
     QString fromDouble(double n, int precision);
     QString fromLatin1(std::string_view string);
     QString fromLocal8Bit(std::string_view string);
