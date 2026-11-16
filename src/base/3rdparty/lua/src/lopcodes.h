@@ -417,8 +417,8 @@ OP_EXTRAARG/*	Ax	extra (larger) argument for previous opcode	*/
 ** bits 0-2: op mode
 ** bit 3: instruction set register A
 ** bit 4: operator is a test (next instruction must be a jump)
-** bit 5: instruction uses 'L->top' set by previous instruction (when B == 0)
-** bit 6: instruction sets 'L->top' for next instruction (when C == 0)
+** bit 5: used by 'luaP_isIT'
+** bit 6: used by 'luaP_isOT'
 ** bit 7: instruction is an MM instruction (call a metamethod)
 */
 
@@ -427,12 +427,17 @@ LUAI_DDEC(const lu_byte luaP_opmodes[NUM_OPCODES];)
 #define getOpMode(m)	(cast(enum OpMode, luaP_opmodes[m] & 7))
 #define testAMode(m)	(luaP_opmodes[m] & (1 << 3))
 #define testTMode(m)	(luaP_opmodes[m] & (1 << 4))
-#define testITMode(m)	(luaP_opmodes[m] & (1 << 5))
-#define testOTMode(m)	(luaP_opmodes[m] & (1 << 6))
 #define testMMMode(m)	(luaP_opmodes[m] & (1 << 7))
 
 
-LUAI_FUNC int luaP_isOT (Instruction i);
+/* Check whether instruction sets top for next instruction, that is,
+** it results in multiple values. Used only for tests.
+*/
+#define luaP_isOT(i)  \
+	(GET_OPCODE(i) == OP_TAILCALL || \
+	 ((luaP_opmodes[GET_OPCODE(i)] & (1 << 6)) && GETARG_C(i) == 0))
+
+
 LUAI_FUNC int luaP_isIT (Instruction i);
 
 
