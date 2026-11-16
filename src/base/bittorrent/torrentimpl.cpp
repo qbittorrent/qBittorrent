@@ -97,6 +97,41 @@ namespace
         return entry;
     }
 
+    bool isUsableRootFolderName(const Path &candidate)
+    {
+        if (candidate.isEmpty())
+            return false;
+
+        const QString name = candidate.data();
+        return !name.contains(u'/') && Utils::Fs::isValidFileName(name);
+    }
+
+    // Chooses the name of the root folder to add to the torrent files.
+    // Prefers the root folder of the original metadata, then falls back to the same
+    // rule that is used when a torrent is added with the "Subfolder" layout.
+    // Returns an empty path if there is no suitable name.
+    Path selectRootFolderName(const PathList &currentPaths, const PathList &originalPaths, const QString &torrentName)
+    {
+        const Path originalRootFolder = Path::findRootFolder(originalPaths);
+        if (isUsableRootFolderName(originalRootFolder))
+            return originalRootFolder;
+
+        const Path fileBasedRootFolder = Path(currentPaths.at(0).filename()).removedExtension();
+        if (isUsableRootFolderName(fileBasedRootFolder))
+            return fileBasedRootFolder;
+
+        const Path torrentRootFolder {torrentName};
+        if (isUsableRootFolderName(torrentRootFolder))
+            return torrentRootFolder;
+
+        return {};
+    }
+
+    qsizetype pathDepth(const Path &path)
+    {
+        return path.data().count(u'/');
+    }
+
     QString toString(const lt::tcp::endpoint &ltTCPEndpoint)
     {
         static QCache<lt::tcp::endpoint, QString> cache;
@@ -2105,6 +2140,87 @@ void TorrentImpl::renameFile(const int index, const Path &path)
 
     const Path targetActualPath = makeActualPath(index, path);
     doRenameFile(index, targetActualPath);
+}
+
+void TorrentImpl::applyContentLayout(const TorrentContentLayout layout)
+{
+    if (!hasMetadata())
+        throw RuntimeError(tr("Torrent metadata is not available."));
+
+    if ((layout != TorrentContentLayout::Subfolder) && (layout != TorrentContentLayout::NoSubfolder))
+        throw RuntimeError(tr("Unsupported content layout."));
+
+    if (isMoveInProgress() || !m_renamingFiles.isEmpty() || !m_renamingFolders.isEmpty())
+        throw RuntimeError(tr("The torrent is busy (moving or renaming files). Try again later."));
+
+    const PathList currentPaths = filePaths();
+    if (currentPaths.isEmpty())
+        return;
+
+    // Nothing to do if the torrent already has the requested layout
+    const bool hasRootFolder = !Path::findRootFolder(currentPaths).isEmpty();
+    if (hasRootFolder == (layout == TorrentContentLayout::Subfolder))
+        return;
+
+    PathList targetPaths = currentPaths;
+    Path newRootFolder;
+    if (layout == TorrentContentLayout::NoSubfolder)
+    {
+        Path::stripRootFolder(targetPaths);
+    }
+    else
+    {
+        newRootFolder = selectRootFolderName(currentPaths, m_torrentInfo.filePaths(), m_torrentInfo.name());
+        if (newRootFolder.isEmpty())
+            throw RuntimeError(tr("Cannot determine a valid root folder name."));
+
+        // A file cannot be turned into a folder
+        if (currentPaths.contains(newRootFolder))
+            throw RuntimeError(tr("A file named '%1' already exists.").arg(newRootFolder.toString()));
+
+        const Path newRootFolderOnDisk = actualStorageLocation() / newRootFolder;
+        if (newRootFolderOnDisk.exists() && !Utils::Fs::isDir(newRootFolderOnDisk))
+            throw RuntimeError(tr("A file named '%1' already exists.").arg(newRootFolder.toString()));
+
+        Path::addRootFolder(targetPaths, newRootFolder);
+    }
+
+    // Order the renames so that a file is never renamed onto the exact path that is still
+    // occupied by another file of this torrent. The depth of the target is one less (NoSubfolder)
+    // or one more (Subfolder) than the depth of the current path, so any current path that equals
+    // a target belongs to a file that has to be processed earlier.
+    // Note that this only orders exact path collisions.
+    QList<int> order;
+    order.reserve(currentPaths.size());
+    for (int i = 0; i < currentPaths.size(); ++i)
+        order.append(i);
+
+    std::ranges::stable_sort(order, [&currentPaths, layout](const int left, const int right)
+    {
+        const qsizetype leftDepth = pathDepth(currentPaths.at(left));
+        const qsizetype rightDepth = pathDepth(currentPaths.at(right));
+        return (layout == TorrentContentLayout::NoSubfolder) ? (leftDepth < rightDepth) : (leftDepth > rightDepth);
+    });
+
+    // Don't let libtorrent overwrite files that don't belong to the torrent
+    // Everything has to be validated before the first rename is queued
+    QSet<Path> vacatedActualPaths;
+    vacatedActualPaths.reserve(currentPaths.size());
+    for (int i = 0; i < currentPaths.size(); ++i)
+        vacatedActualPaths.insert(makeActualPath(i, currentPaths.at(i)));
+
+    for (const int i : order)
+    {
+        const Path targetActualPath = makeActualPath(i, targetPaths.at(i));
+        if (vacatedActualPaths.contains(targetActualPath))
+            continue;
+
+        if ((actualStorageLocation() / targetActualPath).exists())
+            throw RuntimeError(tr("The file already exists: '%1'.").arg(targetPaths.at(i).toString()));
+    }
+
+    for (const int i : order)
+        doRenameFile(i, makeActualPath(i, targetPaths.at(i)));
 }
 
 void TorrentImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
