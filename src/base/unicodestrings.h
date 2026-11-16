@@ -28,7 +28,9 @@
 
 #pragma once
 
-#include "global.h"
+#include <QString>
+
+using namespace Qt::Literals::StringLiterals;
 
 // Because of the poor handling of UTF-8 characters in MSVC (emits warning C4819),
 // we put all problematic UTF-8 chars/strings in this file.
