@@ -22,10 +22,11 @@ jobs:
       - name: Setup python (auxiliary scripts)
         uses: actions/setup-python@v7
         with:
-          python-version: '3'  # use default version
+          python-version: '3.14'
 
       - name: Install tools (auxiliary scripts)
-        run: pip install bandit mypy pycodestyle pyflakes pyright ruff
+        run: |
+          pip install --require-hashes --only-binary :all: -r .github/workflows/helper/python-tools/requirements.txt
 
       - name: Gather files (auxiliary scripts)
         run: |
@@ -69,8 +70,8 @@ jobs:
       - name: Install tools (search engine)
         working-directory: src/searchengine/nova3
         run: |
-          pip install uv
-          uv sync
+          pip install --require-hashes --only-binary :all: -r "$GITHUB_WORKSPACE/.github/workflows/helper/uv/requirements.txt"
+          uv sync --locked --no-build
 
       - name: Check typings (search engine)
         working-directory: src/searchengine/nova3
