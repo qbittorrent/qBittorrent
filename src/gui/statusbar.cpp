@@ -28,6 +28,8 @@
 
 #include "statusbar.h"
 
+#include <algorithm>
+
 #include <QFrame>
 #include <QLabel>
 #include <QPushButton>
@@ -78,6 +80,14 @@ StatusBar::StatusBar(QWidget *parent)
 
     const auto *session = BitTorrent::Session::instance();
     connect(session, &BitTorrent::Session::speedLimitModeChanged, this, &StatusBar::updateAltSpeedsBtn);
+    connect(session, &BitTorrent::Session::bandwidthControlModeChanged, this, [this]()
+    {
+        updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
+    });
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this]()
+    {
+        updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
+    });
 
     m_connecStatusLblIcon = new QPushButton(UIThemeManager::instance()->getIcon(u"firewalled"_s), {}, this);
     m_connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
@@ -113,7 +123,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_altSpeedsBtn->setFlat(true);
     m_altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
     updateAltSpeedsBtn(session->isAltGlobalSpeedLimitEnabled());
-    connect(m_altSpeedsBtn, &QAbstractButton::clicked, this, &StatusBar::alternativeSpeedsButtonClicked);
+    connect(m_altSpeedsBtn, &QAbstractButton::clicked, this, &StatusBar::cycleSpeedLimitMode);
 
     // Because on some platforms the default icon size is bigger
     // and it will result in taller/fatter statusbar, even if the
@@ -251,7 +261,7 @@ void StatusBar::updateSpeedLabels()
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
 
     QString dlSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
-    const int dlSpeedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
+    const int dlSpeedLimit = BitTorrent::Session::instance()->effectiveDownloadSpeedLimit();
     if (dlSpeedLimit > 0)
         dlSpeedLbl += u" [" + Utils::Misc::friendlyUnit(dlSpeedLimit, true) + u']';
     dlSpeedLbl += u" (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + u')';
@@ -265,28 +275,185 @@ void StatusBar::updateSpeedLabels()
     m_upSpeedLbl->setText(upSpeedLbl);
 }
 
+void StatusBar::updateAltSpeedsBtnTooltip(const bool force)
+{
+    if (!m_altSpeedsBtn)
+        return;
+
+    const auto *session = BitTorrent::Session::instance();
+    const bool isAlt = session ? session->isAltGlobalSpeedLimitEnabled() : false;
+    const BitTorrent::BandwidthControlMode mode = session
+        ? session->bandwidthControlMode()
+        : BitTorrent::BandwidthControlMode::Regular;
+    const int userDlLimit = session ? session->downloadSpeedLimit() : 0;
+    const int userUlLimit = session ? session->uploadSpeedLimit() : 0;
+    const int adaptiveDlCap = session ? session->adaptiveDownloadSpeedLimit() : 0;
+    const bool congested = session ? session->isAdaptiveCongestionDetected() : false;
+
+    const bool stateChanged = (userDlLimit != m_lastTooltipDlLimit)
+        || (userUlLimit != m_lastTooltipUlLimit)
+        || (adaptiveDlCap != m_lastTooltipAdaptiveCap)
+        || (congested != m_lastTooltipCongested);
+
+    if (!force && !stateChanged && !m_altSpeedsBtn->underMouse())
+        return;
+
+    m_lastTooltipDlLimit = userDlLimit;
+    m_lastTooltipUlLimit = userUlLimit;
+    m_lastTooltipAdaptiveCap = adaptiveDlCap;
+    m_lastTooltipCongested = congested;
+
+    const QString qosColor = UIThemeManager::instance()->getColor(u"Log.Info"_s).name();
+    const QString adaptiveColor = UIThemeManager::instance()->getColor(u"TransferList.Downloading"_s).name();
+    const QString warningColor = UIThemeManager::instance()->getColor(u"Log.Warning"_s).name();
+
+    const QString userDlStr = (userDlLimit > 0) ? Utils::Misc::friendlyUnit(userDlLimit, true) : tr("Unlimited");
+    const QString userUlStr = (userUlLimit > 0) ? Utils::Misc::friendlyUnit(userUlLimit, true) : tr("Unlimited");
+    const QString adaptiveDlStr = (adaptiveDlCap > 0)
+        ? Utils::Misc::friendlyUnit(adaptiveDlCap, true)
+        : tr("Uncapped (full speed)");
+
+    QString rttSummary;
+    const double lastRttMs = session ? session->adaptiveLastRttMs() : 0.0;
+    const double baseRttMs = session ? session->adaptiveBaselineRttMs() : 0.0;
+    if (!isAlt && (mode == BitTorrent::BandwidthControlMode::Adaptive) && (lastRttMs > 0.0))
+    {
+        const double delta = std::max(0.0, lastRttMs - baseRttMs);
+        const QString statusSpan = congested
+            ? u"<span style='color:%1;'>%2</span>"_s.arg(warningColor, tr("High queuing delay (throttling download)"))
+            : u"<span style='color:%1;'>%2</span>"_s.arg(adaptiveColor, tr("Low latency (healthy)"));
+        rttSummary = tr("<br/><b>Probe RTT:</b> %1 ms (baseline %2 ms, +%3 ms) &mdash; %4")
+            .arg(QString::number(lastRttMs, 'f', 1)
+                , QString::number(baseRttMs, 'f', 1)
+                , QString::number(delta, 'f', 1)
+                , statusSpan);
+    }
+
+    QString activeHeader;
+    if (isAlt)
+    {
+        activeHeader = tr(
+            "<b>Active mode: [2/4] Alternative speed limits (Alt)</b><br/>"
+            "Alternative global speed limits are active (DL: %1, UL: %2).<br/>"
+            "<i>Click to switch to: <b>QoS (Low-priority DSCP + uTP)</b></i>")
+            .arg(userDlStr, userUlStr);
+    }
+    else if (mode == BitTorrent::BandwidthControlMode::QoS)
+    {
+        activeHeader = tr(
+            "<b>Active mode: [3/4] <span style='color:%1;'>QoS</span> (Packet prioritization without speed cap)</b><br/>"
+            "Marks BitTorrent packets as low priority (DSCP CS1 / 0x20), enables peer-proportional mixed mode "
+            "and IP overhead accounting. Never caps download or upload speed.<br/>"
+            "<i>Click to switch to: <b>Adaptive (A)</b></i>")
+            .arg(qosColor);
+    }
+    else if (mode == BitTorrent::BandwidthControlMode::Adaptive)
+    {
+        activeHeader = tr(
+            "<b>Active mode: [4/4] <span style='color:%1;'>A &mdash; Adaptive</span> (QoS + Smart Download Control)</b><br/>"
+            "Includes all QoS protections plus automatic download rate control when latency rises "
+            "(protects web browsing, video calls, and gaming). Upload speed is never throttled.<br/>"
+            "<b>Current adaptive DL cap:</b> %2%3<br/>"
+            "<i>Click to switch to: <b>Standard (Off)</b></i>")
+            .arg(adaptiveColor, adaptiveDlStr, rttSummary);
+    }
+    else
+    {
+        activeHeader = tr(
+            "<b>Active mode: [1/4] Standard (Off)</b><br/>"
+            "Standard global speed limits (DL: %1, UL: %2).<br/>"
+            "<i>Click to switch to: <b>Alternative speed limits (Alt)</b></i>")
+            .arg(userDlStr, userUlStr);
+    }
+
+    const QString overview = tr(
+        "<hr/>"
+        "<b>Speed Limit Mode Cycle (click to advance):</b><br/>"
+        "&bull; <b>Off</b>: Standard global speed limits<br/>"
+        "&bull; <b>Alt</b>: Alternative (slow) global speed limits<br/>"
+        "&bull; <b>QoS</b>: Low-priority packet marking (DSCP 0x20 + peer-proportional), no speed cap<br/>"
+        "&bull; <b>A (Adaptive)</b>: QoS + automatic download cap when latency spikes (upload stays uncapped)");
+
+    m_altSpeedsBtn->setToolTip(u"<div style='white-space:normal; min-width:340px;'>"_s + activeHeader + overview + u"</div>"_s);
+}
+
 void StatusBar::refresh()
 {
     updateConnectionStatus();
     updateDHTNodesNumber();
     updateExternalAddressesLabel();
     updateSpeedLabels();
+    updateAltSpeedsBtnTooltip(false);
+}
+
+void StatusBar::cycleSpeedLimitMode()
+{
+    auto *session = BitTorrent::Session::instance();
+    if (!session)
+        return;
+
+    if (session->isAltGlobalSpeedLimitEnabled())
+    {
+        session->setBandwidthControlMode(BitTorrent::BandwidthControlMode::QoS);
+        session->setAltGlobalSpeedLimitEnabled(false);
+    }
+    else
+    {
+        switch (session->bandwidthControlMode())
+        {
+        case BitTorrent::BandwidthControlMode::Regular:
+            session->setAltGlobalSpeedLimitEnabled(true);
+            break;
+        case BitTorrent::BandwidthControlMode::QoS:
+            session->setBandwidthControlMode(BitTorrent::BandwidthControlMode::Adaptive);
+            break;
+        case BitTorrent::BandwidthControlMode::Adaptive:
+        default:
+            session->setBandwidthControlMode(BitTorrent::BandwidthControlMode::Regular);
+            break;
+        }
+    }
 }
 
 void StatusBar::updateAltSpeedsBtn(const bool alternative)
 {
+    const auto *session = BitTorrent::Session::instance();
+    const BitTorrent::BandwidthControlMode mode = session
+        ? session->bandwidthControlMode()
+        : BitTorrent::BandwidthControlMode::Regular;
+
     if (alternative)
     {
         m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow"_s));
-        m_altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
+        m_altSpeedsBtn->setText({});
+        m_altSpeedsBtn->setStyleSheet({});
         m_altSpeedsBtn->setDown(true);
+    }
+    else if (mode == BitTorrent::BandwidthControlMode::QoS)
+    {
+        const QColor qosColor = UIThemeManager::instance()->getColor(u"Log.Info"_s);
+        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow_off"_s));
+        m_altSpeedsBtn->setText(u"QoS"_s);
+        m_altSpeedsBtn->setStyleSheet(u"font-weight: bold; color: %1;"_s.arg(qosColor.name()));
+        m_altSpeedsBtn->setDown(false);
+    }
+    else if (mode == BitTorrent::BandwidthControlMode::Adaptive)
+    {
+        const QColor adaptiveColor = UIThemeManager::instance()->getColor(u"TransferList.Downloading"_s);
+        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow_off"_s));
+        m_altSpeedsBtn->setText(u"A"_s);
+        m_altSpeedsBtn->setStyleSheet(u"font-weight: bold; color: %1;"_s.arg(adaptiveColor.name()));
+        m_altSpeedsBtn->setDown(false);
     }
     else
     {
         m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow_off"_s));
-        m_altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
+        m_altSpeedsBtn->setText({});
+        m_altSpeedsBtn->setStyleSheet({});
         m_altSpeedsBtn->setDown(false);
     }
+
+    updateAltSpeedsBtnTooltip(true);
     refresh();
 }
 
@@ -301,4 +468,5 @@ void StatusBar::optionsSaved()
 {
     updateFreeDiskSpaceVisibility();
     updateExternalAddressesVisibility();
+    updateAltSpeedsBtnTooltip(true);
 }
