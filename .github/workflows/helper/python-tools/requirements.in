@@ -1,0 +1,6 @@
+bandit
+mypy
+pycodestyle
+pyflakes
+pyright
+ruff

@@ -23,16 +23,19 @@ jobs:
             boost_major_version: "1"
             boost_minor_version: "91"
             boost_patch_version: "0"
+            boost_sha256: "5734305f40a76c30f951c9abd409a45a2a19fb546efe4162119250bbe4d3a463"
             libt_build_flags: ""
           - version: "2.0.15"
             boost_major_version: "1"
             boost_minor_version: "91"
             boost_patch_version: "0"
+            boost_sha256: "5734305f40a76c30f951c9abd409a45a2a19fb546efe4162119250bbe4d3a463"
             libt_build_flags: ""
           - version: "1.2.20"
             boost_major_version: "1"
             boost_minor_version: "86"
             boost_patch_version: "0"
+            boost_sha256: "2575e74ffc3ef1cd0babac2c1ee8bdb5782a0ee672b1912da40e5b4b591ca01f"
             libt_build_flags: ""
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         qt_version: ["6.10.3"]
@@ -43,12 +46,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Install dependencies
-        uses: nick-fields/retry@v4
+        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
         env:
           HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK: 1
           HOMEBREW_NO_INSTALL_CLEANUP: 1
@@ -64,7 +67,7 @@ jobs:
             echo "CMAKE_PREFIX_PATH=/opt/homebrew/opt/openssl@3" >> "$GITHUB_ENV"
 
       - name: Setup ccache
-        uses: Chocobo1/setup-ccache-action@v1
+        uses: Chocobo1/setup-ccache-action@ccc034167d57f9a0f3248c21b633819fcf331757 # v1.5.11
         with:
           store_cache: ${{ (github.repository != 'qbittorrent/qBittorrent') || (github.ref == 'refs/heads/master') }}
           update_packager_index: false
@@ -75,12 +78,16 @@ jobs:
         run: |
           boost_url="https://archives.boost.io/release/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/source/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
           boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
+          boost_checksum="${{ matrix.libtorrent.boost_sha256 }}  ${{ runner.temp }}/boost.tar.gz"
           set +e
           curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
-          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          echo "$boost_checksum" | shasum -a 256 -c - && tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
           if [ "$_exitCode" -ne "0" ]; then
             curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url2"
-            tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+            echo "$boost_checksum" | shasum -a 256 -c - && tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          fi
+          if [ "$_exitCode" -ne "0" ]; then
+            exit "$_exitCode"
           fi
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
           cd "${{ env.boost_path }}"
@@ -88,7 +95,7 @@ jobs:
           ./b2 stage --stagedir=./ --with-headers
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v4
+        uses: jurplel/install-qt-action@b344308e4483fc892e0d27b3cd1b173ebdd95f06 # v4.5.0
         with:
           version: ${{ matrix.qt_version }}
           archives: qtbase qtdeclarative qtsvg qttools
@@ -176,7 +183,7 @@ jobs:
           cp ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libtorrent.version }}_Qt-${{ matrix.qt_version }}
           path: upload
