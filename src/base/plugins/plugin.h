@@ -30,7 +30,7 @@
 
 #include <memory>
 
-#include <lua/lua.hpp>
+#include <lua.hpp>
 #include <LuaBridge/LuaBridge.h>
 
 #include <QObject>
