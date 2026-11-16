@@ -33,6 +33,7 @@
 #include <QMessageBox>
 #include <QSize>
 #include <QStringView>
+#include <QUrl>
 
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
@@ -45,6 +46,23 @@
 #include "ui_trackersadditiondialog.h"
 
 #define SETTINGS_KEY(name) u"AddTrackersDialog/" name
+
+namespace
+{
+    bool isValidEndpoint(const QString &endpoint)
+    {
+        if (endpoint.isEmpty())
+            return false;
+        const QUrl url {endpoint};
+        if (!url.isValid())
+            return false;
+        if (url.scheme().isEmpty())
+            return false;
+        if (url.host().isEmpty())
+            return false;
+        return true;
+    }
+}
 
 TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torrent *const torrent)
     : QDialog(parent)
@@ -74,16 +92,39 @@ TrackersAdditionDialog::~TrackersAdditionDialog()
     delete m_ui;
 }
 
-void TrackersAdditionDialog::onAccepted() const
+void TrackersAdditionDialog::onAccepted()
 {
     const QList<BitTorrent::TrackerEntryStatus> currentTrackers = m_torrent->trackers();
     const int baseTier = !currentTrackers.isEmpty() ? (currentTrackers.last().tier + 1) : 0;
+    int invalidTrackersCount = 0;
+    QString firstInvalidTracker;
 
     QList<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(m_ui->textEditTrackersList->toPlainText());
+    QList<BitTorrent::TrackerEntry> validEntries;
     for (BitTorrent::TrackerEntry &entry : entries)
+    {
+        if (!isValidEndpoint(entry.url))
+        {
+            ++invalidTrackersCount;
+            if (firstInvalidTracker.isEmpty())
+                firstInvalidTracker = entry.url;
+            continue;
+        }
         entry.tier = Utils::Number::clampingAdd(entry.tier, baseTier);
+        validEntries.append(entry);
+    }
 
-    m_torrent->addTrackers(entries);
+    if (invalidTrackersCount > 1)
+    {
+        QMessageBox::warning(this, tr("Invalid tracker URL")
+            , tr("The tracker URL \"%1\" and %n other(s) are invalid.", "The tracker URL \"foobar\" and 2 others are invalid.", (invalidTrackersCount - 1)).arg(firstInvalidTracker));
+    }
+    else if (invalidTrackersCount == 1)
+    {
+        QMessageBox::warning(this, tr("Invalid tracker URL")
+            , tr("The tracker URL \"%1\" is invalid.").arg(firstInvalidTracker));
+    }
+    m_torrent->addTrackers(validEntries);
 }
 
 void TrackersAdditionDialog::onDownloadButtonClicked()
@@ -113,6 +154,13 @@ void TrackersAdditionDialog::onTorrentListDownloadFinished(const Net::DownloadRe
     {
         QMessageBox::warning(this, tr("Download trackers list error")
             , tr("Error occurred when downloading the trackers list. Reason: \"%1\"").arg(result.errorString));
+        return;
+    }
+
+    if (result.contentType.section(u';', 0, 0).trimmed().compare(u"text/plain", Qt::CaseInsensitive) != 0)
+    {
+        QMessageBox::warning(this, tr("Download trackers list error")
+            , tr("The content type of the downloaded file is not \"text/plain\". Received Content-Type: \"%1\".").arg(result.contentType));
         return;
     }
 
