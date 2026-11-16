@@ -1,5 +1,10 @@
 # WebAPI Changelog
 
+## 2.17.1
+
+* `app/preferences` endpoint includes `remove_torrents_with_excluded_files` (bool) option
+* `app/setPreferences` endpoint allows to set `remove_torrents_with_excluded_files` (bool) option
+
 ## 2.17.0
 
 * [#24955](https://github.com/qbittorrent/qBittorrent/pull/24955)
