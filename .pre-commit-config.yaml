@@ -47,7 +47,7 @@ repos:
         - ts
 
   - repo: https://github.com/rvben/rumdl-pre-commit.git
-    rev: v0.3.2
+    rev: v0.3.4
     hooks:
     - id: rumdl
       name: Check Markdown files
@@ -85,7 +85,7 @@ repos:
         - ts
 
   - repo: https://github.com/crate-ci/typos.git
-    rev: v1.51.1
+    rev: v1.52.2
     hooks:
     - id: typos
       name: Check spelling (typos)
