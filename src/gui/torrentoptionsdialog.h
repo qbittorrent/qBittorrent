@@ -87,6 +87,7 @@ private:
         Path savePath;
         Path downloadPath;
         QString category;
+        int contentLayoutIndex;
         std::optional<qreal> ratio;
         std::optional<int> seedingTime;
         std::optional<int> inactiveSeedingTime;
