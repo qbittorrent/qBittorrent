@@ -16,6 +16,8 @@
 * [#25213](https://github.com/qbittorrent/qBittorrent/pull/25213)
   * `app/preferences` endpoint includes `exclude_files_without_extension` (bool) option
   * `app/setPreferences` endpoint allows to set `exclude_files_without_extension` (bool) option
+* [#XXXXX](https://github.com/qbittorrent/qBittorrent/pull/XXXXX)
+  * Add `torrents/setContentLayout` endpoint with `hashes` (string) and `contentLayout` (string: `Subfolder` or `NoSubfolder`) as parameters, for adding or removing the root folder of existing torrents (accepts `POST` requests only)
 
 ## 2.16.2
 

@@ -344,6 +344,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             let there_are_force_start = false;
             let all_are_super_seeding = true;
             let all_are_auto_tmm = true;
+            let allHaveMetadata = true;
             let thereAreV1Hashes = false;
             let thereAreV2Hashes = false;
             const tagCount = new Map();
@@ -381,6 +382,9 @@ window.qBittorrent.ContextMenu ??= (() => {
                 if (data["auto_tmm"] !== true)
                     all_are_auto_tmm = false;
 
+                if (data["has_metadata"] !== true)
+                    allHaveMetadata = false;
+
                 if (data["infohash_v1"] !== "")
                     thereAreV1Hashes = true;
 
@@ -413,6 +417,12 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.hideItem("renameFiles");
                 this.hideItem("rename");
             }
+
+            // hide contentLayout when metadata hasn't been downloaded yet for any of the selected torrents
+            if (allHaveMetadata === true)
+                this.showItem("contentLayout");
+            else
+                this.hideItem("contentLayout");
 
             if (all_are_downloaded) {
                 this.hideItem("downloadLimit");

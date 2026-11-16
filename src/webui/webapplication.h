@@ -218,6 +218,7 @@ private:
         {{u"torrents"_s, u"setAutoManagement"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"setCategory"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"setComment"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setContentLayout"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"setDownloadLimit"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"setDownloadPath"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"setForceStart"_s}, Http::HEADER_REQUEST_METHOD_POST},
