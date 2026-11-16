@@ -37,6 +37,7 @@
 #include <zlib.h>
 
 #include <QtAssert>
+#include <QtVersion>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QLocale>
@@ -452,6 +453,13 @@ QString Utils::Misc::opensslVersionString()
     // static initialization for usage in signal handler
     static const auto version {QString::fromLatin1(::OpenSSL_version(OPENSSL_VERSION))
         .section(u' ', 1, 1)};
+    return version;
+}
+
+QString Utils::Misc::qtVersionString()
+{
+    // static initialization for usage in signal handler
+    static const auto version {QString::fromLatin1(qVersion())};
     return version;
 }
 

@@ -100,7 +100,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     }
 
     // Software Used
-    m_ui->labelQtVer->setText(QStringLiteral(QT_VERSION_STR));
+    m_ui->labelQtVer->setText(Utils::Misc::qtVersionString());
     m_ui->labelLibtVer->setText(Utils::Misc::libtorrentVersionString());
     m_ui->labelBoostVer->setText(Utils::Misc::boostVersionString());
     m_ui->labelOpensslVer->setText(Utils::Misc::opensslVersionString());
