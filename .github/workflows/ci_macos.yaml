@@ -23,16 +23,19 @@ jobs:
             boost_major_version: "1"
             boost_minor_version: "91"
             boost_patch_version: "0"
+            boost_sha256: "5734305f40a76c30f951c9abd409a45a2a19fb546efe4162119250bbe4d3a463"
             libt_build_flags: ""
           - version: "2.0.15"
             boost_major_version: "1"
             boost_minor_version: "91"
             boost_patch_version: "0"
+            boost_sha256: "5734305f40a76c30f951c9abd409a45a2a19fb546efe4162119250bbe4d3a463"
             libt_build_flags: ""
           - version: "1.2.20"
             boost_major_version: "1"
             boost_minor_version: "86"
             boost_patch_version: "0"
+            boost_sha256: "2575e74ffc3ef1cd0babac2c1ee8bdb5782a0ee672b1912da40e5b4b591ca01f"
             libt_build_flags: ""
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         qt_version: ["6.10.3"]
@@ -75,12 +78,18 @@ jobs:
         run: |
           boost_url="https://archives.boost.io/release/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/source/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
           boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
+          boost_checksum="${{ matrix.libtorrent.boost_sha256 }}  ${{ runner.temp }}/boost.tar.gz"
           set +e
           curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
-          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          echo "$boost_checksum" | shasum -a 256 -c - && \
+            tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
           if [ "$_exitCode" -ne "0" ]; then
             curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url2"
-            tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+            echo "$boost_checksum" | shasum -a 256 -c - && \
+              tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          fi
+          if [ "$_exitCode" -ne "0" ]; then
+            exit "$_exitCode"
           fi
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
           cd "${{ env.boost_path }}"
