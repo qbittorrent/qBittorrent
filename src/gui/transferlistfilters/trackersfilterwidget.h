@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -32,6 +32,7 @@
 #include <QtContainerFwd>
 #include <QHash>
 
+#include "base/hostnameextractor.h"
 #include "base/path.h"
 #include "basefilterwidget.h"
 
@@ -91,6 +92,15 @@ private:
 
     qsizetype numSpecialRows() const;
 
+    QString getTrackerHost(const QString &url) const;
+
+    template <typename T>
+        requires requires (T t) { { t.url } -> std::convertible_to<QString>; }
+    QString getTrackerHost(const T &t);
+
+    template <typename T>
+    QSet<QString> extractTrackerHosts(const T &trackerEntries);
+
     struct TrackerData
     {
         qsizetype torrentsCount = 0;
@@ -106,4 +116,6 @@ private:
     bool m_downloadTrackerFavicon = false;
     bool m_handleTrackerStatuses = false;
     QHash<QString, QSet<QString>> m_downloadingFavicons;   // <favicon URL, tracker hosts>
+
+    HostnameExtractor m_hostnameExtractor;
 };
