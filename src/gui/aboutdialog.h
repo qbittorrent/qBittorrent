@@ -47,6 +47,8 @@ public:
     ~AboutDialog() override;
 
 private:
+    void resizeEvent(QResizeEvent *event) override;
+
     void copyVersionsToClipboard() const;
 
     Ui::AboutDialog *m_ui = nullptr;
