@@ -1345,7 +1345,7 @@ void AppController::getDirectoryContentAction()
         if (withMetadata)
         {
             const QFileInfo fileInfo = it.nextFileInfo();
-            if (!fileInfo.fileName().startsWith(namePrefix))
+            if (!fileInfo.fileName().startsWith(namePrefix, Qt::CaseInsensitive))
                 continue;
 
             QJsonObject fileObject
@@ -1371,7 +1371,7 @@ void AppController::getDirectoryContentAction()
         else
         {
             const QString entryPath = it.next();
-            if (!it.fileName().startsWith(namePrefix))
+            if (!it.fileName().startsWith(namePrefix, Qt::CaseInsensitive))
                 continue;
 
             ret.append(Path(entryPath).toString());
