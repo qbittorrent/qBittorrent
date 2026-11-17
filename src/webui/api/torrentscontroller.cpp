@@ -1335,7 +1335,7 @@ void TorrentsController::addAction()
             }
             else
             {
-                failures.emplaceBack(it.key(), addResult.error());
+                failures.emplaceBack(torrent.filename, addResult.error());
             }
         }
         else
