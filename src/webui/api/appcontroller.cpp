@@ -1306,13 +1306,24 @@ void AppController::getDirectoryContentAction()
     if (dirPath.isEmpty() || dirPath.startsWith(u':'))
         throw APIError(APIErrorType::BadParams, tr("Invalid directory path"));
 
-    const QDir dir {dirPath};
+    const QString visibility = params().value(u"mode"_s, u"all"_s);
+
+    QDir dir {dirPath};
     if (!dir.isAbsolute())
         throw APIError(APIErrorType::BadParams, tr("Invalid directory path"));
-    if (!dir.exists())
+    if (!dir.exists() && visibility == u"files")
         throw APIError(APIErrorType::NotFound, tr("Directory does not exist"));
 
-    const QString visibility = params().value(u"mode"_s, u"all"_s);
+    QString namePrefix;
+    if (!dir.exists())
+    {
+        const QString cleanPath = QDir::cleanPath(dirPath);
+        const QFileInfo info {cleanPath};
+        namePrefix = info.fileName();
+        dir = QDir {info.absolutePath()};
+        if (namePrefix.isEmpty() || !dir.exists())
+            throw APIError(APIErrorType::NotFound, tr("Directory does not exist"));
+    }
 
     const auto parseDirectoryContentMode = [](const QString &visibility) -> QDir::Filters
     {
@@ -1328,12 +1339,15 @@ void AppController::getDirectoryContentAction()
     const bool withMetadata {Utils::String::parseBool(params()[u"withMetadata"_s]).value_or(false)};
 
     QJsonArray ret;
-    QDirIterator it {dirPath, (QDir::NoDotAndDotDot | parseDirectoryContentMode(visibility))};
+    QDirIterator it {dir.absolutePath(), (QDir::NoDotAndDotDot | parseDirectoryContentMode(visibility))};
     while (it.hasNext())
     {
         if (withMetadata)
         {
             const QFileInfo fileInfo = it.nextFileInfo();
+            if (!fileInfo.fileName().startsWith(namePrefix))
+                continue;
+
             QJsonObject fileObject
             {
                 {KEY_FILE_METADATA_NAME, Path(fileInfo.fileName()).toString()},
@@ -1356,7 +1370,11 @@ void AppController::getDirectoryContentAction()
         }
         else
         {
-            ret.append(Path(it.next()).toString());
+            const QString entryPath = it.next();
+            if (!it.fileName().startsWith(namePrefix))
+                continue;
+
+            ret.append(Path(entryPath).toString());
         }
     }
     setResult(ret);
