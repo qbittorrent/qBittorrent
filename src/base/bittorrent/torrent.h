@@ -246,6 +246,9 @@ namespace BitTorrent
         virtual bool hasError() const = 0;
         virtual int queuePosition() const = 0;
         virtual QList<TrackerEntryStatus> trackers() const = 0;
+        // Frees disk space occupied by unselected (ignored) files. Only the parts of the
+        // pieces shared with selected neighbor files are kept on disk.
+        virtual void removeUnwantedFilesData(const QList<int> &fileIndexes) = 0;
         virtual QList<QUrl> urlSeeds() const = 0;
         virtual QString error() const = 0;
         virtual qlonglong totalDownload() const = 0;

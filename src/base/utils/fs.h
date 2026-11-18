@@ -64,6 +64,10 @@ namespace Utils::Fs
     bool renameFile(const Path &from, const Path &to);
     nonstd::expected<void, QString> removeFile(const Path &path);
     nonstd::expected<void, QString> moveFileToTrash(const Path &path);
+    // Frees disk space occupied by the given byte range of the file ("punches a hole"),
+    // the range reads back as zeros and the logical file size is kept.
+    nonstd::expected<void, QString> deallocateFileRange(const Path &path, qint64 offset, qint64 length);
+    nonstd::expected<void, QString> truncateFile(const Path &path, qint64 size);
     bool mkdir(const Path &dirPath);
     bool mkpath(const Path &dirPath);
     bool rmdir(const Path &dirPath);

@@ -5825,9 +5825,14 @@ bool SessionImpl::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &new
     return true;
 }
 
-lt::torrent_handle SessionImpl::reloadTorrent(const lt::torrent_handle &currentHandle, lt::add_torrent_params params)
+lt::torrent_handle SessionImpl::reloadTorrent(const lt::torrent_handle &currentHandle, lt::add_torrent_params params, const bool keepPartfile)
 {
-    m_nativeSession->remove_torrent(currentHandle, lt::session::delete_partfile);
+    // The partfile keeps pieces of unselected files shared with selected ones,
+    // it must survive when the torrent is re-added with the same storage
+    if (keepPartfile)
+        m_nativeSession->remove_torrent(currentHandle);
+    else
+        m_nativeSession->remove_torrent(currentHandle, lt::session::delete_partfile);
 
     auto *const extensionData = new ExtensionData;
     params.userdata = LTClientData(extensionData);

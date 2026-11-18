@@ -41,6 +41,7 @@
 
 #if defined(Q_OS_WIN)
 #include <windows.h>
+#include <winioctl.h>
 #elif defined(Q_OS_MACOS) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
@@ -62,6 +63,14 @@
 #include <QStorageInfo>
 
 #include "base/path.h"
+
+#ifdef Q_OS_LINUX
+#include <cerrno>
+#include <cstring>
+#include <fcntl.h>
+#include <linux/falloc.h>
+#include <unistd.h>
+#endif
 
 namespace
 {
@@ -442,6 +451,64 @@ nonstd::expected<void, QString> Utils::Fs::removeFile(const Path &path)
     if (file.remove())
         return {};
 
+    return nonstd::make_unexpected(file.errorString());
+}
+
+nonstd::expected<void, QString> Utils::Fs::deallocateFileRange(const Path &path, const qint64 offset, const qint64 length)
+{
+    if ((offset < 0) || (length <= 0))
+        return {};
+
+#if defined(Q_OS_WIN)
+    const std::wstring nativePath = path.toString().toStdWString();
+    const HANDLE file = ::CreateFileW(nativePath.c_str(), (GENERIC_READ | GENERIC_WRITE)
+            , (FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE), nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+    if (file == INVALID_HANDLE_VALUE)
+        return nonstd::make_unexpected(QCoreApplication::translate("Utils::Fs", "Cannot open file. Error code: %1").arg(::GetLastError()));
+
+    DWORD bytesReturned = 0;
+    // The file must be sparse, otherwise FSCTL_SET_ZERO_DATA writes zeros instead of freeing space
+    if (!::DeviceIoControl(file, FSCTL_SET_SPARSE, nullptr, 0, nullptr, 0, &bytesReturned, nullptr))
+    {
+        const DWORD error = ::GetLastError();
+        ::CloseHandle(file);
+        return nonstd::make_unexpected(QCoreApplication::translate("Utils::Fs", "File system doesn't support sparse files. Error code: %1").arg(error));
+    }
+
+    FILE_ZERO_DATA_INFORMATION zeroData {};
+    zeroData.FileOffset.QuadPart = offset;
+    zeroData.BeyondFinalZero.QuadPart = offset + length;
+    if (!::DeviceIoControl(file, FSCTL_SET_ZERO_DATA, &zeroData, sizeof(zeroData), nullptr, 0, &bytesReturned, nullptr))
+    {
+        const DWORD error = ::GetLastError();
+        ::CloseHandle(file);
+        return nonstd::make_unexpected(QCoreApplication::translate("Utils::Fs", "Cannot free file range. Error code: %1").arg(error));
+    }
+
+    ::CloseHandle(file);
+    return {};
+#elif defined(Q_OS_LINUX)
+    const int fd = ::open(path.toString().toLocal8Bit().constData(), O_RDWR);
+    if (fd < 0)
+        return nonstd::make_unexpected(QString::fromLocal8Bit(::strerror(errno)));
+
+    const int ret = ::fallocate(fd, (FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE), offset, length);
+    const int error = errno;
+    ::close(fd);
+    if (ret != 0)
+        return nonstd::make_unexpected(QString::fromLocal8Bit(::strerror(error)));
+    return {};
+#else
+    Q_UNUSED(path);
+    return nonstd::make_unexpected(QCoreApplication::translate("Utils::Fs", "Not supported on this platform"));
+#endif
+}
+
+nonstd::expected<void, QString> Utils::Fs::truncateFile(const Path &path, const qint64 size)
+{
+    QFile file {path.data()};
+    if (file.resize(size))
+        return {};
     return nonstd::make_unexpected(file.errorString());
 }
 

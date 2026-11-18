@@ -1571,6 +1571,38 @@ void TorrentsController::filePrioAction()
     setResult(QString());
 }
 
+void TorrentsController::removeUnwantedFilesDataAction()
+{
+    requireParams({u"hash"_s, u"id"_s});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+    if (!torrent->hasMetadata())
+        throw APIError(APIErrorType::Conflict, tr("Torrent's metadata has not yet downloaded"));
+
+    const int filesCount = torrent->filesCount();
+    const QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
+    QList<int> fileIndexes;
+    for (const QString &fileID : params()[u"id"_s].split(u'|', Qt::SkipEmptyParts))
+    {
+        bool ok = false;
+        const int index = fileID.toInt(&ok);
+        if (!ok)
+            throw APIError(APIErrorType::BadParams, tr("File IDs must be integers"));
+        if ((index < 0) || (index >= filesCount))
+            throw APIError(APIErrorType::Conflict, tr("File ID is not valid"));
+        if (priorities[index] != BitTorrent::DownloadPriority::Ignored)
+            throw APIError(APIErrorType::Conflict, tr("Only unselected (\"Do not download\") files can be cleaned up"));
+
+        fileIndexes.append(index);
+    }
+
+    torrent->removeUnwantedFilesData(fileIndexes);
+    setResult(QString());
+}
+
 void TorrentsController::uploadLimitAction()
 {
     requireParams({u"hashes"_s});

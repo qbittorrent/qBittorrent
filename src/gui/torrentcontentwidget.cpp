@@ -39,10 +39,12 @@
 #include <QMessageBox>
 #include <QModelIndexList>
 #include <QOverload>
+#include <QPointer>
 #include <QSet>
 #include <QShortcut>
 #include <QWheelEvent>
 
+#include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentcontenthandler.h"
 #include "base/path.h"
 #include "base/utils/string.h"
@@ -470,6 +472,46 @@ void TorrentContentWidget::displayContextMenu()
     });
     subMenu->addSeparator();
     subMenu->addAction(tr("By shown file order"), this, &TorrentContentWidget::applyPrioritiesByOrder);
+
+    // Unselected ("Do not download") files may still occupy disk space if they were
+    // downloaded before being unselected. Offer to free it.
+    if (auto *torrent = dynamic_cast<BitTorrent::Torrent *>(contentHandler()); torrent && torrent->hasMetadata())
+    {
+        const QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
+        QList<int> unwantedFileIndexes;
+        for (const QModelIndex &rowIndex : selectedRows)
+        {
+            const QSet<int> fileIndexes = m_filterModel->getFileIndexes(rowIndex);
+            for (const int fileIndex : fileIndexes)
+            {
+                if ((fileIndex >= 0) && (fileIndex < priorities.size())
+                        && (priorities[fileIndex] == BitTorrent::DownloadPriority::Ignored)
+                        && !unwantedFileIndexes.contains(fileIndex))
+                {
+                    unwantedFileIndexes.append(fileIndex);
+                }
+            }
+        }
+
+        if (!unwantedFileIndexes.isEmpty())
+        {
+            menu->addSeparator();
+            menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("Remove data of unselected files...")
+                    , this, [this, torrentPtr = QPointer<BitTorrent::Torrent>(torrent), unwantedFileIndexes]
+            {
+                if (!torrentPtr)
+                    return;
+
+                const QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Remove data of unselected files")
+                        , tr("Free disk space occupied by %1 unselected file(s)?\n\n"
+                             "Only the small parts shared with selected neighbor files will be kept. "
+                             "The torrent will be briefly paused.").arg(unwantedFileIndexes.size())
+                        , (QMessageBox::Yes | QMessageBox::No), QMessageBox::No);
+                if ((answer == QMessageBox::Yes) && torrentPtr)
+                    torrentPtr->removeUnwantedFilesData(unwantedFileIndexes);
+            });
+        }
+    }
 
     // The selected torrent might have disappeared during exec()
     // so we just close menu when an appropriate model is reset
