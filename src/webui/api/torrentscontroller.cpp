@@ -2510,7 +2510,7 @@ void TorrentsController::downloadFileAction()
     if (const QList<qreal> progress = torrent->filesProgress(); progress[fileIndex] < 1)
         throw APIError(APIErrorType::Conflict, tr("File not fully downloaded"));
 
-    const Path filePath = torrent->actualStorageLocation() / torrent->actualFilePath(fileIndex);
+    const Path filePath = resolvedPath(torrent->actualStorageLocation(), torrent->actualFilePath(fileIndex));
     setResult(filePath);
 }
 

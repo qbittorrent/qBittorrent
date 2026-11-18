@@ -367,8 +367,10 @@ TorrentImpl::TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeH
             m_indexMap[nativeIndex] = i;
 
             const auto fileIter = m_ltAddTorrentParams.renamed_files.find(nativeIndex);
-            const Path filePath = ((fileIter != m_ltAddTorrentParams.renamed_files.end())
+            Path filePath = ((fileIter != m_ltAddTorrentParams.renamed_files.end())
                     ? makeUserPath(Path(fileIter->second)) : m_torrentInfo.filePath(i));
+            if (filePath.isAbsolute()) [[unlikely]]
+                filePath = m_torrentInfo.filePath(i); // moved out to unknown location
             m_filePaths.append(filePath);
 
             const auto priority = LT::fromNative(filePriorities[LT::toUnderlyingType(nativeIndex)]);
@@ -529,6 +531,7 @@ void TorrentImpl::setSavePath(const Path &path)
         m_savePath = resolvedPath;
         m_session->handleTorrentSavePathChanged(this);
         deferredRequestResumeData();
+        relocateEarlyMovedFiles();
     }
 }
 
@@ -607,6 +610,7 @@ void TorrentImpl::setAutoTMMEnabled(bool enabled)
     m_session->handleTorrentSavingModeChanged(this);
 
     adjustStorageLocation();
+    relocateEarlyMovedFiles();
 }
 
 Path TorrentImpl::actualStorageLocation() const
@@ -643,12 +647,54 @@ Path TorrentImpl::makeActualPath(int index, const Path &path) const
         actualPath = parentPath / Path(UNWANTED_FOLDER_NAME) / Path(fileName);
     }
 
+    // Completed file is moved out of the incomplete (download) folder to the save path
+    // while the rest of the torrent is still being downloaded. libtorrent keeps such file
+    // outside of the torrent storage by means of an absolute file name.
+    if (shouldFileBeMovedEarly(index))
+        actualPath = savePath() / actualPath;
+
     return actualPath;
+}
+
+bool TorrentImpl::shouldFileBeMovedEarly(const int index) const
+{
+    if (!m_session->isMoveCompletedFilesEarlyEnabled())
+        return false;
+
+    if (!m_completedFiles.at(index) || (m_filePriorities[index] == DownloadPriority::Ignored))
+        return false;
+
+    // Finished torrent is moved to the save path as a whole
+    if (isFinished() || m_hasFinishedStatus)
+        return false;
+
+    const Path downloadPath = this->downloadPath();
+    if (downloadPath.isEmpty())
+        return false;
+
+    const Path savePath = this->savePath();
+    return (downloadPath != savePath) && (actualStorageLocation() != savePath);
+}
+
+void TorrentImpl::relocateEarlyMovedFiles()
+{
+    if (hasMetadata() && m_session->isMoveCompletedFilesEarlyEnabled())
+        manageActualFilePaths();
 }
 
 Path TorrentImpl::makeUserPath(const Path &path) const
 {
-    Path userPath = path.removedExtension(QB_EXT);
+    Path userPath = path;
+    if (userPath.isAbsolute())
+    {
+        // File that was moved out of the torrent storage (see shouldFileBeMovedEarly())
+        if (const Path basePath = savePath(); userPath.hasAncestor(basePath))
+            userPath = basePath.relativePathOf(userPath);
+        else if (const Path dlPath = downloadPath(); !dlPath.isEmpty() && userPath.hasAncestor(dlPath))
+            userPath = dlPath.relativePathOf(userPath);
+    }
+
+    userPath = userPath.removedExtension(EARLY_MOVE_TMP_EXT).removedExtension(QB_EXT);
 
     const Path parentRelPath = userPath.parentPath();
     if (parentRelPath.filename() == UNWANTED_FOLDER_NAME)
@@ -2366,7 +2412,9 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
 
     const FileRenameInfo currentFileRenameInfo = m_renamingFiles.dequeue();
     const Path oldFilePath = m_filePaths.at(fileIndex);
-    const Path newFilePath = makeUserPath(newActualFilePath);
+    Path newFilePath = makeUserPath(newActualFilePath);
+    if (newFilePath.isAbsolute()) [[unlikely]]
+        newFilePath = oldFilePath; // moved out of the storage, the user visible path is not changed
 
     // Check if ".!qB" extension or ".unwanted" folder was just added or removed
     // We should compare path in a case sensitive manner even on case insensitive
@@ -2450,6 +2498,22 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
         }
     }
 
+    // Something could be changed while the file was being renamed (e.g. the file or the whole
+    // torrent is completed), so bring it to the right place. It is also the second step
+    // of turning early moved file back to a regular one (see manageActualFilePath()).
+    if ((m_maintenanceJob == MaintenanceJob::None) && !hasPendingFileRename(fileIndex))
+        manageActualFilePath(fileIndex, newActualFilePath);
+
+    if (newActualFilePath.isAbsolute() && !oldActualFilePath.isAbsolute())
+    {
+        // the file was moved early, remove empty folders it left in the torrent storage
+        for (Path parentPath = oldActualFilePath.parentPath(); !parentPath.isEmpty(); parentPath = parentPath.parentPath())
+        {
+            if (!Utils::Fs::rmdir(actualStorageLocation() / parentPath))
+                break;
+        }
+    }
+
     while (!isMoveInProgress() && m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
 
@@ -2502,20 +2566,15 @@ void TorrentImpl::handleFileCompleted(const lt::file_index_t nativeFileIndex)
     if (Preferences::instance()->isMarkOfTheWebEnabled()
         && (m_nativeStatus.state == lt::torrent_status::downloading))
     {
-        const Path fullpath = actualStorageLocation() / actualPath;
+        const Path fullpath = resolvedPath(actualStorageLocation(), actualPath);
         Utils::OS::applyMarkOfTheWeb(fullpath);
     }
 #endif // Q_OS_MACOS || Q_OS_WIN
 
-    if (m_session->isAppendExtensionEnabled())
-    {
-        const Path path = filePath(fileIndex);
-        if (actualPath != path)
-        {
-            qDebug("Renaming %s to %s", qUtf8Printable(actualPath.toString()), qUtf8Printable(path.toString()));
-            doRenameFile(fileIndex, path);
-        }
-    }
+    // Remove ".!qB" extension and/or move the file to the save path (see shouldFileBeMovedEarly()).
+    // If the file is being renamed right now, it is handled when renaming is finished.
+    if (!hasPendingFileRename(fileIndex))
+        manageActualFilePath(fileIndex, actualPath);
 }
 
 void TorrentImpl::handleFileError(FileErrorInfo fileError)
@@ -2539,7 +2598,10 @@ void TorrentImpl::handleMetadataReceived()
 void TorrentImpl::handleCategoryOptionsChanged()
 {
     if (m_useAutoTMM)
+    {
         adjustStorageLocation();
+        relocateEarlyMovedFiles();
+    }
 }
 
 void TorrentImpl::handleAppendExtensionToggled()
@@ -2558,20 +2620,70 @@ void TorrentImpl::handleUnwantedFolderToggled()
     manageActualFilePaths();
 }
 
+void TorrentImpl::handleMoveCompletedFilesEarlyToggled()
+{
+    if (!hasMetadata())
+        return;
+
+    manageActualFilePaths();
+}
+
 void TorrentImpl::manageActualFilePaths()
 {
     for (int i = 0; i < filesCount(); ++i)
     {
-        const Path path = filePath(i);
+        // Cached actual path of the file being renamed is outdated,
+        // it will be rechecked when renaming is finished (see handleFileRenamed())
+        if (hasPendingFileRename(i))
+            continue;
 
-        const Path actualPath = actualFilePath(i);
-        const Path targetActualPath = makeActualPath(i, path);
-        if (actualPath != targetActualPath)
+        if (!manageActualFilePath(i, actualFilePath(i)))
+            return; // deferred until the storage is moved
+    }
+}
+
+bool TorrentImpl::hasPendingFileRename(const int index) const
+{
+    return std::ranges::any_of(m_renamingFiles, [index](const FileRenameInfo &info) { return info.index == index; });
+}
+
+bool TorrentImpl::manageActualFilePath(const int index, const Path &actualPath)
+{
+    const Path targetActualPath = makeActualPath(index, filePath(index));
+    if (actualPath == targetActualPath)
+        return true;
+
+    if (actualPath.isAbsolute() && targetActualPath.isRelative())
+    {
+        // The file was moved early (see shouldFileBeMovedEarly()). Wait until the
+        // rest of the torrent is moved, then it can be turned back to a regular file.
+        if (isMoveInProgress())
         {
-            qDebug() << "Renaming" << actualPath.toString() << "to" << targetActualPath.toString();
-            doRenameFile(i, targetActualPath);
+            if (!m_isManageActualFilePathsDeferred)
+            {
+                m_isManageActualFilePathsDeferred = true;
+                m_moveFinishedTriggers.enqueue([this]
+                {
+                    m_isManageActualFilePathsDeferred = false;
+                    manageActualFilePaths();
+                });
+            }
+            return false;
+        }
+
+        if ((actualStorageLocation() / targetActualPath) == actualPath)
+        {
+            // The file is already in place but libtorrent refuses to rename
+            // a file onto itself, so rename it via a temporary name.
+            // The second step is performed when the first one is finished.
+            doRenameFile(index, (targetActualPath + EARLY_MOVE_TMP_EXT));
+            return true;
         }
     }
+
+    qDebug() << "Renaming" << actualPath.toString() << "to" << targetActualPath.toString();
+    doRenameFile(index, targetActualPath);
+    return true;
 }
 
 void TorrentImpl::adjustStorageLocation()

@@ -394,6 +394,11 @@ Path operator/(const Path &lhs, const Path &rhs)
     return Path(lhs.m_pathStr + u'/' + rhs.m_pathStr);
 }
 
+Path resolvedPath(const Path &basePath, const Path &path)
+{
+    return path.isAbsolute() ? path : (basePath / path);
+}
+
 Path operator+(const Path &lhs, const QStringView rhs)
 {
     return Path(lhs.data() + rhs);

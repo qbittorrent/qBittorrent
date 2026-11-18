@@ -513,7 +513,7 @@ Path TorrentContentWidget::getFullPath(const QModelIndex &index) const
     const auto *contentHandler = m_model->contentHandler();
     if (const int fileIdx = getFileIndex(index); fileIdx >= 0)
     {
-        const Path fullPath = contentHandler->actualStorageLocation() / contentHandler->actualFilePath(fileIdx);
+        const Path fullPath = resolvedPath(contentHandler->actualStorageLocation(), contentHandler->actualFilePath(fileIdx));
         return fullPath;
     }
 

@@ -259,6 +259,12 @@
             <label for="unwantedfolder_checkbox">QBT_TR(Keep unselected files in ".unwanted" folder)QBT_TR[CONTEXT=OptionsDialog]</label>
         </span>
     </div>
+    <div class="formRow">
+        <span id="movecompletedfilesearlytr" title="QBT_TR_HTML(When a separate path for incomplete torrents is used, move each file to the save path as soon as it is completed instead of waiting for the whole torrent)QBT_TR[CONTEXT=OptionsDialog]">
+            <input type="checkbox" id="movecompletedfilesearly_checkbox">
+            <label for="movecompletedfilesearly_checkbox">QBT_TR_HTML(Move completed files to the save path one by one)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </span>
+    </div>
 
     <fieldset class="settings">
         <legend>QBT_TR(Saving Management)QBT_TR[CONTEXT=HttpServer]</legend>
@@ -2627,6 +2633,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("preallocateall_checkbox").checked = pref.preallocate_all;
                     document.getElementById("appendext_checkbox").checked = pref.incomplete_files_ext;
                     document.getElementById("unwantedfolder_checkbox").checked = pref.use_unwanted_folder;
+                    document.getElementById("movecompletedfilesearly_checkbox").checked = pref.move_completed_files_early;
 
                     // Saving Management
                     document.getElementById("default_tmm_combobox").value = pref.auto_tmm_enabled;
@@ -3067,6 +3074,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["preallocate_all"] = document.getElementById("preallocateall_checkbox").checked;
             settings["incomplete_files_ext"] = document.getElementById("appendext_checkbox").checked;
             settings["use_unwanted_folder"] = document.getElementById("unwantedfolder_checkbox").checked;
+            settings["move_completed_files_early"] = document.getElementById("movecompletedfilesearly_checkbox").checked;
 
             // Saving Management
             settings["auto_tmm_enabled"] = (document.getElementById("default_tmm_combobox").value === "true");

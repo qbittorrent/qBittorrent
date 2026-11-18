@@ -581,7 +581,7 @@ QMimeData *TorrentContentModel::mimeData(const QModelIndexList &indexes) const
         if (itemType(index) == TorrentContentModelItem::FileType)
         {
             const int idx = getFileIndex(index);
-            const Path fullPath = storagePath / contentHandler()->actualFilePath(idx);
+            const Path fullPath = resolvedPath(storagePath, contentHandler()->actualFilePath(idx));
             paths.append(QUrl::fromLocalFile(fullPath.data()));
         }
         else // folder type
