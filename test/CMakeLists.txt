@@ -10,6 +10,7 @@ set(testFiles
     testbittorrentpeeraddress.cpp
     testbittorrenttorrentdescriptor.cpp
     testbittorrenttrackerentry.cpp
+    testbittorrenttrackersummary.cpp
     testconceptsexplicitlyconvertibleto.cpp
     testconceptsstringable.cpp
     testglobal.cpp
