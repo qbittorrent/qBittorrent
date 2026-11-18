@@ -160,8 +160,13 @@ void TorrentCreator::run()
 #endif
 
                 const QString dirPath = dirInfo.filePath();
-                if (m_params.ignoreDotfiles && isDotfile(Path(dirPath)))
-                    continue;
+                if (m_params.ignoreDotfiles)
+                {
+                    // iterator doesn't skip subdirs of a skipped dir, so check every path component
+                    const QString relDirPath = m_params.sourcePath.relativePathOf(Path(dirPath)).data();
+                    if (relDirPath.startsWith(u'.') || relDirPath.contains(u"/."))
+                        continue;
+                }
 
                 dirs.append(dirPath);
             }
