@@ -16,6 +16,7 @@ set(testFiles
     testhttprequestparser.cpp
     testorderedset.cpp
     testpath.cpp
+    testrssautodownloadrule.cpp
     testutilsbytearray.cpp
     testutilscompare.cpp
     testutilsdatetime.cpp
@@ -31,22 +32,37 @@ set(testFiles
     testutilsversion.cpp
 )
 
-set(guiTestFiles)
-if (GUI)
-    list(APPEND guiTestFiles testrssreaderfunctional.cpp)
+set(webUITestFiles
+    testwebuitranslationutils.cpp
+)
+
+set(guiTestFiles
+    testrssreaderfunctional.cpp
+)
+
+if (WEBUI)
+    list(APPEND testFiles ${webUITestFiles})
 endif()
 
-foreach(testFile IN LISTS testFiles guiTestFiles)
+if (GUI)
+    list(APPEND testFiles ${guiTestFiles})
+endif()
+
+foreach(testFile ${testFiles})
     get_filename_component(testFilename "${testFile}" NAME_WLE)
 
     add_executable("${testFilename}" "${testFile}")
     target_link_libraries("${testFilename}" PRIVATE Qt::Test qbt_base)
+    if (testFile IN_LIST webUITestFiles)
+        target_link_libraries("${testFilename}" PRIVATE qbt_webui)
+    endif()
     if (testFile IN_LIST guiTestFiles)
         target_link_libraries("${testFilename}" PRIVATE qbt_gui)
         if (WEBUI)
             target_link_libraries("${testFilename}" PRIVATE qbt_webui)
         endif()
     endif()
+
     add_test(NAME "${testFilename}" COMMAND "${testFilename}")
     if (testFile IN_LIST guiTestFiles)
         set_tests_properties("${testFilename}" PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen")

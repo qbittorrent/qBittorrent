@@ -351,6 +351,8 @@ public:
     void setBdecodeDepthLimit(int value);
     int getBdecodeTokenLimit() const;
     void setBdecodeTokenLimit(int value);
+    int getLoadTorrentMaxDirectoryDepth() const;
+    void setLoadTorrentMaxDirectoryDepth(int value);
 
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.

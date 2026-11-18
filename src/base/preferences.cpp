@@ -359,6 +359,19 @@ void Preferences::setBdecodeTokenLimit(const int value)
     setValue(u"BitTorrent/BdecodeTokenLimit"_s, value);
 }
 
+int Preferences::getLoadTorrentMaxDirectoryDepth() const
+{
+    return value(u"BitTorrent/MaxDirectoryDepth"_s, 100);
+}
+
+void Preferences::setLoadTorrentMaxDirectoryDepth(const int value)
+{
+    if (value == getLoadTorrentMaxDirectoryDepth())
+        return;
+
+    setValue(u"BitTorrent/MaxDirectoryDepth"_s, value);
+}
+
 bool Preferences::isToolbarDisplayed() const
 {
     return value(u"Preferences/General/ToolbarDisplayed"_s, true);

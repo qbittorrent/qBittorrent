@@ -158,6 +158,7 @@ namespace RSS
                     && (left.ignoreDays == right.ignoreDays)
                     && (left.lastMatch == right.lastMatch)
                     && (left.smartFilter == right.smartFilter)
+                    && (left.previouslyMatchedEpisodes == right.previouslyMatchedEpisodes)
                     && (left.addTorrentParams == right.addTorrentParams);
         }
     };

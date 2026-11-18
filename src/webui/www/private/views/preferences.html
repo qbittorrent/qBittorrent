@@ -368,6 +368,10 @@ Examples
 readme.txt: filter exact file name.
 ?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
 readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.)QBT_TR[CONTEXT=OptionsDialog]"></textarea>
+        <div class="formRow">
+            <input type="checkbox" id="excludeFilesWithoutExtensionCheckbox">
+            <label for="excludeFilesWithoutExtensionCheckbox" title="QBT_TR(Files whose name has no extension (e.g. 'readme', 'setup.') will have their priority automatically set to &quot;Do not download&quot;.)QBT_TR[CONTEXT=OptionsDialog]">QBT_TR(Exclude files without an extension)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -1526,6 +1530,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <input type="text" id="bdecodeTokenLimit" style="width: 15em;">
                     </td>
                 </tr>
+                <tr id="rowLoadTorrentMaxDirectoryDepth">
+                    <td>
+                        <label for="loadTorrentMaxDirectoryDepth">QBT_TR(Maximum directory depth when loading torrents:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Torrent_Info.html#max_directory_depth" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="text" id="loadTorrentMaxDirectoryDepth" style="width: 15em;">
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <label for="asyncIOThreads">QBT_TR(Asynchronous I/O threads:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#aio_threads" target="_blank">(?)</a></label>
@@ -2185,6 +2197,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateExcludedFileNamesEnabled = () => {
             const isAExcludedFileNamesEnabled = document.getElementById("excludedFileNamesCheckbox").checked;
             document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
+            document.getElementById("excludeFilesWithoutExtensionCheckbox").disabled = !isAExcludedFileNamesEnabled;
         };
 
         const updateTorrentBackupControls = () => {
@@ -2653,6 +2666,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Excluded file names
                     document.getElementById("excludedFileNamesCheckbox").checked = pref.excluded_file_names_enabled;
                     document.getElementById("excludedFileNamesTextarea").value = pref.excluded_file_names;
+                    document.getElementById("excludeFilesWithoutExtensionCheckbox").checked = pref.exclude_files_without_extension;
                     updateExcludedFileNamesEnabled();
 
                     // Email notification upon download completion
@@ -2939,6 +2953,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // libtorrent section
                     document.getElementById("bdecodeDepthLimit").value = pref.bdecode_depth_limit;
                     document.getElementById("bdecodeTokenLimit").value = pref.bdecode_token_limit;
+                    document.getElementById("loadTorrentMaxDirectoryDepth").value = pref.load_torrent_max_directory_depth;
                     document.getElementById("asyncIOThreads").value = pref.async_io_threads;
                     document.getElementById("hashingThreads").value = pref.hashing_threads;
                     document.getElementById("filePoolSize").value = pref.file_pool_size;
@@ -3076,6 +3091,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Excluded file names
             settings["excluded_file_names_enabled"] = document.getElementById("excludedFileNamesCheckbox").checked;
             settings["excluded_file_names"] = document.getElementById("excludedFileNamesTextarea").value;
+            settings["exclude_files_without_extension"] = document.getElementById("excludeFilesWithoutExtensionCheckbox").checked;
 
             // Email notification upon download completion
             settings["mail_notification_enabled"] = document.getElementById("mail_notification_checkbox").checked;
@@ -3461,6 +3477,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // libtorrent section
             settings["bdecode_depth_limit"] = Number(document.getElementById("bdecodeDepthLimit").value);
             settings["bdecode_token_limit"] = Number(document.getElementById("bdecodeTokenLimit").value);
+            settings["load_torrent_max_directory_depth"] = Number(document.getElementById("loadTorrentMaxDirectoryDepth").value);
             settings["async_io_threads"] = Number(document.getElementById("asyncIOThreads").value);
             settings["hashing_threads"] = Number(document.getElementById("hashingThreads").value);
             settings["file_pool_size"] = Number(document.getElementById("filePoolSize").value);
@@ -3610,6 +3627,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.1") < 0) {
                 document.getElementById("diskIOTypePreadPwrite").hidden = true;
                 document.getElementById("i2pPeXDiv").style.display = "none";
+                document.getElementById("rowLoadTorrentMaxDirectoryDepth").hidden = true;
                 document.getElementById("rowWebTorrentSTUNServer").hidden = true;
             }
 

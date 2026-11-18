@@ -26,3 +26,16 @@ updates:
       - "CI"
     schedule:
       interval: "monthly"
+
+  - package-ecosystem: "npm"
+    directory: "/src/webui/www"
+    commit-message:
+      prefix: "WebUI"
+    groups:
+      WebUI-dependency-update:
+        patterns:
+          - "*"
+    labels:
+      - "WebUI"
+    schedule:
+      interval: "monthly"

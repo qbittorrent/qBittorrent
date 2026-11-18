@@ -768,7 +768,7 @@ const initializeWindows = () => {
                     id: "multiRenamePage",
                     icon: "images/qbittorrent-tray.svg",
                     title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TransferListWidget]",
-                    data: { hash: hash, selectedRows: [] },
+                    data: { hash: hash },
                     loadMethod: "xhr",
                     contentURL: "rename_files.html?v=${CACHEID}",
                     scrollbars: false,

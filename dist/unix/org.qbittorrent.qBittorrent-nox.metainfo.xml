@@ -32,6 +32,11 @@
   <provides>
     <binary>qbittorrent-nox</binary>
   </provides>
+  <supports>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </supports>
   <screenshots>
     <screenshot type="default">
       <caption>Running headless (nox) version</caption>
