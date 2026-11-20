@@ -249,6 +249,22 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
         return false;
     }
 
+    if (const auto archivedTorrent = btSession()->findArchivedTorrent(infoHash))
+    {
+        const QString dialogCaption = tr("Torrent is already archived");
+        const QString torrentName = archivedTorrent->name.isEmpty() ? infoHash.toString() : archivedTorrent->name;
+        const QMessageBox::StandardButton btn = RaisedMessageBox::question(app()->mainWindow(), dialogCaption
+                , tr("Torrent '%1' is already archived. Do you want to restore it from History?").arg(torrentName)
+                , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+        if (btn == QMessageBox::Yes)
+        {
+            if (!btSession()->unarchiveTorrent(archivedTorrent->id))
+                RaisedMessageBox::warning(app()->mainWindow(), dialogCaption, tr("Failed to restore the archived torrent."));
+        }
+
+        return false;
+    }
+
     if (!hasMetadata)
         btSession()->downloadMetadata(torrentDescr);
 

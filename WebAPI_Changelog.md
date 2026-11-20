@@ -2,6 +2,11 @@
 
 ## 2.17.0
 
+* Archived torrents
+  * Add `torrents/archive` and `torrents/unarchive` endpoints for archiving and restoring torrents (accept `POST` requests only)
+  * Add `torrents/archived` endpoint returning the list of archived torrents
+  * `torrents/delete` and `torrents/export` endpoints now also accept the hash of an archived torrent
+  * `torrents/count` endpoint supports `filter=archived`
 * [#24955](https://github.com/qbittorrent/qBittorrent/pull/24955)
   * `search/results` endpoint includes `engineFullName` (string) data as the display name of the engine
 * [#25093](https://github.com/qbittorrent/qBittorrent/pull/25093)

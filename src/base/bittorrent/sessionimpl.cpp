@@ -48,6 +48,7 @@
 #include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
+#include <libtorrent/bencode.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>
@@ -58,6 +59,7 @@
 #include <libtorrent/session_stats.hpp>
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
+#include <libtorrent/write_resume_data.hpp>
 #include <libtorrent/version.hpp>
 
 #if (LIBTORRENT_VERSION_NUM >= 20100) && TORRENT_USE_I2P
@@ -94,6 +96,7 @@
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/unicodestrings.h"
+#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/net.h"
@@ -1593,6 +1596,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
 
     LoadTorrentParams resumeData = std::move(*loadResumeDataResult);
     bool needStore = false;
+    bool resumeDataChanged = false;
 
     const InfoHash infoHash = getInfoHash(resumeData.ltAddTorrentParams);
 #ifdef QBT_USES_LIBTORRENT2
@@ -1685,6 +1689,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
             else
             {
                 resumeData.category.clear();
+                resumeDataChanged = true;
                 LogMsg(tr("Detected inconsistent data: invalid category. Torrent: \"%1\". Category: \"%2\"")
                        .arg(torrentID.toString(), category), Log::WARNING);
             }
@@ -1700,6 +1705,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
                 resumeData.useAutoTMM = false;
                 resumeData.savePath = storageLocation;
                 resumeData.downloadPath = {};
+                resumeDataChanged = true;
                 LogMsg(tr("Detected mismatch between the save paths of the recovered category and the current save path of the torrent."
                           " Torrent is now switched to Manual mode."
                           " Torrent: \"%1\". Category: \"%2\"").arg(torrentID.toString(), category), Log::WARNING);
@@ -1707,7 +1713,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
         }
     }
 
-    std::erase_if(resumeData.tags, [this, &torrentID](const Tag &tag)
+    std::erase_if(resumeData.tags, [this, &torrentID, &resumeDataChanged](const Tag &tag)
     {
         if (hasTag(tag))
             return false;
@@ -1722,8 +1728,19 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
 
         LogMsg(tr("Detected inconsistent data: invalid tag. Torrent: \"%1\". Tag: \"%2\"")
                .arg(torrentID.toString(), tag.toString()), Log::WARNING);
+        resumeDataChanged = true;
         return true;
     });
+
+    if (resumeData.archived)
+    {
+        qDebug() << "Skipping archived torrent" << torrentID.toString() << "...";
+        if (needStore || resumeDataChanged)
+            m_resumeDataStorage->store(torrentID, resumeData);
+
+        m_archivedTorrents.insert(torrentID, std::move(resumeData));
+        return;
+    }
 
     resumeData.ltAddTorrentParams.userdata = LTClientData(new ExtensionData);
 #ifndef QBT_USES_LIBTORRENT2
@@ -1809,6 +1826,7 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
 
         m_isRestored = true;
         emit startupProgressUpdated(100);
+        emit archivedTorrentsLoaded();
         emit restored();
     });
 }
@@ -2653,6 +2671,19 @@ void SessionImpl::banIP(const QString &ip)
 // and from the disk, if the corresponding deleteOption is chosen
 bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption deleteOption)
 {
+    if (!m_torrents.contains(id))
+    {
+        if (m_archivedTorrents.contains(id) || m_pendingArchiveUnload.contains(id))
+            return removeArchivedTorrent(id, deleteOption);
+
+        return false;
+    }
+
+    m_archivedTorrents.remove(id);
+    m_pendingArchiveUnload.remove(id);
+    m_archivingTorrents.remove(id);
+    m_restoringTorrents.remove(id);
+
     TorrentImpl *const torrent = m_torrents.take(id);
     if (!torrent)
         return false;
@@ -2731,6 +2762,249 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
     LogMsg(tr("Torrent removed. Torrent: \"%1\"").arg(torrentName));
     delete torrent;
     return true;
+}
+
+QList<ArchivedTorrent> SessionImpl::archivedTorrents() const
+{
+    QList<ArchivedTorrent> torrents;
+    torrents.reserve(m_archivedTorrents.size());
+    for (auto iter = m_archivedTorrents.cbegin(); iter != m_archivedTorrents.cend(); ++iter)
+        torrents.append(ArchivedTorrent::fromResumeData(iter.key(), iter.value()));
+
+    std::ranges::sort(torrents, Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>(), &ArchivedTorrent::name);
+    return torrents;
+}
+
+std::optional<ArchivedTorrent> SessionImpl::findArchivedTorrent(const InfoHash &infoHash) const
+{
+    const auto id = TorrentID::fromInfoHash(infoHash);
+    auto iter = m_archivedTorrents.constFind(id);
+    if ((iter == m_archivedTorrents.cend()) && infoHash.isHybrid())
+        iter = m_archivedTorrents.constFind(TorrentID::fromSHA1Hash(infoHash.v1()));
+
+    if (iter == m_archivedTorrents.cend())
+    {
+        // Archived torrents are keyed by their preferred ID (the v2 hash for hybrid
+        // torrents), so an incoming v1-only info hash won't match them directly.
+        const SHA1Hash v1Hash = infoHash.v1();
+        if (v1Hash.isValid())
+        {
+            iter = std::ranges::find_if(asConst(m_archivedTorrents)
+                    , [&v1Hash](const LoadTorrentParams &resumeData)
+            {
+#ifdef QBT_USES_LIBTORRENT2
+                return SHA1Hash(resumeData.ltAddTorrentParams.info_hashes.v1) == v1Hash;
+#else
+                return SHA1Hash(resumeData.ltAddTorrentParams.info_hash) == v1Hash;
+#endif
+            });
+        }
+    }
+
+    if (iter == m_archivedTorrents.cend())
+        return std::nullopt;
+
+    return ArchivedTorrent::fromResumeData(iter.key(), iter.value());
+}
+
+bool SessionImpl::archiveTorrent(const TorrentID &id)
+{
+    if (m_archivedTorrents.contains(id) || m_archivingTorrents.contains(id) || m_pendingArchiveUnload.contains(id))
+        return false;
+
+    TorrentImpl *const torrent = m_torrents.value(id);
+    if (!torrent)
+        return false;
+
+    m_archivingTorrents.insert(id);
+    torrent->requestResumeData(lt::torrent_handle::save_info_dict);
+    return true;
+}
+
+bool SessionImpl::unarchiveTorrent(const TorrentID &id)
+{
+    const auto iter = m_archivedTorrents.constFind(id);
+    if ((iter == m_archivedTorrents.cend()) || m_torrents.contains(id) || m_restoringTorrents.contains(id))
+        return false;
+
+    m_restoringTorrents.insert(id);
+    return addTorrentFromResumeData(id, iter.value());
+}
+
+bool SessionImpl::addTorrentFromResumeData(const TorrentID &torrentID, LoadTorrentParams resumeData)
+{
+    resumeData.archived = false;
+    resumeData.stopped = true;
+    resumeData.ltAddTorrentParams.flags |= lt::torrent_flags::paused;
+    resumeData.ltAddTorrentParams.flags &= ~lt::torrent_flags::auto_managed;
+    resumeData.ltAddTorrentParams.userdata = LTClientData(new ExtensionData);
+#ifndef QBT_USES_LIBTORRENT2
+    resumeData.ltAddTorrentParams.storage = customStorageConstructor;
+#endif
+
+    m_nativeSession->async_add_torrent(resumeData.ltAddTorrentParams);
+    m_addTorrentAlertHandlers.append(
+            [this, torrentID, resumeData = std::move(resumeData)](const lt::add_torrent_alert *alert) mutable
+    {
+        if (alert->error)
+        {
+            m_restoringTorrents.remove(torrentID);
+            const QString message = QString::fromStdString(alert->message());
+            LogMsg(tr("Failed to restore archived torrent. Torrent: \"%1\". Reason: \"%2\"")
+                    .arg(torrentID.toString(), message), Log::WARNING);
+            emit torrentArchiveFailed(torrentID, message);
+            return;
+        }
+
+        // The restore could have been cancelled (e.g. the archive entry was deleted)
+        // while the torrent was being added to libtorrent.
+        if (!m_restoringTorrents.remove(torrentID))
+        {
+            m_nativeSession->remove_torrent(alert->handle, lt::session::delete_partfile);
+            return;
+        }
+
+        // Persist the unarchived state before the torrent is exposed to the rest of the application.
+        m_resumeDataStorage->store(torrentID, resumeData);
+        m_archivedTorrents.remove(torrentID);
+
+        TorrentImpl *torrent = createTorrent(alert->handle, std::move(resumeData));
+        m_loadedTorrents.append(torrent);
+
+        LogMsg(tr("Restored archived torrent. Torrent: \"%1\"").arg(torrent->name()));
+        emit torrentUnarchived(torrentID);
+    });
+
+    return true;
+}
+
+bool SessionImpl::removeArchivedTorrent(const TorrentID &id, const TorrentRemoveOption deleteOption)
+{
+    const auto iter = m_archivedTorrents.find(id);
+    if (iter == m_archivedTorrents.end())
+        return false;
+
+    const LoadTorrentParams resumeData = iter.value();
+    m_archivedTorrents.erase(iter);
+    m_archivingTorrents.remove(id);
+    m_restoringTorrents.remove(id);
+
+    // If the torrent is still loaded in libtorrent (i.e. its unload is still pending),
+    // unload it now. Otherwise a later resume data request could recreate the entry
+    // that is being deleted.
+    if (m_pendingArchiveUnload.remove(id))
+        unloadArchivedTorrent(id);
+
+    const QString torrentName = resumeData.name.isEmpty() ? id.toString() : resumeData.name;
+
+    if (deleteOption == TorrentRemoveOption::RemoveContent)
+    {
+        if (resumeData.ltAddTorrentParams.ti)
+        {
+            const Path basePath = !resumeData.ltAddTorrentParams.save_path.empty()
+                    ? Path(resumeData.ltAddTorrentParams.save_path)
+                    : (resumeData.useAutoTMM ? categorySavePath(resumeData.category) : resumeData.savePath);
+            const PathList filePaths = TorrentInfo(*resumeData.ltAddTorrentParams.ti).filePaths();
+            QMetaObject::invokeMethod(m_torrentContentRemover, [this, torrentName, basePath, filePaths]
+            {
+                m_torrentContentRemover->performJob(torrentName, basePath, filePaths, m_torrentContentRemoveOption);
+            });
+        }
+        else
+        {
+            LogMsg(tr("Cannot remove archived torrent content because metadata is missing. Torrent: \"%1\"")
+                    .arg(torrentName), Log::WARNING);
+        }
+    }
+
+    // Remove it from torrent resume directory
+    m_resumeDataStorage->remove(id);
+
+    if (removeTorrentFileBackup())
+    {
+        const QString torrentBackupInfo = m_backupTorrentFilesRegistry->fetchValue(id.toString()).takeResult().toString();
+        if (!torrentBackupInfo.isEmpty() && !torrentBackupInfo.startsWith(u"magnet:", Qt::CaseInsensitive))
+        {
+            const Path torrentBackupPath = resolvePath(Path(torrentBackupInfo), specialFolderLocation(SpecialFolder::Data));
+            if (const auto removeResult = Utils::Fs::removeFile(torrentBackupPath); !removeResult)
+            {
+                LogMsg(tr("Could not remove .torrent file backup. Torrent: \"%1\". File: \"%2\". Reason: %3")
+                        .arg(torrentName, torrentBackupPath.toString(), removeResult.error()));
+            }
+        }
+    }
+
+    m_backupTorrentFilesRegistry->removeValue(id.toString());
+
+    LogMsg(tr("Archived torrent removed. Torrent: \"%1\"").arg(torrentName));
+    emit archivedTorrentRemoved(id);
+    return true;
+}
+
+bool SessionImpl::unloadArchivedTorrent(const TorrentID &id)
+{
+    m_pendingArchiveUnload.remove(id);
+
+    TorrentImpl *const torrent = m_torrents.take(id);
+    if (!torrent)
+        return false;
+
+    const TorrentID torrentID = torrent->id();
+    const QString torrentName = torrent->name();
+
+    qDebug("Unloading archived torrent with ID: %s", qUtf8Printable(torrentID.toString()));
+    emit torrentAboutToBeRemoved(torrent);
+
+    if (const InfoHash infoHash = torrent->infoHash(); infoHash.isHybrid())
+        m_hybridTorrentsByAltID.remove(TorrentID::fromSHA1Hash(infoHash.v1()));
+
+    m_removingTorrents[torrentID] = {torrentName, torrent->actualStorageLocation(), {}, TorrentRemoveOption::KeepContent};
+
+    const lt::torrent_handle nativeHandle {torrent->nativeHandle()};
+    const auto iter = std::ranges::find_if(asConst(m_moveStorageQueue)
+        , [&nativeHandle](const MoveStorageJob &job)
+    {
+        return job.torrentHandle == nativeHandle;
+    });
+    if (iter != m_moveStorageQueue.cend())
+    {
+        // We shouldn't actually remove torrent until existing "move storage jobs" are done
+        torrentQueuePositionBottom(nativeHandle);
+        nativeHandle.unset_flags(lt::torrent_flags::auto_managed);
+        nativeHandle.pause();
+    }
+    else
+    {
+        m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_partfile);
+    }
+
+    m_torrentsQueueChanged = true;
+    delete torrent;
+
+    if (m_archivedTorrents.contains(torrentID))
+        emit torrentArchived(torrentID);
+
+    return true;
+}
+
+QByteArray SessionImpl::exportArchivedTorrent(const TorrentID &id) const
+{
+    const auto iter = m_archivedTorrents.constFind(id);
+    if ((iter == m_archivedTorrents.cend()) || !iter->ltAddTorrentParams.ti)
+        return {};
+
+    try
+    {
+        const lt::entry torrentEntry = lt::write_torrent_file(iter->ltAddTorrentParams);
+        QByteArray buffer;
+        buffer.reserve(1024 * 1024);
+        lt::bencode(std::back_inserter(buffer), torrentEntry);
+        return buffer;
+    }
+    catch (const lt::system_error &)
+    {
+        return {};
+    }
 }
 
 bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
@@ -2945,6 +3219,15 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &torrentDescr, const A
         LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: \"%1\". Torrent infohash: %2. Result: %3")
                 .arg(torrent->name(), torrent->infoHash().toString(), message));
         emit duplicateTorrentDetected(infoHash, torrent, message);
+        return false;
+    }
+
+    if (findArchivedTorrent(infoHash))
+    {
+        const QString message = tr("A torrent with the same info hash is already archived. Restore it from History instead.");
+        LogMsg(tr("Detected an attempt to add an archived torrent. Torrent infohash: %1. Result: %2")
+                .arg(infoHash.toString(), message));
+        emit addTorrentFailed(infoHash, message);
         return false;
     }
 
@@ -5481,7 +5764,7 @@ bool SessionImpl::isKnownTorrent(const InfoHash &infoHash) const
 
     if (m_downloadedMetadata.contains(id) || (isHybrid && m_downloadedMetadata.contains(altID)))
         return true;
-    return findTorrent(infoHash);
+    return findTorrent(infoHash) || findArchivedTorrent(infoHash).has_value();
 }
 
 void SessionImpl::updateShareLimitsTimer()
@@ -5721,8 +6004,42 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
 
 void SessionImpl::handleTorrentResumeDataReady(TorrentImpl *const torrent, LoadTorrentParams data)
 {
-    m_resumeDataStorage->store(torrent->id(), std::move(data));
-    const auto iter = m_changedTorrentIDs.constFind(torrent->id());
+    const TorrentID torrentID = torrent->id();
+
+    // The torrent is already archived but its native handle has not been removed yet.
+    // Ignore any further resume data to avoid overwriting the archived record.
+    if (m_pendingArchiveUnload.contains(torrentID))
+        return;
+
+    if (m_archivingTorrents.remove(torrentID))
+    {
+        data.archived = true;
+        data.stopped = true;
+        data.ltAddTorrentParams.flags |= lt::torrent_flags::paused;
+        data.ltAddTorrentParams.flags &= ~lt::torrent_flags::auto_managed;
+        data.ltAddTorrentParams.userdata = LTClientData {};
+
+        // Store the archived state before unloading the torrent. If the process crashes
+        // in between, the next startup will skip the torrent instead of loading it.
+        m_resumeDataStorage->store(torrentID, data);
+
+        const auto iter = m_changedTorrentIDs.constFind(torrentID);
+        if (iter != m_changedTorrentIDs.cend())
+        {
+            m_resumeDataStorage->remove(iter.value());
+            m_changedTorrentIDs.erase(iter);
+        }
+
+        m_archivedTorrents.insert(torrentID, std::move(data));
+        m_pendingArchiveUnload.insert(torrentID);
+
+        // Do not delete the TorrentImpl from inside its own resume data callback.
+        QMetaObject::invokeMethod(this, [this, torrentID] { unloadArchivedTorrent(torrentID); }, Qt::QueuedConnection);
+        return;
+    }
+
+    m_resumeDataStorage->store(torrentID, std::move(data));
+    const auto iter = m_changedTorrentIDs.constFind(torrentID);
     if (iter != m_changedTorrentIDs.cend())
     {
         m_resumeDataStorage->remove(iter.value());
@@ -6919,6 +7236,39 @@ void SessionImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_fai
     TorrentImpl *torrent = getTorrent(alert->handle);
     if (!torrent) [[unlikely]]
         return;
+
+    if (m_archivingTorrents.contains(torrent->id()))
+    {
+        if (alert->error == lt::errors::resume_data_not_modified)
+        {
+            // The stored resume data is still up to date, so archive from it.
+            const LoadResumeDataResult loadResult = m_resumeDataStorage->load(torrent->id());
+            if (loadResult)
+            {
+                handleTorrentResumeDataReady(torrent, *loadResult);
+                return;
+            }
+
+            m_archivingTorrents.remove(torrent->id());
+            const QString message = tr("Couldn't load stored resume data. Error: %1").arg(loadResult.error());
+            LogMsg(tr("Failed to archive torrent. Torrent: \"%1\". Reason: \"%2\"")
+                    .arg(torrent->name(), message), Log::WARNING);
+            emit torrentArchiveFailed(torrent->id(), message);
+            return;
+        }
+
+        m_archivingTorrents.remove(torrent->id());
+        const QString message =
+#if LIBTORRENT_VERSION_NUM >= 20100
+                QString::fromStdString(alert->error.message());
+#else
+                Utils::String::fromLocal8Bit(alert->error.message());
+#endif
+        LogMsg(tr("Failed to archive torrent. Torrent: \"%1\". Reason: \"%2\"")
+                .arg(torrent->name(), message), Log::WARNING);
+        emit torrentArchiveFailed(torrent->id(), message);
+        return;
+    }
 
     if (alert->error != lt::errors::resume_data_not_modified)
     {

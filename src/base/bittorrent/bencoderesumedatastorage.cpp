@@ -347,6 +347,7 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
 
     torrentParams.stopCondition = Utils::String::toEnum(
             fromLTString(resumeDataRoot.dict_find_string_value("qBt-stopCondition")), Torrent::StopCondition::None);
+    torrentParams.archived = resumeDataRoot.dict_find_int_value("qBt-archived") != 0;
     torrentParams.sslParameters =
     {
         .certificate = QSslCertificate(toByteArray(resumeDataRoot.dict_find_string_value(KEY_SSL_CERTIFICATE))),
@@ -583,6 +584,7 @@ namespace
         data["qBt-seedStatus"] = m_resumeData.hasFinishedStatus;
         data["qBt-contentLayout"] = Utils::String::fromEnum(m_resumeData.contentLayout).toStdString();
         data["qBt-firstLastPiecePriority"] = m_resumeData.firstLastPiecePriority;
+        data["qBt-archived"] = m_resumeData.archived;
         data["qBt-stopCondition"] = Utils::String::fromEnum(m_resumeData.stopCondition).toStdString();
 
         if (!m_resumeData.sslParameters.certificate.isNull())
