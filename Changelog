@@ -7,6 +7,12 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.1
     - BUGFIX: Fix unexpected drop behavior when dragging from Firefox on Windows (Chocobo1) #25140
     - BUGFIX: Use system theme fallback icon for Open Destination Folder button (FTA7700) #25153
     - BUGFIX: Fix content layout isn't applied on deduplicated filenames (glassez) #25183
+    - BUGFIX: Save search session after restoring it (droplet-gag-saint) #25196
+    - BUGFIX: Allow renaming files with invalid names (droplet-gag-saint) #25197
+    - BUGFIX: Ensure that recently queued jobs are performed before shutdown (glassez) #25215
+    - BUGFIX: Adopt "producer-consumer" pattern in file-based resume data storage (glassez) #25217
+    - BUGFIX: Fix WebTorrent trackers are rejected from magnet links (glassez) #25259
+    - BUGFIX: Fix performance statistics time units (Chocobo1) #25277
     - WEBUI: Preserve web seed URLs when editing (c8dhjp4tyv-bit) #25096
     - WEBUI: Let search plugins download their own results (Piccirello) #25107
     - WEBUI: Insert translated strings as text instead of HTML (Piccirello) #25145
