@@ -220,6 +220,7 @@ namespace BitTorrent
         void forceDHTAnnounce() override;
         void forceRecheck() override;
         void renameFile(int index, const Path &path) override;
+        void applyContentLayout(TorrentContentLayout layout) override;
         void prioritizeFiles(const QList<DownloadPriority> &priorities) override;
         void setUploadLimit(int limit) override;
         void setDownloadLimit(int limit) override;

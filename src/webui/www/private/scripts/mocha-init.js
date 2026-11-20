@@ -132,6 +132,7 @@ let reannounceFN = () => {};
 let setLocationFN = () => {};
 let renameFN = () => {};
 let renameFilesFN = () => {};
+let contentLayoutFN = () => {};
 let startVisibleTorrentsFN = () => {};
 let forceStartVisibleTorrentsFN = () => {};
 let stopVisibleTorrentsFN = () => {};
@@ -724,6 +725,32 @@ const initializeWindows = () => {
             paddingHorizontal: 0,
             width: window.qBittorrent.Dialog.limitWidthToViewport(400),
             height: 130
+        });
+    };
+
+    contentLayoutFN = () => {
+        const hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length <= 0)
+            return;
+
+        const contentURL = new URL("contentlayout.html", window.location);
+        contentURL.search = new URLSearchParams({
+            v: "${CACHEID}",
+            hashes: hashes.join("|")
+        });
+        new MochaUI.Window({
+            id: "contentLayoutPage",
+            icon: "images/qbittorrent-tray.svg",
+            title: "QBT_TR(Content layout)QBT_TR[CONTEXT=TransferListWidget]",
+            loadMethod: "iframe",
+            contentURL: contentURL.toString(),
+            scrollbars: false,
+            resizable: true,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
+            height: 200
         });
     };
 

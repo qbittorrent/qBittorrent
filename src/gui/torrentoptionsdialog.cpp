@@ -40,6 +40,7 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
+#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/unicodestrings.h"
 #include "ui_torrentoptionsdialog.h"
@@ -244,6 +245,45 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
         m_ui->comboCategory->addItem(category);
     }
 
+    // The content layout can only be changed after the metadata has been received
+    bool allHaveMetadata = true;
+    bool allSameContentLayout = true;
+    std::optional<BitTorrent::TorrentContentLayout> firstTorrentContentLayout;
+    for (const BitTorrent::Torrent *torrent : torrents)
+    {
+        if (!torrent->hasMetadata())
+        {
+            allHaveMetadata = false;
+            break;
+        }
+
+        const auto contentLayout = Path::findRootFolder(torrent->filePaths()).isEmpty()
+                ? BitTorrent::TorrentContentLayout::NoSubfolder : BitTorrent::TorrentContentLayout::Subfolder;
+        if (!firstTorrentContentLayout)
+            firstTorrentContentLayout = contentLayout;
+        else if (contentLayout != firstTorrentContentLayout)
+            allSameContentLayout = false;
+    }
+
+    if (!allHaveMetadata)
+    {
+        m_ui->comboContentLayout->addItem(u"--%1--"_s.arg(tr("Metadata is not available")));
+        m_ui->labelContentLayout->setEnabled(false);
+        m_ui->comboContentLayout->setEnabled(false);
+    }
+    else
+    {
+        if (!allSameContentLayout)
+            m_ui->comboContentLayout->addItem(u"--%1--"_s.arg(tr("Currently used layouts")));
+
+        m_ui->comboContentLayout->addItem(tr("Create subfolder"), QVariant::fromValue(BitTorrent::TorrentContentLayout::Subfolder));
+        m_ui->comboContentLayout->addItem(tr("Don't create subfolder"), QVariant::fromValue(BitTorrent::TorrentContentLayout::NoSubfolder));
+        if (allSameContentLayout)
+            m_ui->comboContentLayout->setCurrentIndex((firstTorrentContentLayout == BitTorrent::TorrentContentLayout::Subfolder) ? 0 : 1);
+        else
+            m_ui->comboContentLayout->setCurrentIndex(0);
+    }
+
     const bool isAltLimitEnabled = session->isAltGlobalSpeedLimitEnabled();
     const int globalUploadLimit = isAltLimitEnabled
             ? (session->altGlobalUploadSpeedLimit() / 1024)
@@ -354,7 +394,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
         .savePath = m_ui->savePath->selectedPath(),
         .downloadPath = m_ui->downloadPath->selectedPath(),
         .category = m_ui->comboCategory->currentText(),
-        .ratio = m_ui->torrentShareLimitsWidget->ratioLimit(),
+        .contentLayoutIndex = m_ui->comboContentLayout->currentIndex(),
+        .ratio =m_ui->torrentShareLimitsWidget->ratioLimit(),
         .seedingTime = m_ui->torrentShareLimitsWidget->seedingTimeLimit(),
         .inactiveSeedingTime = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit(),
         .shareLimitsMode = m_ui->torrentShareLimitsWidget->shareLimitsMode(),
@@ -410,6 +451,11 @@ QSize TorrentOptionsDialog::sizeHint() const
 
 void TorrentOptionsDialog::accept()
 {
+    const QVariant contentLayoutData = m_ui->comboContentLayout->currentData();
+    const bool shouldApplyContentLayout = m_ui->comboContentLayout->isEnabled() && contentLayoutData.isValid()
+            && (m_ui->comboContentLayout->currentIndex() != m_initialValues.contentLayoutIndex);
+    QStringList contentLayoutErrors;
+
     auto *session = BitTorrent::Session::instance();
     for (const BitTorrent::TorrentID &id : asConst(m_torrentIDs))
     {
@@ -446,6 +492,18 @@ void TorrentOptionsDialog::accept()
                 session->addCategory(category);
 
             torrent->setCategory(category);
+        }
+
+        if (shouldApplyContentLayout)
+        {
+            try
+            {
+                torrent->applyContentLayout(contentLayoutData.value<BitTorrent::TorrentContentLayout>());
+            }
+            catch (const RuntimeError &error)
+            {
+                contentLayoutErrors.append(u"%1: %2"_s.arg(torrent->name(), error.message()));
+            }
         }
 
         if (m_initialValues.upSpeedLimit != m_ui->spinUploadLimit->value())
@@ -502,6 +560,9 @@ void TorrentOptionsDialog::accept()
         if (m_initialValues.firstLastPieces != m_ui->checkFirstLastPieces->checkState())
             torrent->setFirstLastPiecePriority(m_ui->checkFirstLastPieces->isChecked());
     }
+
+    if (!contentLayoutErrors.isEmpty())
+        QMessageBox::warning(this, tr("Content layout"), contentLayoutErrors.join(u'\n'));
 
     QDialog::accept();
 }

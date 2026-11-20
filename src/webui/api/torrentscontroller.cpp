@@ -51,9 +51,11 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sslparameters.h"
 #include "base/bittorrent/torrent.h"
+#include "base/bittorrent/torrentcontentlayout.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/bittorrent/trackerentrystatus.h"
+#include "base/exceptions.h"
 #include "base/interfaces/iapplication.h"
 #include "base/global.h"
 #include "base/logger.h"
@@ -2211,6 +2213,38 @@ void TorrentsController::renameFolderAction()
     {
         throw APIError(APIErrorType::Conflict, error.message());
     }
+
+    setResult(QString());
+}
+
+void TorrentsController::setContentLayoutAction()
+{
+    requireParams({u"hashes"_s, u"contentLayout"_s});
+
+    // "Original" is intentionally not accepted, it cannot be restored after the files were renamed
+    const QString layoutStr = params()[u"contentLayout"_s];
+    BitTorrent::TorrentContentLayout layout = BitTorrent::TorrentContentLayout::Subfolder;
+    if (layoutStr == u"NoSubfolder")
+        layout = BitTorrent::TorrentContentLayout::NoSubfolder;
+    else if (layoutStr != u"Subfolder")
+        throw APIError(APIErrorType::BadParams, tr("'%1' parameter has invalid value").arg(u"contentLayout"_s));
+
+    const QStringList hashes {params()[u"hashes"_s].split(u'|', Qt::SkipEmptyParts)};
+    QStringList errors;
+    applyToTorrents(hashes, [layout, &errors](BitTorrent::Torrent *const torrent)
+    {
+        try
+        {
+            torrent->applyContentLayout(layout);
+        }
+        catch (const RuntimeError &error)
+        {
+            errors.append(u"%1: %2"_s.arg(torrent->name(), error.message()));
+        }
+    });
+
+    if (!errors.isEmpty())
+        throw APIError(APIErrorType::Conflict, errors.join(u'\n'));
 
     setResult(QString());
 }
