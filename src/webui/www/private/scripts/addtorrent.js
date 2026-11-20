@@ -31,6 +31,7 @@ window.qBittorrent.AddTorrent ??= (() => {
             changeTMM: changeTMM,
             metadataCompleted: metadataCompleted,
             populateMetadata: populateMetadata,
+            renameNode: renameNode,
             setWindowId: setWindowId,
             submitForm: submitForm,
             init: init
@@ -352,6 +353,80 @@ window.qBittorrent.AddTorrent ??= (() => {
         windowId = id;
     };
 
+    const openRenameDialog = (node) => {
+        new window.parent.MochaUI.Window({
+            id: "addTorrentRenamePage",
+            icon: "images/qbittorrent-tray.svg",
+            title: "QBT_TR(Renaming)QBT_TR[CONTEXT=AddNewTorrentDialog]",
+            loadMethod: "iframe",
+            contentURL: `addtorrent_rename.html?v=${CACHEID}&windowId=${encodeURIComponent(windowId)}&rowId=${node.rowId}&isFolder=${node.isFolder}&path=${encodeURIComponent(node.path)}`,
+            scrollbars: false,
+            resizable: true,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: window.parent.qBittorrent.Dialog.limitWidthToViewport(400),
+            height: 100
+        });
+    };
+
+    const removeFileExtension = (path) => {
+        const parentPath = window.qBittorrent.Filesystem.folderName(path);
+        const filename = window.qBittorrent.Filesystem.fileName(path);
+        const extensionIndex = filename.lastIndexOf(".");
+        if (extensionIndex <= 0)
+            return path;
+
+        const newFileName = filename.substring(0, extensionIndex);
+        return parentPath
+            ? `${parentPath}${window.qBittorrent.Filesystem.PathSeparator}${newFileName}`
+            : newFileName;
+    };
+
+    const getRootFolder = (filePaths) => {
+        let rootFolder = "";
+        for (const filePath of filePaths) {
+            const pathElements = filePath.split(window.qBittorrent.Filesystem.PathSeparator).filter(item => item.length > 0);
+            if (pathElements.length <= 1)
+                return "";
+
+            if (rootFolder === "")
+                rootFolder = pathElements[0];
+            else if (rootFolder !== pathElements[0])
+                return "";
+        }
+
+        return rootFolder;
+    };
+
+    const applyContentLayout = (filePaths) => {
+        const contentLayout = document.getElementById("contentLayout").value;
+        if (contentLayout === "Original")
+            return filePaths;
+
+        const rootFolder = getRootFolder(filePaths);
+        const originalContentLayout = (rootFolder === "") ? "NoSubfolder" : "Subfolder";
+        if (contentLayout === originalContentLayout)
+            return filePaths;
+
+        if (contentLayout === "NoSubfolder")
+            return filePaths.map(path => path.substring(rootFolder.length + 1));
+
+        const subfolderName = removeFileExtension(filePaths[0]);
+        return filePaths.map(path => `${subfolderName}${window.qBittorrent.Filesystem.PathSeparator}${path}`);
+    };
+
+    const renameNode = (rowId, newName) => {
+        if (table === null) {
+            return {
+                success: false,
+                errorMessage: "QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]"
+            };
+        }
+
+        return window.qBittorrent.TorrentContent.renameNode(rowId, newName);
+    };
+
     const submitForm = () => {
         document.getElementById("startTorrentHidden").value = document.getElementById("startTorrent").checked ? "false" : "true";
 
@@ -359,10 +434,21 @@ window.qBittorrent.AddTorrent ??= (() => {
         document.getElementById("upLimitHidden").value = Number(document.getElementById("upLimitText").value) * 1024;
 
         if (table !== null) {
-            document.getElementById("filePriorities").value = table.getFileTreeArray()
+            const files = table.getFileTreeArray()
                 .filter((node) => !node.isFolder)
                 .sort((node1, node2) => (node1.fileId - node2.fileId))
-                .map((node) => node.priority);
+            ;
+            document.getElementById("filePriorities").value = files
+                .map((node) => node.priority)
+                .join(",");
+
+            const filePathsInput = document.getElementById("filePaths");
+            filePathsInput.value = "";
+            const hasRenamedPaths = files.some((node) => (node.path !== node.originalPath));
+            if (hasRenamedPaths) {
+                const modifiedPaths = applyContentLayout(files.map(node => node.path));
+                filePathsInput.value = modifiedPaths.join("\n");
+            }
         }
 
         if (!isAutoTMMEnabled())
@@ -398,9 +484,26 @@ window.qBittorrent.AddTorrent ??= (() => {
             requests.push(fetch("api/v2/torrents/add", { method: "POST", body: groupFormData }));
         }
 
-        Promise.allSettled(requests).then(() => {
-            window.parent.qBittorrent.Client.closeFrameWindow(window);
-        });
+        Promise.all(requests)
+            .then(async (responses) => {
+                for (const response of responses) {
+                    if (response.ok)
+                        continue;
+
+                    const errorMessage = await response.text();
+                    alert(errorMessage || "QBT_TR(Unable to add torrent.)QBT_TR[CONTEXT=HttpServer]");
+                    document.getElementById("loadingSpinner").style.display = "none";
+                    form.querySelector("button[type=submit]").disabled = false;
+                    return;
+                }
+
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
+            })
+            .catch((error) => {
+                alert(error.message || "QBT_TR(Unable to add torrent.)QBT_TR[CONTEXT=HttpServer]");
+                document.getElementById("loadingSpinner").style.display = "none";
+                form.querySelector("button[type=submit]").disabled = false;
+            });
     };
 
     const init = (source, fetchMetadata, sharedModeParam = false, enginesParam = [], totalSizeBytes = null) => {
@@ -416,7 +519,14 @@ window.qBittorrent.AddTorrent ??= (() => {
         }
 
         if (!sharedMode) {
-            table = window.qBittorrent.TorrentContent.init("addTorrentFilesTableDiv", window.qBittorrent.DynamicTable.AddTorrentFilesTable);
+            const onFileRename = (selectedRows, selectedNodes) => {
+                if (selectedNodes.length !== 1)
+                    return;
+
+                openRenameDialog(selectedNodes[0]);
+            };
+
+            table = window.qBittorrent.TorrentContent.init("addTorrentFilesTableDiv", window.qBittorrent.DynamicTable.AddTorrentFilesTable, undefined, onFileRename);
             if (fetchMetadata)
                 loadMetadata(source, enginesParam[0]);
         }

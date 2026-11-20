@@ -38,17 +38,27 @@ window.qBittorrent.Filesystem ??= (() => {
             getServerPathSeparator: getServerPathSeparator,
             fileExtension: fileExtension,
             fileName: fileName,
-            folderName: folderName
+            folderName: folderName,
+            isCaseSensitive: isCaseSensitive,
+            isValidFileName: isValidFileName
         };
     };
 
     const PathSeparator = "/";
 
+    const getPlatform = () => {
+        const buildInfo = window.qBittorrent?.Cache?.buildInfo
+            ?? window.parent?.qBittorrent?.Cache?.buildInfo;
+        return buildInfo?.get().platform;
+    };
+
+    const isCaseSensitive = () => (getPlatform() !== "windows");
+
     /**
      * The native path separator used on the server
      */
     const getServerPathSeparator = () => {
-        return (window.qBittorrent?.Cache?.buildInfo.get().platform === "windows")
+        return (getPlatform() === "windows")
             ? "\\" : PathSeparator;
     };
 
@@ -74,6 +84,50 @@ window.qBittorrent.Filesystem ??= (() => {
         if (slashIndex === -1)
             return "";
         return filepath.substring(0, slashIndex);
+    };
+
+    // Keep this in sync with `Utils::Fs::isValidFileName()` in `src/base/utils/fs.cpp`.
+    const isValidFileName = (name) => {
+        if ((name === "") || (name === ".") || (name === ".."))
+            return false;
+
+        const platform = getPlatform();
+        const isWindows = (platform === "windows");
+        const isMacOS = (platform === "macos");
+        const nameLength = isWindows ? name.length : new TextEncoder().encode(name).length;
+        if (nameLength > 255)
+            return false;
+
+        if (isWindows) {
+            if (name.endsWith(".") || name.endsWith(" "))
+                return false;
+
+            const reservedDeviceNames = new Set([
+                "CON", "PRN", "AUX", "NUL",
+                "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9",
+                "COM¹", "COM²", "COM³",
+                "LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8", "LPT9",
+                "LPT¹", "LPT²", "LPT³"
+            ]);
+            const baseName = name.split(".", 1)[0].toUpperCase();
+            if (reservedDeviceNames.has(baseName))
+                return false;
+        }
+
+        for (let i = 0; i < name.length; ++i) {
+            const codepoint = name.charCodeAt(i);
+            const ch = name[i];
+            if ((codepoint < 32) || (codepoint === 127) || (ch === "/"))
+                return false;
+
+            if (isWindows && ((ch === "\\") || (ch === "<") || (ch === ">")
+                || (ch === ":") || (ch === "\"") || (ch === "|") || (ch === "?") || (ch === "*")))
+                return false;
+            if (isMacOS && (ch === ":"))
+                return false;
+        }
+
+        return true;
     };
 
     return exports();

@@ -40,6 +40,7 @@ window.qBittorrent.TorrentContent ??= (() => {
             createPriorityCombo: createPriorityCombo,
             updatePriorityCombo: updatePriorityCombo,
             updateData: updateData,
+            renameNode: renameNode,
             clearFilterInputTimer: clearFilterInputTimer
         };
     };
@@ -342,6 +343,7 @@ window.qBittorrent.TorrentContent ??= (() => {
             const childNode = new window.qBittorrent.FileTree.FileNode();
             childNode.name = row.name;
             childNode.path = row.fileName;
+            childNode.originalPath = row.fileName;
             childNode.rowId = rowId;
             childNode.fileId = row.fileId;
             childNode.size = row.size;
@@ -449,6 +451,77 @@ window.qBittorrent.TorrentContent ??= (() => {
         }
     };
 
+    const renameNode = (rowId, newName) => {
+        const node = torrentFilesTable.getNode(rowId);
+        if (node === null) {
+            return {
+                success: false,
+                errorMessage: "QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]"
+            };
+        }
+
+        newName = newName.trim();
+        if (newName === "") {
+            return {
+                success: false,
+                errorMessage: "QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]"
+            };
+        }
+
+        if (!window.qBittorrent.Filesystem.isValidFileName(newName)) {
+            return {
+                success: false,
+                errorMessage: node.isFolder
+                    ? "QBT_TR(Folder name has invalid characters)QBT_TR[CONTEXT=AddNewTorrentDialog]"
+                    : "QBT_TR(File name has invalid characters)QBT_TR[CONTEXT=AddNewTorrentDialog]"
+            };
+        }
+
+        const isCaseSensitive = window.qBittorrent.Filesystem.isCaseSensitive();
+        if ((isCaseSensitive && (newName === node.name))
+            || (!isCaseSensitive && (newName.toLowerCase() === node.name.toLowerCase()))) {
+            return {
+                success: false,
+                errorMessage: "QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]"
+            };
+        }
+
+        if (node.root !== null) {
+            for (const sibling of node.root.children) {
+                if (sibling === node)
+                    continue;
+
+                if ((isCaseSensitive && (newName === sibling.name))
+                    || (!isCaseSensitive && (newName.toLowerCase() === sibling.name.toLowerCase()))) {
+                    return {
+                        success: false,
+                        errorMessage: "QBT_TR(Name already exists in this folder)QBT_TR[CONTEXT=AddNewTorrentDialog]"
+                    };
+                }
+            }
+        }
+
+        const updatePathsRecursively = (renamedNode, path) => {
+            renamedNode.path = path;
+
+            if (!renamedNode.isFolder)
+                return;
+
+            for (const child of renamedNode.children)
+                updatePathsRecursively(child, `${path}${window.qBittorrent.Filesystem.PathSeparator}${child.name}`);
+        };
+
+        const parentPath = window.qBittorrent.Filesystem.folderName(node.path);
+        const newPath = parentPath
+            ? `${parentPath}${window.qBittorrent.Filesystem.PathSeparator}${newName}`
+            : newName;
+        node.name = newName;
+        updatePathsRecursively(node, newPath);
+        torrentFilesTable.updateTable(true);
+
+        return {success: true};
+    };
+
     const init = (tableId, tableClass, onFilePriorityChangedHandler = undefined, onFileRenameHandler = undefined) => {
         if (onFilePriorityChangedHandler !== undefined)
             onFilePriorityChanged = onFilePriorityChangedHandler;
@@ -518,6 +591,7 @@ window.qBittorrent.TorrentContent ??= (() => {
             onShow: function() {
                 let hasFolder = false;
                 let isAllComplete = true;
+                const selectedRows = torrentFilesTable.selectedRowsIds();
                 for (const rowID of torrentFilesTable.selectedRowsIds()) {
                     const node = torrentFilesTable.getNode(rowID);
                     const isFullyDownloaded = node.progress >= 100;
@@ -529,8 +603,14 @@ window.qBittorrent.TorrentContent ??= (() => {
                 }
 
                 // add torrent file list doesn't have "CopyDownloadURL", "Download" actions yet
-                if (torrentFilesTable.constructor.name === "AddTorrentFilesTable")
+                if (torrentFilesTable.constructor.name === "AddTorrentFilesTable") {
+                    const hasSingleSelection = (selectedRows.length === 1);
+                    this.setEnabled("Rename", hasSingleSelection)
+                        .setTooltip("Rename", hasSingleSelection
+                            ? ""
+                            : "QBT_TR(Select a single file or folder to rename)QBT_TR[CONTEXT=AddNewTorrentDialog]");
                     return;
+                }
 
                 const fileOnlyActions = ["CopyDownloadURL", "Download"];
                 if (hasFolder) {
