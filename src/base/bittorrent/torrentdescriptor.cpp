@@ -98,7 +98,11 @@ namespace
             return false;
 
         const QString scheme = trackerURL.scheme();
-        return ((scheme == u"http") || (scheme == u"https") || (scheme == u"udp"));
+        return ((scheme == u"http") || (scheme == u"https")
+#if TORRENT_USE_RTC
+                || (scheme == u"ws") || (scheme == u"wss")
+#endif
+                || (scheme == u"udp"));
     }
 
     void removeUnsupportedTrackers(lt::add_torrent_params &params)
