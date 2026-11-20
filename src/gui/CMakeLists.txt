@@ -12,6 +12,7 @@ qt_wrap_ui(UI_HEADERS
     downloadfromurldialog.ui
     executionlogwidget.ui
     ipsubnetwhitelistoptionsdialog.ui
+    listenentrydialog.ui
     mainwindow.ui
     optionsdialog.ui
     previewselectdialog.ui
@@ -43,6 +44,7 @@ add_library(qbt_gui STATIC
     # headers
     aboutdialog.h
     addnewtorrentdialog.h
+    addressselectiontree.h
     addtorrentparamswidget.h
     advancedsettings.h
     autoexpandabledialog.h
@@ -66,6 +68,7 @@ add_library(qbt_gui STATIC
     interfaces/iguiapplication.h
     ipsubnetwhitelistoptionsdialog.h
     lineedit.h
+    listenentrydialog.h
     log/logfiltermodel.h
     log/loglistview.h
     log/logmodel.h
@@ -154,6 +157,7 @@ add_library(qbt_gui STATIC
     # sources
     aboutdialog.cpp
     addnewtorrentdialog.cpp
+    addressselectiontree.cpp
     addtorrentparamswidget.cpp
     advancedsettings.cpp
     autoexpandabledialog.cpp
@@ -172,6 +176,7 @@ add_library(qbt_gui STATIC
     hidabletabwidget.cpp
     ipsubnetwhitelistoptionsdialog.cpp
     lineedit.cpp
+    listenentrydialog.cpp
     log/logfiltermodel.cpp
     log/loglistview.cpp
     log/logmodel.cpp

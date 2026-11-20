@@ -40,7 +40,7 @@ password in the program preferences.
 
 **`--webui-port=<port>`** Change the WebUI port.
 
-**`--torrenting-port=<port>`** Change the torrenting port.
+**`--torrenting-port=<port>`** Change the torrenting port of the listen entries.
 
 **`-d | --daemon`** Run in daemon-mode (background).
 
