@@ -109,6 +109,9 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
        </property>
        <item>
         <widget class="QTabWidget" name="tabWidget">
+         <property name="usesScrollButtons">
+          <bool>true</bool>
+         </property>
          <property name="tabsClosable">
           <bool>true</bool>
          </property>
