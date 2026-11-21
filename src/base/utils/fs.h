@@ -48,7 +48,7 @@ namespace Utils::Fs
     qint64 freeDiskSpaceOnPath(const Path &path);
 
     bool isValidFileName(QStringView name);
-    bool isRegularFile(const Path &path);
+    bool isRegularFile(const Path &path, QString* outErrorString = nullptr);
     bool isDir(const Path &path);
     bool isReadable(const Path &path);
     bool isWritable(const Path &path);
