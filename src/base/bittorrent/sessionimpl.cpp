@@ -766,6 +766,19 @@ SessionImpl::SessionImpl(QObject *parent)
 
 SessionImpl::~SessionImpl()
 {
+    // Flush pending content removals. Queued remover jobs and not-yet-delivered
+    // libtorrent alerts are lost during shutdown, which would otherwise leave
+    // torrent content behind without any log entry. Delete synchronously here
+    // while the logger is still alive so the files are actually removed.
+    for (const RemovingTorrentData &jobData : asConst(m_removingTorrents))
+    {
+        if (jobData.removeOption != TorrentRemoveOption::RemoveContent)
+            continue;
+        m_torrentContentRemover->performJob(jobData.name, jobData.contentStoragePath
+                , jobData.fileNames, m_torrentContentRemoveOption);
+    }
+    m_removingTorrents.clear();
+
     m_nativeSession->pause();
 
     const auto timeout = (m_shutdownTimeout >= 0) ? (static_cast<qint64>(m_shutdownTimeout) * 1000) : -1;
@@ -7064,8 +7077,7 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
                , Log::WARNING);
     }
 
-    if ((removingTorrentDataIter->removeOption == TorrentRemoveOption::RemoveContent)
-            && !removingTorrentDataIter->contentStoragePath.isEmpty())
+    if (removingTorrentDataIter->removeOption == TorrentRemoveOption::RemoveContent)
     {
         QMetaObject::invokeMethod(m_torrentContentRemover, [this, jobData = *removingTorrentDataIter]
         {
