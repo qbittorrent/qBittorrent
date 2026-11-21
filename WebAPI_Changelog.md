@@ -16,6 +16,8 @@
 * [#25213](https://github.com/qbittorrent/qBittorrent/pull/25213)
   * `app/preferences` endpoint includes `exclude_files_without_extension` (bool) option
   * `app/setPreferences` endpoint allows to set `exclude_files_without_extension` (bool) option
+* [#25317](https://github.com/qbittorrent/qBittorrent/pull/25317)
+  * `torrents/info` and `sync/maindata` endpoints include `tracker_status` (int) data, the aggregated status of the torrent trackers: `0` no trackers, `1` not contacted yet, `2` working, `3` announcing, `4` warning, `5` not working, `6` unreachable, `7` tracker error
 
 ## 2.16.2
 

@@ -93,6 +93,7 @@ public:
         TR_REANNOUNCE,
         TR_PRIVATE,
         TR_CREATE_DATE,
+        TR_TRACKER_STATUS,
 
         NB_COLUMNS
     };

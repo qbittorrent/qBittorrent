@@ -34,6 +34,7 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentrystatus.h"
+#include "base/bittorrent/trackersummary.h"
 #include "base/path.h"
 #include "base/tagset.h"
 #include "base/utils/datetime.h"
@@ -155,6 +156,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_ADDED_ON, Utils::DateTime::toSecsSinceEpoch(torrent.addedTime())},
         {KEY_TORRENT_COMPLETION_ON, Utils::DateTime::toSecsSinceEpoch(torrent.completedTime())},
         {KEY_TORRENT_TRACKER, torrent.currentTracker()},
+        {KEY_TORRENT_TRACKER_STATUS, static_cast<int>(BitTorrent::trackerSummaryStatus(torrent.trackers()))},
         {KEY_TORRENT_TRACKERS_COUNT, torrent.trackers().size()},
         {KEY_TORRENT_DL_LIMIT, torrent.downloadLimit()},
         {KEY_TORRENT_UP_LIMIT, torrent.uploadLimit()},

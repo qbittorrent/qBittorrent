@@ -254,6 +254,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
         return customCompare(leftValue.toReal(), rightValue.toReal());
 
     case TransferListModel::TR_STATUS:
+    case TransferListModel::TR_TRACKER_STATUS:
         return threeWayCompare(leftValue.toInt(), rightValue.toInt());
 
     case TransferListModel::TR_CREATE_DATE:

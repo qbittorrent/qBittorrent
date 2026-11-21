@@ -1234,6 +1234,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("infohash_v2", "", "QBT_TR(Info Hash v2)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("reannounce", "", "QBT_TR(Reannounce In)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("private", "", "QBT_TR(Private)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("tracker_status", "", "QBT_TR_JS(Tracker Status)QBT_TR[CONTEXT=TransferListModel]", 110, true);
 
             this.columns["state_icon"].dataProperties[0] = "state";
             this.columns["name"].dataProperties.push("state");
@@ -1629,6 +1630,24 @@ window.qBittorrent.DynamicTable ??= (() => {
                         ? "QBT_TR(Yes)QBT_TR[CONTEXT=PropertiesWidget]"
                         : "QBT_TR(No)QBT_TR[CONTEXT=PropertiesWidget]")
                     : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
+                td.textContent = string;
+                td.title = string;
+            };
+
+            // tracker_status (values match BitTorrent::TrackerSummaryStatus)
+            this.columns["tracker_status"].updateTd = function(td, row) {
+                const statusTexts = [
+                    "QBT_TR_JS(No trackers)QBT_TR[CONTEXT=TrackerSummary]",
+                    "QBT_TR_JS(Not contacted yet)QBT_TR[CONTEXT=TrackerSummary]",
+                    "QBT_TR_JS(Working)QBT_TR[CONTEXT=TrackerSummary]",
+                    "QBT_TR_JS(Announcing...)QBT_TR[CONTEXT=TrackerSummary]",
+                    "QBT_TR_JS(Warning)QBT_TR[CONTEXT=TrackerSummary]",
+                    "QBT_TR_JS(Not working)QBT_TR[CONTEXT=TrackerSummary]",
+                    "QBT_TR_JS(Unreachable)QBT_TR[CONTEXT=TrackerSummary]",
+                    "QBT_TR_JS(Tracker error)QBT_TR[CONTEXT=TrackerSummary]"
+                ];
+                const value = this.getRowValue(row);
+                const string = statusTexts[value] ?? "";
                 td.textContent = string;
                 td.title = string;
             };
