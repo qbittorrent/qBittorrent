@@ -82,9 +82,9 @@ window.qBittorrent.Statistics ??= (() => {
         document.getElementById("WriteCacheOverload").textContent = `${statistics.writeCacheOverload}%`;
         document.getElementById("ReadCacheOverload").textContent = `${statistics.readCacheOverload}%`;
         document.getElementById("QueuedIOJobs").textContent = statistics.queuedIOJobs;
-        document.getElementById("AverageTimeInQueue").textContent = `${statistics.averageTimeInQueue} ms`;
+        document.getElementById("AverageTimeInQueue").textContent = `${statistics.averageTimeInQueue} μs`;
         document.getElementById("TotalQueuedSize").textContent = window.qBittorrent.Misc.friendlyUnit(statistics.totalQueuedSize, false);
-        document.getElementById("RequestLatency").textContent = `${statistics.requestLatency} ms`;
+        document.getElementById("RequestLatency").textContent = `${statistics.requestLatency} μs`;
         // Tracker statistics
         document.getElementById("queuedTrackerAnnounces").textContent = statistics.queuedTrackerAnnounces;
     };

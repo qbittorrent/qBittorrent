@@ -108,11 +108,11 @@ void StatsDialog::update()
         : u"0"_s));
 
     // Disk queues
-    const QString msSuffix = tr("%1 ms");
+    const QString usSuffix = tr("%1 μs");
     m_ui->labelQueuedJobs->setText(QString::number(cs.jobQueueLength));
-    m_ui->labelJobsTime->setText(msSuffix.arg(cs.averageJobTime));
+    m_ui->labelJobsTime->setText(usSuffix.arg(cs.averageJobTime));
     m_ui->labelQueuedBytes->setText(Utils::Misc::friendlyUnit(cs.queuedBytes));
-    m_ui->labelRequestLatency->setText(msSuffix.arg(cs.requestLatency));
+    m_ui->labelRequestLatency->setText(usSuffix.arg(cs.requestLatency));
 
     // Total connected peers
     m_ui->labelPeers->setText(QString::number(ss.peersCount));
