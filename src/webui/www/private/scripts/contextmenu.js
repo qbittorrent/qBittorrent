@@ -334,9 +334,7 @@ window.qBittorrent.ContextMenu ??= (() => {
     class TorrentsTableContextMenu extends ContextMenu {
         updateMenuItems() {
             let all_are_seq_dl = true;
-            let there_are_seq_dl = false;
             let all_are_f_l_piece_prio = true;
-            let there_are_f_l_piece_prio = false;
             let all_are_downloaded = true;
             let all_are_stopped = true;
             let there_are_stopped = false;
@@ -355,13 +353,9 @@ window.qBittorrent.ContextMenu ??= (() => {
 
                 if (data["seq_dl"] !== true)
                     all_are_seq_dl = false;
-                else
-                    there_are_seq_dl = true;
 
                 if (data["f_l_piece_prio"] !== true)
                     all_are_f_l_piece_prio = false;
-                else
-                    there_are_f_l_piece_prio = true;
 
                 if (data["progress"] !== 1) // not downloaded
                     all_are_downloaded = false;
@@ -423,20 +417,8 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.setItemChecked("superSeeding", all_are_super_seeding);
             }
             else {
-                const show_seq_dl = (all_are_seq_dl || !there_are_seq_dl);
-                const show_f_l_piece_prio = (all_are_f_l_piece_prio || !there_are_f_l_piece_prio);
-
-                this.menu.querySelector("a[href$=firstLastPiecePrio]").parentNode.classList.toggle("separator", (!show_seq_dl && show_f_l_piece_prio));
-
-                if (show_seq_dl)
-                    this.showItem("sequentialDownload");
-                else
-                    this.hideItem("sequentialDownload");
-
-                if (show_f_l_piece_prio)
-                    this.showItem("firstLastPiecePrio");
-                else
-                    this.hideItem("firstLastPiecePrio");
+                this.showItem("sequentialDownload");
+                this.showItem("firstLastPiecePrio");
 
                 this.setItemChecked("sequentialDownload", all_are_seq_dl);
                 this.setItemChecked("firstLastPiecePrio", all_are_f_l_piece_prio);
