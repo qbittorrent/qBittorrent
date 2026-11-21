@@ -167,7 +167,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.dynamicTableDiv.addEventListener("contextmenu", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr)
+                // the header row is no row to select
+                if ((tr === null) || (tr.rowId === undefined))
                     return;
 
                 if (!this.isRowSelected(tr.rowId)) {
@@ -178,7 +179,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.dynamicTableDiv.addEventListener("touchstart", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr)
+                if ((tr === null) || (tr.rowId === undefined))
                     return;
 
                 if (!this.isRowSelected(tr.rowId)) {
@@ -491,13 +492,11 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             const menuId = `${this.dynamicTableDivId}_headerMenu`;
 
-            // reuse menu if already exists
-            let ul = document.getElementById(menuId);
-            if (ul === null) {
-                ul = document.createElement("ul");
-                ul.id = menuId;
-                ul.className = "contextMenu scrollableMenu";
-            }
+            // replace the menu of an earlier table, whose listeners would keep that table alive
+            document.getElementById(menuId)?.remove();
+            const ul = document.createElement("ul");
+            ul.id = menuId;
+            ul.className = "contextMenu scrollableMenu";
 
             const createLi = (columnName, text) => {
                 const anchor = document.createElement("a");
@@ -528,9 +527,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             const onMenuItemClicked = function(element, ref, action) {
                 this.showColumn(action, this.columns[action].visible === "0");
             }.bind(this);
-
-            // recreate child elements when reusing (enables the context menu to work correctly)
-            ul.replaceChildren();
 
             for (let i = 0; i < this.columns.length; ++i) {
                 const text = this.columns[i].caption;
