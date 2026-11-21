@@ -34,6 +34,9 @@ LangString inst_requires_win10 ${LANG_CROATIAN}  "This installer requires at lea
 LangString inst_uninstall_link_description ${LANG_CROATIAN} "Uninstall qBittorrent"
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 LangString inst_arch_mismatch_arm64_on_x64 ${LANG_CROATIAN} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
+;LangString inst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString inst_findproc_other_error ${LANG_CROATIAN} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+
 
 ;------------------------------------
 ;Uninstaller strings
@@ -60,3 +63,5 @@ LangString uninst_warning ${LANG_CROATIAN} "qBittorrent je pokrenut. Zatvorite g
 LangString uninst_tor_warn ${LANG_CROATIAN} "Nije moguće ukloniti .torrent asocijaciju. Asocirana je s:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"
 LangString uninst_mag_warn ${LANG_CROATIAN} "Nije moguće ukloniti magnet asocijaciju. Asociran je s:"
+;LangString uninst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString uninst_findproc_other_error ${LANG_CROATIAN} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
