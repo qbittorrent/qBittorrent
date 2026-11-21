@@ -89,6 +89,11 @@ public:
 signals:
     void renameFailed(const QString &errorMessage);
 
+#ifdef Q_OS_MACOS
+    void priorityUpdateStarted();
+    void priorityUpdateFinished();
+#endif
+
 private:
     using ColumnInterval = IndexInterval<int>;
 
