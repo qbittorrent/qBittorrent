@@ -102,6 +102,7 @@ private slots:
     void decreasePrioAction();
     void topPrioAction();
     void bottomPrioAction();
+    void setContentLayoutAction();
     void setLocationAction();
     void setSavePathAction();
     void setDownloadPathAction();

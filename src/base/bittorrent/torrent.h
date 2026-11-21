@@ -40,6 +40,7 @@
 #include "sharelimits.h"
 #include "torrentannouncestatus.h"
 #include "torrentcontenthandler.h"
+#include "torrentcontentlayout.h"
 
 class QBitArray;
 class QByteArray;
@@ -195,6 +196,13 @@ namespace BitTorrent
         virtual void setDownloadPath(const Path &downloadPath) = 0;
         virtual Path rootPath() const = 0;
         virtual Path contentPath() const = 0;
+        // Adds or removes the top-level folder shared by all files of the torrent.
+        // Only Subfolder and NoSubfolder are meaningful. Original is rejected,
+        // because it cannot be reconstructed after user renames.
+        // A request that matches the current state is a no-op.
+        // Renames are queued (asynchronous, like renameFile/renameFolder).
+        // Throws RuntimeError if the request cannot be accepted.
+        virtual void applyContentLayout(TorrentContentLayout layout) = 0;
         virtual QString category() const = 0;
         virtual bool belongsToCategory(const QString &category) const = 0;
         virtual bool setCategory(const QString &category) = 0;
