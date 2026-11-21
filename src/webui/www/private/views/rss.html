@@ -381,8 +381,12 @@
         };
 
         const load = () => {
-            feedRefreshTimer = setTimeout(async () => {
+            clearTimeout(feedRefreshTimer);
+            const timer = setTimeout(async () => {
                 const hasChanges = await updateRssFeedList().catch(() => false);
+                // unloaded or restarted meanwhile
+                if (feedRefreshTimer !== timer)
+                    return;
 
                 if (hasChanges)
                     currentServerSyncRssDataInterval = serverSyncRssDataInterval;
@@ -391,6 +395,7 @@
 
                 load();
             }, currentServerSyncRssDataInterval);
+            feedRefreshTimer = timer;
         };
 
         const addRSSFeed = () => {
