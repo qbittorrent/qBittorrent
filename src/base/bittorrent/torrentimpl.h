@@ -274,6 +274,7 @@ namespace BitTorrent
         void handleCategoryOptionsChanged();
         void handleAppendExtensionToggled();
         void handleUnwantedFolderToggled();
+        void handleMoveCompletedFilesEarlyToggled();
         void requestResumeData(lt::resume_data_flags_t flags = {});
         void deferredRequestResumeData();
         void handleMoveStorageJobFinished(const Path &path, MoveStorageContext context, bool hasOutstandingJob);
@@ -312,6 +313,10 @@ namespace BitTorrent
         void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath) override;
 
         Path makeActualPath(int index, const Path &path) const;
+        bool shouldFileBeMovedEarly(int index) const;
+        void relocateEarlyMovedFiles();
+        bool hasPendingFileRename(int index) const;
+        bool manageActualFilePath(int index, const Path &actualPath);
         Path makeUserPath(const Path &path) const;
         void adjustStorageLocation();
         void moveStorage(const Path &newPath, MoveStorageContext context);
@@ -352,6 +357,7 @@ namespace BitTorrent
         // all file rename jobs complete, all file move jobs complete
         QQueue<EventTrigger> m_moveFinishedTriggers;
         bool m_storageIsMoving = false;
+        bool m_isManageActualFilePathsDeferred = false;
 
         QQueue<FileRenameInfo> m_renamingFiles;
         QQueue<FolderRenameInfo> m_renamingFolders;

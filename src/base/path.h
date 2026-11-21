@@ -139,6 +139,9 @@ private:
 
 bool operator==(const Path &lhs, const Path &rhs);
 Path operator+(const Path &lhs, QStringView rhs);
+// Joins `path` to `basePath` unless `path` is already absolute
+// (e.g. a torrent file that was moved out of the torrent storage)
+Path resolvedPath(const Path &basePath, const Path &path);
 
 QDataStream &operator<<(QDataStream &out, const Path &path);
 QDataStream &operator>>(QDataStream &in, Path &path);

@@ -1267,6 +1267,16 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkMoveCompletedFilesEarly">
+              <property name="toolTip">
+               <string>When a separate path for incomplete torrents is used, move each file to the save path as soon as it is completed instead of waiting for the whole torrent</string>
+              </property>
+              <property name="text">
+               <string>Move completed files to the save path one by one</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QCheckBox" name="checkRecursiveDownload">
               <property name="toolTip">
                <string>When a torrent is downloaded, offer to add torrents from any .torrent files found inside it</string>

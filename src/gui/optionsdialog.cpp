@@ -640,6 +640,7 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->checkPreallocateAll->setChecked(session->isPreallocationEnabled());
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
     m_ui->checkUnwantedFolder->setChecked(session->isUnwantedFolderEnabled());
+    m_ui->checkMoveCompletedFilesEarly->setChecked(session->isMoveCompletedFilesEarlyEnabled());
     m_ui->checkRecursiveDownload->setChecked(pref->isRecursiveDownloadEnabled());
 
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
@@ -778,6 +779,7 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->checkPreallocateAll, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAppendqB, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUnwantedFolder, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMoveCompletedFilesEarly, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkRecursiveDownload, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->comboSavingMode, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -853,6 +855,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setPreallocationEnabled(preAllocateAllFiles());
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
     session->setUnwantedFolderEnabled(m_ui->checkUnwantedFolder->isChecked());
+    session->setMoveCompletedFilesEarlyEnabled(m_ui->checkMoveCompletedFilesEarly->isChecked());
     pref->setRecursiveDownloadEnabled(m_ui->checkRecursiveDownload->isChecked());
 
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);

@@ -16,6 +16,9 @@
 * [#25213](https://github.com/qbittorrent/qBittorrent/pull/25213)
   * `app/preferences` endpoint includes `exclude_files_without_extension` (bool) option
   * `app/setPreferences` endpoint allows to set `exclude_files_without_extension` (bool) option
+* [#25318](https://github.com/qbittorrent/qBittorrent/pull/25318)
+  * `app/preferences` endpoint includes `move_completed_files_early` (bool) option
+  * `app/setPreferences` endpoint allows to set `move_completed_files_early` (bool) option
 
 ## 2.16.2
 

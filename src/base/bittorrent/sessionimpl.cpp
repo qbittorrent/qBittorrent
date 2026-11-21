@@ -573,6 +573,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY(u"TorrentContentLayout"_s), TorrentContentLayout::Original)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY(u"AddExtensionToIncompleteFiles"_s), false)
     , m_isUnwantedFolderEnabled(BITTORRENT_SESSION_KEY(u"UseUnwantedFolder"_s), false)
+    , m_isMoveCompletedFilesEarlyEnabled(BITTORRENT_SESSION_KEY(u"MoveCompletedFilesEarly"_s), false)
     , m_refreshInterval(BITTORRENT_SESSION_KEY(u"RefreshInterval"_s), 1500)
     , m_isPreallocationEnabled(BITTORRENT_SESSION_KEY(u"Preallocation"_s), false)
     , m_isTorrentFileBackupEnabled(BITTORRENT_SESSION_KEY(u"TorrentBackupEnabled"_s), false)
@@ -943,6 +944,23 @@ void SessionImpl::setUnwantedFolderEnabled(const bool enabled)
         // append or remove .!qB extension for incomplete files
         for (TorrentImpl *const torrent : asConst(m_torrents))
             torrent->handleUnwantedFolderToggled();
+    }
+}
+
+bool SessionImpl::isMoveCompletedFilesEarlyEnabled() const
+{
+    return m_isMoveCompletedFilesEarlyEnabled;
+}
+
+void SessionImpl::setMoveCompletedFilesEarlyEnabled(const bool enabled)
+{
+    if (isMoveCompletedFilesEarlyEnabled() != enabled)
+    {
+        m_isMoveCompletedFilesEarlyEnabled = enabled;
+
+        // move already completed files to (or back from) the save path
+        for (TorrentImpl *const torrent : asConst(m_torrents))
+            torrent->handleMoveCompletedFilesEarlyToggled();
     }
 }
 

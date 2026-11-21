@@ -48,6 +48,14 @@ void BitTorrent::TorrentContentRemover::performJob(const QString &torrentName, c
         QSet<Path> topLevelFolders;
         for (const Path &fileName : fileNames)
         {
+            if (fileName.isAbsolute())
+            {
+                // the file was moved out of the torrent storage
+                if (const auto result = removeFileFn(fileName); !result && errorMessage.isEmpty())
+                    errorMessage = result.error();
+                continue;
+            }
+
             const Path rootItem = fileName.rootItem();
             if (rootItem != fileName)
                 topLevelFolders.insert(rootItem);

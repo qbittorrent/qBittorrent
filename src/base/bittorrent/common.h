@@ -33,4 +33,6 @@
 #include "base/global.h"
 
 inline const QString QB_EXT = u".!qB"_s;
+// Temporary name used while an early moved file is turned back into a regular (relative) one
+inline const QString EARLY_MOVE_TMP_EXT = u".!qBmv"_s;
 inline const QString UNWANTED_FOLDER_NAME = u".unwanted"_s;

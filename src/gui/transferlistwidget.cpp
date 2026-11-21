@@ -1521,7 +1521,7 @@ bool TransferListWidget::previewTorrentFile(const BitTorrent::Torrent *torrent, 
     // Flush data
     torrent->flushCache();
 
-    const Path path = torrent->actualStorageLocation() / torrent->actualFilePath(fileIndex);
+    const Path path = resolvedPath(torrent->actualStorageLocation(), torrent->actualFilePath(fileIndex));
     if (!path.exists())
     {
         QMessageBox::critical(errorParent, tr("Preview impossible")

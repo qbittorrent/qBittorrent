@@ -492,6 +492,21 @@ private slots:
         }
     }
 
+    void testResolvedPath() const
+    {
+#ifdef Q_OS_WIN
+        const Path base {u"C:/save"_s};
+        const Path absolute {u"D:/other/file.txt"_s};
+#else
+        const Path base {u"/save"_s};
+        const Path absolute {u"/other/file.txt"_s};
+#endif
+        QCOMPARE(resolvedPath(base, Path(u"dir/file.txt"_s)), (base / Path(u"dir/file.txt"_s)));
+        QCOMPARE(resolvedPath(base, absolute), absolute);
+        QCOMPARE(resolvedPath(base, Path()), base);
+        QCOMPARE(resolvedPath(Path(), Path(u"file.txt"_s)), Path(u"file.txt"_s));
+    }
+
     void testFindRootFolder() const
     {
         QCOMPARE(Path::findRootFolder({}), {});
