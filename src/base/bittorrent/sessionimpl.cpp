@@ -134,6 +134,25 @@ namespace
     const char PEER_ID[] = "qB";
     const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2);
     const QString DEFAULT_DHT_BOOTSTRAP_NODES = u"dht.libtorrent.org:25401, dht.transmissionbt.com:6881, router.bt.ouinet.work:6881"_s;
+    const int DEFAULT_DHT_PORT = 6881;
+
+    QString normalizeDHTBootstrapNodes(const QString &nodes)
+    {
+        QStringList normalizedNodes;
+        for (const QString &entry : nodes.split(u','))
+        {
+            const QString node = entry.trimmed();
+            if (node.isEmpty())
+                continue;
+
+            // libtorrent expects "host:port" pairs. Append the default DHT port
+            // when only a host name is specified.
+            const bool hasPort = node.startsWith(u'[') ? node.contains(u"]:") : node.contains(u':');
+            normalizedNodes << (hasPort ? node : (node + u":%1"_s.arg(DEFAULT_DHT_PORT)));
+        }
+
+        return normalizedNodes.join(u", ");
+    }
 
     Path makeUniqueFilePath(const Path &dirPath, const QString &baseName, const QString &extension)
     {
@@ -828,15 +847,16 @@ SessionImpl::~SessionImpl()
 QString SessionImpl::getDHTBootstrapNodes() const
 {
     const QString nodes = m_DHTBootstrapNodes;
-    return !nodes.isEmpty() ? nodes : DEFAULT_DHT_BOOTSTRAP_NODES;
+    return normalizeDHTBootstrapNodes(!nodes.isEmpty() ? nodes : DEFAULT_DHT_BOOTSTRAP_NODES);
 }
 
 void SessionImpl::setDHTBootstrapNodes(const QString &nodes)
 {
-    if (nodes == m_DHTBootstrapNodes)
+    const QString normalizedNodes = normalizeDHTBootstrapNodes(nodes);
+    if (normalizedNodes == m_DHTBootstrapNodes)
         return;
 
-    m_DHTBootstrapNodes = nodes;
+    m_DHTBootstrapNodes = normalizedNodes;
     configureDeferred();
 }
 
