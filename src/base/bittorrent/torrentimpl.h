@@ -216,6 +216,8 @@ namespace BitTorrent
         void setFirstLastPiecePriority(bool enabled) override;
         void stop() override;
         void start(TorrentOperatingMode mode = TorrentOperatingMode::AutoManaged) override;
+        bool isDiskSpaceLimited() const;
+        void setDiskSpaceLimited(bool limited);
         void forceReannounce(int index = -1) override;
         void forceDHTAnnounce() override;
         void forceRecheck() override;
@@ -380,6 +382,7 @@ namespace BitTorrent
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM = false;
         bool m_isStopped = false;
+        bool m_isDiskSpaceLimited = false;
         StopCondition m_stopCondition = StopCondition::None;
         SSLParameters m_sslParams;
 
