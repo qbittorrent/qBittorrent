@@ -30,6 +30,7 @@
 
 #include "torrentcreator.h"
 
+#include <algorithm>
 #include <functional>
 #include <string_view>
 
@@ -160,8 +161,14 @@ void TorrentCreator::run()
 #endif
 
                 const QString dirPath = dirInfo.filePath();
-                if (m_params.ignoreDotfiles && isDotfile(Path(dirPath)))
-                    continue;
+                if (m_params.ignoreDotfiles)
+                {
+                    // iterator doesn't skip subdirs of a skipped dir, so check every path component
+                    const Path relDirPath = m_params.sourcePath.relativePathOf(Path(dirPath));
+                    const bool hasDot = std::any_of(relDirPath.begin(), relDirPath.end(), &isDotfile);
+                    if (hasDot)
+                        continue;
+                }
 
                 dirs.append(dirPath);
             }
