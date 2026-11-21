@@ -30,6 +30,11 @@
     </ul>
   </description>
   <launchable type="desktop-id">org.qbittorrent.qBittorrent.desktop</launchable>
+  <supports>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </supports>
   <screenshots>
     <screenshot type="default">
       <caption>Main window (General tab collapsed)</caption>
