@@ -76,12 +76,12 @@ Section $(inst_startmenu) ;"Create Start Menu Shortcut"
     CreateShortCut "$SMPROGRAMS\qBittorrent\$(inst_uninstall_link_description).lnk" "$INSTDIR\uninst.exe"
 SectionEnd
 
-Section /o $(inst_startup) ;"Start qBittorrent on Windows start up"
+Section /o $(inst_startup) ;"Start qBittorrent on Windows startup"
     !insertmacro UAC_AsUser_Call Function inst_startup_user ${UAC_SYNCREGISTERS}|${UAC_SYNCOUTDIR}|${UAC_SYNCINSTDIR}
 SectionEnd
 
 Function inst_startup_user
-    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "qBittorrent" "$INSTDIR\qbittorrent.exe"
+    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "qBittorrent" '"$INSTDIR\qbittorrent.exe"'
 FunctionEnd
 
 Section $(inst_firewall)
