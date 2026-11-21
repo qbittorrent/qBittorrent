@@ -180,6 +180,7 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
         setColumnHidden(TransferListModel::TR_TOTAL_SIZE, true);
         setColumnHidden(TransferListModel::TR_REANNOUNCE, true);
         setColumnHidden(TransferListModel::TR_PRIVATE, true);
+        setColumnHidden(TransferListModel::TR_MANAGEMENT_MODE, true);
     }
 
     //Ensure that at least one column is visible at all times
