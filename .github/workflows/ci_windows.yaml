@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   ci:
-    name: Build (${{ matrix.libtorrent.version }}, ${{ matrix.config.arch }})
+    name: Build (${{ matrix.libtorrent.version }}, ${{ matrix.qt_version }}, ${{ matrix.config.arch }})
     runs-on: ${{ matrix.config.os }}
     permissions:
       actions: write
@@ -37,6 +37,7 @@ jobs:
             boost_patch_version: "0"
             boost_sha256: "2575e74ffc3ef1cd0babac2c1ee8bdb5782a0ee672b1912da40e5b4b591ca01f"
             libt_build_flags: ""
+        qt_version: ["6.10.3"]
         config:
         - os: windows-latest
           arch: x64
@@ -129,7 +130,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: "6.10.3"
+          version: ${{ matrix.qt_version }}
           arch: ${{ matrix.config.qt_arch }}
           archives: qtbase qtsvg qttools
           modules: qtimageformats
