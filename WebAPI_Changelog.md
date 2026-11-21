@@ -16,6 +16,8 @@
 * [#25213](https://github.com/qbittorrent/qBittorrent/pull/25213)
   * `app/preferences` endpoint includes `exclude_files_without_extension` (bool) option
   * `app/setPreferences` endpoint allows to set `exclude_files_without_extension` (bool) option
+* [#25319](https://github.com/qbittorrent/qBittorrent/pull/25319)
+  * Add `torrents/removeUnwantedFilesData` endpoint with `hash` (string) and `id` (string, file indexes separated by `|`) as parameters for freeing disk space occupied by files with `0` (do not download) priority (accepts `POST` requests only)
 
 ## 2.16.2
 

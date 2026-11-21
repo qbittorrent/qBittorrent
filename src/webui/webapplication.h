@@ -204,6 +204,7 @@ private:
         {{u"torrents"_s, u"editWebSeed"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"fetchMetadata"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"filePrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"removeUnwantedFilesData"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"increasePrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"parseMetadata"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"reannounce"_s}, Http::HEADER_REQUEST_METHOD_POST},

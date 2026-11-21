@@ -26,10 +26,14 @@
  * exception statement from your version.
  */
 
+#include <QByteArray>
+#include <QFile>
 #include <QObject>
+#include <QTemporaryDir>
 #include <QTest>
 
 #include "base/global.h"
+#include "base/path.h"
 #include "base/utils/fs.h"
 
 class TestUtilsFs final : public QObject
@@ -47,6 +51,56 @@ private slots:
         QCOMPARE(Utils::Fs::toValidFileName(u"///"_s, {}), QString());
         QCOMPARE(Utils::Fs::toValidFileName(u"."_s, {}), QString());
         QCOMPARE(Utils::Fs::toValidFileName(u" a/b "_s, {}), u"ab"_s);
+    }
+
+    void testDeallocateFileRange() const
+    {
+        const QTemporaryDir tmpDir;
+        QVERIFY(tmpDir.isValid());
+        const Path filePath = Path(tmpDir.path()) / Path(u"sparse.bin"_s);
+
+        const qint64 chunkSize = 1024 * 1024;
+        const QByteArray chunk(chunkSize, 'x');
+        {
+            QFile file {filePath.data()};
+            QVERIFY(file.open(QIODevice::WriteOnly));
+            for (int i = 0; i < 4; ++i)
+                QCOMPARE(file.write(chunk), chunkSize);
+        }
+
+        // deallocate the 2nd and the 3rd chunk
+        const auto result = Utils::Fs::deallocateFileRange(filePath, chunkSize, (2 * chunkSize));
+        if (!result)
+            QSKIP(qUtf8Printable(u"Freeing file range isn't supported here: "_s + result.error()));
+
+        QFile file {filePath.data()};
+        QVERIFY(file.open(QIODevice::ReadOnly));
+        QCOMPARE(file.size(), (4 * chunkSize));  // logical size is kept
+        QCOMPARE(file.read(chunkSize), chunk);
+        QCOMPARE(file.read(2 * chunkSize), QByteArray((2 * chunkSize), '\0'));
+        QCOMPARE(file.read(chunkSize), chunk);
+
+        // nothing to do for empty ranges
+        QVERIFY(Utils::Fs::deallocateFileRange(filePath, 0, 0));
+    }
+
+    void testTruncateFile() const
+    {
+        const QTemporaryDir tmpDir;
+        QVERIFY(tmpDir.isValid());
+        const Path filePath = Path(tmpDir.path()) / Path(u"file.bin"_s);
+        {
+            QFile file {filePath.data()};
+            QVERIFY(file.open(QIODevice::WriteOnly));
+            QCOMPARE(file.write(QByteArray(1000, 'x')), 1000);
+        }
+
+        QVERIFY(Utils::Fs::truncateFile(filePath, 100));
+        QFile file {filePath.data()};
+        QVERIFY(file.open(QIODevice::ReadOnly));
+        QCOMPARE(file.readAll(), QByteArray(100, 'x'));
+
+        QVERIFY(!Utils::Fs::truncateFile((Path(tmpDir.path()) / Path(u"missing/file.bin"_s)), 10));
     }
 };
 

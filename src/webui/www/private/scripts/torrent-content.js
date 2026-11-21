@@ -509,6 +509,39 @@ window.qBittorrent.TorrentContent ??= (() => {
                 },
                 FilePrioMaximum: (element, ref) => {
                     filesPriorityMenuClicked(FilePriority.Maximum);
+                },
+                RemoveUnwantedData: (element, ref) => {
+                    const fileIds = new Set();
+                    const collect = (node) => {
+                        if (node.isFolder) {
+                            for (const child of node.children)
+                                collect(child);
+                        }
+                        else if (node.priority === FilePriority.Ignored) {
+                            fileIds.add(node.fileId);
+                        }
+                    };
+                    for (const rowID of torrentFilesTable.selectedRowsIds())
+                        collect(torrentFilesTable.getNode(rowID));
+
+                    if (fileIds.size === 0) {
+                        alert("QBT_TR_JS(Select files with priority \"Do not download\" first.)QBT_TR[CONTEXT=TorrentContentWidget]");
+                        return;
+                    }
+                    if (!confirm("QBT_TR_JS(Free disk space occupied by %1 unselected file(s)? Only the small parts shared with selected neighbor files will be kept. The torrent will be briefly paused.)QBT_TR[CONTEXT=TorrentContentWidget]".replace("%1", fileIds.size)))
+                        return;
+
+                    fetch("api/v2/torrents/removeUnwantedFilesData", {
+                            method: "POST",
+                            body: new URLSearchParams({
+                                hash: torrentsTable.getCurrentTorrentID(),
+                                id: [...fileIds].join("|")
+                            })
+                        })
+                        .then(async (response) => {
+                            if (!response.ok)
+                                alert(await response.text());
+                        });
                 }
             },
             offsets: {

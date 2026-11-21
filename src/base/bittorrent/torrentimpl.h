@@ -180,6 +180,7 @@ namespace BitTorrent
         bool hasError() const override;
         int queuePosition() const override;
         QList<TrackerEntryStatus> trackers() const override;
+        void removeUnwantedFilesData(const QList<int> &fileIndexes) override;
         QList<QUrl> urlSeeds() const override;
         QString error() const override;
         qlonglong totalDownload() const override;
@@ -312,6 +313,7 @@ namespace BitTorrent
         void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath) override;
 
         Path makeActualPath(int index, const Path &path) const;
+        void doRemoveUnwantedFilesData();
         Path makeUserPath(const Path &path) const;
         void adjustStorageLocation();
         void moveStorage(const Path &newPath, MoveStorageContext context);
@@ -320,7 +322,7 @@ namespace BitTorrent
 
         void prepareResumeData(lt::add_torrent_params resumeData);
         void endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames);
-        void reload();
+        void reload(bool keepPartfile = false);
 
         nonstd::expected<lt::entry, QString> exportTorrent() const;
 
@@ -352,6 +354,7 @@ namespace BitTorrent
         // all file rename jobs complete, all file move jobs complete
         QQueue<EventTrigger> m_moveFinishedTriggers;
         bool m_storageIsMoving = false;
+        QList<int> m_pendingUnwantedDataRemoval;
 
         QQueue<FileRenameInfo> m_renamingFiles;
         QQueue<FolderRenameInfo> m_renamingFolders;

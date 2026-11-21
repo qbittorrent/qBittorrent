@@ -31,6 +31,7 @@
 
 #include <algorithm>
 #include <memory>
+#include <utility>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -1960,7 +1961,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     m_session->handleTorrentMetadataReceived(this);
 }
 
-void TorrentImpl::reload()
+void TorrentImpl::reload(const bool keepPartfile)
 {
     try
     {
@@ -1987,7 +1988,7 @@ void TorrentImpl::reload()
 
         const auto queuePos = m_nativeHandle.queue_position();
 
-        m_nativeHandle = m_session->reloadTorrent(m_nativeHandle, std::move(p));
+        m_nativeHandle = m_session->reloadTorrent(m_nativeHandle, std::move(p), keepPartfile);
         m_nativeStatus = static_cast<ExtensionData *>(m_nativeHandle.userdata())->status;
 
         if (queuePos >= lt::queue_position_t {})
@@ -2286,7 +2287,149 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
     else
     {
         prepareResumeData(std::move(params));
+
+        // Data of unwanted files is removed only when the torrent is paused, so
+        // the resume data is up to date and nothing is being read/written
+        if (!m_pendingUnwantedDataRemoval.isEmpty() && (m_ltAddTorrentParams.flags & lt::torrent_flags::paused))
+            doRemoveUnwantedFilesData();
     }
+}
+
+void TorrentImpl::removeUnwantedFilesData(const QList<int> &fileIndexes)
+{
+    if (!hasMetadata() || (m_maintenanceJob != MaintenanceJob::None) || isMoveInProgress()
+            || !m_pendingUnwantedDataRemoval.isEmpty() || isChecking())
+    {
+        LogMsg(tr("Cannot remove data of unselected files right now, try again later. Torrent: \"%1\"").arg(name()), Log::WARNING);
+        return;
+    }
+
+    QList<int> indexes;
+    for (const int index : fileIndexes)
+    {
+        if ((index >= 0) && (index < filesCount()) && (m_filePriorities[index] == DownloadPriority::Ignored)
+                && !indexes.contains(index))
+        {
+            indexes.append(index);
+        }
+    }
+
+    if (indexes.isEmpty())
+        return;
+
+    m_pendingUnwantedDataRemoval = indexes;
+
+    // Stop all the activity (so no peer is served the data being removed),
+    // then wait for the resume data (see handleSaveResumeData())
+    setAutoManaged(false);
+    m_nativeHandle.pause();
+    requestResumeData(lt::torrent_handle::flush_disk_cache);
+}
+
+void TorrentImpl::doRemoveUnwantedFilesData()
+{
+    const QList<int> indexes = std::exchange(m_pendingUnwantedDataRemoval, {});
+
+    lt::add_torrent_params &p = m_ltAddTorrentParams;
+    const qint64 pieceLength = m_torrentInfo.pieceLength();
+    const Path storageLocation = actualStorageLocation();
+    bool piecesChanged = false;
+
+    const auto isPieceSharedWithWantedFile = [this](const int pieceIndex, const int fileIndex) -> bool
+    {
+        const QList<int> pieceFiles = m_torrentInfo.fileIndicesForPiece(pieceIndex);
+        return std::ranges::any_of(pieceFiles, [this, fileIndex](const int otherIndex)
+        {
+            return (otherIndex != fileIndex) && (m_filePriorities[otherIndex] != DownloadPriority::Ignored);
+        });
+    };
+
+    for (const int index : indexes)
+    {
+        // priority could be changed in the meantime
+        if (m_filePriorities[index] != DownloadPriority::Ignored)
+            continue;
+
+        const qint64 fileSize = m_torrentInfo.fileSize(index);
+        const qint64 fileOffset = m_torrentInfo.fileOffset(index);
+        const Path filePath = storageLocation / actualFilePath(index);
+        if ((fileSize <= 0) || !filePath.exists())
+            continue;
+
+        const int firstPiece = static_cast<int>(fileOffset / pieceLength);
+        const int lastPiece = static_cast<int>((fileOffset + fileSize - 1) / pieceLength);
+
+        // Byte range of the file to be kept: parts of the pieces shared with selected files
+        const qint64 keepHeadEnd = isPieceSharedWithWantedFile(firstPiece, index)
+                ? std::min(fileSize, ((firstPiece + 1) * pieceLength) - fileOffset) : 0;
+        const qint64 keepTailBegin = isPieceSharedWithWantedFile(lastPiece, index)
+                ? std::max<qint64>(0, (lastPiece * pieceLength) - fileOffset) : fileSize;
+        if (keepHeadEnd >= keepTailBegin)
+            continue; // nothing can be removed
+
+        nonstd::expected<void, QString> result;
+        if ((keepHeadEnd == 0) && (keepTailBegin == fileSize))
+            result = Utils::Fs::removeFile(filePath);
+        else if (keepTailBegin == fileSize)
+            result = Utils::Fs::truncateFile(filePath, keepHeadEnd);
+        else
+            result = Utils::Fs::deallocateFileRange(filePath, keepHeadEnd, (keepTailBegin - keepHeadEnd));
+
+        if (!result)
+        {
+            LogMsg(tr("Failed to remove data of unselected file. Torrent: \"%1\". File: \"%2\". Reason: \"%3\"")
+                    .arg(name(), filePath.toString(), result.error()), Log::WARNING);
+            continue;
+        }
+
+        // Pieces touching the removed range are no longer available
+        const int removedFirstPiece = static_cast<int>((fileOffset + keepHeadEnd) / pieceLength);
+        const int removedLastPiece = static_cast<int>((fileOffset + keepTailBegin - 1) / pieceLength);
+        for (int piece = removedFirstPiece; piece <= removedLastPiece; ++piece)
+        {
+            const lt::piece_index_t nativePiece {piece};
+            if (piece < p.have_pieces.size())
+                p.have_pieces.clear_bit(nativePiece);
+            if (piece < p.verified_pieces.size())
+                p.verified_pieces.clear_bit(nativePiece);
+            p.unfinished_pieces.erase(nativePiece);
+        }
+        piecesChanged = true;
+
+        LogMsg(tr("Removed data of unselected file. Torrent: \"%1\". File: \"%2\". Kept: %3 bytes")
+                .arg(name(), filePath.toString(), QString::number(keepHeadEnd + (fileSize - keepTailBegin))));
+    }
+
+    if (piecesChanged)
+    {
+        // Re-add the torrent with the corrected list of pieces (no recheck needed),
+        // its running state is restored by reload(). It is done outside of the alert
+        // processing, the same way as other reloads are performed.
+        // Resume data obtained without "save_info_dict" has no metadata, so it is set explicitly.
+        m_ltAddTorrentParams.ti = std::const_pointer_cast<lt::torrent_info>(nativeTorrentInfo());
+        QMetaObject::invokeMethod(this, [this]
+        {
+            try
+            {
+                reload(true);
+            }
+            catch (const RuntimeError &err)
+            {
+                LogMsg(err.message(), Log::WARNING);
+            }
+            deferredRequestResumeData();
+        }, Qt::QueuedConnection);
+        return;
+    }
+
+    if (!m_isStopped)
+    {
+        setAutoManaged(m_operatingMode == TorrentOperatingMode::AutoManaged);
+        if (m_operatingMode == TorrentOperatingMode::Forced)
+            m_nativeHandle.resume();
+    }
+
+    deferredRequestResumeData();
 }
 
 void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
