@@ -33,6 +33,7 @@ set(testFiles
 )
 
 set(webUITestFiles
+    testwebuirequestorigin.cpp
     testwebuitranslationutils.cpp
 )
 

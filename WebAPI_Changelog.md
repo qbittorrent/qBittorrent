@@ -16,6 +16,8 @@
 * [#25213](https://github.com/qbittorrent/qBittorrent/pull/25213)
   * `app/preferences` endpoint includes `exclude_files_without_extension` (bool) option
   * `app/setPreferences` endpoint allows to set `exclude_files_without_extension` (bool) option
+* [#25207](https://github.com/qbittorrent/qBittorrent/pull/25207)
+  * A request with Basic auth and an expired or unknown session cookie no longer starts a new session, except for `auth/login` and same-origin browser requests; it is rejected with `403` so the client logs in again
 
 ## 2.16.2
 
