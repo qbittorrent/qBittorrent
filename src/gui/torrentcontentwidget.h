@@ -122,6 +122,7 @@ private:
     void batchRenameFiles();
     void applyPriorities(BitTorrent::DownloadPriority priority);
     void applyPrioritiesByOrder();
+    void applyCheckState(Qt::CheckState state);
     Path getFullPath(const QModelIndex &index) const;
     void onItemDoubleClicked(const QModelIndex &index);
     // Expand single-item folders recursively.
@@ -137,4 +138,5 @@ private:
 
     bool m_contentDragAllowed = false;
     bool m_contentDragEnabled = false;
+    bool m_isFilterActive = false;
 };

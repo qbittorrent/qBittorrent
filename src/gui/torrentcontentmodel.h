@@ -69,6 +69,8 @@ public:
     void refresh();
 
     QList<BitTorrent::DownloadPriority> getFilePriorities() const;
+    // Same as `setData()` for many items, but the tree is refreshed only once
+    bool setItemsPriority(const QModelIndexList &indexes, BitTorrent::DownloadPriority priority);
     TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;
     int getFileIndex(const QModelIndex &index) const;
     QSet<int> getFileIndexes(const QModelIndex &itemIndex) const;
