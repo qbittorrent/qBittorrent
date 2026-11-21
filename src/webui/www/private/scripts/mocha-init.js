@@ -423,8 +423,8 @@ const initializeWindows = () => {
             return;
 
         // Enable the property for the whole selection unless it is already enabled for all
-        const targetValue = hashes.some((hash) => torrentsTable.getRow(hash).full_data[propertyName] !== true);
-        const affectedHashes = hashes.filter((hash) => (torrentsTable.getRow(hash).full_data[propertyName] === true) !== targetValue);
+        const shouldEnable = hashes.some((hash) => torrentsTable.getRow(hash).full_data[propertyName] !== true);
+        const affectedHashes = hashes.filter((hash) => (torrentsTable.getRow(hash).full_data[propertyName] === true) !== shouldEnable);
         if (affectedHashes.length === 0)
             return;
 
