@@ -29,6 +29,24 @@
             const hash = searchParams.get("hash");
             const oldPath = searchParams.get("path");
             const isFolder = ((searchParams.get("isFolder")) === "true");
+            const fileIndex = Number(searchParams.get("fileIndex") ?? -1);
+
+            // Looks up the current path, as a parent folder may have been renamed after this dialog was opened
+            const fetchCurrentPath = async () => {
+                if (fileIndex < 0)
+                    return oldPath;
+                const response = await fetch(`api/v2/torrents/files?${new URLSearchParams({ hash: hash, indexes: fileIndex })}`);
+                if (!response.ok)
+                    return oldPath;
+                const files = await response.json();
+                if (files.length !== 1)
+                    return oldPath;
+                const filePath = files[0].name;
+                if (!isFolder)
+                    return filePath;
+                const depth = oldPath.split(window.qBittorrent.Filesystem.PathSeparator).length;
+                return filePath.split(window.qBittorrent.Filesystem.PathSeparator).slice(0, depth).join(window.qBittorrent.Filesystem.PathSeparator);
+            };
 
             const oldName = window.qBittorrent.Filesystem.fileName(oldPath);
             document.getElementById("rename").value = oldName;
@@ -36,7 +54,7 @@
             if (!isFolder)
                 document.getElementById("rename").setSelectionRange(0, oldName.lastIndexOf("."));
 
-            document.getElementById("renameButton").addEventListener("click", (e) => {
+            document.getElementById("renameButton").addEventListener("click", async (e) => {
                 e.preventDefault();
                 e.stopPropagation();
 
@@ -54,7 +72,8 @@
 
                 document.getElementById("renameButton").disabled = true;
 
-                const parentPath = window.qBittorrent.Filesystem.folderName(oldPath);
+                const currentPath = await fetchCurrentPath();
+                const parentPath = window.qBittorrent.Filesystem.folderName(currentPath);
                 const newPath = parentPath
                     ? parentPath + window.qBittorrent.Filesystem.PathSeparator + newName
                     : newName;
@@ -62,7 +81,7 @@
                         method: "POST",
                         body: new URLSearchParams({
                             hash: hash,
-                            oldPath: oldPath,
+                            oldPath: currentPath,
                             newPath: newPath
                         })
                     })
