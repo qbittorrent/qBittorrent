@@ -847,8 +847,8 @@ namespace BitTorrent
         // Statistics
         mutable QElapsedTimer m_statisticsLastUpdateTimer;
         mutable bool m_isStatisticsDirty = false;
-        qint64 m_previouslyUploaded = 0;
-        qint64 m_previouslyDownloaded = 0;
+        qint64 m_previouslyUploaded = -1;
+        qint64 m_previouslyDownloaded = -1;
 
         bool m_torrentsQueueChanged = false;
         bool m_needSaveTorrentsQueue = false;
@@ -922,6 +922,7 @@ namespace BitTorrent
         ShareLimits m_shareLimits;
 
         KeyValueDataStorage *m_backupTorrentFilesRegistry = nullptr;
+        KeyValueDataStorage *m_statisticsStorage = nullptr;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();
