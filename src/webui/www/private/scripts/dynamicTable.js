@@ -2334,6 +2334,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const status = this.getRowValue(row);
                 switch (status) {
                     case "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]":
+                    case "QBT_TR(Disabled for this torrent)QBT_TR[CONTEXT=TrackerListWidget]":
                         statusClass = "trackerDisabled";
                         break;
                     case "QBT_TR(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]":
@@ -2480,7 +2481,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.id = this.headerCheckboxId;
-            checkbox.addEventListener("click", this.headerCheckboxClickHandler);
+            checkbox.addEventListener("click", (event) => this.headerCheckboxClickHandler(event));
             checkboxTH.appendChild(checkbox);
 
             this.updateHeaderCheckbox();

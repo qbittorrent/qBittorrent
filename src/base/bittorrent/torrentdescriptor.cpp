@@ -81,13 +81,14 @@ namespace
     lt::load_torrent_limits loadTorrentLimits()
     {
         const auto *pref = Preferences::instance();
-
-        lt::load_torrent_limits limits;
-        limits.max_buffer_size = static_cast<int>(pref->getTorrentFileSizeLimit());
-        limits.max_decode_depth = pref->getBdecodeDepthLimit();
-        limits.max_decode_tokens = pref->getBdecodeTokenLimit();
-
-        return limits;
+        return {
+            .max_buffer_size = static_cast<int>(pref->getTorrentFileSizeLimit()),
+            .max_decode_depth = pref->getBdecodeDepthLimit(),
+            .max_decode_tokens = pref->getBdecodeTokenLimit(),
+#if LIBTORRENT_VERSION_NUM >= 20100
+            .max_directory_depth = pref->getLoadTorrentMaxDirectoryDepth()
+#endif
+        };
     }
 
     bool isSupportedTrackerURL(const QString &url)
@@ -97,7 +98,11 @@ namespace
             return false;
 
         const QString scheme = trackerURL.scheme();
-        return ((scheme == u"http") || (scheme == u"https") || (scheme == u"udp"));
+        return ((scheme == u"http") || (scheme == u"https")
+#if TORRENT_USE_RTC
+                || (scheme == u"ws") || (scheme == u"wss")
+#endif
+                || (scheme == u"udp"));
     }
 
     void removeUnsupportedTrackers(lt::add_torrent_params &params)

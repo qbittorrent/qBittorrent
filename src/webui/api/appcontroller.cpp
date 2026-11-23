@@ -112,7 +112,7 @@ void AppController::buildInfoAction()
 
     const QJsonObject versions =
     {
-        {u"qt"_s, QStringLiteral(QT_VERSION_STR)},
+        {u"qt"_s, Utils::Misc::qtVersionString()},
         {u"libtorrent"_s, Utils::Misc::libtorrentVersionString()},
         {u"boost"_s, Utils::Misc::boostVersionString()},
         {u"openssl"_s, Utils::Misc::opensslVersionString()},
@@ -222,6 +222,7 @@ void AppController::preferencesAction()
     // Excluded file names
     data[u"excluded_file_names_enabled"_s] = session->isExcludedFileNamesEnabled();
     data[u"excluded_file_names"_s] = session->excludedFileNames().join(u'\n');
+    data[u"exclude_files_without_extension"_s] = session->isExcludeFilesWithoutExtensionEnabled();
 
     // Email notification upon download completion
     data[u"mail_notification_enabled"_s] = pref->isMailNotificationEnabled();
@@ -453,6 +454,8 @@ void AppController::preferencesAction()
     data[u"bdecode_depth_limit"_s] = pref->getBdecodeDepthLimit();
     // Bdecode token limit
     data[u"bdecode_token_limit"_s] = pref->getBdecodeTokenLimit();
+    // Maximum directory depth when loading torrents
+    data[u"load_torrent_max_directory_depth"_s] = pref->getLoadTorrentMaxDirectoryDepth();
     // Async IO threads
     data[u"async_io_threads"_s] = session->asyncIOThreads();
     // Hashing threads
@@ -707,6 +710,8 @@ void AppController::setPreferencesAction()
         session->setExcludedFileNamesEnabled(it.value().toBool());
     if (hasKey(u"excluded_file_names"_s))
         session->setExcludedFileNames(it.value().toString().split(u'\n'));
+    if (hasKey(u"exclude_files_without_extension"_s))
+        session->setExcludeFilesWithoutExtensionEnabled(it.value().toBool());
 
     // Email notification upon download completion
     if (hasKey(u"mail_notification_enabled"_s))
@@ -1139,6 +1144,9 @@ void AppController::setPreferencesAction()
     // Bdecode token limit
     if (hasKey(u"bdecode_token_limit"_s))
         pref->setBdecodeTokenLimit(it.value().toInt());
+    // Maximum directory depth when loading torrents
+    if (hasKey(u"load_torrent_max_directory_depth"_s))
+        pref->setLoadTorrentMaxDirectoryDepth(it.value().toInt());
     // Async IO threads
     if (hasKey(u"async_io_threads"_s))
         session->setAsyncIOThreads(it.value().toInt());

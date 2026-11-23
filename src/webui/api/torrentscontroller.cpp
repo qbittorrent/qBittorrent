@@ -77,6 +77,7 @@ const QString KEY_TRACKER_URL = u"url"_s;
 const QString KEY_TRACKER_NAME = u"name"_s;
 const QString KEY_TRACKER_UPDATING = u"updating"_s;
 const QString KEY_TRACKER_STATUS = u"status"_s;
+const QString KEY_TRACKER_DISABLED_FOR_TORRENT = u"disabled_for_torrent"_s;
 const QString KEY_TRACKER_TIER = u"tier"_s;
 const QString KEY_TRACKER_MSG = u"msg"_s;
 const QString KEY_TRACKER_BT_VERSION = u"bt_version"_s;
@@ -295,13 +296,20 @@ namespace
 
         const QString privateMsg {QCoreApplication::translate("TrackerListWidget", "This torrent is private")};
         const bool isTorrentPrivate = torrent->isPrivate();
+        const bool dhtEnabled = torrent->session()->isDHTEnabled();
+        const bool pexEnabled = torrent->session()->isPeXEnabled();
+        const bool lsdEnabled = torrent->session()->isLSDEnabled();
+        const bool dhtDisabledForTorrent = isTorrentPrivate || torrent->isDHTDisabled();
+        const bool pexDisabledForTorrent = isTorrentPrivate || torrent->isPEXDisabled();
+        const bool lsdDisabledForTorrent = isTorrentPrivate || torrent->isLSDDisabled();
 
         const QJsonObject dht
         {
             {KEY_TRACKER_URL, u"** [DHT] **"_s},
             {KEY_TRACKER_TIER, -1},
             {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : u""_s)},
-            {KEY_TRACKER_STATUS, ((BitTorrent::Session::instance()->isDHTEnabled() && !isTorrentPrivate) ? working : disabled)},
+            {KEY_TRACKER_STATUS, ((dhtEnabled && !dhtDisabledForTorrent) ? working : disabled)},
+            {KEY_TRACKER_DISABLED_FOR_TORRENT, (dhtEnabled && dhtDisabledForTorrent)},
             {KEY_TRACKER_PEERS_COUNT, 0},
             {KEY_TRACKER_DOWNLOADED_COUNT, 0},
             {KEY_TRACKER_SEEDS_COUNT, seedsDHT},
@@ -313,7 +321,8 @@ namespace
             {KEY_TRACKER_URL, u"** [PeX] **"_s},
             {KEY_TRACKER_TIER, -1},
             {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : u""_s)},
-            {KEY_TRACKER_STATUS, ((BitTorrent::Session::instance()->isPeXEnabled() && !isTorrentPrivate) ? working : disabled)},
+            {KEY_TRACKER_STATUS, ((pexEnabled && !pexDisabledForTorrent) ? working : disabled)},
+            {KEY_TRACKER_DISABLED_FOR_TORRENT, (pexEnabled && pexDisabledForTorrent)},
             {KEY_TRACKER_PEERS_COUNT, 0},
             {KEY_TRACKER_DOWNLOADED_COUNT, 0},
             {KEY_TRACKER_SEEDS_COUNT, seedsPeX},
@@ -325,7 +334,8 @@ namespace
             {KEY_TRACKER_URL, u"** [LSD] **"_s},
             {KEY_TRACKER_TIER, -1},
             {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : u""_s)},
-            {KEY_TRACKER_STATUS, ((BitTorrent::Session::instance()->isLSDEnabled() && !isTorrentPrivate) ? working : disabled)},
+            {KEY_TRACKER_STATUS, ((lsdEnabled && !lsdDisabledForTorrent) ? working : disabled)},
+            {KEY_TRACKER_DISABLED_FOR_TORRENT, (lsdEnabled && lsdDisabledForTorrent)},
             {KEY_TRACKER_PEERS_COUNT, 0},
             {KEY_TRACKER_DOWNLOADED_COUNT, 0},
             {KEY_TRACKER_SEEDS_COUNT, seedsLSD},

@@ -707,10 +707,16 @@ void SearchWidget::loadHistory()
     QMetaObject::invokeMethod(m_dataStorage, &SearchWidget::DataStorage::loadHistory);
 }
 
-void SearchWidget::saveSession() const
+void SearchWidget::saveSession()
 {
     if (!m_storeOpenedTabs)
         return;
+
+    if (!m_isSessionRestored)
+    {
+        m_isSessionChanged = true;
+        return;
+    }
 
     const int currentIndex = m_ui->tabWidget->currentIndex();
     SessionData sessionData;
@@ -742,7 +748,10 @@ void SearchWidget::createSearchPatternCompleter()
 void SearchWidget::restoreSession()
 {
     if (!m_storeOpenedTabs)
+    {
+        m_isSessionRestored = true;
         return;
+    }
 
     connect(m_dataStorage, &DataStorage::tabLoaded, this
             , [this](const QString &tabID, const QString &searchPattern, const QList<SearchResult> &searchResults)
@@ -754,6 +763,10 @@ void SearchWidget::restoreSession()
     connect(m_dataStorage, &DataStorage::sessionLoaded, this, [this](const SessionData &sessionData)
     {
         m_ui->tabWidget->setCurrentWidget(m_tabWidgets.value(sessionData.currentTabID));
+
+        m_isSessionRestored = true;
+        if (m_isSessionChanged)
+            saveSession();
     });
 
     QMetaObject::invokeMethod(m_dataStorage, [this] { m_dataStorage->loadSession(m_storeOpenedTabsResults); });
@@ -996,6 +1009,7 @@ void SearchWidget::DataStorage::loadSession(const bool withSearchResults)
     {
         LogMsg(tr("Failed to load Search UI saved state data. File: \"%1\". Error: \"%2\"")
                 .arg(sessionFilePath.toString(), loadResult.error()), Log::WARNING);
+        emit sessionLoaded({});
         return;
     }
 
