@@ -47,22 +47,6 @@
             };
             bulkRenameFilesTable.setup("bulkRenameFilesTableDiv", "bulkRenameFilesTableFixedHeaderDiv", bulkRenameFilesContextMenu, true);
 
-            // Register keyboard events to modal window
-            // https://github.com/qbittorrent/qBittorrent/pull/18687#discussion_r1135045726
-            new Keyboard({
-                defaultEventType: "keydown",
-                events: {
-                    Escape: (event) => {
-                        window.qBittorrent.Client.closeWindow(windowEl);
-                        event.preventDefault();
-                    },
-                    Esc: (event) => {
-                        window.qBittorrent.Client.closeWindow(windowEl);
-                        event.preventDefault();
-                    }
-                }
-            }).activate();
-
             const fileRenamer = new window.qBittorrent.MultiRename.RenameFiles();
             fileRenamer.hash = data.hash;
 

@@ -196,13 +196,23 @@
         };
 
         const syncTaskData = () => {
+            // the window was closed meanwhile
+            if (table === null)
+                return;
+
+            const requestTable = table;
             fetch("api/v2/torrentcreator/status", {
                 method: "GET",
                 cache: "no-store"
             }).then(async (response) => {
                 if (!response.ok) {
-                    let error = "QBT_TR(Unable to load torrent creation tasks)QBT_TR[CONTEXT=TorrentCreator]";
                     const responseText = await response.text();
+
+                    // the window was closed or reopened meanwhile
+                    if (table !== requestTable)
+                        return;
+
+                    let error = "QBT_TR(Unable to load torrent creation tasks)QBT_TR[CONTEXT=TorrentCreator]";
                     if (responseText.length > 0)
                         error += `: ${responseText}`;
                     alert(error);
@@ -211,6 +221,10 @@
 
                 // Awaiting the json before clearing the table to prevent flickering
                 const responseJSON = await response.json();
+
+                // the window was closed or reopened meanwhile
+                if (table !== requestTable)
+                    return;
 
                 const selectedTasks = table.selectedRowsIds();
                 table.clear();
@@ -245,7 +259,8 @@
                         table.reselectRows(selectedTasks);
                 }
             }).finally(() => {
-                syncTaskWithInterval(serverSyncMainDataInterval);
+                if (table === requestTable)
+                    syncTaskWithInterval(serverSyncMainDataInterval);
             });
         };
 
