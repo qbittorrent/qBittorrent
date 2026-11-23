@@ -64,7 +64,16 @@ window.qBittorrent.pathAutofill ??= (() => {
         }
     };
 
+    // Dialogs run in iframes and read the client data of the main window.
+    const isEnabled = () => {
+        const clientData = window.qBittorrent.ClientData ?? window.parent.qBittorrent?.ClientData;
+        return clientData?.get("path_autocomplete_enabled") ?? true;
+    };
+
     const showPathSuggestions = (element, mode) => {
+        if (!isEnabled())
+            return;
+
         const partialPath = element.value;
         if (partialPath === "")
             return;
