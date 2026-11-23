@@ -3439,7 +3439,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["current_interface_address"] = document.getElementById("optionalIPAddressToBind").value;
             settings["save_resume_data_interval"] = Number(document.getElementById("saveResumeDataInterval").value);
             settings["save_statistics_interval"] = Number(document.getElementById("saveStatisticsInterval").value);
-            settings["torrent_file_size_limit"] = (document.getElementById("torrentFileSizeLimit").value * 1024 * 1024);
+
+            const torrentFileSizeLimit = Number(document.getElementById("torrentFileSizeLimit").value);
+            if (!Number.isInteger(torrentFileSizeLimit) || (torrentFileSizeLimit < 1) || (torrentFileSizeLimit > 2047)) {
+                alert("QBT_TR(The .torrent file size limit must be between 1 and 2047 MiB.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
+            settings["torrent_file_size_limit"] = (torrentFileSizeLimit * 1024 * 1024);
+
             settings["confirm_torrent_recheck"] = document.getElementById("confirmTorrentRecheck").checked;
             settings["recheck_completed_torrents"] = document.getElementById("recheckTorrentsOnCompletion").checked;
             settings["app_instance_name"] = document.getElementById("appInstanceName").value;
