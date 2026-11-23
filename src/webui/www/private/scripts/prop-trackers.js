@@ -45,22 +45,22 @@ window.qBittorrent.PropTrackers ??= (() => {
 
     const trackerStatusText = (tracker) => {
         if (tracker.disabled_for_torrent === true)
-            return "QBT_TR(Disabled for this torrent)QBT_TR[CONTEXT=TrackerListWidget]";
+            return "QBT_TR_JS(Disabled for this torrent)QBT_TR[CONTEXT=TrackerListWidget]";
         if (tracker.updating)
-            return "QBT_TR(Updating...)QBT_TR[CONTEXT=TrackerListWidget]";
+            return "QBT_TR_JS(Updating...)QBT_TR[CONTEXT=TrackerListWidget]";
         switch (tracker.status) {
             case 0:
-                return "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]";
+                return "QBT_TR_JS(Disabled)QBT_TR[CONTEXT=TrackerListWidget]";
             case 1:
-                return "QBT_TR(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]";
+                return "QBT_TR_JS(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]";
             case 2:
-                return "QBT_TR(Working)QBT_TR[CONTEXT=TrackerListWidget]";
+                return "QBT_TR_JS(Working)QBT_TR[CONTEXT=TrackerListWidget]";
             case 4:
-                return "QBT_TR(Not working)QBT_TR[CONTEXT=TrackerListWidget]";
+                return "QBT_TR_JS(Not working)QBT_TR[CONTEXT=TrackerListWidget]";
             case 5:
-                return "QBT_TR(Tracker error)QBT_TR[CONTEXT=TrackerListWidget]";
+                return "QBT_TR_JS(Tracker error)QBT_TR[CONTEXT=TrackerListWidget]";
             case 6:
-                return "QBT_TR(Unreachable)QBT_TR[CONTEXT=TrackerListWidget]";
+                return "QBT_TR_JS(Unreachable)QBT_TR[CONTEXT=TrackerListWidget]";
         }
     };
 
@@ -101,7 +101,7 @@ window.qBittorrent.PropTrackers ??= (() => {
 
                 const trackers = await response.json();
                 if (trackers) {
-                    const notApplicable = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
+                    const notApplicable = "QBT_TR_JS(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
                     const rows = new Map();
                     for (const tracker of trackers) {
                         const rowId = tracker.url;
@@ -235,7 +235,7 @@ window.qBittorrent.PropTrackers ??= (() => {
         new MochaUI.Window({
             id: "trackersPage",
             icon: "images/qbittorrent-tray.svg",
-            title: "QBT_TR(Add trackers)QBT_TR[CONTEXT=TrackersAdditionDialog]",
+            title: "QBT_TR_JS(Add trackers)QBT_TR[CONTEXT=TrackersAdditionDialog]",
             loadMethod: "iframe",
             contentURL: `addtrackers.html?v=${CACHEID}&hash=${current_hash}`,
             scrollbars: true,
@@ -268,7 +268,7 @@ window.qBittorrent.PropTrackers ??= (() => {
         new MochaUI.Window({
             id: "trackersPage",
             icon: "images/qbittorrent-tray.svg",
-            title: "QBT_TR(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]",
+            title: "QBT_TR_JS(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]",
             loadMethod: "iframe",
             contentURL: contentURL.toString(),
             scrollbars: true,

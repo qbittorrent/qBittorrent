@@ -143,7 +143,7 @@ window.qBittorrent.Client ??= (() => {
         let suffix = window.qBittorrent.Cache.preferences.get()["app_instance_name"] || "";
         if (suffix.length > 0)
             suffix = ` ${emDash} ${suffix}`;
-        const title = `qBittorrent ${qbtVersion} QBT_TR(WebUI)QBT_TR[CONTEXT=OptionsDialog]${suffix}`;
+        const title = `qBittorrent ${qbtVersion} QBT_TR_JS(WebUI)QBT_TR[CONTEXT=OptionsDialog]${suffix}`;
         return title;
     };
 
@@ -254,7 +254,7 @@ window.qBittorrent.Client ??= (() => {
             new MochaUI.Window({
                 id: id,
                 icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Add Torrents)QBT_TR[CONTEXT=DownloadFromURLDialog]",
+                title: "QBT_TR_JS(Add Torrents)QBT_TR[CONTEXT=DownloadFromURLDialog]",
                 loadMethod: "iframe",
                 contentURL: contentURL.toString(),
                 scrollbars: false,
@@ -325,10 +325,10 @@ window.qBittorrent.Client ??= (() => {
                             })
                             .then((response) => {
                                 if (!response.ok)
-                                    alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                                    alert("QBT_TR_JS(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
                             })
                             .catch((error) => {
-                                alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                                alert("QBT_TR_JS(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
                             });
                     }
                 }
@@ -343,12 +343,12 @@ window.qBittorrent.Client ??= (() => {
                     const sizeOf = (info) => (info?.length ?? (info?.files ?? []).reduce((sum, file) => sum + file.length, 0));
                     const hashes = json.map((metadata) => metadata.infohash_v2 || metadata.infohash_v1);
                     const totalSize = json.reduce((sum, metadata) => sum + sizeOf(metadata.info), 0);
-                    const title = "QBT_TR(Add %1 torrents)QBT_TR[CONTEXT=DownloadFromURLDialog]".replace("%1", hashes.length);
+                    const title = "QBT_TR_JS(Add %1 torrents)QBT_TR[CONTEXT=DownloadFromURLDialog]".replace("%1", hashes.length);
                     createAddTorrentWindow(title, hashes.join("\n"), undefined, { shared: true, totalSize: totalSize });
                 }
             })
             .catch((error) => {
-                alert(`QBT_TR(Unable to parse response.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
+                alert(`QBT_TR_JS(Unable to parse response.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
             });
     };
 
@@ -717,20 +717,20 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     };
 
     const updateFiltersList = () => {
-        updateFilter("all", "QBT_TR(All (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("downloading", "QBT_TR(Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("seeding", "QBT_TR(Seeding (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("completed", "QBT_TR(Completed (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("running", "QBT_TR(Running (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("stopped", "QBT_TR(Stopped (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("active", "QBT_TR(Active (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("inactive", "QBT_TR(Inactive (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("stalled", "QBT_TR(Stalled (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("stalled_uploading", "QBT_TR(Stalled Uploading (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("stalled_downloading", "QBT_TR(Stalled Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("checking", "QBT_TR(Checking (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("moving", "QBT_TR(Moving (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
-        updateFilter("errored", "QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("all", "QBT_TR_JS(All (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("downloading", "QBT_TR_JS(Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("seeding", "QBT_TR_JS(Seeding (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("completed", "QBT_TR_JS(Completed (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("running", "QBT_TR_JS(Running (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("stopped", "QBT_TR_JS(Stopped (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("active", "QBT_TR_JS(Active (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("inactive", "QBT_TR_JS(Inactive (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("stalled", "QBT_TR_JS(Stalled (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("stalled_uploading", "QBT_TR_JS(Stalled Uploading (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("stalled_downloading", "QBT_TR_JS(Stalled Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("checking", "QBT_TR_JS(Checking (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("moving", "QBT_TR_JS(Moving (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        updateFilter("errored", "QBT_TR_JS(Errored (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
         if (useAutoHideZeroStatusFilters && document.getElementById(`${selectedStatus}_filter`).classList.contains("invisible"))
             window.qBittorrent.Filters.clearStatusFilter();
     };
@@ -813,8 +813,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         });
 
         const categoriesFragment = new DocumentFragment();
-        categoriesFragment.appendChild(createLink(CATEGORIES_ALL, "QBT_TR(All)QBT_TR[CONTEXT=CategoryFilterModel]", torrentsTable.getRowSize()));
-        categoriesFragment.appendChild(createLink(CATEGORIES_UNCATEGORIZED, "QBT_TR(Uncategorized)QBT_TR[CONTEXT=CategoryFilterModel]", uncategorized));
+        categoriesFragment.appendChild(createLink(CATEGORIES_ALL, "QBT_TR_JS(All)QBT_TR[CONTEXT=CategoryFilterModel]", torrentsTable.getRowSize()));
+        categoriesFragment.appendChild(createLink(CATEGORIES_UNCATEGORIZED, "QBT_TR_JS(Uncategorized)QBT_TR[CONTEXT=CategoryFilterModel]", uncategorized));
 
         let hasAnySubcategory = false;
         for (let i = 0; i < sortedCategories.length; ++i) {
@@ -880,8 +880,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                 untagged += 1;
         }
 
-        tagFilterList.appendChild(createLink(TAGS_ALL, "QBT_TR(All)QBT_TR[CONTEXT=TagFilterModel]", torrentsTable.getRowSize()));
-        tagFilterList.appendChild(createLink(TAGS_UNTAGGED, "QBT_TR(Untagged)QBT_TR[CONTEXT=TagFilterModel]", untagged));
+        tagFilterList.appendChild(createLink(TAGS_ALL, "QBT_TR_JS(All)QBT_TR[CONTEXT=TagFilterModel]", torrentsTable.getRowSize()));
+        tagFilterList.appendChild(createLink(TAGS_UNTAGGED, "QBT_TR_JS(Untagged)QBT_TR[CONTEXT=TagFilterModel]", untagged));
 
         const sortedTags = [];
         for (const [tag, torrents] of window.qBittorrent.Client.tagMap) {
@@ -955,11 +955,11 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             trackerWarningCount += full_data.has_tracker_warning;
         }
 
-        trackerFilterList.appendChild(createLink(TRACKERS_ALL, "QBT_TR(All)QBT_TR[CONTEXT=TrackerFiltersList]", torrentsTable.getRowSize()));
-        trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, "QBT_TR(Trackerless)QBT_TR[CONTEXT=TrackerFiltersList]", trackerlessCount));
-        trackerFilterList.appendChild(createLink(TRACKERS_ERROR, "QBT_TR(Tracker error)QBT_TR[CONTEXT=TrackerFiltersList]", trackerErrorCount));
-        trackerFilterList.appendChild(createLink(TRACKERS_ANNOUNCE_ERROR, "QBT_TR(Other error)QBT_TR[CONTEXT=TrackerFiltersList]", announceErrorCount));
-        trackerFilterList.appendChild(createLink(TRACKERS_WARNING, "QBT_TR(Warning)QBT_TR[CONTEXT=TrackerFiltersList]", trackerWarningCount));
+        trackerFilterList.appendChild(createLink(TRACKERS_ALL, "QBT_TR_JS(All)QBT_TR[CONTEXT=TrackerFiltersList]", torrentsTable.getRowSize()));
+        trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, "QBT_TR_JS(Trackerless)QBT_TR[CONTEXT=TrackerFiltersList]", trackerlessCount));
+        trackerFilterList.appendChild(createLink(TRACKERS_ERROR, "QBT_TR_JS(Tracker error)QBT_TR[CONTEXT=TrackerFiltersList]", trackerErrorCount));
+        trackerFilterList.appendChild(createLink(TRACKERS_ANNOUNCE_ERROR, "QBT_TR_JS(Other error)QBT_TR[CONTEXT=TrackerFiltersList]", announceErrorCount));
+        trackerFilterList.appendChild(createLink(TRACKERS_WARNING, "QBT_TR_JS(Warning)QBT_TR[CONTEXT=TrackerFiltersList]", trackerWarningCount));
 
         // Sort trackers by hostname
         const sortedList = [];
@@ -1217,7 +1217,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                 (error) => {
                     const errorDiv = document.getElementById("error_div");
                     if (errorDiv)
-                        errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
+                        errorDiv.textContent = "QBT_TR_JS(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                     syncRequestInProgress = false;
                     syncData(document.hidden
                         ? (window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 1000) / 2
@@ -1257,17 +1257,17 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
         let titlePrefix = "";
         if (serverState.session_state) {
-            titlePrefix = "QBT_TR([PAUSED])QBT_TR[CONTEXT=MainWindow] ";
+            titlePrefix = "QBT_TR_JS([PAUSED])QBT_TR[CONTEXT=MainWindow] ";
         }
         else if (speedInTitle) {
-            titlePrefix = "QBT_TR([D: %1, U: %2])QBT_TR[CONTEXT=MainWindow] "
+            titlePrefix = "QBT_TR_JS([D: %1, U: %2])QBT_TR[CONTEXT=MainWindow] "
                 .replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true))
                 .replace("%2", window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true));
         }
 
         document.title = titlePrefix + window.qBittorrent.Client.mainTitle();
 
-        document.getElementById("freeSpaceOnDisk").textContent = "QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk));
+        document.getElementById("freeSpaceOnDisk").textContent = "QBT_TR_JS(Free space: %1)QBT_TR[CONTEXT=HttpServer]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk));
 
         const externalIPsElement = document.getElementById("externalIPs");
         if (window.qBittorrent.Cache.preferences.get().status_bar_external_ip) {
@@ -1275,11 +1275,11 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             const lastExternalAddressV6 = serverState.last_external_address_v6;
             const hasIPv4Address = lastExternalAddressV4 !== "";
             const hasIPv6Address = lastExternalAddressV6 !== "";
-            let lastExternalAddressLabel = "QBT_TR(External IP: N/A)QBT_TR[CONTEXT=HttpServer]";
+            let lastExternalAddressLabel = "QBT_TR_JS(External IP: N/A)QBT_TR[CONTEXT=HttpServer]";
             if (hasIPv4Address && hasIPv6Address)
-                lastExternalAddressLabel = "QBT_TR(External IPs: %1, %2)QBT_TR[CONTEXT=HttpServer]";
+                lastExternalAddressLabel = "QBT_TR_JS(External IPs: %1, %2)QBT_TR[CONTEXT=HttpServer]";
             else if (hasIPv4Address || hasIPv6Address)
-                lastExternalAddressLabel = "QBT_TR(External IP: %1%2)QBT_TR[CONTEXT=HttpServer]";
+                lastExternalAddressLabel = "QBT_TR_JS(External IP: %1%2)QBT_TR[CONTEXT=HttpServer]";
             // https://en.wikipedia.org/wiki/IPv6_address#Scoped_literal_IPv6_addresses_(with_zone_index)
             lastExternalAddressLabel = lastExternalAddressLabel.replace("%1", lastExternalAddressV4).replace("%2", lastExternalAddressV6);
             externalIPsElement.textContent = lastExternalAddressLabel;
@@ -1293,7 +1293,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
         const dhtElement = document.getElementById("DHTNodes");
         if (window.qBittorrent.Cache.preferences.get().dht) {
-            dhtElement.textContent = "QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]".replace("%1", serverState.dht_nodes);
+            dhtElement.textContent = "QBT_TR_JS(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]".replace("%1", serverState.dht_nodes);
             dhtElement.classList.remove("invisible");
             dhtElement.previousElementSibling.classList.remove("invisible");
         }
@@ -1309,18 +1309,18 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         switch (serverState.connection_status) {
             case "connected":
                 document.getElementById("connectionStatus").src = "images/connected.svg";
-                document.getElementById("connectionStatus").alt = "QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]";
-                document.getElementById("connectionStatus").title = "QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]";
+                document.getElementById("connectionStatus").alt = "QBT_TR_JS(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]";
+                document.getElementById("connectionStatus").title = "QBT_TR_JS(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]";
                 break;
             case "firewalled":
                 document.getElementById("connectionStatus").src = "images/firewalled.svg";
-                document.getElementById("connectionStatus").alt = "QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]";
-                document.getElementById("connectionStatus").title = "QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]";
+                document.getElementById("connectionStatus").alt = "QBT_TR_JS(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]";
+                document.getElementById("connectionStatus").title = "QBT_TR_JS(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]";
                 break;
             default:
                 document.getElementById("connectionStatus").src = "images/disconnected.svg";
-                document.getElementById("connectionStatus").alt = "QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]";
-                document.getElementById("connectionStatus").title = "QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]";
+                document.getElementById("connectionStatus").alt = "QBT_TR_JS(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]";
+                document.getElementById("connectionStatus").title = "QBT_TR_JS(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]";
                 break;
         }
 
@@ -1357,13 +1357,13 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     const updateAltSpeedIcon = (enabled) => {
         if (enabled) {
             document.getElementById("alternativeSpeedLimits").src = "images/slow.svg";
-            document.getElementById("alternativeSpeedLimits").alt = "QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]";
-            document.getElementById("alternativeSpeedLimits").title = "QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]";
+            document.getElementById("alternativeSpeedLimits").alt = "QBT_TR_JS(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]";
+            document.getElementById("alternativeSpeedLimits").title = "QBT_TR_JS(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]";
         }
         else {
             document.getElementById("alternativeSpeedLimits").src = "images/slow_off.svg";
-            document.getElementById("alternativeSpeedLimits").alt = "QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]";
-            document.getElementById("alternativeSpeedLimits").title = "QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]";
+            document.getElementById("alternativeSpeedLimits").alt = "QBT_TR_JS(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]";
+            document.getElementById("alternativeSpeedLimits").title = "QBT_TR_JS(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]";
         }
     };
 
@@ -1420,9 +1420,9 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     const registerMagnetHandler = () => {
         if (typeof navigator.registerProtocolHandler !== "function") {
             if (window.location.protocol !== "https:")
-                alert("QBT_TR(To use this feature, the WebUI needs to be accessed over HTTPS)QBT_TR[CONTEXT=MainWindow]");
+                alert("QBT_TR_JS(To use this feature, the WebUI needs to be accessed over HTTPS)QBT_TR[CONTEXT=MainWindow]");
             else
-                alert("QBT_TR(Your browser does not support this feature)QBT_TR[CONTEXT=MainWindow]");
+                alert("QBT_TR_JS(Your browser does not support this feature)QBT_TR[CONTEXT=MainWindow]");
             return;
         }
 
