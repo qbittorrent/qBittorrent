@@ -13,20 +13,20 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@stylistic/eslint-plugin": "^5.10.0",
-    "eslint": "^10.14.0",
+    "@stylistic/eslint-plugin": "^6.0.1",
+    "eslint": "^10.15.0",
     "eslint-plugin-html": "^8.2.1",
     "eslint-plugin-prefer-arrow-functions": "^3.10.2",
     "eslint-plugin-qbt-webui": "https://github.com/Chocobo1/eslint-plugin-qbt-webui/tarball/ed868b611673529d8a23a038cf4dd1e43fbabb83",
     "eslint-plugin-regexp": "^3.3.3",
-    "eslint-plugin-unicorn": "^79.0.0",
+    "eslint-plugin-unicorn": "^80.0.0",
     "happy-dom": "^21.0.4",
-    "html-validate": "^11.18.0",
+    "html-validate": "^11.21.1",
     "js-beautify": "^2.0.3",
-    "prettier": "3.9.10",
-    "stylelint": "^18.0.0",
-    "stylelint-config-standard": "^41.0.0",
+    "prettier": "3.10.1",
+    "stylelint": "^18.1.0",
+    "stylelint-config-standard": "^41.1.0",
     "stylelint-order": "^8.1.3",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.1"
   }
 }
