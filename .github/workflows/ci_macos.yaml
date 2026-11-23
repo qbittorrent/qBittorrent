@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   ci:
-    name: Build
+    name: Build (${{ matrix.libtorrent.version }}, ${{ matrix.qbt_gui }}, ${{ matrix.qt_version }})
     runs-on: macos-latest
     permissions:
       actions: write
