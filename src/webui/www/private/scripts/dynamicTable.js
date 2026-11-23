@@ -118,7 +118,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const needRerender = this.renderedHeight < height;
                 this.renderedHeight = height;
                 if (needRerender)
-                    this.rerender();
+                    this.scheduleRerender();
             });
             new ResizeObserver(resizeCallback).observe(this.dynamicTableDiv);
         }
@@ -129,7 +129,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const scrollTop = this.dynamicTableDiv.scrollTop;
                 if (scrollTop !== this.renderedOffset) {
                     this.renderedOffset = scrollTop;
-                    this.rerender();
+                    this.scheduleRerender();
                 }
             });
 
@@ -446,7 +446,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.colgroup.children[pos].style.width = `${column.width}px`;
             this.fixedTableHeaderColgroup.children[pos].style.width = `${column.width}px`;
             // rerender on column resize
-            this.rerender();
+            this.scheduleRerender();
 
             column.onResize?.(column.name);
         }
@@ -945,7 +945,20 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.rerender(rows);
         }
 
+        scheduleRerender() {
+            if (this.rerenderRequestId !== undefined)
+                return;
+            this.rerenderRequestId = requestAnimationFrame(() => {
+                this.rerenderRequestId = undefined;
+                this.rerender();
+            });
+        }
+
         rerender(rows = this.getFilteredAndSortedRows()) {
+            if (this.rerenderRequestId !== undefined) {
+                cancelAnimationFrame(this.rerenderRequestId);
+                this.rerenderRequestId = undefined;
+            }
             // set the scrollable height
             const tableHeight = rows.length * this.rowHeight;
             if (tableHeight !== this.previousTableHeight) {
@@ -1049,13 +1062,13 @@ window.qBittorrent.DynamicTable ??= (() => {
         removeRow(rowId) {
             this.selectedRows.erase(rowId);
             this.rows.delete(rowId);
-            this.rerender();
+            this.scheduleRerender();
         }
 
         clear() {
             this.deselectAll();
             this.rows.clear();
-            this.rerender();
+            this.scheduleRerender();
         }
 
         selectedRowsIds() {
@@ -2996,7 +3009,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const scrollTop = this.dynamicTableDiv.scrollTop;
                 if (scrollTop !== this.renderedOffset) {
                     this.renderedOffset = scrollTop;
-                    this.rerender();
+                    this.scheduleRerender();
                 }
             });
         }
