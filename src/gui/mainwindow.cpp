@@ -1397,6 +1397,23 @@ void MainWindow::showStatusBar(bool show)
         m_statusBar = new StatusBar;
         connect(m_statusBar.data(), &StatusBar::connectionButtonClicked, this, &MainWindow::showConnectionSettings);
         connect(m_statusBar.data(), &StatusBar::alternativeSpeedsButtonClicked, this, &MainWindow::toggleAlternativeSpeeds);
+        const auto updateTorrents = [this]
+        {
+            // Don't count torrents while they aren't displayed
+            if (!Preferences::instance()->isStatusbarTorrentsCountDisplayed())
+            {
+                m_statusBar->setTorrents(0, false);
+                return;
+            }
+
+            if (const qsizetype selectedCount = m_transferListWidget->selectedTorrentsCount(); selectedCount > 0)
+                m_statusBar->setTorrents(selectedCount, true);
+            else
+                m_statusBar->setTorrents(m_transferListWidget->visibleTorrentsCount(), false);
+        };
+        connect(m_transferListWidget, &TransferListWidget::selectedOrVisibleTorrentsChanged, m_statusBar.data(), updateTorrents);
+        connect(Preferences::instance(), &Preferences::changed, m_statusBar.data(), updateTorrents);
+        updateTorrents();
         setStatusBar(m_statusBar);
     }
 }

@@ -387,6 +387,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     // Groupbox's check state  must be initialized after some of its children if they are manually enabled/disabled
     m_ui->checkFileLog->setChecked(app()->isFileLoggerEnabled());
 
+    m_ui->checkBoxTorrentsCountStatusBar->setChecked(pref->isStatusbarTorrentsCountDisplayed());
     m_ui->checkBoxFreeDiskSpaceStatusBar->setChecked(pref->isStatusbarFreeDiskSpaceDisplayed());
     m_ui->checkBoxExternalIPStatusBar->setChecked(pref->isStatusbarExternalIPDisplayed());
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
@@ -474,6 +475,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->spinFileLogAge, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboFileLogAgeType, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
+    connect(m_ui->checkBoxTorrentsCountStatusBar, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBoxFreeDiskSpaceStatusBar, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBoxExternalIPStatusBar, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBoxPerformanceWarning, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -565,6 +567,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
 
     app()->setStartUpWindowState(m_ui->windowStateComboBox->currentData().value<WindowState>());
 
+    pref->setStatusbarTorrentsCountDisplayed(m_ui->checkBoxTorrentsCountStatusBar->isChecked());
     pref->setStatusbarFreeDiskSpaceDisplayed(m_ui->checkBoxFreeDiskSpaceStatusBar->isChecked());
     pref->setStatusbarExternalIPDisplayed(m_ui->checkBoxExternalIPStatusBar->isChecked());
     session->setPerformanceWarningEnabled(m_ui->checkBoxPerformanceWarning->isChecked());

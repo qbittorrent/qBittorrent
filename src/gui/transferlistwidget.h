@@ -61,6 +61,8 @@ public:
     TransferListWidget(IGUIApplication *app, QWidget *parent);
     ~TransferListWidget() override;
     TransferListModel *getSourceModel() const;
+    qsizetype selectedTorrentsCount() const;
+    qsizetype visibleTorrentsCount() const;
 
 public slots:
     void setSelectionCategory(const QString &category);
@@ -108,12 +110,14 @@ public slots:
 
 signals:
     void currentTorrentChanged(BitTorrent::Torrent *torrent);
+    void selectedOrVisibleTorrentsChanged();
 
 private slots:
     void torrentDoubleClicked();
     void displayListMenu();
     void displayColumnHeaderMenu();
     void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
+    void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) override;
     void setSelectedTorrentsSuperSeeding(bool enabled) const;
     void setSelectedTorrentsSequentialDownload(bool enabled) const;
     void setSelectedFirstLastPiecePrio(bool enabled) const;
@@ -142,7 +146,9 @@ private:
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
     QList<BitTorrent::Torrent *> getVisibleTorrents() const;
     int visibleColumnsCount() const;
+    void notifySelectedOrVisibleTorrentsChanged();
 
     TransferListModel *m_listModel = nullptr;
     TransferListSortModel *m_sortFilterModel = nullptr;
+    bool m_isSelectedOrVisibleTorrentsChangedPending = false;
 };

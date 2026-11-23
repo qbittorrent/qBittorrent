@@ -133,6 +133,9 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     m_sortFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     m_sortFilterModel->setSortRole(TransferListModel::UnderlyingDataRole);
     setModel(m_sortFilterModel);
+    connect(m_sortFilterModel, &QAbstractItemModel::rowsInserted, this, &TransferListWidget::notifySelectedOrVisibleTorrentsChanged);
+    connect(m_sortFilterModel, &QAbstractItemModel::rowsRemoved, this, &TransferListWidget::notifySelectedOrVisibleTorrentsChanged);
+    connect(m_sortFilterModel, &QAbstractItemModel::modelReset, this, &TransferListWidget::notifySelectedOrVisibleTorrentsChanged);
 
     // Visual settings
     setUniformRowHeights(true);
@@ -314,6 +317,16 @@ void TransferListWidget::torrentDoubleClicked()
         setTorrentOptions();
         break;
     }
+}
+
+qsizetype TransferListWidget::selectedTorrentsCount() const
+{
+    return selectionModel()->selectedRows().size();
+}
+
+qsizetype TransferListWidget::visibleTorrentsCount() const
+{
+    return m_sortFilterModel->rowCount();
 }
 
 QList<BitTorrent::Torrent *> TransferListWidget::getSelectedTorrents() const
@@ -1334,6 +1347,26 @@ void TransferListWidget::displayListMenu()
     listMenu->addAction(actionExportTorrent);
 
     listMenu->popup(QCursor::pos());
+}
+
+void TransferListWidget::selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+{
+    QTreeView::selectionChanged(selected, deselected);
+    notifySelectedOrVisibleTorrentsChanged();
+}
+
+void TransferListWidget::notifySelectedOrVisibleTorrentsChanged()
+{
+    // Notify once per event loop iteration: removing many rows changes the selected or visible rows once per row
+    if (m_isSelectedOrVisibleTorrentsChangedPending)
+        return;
+
+    m_isSelectedOrVisibleTorrentsChangedPending = true;
+    QMetaObject::invokeMethod(this, [this]
+    {
+        m_isSelectedOrVisibleTorrentsChangedPending = false;
+        emit selectedOrVisibleTorrentsChanged();
+    }, Qt::QueuedConnection);
 }
 
 void TransferListWidget::currentChanged(const QModelIndex &current, const QModelIndex &previous)
