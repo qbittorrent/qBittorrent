@@ -34,6 +34,9 @@ LangString inst_requires_win10 ${LANG_TRADCHINESE}  "此安裝程式僅支援 Wi
 LangString inst_uninstall_link_description ${LANG_TRADCHINESE} "移除 qBittorrent"
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 LangString inst_arch_mismatch_arm64_on_x64 ${LANG_TRADCHINESE} "ARM64 版本的 qBittorrent 無法在 X64 系統上執行。請下載 X64 安裝程式。"
+;LangString inst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString inst_findproc_other_error ${LANG_TRADCHINESE} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+
 
 ;------------------------------------
 ;Uninstaller strings
@@ -60,3 +63,5 @@ LangString uninst_warning ${LANG_TRADCHINESE} "qBittorrent 正在執行中，請
 LangString uninst_tor_warn ${LANG_TRADCHINESE} "無法移除 .torrent 關聯，目前連結於:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"
 LangString uninst_mag_warn ${LANG_TRADCHINESE} "無法移除 magnet 關聯，目前連結於:"
+;LangString uninst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString uninst_findproc_other_error ${LANG_TRADCHINESE} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
