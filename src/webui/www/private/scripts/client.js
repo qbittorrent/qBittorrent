@@ -378,10 +378,24 @@ const updateTorrentsStatus = window.qBittorrent.Misc.createDebounceHandler(0, ()
     const count = areSelected ? selectedRowIds.length : torrentsTable.filteredRows.length;
     const isVisible = (preferences.status_bar_torrents_count === true) && (count > 0);
     if (isVisible) {
-        const text = areSelected
-            ? "QBT_TR(Selected: %1 torrents)QBT_TR[CONTEXT=StatusBar]"
-            : "QBT_TR(Filtered: %1 torrents)QBT_TR[CONTEXT=StatusBar]";
-        element.textContent = text.replace("%1", count);
+        if (preferences.status_bar_torrents_size === true) {
+            let size = 0;
+            const rows = areSelected ? selectedRowIds.map(rowId => torrentsTable.getRow(rowId)) : torrentsTable.filteredRows;
+            for (const row of rows)
+                size += row?.full_data.size ?? 0;
+            const text = areSelected
+                ? "QBT_TR(Selected: %1 torrents (%2))QBT_TR[CONTEXT=StatusBar]"
+                : "QBT_TR(Filtered: %1 torrents (%2))QBT_TR[CONTEXT=StatusBar]";
+            element.textContent = text
+                .replace("%1", count)
+                .replace("%2", window.qBittorrent.Misc.friendlyUnit(size));
+        }
+        else {
+            const text = areSelected
+                ? "QBT_TR(Selected: %1 torrents)QBT_TR[CONTEXT=StatusBar]"
+                : "QBT_TR(Filtered: %1 torrents)QBT_TR[CONTEXT=StatusBar]";
+            element.textContent = text.replace("%1", count);
+        }
     }
     element.classList.toggle("invisible", !isVisible);
     element.nextElementSibling.classList.toggle("invisible", !isVisible);

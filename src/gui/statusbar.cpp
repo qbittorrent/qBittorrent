@@ -174,12 +174,13 @@ void StatusBar::showRestartRequired()
     insertWidget(1, restartLbl);
 }
 
-void StatusBar::setTorrents(const qsizetype count, const bool areSelected)
+void StatusBar::setTorrents(const qsizetype count, const qint64 size, const bool areSelected)
 {
-    if ((count == m_torrentsCount) && (areSelected == m_areTorrentsSelected))
+    if ((count == m_torrentsCount) && (size == m_torrentsSize) && (areSelected == m_areTorrentsSelected))
         return;
 
     m_torrentsCount = count;
+    m_torrentsSize = size;
     m_areTorrentsSelected = areSelected;
     updateTorrentsLabel();
 }
@@ -272,10 +273,20 @@ void StatusBar::updateTorrentsLabel()
     if (!isVisible)
         return;
 
-    const QString text = m_areTorrentsSelected
-        ? tr("Selected: %1 torrents", "e.g. Selected: 12 torrents")
-        : tr("Filtered: %1 torrents", "Torrents shown by the filters, e.g. Filtered: 1234 torrents");
-    m_torrentsLbl->setText(text.arg(m_torrentsCount));
+    if (pref->isStatusbarTorrentsSizeDisplayed())
+    {
+        const QString text = m_areTorrentsSelected
+            ? tr("Selected: %1 torrents (%2)", "e.g. Selected: 12 torrents (24.68 GiB)")
+            : tr("Filtered: %1 torrents (%2)", "Torrents shown by the filters, e.g. Filtered: 1234 torrents (2.31 TiB)");
+        m_torrentsLbl->setText(text.arg(QString::number(m_torrentsCount), Utils::Misc::friendlyUnit(m_torrentsSize)));
+    }
+    else
+    {
+        const QString text = m_areTorrentsSelected
+            ? tr("Selected: %1 torrents", "e.g. Selected: 12 torrents")
+            : tr("Filtered: %1 torrents", "Torrents shown by the filters, e.g. Filtered: 1234 torrents");
+        m_torrentsLbl->setText(text.arg(m_torrentsCount));
+    }
 }
 
 void StatusBar::updateSpeedLabels()

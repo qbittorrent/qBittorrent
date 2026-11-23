@@ -1399,19 +1399,32 @@ void MainWindow::showStatusBar(bool show)
         connect(m_statusBar.data(), &StatusBar::alternativeSpeedsButtonClicked, this, &MainWindow::toggleAlternativeSpeeds);
         const auto updateTorrents = [this]
         {
-            // Don't count torrents while they aren't displayed
-            if (!Preferences::instance()->isStatusbarTorrentsCountDisplayed())
+            // Don't count torrents or sum their size while they aren't displayed
+            const auto *pref = Preferences::instance();
+            if (!pref->isStatusbarTorrentsCountDisplayed())
             {
-                m_statusBar->setTorrents(0, false);
+                m_statusBar->setTorrents(0, 0, false);
                 return;
             }
 
+            const bool isSizeDisplayed = pref->isStatusbarTorrentsSizeDisplayed();
             if (const qsizetype selectedCount = m_transferListWidget->selectedTorrentsCount(); selectedCount > 0)
-                m_statusBar->setTorrents(selectedCount, true);
+            {
+                m_statusBar->setTorrents(selectedCount, (isSizeDisplayed ? m_transferListWidget->selectedTorrentsSize() : 0), true);
+            }
             else
-                m_statusBar->setTorrents(m_transferListWidget->visibleTorrentsCount(), false);
+            {
+                m_statusBar->setTorrents(m_transferListWidget->visibleTorrentsCount()
+                    , (isSizeDisplayed ? m_transferListWidget->visibleTorrentsSize() : 0), false);
+            }
         };
         connect(m_transferListWidget, &TransferListWidget::selectedOrVisibleTorrentsChanged, m_statusBar.data(), updateTorrents);
+        // Only the total size needs this: the transfer list reports changes of selected or visible torrents itself
+        connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated, m_statusBar.data(), [updateTorrents]
+        {
+            if (Preferences::instance()->isStatusbarTorrentsSizeDisplayed())
+                updateTorrents();
+        });
         connect(Preferences::instance(), &Preferences::changed, m_statusBar.data(), updateTorrents);
         updateTorrents();
         setStatusBar(m_statusBar);
