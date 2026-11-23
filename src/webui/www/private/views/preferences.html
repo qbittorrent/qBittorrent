@@ -372,6 +372,10 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.)QBT
             <input type="checkbox" id="excludeFilesWithoutExtensionCheckbox">
             <label for="excludeFilesWithoutExtensionCheckbox" title="QBT_TR(Files whose name has no extension (e.g. 'readme', 'setup.') will have their priority automatically set to &quot;Do not download&quot;.)QBT_TR[CONTEXT=OptionsDialog]">QBT_TR(Exclude files without an extension)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+        <div class="formRow" title="QBT_TR(Torrents that contain any file matching the filters above will be removed automatically once their file list is known. Downloaded content is kept.)QBT_TR[CONTEXT=OptionsDialog]">
+            <input type="checkbox" id="removeTorrentsWithExcludedFilesCheckbox">
+            <label for="removeTorrentsWithExcludedFilesCheckbox">QBT_TR(Remove torrents that contain excluded files)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -2198,6 +2202,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const isAExcludedFileNamesEnabled = document.getElementById("excludedFileNamesCheckbox").checked;
             document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
             document.getElementById("excludeFilesWithoutExtensionCheckbox").disabled = !isAExcludedFileNamesEnabled;
+            document.getElementById("removeTorrentsWithExcludedFilesCheckbox").disabled = !isAExcludedFileNamesEnabled;
         };
 
         const updateTorrentBackupControls = () => {
@@ -2667,6 +2672,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("excludedFileNamesCheckbox").checked = pref.excluded_file_names_enabled;
                     document.getElementById("excludedFileNamesTextarea").value = pref.excluded_file_names;
                     document.getElementById("excludeFilesWithoutExtensionCheckbox").checked = pref.exclude_files_without_extension;
+                    document.getElementById("removeTorrentsWithExcludedFilesCheckbox").checked = pref.remove_torrents_with_excluded_files;
                     updateExcludedFileNamesEnabled();
 
                     // Email notification upon download completion
@@ -3092,6 +3098,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["excluded_file_names_enabled"] = document.getElementById("excludedFileNamesCheckbox").checked;
             settings["excluded_file_names"] = document.getElementById("excludedFileNamesTextarea").value;
             settings["exclude_files_without_extension"] = document.getElementById("excludeFilesWithoutExtensionCheckbox").checked;
+            settings["remove_torrents_with_excluded_files"] = document.getElementById("removeTorrentsWithExcludedFilesCheckbox").checked;
 
             // Email notification upon download completion
             settings["mail_notification_enabled"] = document.getElementById("mail_notification_checkbox").checked;
