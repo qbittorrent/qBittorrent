@@ -27,6 +27,7 @@
  */
 
 #include <QList>
+#include <QLocale>
 #include <QObject>
 #include <QTest>
 
@@ -62,6 +63,35 @@ public:
     TestUtilsString() = default;
 
 private slots:
+    void testFromDouble() const
+    {
+        // `fromDouble()` truncates instead of rounding, so it has to be compared against
+        // the locale the function itself uses rather than against hardcoded strings
+        const auto localized = [](const double value, const int precision) -> QString
+        {
+            return QLocale::system().toString(value, 'f', precision);
+        };
+
+        // a number that cannot be represented exactly must not lose its last digit
+        QCOMPARE(Utils::String::fromDouble(2.3, 2), localized(2.3, 2));
+        QCOMPARE(Utils::String::fromDouble(0.29, 2), localized(0.29, 2));
+        QCOMPARE(Utils::String::fromDouble(1.001, 3), localized(1.001, 3));
+
+        // every value that already has the requested precision is printed as is
+        for (int i = 0; i <= 10000; ++i)
+        {
+            const double value = (i / 100.0);
+            QCOMPARE(Utils::String::fromDouble(value, 2), localized(value, 2));
+        }
+
+        // numbers that really do have more digits are still truncated, not rounded up
+        QCOMPARE(Utils::String::fromDouble((0.999 * 100.0), 1), localized(99.9, 1));
+        QCOMPARE(Utils::String::fromDouble((0.9999 * 100.0), 1), localized(99.9, 1));
+        QCOMPARE(Utils::String::fromDouble(99.999, 1), localized(99.9, 1));
+        QCOMPARE(Utils::String::fromDouble(1.009999999999, 2), localized(1.0, 2));
+        QCOMPARE(Utils::String::fromDouble(3.999999999999, 2), localized(3.99, 2));
+    }
+
     void testJoinIntoString() const
     {
         const QList<QString> list1;
