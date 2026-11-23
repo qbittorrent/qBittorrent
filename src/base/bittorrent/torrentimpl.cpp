@@ -1334,6 +1334,8 @@ void TorrentImpl::updateState()
             m_state = TorrentState::StoppedDownloading;
         else if (isQueued())
             m_state = TorrentState::QueuedDownloading;
+        else if (m_isDiskSpaceLimited)
+            m_state = TorrentState::InsufficientDiskSpace;
         else if (isForced())
             m_state = TorrentState::ForcedDownloading;
         else if (m_nativeStatus.download_payload_rate > 0)
@@ -1355,7 +1357,10 @@ bool TorrentImpl::hasMissingFiles() const
 
 bool TorrentImpl::hasError() const
 {
-    return (m_nativeStatus.errc || (m_nativeStatus.flags & lt::torrent_flags::upload_mode));
+    // upload_mode set due to insufficient disk space isn't a torrent error
+    return (m_nativeStatus.errc
+            || ((m_nativeStatus.flags & lt::torrent_flags::upload_mode)
+                && (!m_isDiskSpaceLimited || m_lastFileError.error)));
 }
 
 int TorrentImpl::queuePosition() const
@@ -1374,7 +1379,8 @@ QString TorrentImpl::error() const
 #endif
     }
 
-    if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
+    if ((m_nativeStatus.flags & lt::torrent_flags::upload_mode)
+        && (!m_isDiskSpaceLimited || m_lastFileError.error))
     {
         return tr("Couldn't write to file. Reason: \"%1\". Torrent is now in \"upload only\" mode.")
 #if LIBTORRENT_VERSION_NUM >= 20100
@@ -2013,6 +2019,31 @@ void TorrentImpl::reload()
     }
 }
 
+bool TorrentImpl::isDiskSpaceLimited() const
+{
+    return m_isDiskSpaceLimited;
+}
+
+void TorrentImpl::setDiskSpaceLimited(const bool limited)
+{
+    if (m_isDiskSpaceLimited == limited)
+        return;
+
+    m_isDiskSpaceLimited = limited;
+    if (m_isDiskSpaceLimited)
+    {
+        m_nativeHandle.set_flags(lt::torrent_flags::upload_mode);
+        m_nativeStatus.flags |= lt::torrent_flags::upload_mode;  // prevent return cached value
+    }
+    else if (!m_lastFileError.error)
+    {
+        m_nativeHandle.unset_flags(lt::torrent_flags::upload_mode);
+        m_nativeStatus.flags &= ~lt::torrent_flags::upload_mode;  // prevent return cached value
+    }
+
+    updateState();
+}
+
 void TorrentImpl::stop()
 {
     if (!m_isStopped)
@@ -2037,7 +2068,8 @@ void TorrentImpl::start(const TorrentOperatingMode mode)
     if (hasError())
     {
         m_nativeHandle.clear_error();
-        m_nativeHandle.unset_flags(lt::torrent_flags::upload_mode);
+        if (!m_isDiskSpaceLimited)
+            m_nativeHandle.unset_flags(lt::torrent_flags::upload_mode);
     }
 
     m_operatingMode = mode;
@@ -2054,7 +2086,12 @@ void TorrentImpl::start(const TorrentOperatingMode mode)
     if (m_isStopped)
     {
         m_isStopped = false;
+        // Note: m_isDiskSpaceLimited is intentionally left untouched here.
+        // The disk space enforcement logic owns this flag and will re-evaluate
+        // the torrent on its next pass, switching it back to "upload mode"
+        // if free space is still insufficient.
         deferredRequestResumeData();
+        updateState();
         m_session->handleTorrentStarted(this);
     }
 

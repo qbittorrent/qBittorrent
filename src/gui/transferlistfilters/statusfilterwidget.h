@@ -78,4 +78,5 @@ private:
     int m_nbChecking = 0;
     int m_nbMoving = 0;
     int m_nbErrored = 0;
+    int m_nbInsufficientDiskSpace = 0;
 };
