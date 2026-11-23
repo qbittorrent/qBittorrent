@@ -37,8 +37,16 @@ set(webUITestFiles
     testwebuitranslationutils.cpp
 )
 
+set(guiTestFiles
+    testrssreaderfunctional.cpp
+)
+
 if (WEBUI)
     list(APPEND testFiles ${webUITestFiles})
+endif()
+
+if (GUI)
+    list(APPEND testFiles ${guiTestFiles})
 endif()
 
 foreach(testFile ${testFiles})
@@ -49,8 +57,17 @@ foreach(testFile ${testFiles})
     if (testFile IN_LIST webUITestFiles)
         target_link_libraries("${testFilename}" PRIVATE qbt_webui)
     endif()
+    if (testFile IN_LIST guiTestFiles)
+        target_link_libraries("${testFilename}" PRIVATE qbt_gui)
+        if (WEBUI)
+            target_link_libraries("${testFilename}" PRIVATE qbt_webui)
+        endif()
+    endif()
 
     add_test(NAME "${testFilename}" COMMAND "${testFilename}")
+    if (testFile IN_LIST guiTestFiles)
+        set_tests_properties("${testFilename}" PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen")
+    endif()
 
     add_dependencies(check "${testFilename}")
 endforeach()
