@@ -144,6 +144,16 @@ AboutDialog::AboutDialog(QWidget *parent)
                                      "The database is licensed under the Creative Commons Attribution 4.0 International License"));
     m_ui->labelDBIP->setText(DBIPText);
 
+    // Qt ignores hidden tabs when it checks whether the layout depends on word wrapping.
+    // Let them count, so that the minimum height (see resizeEvent()) is the same on every tab.
+    for (int i = 0; i < m_ui->tw_tabs->count(); ++i)
+    {
+        QWidget *tab = m_ui->tw_tabs->widget(i);
+        QSizePolicy sizePolicy = tab->sizePolicy();
+        sizePolicy.setRetainSizeWhenHidden(true);
+        tab->setSizePolicy(sizePolicy);
+    }
+
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
         resize(dialogSize);
     else
@@ -154,6 +164,16 @@ AboutDialog::~AboutDialog()
 {
     m_storeDialogSize = size();
     delete m_ui;
+}
+
+void AboutDialog::resizeEvent(QResizeEvent *event)
+{
+    QDialog::resizeEvent(event);
+
+    // The minimum height enforced by the layout doesn't take word wrapping into account,
+    // so the dialog could be made (or restored) too small to show all of its text
+    if (layout()->hasHeightForWidth())
+        setMinimumHeight(layout()->minimumHeightForWidth(width()));
 }
 
 void AboutDialog::copyVersionsToClipboard() const
