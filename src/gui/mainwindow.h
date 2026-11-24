@@ -49,6 +49,7 @@ class QTimer;
 class AboutDialog;
 class DownloadFromURLDialog;
 class ExecutionLogWidget;
+class HistoryWidget;
 class LineEdit;
 class OptionsDialog;
 class PowerManagement;
@@ -242,6 +243,7 @@ private:
     TransferListWidget *m_transferListWidget = nullptr;
     TransferListFiltersWidget *m_transferListFiltersWidget = nullptr;
     PropertiesWidget *m_propertiesWidget = nullptr;
+    HistoryWidget *m_historyWidget = nullptr;
     bool m_displaySpeedInTitle = false;
     bool m_forceExit = false;
     bool m_uiLocked = false;
