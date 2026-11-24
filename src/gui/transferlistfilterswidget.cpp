@@ -77,9 +77,9 @@ public:
         hide();
     }
 
-    void display(const int localY)
+    void display(const int pointerY)
     {
-        m_activeY = localY;
+        m_activeY = pointerY;
         const QPoint origin = m_sidebar->mapTo(parentWidget(), QPoint());
         const int avail = isRightToLeft() ? origin.x() : parentWidget()->width() - origin.x() - m_sidebar->width();
         const int width = qMin(320, avail);
