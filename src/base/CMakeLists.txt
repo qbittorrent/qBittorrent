@@ -20,6 +20,7 @@ add_library(qbt_base STATIC
     bittorrent/filesearcher.h
     bittorrent/filterparserthread.h
     bittorrent/infohash.h
+    bittorrent/listenentry.h
     bittorrent/loadtorrentparams.h
     bittorrent/ltqbitarray.h
     bittorrent/lttypecast.h
@@ -81,6 +82,7 @@ add_library(qbt_base STATIC
     net/downloadmanager.h
     net/geoipdatabase.h
     net/geoipmanager.h
+    net/ipaddresswatcher.h
     net/portforwarder.h
     net/proxyconfigurationmanager.h
     net/proxytype.h
@@ -150,6 +152,7 @@ add_library(qbt_base STATIC
     bittorrent/filesearcher.cpp
     bittorrent/filterparserthread.cpp
     bittorrent/infohash.cpp
+    bittorrent/listenentry.cpp
     bittorrent/ltqbitarray.cpp
     bittorrent/nativesessionextension.cpp
     bittorrent/nativetorrentextension.cpp
@@ -189,6 +192,7 @@ add_library(qbt_base STATIC
     net/downloadmanager.cpp
     net/geoipdatabase.cpp
     net/geoipmanager.cpp
+    net/ipaddresswatcher.cpp
     net/portforwarder.cpp
     net/proxyconfigurationmanager.cpp
     net/reverseresolution.cpp

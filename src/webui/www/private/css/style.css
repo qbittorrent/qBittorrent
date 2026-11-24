@@ -578,6 +578,21 @@ fieldset.settings + div.formRow {
     margin-top: 10px;
 }
 
+.addressSelectionTree {
+    max-height: 20em;
+    overflow-y: auto;
+}
+
+.addressSelectionTree ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 1.5em;
+}
+
+.addressSelectionTree > ul {
+    padding-left: 0;
+}
+
 div.formRow {
     clear: left;
     display: block;
