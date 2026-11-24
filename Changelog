@@ -1,4 +1,4 @@
-Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.1
+Tue Nov 24th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.1
     - BUGFIX: Don't try to obtain pieces info when no metadata is available (glassez) #25070
     - BUGFIX: Add mnemonic for Plugins menu item (vafada) #25111
     - BUGFIX: Preserve encoded plus signs in HTTP queries (zepx) #25114
