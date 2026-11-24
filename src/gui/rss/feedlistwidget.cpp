@@ -40,6 +40,7 @@
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
 #include "gui/uithememanager.h"
+#include "gui/desktopstyle/desktopstyle.h"
 
 namespace
 {
@@ -104,6 +105,8 @@ namespace
 FeedListWidget::FeedListWidget(QWidget *parent)
     : QTreeWidget(parent)
 {
+    DesktopStyle::installSortHeader(this);
+
     setContextMenuPolicy(Qt::CustomContextMenu);
     setDragDropMode(QAbstractItemView::InternalMove);
     setSelectionMode(QAbstractItemView::ExtendedSelection);

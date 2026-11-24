@@ -43,11 +43,12 @@ class ProgressBarPainter : public QObject
 public:
     explicit ProgressBarPainter(QObject *parent = nullptr);
 
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, int progress, const QColor &color = {}) const;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, qreal progress, const QColor &color = {}) const;
 
 private:
     void applyUITheme();
 
+    const bool m_useCustomTheme;
     QColor m_chunkColor;
     // for painting progressbar with stylesheet option, a dummy progress bar is required
     QProgressBar m_dummyProgressBar;

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/desktopstyle">
+        <file>widgets.qss</file>
+        <file>indicators.qss</file>
+    </qresource>
+</RCC>

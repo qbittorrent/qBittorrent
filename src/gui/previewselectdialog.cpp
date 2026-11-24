@@ -45,6 +45,7 @@
 #include "previewlistdelegate.h"
 #include "ui_previewselectdialog.h"
 #include "utils.h"
+#include "desktopstyle/desktopstyle.h"
 
 #define SETTINGS_KEY(name) u"PreviewSelectDialog/" name
 
@@ -60,6 +61,7 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     , m_storeTreeHeaderState {u"GUI/Qt6/" SETTINGS_KEY(u"HeaderState"_s)}
 {
     m_ui->setupUi(this);
+    DesktopStyle::installSortHeader(m_ui->previewList);
 
     m_ui->label->setText(tr("The following files from torrent \"%1\" support previewing, please select one of them:")
         .arg(torrent->name()));

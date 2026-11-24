@@ -104,6 +104,7 @@ private:
     int m_savePathIndex = -1;
     int m_downloadPathIndex = -1;
     bool m_useDownloadPath = false;
+    bool m_sizeInitialColumns = false;
     LineEdit *m_filterLine = nullptr;
 
     std::shared_ptr<Context> m_currentContext;

@@ -53,7 +53,7 @@ void PreviewListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
                 ? u"100%"_s
                 : (Utils::String::fromDouble(progress, 1) + u'%');
 
-            m_progressBarPainter.paint(painter, option, text, static_cast<int>(progress));
+            m_progressBarPainter.paint(painter, option, text, progress);
         }
         break;
 

@@ -200,9 +200,15 @@ bool CategoryFilterWidget::hasAnySubcategory() const
     return false;
 }
 
+void CategoryFilterWidget::setCompact(const bool compact)
+{
+    m_compact = compact;
+    adjustIndentation();
+}
+
 void CategoryFilterWidget::adjustIndentation()
 {
-    if (hasAnySubcategory())
+    if (!m_compact && hasAnySubcategory())
         resetIndentation();
     else
         setIndentation(0);

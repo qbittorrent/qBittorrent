@@ -49,6 +49,32 @@ StatsDialog::StatsDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    const int gap = qMax(4, fontMetrics().height() / 3);
+    m_ui->verticalLayout->setContentsMargins(0, 0, 0, 0);
+    m_ui->verticalLayout->setSpacing(0);
+    m_ui->verticalLayout_2->setContentsMargins(3 * gap, 3 * gap, 3 * gap, 2 * gap);
+    m_ui->verticalLayout_2->setSpacing(2 * gap);
+    m_ui->buttonBox->setContentsMargins(3 * gap, 2 * gap, 3 * gap, 2 * gap);
+
+    for (QGroupBox *section : {m_ui->groupUser, m_ui->groupCache, m_ui->groupPerf, m_ui->groupTracker})
+    {
+        auto *grid = qobject_cast<QGridLayout *>(section->layout());
+        grid->setContentsMargins(0, gap, 0, gap);
+        grid->setVerticalSpacing(gap);
+        grid->setHorizontalSpacing(3 * gap);
+        grid->setColumnStretch(0, 1);
+        for (int row = 0; row < grid->rowCount(); ++row)
+        {
+            auto *caption = qobject_cast<QLabel *>(grid->itemAtPosition(row, 0)->widget());
+            auto *value = qobject_cast<QLabel *>(grid->itemAtPosition(row, 1)->widget());
+            caption->setWordWrap(true);
+            caption->setBuddy(value);
+            value->setProperty("metricValue", true);
+            value->setAccessibleName(caption->text());
+            value->setTextInteractionFlags(Qt::TextSelectableByMouse);
+        }
+    }
+
 #ifdef QBT_USES_LIBTORRENT2
     m_ui->labelCacheHitsText->hide();
     m_ui->labelCacheHits->hide();
@@ -108,7 +134,7 @@ void StatsDialog::update()
         : u"0"_s));
 
     // Disk queues
-    const QString usSuffix = tr("%1 μs");
+    const QString usSuffix = tr("%1 Ојs");
     m_ui->labelQueuedJobs->setText(QString::number(cs.jobQueueLength));
     m_ui->labelJobsTime->setText(usSuffix.arg(cs.averageJobTime));
     m_ui->labelQueuedBytes->setText(Utils::Misc::friendlyUnit(cs.queuedBytes));

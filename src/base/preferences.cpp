@@ -1697,7 +1697,7 @@ void Preferences::setFiltersSidebarVisible(const bool value)
 
 int Preferences::getFiltersSidebarWidth() const
 {
-    return value(u"GUI/MainWindow/FiltersSidebarWidth"_s, 120);
+    return value(u"GUI/MainWindow/FiltersSidebarWidth"_s, 182);
 }
 
 void Preferences::setFiltersSidebarWidth(const int value)

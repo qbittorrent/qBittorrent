@@ -45,6 +45,7 @@
 #include "gui/autoexpandabledialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
+#include "gui/desktopstyle/desktopstyle.h"
 #include "searchpluginsourcedialog.h"
 #include "searchwidget.h"
 #include "ui_searchpluginselectdialog.h"
@@ -67,6 +68,7 @@ SearchPluginSelectDialog::SearchPluginSelectDialog(SearchPluginManager *pluginMa
     , m_pluginManager {pluginManager}
 {
     m_ui->setupUi(this);
+    DesktopStyle::installSortHeader(m_ui->pluginsTree);
 
     m_ui->pluginsTree->setRootIsDecorated(false);
     m_ui->pluginsTree->hideColumn(PLUGIN_ID);

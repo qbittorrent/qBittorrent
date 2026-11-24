@@ -39,6 +39,7 @@ public:
     explicit CategoryFilterWidget(QWidget *parent = nullptr);
 
     QString currentCategory() const;
+    void setCompact(bool compact);
 
 signals:
     void categoryChanged(const QString &categoryName);
@@ -63,4 +64,6 @@ private:
     void rowsInserted(const QModelIndex &parent, int start, int end) override;
     bool hasAnySubcategory() const;
     void adjustIndentation();
+
+    bool m_compact = false;
 };

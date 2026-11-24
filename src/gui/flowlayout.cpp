@@ -207,6 +207,7 @@ int FlowLayout::smartSpacing(const QStyle::PixelMetric pm) const
 
 void FlowLayout::applyItemsGeometry(const QHash<QLayoutItem *, QPoint> &items, const int lineHeight) const
 {
+    const auto direction = parentWidget() ? parentWidget()->layoutDirection() : Qt::LeftToRight;
     for (auto it = items.cbegin(); it != items.cend(); ++it)
     {
         QLayoutItem *item = it.key();
@@ -218,6 +219,6 @@ void FlowLayout::applyItemsGeometry(const QHash<QLayoutItem *, QPoint> &items, c
             point.ry() += vSpace / 2;
         else if (alignment & Qt::AlignBottom)
             point.ry() += vSpace;
-        item->setGeometry(QRect(point, item->sizeHint()));
+        item->setGeometry(QStyle::visualRect(direction, contentsRect(), QRect(point, item->sizeHint())));
     }
 }

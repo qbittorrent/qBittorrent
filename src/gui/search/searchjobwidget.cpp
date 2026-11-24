@@ -46,9 +46,11 @@
 #include "base/search/searchhandler.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/utils/misc.h"
+#include "gui/flowlayout.h"
 #include "gui/interfaces/iguiapplication.h"
 #include "gui/lineedit.h"
 #include "gui/uithememanager.h"
+#include "gui/desktopstyle/desktopstyle.h"
 #include "searchsortmodel.h"
 #include "ui_searchjobwidget.h"
 
@@ -62,6 +64,39 @@ namespace
     QColor visitedRowColor()
     {
         return QApplication::palette().color(QPalette::Disabled, QPalette::WindowText);
+    }
+
+    void wrapSearchFilters(QHBoxLayout *row, LineEdit *filter)
+    {
+        filter->setMinimumWidth(filter->minimumSizeHint().width()
+                + filter->fontMetrics().horizontalAdvance(filter->placeholderText()));
+        auto *flow = new FlowLayout(0, 2 * row->spacing(), row->spacing());
+        QHBoxLayout *group = nullptr;
+        // The spacers in the form separate the query, search mode, seeds and size ranges.
+        while (QLayoutItem *item = row->takeAt(0))
+        {
+            if (item->spacerItem())
+            {
+                delete item;
+                group = nullptr;
+                continue;
+            }
+            if (!group)
+            {
+                auto *widget = new QWidget(row->parentWidget());
+                group = new QHBoxLayout(widget);
+                group->setContentsMargins(0, 0, 0, 0);
+                flow->addWidget(widget);
+            }
+            if (QLayout *layout = item->layout())
+                group->addLayout(layout);
+            else
+            {
+                group->addWidget(item->widget());
+                delete item;
+            }
+        }
+        row->addLayout(flow);
     }
 
     QString statusText(const SearchJobWidget::Status st)
@@ -94,6 +129,7 @@ SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidge
     , m_ui {new Ui::SearchJobWidget}
 {
     m_ui->setupUi(this);
+    DesktopStyle::installSortHeader(m_ui->resultsBrowser);
 
     loadSettings();
 
@@ -171,6 +207,8 @@ SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidge
     connect(m_lineEditSearchResultsFilter, &QWidget::customContextMenuRequested, this, &SearchJobWidget::showFilterContextMenu);
     connect(m_lineEditSearchResultsFilter, &LineEdit::textUpdated, this, &SearchJobWidget::filterSearchResults);
     m_ui->horizontalLayout->insertWidget(0, m_lineEditSearchResultsFilter);
+    if (!Preferences::instance()->useCustomUITheme())
+        wrapSearchFilters(m_ui->horizontalLayout, m_lineEditSearchResultsFilter);
 
     connect(m_ui->filterMode, &QComboBox::currentIndexChanged, this, &SearchJobWidget::updateNameFilter);
     connect(m_ui->minSeeds, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateSeedsFilter);

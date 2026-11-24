@@ -32,6 +32,10 @@
 #include <QtContainerFwd>
 #include <QWidget>
 
+class QScrollArea;
+class QShortcut;
+class QToolButton;
+class TransferListFiltersWidgetItem;
 class TrackersFilterWidget;
 class TransferListWidget;
 
@@ -48,9 +52,24 @@ class TransferListFiltersWidget final : public QWidget
 
 public:
     TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
+    ~TransferListFiltersWidget() override;
     void setDownloadTrackerFavicon(bool value);
+    bool isCompact() const;
+
+signals:
+    void compactChanged(bool compact);
 
 private:
+    class Labels;
+    void prepareSection(TransferListFiltersWidgetItem *section);
+    void setCompact(bool compact);
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
+    QToolButton *m_toggle = nullptr;
+    QScrollArea *m_scroll = nullptr;
+    Labels *m_labels = nullptr;
+    QShortcut *m_dismissLabels = nullptr;
+    bool m_autoCompact = true;
     TransferListWidget *m_transferList = nullptr;
     TrackersFilterWidget *m_trackersFilterWidget = nullptr;
     bool m_useSeparateTrackerStatusFilter = false;

@@ -42,6 +42,7 @@
 #include "gui/autoexpandabledialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
+#include "gui/desktopstyle/desktopstyle.h"
 #include "ui_pluginsdialog.h"
 
 #define SETTINGS_KEY(name) u"PluginsDialog/" name
@@ -64,6 +65,7 @@ PluginsDialog::PluginsDialog(PluginsEngine *pluginsEngine, QWidget *parent)
     , m_storeLastPath {SETTINGS_KEY(u"LastUsedPath"_s)}
 {
     m_ui->setupUi(this);
+    DesktopStyle::installSortHeader(m_ui->pluginsTree);
 
     m_ui->pluginsTree->setRootIsDecorated(false);
     m_ui->pluginsTree->header()->setFirstSectionMovable(true);

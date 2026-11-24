@@ -72,6 +72,7 @@
 #include "transferlistsortmodel.h"
 #include "tristateaction.h"
 #include "uithememanager.h"
+#include "desktopstyle/desktopstyle.h"
 #include "utils.h"
 #include "utils/keysequence.h"
 
@@ -120,6 +121,8 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     , m_listModel {new TransferListModel(this)}
     , m_sortFilterModel {new TransferListSortModel(this)}
 {
+    DesktopStyle::installSortHeader(this);
+
     // Load settings
     const bool columnLoaded = loadSettings();
 
