@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -41,6 +41,8 @@
 #include <QList>
 
 #include "base/bittorrent/torrent.h"
+
+class KeyValueDataStorage;
 
 namespace BitTorrent
 {
@@ -94,6 +96,8 @@ public:
         TR_PRIVATE,
         TR_CREATE_DATE,
 
+        TR_HIDDEN,
+
         NB_COLUMNS
     };
 
@@ -114,6 +118,9 @@ public:
 
     BitTorrent::Torrent *torrentHandle(const QModelIndex &index) const;
 
+    bool isTorrentHidden(const BitTorrent::Torrent *torrent) const;
+    void setTorrentHidden(const BitTorrent::Torrent *torrent, bool hidden);
+
 private slots:
     void addTorrents(const QList<BitTorrent::Torrent *> &torrents);
     void handleTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
@@ -121,7 +128,7 @@ private slots:
     void handleTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
 
 private:
-    int getTorrentRow(BitTorrent::Torrent *torrent) const;
+    int getTorrentRow(const BitTorrent::Torrent *torrent) const;
 
     void configure();
     void loadUIThemeResources();
@@ -133,7 +140,7 @@ private:
         BitTorrent::Torrent *,
         boost::multi_index::indexed_by<
             boost::multi_index::random_access<boost::multi_index::tag<struct ByIndex>>,
-            boost::multi_index::hashed_unique<boost::multi_index::tag<struct ByHandle>, boost::multi_index::identity<BitTorrent::Torrent *>>>>;
+            boost::multi_index::hashed_unique<boost::multi_index::tag<struct ByHandle>, boost::multi_index::identity<const BitTorrent::Torrent *>>>>;
     TorrentList m_torrents;
     const QHash<BitTorrent::TorrentState, QString> m_statusStrings;
     // row text colors
@@ -160,6 +167,8 @@ private:
     QIcon m_stalledDLIcon;
     QIcon m_stalledUPIcon;
     QIcon m_uploadingIcon;
+
+    KeyValueDataStorage *m_hiddenTorrentsRegistry = nullptr;
 };
 
 Q_DECLARE_METATYPE(TransferListModel::Column)

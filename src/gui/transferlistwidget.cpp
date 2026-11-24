@@ -47,7 +47,6 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentrystatus.h"
-#include "base/global.h"
 #include "base/logger.h"
 #include "base/path.h"
 #include "base/preferences.h"
@@ -62,7 +61,6 @@
 #include "mainwindow.h"
 #include "optionsdialog.h"
 #include "previewselectdialog.h"
-#include "speedlimitdialog.h"
 #include "torrentcategorydialog.h"
 #include "torrentcontentlayoutdialog.h"
 #include "torrentcreatordialog.h"
@@ -79,6 +77,8 @@
 #include "macosshiftclickhandler.h"
 #include "macutilities.h"
 #endif
+
+using namespace Qt::StringLiterals;
 
 namespace
 {
@@ -180,6 +180,7 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
         setColumnHidden(TransferListModel::TR_TOTAL_SIZE, true);
         setColumnHidden(TransferListModel::TR_REANNOUNCE, true);
         setColumnHidden(TransferListModel::TR_PRIVATE, true);
+        setColumnHidden(TransferListModel::TR_HIDDEN, true);
     }
 
     //Ensure that at least one column is visible at all times
@@ -771,6 +772,21 @@ void TransferListWidget::setSelectedAutoTMMEnabled(const bool enabled)
         torrent->setAutoTMMEnabled(enabled);
 }
 
+void TransferListWidget::setSelectedTorrentsHidden(const bool hidden)
+{
+    if (hidden)
+    {
+        const QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Hide")
+                , tr("Are you sure you want to hide the selected torrent(s)?")
+                , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+        if (btn != QMessageBox::Yes)
+            return;
+    }
+
+    for (BitTorrent::Torrent *torrent : asConst(getSelectedTorrents()))
+        m_listModel->setTorrentHidden(torrent, hidden);
+}
+
 void TransferListWidget::askNewCategoryForSelection()
 {
     const QString newCategoryName = TorrentCategoryDialog::createCategory(this);
@@ -967,6 +983,11 @@ void TransferListWidget::renameSelectedTorrent()
     }
 }
 
+void TransferListWidget::showHiddenTorrents(const bool show)
+{
+    m_sortFilterModel->allowHiddenTorrents(show);
+}
+
 void TransferListWidget::setSelectionCategory(const QString &category)
 {
     applyToSelectedTorrents([&category](BitTorrent::Torrent *torrent) { torrent->setCategory(category); });
@@ -1058,6 +1079,8 @@ void TransferListWidget::displayListMenu()
     connect(actionEditTracker, &QAction::triggered, this, &TransferListWidget::editTorrentTrackers);
     auto *actionExportTorrent = new QAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("E&xport .torrent..."), listMenu);
     connect(actionExportTorrent, &QAction::triggered, this, &TransferListWidget::exportTorrent);
+    auto *actionHide = new TriStateAction(tr("Hide"), listMenu);
+    connect(actionHide, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsHidden);
     // End of actions
 
     // Enable/disable stop/start action given the DL state
@@ -1076,6 +1099,8 @@ void TransferListWidget::displayListMenu()
     TagSet tagsInAll;
     bool hasInfohashV1 = false, hasInfohashV2 = false;
     bool oneCanForceReannounce = false;
+    bool allSameHidden = true;
+    bool firstHidden = false;
 
     for (const QModelIndex &index : selectedIndexes)
     {
@@ -1159,6 +1184,16 @@ void TransferListWidget::displayListMenu()
             hasInfohashV1 = true;
         if (!hasInfohashV2 && torrent->infoHash().v2().isValid())
             hasInfohashV2 = true;
+
+        if (first)
+        {
+            firstHidden = m_listModel->isTorrentHidden(torrent);
+        }
+        else
+        {
+            if (allSameHidden && (firstHidden != m_listModel->isTorrentHidden(torrent)))
+                allSameHidden = false;
+        }
 
         first = false;
 
@@ -1332,6 +1367,11 @@ void TransferListWidget::displayListMenu()
 
     actionExportTorrent->setToolTip(tr("Exported torrent is not necessarily the same as the imported"));
     listMenu->addAction(actionExportTorrent);
+
+    actionHide->setCheckState(allSameHidden
+            ? (firstHidden ? Qt::Checked : Qt::Unchecked)
+            : Qt::PartiallyChecked);
+    listMenu->addAction(actionHide);
 
     listMenu->popup(QCursor::pos());
 }
