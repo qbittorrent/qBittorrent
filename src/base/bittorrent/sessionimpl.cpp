@@ -2714,19 +2714,31 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
 
     if (removeTorrentFileBackup())
     {
-        const QString torrentBackupInfo = m_backupTorrentFilesRegistry->fetchValue(torrent->id().toString()).takeResult().toString();
-        if (!torrentBackupInfo.isEmpty() && !torrentBackupInfo.startsWith(u"magnet:", Qt::CaseInsensitive))
+        if (const KeyValueDataStorage::FetchValueResult fetchResult = m_backupTorrentFilesRegistry->fetchValue(torrent->id().toString()).takeResult())
         {
-            const Path torrentBackupPath = resolvePath(Path(torrentBackupInfo), specialFolderLocation(SpecialFolder::Data));
-            if (const auto removeResult = Utils::Fs::removeFile(torrentBackupPath); !removeResult)
+            const QString torrentBackupInfo = fetchResult->toString();
+            if (!torrentBackupInfo.isEmpty() && !torrentBackupInfo.startsWith(u"magnet:", Qt::CaseInsensitive))
             {
-                LogMsg(tr("Could not remove .torrent file backup. Torrent: \"%1\". File: \"%2\". Reason: %3")
-                       .arg(torrentName, torrentBackupPath.toString(), removeResult.error()));
+                const Path torrentBackupPath = resolvePath(Path(torrentBackupInfo), specialFolderLocation(SpecialFolder::Data));
+                if (const auto removeResult = Utils::Fs::removeFile(torrentBackupPath); !removeResult)
+                {
+                    LogMsg(tr("Could not remove .torrent file backup. Torrent: \"%1\". File: \"%2\". Reason: %3")
+                           .arg(torrentName, torrentBackupPath.toString(), removeResult.error()), Log::WARNING);
+                }
             }
+        }
+        else
+        {
+            LogMsg(fetchResult.error().message, Log::WARNING);
         }
     }
 
-    m_backupTorrentFilesRegistry->removeValue(torrent->id().toString());
+    m_backupTorrentFilesRegistry->removeValue(torrent->id().toString()).then(
+            [](const KeyValueDataStorage::RemoveValueResult &removeResult)
+    {
+        if (!removeResult)
+            LogMsg(removeResult.error().message, Log::WARNING);
+    });
 
     LogMsg(tr("Torrent removed. Torrent: \"%1\"").arg(torrentName));
     delete torrent;
@@ -5534,20 +5546,35 @@ void SessionImpl::backupTorrentFile(const Torrent *torrent, const TorrentDescrip
         const Path sourceFilePath {torrentSource};
         if (Utils::Fs::copyFile(sourceFilePath, torrentBackupPath))
         {
-            m_backupTorrentFilesRegistry->storeValue(torrent->id().toString(), torrentBackupPathConf.data());
+            m_backupTorrentFilesRegistry->storeValue(torrent->id().toString(), torrentBackupPathConf.data()).then(
+                    [](const KeyValueDataStorage::StoreValueResult &storeResult)
+            {
+                if (!storeResult)
+                    LogMsg(storeResult.error().message, Log::WARNING);
+            });
             return;
         }
     }
 
     if (const nonstd::expected<void, QString> result = torrentDescr.saveToFile(torrentBackupPath))
     {
-        m_backupTorrentFilesRegistry->storeValue(torrent->id().toString(), torrentBackupPathConf.data());
+        m_backupTorrentFilesRegistry->storeValue(torrent->id().toString(), torrentBackupPathConf.data()).then(
+                [](const KeyValueDataStorage::StoreValueResult &storeResult)
+        {
+            if (!storeResult)
+                LogMsg(storeResult.error().message, Log::WARNING);
+        });
     }
     else if (const QString torrentSource = torrentDescr.source();
             torrentSource.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
         // Store original Magnet URI in order to generate .torrent file later
-        m_backupTorrentFilesRegistry->storeValue(torrent->id().toString(), torrentSource);
+        m_backupTorrentFilesRegistry->storeValue(torrent->id().toString(), torrentSource).then(
+                [](const KeyValueDataStorage::StoreValueResult &storeResult)
+        {
+            if (!storeResult)
+                LogMsg(storeResult.error().message, Log::WARNING);
+        });
     }
     else
     {
@@ -5570,7 +5597,12 @@ void SessionImpl::backupTorrentFile(const Torrent *torrent, const QString &magne
         if (const auto saveResult = torrentDescr.saveToFile(torrentBackupPath))
         {
             const Path torrentBackupPathConf = backupDirPathConf.isAbsolute() ? torrentBackupPath : (backupDirPathConf / Path(torrentBackupPath.filename()));
-            m_backupTorrentFilesRegistry->storeValue(torrent->id().toString(), torrentBackupPathConf.data());
+            m_backupTorrentFilesRegistry->storeValue(torrent->id().toString(), torrentBackupPathConf.data()).then(
+                    [](const KeyValueDataStorage::StoreValueResult &storeResult)
+            {
+                if (!storeResult)
+                    LogMsg(storeResult.error().message, Log::WARNING);
+            });
         }
         else
         {
@@ -5658,9 +5690,16 @@ void SessionImpl::handleTorrentMetadataReceived(TorrentImpl *const torrent)
     if (!isTorrentFileBackupEnabled() || torrent->infoHash().v2().isValid())
         return;
 
-    const QString torrentBackupInfo = m_backupTorrentFilesRegistry->fetchValue(torrent->id().toString()).takeResult().toString();
-    if (torrentBackupInfo.startsWith(u"magnet:", Qt::CaseInsensitive))
-        backupTorrentFile(torrent, torrentBackupInfo, torrentBackupDirectory());
+    if (const KeyValueDataStorage::FetchValueResult fetchResult = m_backupTorrentFilesRegistry->fetchValue(torrent->id().toString()).takeResult())
+    {
+        const QString torrentBackupInfo = fetchResult->toString();
+        if (torrentBackupInfo.startsWith(u"magnet:", Qt::CaseInsensitive))
+            backupTorrentFile(torrent, torrentBackupInfo, torrentBackupDirectory());
+    }
+    else
+    {
+        LogMsg(fetchResult.error().message, Log::WARNING);
+    }
 }
 
 void SessionImpl::handleTorrentStopped(TorrentImpl *const torrent)
@@ -5694,7 +5733,14 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
 {
     m_pendingFinishedTorrents.append(torrent);
 
-    const QString torrentBackupInfo = m_backupTorrentFilesRegistry->fetchValue(torrent->id().toString()).takeResult().toString();
+    const KeyValueDataStorage::FetchValueResult fetchResult = m_backupTorrentFilesRegistry->fetchValue(torrent->id().toString()).takeResult();
+    if (!fetchResult)
+    {
+        LogMsg(fetchResult.error().message);
+        return;
+    }
+
+    const QString torrentBackupInfo = fetchResult->toString();
     if (torrentBackupInfo.isEmpty())
         return;
 
@@ -5719,7 +5765,12 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
             if (Utils::Fs::renameFile(oldTorrentBackupPath, torrentBackupPath))
             {
                 const Path torrentBackupPathConf = backupDirPathConf.isAbsolute() ? torrentBackupPath : (backupDirPathConf / Path(torrentBackupPath.filename()));
-                m_backupTorrentFilesRegistry->storeValue(torrent->id().toString(), torrentBackupPathConf.data());
+                m_backupTorrentFilesRegistry->storeValue(torrent->id().toString(), torrentBackupPathConf.data()).then(
+                        [](const KeyValueDataStorage::StoreValueResult &storeResult)
+                {
+                    if (!storeResult)
+                        LogMsg(storeResult.error().message, Log::WARNING);
+                });
             }
             else
             {
