@@ -42,6 +42,7 @@ namespace
             const int available = qMax(0, contents.width() - SORT_WIDTH - iconWidth);
             const Qt::TextElideMode elide = (textElideMode() == Qt::ElideNone) ? Qt::ElideRight : textElideMode();
             option.text = metrics.elidedText(option.text, elide, available);
+            option.textElideMode = Qt::ElideNone;
             const int labelWidth = qMin(available, metrics.horizontalAdvance(option.text)) + iconWidth;
             const QRect group = QStyle::alignedRect(option.direction, option.textAlignment,
                 {labelWidth + SORT_WIDTH, contents.height()}, contents);
