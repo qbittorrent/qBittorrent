@@ -975,10 +975,6 @@ Der Teile-Hash wird überprüft, sobald er zum ersten Mal von einem Peer angefor
         <translation>Dynamischen Domainnamen aktualisieren</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Unvollständige Torrents speichern in:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Allen Dateien Speicherplatz im Vorhinein zuweisen</translation>
     </message>
@@ -2375,10 +2371,6 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Erlaube Mehrfachverbindungen von der gleichen Peer-ID:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Versenden eines Testmails.&lt;br&gt;Bitte Posteingang zur Bestätigung überprüfen.&lt;br&gt;Überprüfe sonst die Ausführungs-Logs auf Fehler.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Begrenzung der Sitzungs-Anzahl:</translation>
     </message>
@@ -2488,35 +2480,35 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Entfernen des Tracker von allen Torrents bestätigen:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Irgendeine von oben</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Alle von oben</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Auch wenn das Hinzufügen abgebrochen wurde</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>.torrent-Dateien auch löschen, wenn das Hinzufügen abgebrochen wurde</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Einen anderen Pfad für unvollständige Torrents verwenden:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Entfernen aller Labels bestätigen:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Versenden eines Testmails.\nBitte Posteingang zur Bestätigung überprüfen.\nÜberprüfe sonst die Ausführungs-Logs auf Fehler.</translation>
     </message>
 </context>
 <context>
@@ -3847,7 +3839,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Wirklich alle Labels von den ausgewählten Torrents entfernen?</translation>
     </message>
 </context>
 <context>
@@ -3906,19 +3898,19 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Modus</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Standard (Irgendeine der Begrenzungen einhalten)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Alle Begrenzungen einhalten</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Irgendeine der Begrenzungen einhalten</translation>
     </message>
 </context>
 <context>
@@ -4381,7 +4373,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent wurde unter Verwendung folgender Bibliotheken erstellt:</translation>
+        <translation type="vanished">qBittorrent wurde unter Verwendung folgender Bibliotheken erstellt:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4410,6 +4402,10 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent-Icon</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4653,15 +4649,15 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>%1 Torrents hinzufügen</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Das Download-Fenster für Freigaben öffnen</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Ein eigenes Download-Fenster öffnen</translation>
     </message>
 </context>
 <context>

@@ -91,8 +91,12 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="336"/>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>За qBittorrent са ползвани следните библиотеки:</translation>
+        <translation type="vanished">За qBittorrent са ползвани следните библиотеки:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="356"/>
@@ -143,37 +147,6 @@
     </message>
 </context>
 <context>
-    <name>AbstractFileStorage</name>
-    <message>
-        <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">Старият път е невалиден: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">Новият път е невалиден: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="vanished">Абсолютен път не е позволен: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">Файлът вече съществува: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>No such file: &apos;%1&apos;.</source>
-        <translation type="vanished">Няма такъв файл: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">Папката вече съществува: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="vanished">Няма такава папка: &apos;%1&apos;.</translation>
-    </message>
-</context>
-<context>
     <name>AddNewTorrentDialog</name>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="113"/>
@@ -204,10 +177,6 @@
         <location filename="../gui/addnewtorrentdialog.ui" line="381"/>
         <source>Torrent information</source>
         <translation>Торент информация</translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Прескочи проверката на парчетата</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="122"/>
@@ -627,10 +596,6 @@
         <location filename="../gui/addtorrentparamswidget.ui" line="349"/>
         <source>&lt;p&gt;If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.&lt;/p&gt;&lt;p&gt;The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Пропусни хеш проверка</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="357"/>
@@ -2188,72 +2153,69 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::BencodeResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="119"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="175"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation>Не може да се създаде папка за възобновяване на торент: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="240"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="300"/>
         <source>Cannot parse resume data: invalid format</source>
         <translation>Не може да се анализират данни за продължение: невалиден формат</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="330"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="339"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="378"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="390"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="399"/>
         <source>Cannot parse torrent info: %1</source>
         <translation>Не може да се анализират данни за торент: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="321"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="381"/>
         <source>Cannot parse torrent info: invalid format</source>
         <translation>Не може да се анализират данни за торент: невалиден формат</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="351"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="411"/>
         <source>Mismatching info-hash detected in resume data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>Corrupted resume data: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>save_path is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="449"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
-        <translation>Метаданните на торент не можаха да бъдат запазени &apos;%1&apos;. Грешка: %2.</translation>
+        <translation type="vanished">Метаданните на торент не можаха да бъдат запазени &apos;%1&apos;. Грешка: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="487"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation>Не можа да се запишат данните за възобновяване на торента на &apos;%1&apos;. Грешка: %2.</translation>
+        <translation type="vanished">Не можа да се запишат данните за възобновяване на торента на &apos;%1&apos;. Грешка: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="194"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="254"/>
         <source>Couldn&apos;t load torrents queue: %1</source>
         <translation>Не можа да се зареди торент опашка: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="237"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="311"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="297"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="371"/>
         <source>Cannot parse resume data: %1</source>
         <translation>Не могат да се предадат данни за продължение: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="372"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="432"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
         <translation>Данни за продължение са невалидни: нито метаданни, нито инфо-хеш бяха намерени</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="512"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
-        <translation>Данните не можаха да бъдат запазени в &apos;%1&apos;. Грешка: %2</translation>
+        <translation type="vanished">Данните не можаха да бъдат запазени в &apos;%1&apos;. Грешка: %2</translation>
     </message>
 </context>
 <context>
@@ -2313,7 +2275,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="774"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="777"/>
         <source>Save resume data transaction failed. Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2321,24 +2283,39 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="906"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="908"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>Метаданните на торент не можаха да бъдат запазени. Грешка: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="967"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="969"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation>Данните за възобновяване не можаха да се съхранят за торент &apos;%1&apos;. Грешка: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="995"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="997"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>Данните за възобновяване на торент не можаха да бъдат изтрити &apos;%1&apos;. Грешка: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1029"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1031"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation>Не можаха да се съхранят позициите на опашката на торенти. Грешка: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="566"/>
+        <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">Метаданните на торент не можаха да бъдат запазени &apos;%1&apos;. Грешка: %2.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="604"/>
+        <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">Не можа да се запишат данните за възобновяване на торента на &apos;%1&apos;. Грешка: %2.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="639"/>
+        <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished">Данните не можаха да бъдат запазени в &apos;%1&apos;. Грешка: %2</translation>
     </message>
 </context>
 <context>
@@ -2642,10 +2619,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="vanished">Неуспешно изнасяне на торент. Торент: &quot;%1&quot;. Местонахождение: &quot;%2&quot;. Причина: &quot;%3&quot;</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3401"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation>Прекратено запазване на данните за продължение. Брой неизпълнени торенти:  %1</translation>
@@ -2820,14 +2793,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Сигнал за грешка на файл. Торент: &quot;%1&quot;. Файл: &quot;%2&quot;. Причина: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
-        <translation type="vanished">UPnP/NAT-PMP пренасочване на портовете неуспешно. Съобщение: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
-        <translation type="vanished">UPnP/NAT-PMP пренасочването на портовете успешно. Съобщение: &quot;%1&quot;</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6451"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
@@ -2930,39 +2895,39 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="41"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="67"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">Старият път е невалиден: &apos;%1&apos;.</translation>
+        <translation>Старият път е невалиден: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="43"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="69"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">Новият път е невалиден: &apos;%1&apos;.</translation>
+        <translation>Новият път е невалиден: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="45"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="71"/>
         <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="unfinished">Абсолютен път не е позволен: &apos;%1&apos;.</translation>
+        <translation>Абсолютен път не е позволен: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="55"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">Файлът вече съществува: &apos;%1&apos;.</translation>
+        <translation>Файлът вече съществува: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="59"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished">Няма такъв файл: &apos;%1&apos;.</translation>
+        <translation>Няма такъв файл: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="80"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">Папката вече съществува: &apos;%1&apos;.</translation>
+        <translation>Папката вече съществува: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="87"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished">Няма такава папка: &apos;%1&apos;.</translation>
+        <translation>Няма такава папка: &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -3207,10 +3172,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../app/cmdoptions.cpp" line="400"/>
         <source>Add torrents as running or stopped</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Пропусни хеш проверка</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="403"/>
@@ -3871,32 +3832,32 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>KeyValueDataStorage</name>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="110"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="111"/>
         <source>Inserting (updating) database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="155"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="156"/>
         <source>Fetching database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="192"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="193"/>
         <source>Deleting database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="406"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="411"/>
         <source>Opening database failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="413"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="418"/>
         <source>Starting database transaction failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="424"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="429"/>
         <source>Creating database table failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6216,7 +6177,7 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="293"/>
         <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="unfinished">Връзка неуспешна, неразпознат отговор: %1</translation>
+        <translation>Връзка неуспешна, неразпознат отговор: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="319"/>
@@ -6226,7 +6187,7 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="345"/>
         <source>Authentication failed, msg: %1</source>
-        <translation type="unfinished">Удостоверяване неуспешно, съобщ.: %1</translation>
+        <translation>Удостоверяване неуспешно, съобщ.: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="364"/>
@@ -6237,22 +6198,22 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="366"/>
         <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">&lt;mail from&gt; бе отхвърлен от сървър, съобщ.: %1</translation>
+        <translation>&lt;mail from&gt; бе отхвърлен от сървър, съобщ.: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="392"/>
         <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">&lt;data&gt; бе отхвърлен от сървър, съобщ.: %1</translation>
+        <translation>&lt;data&gt; бе отхвърлен от сървър, съобщ.: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="406"/>
         <source>Message was rejected by the server, error: %1</source>
-        <translation type="unfinished">Съобщение бе отхвърлено от сървърът, грешка: %1</translation>
+        <translation>Съобщение бе отхвърлено от сървърът, грешка: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="450"/>
         <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="unfinished">И EHLO и HELO неуспешни, съобщ.: %1</translation>
+        <translation>И EHLO и HELO неуспешни, съобщ.: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="491"/>
@@ -6262,56 +6223,17 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="537"/>
         <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="unfinished">SMTP сървърът не изглежда да поддържа какъвто и да е от режимите за удостоверяване, каквито ние поддържаме [CRAM-MD5|PLAIN|LOGIN], прескачане на удостоверяване, знаейки, че е вероятно да се провали... Режими за удост. на сървъра: %1</translation>
+        <translation>SMTP сървърът не изглежда да поддържа какъвто и да е от режимите за удостоверяване, каквито ние поддържаме [CRAM-MD5|PLAIN|LOGIN], прескачане на удостоверяване, знаейки, че е вероятно да се провали... Режими за удост. на сървъра: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="622"/>
         <source>Email Notification Error: %1</source>
-        <translation type="unfinished">Грешка при известяване по имейл: %1</translation>
+        <translation>Грешка при известяване по имейл: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="634"/>
         <source>Check the email server supports SMTPS (SMTP over SSL) and you are using the correct port</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Net::Smtp</name>
-    <message>
-        <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="vanished">Връзка неуспешна, неразпознат отговор: %1</translation>
-    </message>
-    <message>
-        <source>Authentication failed, msg: %1</source>
-        <translation type="vanished">Удостоверяване неуспешно, съобщ.: %1</translation>
-    </message>
-    <message>
-        <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;mail from&gt; бе отхвърлен от сървър, съобщ.: %1</translation>
-    </message>
-    <message>
-        <source>&lt;Rcpt to&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;Rcpt to&gt; бе отхвърлен от сървър, съобщ.: %1</translation>
-    </message>
-    <message>
-        <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;data&gt; бе отхвърлен от сървър, съобщ.: %1</translation>
-    </message>
-    <message>
-        <source>Message was rejected by the server, error: %1</source>
-        <translation type="vanished">Съобщение бе отхвърлено от сървърът, грешка: %1</translation>
-    </message>
-    <message>
-        <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="vanished">И EHLO и HELO неуспешни, съобщ.: %1</translation>
-    </message>
-    <message>
-        <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="vanished">SMTP сървърът не изглежда да поддържа какъвто и да е от режимите за удостоверяване, каквито ние поддържаме [CRAM-MD5|PLAIN|LOGIN], прескачане на удостоверяване, знаейки, че е вероятно да се провали... Режими за удост. на сървъра: %1</translation>
-    </message>
-    <message>
-        <source>Email Notification Error: %1</source>
-        <translation type="vanished">Грешка при известяване по имейл: %1</translation>
     </message>
 </context>
 <context>
@@ -6787,7 +6709,7 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="494"/>
         <source>Status Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Статус Лента</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="500"/>
@@ -7257,10 +7179,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Местоположение за Запис по подразбиране:</translation>
     </message>
     <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">Копирай .торент файловете в:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="594"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation>Показване на &amp;qBittorrent в зоната за уведомяване</translation>
@@ -7269,14 +7187,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.ui" line="994"/>
         <source>Display &amp;torrent content and some options</source>
         <translation>Показване съдържание на &amp;торента и някои опции</translation>
-    </message>
-    <message>
-        <source>De&amp;lete .torrent files afterwards </source>
-        <translation type="vanished">Из&amp;триване на .torrent файловете след това</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">Копирай .torrent файловете от приключилите изтегляния в:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1251"/>
@@ -8090,7 +8000,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="682"/>
         <location filename="../gui/optionsdialog.cpp" line="694"/>
         <source>Example:</source>
-        <translation type="unfinished">Пример:</translation>
+        <translation>Пример:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="684"/>
@@ -8361,10 +8271,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Location Error</source>
         <translation>Грешка в местоположението</translation>
-    </message>
-    <message>
-        <source>Choose export directory</source>
-        <translation type="vanished">Избиране на директория за експорт</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="630"/>
@@ -8829,150 +8735,6 @@ Check the Execution Log for errors.</source>
     </message>
 </context>
 <context>
-    <name>PluginSelectDialog</name>
-    <message>
-        <source>Search plugins</source>
-        <translation type="vanished">Търсене на добавки</translation>
-    </message>
-    <message>
-        <source>Installed search plugins:</source>
-        <translation type="vanished">Инсталирани добавки за търсене:</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Име</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="vanished">Версия</translation>
-    </message>
-    <message>
-        <source>Url</source>
-        <translation type="vanished">Url</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="vanished">Разрешено</translation>
-    </message>
-    <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="vanished">Предупреждение: Не забравяйте да спазвате законите за авторското право на вашата страна, когато изтегляте торенти от някоя от тези търсачки.</translation>
-    </message>
-    <message>
-        <source>Install a new one</source>
-        <translation type="vanished">Инсталиране само на нови</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Провери за обновяване</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Затвари</translation>
-    </message>
-    <message>
-        <source>Uninstall</source>
-        <translation type="vanished">Деинсталирай</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Да</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">Не</translation>
-    </message>
-    <message>
-        <source>Uninstall warning</source>
-        <translation type="vanished">Предупреждение при деинсталиране </translation>
-    </message>
-    <message>
-        <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
-Those plugins were disabled.</source>
-        <translation type="vanished">Някои плъгини не могат да бъдат деинсталирани, защото са включени в qBittorrent. Само тези, които сте добавили сами, могат да бъдат деинсталирани.
-Тези плъгини бяха деактивирани.</translation>
-    </message>
-    <message>
-        <source>Uninstall success</source>
-        <translation type="vanished">Успешно деинсталиране</translation>
-    </message>
-    <message>
-        <source>All selected plugins were uninstalled successfully</source>
-        <translation type="vanished">Всички избрани плъгини бяха деинсталирани успешно</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="vanished">Обновяване на добавката за търсене</translation>
-    </message>
-    <message>
-        <source>Plugins installed or updated: %1</source>
-        <translation type="vanished">Добавки са инсталирани или обновени: %1</translation>
-    </message>
-    <message>
-        <source>New search engine plugin URL</source>
-        <translation type="vanished">Нов URL за добавки на търсачката</translation>
-    </message>
-    <message>
-        <source>URL:</source>
-        <translation type="vanished">URL:</translation>
-    </message>
-    <message>
-        <source>Invalid link</source>
-        <translation type="vanished">Невалиден линк</translation>
-    </message>
-    <message>
-        <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="vanished">Изглежда, че линкът не води към добавка за търсене.</translation>
-    </message>
-    <message>
-        <source>Select search plugins</source>
-        <translation type="vanished">Избери добавки за търсене</translation>
-    </message>
-    <message>
-        <source>qBittorrent search plugin</source>
-        <translation type="vanished">qBittorrent добавка за търсене</translation>
-    </message>
-    <message>
-        <source>All your plugins are already up to date.</source>
-        <translation type="vanished">Всички ваши добавки са вече обновени.</translation>
-    </message>
-    <message>
-        <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="vanished">Извинявайте, не може да се провери за обновления на добавката. %1</translation>
-    </message>
-    <message>
-        <source>Search plugin install</source>
-        <translation type="vanished">Инсталиране на добавка за търсене </translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">Не може да се инсталира &quot;%1&quot; добавка за търсене. %2</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">Не може да се обнови &quot;%1&quot; добавката за търсене. %2</translation>
-    </message>
-</context>
-<context>
-    <name>PluginSourceDialog</name>
-    <message>
-        <source>Plugin source</source>
-        <translation type="vanished">Източник на приставката</translation>
-    </message>
-    <message>
-        <source>Search plugin source:</source>
-        <translation type="vanished">Източник на приставка за търсене:</translation>
-    </message>
-    <message>
-        <source>Local file</source>
-        <translation type="vanished">Локален файл</translation>
-    </message>
-    <message>
-        <source>Web link</source>
-        <translation type="vanished">Уеб линк</translation>
-    </message>
-</context>
-<context>
     <name>PluginsDialog</name>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="17"/>
@@ -8992,12 +8754,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="57"/>
         <source>Name</source>
-        <translation type="unfinished">Име</translation>
+        <translation>Име</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="62"/>
         <source>Version</source>
-        <translation type="unfinished">Версия</translation>
+        <translation>Версия</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="67"/>
@@ -9013,7 +8775,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/plugins/pluginsdialog.ui" line="75"/>
         <location filename="../gui/plugins/pluginsdialog.ui" line="117"/>
         <source>Enabled</source>
-        <translation type="unfinished">Разрешено</translation>
+        <translation>Активирано</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="98"/>
@@ -9023,12 +8785,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="105"/>
         <source>Close</source>
-        <translation type="unfinished">Затвари</translation>
+        <translation>Затваряне</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="122"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Деинсталирай</translation>
+        <translation>Деинсталиране</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="143"/>
@@ -9047,7 +8809,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="391"/>
         <source>Yes</source>
-        <translation type="unfinished">Да</translation>
+        <translation>Да</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="218"/>
@@ -9056,7 +8818,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="396"/>
         <source>No</source>
-        <translation type="unfinished">Не</translation>
+        <translation>Не</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="314"/>
@@ -9914,10 +9676,6 @@ Those plugins were disabled.</source>
         <translation>Търсене</translation>
     </message>
     <message>
-        <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="vanished">Получаването от RSS канали е изключено сега! Можете да го включите в програмните настройки.</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.ui" line="28"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;&lt;span style=&quot; text-decoration: none; color:#ff0000;&quot;&gt;Fetching of RSS feeds is disabled now! You can enable it in application settings.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
@@ -10121,10 +9879,6 @@ Those plugins were disabled.</source>
         <translation>Python трябва да е инсталиран за да ползвате Търсачката.</translation>
     </message>
     <message>
-        <source>Unable to create more than %1 concurrent searches.</source>
-        <translation type="vanished">Не може да се създаде повече от %1 едновременни търсения.</translation>
-    </message>
-    <message>
         <location filename="../webui/api/searchcontroller.cpp" line="185"/>
         <location filename="../webui/api/searchcontroller.cpp" line="191"/>
         <source>Offset is out of range</source>
@@ -10207,7 +9961,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../webui/searchjobmanager.cpp" line="135"/>
         <source>Unable to create more than %1 concurrent searches.</source>
-        <translation type="unfinished">Не може да се създаде повече от %1 едновременни търсения.</translation>
+        <translation>Не може да се създаде повече от %1 едновременни търсения.</translation>
     </message>
     <message>
         <location filename="../webui/searchjobmanager.cpp" line="250"/>
@@ -10474,26 +10228,14 @@ Those plugins were disabled.</source>
         <translation>Непознат формат на файла за добавката за търсене.</translation>
     </message>
     <message>
-        <source>Plugin already at version %1, which is greater than %2</source>
-        <translation type="vanished">Добавката вече е на версия %1, която е по-голяма от %2</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="252"/>
         <source>A more recent version of this plugin is already installed.</source>
         <translation>По-нова версия на тази добавка е вече инсталирана.</translation>
     </message>
     <message>
-        <source>Plugin %1 is not supported.</source>
-        <translation type="vanished">Добавката %1 не се поддържа.</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="329"/>
         <source>Plugin is not supported.</source>
         <translation>Добавката не се поддържа.</translation>
-    </message>
-    <message>
-        <source>Plugin %1 has been successfully updated.</source>
-        <translation type="vanished">%1 добавка на търсачката беше успешно обновена.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="405"/>
@@ -10597,38 +10339,38 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="17"/>
         <source>Search plugins</source>
-        <translation type="unfinished">Търсене на добавки</translation>
+        <translation>Добавки за търсене</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="29"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished">Инсталирани добавки за търсене:</translation>
+        <translation>Инсталирани добавки за търсене:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="52"/>
         <source>Name</source>
-        <translation type="unfinished">Име</translation>
+        <translation>Име</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="57"/>
         <source>Version</source>
-        <translation type="unfinished">Версия</translation>
+        <translation>Версия</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="62"/>
         <source>Url</source>
-        <translation type="unfinished">Url</translation>
+        <translation>Url</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="67"/>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="133"/>
         <source>Enabled</source>
-        <translation type="unfinished">Разрешено</translation>
+        <translation>Активирано</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="80"/>
         <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="unfinished">Предупреждение: Не забравяйте да спазвате законите за авторското право на вашата страна, когато изтегляте торенти от някоя от тези търсачки.</translation>
+        <translation>Предупреждение: Уверете се, че се придържате към законите на авторското право на вашата страна, когато сваляте торенти от която и да е то тези търсачки.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="95"/>
@@ -10638,29 +10380,29 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="107"/>
         <source>Install a new one</source>
-        <translation type="unfinished">Инсталиране само на нови</translation>
+        <translation>Инсталиране само на нови</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="114"/>
         <source>Check for updates</source>
-        <translation type="unfinished">Провери за обновяване</translation>
+        <translation>Провери за обновяване</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="121"/>
         <source>Close</source>
-        <translation type="unfinished">Затвари</translation>
+        <translation>Затваряне</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="138"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Деинсталирай</translation>
+        <translation>Деинсталиране</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="160"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="231"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="296"/>
         <source>Yes</source>
-        <translation type="unfinished">Да</translation>
+        <translation>Да</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="165"/>
@@ -10668,29 +10410,29 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="236"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="301"/>
         <source>No</source>
-        <translation type="unfinished">Не</translation>
+        <translation>Не</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished">Предупреждение при деинсталиране </translation>
+        <translation>Предупреждение при деинсталиране </translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished">Някои плъгини не могат да бъдат деинсталирани, защото са включени в qBittorrent. Само тези, които сте добавили сами, могат да бъдат деинсталирани.
+        <translation>Някои плъгини не могат да бъдат деинсталирани, защото са включени в qBittorrent. Само тези, които сте добавили сами, могат да бъдат деинсталирани.
 Тези плъгини бяха деактивирани.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>Uninstall success</source>
-        <translation type="unfinished">Успешно деинсталиране</translation>
+        <translation>Успешно деинсталиране</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished">Всички избрани плъгини бяха деинсталирани успешно</translation>
+        <translation>Всички избрани плъгини бяха деинсталирани успешно</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
@@ -10698,69 +10440,69 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="495"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Обновяване на добавката за търсене</translation>
+        <translation>Обновяване на добавката за търсене</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
         <source>Plugins installed or updated: %1</source>
-        <translation type="unfinished">Добавки са инсталирани или обновени: %1</translation>
+        <translation>Добавки са инсталирани или обновени: %1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="363"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="371"/>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished">Нов URL за добавки на търсачката</translation>
+        <translation>Нов URL за добавки на търсачката</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="364"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="372"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
         <source>Invalid link</source>
-        <translation type="unfinished">Невалиден линк</translation>
+        <translation>Невалиден линк</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished">Изглежда, че линкът не води към добавка за търсене.</translation>
+        <translation>Изглежда, че линкът не води към добавка за търсене.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="386"/>
         <source>Select search plugins</source>
-        <translation type="unfinished">Избери добавки за търсене</translation>
+        <translation>Избери добавки за търсене</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="387"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished">qBittorrent добавка за търсене</translation>
+        <translation>qBittorrent добавка за търсене</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="448"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished">Всички ваши добавки са вече обновени.</translation>
+        <translation>Всички ваши добавки са вече обновени.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="unfinished">Извинявайте, не може да се провери за обновления на добавката. %1</translation>
+        <translation>Извинявайте, не може да се провери за обновления на добавката. %1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="477"/>
         <source>Search plugin install</source>
-        <translation type="unfinished">Инсталиране на добавка за търсене </translation>
+        <translation>Инсталиране на добавка за търсене </translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="478"/>
         <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">Не може да се инсталира &quot;%1&quot; добавка за търсене. %2</translation>
+        <translation>Не може да се инсталира &quot;%1&quot; добавка за търсене. %2</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="496"/>
         <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">Не може да се обнови &quot;%1&quot; добавката за търсене. %2</translation>
+        <translation>Не може да се обнови &quot;%1&quot; добавката за търсене. %2</translation>
     </message>
 </context>
 <context>
@@ -10768,22 +10510,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="14"/>
         <source>Plugin source</source>
-        <translation type="unfinished">Източник на приставката</translation>
+        <translation>Източник на приставката</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="26"/>
         <source>Search plugin source:</source>
-        <translation type="unfinished">Източник на приставка за търсене:</translation>
+        <translation>Източник на приставка за търсене:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="35"/>
         <source>Local file</source>
-        <translation type="unfinished">Локален файл</translation>
+        <translation>Локален файл</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="42"/>
         <source>Web link</source>
-        <translation type="unfinished">Уеб линк</translation>
+        <translation>Уеб линк</translation>
     </message>
 </context>
 <context>
@@ -10851,12 +10593,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation>&lt;b&gt;foo bar&lt;/b&gt;: търси за &lt;b&gt;foo&lt;/b&gt; и &lt;b&gt;bar&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="849"/>
+        <location filename="../gui/search/searchwidget.cpp" line="862"/>
         <source>Close tab</source>
         <translation>Затваряне на раздел</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="850"/>
+        <location filename="../gui/search/searchwidget.cpp" line="863"/>
         <source>Close all tabs</source>
         <translation>Затваряне на всички раздели</translation>
     </message>
@@ -10866,34 +10608,34 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation>Избор...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="841"/>
+        <location filename="../gui/search/searchwidget.cpp" line="854"/>
         <source>Refresh tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="845"/>
+        <location filename="../gui/search/searchwidget.cpp" line="858"/>
         <source>Stop search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Search Engine</source>
         <translation>Търсачка</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation>Моля инсталирайте Python, за да ползвате Търсачката.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Empty search pattern</source>
         <translation>Празен шаблон за търсене</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Please type a search pattern first</source>
         <translation>Моля въведете първо шаблон за търсене</translation>
     </message>
@@ -10906,32 +10648,32 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
 <context>
     <name>SearchWidget::DataStorage</name>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="984"/>
+        <location filename="../gui/search/searchwidget.cpp" line="997"/>
         <source>Failed to load Search UI saved state data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1004"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1018"/>
         <source>Failed to load saved search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1036"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1050"/>
         <source>Failed to save Search UI state. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1068"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1082"/>
         <source>Failed to save search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1084"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
         <source>Failed to load Search UI history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1112"/>
         <source>Failed to save search history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11356,13 +11098,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     </message>
     <message>
         <source>%1 ms</source>
-        <comment>18 milliseconds</comment>
         <translation type="vanished">%1 мс</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.cpp" line="111"/>
-        <source>%1 ms</source>
-        <translation type="unfinished">%1 мс</translation>
+        <source>%1 μs</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11844,17 +11585,17 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="126"/>
         <source>Rename error</source>
-        <translation type="unfinished">Грешка при преименуване</translation>
+        <translation>Грешка при преименуване</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="156"/>
         <source>Resize columns</source>
-        <translation type="unfinished">Преоразмери колони</translation>
+        <translation>Преоразмери колони</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="166"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished">Преоразмери всички нескрити колони до размерът на техните съдържания</translation>
+        <translation>Преоразмери всички нескрити колони до размерът на техните съдържания</translation>
     </message>
 </context>
 <context>
@@ -11867,7 +11608,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentlayoutmodel.cpp" line="62"/>
         <source>Path</source>
-        <translation type="unfinished">Път</translation>
+        <translation>Път</translation>
     </message>
 </context>
 <context>
@@ -12040,22 +11781,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentcontentwidget.cpp" line="471"/>
         <source>By shown file order</source>
         <translation>По реда на показания файл</translation>
-    </message>
-    <message>
-        <source>Normal priority</source>
-        <translation type="vanished">Нормален приоритет</translation>
-    </message>
-    <message>
-        <source>High priority</source>
-        <translation type="vanished">Висок приоритет</translation>
-    </message>
-    <message>
-        <source>Maximum priority</source>
-        <translation type="vanished">Максимален приоритет</translation>
-    </message>
-    <message>
-        <source>Priority by shown file order</source>
-        <translation type="vanished">Приоритет според реда на показания файл</translation>
     </message>
 </context>
 <context>
@@ -14380,86 +14105,86 @@ Please choose a different name and try again.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="59"/>
+        <location filename="../base/utils/misc.cpp" line="60"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>Б</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="60"/>
+        <location filename="../base/utils/misc.cpp" line="61"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>КБ</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="61"/>
+        <location filename="../base/utils/misc.cpp" line="62"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>МБ</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="62"/>
+        <location filename="../base/utils/misc.cpp" line="63"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>ГБ</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="63"/>
+        <location filename="../base/utils/misc.cpp" line="64"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>ТБ</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="64"/>
+        <location filename="../base/utils/misc.cpp" line="65"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation>PiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="65"/>
+        <location filename="../base/utils/misc.cpp" line="66"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation>EiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="101"/>
+        <location filename="../base/utils/misc.cpp" line="102"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/с</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="239"/>
+        <location filename="../base/utils/misc.cpp" line="240"/>
         <source>%1s</source>
         <comment>e.g: 10 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="244"/>
+        <location filename="../base/utils/misc.cpp" line="245"/>
         <source>%1m</source>
         <comment>e.g: 10 minutes</comment>
         <translation>%1мин</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="250"/>
+        <location filename="../base/utils/misc.cpp" line="251"/>
         <source>%1h %2m</source>
         <comment>e.g: 3 hours 5 minutes</comment>
         <translation>%1ч%2мин</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="257"/>
+        <location filename="../base/utils/misc.cpp" line="258"/>
         <source>%1d %2h</source>
         <comment>e.g: 2 days 10 hours</comment>
         <translation>%1д%2ч</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="262"/>
+        <location filename="../base/utils/misc.cpp" line="263"/>
         <source>%1y %2d</source>
         <comment>e.g: 2 years 10 days</comment>
         <translation>%1y %2d</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="109"/>
-        <location filename="../base/utils/misc.cpp" line="121"/>
+        <location filename="../base/utils/misc.cpp" line="110"/>
+        <location filename="../base/utils/misc.cpp" line="122"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Неизвестен</translation>
@@ -14475,7 +14200,7 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="237"/>
+        <location filename="../base/utils/misc.cpp" line="238"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1мин</translation>

@@ -91,8 +91,12 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="336"/>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorent je bil ustvarjen s sledečimi knjižnicami:</translation>
+        <translation type="vanished">qBittorent je bil ustvarjen s sledečimi knjižnicami:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="356"/>
@@ -107,7 +111,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="76"/>
         <source>Copyright %1 2006-2026 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Avtorske pravice %1 2006-2026 Projekt qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="77"/>
@@ -143,37 +147,6 @@
     </message>
 </context>
 <context>
-    <name>AbstractFileStorage</name>
-    <message>
-        <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">Stara pot ni veljavna: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">Nova pot ni veljavna: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="vanished">Absolutna pot ni dovoljena: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">Datoteka že obstaja: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>No such file: &apos;%1&apos;.</source>
-        <translation type="vanished">Datoteka ne obstaja: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">Mapa že obstaja: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="vanished">Mapa ne obstaja: &apos;%1&apos;.</translation>
-    </message>
-</context>
-<context>
     <name>AddNewTorrentDialog</name>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="113"/>
@@ -204,10 +177,6 @@
         <location filename="../gui/addnewtorrentdialog.ui" line="381"/>
         <source>Torrent information</source>
         <translation>Informacije o torrentu</translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Preskoči preverjanje šifre</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="122"/>
@@ -480,12 +449,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
         <source>Invalid save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Neveljavna shrambena pot</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="693"/>
         <source>The &quot;Save at&quot; path contains invalid characters.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pot &quot;Shrani v&quot; vsebuje neveljavne znake</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="774"/>
@@ -538,7 +507,7 @@
     <message>
         <location filename="../base/addtorrentmanager.cpp" line="205"/>
         <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: &quot;%2&quot;. Torrent infohash: %3. Result: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>Znan je bil poskus dodajanja podvojenega torrenta. Vir: %1. Obstoječi torrent: &quot;%2&quot;. Torrent infohash: %3. Rezultat: %4</translation>
     </message>
 </context>
 <context>
@@ -627,10 +596,6 @@
         <location filename="../gui/addtorrentparamswidget.ui" line="349"/>
         <source>&lt;p&gt;If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.&lt;/p&gt;&lt;p&gt;The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Preskoči preverjanje zgoščene vrednosti</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="357"/>
@@ -2189,72 +2154,69 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
 <context>
     <name>BitTorrent::BencodeResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="119"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="175"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation>Ne morem ustvariti mape za nadaljevanje torrenta: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="240"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="300"/>
         <source>Cannot parse resume data: invalid format</source>
         <translation>Podatkov o nadaljevanju ni mogoče razčleniti: neveljavna oblika</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="330"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="339"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="378"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="390"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="399"/>
         <source>Cannot parse torrent info: %1</source>
         <translation>Podatkov o torrentu ni mogoče razčleniti: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="321"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="381"/>
         <source>Cannot parse torrent info: invalid format</source>
         <translation>Podatkov o torrentu ni mogoče razčleniti: neveljavna oblika</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="351"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="411"/>
         <source>Mismatching info-hash detected in resume data</source>
         <translation>V podatkih o nadaljevanju je bila zaznana neujemajoča se zgoščena informacija</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>Corrupted resume data: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>save_path is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="449"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
-        <translation>Metapodatkov torrentov ni bilo mogoče shraniti v datoteko &apos;%1&apos;. Napaka: %2.</translation>
+        <translation type="vanished">Metapodatkov torrentov ni bilo mogoče shraniti v datoteko &apos;%1&apos;. Napaka: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="487"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation>Podatkov o nadaljevanju torrenta ni bilo mogoče shraniti v &apos;%1&apos;. Napaka: %2.</translation>
+        <translation type="vanished">Podatkov o nadaljevanju torrenta ni bilo mogoče shraniti v &apos;%1&apos;. Napaka: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="194"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="254"/>
         <source>Couldn&apos;t load torrents queue: %1</source>
         <translation>Čakalne vrste torrentov ni bilo mogoče naložiti: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="237"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="311"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="297"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="371"/>
         <source>Cannot parse resume data: %1</source>
         <translation>Podatkov o nadaljevanju ni mogoče razčleniti: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="372"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="432"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
         <translation>Podatki o nadaljevanju so neveljavni: zaznani niso bili niti metapodatki niti informativna zgoščena vrednost</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="512"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
-        <translation>Podatkov ni bilo mogoče shraniti v &apos;%1&apos;. Napaka: %2</translation>
+        <translation type="vanished">Podatkov ni bilo mogoče shraniti v &apos;%1&apos;. Napaka: %2</translation>
     </message>
 </context>
 <context>
@@ -2314,36 +2276,47 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="774"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="777"/>
         <source>Save resume data transaction failed. Error: %1</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t begin transaction. Error: %1</source>
-        <translation type="vanished">Transakcije ni bilo mogoče začeti. Napaka: %1</translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="906"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="908"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>Metapodatkov torrentov ni bilo mogoče shraniti. Napaka: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="967"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="969"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation>Podatkov o nadaljevanju za torrent &apos;%1&apos; ni bilo mogoče shraniti. Napaka: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="995"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="997"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>Podatkov o nadaljevanju torrenta &apos;%1&apos; ni bilo mogoče izbrisati. Napaka: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1029"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1031"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation>Položajev torrentov v čakalni vrsti ni bilo mogoče shraniti. Napaka: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="566"/>
+        <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">Metapodatkov torrentov ni bilo mogoče shraniti v datoteko &apos;%1&apos;. Napaka: %2.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="604"/>
+        <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">Podatkov o nadaljevanju torrenta ni bilo mogoče shraniti v &apos;%1&apos;. Napaka: %2.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="639"/>
+        <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished">Podatkov ni bilo mogoče shraniti v &apos;%1&apos;. Napaka: %2</translation>
     </message>
 </context>
 <context>
@@ -2539,7 +2512,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6867"/>
         <source>IP banned by libtorrent. IP: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>IP prepovedan s strani libtorrent. IP: 1 %.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="7063"/>
@@ -2579,7 +2552,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="814"/>
         <source>BitTorrent session successfully finished.</source>
-        <translation type="unfinished"></translation>
+        <translation>BitTorrent seja uspešno zaključena.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="816"/>
@@ -2645,10 +2618,6 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3337"/>
         <source>Failed to download torrent metadata. Reason: &quot;%1&quot;</source>
         <translation>Metapodatkov torrenta ni bilo mogoče prenesti. Razlog: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="vanished">Torrenta ni bilo mogoče izvoziti. Torrent: &quot;%1&quot;. Cilj: &quot;%2&quot;. Razlog: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3401"/>
@@ -2825,14 +2794,6 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <translation>Opozorilo o napaki datoteke. Torrent: &quot;%1&quot;. Datoteka: &quot;%2&quot;. Vzrok: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
-        <translation type="vanished">Preslikava vrat UPnP/NAT-PMP ni uspela. Sporočilo: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
-        <translation type="vanished">Preslikava vrat UPnP/NAT-PMP je uspela. Sporočilo: &quot;%1&quot;</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6451"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
@@ -2935,39 +2896,39 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="41"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="67"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">Stara pot ni veljavna: &apos;%1&apos;.</translation>
+        <translation>Stara pot ni veljavna: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="43"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="69"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">Nova pot ni veljavna: &apos;%1&apos;.</translation>
+        <translation>Nova pot ni veljavna: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="45"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="71"/>
         <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="unfinished">Absolutna pot ni dovoljena: &apos;%1&apos;.</translation>
+        <translation>Absolutna pot ni dovoljena: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="55"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">Datoteka že obstaja: &apos;%1&apos;.</translation>
+        <translation>Datoteka že obstaja: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="59"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished">Datoteka ne obstaja: &apos;%1&apos;.</translation>
+        <translation>Datoteka ne obstaja: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="80"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">Mapa že obstaja: &apos;%1&apos;.</translation>
+        <translation>Mapa že obstaja: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="87"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished">Mapa ne obstaja: &apos;%1&apos;.</translation>
+        <translation>Mapa ne obstaja: &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -3212,10 +3173,6 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../app/cmdoptions.cpp" line="400"/>
         <source>Add torrents as running or stopped</source>
         <translation>Dodaj torrente kot zagnane ali kot ustavljene</translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Preskoči preverjanje zgoščene vrednosti</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="403"/>
@@ -3876,32 +3833,32 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
 <context>
     <name>KeyValueDataStorage</name>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="110"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="111"/>
         <source>Inserting (updating) database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="155"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="156"/>
         <source>Fetching database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="192"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="193"/>
         <source>Deleting database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="406"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="411"/>
         <source>Opening database failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="413"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="418"/>
         <source>Starting database transaction failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="424"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="429"/>
         <source>Creating database table failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4135,17 +4092,17 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../gui/mainwindow.ui" line="507"/>
         <source>Open Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpri mapo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="512"/>
         <source>Manage Plugins...</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravljanje dodatkov...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="515"/>
         <source>Manage installed plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravljaj naložene dodatke</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="451"/>
@@ -4185,7 +4142,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../gui/mainwindow.ui" line="130"/>
         <source>&amp;Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Dodatki</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="204"/>
@@ -6222,7 +6179,7 @@ Najnižja podprta različica: %2.</translation>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="293"/>
         <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="unfinished">Povezava ni uspela, neprepoznan odgovor: %1</translation>
+        <translation>Povezava ni uspela, neprepoznan odgovor: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="319"/>
@@ -6232,7 +6189,7 @@ Najnižja podprta različica: %2.</translation>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="345"/>
         <source>Authentication failed, msg: %1</source>
-        <translation type="unfinished">Preverjanje pristnosti ni uspelo, sporočilo: %1</translation>
+        <translation>Preverjanje pristnosti ni uspelo, sporočilo: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="364"/>
@@ -6243,17 +6200,17 @@ Najnižja podprta različica: %2.</translation>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="366"/>
         <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">&lt;mail from&gt; je strežnik zavrnil, sporočilo: %1</translation>
+        <translation>&lt;mail from&gt; je strežnik zavrnil, sporočilo: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="392"/>
         <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">&lt;data&gt; je strežnik zavrnil, sporočilo: %1</translation>
+        <translation>&lt;data&gt; je strežnik zavrnil, sporočilo: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="406"/>
         <source>Message was rejected by the server, error: %1</source>
-        <translation type="unfinished">Strežnik je zavrnil sporočilo, napaka: %1</translation>
+        <translation>Strežnik je zavrnil sporočilo, napaka: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="450"/>
@@ -6273,43 +6230,12 @@ Najnižja podprta različica: %2.</translation>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="622"/>
         <source>Email Notification Error: %1</source>
-        <translation type="unfinished">Napaka pri e-poštnem obvestilu: %1</translation>
+        <translation>Napaka pri e-poštnem obvestilu: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="634"/>
         <source>Check the email server supports SMTPS (SMTP over SSL) and you are using the correct port</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Net::Smtp</name>
-    <message>
-        <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="vanished">Povezava ni uspela, neprepoznan odgovor: %1</translation>
-    </message>
-    <message>
-        <source>Authentication failed, msg: %1</source>
-        <translation type="vanished">Preverjanje pristnosti ni uspelo, sporočilo: %1</translation>
-    </message>
-    <message>
-        <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;mail from&gt; je strežnik zavrnil, sporočilo: %1</translation>
-    </message>
-    <message>
-        <source>&lt;Rcpt to&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;Rcpt to&gt; je strežnik zavrnil, sporočilo: %1</translation>
-    </message>
-    <message>
-        <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;data&gt; je strežnik zavrnil, sporočilo: %1</translation>
-    </message>
-    <message>
-        <source>Message was rejected by the server, error: %1</source>
-        <translation type="vanished">Strežnik je zavrnil sporočilo, napaka: %1</translation>
-    </message>
-    <message>
-        <source>Email Notification Error: %1</source>
-        <translation type="vanished">Napaka pri e-poštnem obvestilu: %1</translation>
     </message>
 </context>
 <context>
@@ -6785,7 +6711,7 @@ Onemogoči šifriranje: poveži se samo s soležniki brez šifriranja protokola<
     <message>
         <location filename="../gui/optionsdialog.ui" line="494"/>
         <source>Status Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrstica stanja</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="500"/>
@@ -6977,7 +6903,7 @@ Določi  IPv4 ali IPv6 naslov.  Lahko doličiš &quot;0.0.0.0&quot; za katerikol
     <message>
         <location filename="../gui/optionsdialog.ui" line="4110"/>
         <source>Unlimited</source>
-        <translation type="unfinished">Neomejeno</translation>
+        <translation>Neomejeno</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4218"/>
@@ -7259,10 +7185,6 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
         <translation>Privzeta pot za shranjevanje:</translation>
     </message>
     <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">Kopiraj datoteke .torrent v:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="594"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation>Pokaži &amp;qBittorrent v obvestilnem področju</translation>
@@ -7271,14 +7193,6 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
         <location filename="../gui/optionsdialog.ui" line="994"/>
         <source>Display &amp;torrent content and some options</source>
         <translation>Pokaži vsebino &amp;torrenta in nekaj možnosti</translation>
-    </message>
-    <message>
-        <source>De&amp;lete .torrent files afterwards </source>
-        <translation type="vanished">Po tem izbriši .torrent &amp;datoteke</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">Za zaključene prejeme kopiraj datoteke .torrent v:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1251"/>
@@ -8079,7 +7993,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="682"/>
         <location filename="../gui/optionsdialog.cpp" line="694"/>
         <source>Example:</source>
-        <translation type="unfinished">Primer:</translation>
+        <translation>Primer:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="684"/>
@@ -8302,13 +8216,13 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="1984"/>
         <source>Dark</source>
         <comment>Dark color scheme</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tema</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1985"/>
         <source>Light</source>
         <comment>Light color scheme</comment>
-        <translation type="unfinished"></translation>
+        <translation>Svetloba</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1986"/>
@@ -8329,17 +8243,17 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2219"/>
         <source>The WebUI username must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uporabniško ime za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2224"/>
         <source>Character Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka lika</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2224"/>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uporabniško ime spletnega vmesnika ne sme vsebovati dvopičja</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2231"/>
@@ -8350,10 +8264,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Location Error</source>
         <translation>Napaka lokacije</translation>
-    </message>
-    <message>
-        <source>Choose export directory</source>
-        <translation type="vanished">Izberite mapo za izvoz</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="630"/>
@@ -8624,7 +8534,7 @@ Check the Execution Log for errors.</source>
         <location filename="../gui/properties/peerlistwidget.cpp" line="127"/>
         <source>Contribution</source>
         <comment>i.e: How much of this peer&apos;s current progress was provided by us</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prispevek</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="128"/>
@@ -8818,150 +8728,6 @@ Check the Execution Log for errors.</source>
     </message>
 </context>
 <context>
-    <name>PluginSelectDialog</name>
-    <message>
-        <source>Search plugins</source>
-        <translation type="vanished">Iskanje vtičnikov</translation>
-    </message>
-    <message>
-        <source>Installed search plugins:</source>
-        <translation type="vanished">Nameščeni vtičniki za iskanje:</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Ime</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="vanished">Različica</translation>
-    </message>
-    <message>
-        <source>Url</source>
-        <translation type="vanished">URL</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="vanished">Omogočen</translation>
-    </message>
-    <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="vanished">Opozorilo: Pri prejemanju torrentov s spletnih brskalnikov, se prepričaj, da ravnaš skladno z zakonom o avtorskih in sorodnih pravicah in/ali drugimi uredbami/zakoni, ki urejajo avtorske pravice v Sloveniji.</translation>
-    </message>
-    <message>
-        <source>Install a new one</source>
-        <translation type="vanished">Namesti novega</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Preveri posodobitve</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Zapri</translation>
-    </message>
-    <message>
-        <source>Uninstall</source>
-        <translation type="vanished">Odstrani</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Da</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">Ne</translation>
-    </message>
-    <message>
-        <source>Uninstall warning</source>
-        <translation type="vanished">Opozorilo odstranjevanja</translation>
-    </message>
-    <message>
-        <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
-Those plugins were disabled.</source>
-        <translation type="vanished">Nekaterih vtičnikov ni bilo mogoče odstraniti, ker so vključeni v qBittorrent. Odstranite lahko samo tiste, ki ste jih dodali sami.
-Tisti vtičniki so bili onemogočeni.</translation>
-    </message>
-    <message>
-        <source>Uninstall success</source>
-        <translation type="vanished">Odstranjevanje uspešno</translation>
-    </message>
-    <message>
-        <source>All selected plugins were uninstalled successfully</source>
-        <translation type="vanished">Vsi izbrani vtičniki so uspešno odstranjeni</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="vanished">Preveri za posodobitvami vtičnika</translation>
-    </message>
-    <message>
-        <source>Plugins installed or updated: %1</source>
-        <translation type="vanished">Nameščeni ali posodobljeni vtičniki: %1</translation>
-    </message>
-    <message>
-        <source>New search engine plugin URL</source>
-        <translation type="vanished">URL novega vtičnika iskalnika</translation>
-    </message>
-    <message>
-        <source>URL:</source>
-        <translation type="vanished">URL:</translation>
-    </message>
-    <message>
-        <source>Invalid link</source>
-        <translation type="vanished">Neveljavna povezava</translation>
-    </message>
-    <message>
-        <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="vanished">Ta povezava očitno ne vodi do vtičnika iskalnika.</translation>
-    </message>
-    <message>
-        <source>Select search plugins</source>
-        <translation type="vanished">Izberi vtičnike za iskanje</translation>
-    </message>
-    <message>
-        <source>qBittorrent search plugin</source>
-        <translation type="vanished">qBittorrent vtičniki za iskanje</translation>
-    </message>
-    <message>
-        <source>All your plugins are already up to date.</source>
-        <translation type="vanished">Vsi vaši vtičniki so že posodobljeni.</translation>
-    </message>
-    <message>
-        <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="vanished">Ni bilo mogoče preveriti, ali so na voljo posodobitve. %1</translation>
-    </message>
-    <message>
-        <source>Search plugin install</source>
-        <translation type="vanished">Namestitev vtičnika za iskanje</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">Posodobitev vstavka iskalnika &quot;%1&quot; ni bila mogoča. %2</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">Posodobitev vtičnika za iskalnik &quot;%1&quot;. %2 </translation>
-    </message>
-</context>
-<context>
-    <name>PluginSourceDialog</name>
-    <message>
-        <source>Plugin source</source>
-        <translation type="vanished">Vir vtičnika</translation>
-    </message>
-    <message>
-        <source>Search plugin source:</source>
-        <translation type="vanished">Poišči vir vtičnika</translation>
-    </message>
-    <message>
-        <source>Local file</source>
-        <translation type="vanished">Lokalna datoteka</translation>
-    </message>
-    <message>
-        <source>Web link</source>
-        <translation type="vanished">Spletna povezava</translation>
-    </message>
-</context>
-<context>
     <name>PluginsDialog</name>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="17"/>
@@ -8976,17 +8742,17 @@ Tisti vtičniki so bili onemogočeni.</translation>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="52"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="57"/>
         <source>Name</source>
-        <translation type="unfinished">Ime</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="62"/>
         <source>Version</source>
-        <translation type="unfinished">Različica</translation>
+        <translation>Različica</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="67"/>
@@ -9002,32 +8768,32 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <location filename="../gui/plugins/pluginsdialog.ui" line="75"/>
         <location filename="../gui/plugins/pluginsdialog.ui" line="117"/>
         <source>Enabled</source>
-        <translation type="unfinished">Omogočen</translation>
+        <translation>Omogočeno</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="98"/>
         <source>Install/Update plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Naloži/Posodobi dodatke</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="105"/>
         <source>Close</source>
-        <translation type="unfinished">Zapri</translation>
+        <translation>Zapri</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="122"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Odstrani</translation>
+        <translation>Odstrani</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="143"/>
         <source>Select plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Izberi dodatke</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="144"/>
         <source>qBittorrent plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent dodatek</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="213"/>
@@ -9036,7 +8802,7 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="391"/>
         <source>Yes</source>
-        <translation type="unfinished">Da</translation>
+        <translation>Da</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="218"/>
@@ -9045,7 +8811,7 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="396"/>
         <source>No</source>
-        <translation type="unfinished">Ne</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="314"/>
@@ -9903,10 +9669,6 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <translation>Iskanje</translation>
     </message>
     <message>
-        <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="vanished">Pridobivanje RSS virov je zdaj onemogočeno! Omgočite ga lahko v nastavitvah aplikacije.</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.ui" line="28"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;&lt;span style=&quot; text-decoration: none; color:#ff0000;&quot;&gt;Fetching of RSS feeds is disabled now! You can enable it in application settings.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
@@ -10110,10 +9872,6 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <translation>Za uporabo iskalnika mora biti nameščen Python</translation>
     </message>
     <message>
-        <source>Unable to create more than %1 concurrent searches.</source>
-        <translation type="vanished">Več kot %1 hkratnih iskanj ni mogoče ustvariti.</translation>
-    </message>
-    <message>
         <location filename="../webui/api/searchcontroller.cpp" line="185"/>
         <location filename="../webui/api/searchcontroller.cpp" line="191"/>
         <source>Offset is out of range</source>
@@ -10196,7 +9954,7 @@ Tisti vtičniki so bili onemogočeni.</translation>
     <message>
         <location filename="../webui/searchjobmanager.cpp" line="135"/>
         <source>Unable to create more than %1 concurrent searches.</source>
-        <translation type="unfinished">Več kot %1 hkratnih iskanj ni mogoče ustvariti.</translation>
+        <translation>Več kot %1 hkratnih iskanj ni mogoče ustvariti.</translation>
     </message>
     <message>
         <location filename="../webui/searchjobmanager.cpp" line="250"/>
@@ -10463,26 +10221,14 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <translation>Neznana datotečna oblika vstavka iskalnika.</translation>
     </message>
     <message>
-        <source>Plugin already at version %1, which is greater than %2</source>
-        <translation type="vanished">Različica vtičnika je trenutno %1, kar je več od %2</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="252"/>
         <source>A more recent version of this plugin is already installed.</source>
         <translation>Novejša različica tega vstavka je že nameščena.</translation>
     </message>
     <message>
-        <source>Plugin %1 is not supported.</source>
-        <translation type="vanished">Vtičnik %1 ni podprt.</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="329"/>
         <source>Plugin is not supported.</source>
         <translation>Vstavek ni podprt.</translation>
-    </message>
-    <message>
-        <source>Plugin %1 has been successfully updated.</source>
-        <translation type="vanished">Vtičnik %1 je bil uspešno posodobljen.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="405"/>
@@ -10586,38 +10332,38 @@ Tisti vtičniki so bili onemogočeni.</translation>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="17"/>
         <source>Search plugins</source>
-        <translation type="unfinished">Iskanje vtičnikov</translation>
+        <translation>Vstavki iskanja</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="29"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished">Nameščeni vtičniki za iskanje:</translation>
+        <translation>Nameščeni vstavki iskanja:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="52"/>
         <source>Name</source>
-        <translation type="unfinished">Ime</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="57"/>
         <source>Version</source>
-        <translation type="unfinished">Različica</translation>
+        <translation>Različica</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="62"/>
         <source>Url</source>
-        <translation type="unfinished">URL</translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="67"/>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="133"/>
         <source>Enabled</source>
-        <translation type="unfinished">Omogočen</translation>
+        <translation>Omogočeno</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="80"/>
         <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="unfinished">Opozorilo: Pri prejemanju torrentov s spletnih brskalnikov, se prepričaj, da ravnaš skladno z zakonom o avtorskih in sorodnih pravicah in/ali drugimi uredbami/zakoni, ki urejajo avtorske pravice v Sloveniji.</translation>
+        <translation>Opozorilo: Prepričajte se, da upoštevate zakonodajo o avtorskih pravicah vaše države, ko prenašate torrente s katerega koli od teh iskalnikov.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="95"/>
@@ -10627,29 +10373,29 @@ Tisti vtičniki so bili onemogočeni.</translation>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="107"/>
         <source>Install a new one</source>
-        <translation type="unfinished">Namesti novega</translation>
+        <translation>Namesti novega</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="114"/>
         <source>Check for updates</source>
-        <translation type="unfinished">Preveri posodobitve</translation>
+        <translation>Preveri za posodobitve</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="121"/>
         <source>Close</source>
-        <translation type="unfinished">Zapri</translation>
+        <translation>Zapri</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="138"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Odstrani</translation>
+        <translation>Odstrani</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="160"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="231"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="296"/>
         <source>Yes</source>
-        <translation type="unfinished">Da</translation>
+        <translation>Da</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="165"/>
@@ -10657,29 +10403,29 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="236"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="301"/>
         <source>No</source>
-        <translation type="unfinished">Ne</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished">Opozorilo odstranjevanja</translation>
+        <translation>Opozorilo odstranjevanja</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished">Nekaterih vtičnikov ni bilo mogoče odstraniti, ker so vključeni v qBittorrent. Odstranite lahko samo tiste, ki ste jih dodali sami.
+        <translation>Nekaterih vtičnikov ni bilo mogoče odstraniti, ker so vključeni v qBittorrent. Odstranite lahko samo tiste, ki ste jih dodali sami.
 Tisti vtičniki so bili onemogočeni.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>Uninstall success</source>
-        <translation type="unfinished">Odstranjevanje uspešno</translation>
+        <translation>Odstranjevanje uspešno</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished">Vsi izbrani vtičniki so uspešno odstranjeni</translation>
+        <translation>Vsi izbrani vtičniki so uspešno odstranjeni</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
@@ -10687,69 +10433,69 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="495"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Preveri za posodobitvami vtičnika</translation>
+        <translation>Preveri za posodobitvami vtičnika</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
         <source>Plugins installed or updated: %1</source>
-        <translation type="unfinished">Nameščeni ali posodobljeni vtičniki: %1</translation>
+        <translation>Nameščeni ali posodobljeni vtičniki: %1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="363"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="371"/>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished">URL novega vtičnika iskalnika</translation>
+        <translation>URL novega vtičnika iskalnika</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="364"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="372"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
         <source>Invalid link</source>
-        <translation type="unfinished">Neveljavna povezava</translation>
+        <translation>Neveljavna povezava</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished">Ta povezava očitno ne vodi do vtičnika iskalnika.</translation>
+        <translation>Ta povezava očitno ne vodi do vtičnika iskalnika.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="386"/>
         <source>Select search plugins</source>
-        <translation type="unfinished">Izberi vtičnike za iskanje</translation>
+        <translation>Izberi vtičnike za iskanje</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="387"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished">qBittorrent vtičniki za iskanje</translation>
+        <translation>qBittorrent vtičniki za iskanje</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="448"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished">Vsi vaši vtičniki so že posodobljeni.</translation>
+        <translation>Vsi vaši vtičniki so že posodobljeni.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="unfinished">Ni bilo mogoče preveriti, ali so na voljo posodobitve. %1</translation>
+        <translation>Ni bilo mogoče preveriti, ali so na voljo posodobitve. %1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="477"/>
         <source>Search plugin install</source>
-        <translation type="unfinished">Namestitev vtičnika za iskanje</translation>
+        <translation>Namestitev vtičnika za iskanje</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="478"/>
         <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">Posodobitev vstavka iskalnika &quot;%1&quot; ni bila mogoča. %2</translation>
+        <translation>Posodobitev vstavka iskalnika &quot;%1&quot; ni bila mogoča. %2</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="496"/>
         <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">Posodobitev vtičnika za iskalnik &quot;%1&quot;. %2 </translation>
+        <translation>Posodobitev vtičnika za iskalnik &quot;%1&quot;. %2 </translation>
     </message>
 </context>
 <context>
@@ -10757,22 +10503,22 @@ Tisti vtičniki so bili onemogočeni.</translation>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="14"/>
         <source>Plugin source</source>
-        <translation type="unfinished">Vir vtičnika</translation>
+        <translation>Vir vtičnika</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="26"/>
         <source>Search plugin source:</source>
-        <translation type="unfinished">Poišči vir vtičnika</translation>
+        <translation>Poišči vir vtičnika</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="35"/>
         <source>Local file</source>
-        <translation type="unfinished">Lokalna datoteka</translation>
+        <translation>Lokalna datoteka</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="42"/>
         <source>Web link</source>
-        <translation type="unfinished">Spletna povezava</translation>
+        <translation>Spletna povezava</translation>
     </message>
 </context>
 <context>
@@ -10840,12 +10586,12 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
         <translation>&lt;b&gt;foo bar&lt;/b&gt;: išči &lt;b&gt;foo&lt;/b&gt; in &lt;b&gt;bar&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="849"/>
+        <location filename="../gui/search/searchwidget.cpp" line="862"/>
         <source>Close tab</source>
         <translation>Zapri zavihek</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="850"/>
+        <location filename="../gui/search/searchwidget.cpp" line="863"/>
         <source>Close all tabs</source>
         <translation>Zapri vse zavihke</translation>
     </message>
@@ -10855,34 +10601,34 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
         <translation>Izberi ...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="841"/>
+        <location filename="../gui/search/searchwidget.cpp" line="854"/>
         <source>Refresh tab</source>
         <translation>Osveži zavihek</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="845"/>
+        <location filename="../gui/search/searchwidget.cpp" line="858"/>
         <source>Stop search</source>
         <translation>Ustavi iskanje</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Search Engine</source>
         <translation>Iskalnik</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation>Za uporabo iskalnika namestite Python.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Empty search pattern</source>
         <translation>Prazen iskani parameter</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Please type a search pattern first</source>
         <translation>Najprej vpišite iskani parameter</translation>
     </message>
@@ -10895,32 +10641,32 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
 <context>
     <name>SearchWidget::DataStorage</name>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="984"/>
+        <location filename="../gui/search/searchwidget.cpp" line="997"/>
         <source>Failed to load Search UI saved state data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1004"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1018"/>
         <source>Failed to load saved search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1036"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1050"/>
         <source>Failed to save Search UI state. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1068"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1082"/>
         <source>Failed to save search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1084"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
         <source>Failed to load Search UI history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1112"/>
         <source>Failed to save search history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11345,13 +11091,12 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
     </message>
     <message>
         <source>%1 ms</source>
-        <comment>18 milliseconds</comment>
         <translation type="vanished">%1 ms</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.cpp" line="111"/>
-        <source>%1 ms</source>
-        <translation type="unfinished">%1 ms</translation>
+        <source>%1 μs</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11835,17 +11580,17 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="126"/>
         <source>Rename error</source>
-        <translation type="unfinished">Napaka pri preimenovanju</translation>
+        <translation>Napaka pri preimenovanju</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="156"/>
         <source>Resize columns</source>
-        <translation type="unfinished">Spremeni velikost stolpcev</translation>
+        <translation>Spremeni velikost stolpcev</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="166"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished">Prilagodi velikost vseh prikazanih stolpcev na širino njihove vsebine</translation>
+        <translation>Prilagodi velikost vseh prikazanih stolpcev na širino njihove vsebine</translation>
     </message>
 </context>
 <context>
@@ -11858,7 +11603,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/torrentcontentlayoutmodel.cpp" line="62"/>
         <source>Path</source>
-        <translation type="unfinished">Pot</translation>
+        <translation>Pot</translation>
     </message>
 </context>
 <context>
@@ -12033,22 +11778,6 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/torrentcontentwidget.cpp" line="471"/>
         <source>By shown file order</source>
         <translation>Po prikazanem vrstnem redu</translation>
-    </message>
-    <message>
-        <source>Normal priority</source>
-        <translation type="vanished">Navadna prednost</translation>
-    </message>
-    <message>
-        <source>High priority</source>
-        <translation type="vanished">Visoka prednost</translation>
-    </message>
-    <message>
-        <source>Maximum priority</source>
-        <translation type="vanished">Najvišja prednost</translation>
-    </message>
-    <message>
-        <source>Priority by shown file order</source>
-        <translation type="vanished">Prednost po prikazanem vrstnem redu</translation>
     </message>
 </context>
 <context>
@@ -14373,86 +14102,86 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="59"/>
+        <location filename="../base/utils/misc.cpp" line="60"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="60"/>
+        <location filename="../base/utils/misc.cpp" line="61"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="61"/>
+        <location filename="../base/utils/misc.cpp" line="62"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="62"/>
+        <location filename="../base/utils/misc.cpp" line="63"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="63"/>
+        <location filename="../base/utils/misc.cpp" line="64"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="64"/>
+        <location filename="../base/utils/misc.cpp" line="65"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation>PiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="65"/>
+        <location filename="../base/utils/misc.cpp" line="66"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation>EiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="101"/>
+        <location filename="../base/utils/misc.cpp" line="102"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="239"/>
+        <location filename="../base/utils/misc.cpp" line="240"/>
         <source>%1s</source>
         <comment>e.g: 10 seconds</comment>
         <translation>%1 s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="244"/>
+        <location filename="../base/utils/misc.cpp" line="245"/>
         <source>%1m</source>
         <comment>e.g: 10 minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="250"/>
+        <location filename="../base/utils/misc.cpp" line="251"/>
         <source>%1h %2m</source>
         <comment>e.g: 3 hours 5 minutes</comment>
         <translation>%1h %2m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="257"/>
+        <location filename="../base/utils/misc.cpp" line="258"/>
         <source>%1d %2h</source>
         <comment>e.g: 2 days 10 hours</comment>
         <translation>%1d %2h</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="262"/>
+        <location filename="../base/utils/misc.cpp" line="263"/>
         <source>%1y %2d</source>
         <comment>e.g: 2 years 10 days</comment>
         <translation>%1y %2d</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="109"/>
-        <location filename="../base/utils/misc.cpp" line="121"/>
+        <location filename="../base/utils/misc.cpp" line="110"/>
+        <location filename="../base/utils/misc.cpp" line="122"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Neznano</translation>
@@ -14468,7 +14197,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <translation>qBittorrent bo zdaj znova zagnal računalnik, saj so dokončani vsi prejemi.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="237"/>
+        <location filename="../base/utils/misc.cpp" line="238"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>

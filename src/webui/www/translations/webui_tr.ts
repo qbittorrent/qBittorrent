@@ -975,10 +975,6 @@ Parça adresleme değeri, bir kişi tarafından ilk kez istendiğinde denetlenec
         <translation>Değişken etki alanı adımı güncelle</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Tamamlanmamış torrent'leri şurada tut:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Tüm dosyalar için disk alanını önceden ayır</translation>
     </message>
@@ -2373,10 +2369,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Aynı Kişi Kimliğinden çoklu bağlantılara izin ver:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Deneme e-postası gönderilmeye çalışıldı.&lt;br&gt;Başarılı olup olmadığını onaylamak için gelen kutunuzu gözden geçirin.&lt;br&gt;Hatalar için Çalıştırma Günlüğünü gözden geçirin.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Oturum sayısı sınırı:</translation>
     </message>
@@ -2394,7 +2386,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Store backup in:</source>
-        <translation>Yedeği saklama yeri:</translation>
+        <translation>Yedeği şurada depola:</translation>
     </message>
     <message>
         <source>Save search tabs</source>
@@ -2402,7 +2394,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Store backup .torrent file</source>
-        <translation>Yedek .torrent dosyasını kaydet</translation>
+        <translation>Yedek .torrent dosyasını depola</translation>
     </message>
     <message>
         <source>Note: b@y.com &amp; c@z.com will both see each other's email addresses, whereas a@x.com will not see them nor be seen.</source>
@@ -2486,35 +2478,35 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>İzleyicinin tüm torrent'lerden kaldırılmasını onayla:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Yukarıdakilerden herhangi biri</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Yukarıdakilerin tümü</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Ayrıca ekleme iptal edildiğinde</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Aynı zamanda eklenmesi iptal edilmiş .torrent dosyalarını da sil</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Tamamlanmamış torrent'ler için başka bir yol kullan:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Tüm etiketlerin kaldırılmasını onayla:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Deneme e-postası gönderilmeye çalışıldı.\nBaşarılı olup olmadığını onaylamak için gelen kutunuzu gözden geçirin.\nHatalar için Çalıştırma Günlüğünü gözden geçirin.</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Tüm etiketler seçilen torrent'lerden kaldırılsın mı?</translation>
     </message>
 </context>
 <context>
@@ -3904,19 +3896,19 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Kip</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Varsayılan (Herhangi bir sınırı eşleştir)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Tüm sınırları eşleştir</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Herhangi bir sınırı eşleştir</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent aşağıdaki kütüphaneler ile yapıldı:</translation>
+        <translation type="vanished">qBittorrent aşağıdaki kütüphaneler ile yapıldı:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent simgesi</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>%1 torrent ekle</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Paylaşılan indirme penceresi aç</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Ayrı indirme pencereleri aç</translation>
     </message>
 </context>
 <context>

@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Actualizar o nome do dominio dinámico</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Manter os torrents incompletos en:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Pre-asignar o espazo no disco a todos os ficheiros</translation>
     </message>
@@ -2485,23 +2481,23 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Calquera dos anteriores</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation> Todos os anteriores</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Tamén cando se cancele a adición</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Eliminar tamén os ficheiros .torrent cando se cancele a adición</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Usar outra ruta para os torrents incompletos:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -2509,7 +2505,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Intentouse enviar un correo de proba.\nComproba a túa caixa de entrada para confirmar o éxito.\nConsulta o rexistro de execución para ver erros.</translation>
     </message>
 </context>
 <context>
@@ -3840,7 +3836,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Desexa eliminar todas as etiquetas dos torrents seleccionados?</translation>
     </message>
 </context>
 <context>
@@ -3907,11 +3903,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Coincidir con tódolos límites</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Coincidir con calquera límite</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent construiuse coas seguintes bibliotecas:</translation>
+        <translation type="vanished">qBittorrent construiuse coas seguintes bibliotecas:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     <message>
         <source>qBittorrent icon</source>
         <translation>Icona de qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

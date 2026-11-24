@@ -796,7 +796,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>ჟურნალი</translation>
     </message>
     <message>
         <source>[D: %1, U: %2]</source>
@@ -972,10 +972,6 @@ The piece hash will be checked when it is requested for the first time by a peer
     <message>
         <source>Update my dynamic domain name</source>
         <translation>ჩემი დინამიკური დომეინის სახელის განახლება</translation>
-    </message>
-    <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">არასრული ტორენტების შენახვა მისამართით:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -1745,7 +1741,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>მწმ</translation>
     </message>
     <message>
         <source>Excluded file names</source>
@@ -2497,7 +2493,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>სხვა ბილიკის გამოყენება დაუსრულებელი ტორენტებისთვის:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -2813,7 +2809,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>ფაილის სახელი</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
@@ -2837,11 +2833,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>ჩანაცვლება</translation>
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>გაფართოება</translation>
     </message>
     <message>
         <source>Replace All</source>
@@ -3836,7 +3832,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>ყველა ტეგის წაშლა ამორჩეული ტორენტებიდან?</translation>
     </message>
 </context>
 <context>
@@ -3859,7 +3855,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>ratio</source>
-        <translation type="unfinished" />
+        <translation>ფარდობა</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -4109,7 +4105,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>ნაჩვენებია</translation>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
@@ -4370,7 +4366,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent აგებულია ამ ბიბლიოთეკებით:</translation>
+        <translation type="vanished">qBittorrent აგებულია ამ ბიბლიოთეკებით:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4398,6 +4394,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4991,7 +4991,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished" />
+        <translation>დაბლოკილია</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -5003,7 +5003,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>ნაჩვენებია</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -5015,7 +5015,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>ID</translation>
     </message>
     <message>
         <source>Log Type</source>
@@ -5055,7 +5055,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation>დროის შტამპი</translation>
     </message>
     <message>
         <source>Clear All</source>
@@ -5071,11 +5071,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Reason</source>
-        <translation type="unfinished" />
+        <translation>მიზეზი</translation>
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished" />
+        <translation>ელემენტი</translation>
     </message>
     <message>
         <source>IP</source>
@@ -5083,7 +5083,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished" />
+        <translation>დაბანილია</translation>
     </message>
     <message>
         <source>Normal Messages</source>
@@ -5091,7 +5091,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation>კრიტიკული</translation>
     </message>
     <message>
         <source>Critical Messages</source>
@@ -5103,7 +5103,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished" />
+        <translation>ელემენტები</translation>
     </message>
     <message>
         <source>Results</source>
@@ -5111,7 +5111,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>ინფორმაცია</translation>
     </message>
     <message>
         <source>Choose a log level...</source>

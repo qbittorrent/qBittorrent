@@ -91,8 +91,12 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="336"/>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent fue compilado con las siguientes librerías:</translation>
+        <translation type="vanished">qBittorrent fue compilado con las siguientes librerías:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="356"/>
@@ -128,49 +132,18 @@
         <location filename="../gui/aboutdialog.cpp" line="117"/>
         <location filename="../gui/aboutdialog.cpp" line="172"/>
         <source>Lua:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lua:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="129"/>
         <location filename="../gui/aboutdialog.cpp" line="173"/>
         <source>LuaBridge:</source>
-        <translation type="unfinished"></translation>
+        <translation>Puente Lua:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="143"/>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>La base de datos gratuita IP to Country Lite de DB-IP se usa para resolver los países de los pares. La licencia de la base de datos es Creative Commons Attribution 4.0 International License</translation>
-    </message>
-</context>
-<context>
-    <name>AbstractFileStorage</name>
-    <message>
-        <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">La ruta anterior no es válida: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">La nueva ruta no es válida: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="vanished">No se permite la ruta absoluta: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">El archivo ya existe: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>No such file: &apos;%1&apos;.</source>
-        <translation type="vanished">No existe el archivo: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">La carpeta ya existe: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="vanished">No existe la carpeta: &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -204,10 +177,6 @@
         <location filename="../gui/addnewtorrentdialog.ui" line="381"/>
         <source>Torrent information</source>
         <translation>Información del torrent</translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">No comprobar hash</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="122"/>
@@ -275,12 +244,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="290"/>
         <source>Seed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo sembrando</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="293"/>
         <source>&lt;p&gt;If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.&lt;/p&gt;&lt;p&gt;The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Si se activa, qBittorrent asumirá que todos los archivos de este torrent están presentes y que coinciden con los hashes del archivo torrent. Este modo es útil cuando se crea y se comparte un torrent, o si el usuario ya sabe que todos los archivos están completos; de esta forma, se realizan solo comprobaciones básicas de archivos y se omiten las comprobaciones iniciales de hash.&lt;/p&gt;&lt;p&gt; El hash del archivo se comprobará la primera vez que un usuario lo solicite. Si la comprobación del hash falla, se volverán a comprobar todos los archivos de este torrent.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="314"/>
@@ -621,16 +590,12 @@
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="346"/>
         <source>Seed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo sembrando</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="349"/>
         <source>&lt;p&gt;If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.&lt;/p&gt;&lt;p&gt;The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Omitir comprobación de hash</translation>
+        <translation>&lt;p&gt;Si se activa, qBittorrent asumirá que todos los archivos de este torrent están presentes y que coinciden con los hashes del archivo torrent. Este modo es útil cuando se crea y se comparte un torrent, o si el usuario ya sabe que todos los archivos están completos; de esta forma, se realizan solo comprobaciones básicas de archivos y se omiten las comprobaciones iniciales de hash.&lt;/p&gt;&lt;p&gt; El hash del archivo se comprobará la primera vez que un usuario lo solicite. Si la comprobación del hash falla, se volverán a comprobar todos los archivos de este torrent.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="357"/>
@@ -1083,7 +1048,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="702"/>
         <source>Allow outgoing connections when seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Permitir conexiones salientes al compartir datos</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="709"/>
@@ -1145,7 +1110,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="804"/>
         <source>Allow multiple connections from the same Peer ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Permitir múltiples conexiones desde el mismo ID de par</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="810"/>
@@ -1235,7 +1200,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="953"/>
         <source>Select Python Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccione el ejecutable de Python</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="954"/>
@@ -1291,7 +1256,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="1034"/>
         <source>Maximum outstanding block requests from a peer</source>
-        <translation type="unfinished"></translation>
+        <translation>Número máximo de solicitudes de bloques pendientes de un par</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="1037"/>
@@ -1306,7 +1271,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="1044"/>
         <source>STUN server for WebTorrent NAT traversal</source>
-        <translation type="unfinished"></translation>
+        <translation>Servidor STUN para la travesía NAT de WebTorrent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="1052"/>
@@ -1331,12 +1296,12 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="1073"/>
         <source>I2P inbound length variance</source>
-        <translation type="unfinished"></translation>
+        <translation>Variación de la longitud de entrada I2P</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="1078"/>
         <source>I2P outbound length variance</source>
-        <translation type="unfinished"></translation>
+        <translation>Variación de la longitud de salida I2P</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="891"/>
@@ -1716,22 +1681,22 @@
     <message>
         <location filename="../app/application.cpp" line="1394"/>
         <source>Load Qt translation successful. Locale: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Carga de la traducción de Qt realizada con éxito. Configuración regional: %1.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1398"/>
         <source>Load Qt translation failed. Temporarily falling back to English. Locale not found: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error en la traducción de Qt al cargar. Volviendo temporalmente al inglés. Configuración regional no encontrada: %1.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1406"/>
         <source>Load qBittorrent translation successful. Locale: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar la traducción de qBittorrent exitosamente. Configuración regional: %1.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1410"/>
         <source>Load qBittorrent translation failed. Temporarily falling back to English. Locale not found: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error al cargar la traducción de qBittorrent. Volviendo temporalmente al inglés. Configuración regional no encontrada: %1.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1428"/>
@@ -2188,72 +2153,69 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
 <context>
     <name>BitTorrent::BencodeResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="119"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="175"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation>No se pudo crear una carpeta de reanudación del torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="240"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="300"/>
         <source>Cannot parse resume data: invalid format</source>
         <translation>No se puede analizar los datos de reanudación: formato inválido</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="330"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="339"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="378"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="390"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="399"/>
         <source>Cannot parse torrent info: %1</source>
         <translation>No se puede analizar la información del torrent: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="321"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="381"/>
         <source>Cannot parse torrent info: invalid format</source>
         <translation>No se puede analizar la información del torrent: formato inválido</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="351"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="411"/>
         <source>Mismatching info-hash detected in resume data</source>
         <translation>Se detectó hash de información no coincidente en los datos del resumen</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>Corrupted resume data: %1</source>
         <translation>Datos de reanudación corruptos: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>save_path is invalid</source>
         <translation>La ruta de guardado no es válida</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="449"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
-        <translation>No se pudieron guardar los metadatos de torrent en &apos;%1&apos;. Error: %2.</translation>
+        <translation type="vanished">No se pudieron guardar los metadatos de torrent en &apos;%1&apos;. Error: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="487"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation>No se pudieron guardar los datos de reanudación de torrent en &apos;%1&apos;. Error: %2.</translation>
+        <translation type="vanished">No se pudieron guardar los datos de reanudación de torrent en &apos;%1&apos;. Error: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="194"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="254"/>
         <source>Couldn&apos;t load torrents queue: %1</source>
         <translation>No se pudo cargar la cola de torrents: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="237"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="311"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="297"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="371"/>
         <source>Cannot parse resume data: %1</source>
         <translation>No se puede analizar los datos de reanudación: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="372"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="432"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
         <translation>Los datos del reanudación no son válidos: no se encontraron metadatos ni informacion de hash</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="512"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
-        <translation>No se pudo guardar los datos en &apos;%1&apos;. Error: %2</translation>
+        <translation type="vanished">No se pudo guardar los datos en &apos;%1&apos;. Error: %2</translation>
     </message>
 </context>
 <context>
@@ -2313,36 +2275,47 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
         <translation>La ruta de guardado no es válida</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="774"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="777"/>
         <source>Save resume data transaction failed. Error: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t begin transaction. Error: %1</source>
-        <translation type="vanished">No se pudo iniciar la transacción. Error: %1</translation>
+        <translation>Error al guardar la transacción de datos al continuar. Error: %1</translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="906"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="908"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>No se pudieron guardar los metadatos del torrent. Error: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="967"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="969"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation>No se pudieron almacenar los datos de reanudación del torrent &apos;%1&apos;. Error: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="995"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="997"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>No se pudieron borrar los datos de reanudación del torrent &apos;%1&apos;. Error: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1029"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1031"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation>No se pudieron almacenar las posiciones de la cola de torrents. Error: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="566"/>
+        <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">No se pudieron guardar los metadatos de torrent en &apos;%1&apos;. Error: %2.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="604"/>
+        <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">No se pudieron guardar los datos de reanudación de torrent en &apos;%1&apos;. Error: %2.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="639"/>
+        <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished">No se pudo guardar los datos en &apos;%1&apos;. Error: %2</translation>
     </message>
 </context>
 <context>
@@ -2497,38 +2470,38 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2714"/>
         <source>Could not remove .torrent file backup. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo eliminar la copia de seguridad del archivo .torrent. Torrent: &quot;%1&quot;. Archivo: &quot;%2&quot;. Motivo: %3</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5513"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5536"/>
         <source>Failed to backup .torrent file. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Error al realizar la copia de seguridad del archivo .torrent. Torrent: &quot;%1&quot;. Destino: &quot;%2&quot;. Motivo: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5542"/>
         <source>Could not parse backup Magnet URI. Torrent: &quot;%1&quot;. URI: &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo analizar la URI Magnet de respaldo. Torrent: &quot;%1&quot;. URI: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5685"/>
         <source>Could not move .torrent file backup. Torrent: &quot;%1&quot;. File: &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo mover la copia de seguridad del archivo .torrent. Torrent: &quot;%1&quot;. Archivo: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6413"/>
         <source>Port forwarding failed. Protocol: %1. Local address: &quot;%2&quot;. Message: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>El reenvío de puertos falló. Protocolo: %1. Dirección local: &quot;%2&quot;. Mensaje: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6417"/>
         <source>Port forwarding failed. Protocol: %1. Message: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Falló el reenvío de puertos. Protocolo: %1. Mensaje: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6426"/>
         <source>Port forwarding succeeded. Protocol: %1. Local address: &quot;%2&quot;. External port: %3. Message: &quot;%4&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>El reenvío de puertos se realizó correctamente. Protocolo: %1. Dirección local: &quot;%2&quot;. Puerto externo: %3. Mensaje: &quot;%4&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6430"/>
@@ -2644,10 +2617,6 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3337"/>
         <source>Failed to download torrent metadata. Reason: &quot;%1&quot;</source>
         <translation>Error al descargar los metadatos del torrent. Motivo: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="vanished">Error al exportar torrent. Torrent: &quot;%1&quot;. Destino: &quot;%2&quot;. Razón: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3401"/>
@@ -2824,14 +2793,6 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
         <translation>Advertencia de error de archivo. Torrent: &quot;%1&quot;. Archivo: &quot;%2&quot;. Motivo: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
-        <translation type="vanished">La asignación de puertos UPnP/NAT-PMP falló. Mensaje: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
-        <translation type="vanished">La asignación de puertos UPnP/NAT-PMP se realizó correctamente. Mensaje: &quot;%1&quot;</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6451"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
@@ -2934,39 +2895,39 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="41"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="67"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">La ruta anterior no es válida: &apos;%1&apos;.</translation>
+        <translation>La ruta anterior no es válida: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="43"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="69"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">La nueva ruta no es válida: &apos;%1&apos;.</translation>
+        <translation>La nueva ruta no es válida: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="45"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="71"/>
         <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="unfinished">No se permite la ruta absoluta: &apos;%1&apos;.</translation>
+        <translation>No se permite la ruta absoluta: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="55"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">El archivo ya existe: &apos;%1&apos;.</translation>
+        <translation>El archivo ya existe: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="59"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished">No existe el archivo: &apos;%1&apos;.</translation>
+        <translation>No existe el archivo: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="80"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">La carpeta ya existe: &apos;%1&apos;.</translation>
+        <translation>La carpeta ya existe: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="87"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished">No existe la carpeta: &apos;%1&apos;.</translation>
+        <translation>No existe la carpeta: &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -3085,7 +3046,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     <message>
         <location filename="../app/cmdoptions.cpp" line="401"/>
         <source>Seed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo sembrando</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="474"/>
@@ -3213,10 +3174,6 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
         <translation>Añadir torrents iniciados o detenidos</translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Omitir comprobación de hash</translation>
-    </message>
-    <message>
         <location filename="../app/cmdoptions.cpp" line="403"/>
         <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
         <translation>Asignar torrents a la categoría. Si la categoría no existe, será creada.</translation>
@@ -3305,7 +3262,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="137"/>
         <source>Force start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar torrents forzosamente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="139"/>
@@ -3875,32 +3832,32 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
 <context>
     <name>KeyValueDataStorage</name>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="110"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="111"/>
         <source>Inserting (updating) database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="155"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="156"/>
         <source>Fetching database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="192"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="193"/>
         <source>Deleting database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="406"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="411"/>
         <source>Opening database failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="413"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="418"/>
         <source>Starting database transaction failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="424"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="429"/>
         <source>Creating database table failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4651,14 +4608,6 @@ Requisito mínimo: %2.</translation>
         <translation>Error al abrir el instalador de Python. Fichero: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <source>Failed MD5 hash check for Python installer. File: &quot;%1&quot;. Result hash: &quot;%2&quot;. Expected hash: &quot;%3&quot;.</source>
-        <translation type="vanished">La comprobació del hash MD5 dels instalador de Python falló. Fichero: &quot;%1&quot;. Hash obtenido: &quot;%2&quot;. Hash esperado: &quot;%3&quot;.</translation>
-    </message>
-    <message>
-        <source>Failed SHA3-512 hash check for Python installer. File: &quot;%1&quot;. Result hash: &quot;%2&quot;. Expected hash: &quot;%3&quot;.</source>
-        <translation type="vanished">La comprobación del hash SHA3-512 del instalador de Python falló. Archivo: &quot;%1&quot;. Hash obtenido: &quot;%2&quot;. Hash esperado: &quot;%3&quot;.</translation>
-    </message>
-    <message>
         <location filename="../gui/mainwindow.cpp" line="2003"/>
         <source>Download error</source>
         <translation>Error de descarga</translation>
@@ -4808,7 +4757,7 @@ Requisito mínimo: %2.</translation>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="236"/>
         <source>Redirect to unsupported or dangerous protocol: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Redirigir a protocolo peligroso o no compatible: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="244"/>
@@ -6230,17 +6179,17 @@ Requisito mínimo: %2.</translation>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="293"/>
         <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="unfinished">Conexión fallida, respuesta no reconocida: %1</translation>
+        <translation>Conexión fallida, respuesta no reconocida: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="319"/>
         <source>STARTTLS is required but was not enabled by the server. Unable to send the email.</source>
-        <translation type="unfinished">Se requiere STARTTLS, pero el servidor no lo habilitó. No se pudo enviar el correo electrónico.</translation>
+        <translation>Se requiere STARTTLS, pero el servidor no lo habilitó. No se pudo enviar el correo electrónico.</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="345"/>
         <source>Authentication failed, msg: %1</source>
-        <translation type="unfinished">Error de autenticación, mensaje: %1</translation>
+        <translation>Error de autenticación, mensaje: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="364"/>
@@ -6251,93 +6200,42 @@ Requisito mínimo: %2.</translation>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="366"/>
         <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">&lt;mail from&gt; fue rechazado por el servidor, mensaje: %1</translation>
+        <translation>&lt;mail from&gt; fue rechazado por el servidor, mensaje: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="392"/>
         <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">&lt;data&gt; fue rechazado por el servidor, mensaje: %1</translation>
+        <translation>&lt;data&gt; fue rechazado por el servidor, mensaje: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="406"/>
         <source>Message was rejected by the server, error: %1</source>
-        <translation type="unfinished">El mensaje fue rechazado por el servidor, error: %1</translation>
+        <translation>El mensaje fue rechazado por el servidor, error: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="450"/>
         <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="unfinished">Tanto EHLO como HELO fallaron, mensaje: %1</translation>
+        <translation>Tanto EHLO como HELO fallaron, mensaje: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="491"/>
         <source>STARTTLS is required but was not offered by the server. Unable to send the email.</source>
-        <translation type="unfinished">Se requiere STARTTLS, pero el servidor no lo proporcionó. No se pudo enviar el correo electrónico.</translation>
+        <translation>Se requiere STARTTLS, pero el servidor no lo proporcionó. No se pudo enviar el correo electrónico.</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="537"/>
         <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="unfinished">El servidor SMTP no parece admitir ninguno de los modos de autenticación que admitimos [CRAM-MD5|PLAIN|LOGIN], omitiendo la autenticación, sabiendo que es probable que falle... Modos de autenticación del servidor: %1</translation>
+        <translation>El servidor SMTP no parece admitir ninguno de los modos de autenticación que admitimos [CRAM-MD5|PLAIN|LOGIN], omitiendo la autenticación, sabiendo que es probable que falle... Modos de autenticación del servidor: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="622"/>
         <source>Email Notification Error: %1</source>
-        <translation type="unfinished">Error de notificación por correo electrónico: %1</translation>
+        <translation>Error de notificación por correo electrónico: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="634"/>
         <source>Check the email server supports SMTPS (SMTP over SSL) and you are using the correct port</source>
-        <translation type="unfinished">Compruebe que el servidor de correo electrónico admite SMTPS (SMTP sobre SSL) y que está usando el puerto correcto</translation>
-    </message>
-</context>
-<context>
-    <name>Net::Smtp</name>
-    <message>
-        <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="vanished">Conexión fallida, respuesta no reconocida: %1</translation>
-    </message>
-    <message>
-        <source>STARTTLS is required but was not enabled by the server. Unable to send the email.</source>
-        <translation type="vanished">Se requiere STARTTLS, pero el servidor no lo habilitó. No se pudo enviar el correo electrónico.</translation>
-    </message>
-    <message>
-        <source>Authentication failed, msg: %1</source>
-        <translation type="vanished">Error de autenticación, mensaje: %1</translation>
-    </message>
-    <message>
-        <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;mail from&gt; fue rechazado por el servidor, mensaje: %1</translation>
-    </message>
-    <message>
-        <source>&lt;Rcpt to&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;Rcpt to&gt; fue rechazado por el servidor, mensaje: %1</translation>
-    </message>
-    <message>
-        <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;data&gt; fue rechazado por el servidor, mensaje: %1</translation>
-    </message>
-    <message>
-        <source>Message was rejected by the server, error: %1</source>
-        <translation type="vanished">El mensaje fue rechazado por el servidor, error: %1</translation>
-    </message>
-    <message>
-        <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="vanished">Tanto EHLO como HELO fallaron, mensaje: %1</translation>
-    </message>
-    <message>
-        <source>STARTTLS is required but was not offered by the server. Unable to send the email.</source>
-        <translation type="vanished">Se requiere STARTTLS, pero el servidor no lo proporcionó. No se pudo enviar el correo electrónico.</translation>
-    </message>
-    <message>
-        <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="vanished">El servidor SMTP no parece admitir ninguno de los modos de autenticación que admitimos [CRAM-MD5|PLAIN|LOGIN], omitiendo la autenticación, sabiendo que es probable que falle... Modos de autenticación del servidor: %1</translation>
-    </message>
-    <message>
-        <source>Email Notification Error: %1</source>
-        <translation type="vanished">Error de notificación por correo electrónico: %1</translation>
-    </message>
-    <message>
-        <source>Check the email server supports SMTPS (SMTP over SSL) and you are using the correct port</source>
-        <translation type="vanished">Compruebe que el servidor de correo electrónico admite SMTPS (SMTP sobre SSL) y que está usando el puerto correcto</translation>
+        <translation>Compruebe que el servidor de correo electrónico admite SMTPS (SMTP sobre SSL) y que está usando el puerto correcto</translation>
     </message>
 </context>
 <context>
@@ -6486,10 +6384,6 @@ Requisito mínimo: %2.</translation>
         <translation>Monocromo</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set qBittorrent as default program for .torrent files and/or Magnet links&lt;br/&gt;you can use &lt;span style=&quot; font-weight:600;&quot;&gt;Default Programs&lt;/span&gt; dialog from &lt;span style=&quot; font-weight:600;&quot;&gt;Control Panel&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Para configurar qBittorrent como programa predeterminado para archivos .torrent y/o enlaces Magnet&lt;br/&gt; puede usar el cuadro de diálogo de &lt;span style=&quot; font-weight:600;&quot;&gt;Programas predeterminados&lt;/span&gt; del &lt;span style=&quot; font-weight:600;&quot;&gt;Panel de Control&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="756"/>
         <source>Show speed in Dock</source>
         <translation>Mostrar velocidad en Dock</translation>
@@ -6503,10 +6397,6 @@ Requisito mínimo: %2.</translation>
         <location filename="../gui/optionsdialog.ui" line="840"/>
         <source> KiB</source>
         <translation>KiB</translation>
-    </message>
-    <message>
-        <source>Show free disk space in status bar</source>
-        <translation type="vanished">Mostrar espacio libre en disco en la barra de estado</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1018"/>
@@ -6547,22 +6437,22 @@ Requisito mínimo: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1157"/>
         <source>Store backup .torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Almacenar archivo .torrent de copia de seguridad</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1163"/>
         <source>Store backup in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Almacenar la copia de seguridad en:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1173"/>
         <source>When torrent finished move backup to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Al finalizar el torrent, mover la copia de seguridad a:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1183"/>
         <source>Remove backup when removing torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar la copia de seguridad al eliminar el torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1196"/>
@@ -6642,7 +6532,7 @@ Requisito mínimo: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2151"/>
         <source>Enable I2P Peer Exchange (I2P PeX) to find more peers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar el Intercambio de Pares I2P (I2P PeX) para encontrar más pares (requiere reiniciar)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2239"/>
@@ -6821,7 +6711,7 @@ Deshabilitar encriptación: Solo conectar a pares sin encriptación de protocolo
     <message>
         <location filename="../gui/optionsdialog.ui" line="494"/>
         <source>Status Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barra de estado</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="500"/>
@@ -6831,7 +6721,7 @@ Deshabilitar encriptación: Solo conectar a pares sin encriptación de protocolo
     <message>
         <location filename="../gui/optionsdialog.ui" line="507"/>
         <source>Show external IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar IP externa</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="720"/>
@@ -7010,12 +6900,12 @@ Especifique una dirección IPv4 o IPv6.
     <message>
         <location filename="../gui/optionsdialog.ui" line="4103"/>
         <source>Sessions count limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>Límite de sesiones:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4110"/>
         <source>Unlimited</source>
-        <translation type="unfinished">Ilimitado</translation>
+        <translation>Ilimitado</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4218"/>
@@ -7205,10 +7095,6 @@ Use &apos;;&apos; para dividir múltiples entradas. Puede usar el comodin &apos;
         <translation>Eliminar logs de más antiguos que:</translation>
     </message>
     <message>
-        <source>Show external IP in status bar</source>
-        <translation type="vanished">Mostrar IP externa en la barra de estado</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="988"/>
         <source>When adding a torrent</source>
         <translation>Al agregar un torrent</translation>
@@ -7301,10 +7187,6 @@ Use &apos;;&apos; para dividir múltiples entradas. Puede usar el comodin &apos;
         <translation>Ubicación de guardado predeterminada:</translation>
     </message>
     <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">Copiar archivos .torrent en:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="594"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation>Mostrar &amp;qBittorrent en el área de notificación</translation>
@@ -7313,14 +7195,6 @@ Use &apos;;&apos; para dividir múltiples entradas. Puede usar el comodin &apos;
         <location filename="../gui/optionsdialog.ui" line="994"/>
         <source>Display &amp;torrent content and some options</source>
         <translation>Mostrar el contenido del Torrent y opciones</translation>
-    </message>
-    <message>
-        <source>De&amp;lete .torrent files afterwards </source>
-        <translation type="vanished">Después eliminar el archivo .torrent</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">Copiar archivos .torrent de descargas finalizadas a:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1251"/>
@@ -8113,58 +7987,58 @@ readme[0-9].txt: filtra &apos;readme1.txt&apos;, &apos;readme2.txt&apos; pero no
     <message>
         <location filename="../gui/optionsdialog.cpp" line="674"/>
         <source>Provide the sending email address.</source>
-        <translation type="unfinished"></translation>
+        <translation>Proporcionar la dirección de correo electrónico del remitente.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="676"/>
         <source>Provide the recipient email address or addresses.</source>
-        <translation type="unfinished"></translation>
+        <translation>Proporcione la dirección o direcciones de correo electrónico del destinatario.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="678"/>
         <source>Separate multiple emails with a semicolon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Separe las direcciones de correo electrónico con un punto y coma.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="680"/>
         <source>Separate multiple email addresses within each email with a comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Separe las direcciones de correo electrónico dentro de cada mensaje con una coma.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="682"/>
         <location filename="../gui/optionsdialog.cpp" line="694"/>
         <source>Example:</source>
-        <translation type="unfinished">Ejemplo:</translation>
+        <translation>Ejemplo:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="684"/>
         <source>a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com</source>
-        <translation type="unfinished"></translation>
+        <translation>a@x.com;b@y.com,c@z.com - enviar dos correos electrónicos: el primero solo a a@x.com, el segundo a b@y.com y c@z.com</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="686"/>
         <source>Note: b@y.com &amp; c@z.com will both see each other&apos;s email addresses, whereas a@x.com will not see them nor be seen.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nota: Los clientes de correo electrónico b@y.com y c@z.com podrán ver las direcciones de correo electrónico del otro, mientras que a@x.com no podrá verlas ni ser visto.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="688"/>
         <source>Provide the SMTP server address for sending email notifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>Proporcione la dirección del servidor SMTP para el envío de notificaciones por correo electrónico.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="690"/>
         <source>The server address can be entered either as a DNS name or an IP address (DNS name recommended).</source>
-        <translation type="unfinished"></translation>
+        <translation>La dirección del servidor se puede introducir como nombre DNS o como dirección IP (se recomienda usar un nombre DNS).</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="692"/>
         <source>To manually specify the server port, add a colon and then the port number to the end.</source>
-        <translation type="unfinished"></translation>
+        <translation>Para especificar manualmente el puerto del servidor, añada dos puntos seguidos del número de puerto al final.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="696"/>
         <source>smtp.example.com:465 - connect to server smtp.example.com on port 465</source>
-        <translation type="unfinished"></translation>
+        <translation>smtp.example.com:465 - conectarse al servidor smtp.example.com en el puerto 465</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="698"/>
@@ -8405,10 +8279,6 @@ readme[0-9].txt: filtra &apos;readme1.txt&apos;, &apos;readme2.txt&apos; pero no
         <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Location Error</source>
         <translation>Error de ubicación</translation>
-    </message>
-    <message>
-        <source>Choose export directory</source>
-        <translation type="vanished">Selecciona una ruta de exportación</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="630"/>
@@ -8681,7 +8551,7 @@ Consulta el registro de ejecución para ver si hay errores.</translation>
         <location filename="../gui/properties/peerlistwidget.cpp" line="127"/>
         <source>Contribution</source>
         <comment>i.e: How much of this peer&apos;s current progress was provided by us</comment>
-        <translation type="unfinished"></translation>
+        <translation>Contribución</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="128"/>
@@ -8875,153 +8745,6 @@ Consulta el registro de ejecución para ver si hay errores.</translation>
     </message>
 </context>
 <context>
-    <name>PluginSelectDialog</name>
-    <message>
-        <source>Search plugins</source>
-        <translation type="vanished">Plugins de búsqueda</translation>
-    </message>
-    <message>
-        <source>Installed search plugins:</source>
-        <translation type="vanished">Plugins de búsqueda instalados:</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nombre</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="vanished">Versión</translation>
-    </message>
-    <message>
-        <source>Url</source>
-        <translation type="vanished">URL</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="vanished">Habilitado</translation>
-    </message>
-    <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="vanished">Advertencia: Asegúrese de cumplir con las leyes de copyright de su país cuando descarga torrents de estos motores de búsqueda. </translation>
-    </message>
-    <message>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="vanished">Aquí puede conseguir nuevos complementos para motores de búsqueda: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Install a new one</source>
-        <translation type="vanished">Instalar uno nuevo</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Buscar actualizaciones</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Cerrar</translation>
-    </message>
-    <message>
-        <source>Uninstall</source>
-        <translation type="vanished">Desinstalar</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Sí</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">No</translation>
-    </message>
-    <message>
-        <source>Uninstall warning</source>
-        <translation type="vanished">Advertencia de desinstalación</translation>
-    </message>
-    <message>
-        <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
-Those plugins were disabled.</source>
-        <translation type="vanished">Algunos plugins no pudieron ser desinstalados porque están incluidos en qBittorrent. Solamente pueden ser desinstalados los que han sido agregados. En su lugar, esos plugins fueron deshabilitados.</translation>
-    </message>
-    <message>
-        <source>Uninstall success</source>
-        <translation type="vanished">Desinstalación correcta</translation>
-    </message>
-    <message>
-        <source>All selected plugins were uninstalled successfully</source>
-        <translation type="vanished">Todos los plugins seleccionados fueron desinstalados correctamente</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="vanished">Actualización de los plugins de búsqueda</translation>
-    </message>
-    <message>
-        <source>Plugins installed or updated: %1</source>
-        <translation type="vanished">Plugins instalados o actualizados: %1</translation>
-    </message>
-    <message>
-        <source>New search engine plugin URL</source>
-        <translation type="vanished">URL del nuevo plugin de motor de búsqueda</translation>
-    </message>
-    <message>
-        <source>URL:</source>
-        <translation type="vanished">URL:</translation>
-    </message>
-    <message>
-        <source>Invalid link</source>
-        <translation type="vanished">Enlace inválido</translation>
-    </message>
-    <message>
-        <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="vanished">El enlace no parece contener un plugin de búsqueda.</translation>
-    </message>
-    <message>
-        <source>Select search plugins</source>
-        <translation type="vanished">Seleccione los plugins de búsqueda</translation>
-    </message>
-    <message>
-        <source>qBittorrent search plugin</source>
-        <translation type="vanished">Plugin de búsqueda de qBittorrent</translation>
-    </message>
-    <message>
-        <source>All your plugins are already up to date.</source>
-        <translation type="vanished">Todos los plugins ya están actualizados.</translation>
-    </message>
-    <message>
-        <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="vanished">No se pudo buscar actualizaciones de plugins. %1</translation>
-    </message>
-    <message>
-        <source>Search plugin install</source>
-        <translation type="vanished">Instalar plugin de búsqueda</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">No se pudo instalar el plugin de motor de búsqueda &quot;%1&quot;. %2</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">No se pudo actualizar el plugin de motor de búsqueda &quot;%1&quot;. %2</translation>
-    </message>
-</context>
-<context>
-    <name>PluginSourceDialog</name>
-    <message>
-        <source>Plugin source</source>
-        <translation type="vanished">Fuente del plugin</translation>
-    </message>
-    <message>
-        <source>Search plugin source:</source>
-        <translation type="vanished">Fuente del plugin de búsqueda:</translation>
-    </message>
-    <message>
-        <source>Local file</source>
-        <translation type="vanished">Archivo local</translation>
-    </message>
-    <message>
-        <source>Web link</source>
-        <translation type="vanished">Enlace web</translation>
-    </message>
-</context>
-<context>
     <name>PluginsDialog</name>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="17"/>
@@ -9036,17 +8759,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="52"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="57"/>
         <source>Name</source>
-        <translation type="unfinished">Nombre</translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="62"/>
         <source>Version</source>
-        <translation type="unfinished">Versión</translation>
+        <translation>Versión</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="67"/>
@@ -9062,7 +8785,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/plugins/pluginsdialog.ui" line="75"/>
         <location filename="../gui/plugins/pluginsdialog.ui" line="117"/>
         <source>Enabled</source>
-        <translation type="unfinished">Habilitado</translation>
+        <translation>Habilitado</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="98"/>
@@ -9072,17 +8795,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="105"/>
         <source>Close</source>
-        <translation type="unfinished">Cerrar</translation>
+        <translation>Cerrar</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="122"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Desinstalar</translation>
+        <translation>Desinstalar</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="143"/>
         <source>Select plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar plugins</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="144"/>
@@ -9096,7 +8819,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="391"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Si</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="218"/>
@@ -9105,7 +8828,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="396"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="314"/>
@@ -9722,7 +9445,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="504"/>
         <source>Failed to add torrent from RSS article. Reason: unsupported torrent URL. Only HTTP(S) URLs, magnet URIs and info hashes are supported. Article: &quot;%1&quot;. URL: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo añadir el torrent desde el artículo RSS. Motivo: URL de torrent no compatible. Solo se admiten URL HTTP(S), URI magnet y hashes de información. Artículo: &quot;%1&quot;. URL: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="543"/>
@@ -9963,10 +9686,6 @@ Those plugins were disabled.</source>
         <translation>Buscar</translation>
     </message>
     <message>
-        <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="vanished">La busqueda por canales RSS esta deshabilitada. Puedes habilitarla en las opciones.</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.ui" line="28"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;&lt;span style=&quot; text-decoration: none; color:#ff0000;&quot;&gt;Fetching of RSS feeds is disabled now! You can enable it in application settings.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
@@ -10113,13 +9832,14 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="473"/>
         <source>Blocked adding torrent from RSS article. Unsupported torrent URL. Only HTTP(S) URLs, magnet URIs and info hashes are supported. Article: &quot;%1&quot;. URL: &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se bloqueó añadiendo torrent desde el artículo RSS. URL de torrent no compatible. Solo se admiten URL HTTP(S), URI magnet y hashes de información. Artículo: &quot;%1&quot;. URL: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="485"/>
         <source>Blocked adding torrent from RSS article. The following article has an unsupported torrent URL and it may be malicious behaviour:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Se bloqueó añadiendo torrent desde el artículo RSS. El siguiente artículo contiene una URL de torrent no compatible y podría tratarse de un comportamiento malicioso: 
+%1</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="537"/>
@@ -10170,10 +9890,6 @@ Those plugins were disabled.</source>
         <location filename="../webui/api/searchcontroller.cpp" line="105"/>
         <source>Python must be installed to use the Search Engine.</source>
         <translation>Debe instalar Python para usar el motor de búsqueda.</translation>
-    </message>
-    <message>
-        <source>Unable to create more than %1 concurrent searches.</source>
-        <translation type="vanished">No se puede crear más de %1 búsquedas simultáneas.</translation>
     </message>
     <message>
         <location filename="../webui/api/searchcontroller.cpp" line="185"/>
@@ -10258,7 +9974,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../webui/searchjobmanager.cpp" line="135"/>
         <source>Unable to create more than %1 concurrent searches.</source>
-        <translation type="unfinished">No se puede crear más de %1 búsquedas simultáneas.</translation>
+        <translation>No se puede crear más de %1 búsquedas simultáneas.</translation>
     </message>
     <message>
         <location filename="../webui/searchjobmanager.cpp" line="250"/>
@@ -10526,26 +10242,14 @@ Those plugins were disabled.</source>
         <translation>Formato de plugin de motor de búsqueda desconocido.</translation>
     </message>
     <message>
-        <source>Plugin already at version %1, which is greater than %2</source>
-        <translation type="vanished">La versión del plugin %1, ya es mayor que %2</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="252"/>
         <source>A more recent version of this plugin is already installed.</source>
         <translation>Una versión más reciente del plugin ya está instalada.</translation>
     </message>
     <message>
-        <source>Plugin %1 is not supported.</source>
-        <translation type="vanished">Plugin %1 no soportado.</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="329"/>
         <source>Plugin is not supported.</source>
         <translation>Plugin no soportado.</translation>
-    </message>
-    <message>
-        <source>Plugin %1 has been successfully updated.</source>
-        <translation type="vanished">Plugin %1 actualizado exitosamente.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="405"/>
@@ -10649,70 +10353,70 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="17"/>
         <source>Search plugins</source>
-        <translation type="unfinished">Plugins de búsqueda</translation>
+        <translation>Plugins de búsqueda</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="29"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished">Plugins de búsqueda instalados:</translation>
+        <translation>Plugins de búsqueda instalados:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="52"/>
         <source>Name</source>
-        <translation type="unfinished">Nombre</translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="57"/>
         <source>Version</source>
-        <translation type="unfinished">Versión</translation>
+        <translation>Versión</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="62"/>
         <source>Url</source>
-        <translation type="unfinished">URL</translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="67"/>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="133"/>
         <source>Enabled</source>
-        <translation type="unfinished">Habilitado</translation>
+        <translation>Habilitado</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="80"/>
         <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="unfinished">Advertencia: Asegúrese de cumplir con las leyes de copyright de su país cuando descarga torrents de estos motores de búsqueda. </translation>
+        <translation>Advertencia: Asegúrese de cumplir con las leyes de copyright de su país cuando descarga torrents de estos motores de búsqueda.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="95"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished">Aquí puede conseguir nuevos complementos para motores de búsqueda: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation>Aquí puede conseguir nuevos complementos para motores de búsqueda: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="107"/>
         <source>Install a new one</source>
-        <translation type="unfinished">Instalar uno nuevo</translation>
+        <translation>Instalar uno nuevo</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="114"/>
         <source>Check for updates</source>
-        <translation type="unfinished">Buscar actualizaciones</translation>
+        <translation>Buscar actualizaciones</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="121"/>
         <source>Close</source>
-        <translation type="unfinished">Cerrar</translation>
+        <translation>Cerrar</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="138"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Desinstalar</translation>
+        <translation>Desinstalar</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="160"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="231"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="296"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Si</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="165"/>
@@ -10720,28 +10424,28 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="236"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="301"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished">Advertencia de desinstalación</translation>
+        <translation>Advertencia de desinstalación</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished">Algunos plugins no pudieron ser desinstalados porque están incluidos en qBittorrent. Solamente pueden ser desinstalados los que han sido agregados. En su lugar, esos plugins fueron deshabilitados.</translation>
+        <translation>Algunos plugins no pudieron ser desinstalados porque están incluidos en qBittorrent. Solamente pueden ser desinstalados los que han sido agregados. En su lugar, esos plugins fueron deshabilitados.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>Uninstall success</source>
-        <translation type="unfinished">Desinstalación correcta</translation>
+        <translation>Desinstalación correcta</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished">Todos los plugins seleccionados fueron desinstalados correctamente</translation>
+        <translation>Todos los plugins seleccionados fueron desinstalados correctamente</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
@@ -10749,69 +10453,69 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="495"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Actualización de los plugins de búsqueda</translation>
+        <translation>Actualización de los plugins de búsqueda</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
         <source>Plugins installed or updated: %1</source>
-        <translation type="unfinished">Plugins instalados o actualizados: %1</translation>
+        <translation>Plugins instalados o actualizados: %1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="363"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="371"/>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished">URL del nuevo plugin de motor de búsqueda</translation>
+        <translation>URL del nuevo plugin de motor de búsqueda</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="364"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="372"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
         <source>Invalid link</source>
-        <translation type="unfinished">Enlace inválido</translation>
+        <translation>Enlace inválido</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished">El enlace no parece contener un plugin de búsqueda.</translation>
+        <translation>El enlace no parece contener un plugin de búsqueda.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="386"/>
         <source>Select search plugins</source>
-        <translation type="unfinished">Seleccione los plugins de búsqueda</translation>
+        <translation>Seleccione los plugins de búsqueda</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="387"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished">Plugin de búsqueda de qBittorrent</translation>
+        <translation>Plugin de búsqueda de qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="448"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished">Todos los plugins ya están actualizados.</translation>
+        <translation>Todos los plugins ya están actualizados.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="unfinished">No se pudo buscar actualizaciones de plugins. %1</translation>
+        <translation>No se pudo buscar actualizaciones de plugins. %1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="477"/>
         <source>Search plugin install</source>
-        <translation type="unfinished">Instalar plugin de búsqueda</translation>
+        <translation>Instalar plugin de búsqueda</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="478"/>
         <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">No se pudo instalar el plugin de motor de búsqueda &quot;%1&quot;. %2</translation>
+        <translation>No se pudo instalar el plugin de motor de búsqueda &quot;%1&quot;. %2</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="496"/>
         <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">No se pudo actualizar el plugin de motor de búsqueda &quot;%1&quot;. %2</translation>
+        <translation>No se pudo actualizar el plugin de motor de búsqueda &quot;%1&quot;. %2</translation>
     </message>
 </context>
 <context>
@@ -10819,22 +10523,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="14"/>
         <source>Plugin source</source>
-        <translation type="unfinished">Fuente del plugin</translation>
+        <translation>Fuente del plugin</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="26"/>
         <source>Search plugin source:</source>
-        <translation type="unfinished">Fuente del plugin de búsqueda:</translation>
+        <translation>Fuente del plugin de búsqueda:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="35"/>
         <source>Local file</source>
-        <translation type="unfinished">Archivo local</translation>
+        <translation>Archivo local</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="42"/>
         <source>Web link</source>
-        <translation type="unfinished">Enlace web</translation>
+        <translation>Enlace web</translation>
     </message>
 </context>
 <context>
@@ -10902,12 +10606,12 @@ Presione el boton &quot;Plugins de búsqueda...&quot; ubicado abajo a la derecha
         <translation>&lt;b&gt;foo bar&lt;/b&gt;: buscar por&lt;b&gt;foo&lt;/b&gt; y &lt;b&gt;bar&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="849"/>
+        <location filename="../gui/search/searchwidget.cpp" line="862"/>
         <source>Close tab</source>
         <translation>Cerrar pestaña</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="850"/>
+        <location filename="../gui/search/searchwidget.cpp" line="863"/>
         <source>Close all tabs</source>
         <translation>Cerrar todas las pestañas</translation>
     </message>
@@ -10917,34 +10621,34 @@ Presione el boton &quot;Plugins de búsqueda...&quot; ubicado abajo a la derecha
         <translation>Seleccionar...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="841"/>
+        <location filename="../gui/search/searchwidget.cpp" line="854"/>
         <source>Refresh tab</source>
         <translation>Pestaña de actualización</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="845"/>
+        <location filename="../gui/search/searchwidget.cpp" line="858"/>
         <source>Stop search</source>
         <translation>Detener la búsqueda</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Search Engine</source>
         <translation>Motor de búsqueda</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation>Por favor, instala Python para usar el motor de búsqueda.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Empty search pattern</source>
         <translation>Patrón de búsqueda vacío</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Please type a search pattern first</source>
         <translation>Por favor, escriba un patrón de búsqueda primero</translation>
     </message>
@@ -10957,32 +10661,32 @@ Presione el boton &quot;Plugins de búsqueda...&quot; ubicado abajo a la derecha
 <context>
     <name>SearchWidget::DataStorage</name>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="984"/>
+        <location filename="../gui/search/searchwidget.cpp" line="997"/>
         <source>Failed to load Search UI saved state data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Fallo al cargar los datos de estado guardados de la IU de búsqueda. Archivo: &quot;%1&quot;. Error: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1004"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1018"/>
         <source>Failed to load saved search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Fallo al cargar los resultados de búsqueda guardados. Pestaña: &quot;%1&quot;. Archivo: &quot;%2&quot;. Error: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1036"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1050"/>
         <source>Failed to save Search UI state. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Fallo al guardar el estado de la interfaz de usuario de búsqueda. Archivo: &quot;%1&quot;. Error: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1068"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1082"/>
         <source>Failed to save search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Fallo al guardar los resultados de la búsqueda. Pestaña: &quot;%1&quot;. Archivo: &quot;%2&quot;. Error: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1084"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
         <source>Failed to load Search UI history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Fallo al cargar el historial de la interfaz de búsqueda. Archivo: &quot;%1&quot;. Error: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1112"/>
         <source>Failed to save search history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Fallo al guardar el historial de búsqueda. Archivo: &quot;%1&quot;. Error: &quot;%2&quot;</translation>
     </message>
@@ -11333,12 +11037,12 @@ Presione el boton &quot;Plugins de búsqueda...&quot; ubicado abajo a la derecha
     <message>
         <location filename="../gui/statsdialog.ui" line="230"/>
         <source>The time it takes from receiving a request from a peer until we&apos;re sending the response back on the socket</source>
-        <translation type="unfinished"></translation>
+        <translation>El tiempo que transcurre desde que recibimos una solicitud de un par hasta que enviamos la respuesta de vuelta a través del socket</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="233"/>
         <source>Request latency:</source>
-        <translation type="unfinished"></translation>
+        <translation>Latencia de la solicitud:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="250"/>
@@ -11349,10 +11053,6 @@ Presione el boton &quot;Plugins de búsqueda...&quot; ubicado abajo a la derecha
         <location filename="../gui/statsdialog.ui" line="256"/>
         <source>Queued tracker announces:</source>
         <translation>Avisar de tracker en cola:</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation type="vanished">Etiqueta de texto</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="100"/>
@@ -11411,13 +11111,12 @@ Presione el boton &quot;Plugins de búsqueda...&quot; ubicado abajo a la derecha
     </message>
     <message>
         <source>%1 ms</source>
-        <comment>18 milliseconds</comment>
         <translation type="vanished">%1 ms</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.cpp" line="111"/>
-        <source>%1 ms</source>
-        <translation type="unfinished">%1 ms</translation>
+        <source>%1 μs</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11609,7 +11308,7 @@ Presione el boton &quot;Plugins de búsqueda...&quot; ubicado abajo a la derecha
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="221"/>
         <source>Force start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar torrents forzosamente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="223"/>
@@ -11710,7 +11409,7 @@ Presione el boton &quot;Plugins de búsqueda...&quot; ubicado abajo a la derecha
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="122"/>
         <source>Force start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar torrents forzosamente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="124"/>
@@ -11899,17 +11598,17 @@ Por favor, elija otro nombre.</translation>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="126"/>
         <source>Rename error</source>
-        <translation type="unfinished">Error al renombrar</translation>
+        <translation>Error al renombrar</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="156"/>
         <source>Resize columns</source>
-        <translation type="unfinished">Redimensionar columnas</translation>
+        <translation>Redimensionar columnas</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="166"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar el tamaño de todas las columnas no ocultas al tamaño original de sus contenidos.</translation>
     </message>
 </context>
 <context>
@@ -11922,7 +11621,7 @@ Por favor, elija otro nombre.</translation>
     <message>
         <location filename="../gui/torrentcontentlayoutmodel.cpp" line="62"/>
         <source>Path</source>
-        <translation type="unfinished">Ruta</translation>
+        <translation>Ruta</translation>
     </message>
 </context>
 <context>
@@ -12096,22 +11795,6 @@ Por favor, elija otro nombre.</translation>
         <source>By shown file order</source>
         <translation>Por orden de archivo mostrado</translation>
     </message>
-    <message>
-        <source>Normal priority</source>
-        <translation type="vanished">Prioridad Normal</translation>
-    </message>
-    <message>
-        <source>High priority</source>
-        <translation type="vanished">Prioridad Alta</translation>
-    </message>
-    <message>
-        <source>Maximum priority</source>
-        <translation type="vanished">Prioridad Máxima</translation>
-    </message>
-    <message>
-        <source>Priority by shown file order</source>
-        <translation type="vanished">Prioridad por orden de archivo mostrado</translation>
-    </message>
 </context>
 <context>
     <name>TorrentCreatorController</name>
@@ -12198,12 +11881,12 @@ Por favor, elija otro nombre.</translation>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="231"/>
         <source>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si está marcada, los nombres de archivo que comiencen con un punto `.`  no se añadirán al torrent creado.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="234"/>
         <source>Ignore dotfiles</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorar archivos ocultos</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="244"/>
@@ -13227,7 +12910,7 @@ Por favor, elija otro nombre.</translation>
     <message>
         <location filename="../gui/transferlistfilters/trackerstatusfilterwidget.cpp" line="148"/>
         <source>Force start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar torrents forzosamente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackerstatusfilterwidget.cpp" line="150"/>
@@ -13323,7 +13006,7 @@ Por favor, elija otro nombre.</translation>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="553"/>
         <source>Force start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar torrents forzosamente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="555"/>
@@ -14435,86 +14118,86 @@ Por favor, elija otro nombre.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="59"/>
+        <location filename="../base/utils/misc.cpp" line="60"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="60"/>
+        <location filename="../base/utils/misc.cpp" line="61"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="61"/>
+        <location filename="../base/utils/misc.cpp" line="62"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="62"/>
+        <location filename="../base/utils/misc.cpp" line="63"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="63"/>
+        <location filename="../base/utils/misc.cpp" line="64"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="64"/>
+        <location filename="../base/utils/misc.cpp" line="65"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation>PiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="65"/>
+        <location filename="../base/utils/misc.cpp" line="66"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation>EiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="101"/>
+        <location filename="../base/utils/misc.cpp" line="102"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="239"/>
+        <location filename="../base/utils/misc.cpp" line="240"/>
         <source>%1s</source>
         <comment>e.g: 10 seconds</comment>
         <translation>%1s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="244"/>
+        <location filename="../base/utils/misc.cpp" line="245"/>
         <source>%1m</source>
         <comment>e.g: 10 minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="250"/>
+        <location filename="../base/utils/misc.cpp" line="251"/>
         <source>%1h %2m</source>
         <comment>e.g: 3 hours 5 minutes</comment>
         <translation>%1h %2m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="257"/>
+        <location filename="../base/utils/misc.cpp" line="258"/>
         <source>%1d %2h</source>
         <comment>e.g: 2 days 10 hours</comment>
         <translation>%1d %2h</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="262"/>
+        <location filename="../base/utils/misc.cpp" line="263"/>
         <source>%1y %2d</source>
         <comment>e.g: 2 years 10 days</comment>
         <translation>%1y %2d</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="109"/>
-        <location filename="../base/utils/misc.cpp" line="121"/>
+        <location filename="../base/utils/misc.cpp" line="110"/>
+        <location filename="../base/utils/misc.cpp" line="122"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Desconocido</translation>
@@ -14530,7 +14213,7 @@ Por favor, elija otro nombre.</translation>
         <translation>qBittorrent reiniciará la computadora ahora porque todas las descargas están completas.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="237"/>
+        <location filename="../base/utils/misc.cpp" line="238"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt;1m</translation>

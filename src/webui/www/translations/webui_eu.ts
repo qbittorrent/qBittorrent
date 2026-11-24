@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Eguneratu nire domeinu dinamikoaren izena</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Gorde osatugabeko torrentak hemen:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Aurre-esleitu diska tokia agiri guztientzat</translation>
     </message>
@@ -2493,15 +2489,15 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Baita gehitzea ezeztatutakoan</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Ezabatu gehitzea ezeztatu diren .torrent agiriak ere</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Erabili beste bide-izena bukatu gabeko torrententzat:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3840,7 +3836,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Kendu etiketa guztiak hautatutako torrentetatik?</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent hurrengo liburutegiekin eraiki da:</translation>
+        <translation type="vanished">qBittorrent hurrengo liburutegiekin eraiki da:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent ikonoa</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

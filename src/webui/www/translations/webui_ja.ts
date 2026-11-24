@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>自分のダイナミックドメイン名を更新する</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">未完了のTorrentの保管先:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>すべてのファイルに対して事前にディスクスペースを割り当てる</translation>
     </message>
@@ -2493,15 +2489,15 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>追加がキャンセルされた場合でも削除する</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>追加をキャンセルした場合でも".torrent"ファイルが削除されます</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>未完了のTorrentは別のパスを使用する:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3840,7 +3836,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>選択されたTorrentからすべてのタグを削除しますか？</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrentを構成するライブラリ:</translation>
+        <translation type="vanished">qBittorrentを構成するライブラリ:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrentアイコン</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

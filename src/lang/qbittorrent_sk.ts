@@ -91,8 +91,12 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="336"/>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent bol vytvorený s následujúcimi knižnicami:</translation>
+        <translation type="vanished">qBittorrent bol vytvorený s následujúcimi knižnicami:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="356"/>
@@ -128,49 +132,18 @@
         <location filename="../gui/aboutdialog.cpp" line="117"/>
         <location filename="../gui/aboutdialog.cpp" line="172"/>
         <source>Lua:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lua:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="129"/>
         <location filename="../gui/aboutdialog.cpp" line="173"/>
         <source>LuaBridge:</source>
-        <translation type="unfinished"></translation>
+        <translation>LuaBridge:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="143"/>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>Bezplatná databáza IP to Country Lite od DB-IP sa používa na riešenie krajín peerov. Databáza je licencovaná podľa medzinárodnej licencie Creative Commons Attribution 4.0</translation>
-    </message>
-</context>
-<context>
-    <name>AbstractFileStorage</name>
-    <message>
-        <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">Stará cesta je neplatná: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">Nová cesta je neplatná: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="vanished">Absolútna cesta nie je povolená: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">Súbor už existuje: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>No such file: &apos;%1&apos;.</source>
-        <translation type="vanished">Žiadny takýto súbor: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">Priečinok už existuje: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="vanished">Žiadny takýto priečinok: &apos;%1&apos;.</translation>
+        <translation>Bezplatná databáza IP to Country Lite od DB-IP sa používa na zisťovanie krajín peerov. Databáza je licencovaná podľa medzinárodnej licencie Creative Commons Attribution 4.0</translation>
     </message>
 </context>
 <context>
@@ -204,10 +177,6 @@
         <location filename="../gui/addnewtorrentdialog.ui" line="381"/>
         <source>Torrent information</source>
         <translation>Informácie o torrente</translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Preskočiť kontrolu hašu</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="122"/>
@@ -276,12 +245,12 @@ Torrenty, ktoré majú iniciálne metadáta, budú pridané ako zastavené.</tra
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="290"/>
         <source>Seed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim seedovania</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="293"/>
         <source>&lt;p&gt;If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.&lt;/p&gt;&lt;p&gt;The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Ak je tento režim zapnutý, qBittorrent bude predpokladať, že všetky súbory pre tento torrent sú dostupné a že sa všetky zhodujú s hashmi v súbore torrentu. Príkladom použitia tohto režimu je, ak torrent je vytvorený a seedovaný, alebo ak už používateľ vie, že všetky súbory sú dokončené, tak toto je spôsob ako vykonať iba základnú kontrolu súborov a preskočiť úvodnú kontrolu hashov.&lt;/p&gt;&lt;p&gt;Hash istej časti bude skontrolovaný pri prvom vyžiadaní peerom. Ak kontrola hashu zlyhá, všetky súbory v tomto torrente budú opätovne skontrolované.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="314"/>
@@ -622,16 +591,12 @@ Torrenty, ktoré majú iniciálne metadáta, budú pridané ako zastavené.</tra
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="346"/>
         <source>Seed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim seedovania</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="349"/>
         <source>&lt;p&gt;If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.&lt;/p&gt;&lt;p&gt;The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Preskočiť kontrolu hash</translation>
+        <translation>&lt;p&gt;Ak je tento režim zapnutý, qBittorrent bude predpokladať, že všetky súbory pre tento torrent sú dostupné a že sa všetky zhodujú s hashmi v súbore torrentu. Príkladom použitia tohto režimu je, ak torrent je vytvorený a seedovaný, alebo ak už používateľ vie, že všetky súbory sú dokončené, tak toto je spôsob ako vykonať iba základnú kontrolu súborov a preskočiť úvodnú kontrolu hashov.&lt;/p&gt;&lt;p&gt;Hash istej časti bude skontrolovaný pri prvom vyžiadaní peerom. Ak kontrola hashu zlyhá, všetky súbory v tomto torrente budú opätovne skontrolované.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="357"/>
@@ -2189,72 +2154,69 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
 <context>
     <name>BitTorrent::BencodeResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="119"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="175"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation>Nie je možné vytvoriť zložku pre obnovenie torrentu: &quot;% 1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="240"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="300"/>
         <source>Cannot parse resume data: invalid format</source>
         <translation>Nedajú sa spracovať dáta pre obnovenie: neplatný formát</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="330"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="339"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="378"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="390"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="399"/>
         <source>Cannot parse torrent info: %1</source>
         <translation>Nedajú sa spracovať informácie torrentu: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="321"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="381"/>
         <source>Cannot parse torrent info: invalid format</source>
         <translation>Nedajú sa spracovať informácie torrentu: neplatný formát</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="351"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="411"/>
         <source>Mismatching info-hash detected in resume data</source>
         <translation>Nezhoda info-hash detekovaná v dátach obnovenia</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>Corrupted resume data: %1</source>
         <translation>Poškodené dáta obnovenia: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>save_path is invalid</source>
         <translation>save_path je neplatné</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="449"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
-        <translation>Metadáta torrentu sa nepodarilo uložiť do &apos;%1&apos;. Chyba: %2</translation>
+        <translation type="vanished">Metadáta torrentu sa nepodarilo uložiť do &apos;%1&apos;. Chyba: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="487"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation>Nepodarilo sa uložiť dáta obnovenia torrentu do &apos;%1&apos;. Chyba: %2.</translation>
+        <translation type="vanished">Nepodarilo sa uložiť dáta obnovenia torrentu do &apos;%1&apos;. Chyba: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="194"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="254"/>
         <source>Couldn&apos;t load torrents queue: %1</source>
         <translation>Nepodarilo sa načítať poradovník torrentov: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="237"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="311"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="297"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="371"/>
         <source>Cannot parse resume data: %1</source>
         <translation>Nepodarilo sa spracovať dáta pre obnovenie: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="372"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="432"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
         <translation>Dáta pre pokračovanie sú neplatné: neboli nájdené ani metadáta ani info-hash</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="512"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
-        <translation>Nebolo možné uložiť dáta do &apos;%1&apos;. Chyba: %2</translation>
+        <translation type="vanished">Nebolo možné uložiť dáta do &apos;%1&apos;. Chyba: %2</translation>
     </message>
 </context>
 <context>
@@ -2314,36 +2276,47 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <translation>save_path je neplatné</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="774"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="777"/>
         <source>Save resume data transaction failed. Error: %1</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t begin transaction. Error: %1</source>
-        <translation type="vanished">Nebolo možné začať transakciu. Chyba: %1</translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="906"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="908"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>Nepodarilo sa uložiť metadáta torrentu. Chyba: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="967"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="969"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation>Nepodarilo sa uložiť dáta obnovenia torrentu: &apos;%1&apos;. Chyba: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="995"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="997"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>Nepodarilo sa zmazať dáta obnovenia torrentu &apos;%1&apos;. Chyba: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1029"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1031"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation>Nepodarilo sa uložiť umiestnenie torrentov v poradovníku. Chyby: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="566"/>
+        <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">Metadáta torrentu sa nepodarilo uložiť do &apos;%1&apos;. Chyba: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="604"/>
+        <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">Nepodarilo sa uložiť dáta obnovenia torrentu do &apos;%1&apos;. Chyba: %2.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="639"/>
+        <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished">Nebolo možné uložiť dáta do &apos;%1&apos;. Chyba: %2</translation>
     </message>
 </context>
 <context>
@@ -2647,10 +2620,6 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <translation>Zlyhalo sťahovanie metaúdajov torentu. Dôvod: &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="vanished">Nepodarilo sa exportovať torrent. Torrent: &quot;%1&quot;. Cieľ: &quot;%2&quot;. Dôvod: &quot;%3&quot;</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3401"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation>Ukladanie dát obnovenia bolo zrušené. Počet zostávajúcich torrentov: %1</translation>
@@ -2825,14 +2794,6 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <translation>Varovanie o chybe súboru. Torrent: &quot;%1&quot;. Súbor: &quot;%2&quot;. Dôvod: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
-        <translation type="vanished">UPnP/NAT-PMP mapovanie portu zlyhalo. Správa: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
-        <translation type="vanished">UPnP/NAT-PMP mapovanie portu bolo úspešné. Správa: &quot;%1&quot;</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6451"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
@@ -2935,39 +2896,39 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="41"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="67"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">Stará cesta je neplatná: &apos;%1&apos;.</translation>
+        <translation>Stará cesta je neplatná: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="43"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="69"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">Nová cesta je neplatná: &apos;%1&apos;.</translation>
+        <translation>Nová cesta je neplatná: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="45"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="71"/>
         <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="unfinished">Absolútna cesta nie je povolená: &apos;%1&apos;.</translation>
+        <translation>Absolútna cesta nie je povolená: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="55"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">Súbor už existuje: &apos;%1&apos;.</translation>
+        <translation>Súbor už existuje: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="59"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished">Žiadny takýto súbor: &apos;%1&apos;.</translation>
+        <translation>Žiadny takýto súbor: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="80"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">Priečinok už existuje: &apos;%1&apos;.</translation>
+        <translation>Priečinok už existuje: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="87"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished">Žiadny takýto priečinok: &apos;%1&apos;.</translation>
+        <translation>Žiadny takýto priečinok: &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -3086,7 +3047,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     <message>
         <location filename="../app/cmdoptions.cpp" line="401"/>
         <source>Seed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim seedovania</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="474"/>
@@ -3214,10 +3175,6 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <translation>Pridať torrenty ako bežiace alebo zastavené</translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Preskočiť kontrolu hash</translation>
-    </message>
-    <message>
         <location filename="../app/cmdoptions.cpp" line="403"/>
         <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
         <translation>Priraďte torrenty do kategórie. Ak kategória neexistuje, vytvorí sa.</translation>
@@ -3306,7 +3263,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="137"/>
         <source>Force start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Vynútiť spustenie torrentov</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="139"/>
@@ -3876,32 +3833,32 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
 <context>
     <name>KeyValueDataStorage</name>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="110"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="111"/>
         <source>Inserting (updating) database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="155"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="156"/>
         <source>Fetching database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="192"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="193"/>
         <source>Deleting database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="406"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="411"/>
         <source>Opening database failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="413"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="418"/>
         <source>Starting database transaction failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="424"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="429"/>
         <source>Creating database table failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4332,7 +4289,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     <message>
         <location filename="../gui/mainwindow.ui" line="229"/>
         <source>Add Torrent &amp;Link...</source>
-        <translation>Prid&amp;ať torrentový súbor...</translation>
+        <translation>Pridať o&amp;dkaz na torrent...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="375"/>
@@ -4649,14 +4606,6 @@ Minimálna verzia: %2.</translation>
         <location filename="../gui/mainwindow.cpp" line="1974"/>
         <source>Failed to open Python installer. File: &quot;%1&quot;.</source>
         <translation>Nepodarilo sa otvoriť inštalátor Pythonu. Súbor: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Failed MD5 hash check for Python installer. File: &quot;%1&quot;. Result hash: &quot;%2&quot;. Expected hash: &quot;%3&quot;.</source>
-        <translation type="vanished">Inštalátor Pythonu má nesprávny MD5 hash. Súbor: &quot;%1&quot;. Výsledný hash: &quot;%2&quot;. Očakávaný hash: &quot;%3&quot;.</translation>
-    </message>
-    <message>
-        <source>Failed SHA3-512 hash check for Python installer. File: &quot;%1&quot;. Result hash: &quot;%2&quot;. Expected hash: &quot;%3&quot;.</source>
-        <translation type="vanished">Inštalátor Pythonu má nesprávny SHA3-512 hash. Súbor: &quot;%1&quot;. Výsledný hash: &quot;%2&quot;. Očakávaný hash: &quot;%3&quot;.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="2003"/>
@@ -6230,17 +6179,17 @@ Minimálna verzia: %2.</translation>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="293"/>
         <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="unfinished">Spojenie zlyhalo, neznáma odpoveď: %1</translation>
+        <translation>Spojenie zlyhalo, neznáma odpoveď: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="319"/>
         <source>STARTTLS is required but was not enabled by the server. Unable to send the email.</source>
-        <translation type="unfinished">STARTTLS sa vyžaduje, ale nebol povolený serverom. Nepodarilo sa poslať email.</translation>
+        <translation>STARTTLS sa vyžaduje, ale nebol povolený serverom. Nepodarilo sa poslať email.</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="345"/>
         <source>Authentication failed, msg: %1</source>
-        <translation type="unfinished">Autentifikácia zlyhala, správa: %1</translation>
+        <translation>Autentifikácia zlyhala, správa: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="364"/>
@@ -6251,93 +6200,42 @@ Minimálna verzia: %2.</translation>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="366"/>
         <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">&lt;mail from&gt; bolo odmietnuté serverom, správa: %1</translation>
+        <translation>&lt;mail from&gt; bolo odmietnuté serverom, správa: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="392"/>
         <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">&lt;data&gt;bolo odmietnuté serverom, správa: %1</translation>
+        <translation>&lt;data&gt;bolo odmietnuté serverom, správa: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="406"/>
         <source>Message was rejected by the server, error: %1</source>
-        <translation type="unfinished">Správa bola odmietnutá serverom, chyba: %1</translation>
+        <translation>Správa bola odmietnutá serverom, chyba: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="450"/>
         <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="unfinished">EHLO aj HELO zlyhali, správa: %1</translation>
+        <translation>EHLO aj HELO zlyhali, správa: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="491"/>
         <source>STARTTLS is required but was not offered by the server. Unable to send the email.</source>
-        <translation type="unfinished">STARTTLS sa vyžaduje, ale nebol ponúknutý serverom. Nepodarilo sa poslať email.</translation>
+        <translation>STARTTLS sa vyžaduje, ale nebol ponúknutý serverom. Nepodarilo sa poslať email.</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="537"/>
         <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="unfinished">Zdá sa, že SMTP server nepodporuje režimy autentifikácie, ktoré podporujeme [CRAM-MD5|PLAIN|LOGIN]. Autentifikácia sa preskočí, keďže by pravdepodobne aj tak zlyhala... Režimy autentifikácie servera: %1</translation>
+        <translation>Zdá sa, že SMTP server nepodporuje režimy autentifikácie, ktoré podporujeme [CRAM-MD5|PLAIN|LOGIN]. Autentifikácia sa preskočí, keďže by pravdepodobne aj tak zlyhala... Režimy autentifikácie servera: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="622"/>
         <source>Email Notification Error: %1</source>
-        <translation type="unfinished">Chyba oznámenia e-mailom: %1</translation>
+        <translation>Chyba oznámenia e-mailom: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="634"/>
         <source>Check the email server supports SMTPS (SMTP over SSL) and you are using the correct port</source>
-        <translation type="unfinished">Overte, či emailový server podporuje SMTPS (SMTP over SSL) a či používate správny port.</translation>
-    </message>
-</context>
-<context>
-    <name>Net::Smtp</name>
-    <message>
-        <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="vanished">Spojenie zlyhalo, neznáma odpoveď: %1</translation>
-    </message>
-    <message>
-        <source>STARTTLS is required but was not enabled by the server. Unable to send the email.</source>
-        <translation type="vanished">STARTTLS sa vyžaduje, ale nebol povolený serverom. Nepodarilo sa poslať email.</translation>
-    </message>
-    <message>
-        <source>Authentication failed, msg: %1</source>
-        <translation type="vanished">Autentifikácia zlyhala, správa: %1</translation>
-    </message>
-    <message>
-        <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;mail from&gt; bolo odmietnuté serverom, správa: %1</translation>
-    </message>
-    <message>
-        <source>&lt;Rcpt to&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;Rcpt to&gt; bolo odmietnuté serverom, správa: %1</translation>
-    </message>
-    <message>
-        <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;data&gt;bolo odmietnuté serverom, správa: %1</translation>
-    </message>
-    <message>
-        <source>Message was rejected by the server, error: %1</source>
-        <translation type="vanished">Správa bola odmietnutá serverom, chyba: %1</translation>
-    </message>
-    <message>
-        <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="vanished">EHLO aj HELO zlyhali, správa: %1</translation>
-    </message>
-    <message>
-        <source>STARTTLS is required but was not offered by the server. Unable to send the email.</source>
-        <translation type="vanished">STARTTLS sa vyžaduje, ale nebol ponúknutý serverom. Nepodarilo sa poslať email.</translation>
-    </message>
-    <message>
-        <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="vanished">Zdá sa, že SMTP server nepodporuje režimy autentifikácie, ktoré podporujeme [CRAM-MD5|PLAIN|LOGIN]. Autentifikácia sa preskočí, keďže by pravdepodobne aj tak zlyhala... Režimy autentifikácie servera: %1</translation>
-    </message>
-    <message>
-        <source>Email Notification Error: %1</source>
-        <translation type="vanished">Chyba oznámenia e-mailom: %1</translation>
-    </message>
-    <message>
-        <source>Check the email server supports SMTPS (SMTP over SSL) and you are using the correct port</source>
-        <translation type="vanished">Overte, či emailový server podporuje SMTPS (SMTP over SSL) a či používate správny port.</translation>
+        <translation>Overte, či emailový server podporuje SMTPS (SMTP over SSL) a či používate správny port.</translation>
     </message>
 </context>
 <context>
@@ -6486,10 +6384,6 @@ Minimálna verzia: %2.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set qBittorrent as default program for .torrent files and/or Magnet links&lt;br/&gt;you can use &lt;span style=&quot; font-weight:600;&quot;&gt;Default Programs&lt;/span&gt; dialog from &lt;span style=&quot; font-weight:600;&quot;&gt;Control Panel&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pre nastavenie qBittorrentu ako východzieho programu pre .torrent súbory a/alebo Magnet odkazy&lt;br/&gt;, môžete použiť dialógové okno &lt;span style=&quot; font-weight:600;&quot;&gt;Východzie programy&lt;/span&gt; z &lt;span style=&quot; font-weight:600;&quot;&gt;Ovládacích panelov&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="756"/>
         <source>Show speed in Dock</source>
         <translation>Zobraziť rýchlosť v Docku</translation>
@@ -6503,10 +6397,6 @@ Minimálna verzia: %2.</translation>
         <location filename="../gui/optionsdialog.ui" line="840"/>
         <source> KiB</source>
         <translation>KiB</translation>
-    </message>
-    <message>
-        <source>Show free disk space in status bar</source>
-        <translation type="vanished">Zobraziť voľné miesto na disku v stavovom riadku.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1018"/>
@@ -6821,7 +6711,7 @@ Zakázať šifrovanie: Pripojí sa iba k peerom bez šifrovania protokolu</trans
     <message>
         <location filename="../gui/optionsdialog.ui" line="494"/>
         <source>Status Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Stavový riadok</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="500"/>
@@ -6836,7 +6726,7 @@ Zakázať šifrovanie: Pripojí sa iba k peerom bez šifrovania protokolu</trans
     <message>
         <location filename="../gui/optionsdialog.ui" line="720"/>
         <source>To set qBittorrent as the default program for .torrent files and Magnet links, click the button below and add them manually:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ak chcete nastaviť qBittorrent ako východzí program pre .torrent súbory a Magnet odkazy, kliknite na tlačidlo nižšie a pridajte ich ručne:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="736"/>
@@ -7013,7 +6903,7 @@ Zvolte IPv4 alebo IPv6 adresu. Môžete zadať &quot;0.0.0.0&quot; pre akúkoľv
     <message>
         <location filename="../gui/optionsdialog.ui" line="4110"/>
         <source>Unlimited</source>
-        <translation type="unfinished">Neobmedzené</translation>
+        <translation>Neobmedzené</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4218"/>
@@ -7203,10 +7093,6 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
         <translation>Vymazať zálohy log súborov staršie ako:</translation>
     </message>
     <message>
-        <source>Show external IP in status bar</source>
-        <translation type="vanished">Zobraziť externú IP adresu v stavovom riadku</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="988"/>
         <source>When adding a torrent</source>
         <translation>Pri pridávaní torrentu</translation>
@@ -7299,10 +7185,6 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
         <translation>Predvolená cesta pre ukladanie:</translation>
     </message>
     <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">Kopírovať .torrent súbory do:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="594"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation>Zobraziť qBittorrent v oznamovacej oblasti</translation>
@@ -7311,14 +7193,6 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
         <location filename="../gui/optionsdialog.ui" line="994"/>
         <source>Display &amp;torrent content and some options</source>
         <translation>Zobraziť obsah torrentu a ďalšie voľby</translation>
-    </message>
-    <message>
-        <source>De&amp;lete .torrent files afterwards </source>
-        <translation type="vanished">Neskôr zm&amp;azať .torrent súbory</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">Kopírovať .torrent súbory po dokončení sťahovania do:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1251"/>
@@ -8132,7 +8006,7 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
         <location filename="../gui/optionsdialog.cpp" line="682"/>
         <location filename="../gui/optionsdialog.cpp" line="694"/>
         <source>Example:</source>
-        <translation type="unfinished">Príklad:</translation>
+        <translation>Príklad:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="684"/>
@@ -8403,10 +8277,6 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
         <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Location Error</source>
         <translation>Chyba umiestnenia</translation>
-    </message>
-    <message>
-        <source>Choose export directory</source>
-        <translation type="vanished">Vyberte adresár pre export</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="630"/>
@@ -8858,7 +8728,7 @@ Check the Execution Log for errors.</source>
     <message>
         <location filename="../base/plugins/plugin.cpp" line="74"/>
         <source>Failed to allocate Lua state.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa zistiť Lua stav.</translation>
     </message>
     <message>
         <location filename="../base/plugins/plugin.cpp" line="132"/>
@@ -8869,155 +8739,6 @@ Check the Execution Log for errors.</source>
         <location filename="../base/plugins/plugin.cpp" line="140"/>
         <source>Plugin version is missing or invalid.</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PluginSelectDialog</name>
-    <message>
-        <source>Search plugins</source>
-        <translation type="vanished">Pluginy vyhľadávania</translation>
-    </message>
-    <message>
-        <source>Installed search plugins:</source>
-        <translation type="vanished">Inštalované pluginy vyhľadávania:</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Názov</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="vanished">Verzia</translation>
-    </message>
-    <message>
-        <source>Url</source>
-        <translation type="vanished">Url</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="vanished">Zapnuté</translation>
-    </message>
-    <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="vanished">Varovanie: Uistite sa, že dodržiavate zákony Vašej krajiny o ochrane duševného vlastníctva keď sťahujete torrenty z ktoréhokoľvek z týchto vyhľadávačov.</translation>
-    </message>
-    <message>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="vanished">Nové pluginy pre vyhľadávanie môžete získať tu: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Install a new one</source>
-        <translation type="vanished">Nainštalovať nový</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Skontrolovať aktualizácie</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Zatvoriť</translation>
-    </message>
-    <message>
-        <source>Uninstall</source>
-        <translation type="vanished">Odinštalovať</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Áno</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">Nie</translation>
-    </message>
-    <message>
-        <source>Uninstall warning</source>
-        <translation type="vanished">Upozornenie o odstránení</translation>
-    </message>
-    <message>
-        <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
-Those plugins were disabled.</source>
-        <translation type="vanished">Niektoré zásuvné moduly nebolo možné odstrániť, pretože sú súčasťou aplikácie qBittorrent.
- Iba tie, ktoré ste sami pridali je možné odstrániť.
-Tieto moduly však boli vypnuté.</translation>
-    </message>
-    <message>
-        <source>Uninstall success</source>
-        <translation type="vanished">Odstránenie prebehlo úspešne</translation>
-    </message>
-    <message>
-        <source>All selected plugins were uninstalled successfully</source>
-        <translation type="vanished">Všetky zvolené pluginy boli úspešne odinštalované</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="vanished">Aktualizácia pluginu vyhľadávača</translation>
-    </message>
-    <message>
-        <source>Plugins installed or updated: %1</source>
-        <translation type="vanished">Plugin inštalovaný alebo aktualizovaný: %1</translation>
-    </message>
-    <message>
-        <source>New search engine plugin URL</source>
-        <translation type="vanished">URL pluginu nového vyhľadávača</translation>
-    </message>
-    <message>
-        <source>URL:</source>
-        <translation type="vanished">URL:</translation>
-    </message>
-    <message>
-        <source>Invalid link</source>
-        <translation type="vanished">Neplatný odkaz</translation>
-    </message>
-    <message>
-        <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="vanished">Zdá sa, že odkaz nesmeruje na zásuvný modul vyhľadávača.</translation>
-    </message>
-    <message>
-        <source>Select search plugins</source>
-        <translation type="vanished">Zvoliť pluginy vyhľadávačov</translation>
-    </message>
-    <message>
-        <source>qBittorrent search plugin</source>
-        <translation type="vanished">Vyhľadávacie pluginy pre qBittorrent</translation>
-    </message>
-    <message>
-        <source>All your plugins are already up to date.</source>
-        <translation type="vanished">Všetky vaše vyhľadávacie pluginy sú už aktuálne.</translation>
-    </message>
-    <message>
-        <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="vanished">Prepáčte, nie je možné skontrolovať aktualizácie pluginov. %1</translation>
-    </message>
-    <message>
-        <source>Search plugin install</source>
-        <translation type="vanished">Inštalácia pluginu vyhľadávača</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">Nedá sa nainštalovať &quot;%1&quot; vyhľadávací plugin. %2</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">Nie je možné aktualizovať &quot;%1&quot; vyhľadávací plugin. %2</translation>
-    </message>
-</context>
-<context>
-    <name>PluginSourceDialog</name>
-    <message>
-        <source>Plugin source</source>
-        <translation type="vanished">Zdroj pluginu</translation>
-    </message>
-    <message>
-        <source>Search plugin source:</source>
-        <translation type="vanished">Zdroj pluginu vyhľadávača:</translation>
-    </message>
-    <message>
-        <source>Local file</source>
-        <translation type="vanished">Lokálny súbor</translation>
-    </message>
-    <message>
-        <source>Web link</source>
-        <translation type="vanished">Webový odkaz</translation>
     </message>
 </context>
 <context>
@@ -9035,17 +8756,17 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="52"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="57"/>
         <source>Name</source>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="62"/>
         <source>Version</source>
-        <translation type="unfinished">Verzia</translation>
+        <translation>Verzia</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="67"/>
@@ -9061,7 +8782,7 @@ Tieto moduly však boli vypnuté.</translation>
         <location filename="../gui/plugins/pluginsdialog.ui" line="75"/>
         <location filename="../gui/plugins/pluginsdialog.ui" line="117"/>
         <source>Enabled</source>
-        <translation type="unfinished">Zapnuté</translation>
+        <translation>Zapnuté</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="98"/>
@@ -9071,17 +8792,17 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="105"/>
         <source>Close</source>
-        <translation type="unfinished">Zatvoriť</translation>
+        <translation>Zatvoriť</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="122"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Odinštalovať</translation>
+        <translation>Odinštalovať</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="143"/>
         <source>Select plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte pluginy</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="144"/>
@@ -9095,7 +8816,7 @@ Tieto moduly však boli vypnuté.</translation>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="391"/>
         <source>Yes</source>
-        <translation type="unfinished">Áno</translation>
+        <translation>Áno</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="218"/>
@@ -9104,7 +8825,7 @@ Tieto moduly však boli vypnuté.</translation>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="396"/>
         <source>No</source>
-        <translation type="unfinished">Nie</translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="314"/>
@@ -9962,10 +9683,6 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>Vyhľadávanie</translation>
     </message>
     <message>
-        <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="vanished">Získanie RSS kanálov je teraz vypnuté! Môžete ho zapnúť v nastaveniach aplikácie.</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.ui" line="28"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;&lt;span style=&quot; text-decoration: none; color:#ff0000;&quot;&gt;Fetching of RSS feeds is disabled now! You can enable it in application settings.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
@@ -10169,10 +9886,6 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>Na použitie vyhľadávača musí byť nainštalovaný Python.</translation>
     </message>
     <message>
-        <source>Unable to create more than %1 concurrent searches.</source>
-        <translation type="vanished">Nie je možné vytvoriť viac ako %1 hľadanie súčasne. </translation>
-    </message>
-    <message>
         <location filename="../webui/api/searchcontroller.cpp" line="185"/>
         <location filename="../webui/api/searchcontroller.cpp" line="191"/>
         <source>Offset is out of range</source>
@@ -10255,7 +9968,7 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../webui/searchjobmanager.cpp" line="135"/>
         <source>Unable to create more than %1 concurrent searches.</source>
-        <translation type="unfinished">Nie je možné vytvoriť viac ako %1 hľadanie súčasne. </translation>
+        <translation>Nie je možné vytvoriť viac ako %1 hľadanie súčasne. </translation>
     </message>
     <message>
         <location filename="../webui/searchjobmanager.cpp" line="250"/>
@@ -10522,26 +10235,14 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>Neznámy formát súboru pluginu vyhľadávača.</translation>
     </message>
     <message>
-        <source>Plugin already at version %1, which is greater than %2</source>
-        <translation type="vanished">Verzia nainštalovaného pluginu %1 je vyššia ako %2</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="252"/>
         <source>A more recent version of this plugin is already installed.</source>
         <translation>Novšia verzia tohto pluginu je už nainštalovaná.</translation>
     </message>
     <message>
-        <source>Plugin %1 is not supported.</source>
-        <translation type="vanished">Plugin %1 nie je podporovaný.</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="329"/>
         <source>Plugin is not supported.</source>
         <translation>Plugin nie je podporovaný.</translation>
-    </message>
-    <message>
-        <source>Plugin %1 has been successfully updated.</source>
-        <translation type="vanished">Plugin %1 bol úspešne aktualizovaný.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="405"/>
@@ -10645,70 +10346,70 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="17"/>
         <source>Search plugins</source>
-        <translation type="unfinished">Pluginy vyhľadávania</translation>
+        <translation>Pluginy vyhľadávania</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="29"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished">Inštalované pluginy vyhľadávania:</translation>
+        <translation>Inštalované pluginy vyhľadávania:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="52"/>
         <source>Name</source>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="57"/>
         <source>Version</source>
-        <translation type="unfinished">Verzia</translation>
+        <translation>Verzia</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="62"/>
         <source>Url</source>
-        <translation type="unfinished">Url</translation>
+        <translation>Url</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="67"/>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="133"/>
         <source>Enabled</source>
-        <translation type="unfinished">Zapnuté</translation>
+        <translation>Zapnuté</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="80"/>
         <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="unfinished">Varovanie: Uistite sa, že dodržiavate zákony Vašej krajiny o ochrane duševného vlastníctva keď sťahujete torrenty z ktoréhokoľvek z týchto vyhľadávačov.</translation>
+        <translation>Varovanie: Uistite sa, že dodržiavate zákony Vašej krajiny o ochrane duševného vlastníctva keď sťahujete torrenty z ktoréhokoľvek z týchto vyhľadávačov.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="95"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished">Nové pluginy pre vyhľadávanie môžete získať tu: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation>Nové pluginy pre vyhľadávanie môžete získať tu: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="107"/>
         <source>Install a new one</source>
-        <translation type="unfinished">Nainštalovať nový</translation>
+        <translation>Nainštalovať nový</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="114"/>
         <source>Check for updates</source>
-        <translation type="unfinished">Skontrolovať aktualizácie</translation>
+        <translation>Skontrolovať aktualizácie</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="121"/>
         <source>Close</source>
-        <translation type="unfinished">Zatvoriť</translation>
+        <translation>Zatvoriť</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="138"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Odinštalovať</translation>
+        <translation>Odinštalovať</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="160"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="231"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="296"/>
         <source>Yes</source>
-        <translation type="unfinished">Áno</translation>
+        <translation>Áno</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="165"/>
@@ -10716,30 +10417,30 @@ Tieto moduly však boli vypnuté.</translation>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="236"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="301"/>
         <source>No</source>
-        <translation type="unfinished">Nie</translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished">Upozornenie o odstránení</translation>
+        <translation>Upozornenie o odstránení</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished">Niektoré zásuvné moduly nebolo možné odstrániť, pretože sú súčasťou aplikácie qBittorrent.
+        <translation>Niektoré zásuvné moduly nebolo možné odstrániť, pretože sú súčasťou aplikácie qBittorrent.
  Iba tie, ktoré ste sami pridali je možné odstrániť.
 Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>Uninstall success</source>
-        <translation type="unfinished">Odstránenie prebehlo úspešne</translation>
+        <translation>Odstránenie prebehlo úspešne</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished">Všetky zvolené pluginy boli úspešne odinštalované</translation>
+        <translation>Všetky zvolené pluginy boli úspešne odinštalované</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
@@ -10747,69 +10448,69 @@ Tieto moduly však boli vypnuté.</translation>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="495"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Aktualizácia pluginu vyhľadávača</translation>
+        <translation>Aktualizácia pluginu vyhľadávača</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
         <source>Plugins installed or updated: %1</source>
-        <translation type="unfinished">Plugin inštalovaný alebo aktualizovaný: %1</translation>
+        <translation>Plugin inštalovaný alebo aktualizovaný: %1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="363"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="371"/>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished">URL pluginu nového vyhľadávača</translation>
+        <translation>URL pluginu nového vyhľadávača</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="364"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="372"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
         <source>Invalid link</source>
-        <translation type="unfinished">Neplatný odkaz</translation>
+        <translation>Neplatný odkaz</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished">Zdá sa, že odkaz nesmeruje na zásuvný modul vyhľadávača.</translation>
+        <translation>Zdá sa, že odkaz nesmeruje na zásuvný modul vyhľadávača.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="386"/>
         <source>Select search plugins</source>
-        <translation type="unfinished">Zvoliť pluginy vyhľadávačov</translation>
+        <translation>Zvoliť pluginy vyhľadávačov</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="387"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished">Vyhľadávacie pluginy pre qBittorrent</translation>
+        <translation>Vyhľadávacie pluginy pre qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="448"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished">Všetky vaše vyhľadávacie pluginy sú už aktuálne.</translation>
+        <translation>Všetky vaše vyhľadávacie pluginy sú už aktuálne.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="unfinished">Prepáčte, nie je možné skontrolovať aktualizácie pluginov. %1</translation>
+        <translation>Prepáčte, nie je možné skontrolovať aktualizácie pluginov. %1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="477"/>
         <source>Search plugin install</source>
-        <translation type="unfinished">Inštalácia pluginu vyhľadávača</translation>
+        <translation>Inštalácia pluginu vyhľadávača</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="478"/>
         <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">Nedá sa nainštalovať &quot;%1&quot; vyhľadávací plugin. %2</translation>
+        <translation>Nedá sa nainštalovať &quot;%1&quot; vyhľadávací plugin. %2</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="496"/>
         <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">Nie je možné aktualizovať &quot;%1&quot; vyhľadávací plugin. %2</translation>
+        <translation>Nie je možné aktualizovať &quot;%1&quot; vyhľadávací plugin. %2</translation>
     </message>
 </context>
 <context>
@@ -10817,22 +10518,22 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="14"/>
         <source>Plugin source</source>
-        <translation type="unfinished">Zdroj pluginu</translation>
+        <translation>Zdroj pluginu</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="26"/>
         <source>Search plugin source:</source>
-        <translation type="unfinished">Zdroj pluginu vyhľadávača:</translation>
+        <translation>Zdroj pluginu vyhľadávača:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="35"/>
         <source>Local file</source>
-        <translation type="unfinished">Lokálny súbor</translation>
+        <translation>Lokálny súbor</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="42"/>
         <source>Web link</source>
-        <translation type="unfinished">Webový odkaz</translation>
+        <translation>Webový odkaz</translation>
     </message>
 </context>
 <context>
@@ -10900,12 +10601,12 @@ Kliknite na tlačidlo &quot;Vyhľadávacie pluginy ...&quot; dole vpravo v okne,
         <translation>&lt;b&gt;foo bar&lt;/b&gt;: vyhľadať &lt;b&gt;foo&lt;/b&gt; a &lt;b&gt;bar&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="849"/>
+        <location filename="../gui/search/searchwidget.cpp" line="862"/>
         <source>Close tab</source>
         <translation>Zatvoriť kartu</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="850"/>
+        <location filename="../gui/search/searchwidget.cpp" line="863"/>
         <source>Close all tabs</source>
         <translation>Zatvoriť všetky karty</translation>
     </message>
@@ -10915,34 +10616,34 @@ Kliknite na tlačidlo &quot;Vyhľadávacie pluginy ...&quot; dole vpravo v okne,
         <translation>Vybrať...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="841"/>
+        <location filename="../gui/search/searchwidget.cpp" line="854"/>
         <source>Refresh tab</source>
         <translation>Obnoviť kartu</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="845"/>
+        <location filename="../gui/search/searchwidget.cpp" line="858"/>
         <source>Stop search</source>
         <translation>Zastaviť hľadanie</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Search Engine</source>
         <translation>Vyhľadávač</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation>Pre použitie vyhľadávača nainštalujte Python.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Empty search pattern</source>
         <translation>Prázdny hľadaný reťazec</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Please type a search pattern first</source>
         <translation>Najprv napíšte hľadaný reťazec</translation>
     </message>
@@ -10955,32 +10656,32 @@ Kliknite na tlačidlo &quot;Vyhľadávacie pluginy ...&quot; dole vpravo v okne,
 <context>
     <name>SearchWidget::DataStorage</name>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="984"/>
+        <location filename="../gui/search/searchwidget.cpp" line="997"/>
         <source>Failed to load Search UI saved state data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1004"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1018"/>
         <source>Failed to load saved search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Nepodarilo sa načítať uložené výsledky vyhľadávania. Záložka: &quot;%1&quot;. Súbor: &quot;%2&quot;. Chyba: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1036"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1050"/>
         <source>Failed to save Search UI state. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1068"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1082"/>
         <source>Failed to save search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Nepodarilo sa uložiť výsledky vyhľadávania. Záložka: &quot;%1&quot;. Súbor: &quot;%2&quot;. Chyba: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1084"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
         <source>Failed to load Search UI history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1112"/>
         <source>Failed to save search history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Nepodarilo sa uložiť históriu vyhľadávania. Súbor: &quot;%1&quot;. Chyba: &quot;%2&quot;</translation>
     </message>
@@ -11405,13 +11106,12 @@ Kliknite na tlačidlo &quot;Vyhľadávacie pluginy ...&quot; dole vpravo v okne,
     </message>
     <message>
         <source>%1 ms</source>
-        <comment>18 milliseconds</comment>
         <translation type="vanished">%1 ms</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.cpp" line="111"/>
-        <source>%1 ms</source>
-        <translation type="unfinished">%1 ms</translation>
+        <source>%1 μs</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11603,7 +11303,7 @@ Kliknite na tlačidlo &quot;Vyhľadávacie pluginy ...&quot; dole vpravo v okne,
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="221"/>
         <source>Force start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Vynútiť spustenie torrentov</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="223"/>
@@ -11704,7 +11404,7 @@ Kliknite na tlačidlo &quot;Vyhľadávacie pluginy ...&quot; dole vpravo v okne,
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="122"/>
         <source>Force start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Vynútiť spustenie torrentov</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="124"/>
@@ -11893,17 +11593,17 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="126"/>
         <source>Rename error</source>
-        <translation type="unfinished">Chyba premenovania</translation>
+        <translation>Chyba premenovania</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="156"/>
         <source>Resize columns</source>
-        <translation type="unfinished">Zmeniť rozmery stĺpcov</translation>
+        <translation>Zmeniť rozmery stĺpcov</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="166"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmeniť veľkosť všetkých viditeľných stĺpcov na dĺžku ich obsahu</translation>
     </message>
 </context>
 <context>
@@ -11916,7 +11616,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentlayoutmodel.cpp" line="62"/>
         <source>Path</source>
-        <translation type="unfinished">Cesta</translation>
+        <translation>Cesta</translation>
     </message>
 </context>
 <context>
@@ -12090,22 +11790,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentcontentwidget.cpp" line="471"/>
         <source>By shown file order</source>
         <translation>Podľa zobrazeného poradia súborov</translation>
-    </message>
-    <message>
-        <source>Normal priority</source>
-        <translation type="vanished">Normálna priorita</translation>
-    </message>
-    <message>
-        <source>High priority</source>
-        <translation type="vanished">Vysoká priorita</translation>
-    </message>
-    <message>
-        <source>Maximum priority</source>
-        <translation type="vanished">Maximálna priorita</translation>
-    </message>
-    <message>
-        <source>Priority by shown file order</source>
-        <translation type="vanished">Priorita podľa zobrazeného poradia súborov</translation>
     </message>
 </context>
 <context>
@@ -13222,7 +12906,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistfilters/trackerstatusfilterwidget.cpp" line="148"/>
         <source>Force start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Vynútiť spustenie torrentov</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackerstatusfilterwidget.cpp" line="150"/>
@@ -13318,7 +13002,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="553"/>
         <source>Force start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Vynútiť spustenie torrentov</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="555"/>
@@ -14430,86 +14114,86 @@ Please choose a different name and try again.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="59"/>
+        <location filename="../base/utils/misc.cpp" line="60"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="60"/>
+        <location filename="../base/utils/misc.cpp" line="61"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="61"/>
+        <location filename="../base/utils/misc.cpp" line="62"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="62"/>
+        <location filename="../base/utils/misc.cpp" line="63"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="63"/>
+        <location filename="../base/utils/misc.cpp" line="64"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="64"/>
+        <location filename="../base/utils/misc.cpp" line="65"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation>PiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="65"/>
+        <location filename="../base/utils/misc.cpp" line="66"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation>EiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="101"/>
+        <location filename="../base/utils/misc.cpp" line="102"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="239"/>
+        <location filename="../base/utils/misc.cpp" line="240"/>
         <source>%1s</source>
         <comment>e.g: 10 seconds</comment>
         <translation>%1s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="244"/>
+        <location filename="../base/utils/misc.cpp" line="245"/>
         <source>%1m</source>
         <comment>e.g: 10 minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="250"/>
+        <location filename="../base/utils/misc.cpp" line="251"/>
         <source>%1h %2m</source>
         <comment>e.g: 3 hours 5 minutes</comment>
         <translation>%1h %2m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="257"/>
+        <location filename="../base/utils/misc.cpp" line="258"/>
         <source>%1d %2h</source>
         <comment>e.g: 2 days 10 hours</comment>
         <translation>%1d %2h</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="262"/>
+        <location filename="../base/utils/misc.cpp" line="263"/>
         <source>%1y %2d</source>
         <comment>e.g: 2 years 10 days</comment>
         <translation>%1y %2d</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="109"/>
-        <location filename="../base/utils/misc.cpp" line="121"/>
+        <location filename="../base/utils/misc.cpp" line="110"/>
+        <location filename="../base/utils/misc.cpp" line="122"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Neznáma</translation>
@@ -14525,7 +14209,7 @@ Please choose a different name and try again.</source>
         <translation>qBittorrent teraz reštartuje počítač, pretože sa dokončili všetky sťahovania.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="237"/>
+        <location filename="../base/utils/misc.cpp" line="238"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>

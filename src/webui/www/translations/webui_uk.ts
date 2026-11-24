@@ -193,7 +193,8 @@
     <message>
         <source>If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.
 The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.</source>
-        <translation type="unfinished" />
+        <translation>Якщо встановлено, qBittorrent вважатиме, що всі файли наявні для цього торрента та що всі вони відповідають хешам у файлі торрента. Випадок використання цього режиму: якщо торрент створено та завантажено, або якщо користувач уже знає, що всі файли готові, це спосіб виконувати лише базові перевірки файлів і пропускати початкові перевірки хешу.
+Хеш шматка перевірятиметься, коли одноранговий користувач запитує його вперше. Якщо перевірка хешу не вдасться, усі файли в цьому торренті будуть перевірені повторно.</translation>
     </message>
     <message>
         <source>Seed mode</source>
@@ -263,7 +264,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Примусовий запуск торрентів</translation>
     </message>
 </context>
 <context>
@@ -589,7 +590,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>BitTorrent session shutdown timeout must be between -1 and 2147483647.</source>
-        <translation type="unfinished" />
+        <translation>Час очікування завершення сеансу BitTorrent має бути від -1 до 2147483647.</translation>
     </message>
     <message>
         <source>Unable to resume the session.</source>
@@ -972,10 +973,6 @@ The piece hash will be checked when it is requested for the first time by a peer
     <message>
         <source>Update my dynamic domain name</source>
         <translation>Оновлювати мій динамічний домен</translation>
-    </message>
-    <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Тримати незавершені торренти у:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -2485,23 +2482,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Будь-який із перерахованих вище</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Все вищезазначене</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Також, якщо додавання скасовано</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Також видаляти .torrent-файли, додавання яких було скасовано</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Використовувати інший шлях для неповних торрентів:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -2509,7 +2506,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Здійснено спробу надіслати тестовий лист.\nПеревірте свою поштову скриньку, щоб переконатися, що операція пройшла успішно.\nПеревірте журнал виконання на наявність помилок.</translation>
     </message>
 </context>
 <context>
@@ -3189,7 +3186,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Примусовий запуск торрентів</translation>
     </message>
 </context>
 <context>
@@ -3840,7 +3837,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Вилучити всі мітки із вибраних торрентів?</translation>
     </message>
 </context>
 <context>
@@ -3907,11 +3904,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Відповідати всім обмеженням</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Відповідати будь-якому обмеженню</translation>
     </message>
 </context>
 <context>
@@ -4304,7 +4301,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Примусовий запуск торрентів</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4371,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent було збудовано з наступними бібліотеками:</translation>
+        <translation type="vanished">qBittorrent було збудовано з наступними бібліотеками:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4400,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>qBittorrent icon</source>
         <translation>Значок qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4974,7 +4975,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Примусовий запуск торрентів</translation>
     </message>
 </context>
 <context>

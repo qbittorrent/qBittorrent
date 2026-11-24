@@ -975,10 +975,6 @@ El resum de cada fragment es verificarà quan un altre client el sol·liciti per
         <translation>Actualitza el meu nom de domini dinàmic</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Manté els torrents incomplets a:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Preassigna espai al disc per a tots els fitxers</translation>
     </message>
@@ -2373,10 +2369,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>Permet múltiples connexions des del mateix ID de client:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">S'ha intentat enviar un correu electrònic de prova. &lt;br&gt; Comproveu la safata d'entrada per confirmar que s'ha enviat correctament. &lt;br&gt; Comproveu el registre d'execució per si hi ha errors.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Límit de nombre de sessions:</translation>
     </message>
@@ -2486,35 +2478,35 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Confirmeu la supressió del rastrejador de tots els torrents:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Qualsevol de les anteriors</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Tots els anteriors</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>També quan hagi estat cancel·lada l'addició.</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix també els fitxers .torrent dels quals n'hàgiu cancel·lat l'addició.</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Usa un altre camí per als torrents incomplets:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Confirmeu la supressió de totes les etiquetes:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>S'ha intentat enviar un correu electrònic de prova.\nReviseu la safata d'entrada per confirmar-ne l'èxit.\nReviseu el registre d'execució per detectar-ne errors.</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Voleu suprimir totes les etiquetes dels torrents seleccionats?</translation>
     </message>
 </context>
 <context>
@@ -3904,19 +3896,19 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Mode</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Per defecte (coincideix amb qualsevol límit)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Coincideix amb tots els límits</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Coincideix amb qualsevol límit</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>El qBittorrent s'ha construït amb les biblioteques següents:</translation>
+        <translation type="vanished">El qBittorrent s'ha construït amb les biblioteques següents:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     <message>
         <source>qBittorrent icon</source>
         <translation>Icona del qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Afegeix %1 torrents</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Obre la finestra de baixada compartida</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Obre finestres de baixada separades</translation>
     </message>
 </context>
 <context>

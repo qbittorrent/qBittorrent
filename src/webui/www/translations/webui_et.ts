@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Uuenda minu dünaamilise domeeni nime</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Hoia poolikud torrentid asukohas:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Hõiva ette ketta ruum kõigil failidel</translation>
     </message>
@@ -2489,15 +2485,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Ka siis, kui lisamine tühistatakse</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Kustuta ka .torrent failid, mille lisamine tühistati</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Kasuta muud asukohta poolikutel torrentitel:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3836,7 +3832,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Eemalda kõik sildid valitud torrentitelt?</translation>
     </message>
 </context>
 <context>
@@ -4370,7 +4366,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent ehitati järgnevate teekidega:</translation>
+        <translation type="vanished">qBittorrent ehitati järgnevate teekidega:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4399,6 +4395,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrenti ikoon</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4642,7 +4642,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Lisa %1 torrentit</translation>
     </message>
     <message>
         <source>Open shared download window</source>

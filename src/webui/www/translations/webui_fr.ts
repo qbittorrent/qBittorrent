@@ -72,7 +72,7 @@
     </message>
     <message>
         <source>Save at</source>
-        <translation>Enregistrer sous</translation>
+        <translation>Enregistrer dans</translation>
     </message>
     <message>
         <source>Torrent information</source>
@@ -128,7 +128,7 @@
     </message>
     <message>
         <source>Filter files...</source>
-        <translation>Filtrer les fichiers…</translation>
+        <translation>Filtrer les fichiers...</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -228,7 +228,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     <name>CategoryFilterWidget</name>
     <message>
         <source>Add category...</source>
-        <translation>Ajouter une catégorie…</translation>
+        <translation>Ajouter une catégorie...</translation>
     </message>
     <message>
         <source>Remove category</source>
@@ -244,7 +244,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Edit category...</source>
-        <translation>Modifier la catégorie…</translation>
+        <translation>Modifier la catégorie...</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -252,7 +252,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation>Ajouter une sous-catégorie…</translation>
+        <translation>Ajouter une sous-catégorie...</translation>
     </message>
     <message>
         <source>Start torrents</source>
@@ -398,7 +398,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Edit</source>
-        <translation>Edition</translation>
+        <translation>Édition</translation>
     </message>
     <message>
         <source>Free space: %1</source>
@@ -422,7 +422,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>Associer aux liens magnet…</translation>
+        <translation>Associer aux liens magnet...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -454,7 +454,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>The port used for the WebUI must be between 1 and 65535.</source>
-        <translation>Le port utilisé pour l'IU Web doit être compris entre 1024 et 65535.</translation>
+        <translation>Le port utilisé pour l'IU Web doit être compris entre 1 et 65535.</translation>
     </message>
     <message>
         <source>%1 has been shutdown</source>
@@ -498,7 +498,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Are you sure you want to remove %1 from the transfer list?</source>
-        <translation>Êtes-vous sûr de vouloir supprimer %1 de la liste de transfert ?</translation>
+        <translation>Êtes-vous sûr de vouloir supprimer %1 de la liste des transferts ?</translation>
     </message>
     <message>
         <source>Unable to set Auto Torrent Management for the selected torrents.</source>
@@ -562,7 +562,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Outstanding memory when checking torrents must be greater than 0 and less than 1024.</source>
-        <translation>La mémoire disponible lors de la vérification des torrents doit être supérieure à 0 et inférieure à 1024.</translation>
+        <translation>La mémoire en attente lors de la vérification des torrents doit être supérieure à 0 et inférieure à 1024.</translation>
     </message>
     <message>
         <source>Unable to load program preferences, qBittorrent is probably unreachable.</source>
@@ -613,7 +613,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     <name>MainWindow</name>
     <message>
         <source>Edit</source>
-        <translation>Edition</translation>
+        <translation>Édition</translation>
     </message>
     <message>
         <source>Tools</source>
@@ -633,7 +633,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Options...</source>
-        <translation>Options…</translation>
+        <translation>Options...</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -661,7 +661,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Add Torrent File...</source>
-        <translation>Ajouter un fichier torrent…</translation>
+        <translation>Ajouter un fichier torrent...</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -669,7 +669,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation>Ajouter un lien torrent…</translation>
+        <translation>Ajouter un lien torrent...</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -693,7 +693,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation>Filtrer la liste des torrents…</translation>
+        <translation>Filtrer la liste des torrents...</translation>
     </message>
     <message>
         <source>Search</source>
@@ -805,7 +805,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Filter by:</source>
-        <translation>Filtrer par:</translation>
+        <translation>Filtrer par :</translation>
     </message>
     <message>
         <source>Save Path</source>
@@ -829,7 +829,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Manage Cookies...</source>
-        <translation>Gérer les cookies…</translation>
+        <translation>Gérer les cookies...</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -857,7 +857,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Filter feed items...</source>
-        <translation>Éléments du filtre...</translation>
+        <translation>Filtrer les éléments du flux...</translation>
     </message>
     <message>
         <source>Info Hash v1</source>
@@ -975,10 +975,6 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
         <translation>Mettre à jour mon nom de domaine dynamique</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Conserver les torrents incomplets sous :</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Préallouer l'espace disque pour tous les fichiers</translation>
     </message>
@@ -1080,7 +1076,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation>Adresses IP bannies manuellement…</translation>
+        <translation>Adresses IP bannies manuellement...</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -1250,7 +1246,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Astuce : Encapsuler le paramètre entre guillemets pour éviter que le texte ne soit coupé au niveau des espaces (p. ex. "%N")</translation>
+        <translation>Astuce : Encapsuler le paramètre entre guillemets pour éviter que le texte ne soit coupé au niveau des espaces (p. ex. « %N »)</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1358,7 +1354,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
-        <translation>Mode de gestion de torrent par défaut</translation>
+        <translation>Mode de gestion de torrent par défaut :</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
@@ -1374,11 +1370,11 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation>%G : Étiquettes (séparés par des virgules)</translation>
+        <translation>%G : Étiquettes (séparées par des virgules)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation>Taille de la liste des tâches du socket</translation>
+        <translation>Taille de la liste des tâches du socket :</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
@@ -1390,7 +1386,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation>Mémoire en suspens lors de la vérification des torrents :</translation>
+        <translation>Mémoire en attente lors de la vérification des torrents :</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1450,7 +1446,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation>Envoyer des suggestions de morceaux d'envoi</translation>
+        <translation>Envoyer des suggestions de morceaux d'envoi :</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1462,7 +1458,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation>Fils d'E/S asynchrones</translation>
+        <translation>Fils d'E/S asynchrones :</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1538,7 +1534,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation>En-tête : valeur pairs, une par ligne</translation>
+        <translation>En-tête : paires clé-valeur, une par ligne</translation>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
@@ -1574,7 +1570,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
-        <translation>Modifier les règles de téléchargement automatique…</translation>
+        <translation>Modifier les règles de téléchargement automatique...</translation>
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
@@ -1678,11 +1674,11 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation>Régler sur 0 pour laisser votre système choisir un port inutilisé</translation>
+        <translation>Définir à 0 pour laisser votre système choisir un port inutilisé</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation>Atténuation de la falsification des demandes côté serveur (SSRF)</translation>
+        <translation>Atténuation de la falsification des demandes côté serveur (SSRF) :</translation>
     </message>
     <message>
         <source>Disk queue size:</source>
@@ -1694,7 +1690,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>Requêtes en suspens maximales vers un seul pair :</translation>
+        <translation>Requêtes en attente maximales vers un seul pair :</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
@@ -1742,7 +1738,7 @@ Le hachage du morceau sera vérifié lorsqu'il sera demandé pour la première f
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation>Intervalle d'actualisation</translation>
+        <translation>Intervalle d'actualisation :</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1869,15 +1865,15 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation>Taille du cache d'envoi au socket [0: valeur par défaut]</translation>
+        <translation>Taille du cache d'envoi au socket [0 : valeur par défaut] :</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation>Ports de sortie (Max.) [0: désactivé]:</translation>
+        <translation>Ports de sortie (Max.) [0 : désactivé] :</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation>Taille du cache de réception du socket [0: valeur par défaut]:</translation>
+        <translation>Taille du cache de réception du socket [0 : valeur par défaut] :</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1885,15 +1881,15 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation>Délai d'attente lors de l’arrêt du tracker [0: désactivé] :</translation>
+        <translation>Délai d'attente lors de l’arrêt du tracker [0 : désactivé] :</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation>Ports de sortie (Min.) [0: désactivé]:</translation>
+        <translation>Ports de sortie (Min.) [0 : désactivé] :</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation>Durée de l'allocation UPnP [0: allocation permanente]:</translation>
+        <translation>Durée de l'allocation UPnP [0 : allocation permanente] :</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
@@ -1925,7 +1921,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation>Si &amp;quot;mode mixte&amp;quot; est activé, les torrents I2P sont autorisés a obtenir des pairs venant d'autres sources que le tracker et a se connecter à des IPs classiques sans fournir d'anonymisation. Cela peut être utile si l'utilisateur n'est pas intéressé par l'anonymisation de I2P mais veux tout de même être capable de se connecter à des pairs I2P.</translation>
+        <translation>Si &amp;quot;mode mixte&amp;quot; est activé, les torrents I2P sont autorisés à obtenir des pairs venant d'autres sources que le tracker et à se connecter à des IPs classiques sans fournir d'anonymisation. Cela peut être utile si l'utilisateur n'est pas intéressé par l'anonymisation de I2P mais veut tout de même être capable de se connecter à des pairs I2P.</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -2041,7 +2037,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Fetched trackers</source>
-        <translation>Trackeurs récupérés</translation>
+        <translation>Trackers récupérés</translation>
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
@@ -2069,7 +2065,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
-        <translation>Afficher l'URL d'annonce complète dans la colonne Trackeur</translation>
+        <translation>Afficher l'URL d'annonce complète dans la colonne Tracker</translation>
     </message>
     <message>
         <source>URL:</source>
@@ -2105,7 +2101,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation>Activer le cookie "Secure flag" (nécessite une connexion HTTPS ou Localhost)</translation>
+        <translation>Activer le cookie « Secure flag » (nécessite une connexion HTTPS ou Localhost)</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2121,11 +2117,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Run on torrent finished:</source>
-        <translation>Exécuter à la complétion d'un torrent:</translation>
+        <translation>Exécuter à la complétion d'un torrent :</translation>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
-        <translation>Ajouter automatiquement les trackeurs de l'URL aux nouveaux téléchargements :</translation>
+        <translation>Ajouter automatiquement les trackers de l'URL aux nouveaux téléchargements :</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -2153,7 +2149,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
-        <translation>Port signalé aux trackeurs (nécessite un redémarrage) [0 : port d'écoute] :</translation>
+        <translation>Port signalé aux trackers (nécessite un redémarrage) [0 : port d'écoute] :</translation>
     </message>
     <message>
         <source>User interface language:</source>
@@ -2285,7 +2281,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>SMTP encryption:</source>
-        <translation>Chiffrement SMTP :</translation>
+        <translation>Chiffrement SMTP :</translation>
     </message>
     <message>
         <source>Default port</source>
@@ -2305,7 +2301,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation>Cela ajoute le texte au titre de la fenêtre pour aider à distinguer les instances de qBitTorrent</translation>
+        <translation>Cela ajoute le texte au titre de la fenêtre pour aider à distinguer les instances de qBittorrent</translation>
     </message>
     <message>
         <source>(last choice if no other option)</source>
@@ -2361,7 +2357,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Could not contact qBittorrent.</source>
-        <translation>N'a pas pu contacter qBittorrent.</translation>
+        <translation>Impossible de contacter qBittorrent.</translation>
     </message>
     <message>
         <source>Separate multiple emails with a semicolon.</source>
@@ -2370,10 +2366,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Allow multiple connections from the same Peer ID:</source>
         <translation>Autoriser plusieurs connexions depuis le même ID de pair :</translation>
-    </message>
-    <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Tentative d'envoi d'un courriel de test.&lt;br&gt;Vérifiez votre boîte de réception pour confirmer la réussite.&lt;br&gt;Consultez le journal d'exécution pour détecter des erreurs.</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
@@ -2445,7 +2437,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Maximum outstanding block requests from a peer:</source>
-        <translation>Nombre maximal de requêtes de blocs en attente provenant d'un pair :</translation>
+        <translation>Requêtes de blocs en attente maximales provenant d’un pair :</translation>
     </message>
     <message>
         <source>Also save search results</source>
@@ -2453,7 +2445,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>I2P inbound length variance:</source>
-        <translation>Variation de la longueur des messages entrants I2P :</translation>
+        <translation>Variation de la longueur entrante I2P :</translation>
     </message>
     <message>
         <source>To manually specify the server port, add a colon and then the port number to the end.</source>
@@ -2485,35 +2477,35 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Confirmer la suppression du tracker de tous les torrents :</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>N'importe lequel ci-dessus</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Tout ci-dessus</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Aussi quand l'ajout est annulé</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Supprimer également les fichiers .torrent dont l'ajout a été annulé</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Utiliser un autre répertoire pour les torrents incomplets :</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Confirmer la suppression de toutes les étiquettes :</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Tentative d'envoi d'un courriel de test.\nVérifiez votre boîte de réception pour confirmer la réussite.\nConsultez le journal d'exécution pour les erreurs.</translation>
     </message>
 </context>
 <context>
@@ -2588,7 +2580,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Add peers...</source>
-        <translation>Ajouter des pairs…</translation>
+        <translation>Ajouter des pairs...</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
@@ -2669,7 +2661,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>ETA:</source>
-        <translation>Temps restant  estimé :</translation>
+        <translation>Temps restant estimé :</translation>
     </message>
     <message>
         <source>Uploaded:</source>
@@ -2789,11 +2781,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Filter files...</source>
-        <translation>Filtrer les fichiers…</translation>
+        <translation>Filtrer les fichiers...</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Renommer…</translation>
+        <translation>Renommer...</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -2833,7 +2825,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation>Échec du renommage : le fichier ou le dossier existe déjà</translation>
+        <translation>Échec du renommage : le fichier ou le dossier existe déjà</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2885,7 +2877,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Edit web seed URL...</source>
-        <translation>Modifier l'URL de la source Web</translation>
+        <translation>Modifier l'URL de la source Web...</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
@@ -2921,7 +2913,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Add web seeds...</source>
-        <translation>Ajouter les sources Web…</translation>
+        <translation>Ajouter des sources Web...</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2964,7 +2956,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Other...</source>
-        <translation>Autre…</translation>
+        <translation>Autre...</translation>
     </message>
     <message>
         <source>Type folder here</source>
@@ -3125,27 +3117,27 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation>Dormants en envoi (%1)</translation>
+        <translation>Stagnants en envoi (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation>Dormants en réception (%1)</translation>
+        <translation>Stagnants en réception (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation>Dormants en réception (0)</translation>
+        <translation>Stagnants en réception (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation>Dormants (0)</translation>
+        <translation>Stagnants (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation>Dormants en envoi (0)</translation>
+        <translation>Stagnants en envoi (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation>Dormants (%1)</translation>
+        <translation>Stagnants (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
@@ -3362,7 +3354,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Status Icon</source>
-        <translation>Icône de status</translation>
+        <translation>Icône de statut</translation>
     </message>
     <message>
         <source>Session Uploaded</source>
@@ -3397,7 +3389,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Updating...</source>
-        <translation>Mise à jour en cours…</translation>
+        <translation>Mise à jour en cours...</translation>
     </message>
     <message>
         <source>Working</source>
@@ -3429,7 +3421,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Modifier l'URL du tracker…</translation>
+        <translation>Modifier l'URL du tracker...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -3477,7 +3469,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation>Ajouter des trackers…</translation>
+        <translation>Ajouter des trackers...</translation>
     </message>
     <message>
         <source>Renamed</source>
@@ -3596,7 +3588,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stalled</source>
-        <translation>Dormant</translation>
+        <translation>Stagnant</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -3658,15 +3650,15 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation>Limiter le ratio de partage…</translation>
+        <translation>Limiter le ratio de partage...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation>Limiter la vitesse d'envoi…</translation>
+        <translation>Limiter la vitesse d'envoi...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation>Limiter la vitesse de téléchargement…</translation>
+        <translation>Limiter la vitesse de téléchargement...</translation>
     </message>
     <message>
         <source>Move up</source>
@@ -3690,7 +3682,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Set location...</source>
-        <translation>Définir l’emplacement…</translation>
+        <translation>Définir l’emplacement...</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
@@ -3707,7 +3699,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation>Nouvelle…</translation>
+        <translation>Nouvelle...</translation>
     </message>
     <message>
         <source>Reset</source>
@@ -3724,7 +3716,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Renommer…</translation>
+        <translation>Renommer...</translation>
     </message>
     <message>
         <source>Download in sequential order</source>
@@ -3776,7 +3768,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Add...</source>
-        <translation>Ajouter…</translation>
+        <translation>Ajouter...</translation>
     </message>
     <message>
         <source>Info hash v1</source>
@@ -3800,7 +3792,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation>Renommer les fichiers…</translation>
+        <translation>Renommer les fichiers...</translation>
     </message>
     <message>
         <source>Renaming</source>
@@ -3816,7 +3808,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Location:</source>
-        <translation>Emplacement:</translation>
+        <translation>Emplacement :</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -3824,7 +3816,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation>Le mode automatique signifie que certaines propriétés du torrent (p. ex. le répertoire de destination) seront décidés via la catégorie associée</translation>
+        <translation>Le mode automatique signifie que certaines propriétés du torrent (p. ex. le répertoire de destination) seront décidées via la catégorie associée</translation>
     </message>
     <message>
         <source>Start</source>
@@ -3844,7 +3836,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Retirer toutes les étiquettes des torrents sélectionnés ?</translation>
     </message>
 </context>
 <context>
@@ -3903,19 +3895,19 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Mode</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Par défaut (dès qu’une limite est atteinte)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Correspondre à toutes les limites</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Correspondre à n'importe quelle limite</translation>
     </message>
 </context>
 <context>
@@ -4069,7 +4061,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation>Greffons de recherche…</translation>
+        <translation>Greffons de recherche...</translation>
     </message>
     <message>
         <source>All categories</source>
@@ -4109,7 +4101,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>to</source>
-        <translation>vers</translation>
+        <translation>à</translation>
     </message>
     <message>
         <source>Results</source>
@@ -4121,7 +4113,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Cliquez sur le bouton « Rechercher des greffons… » en bas à droite de la fenêtre pour en installer.</translation>
+        <translation>Cliquez sur le bouton « Greffons de recherche... » en bas à droite de la fenêtre pour en installer.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
@@ -4145,7 +4137,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Select plugins</source>
-        <translation>Sélectionner les plugins</translation>
+        <translation>Sélectionner les greffons</translation>
     </message>
 </context>
 <context>
@@ -4265,7 +4257,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation>Format: IPv4:port / [IPv6]:port</translation>
+        <translation>Format : IPv4:port / [IPv6]:port</translation>
     </message>
 </context>
 <context>
@@ -4276,7 +4268,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Add tag...</source>
-        <translation>Ajouter une étiquette…</translation>
+        <translation>Ajouter une étiquette...</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -4378,7 +4370,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent a été conçu à l'aide des bibliothèques logicielles suivantes :</translation>
+        <translation type="vanished">qBittorrent a été conçu à l'aide des bibliothèques logicielles suivantes :</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4407,6 +4399,10 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>qBittorrent icon</source>
         <translation>Icône de qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4448,7 +4444,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Download link</source>
-        <translation>Télécharger le lien</translation>
+        <translation>Lien de téléchargement</translation>
     </message>
     <message>
         <source>Search has finished</source>
@@ -4456,7 +4452,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>An error occurred during search...</source>
-        <translation>Une erreur s'est produite lors de la recherche…</translation>
+        <translation>Une erreur s'est produite lors de la recherche...</translation>
     </message>
     <message>
         <source>Close tab</source>
@@ -4464,7 +4460,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Searching...</source>
-        <translation>Recherche en cours…</translation>
+        <translation>Recherche en cours...</translation>
     </message>
     <message>
         <source>Search aborted</source>
@@ -4500,7 +4496,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Search results are no longer available</source>
-        <translation>Les résultats de recherche ne sont plus disponibles.</translation>
+        <translation>Les résultats de recherche ne sont plus disponibles</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
@@ -4526,7 +4522,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <name>RSSWidget</name>
     <message>
         <source>Date: </source>
-        <translation>Date :</translation>
+        <translation>Date : </translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
@@ -4550,7 +4546,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation>Téléchargeur de RSS…</translation>
+        <translation>Téléchargeur de RSS...</translation>
     </message>
     <message>
         <source>Mark items read</source>
@@ -4558,7 +4554,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Update all feeds</source>
-        <translation>Rafraichir tous les flux</translation>
+        <translation>Rafraîchir tous les flux</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
@@ -4574,7 +4570,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Renommer…</translation>
+        <translation>Renommer...</translation>
     </message>
     <message>
         <source>Feed URL:</source>
@@ -4582,7 +4578,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>New folder...</source>
-        <translation>Nouveau dossier…</translation>
+        <translation>Nouveau dossier...</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -4614,7 +4610,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>New subscription...</source>
-        <translation>Nouvel abonnement…</translation>
+        <translation>Nouvel abonnement...</translation>
     </message>
     <message>
         <source>Download torrent</source>
@@ -4622,7 +4618,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Edit feed URL...</source>
-        <translation>Éditer l'URL du flux…</translation>
+        <translation>Éditer l'URL du flux...</translation>
     </message>
     <message>
         <source>Unable to update URL</source>
@@ -4630,7 +4626,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>URL is unchanged</source>
-        <translation>l'URL est inchangée</translation>
+        <translation>L'URL est inchangée</translation>
     </message>
     <message>
         <source>URL cannot be empty</source>
@@ -4650,22 +4646,22 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Ajouter %1 torrents</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Ouvrir la fenêtre de téléchargement partagée</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Ouvrir des fenêtres de téléchargement distinctes</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Download Rules</source>
-        <translation>Télécharger les règles</translation>
+        <translation>Règles de téléchargement</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
@@ -4677,11 +4673,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source> will match all articles.</source>
-        <translation>correspondra à tous les articles.</translation>
+        <translation> correspondra à tous les articles.</translation>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation>Règles du filtre d'épisodes :</translation>
+        <translation>Règles du filtre d'épisodes : </translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
@@ -4713,7 +4709,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation>Articles correspondants basés sur le filtrage épisode</translation>
+        <translation>Articles correspondants basés sur le filtre d'épisode.</translation>
     </message>
     <message>
         <source>Assign Category:</source>
@@ -4741,11 +4737,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Example: </source>
-        <translation>Exemple : </translation>
+        <translation>Exemple : </translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation>Ajouter une nouvelle règle…</translation>
+        <translation>Ajouter une nouvelle règle...</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
@@ -4757,7 +4753,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation>Intervalle infini : &lt;b&gt;1x25-;&lt;/b&gt; correspond aux épisodes 25 et suivants de la saison 1,  et tous les épisodes des saisons ultérieures</translation>
+        <translation>Intervalle infini : &lt;b&gt;1x25-;&lt;/b&gt; correspond aux épisodes 25 et suivants de la saison 1, et tous les épisodes des saisons ultérieures</translation>
     </message>
     <message>
         <source>Save to a Different Directory</source>
@@ -4773,7 +4769,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation>Trois types d'intervalles d'épisodes sont pris en charge : </translation>
+        <translation>Trois types d'intervalles d'épisodes sont pris en charge : </translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
@@ -4789,7 +4785,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation>Veuillez enter le nouveau nom pour la règle</translation>
+        <translation>Veuillez entrer le nouveau nom pour la règle</translation>
     </message>
     <message>
         <source>Rule renaming</source>
@@ -4805,7 +4801,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation>correspondra aux épisodes 2, 5, 8 à 15, 30 et supérieurs de la saison 1</translation>
+        <translation> correspondra aux épisodes 2, 5, 8 à 15, 30 et supérieurs de la saison 1</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -4857,7 +4853,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source> will exclude all articles.</source>
-        <translation>va exclure tous les articles.</translation>
+        <translation> va exclure tous les articles.</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -4869,15 +4865,15 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation>Renommer la règle…</translation>
+        <translation>Renommer la règle...</translation>
     </message>
     <message>
         <source>Last Match: Unknown</source>
-        <translation>Dernière correspondance : Inconnue</translation>
+        <translation>Dernière correspondance : Inconnue</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation>Effacer les épisodes téléchargés…</translation>
+        <translation>Effacer les épisodes téléchargés...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
@@ -4899,7 +4895,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation>Ne pas créer un sous-dossier</translation>
+        <translation>Ne pas créer de sous-dossier</translation>
     </message>
     <message>
         <source>Add Tags:</source>
@@ -5084,7 +5080,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>item</source>
-        <translation>item</translation>
+        <translation>élément</translation>
     </message>
     <message>
         <source>IP</source>
@@ -5112,7 +5108,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>items</source>
-        <translation>items</translation>
+        <translation>éléments</translation>
     </message>
     <message>
         <source>Results</source>
@@ -5124,14 +5120,14 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation>Choisissez un niveau de journalisation…</translation>
+        <translation>Choisissez un niveau de journalisation...</translation>
     </message>
 </context>
 <context>
     <name>TrackersFilterWidget</name>
     <message>
         <source>Are you sure you want to remove tracker %1 from all torrents?</source>
-        <translation>Êtes-vous sûr de vouloir supprimer le trackeur %1 de tous les torrents ?</translation>
+        <translation>Êtes-vous sûr de vouloir supprimer le tracker %1 de tous les torrents ?</translation>
     </message>
 </context>
 <context>
@@ -5247,7 +5243,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <name>confirmRecheckDialog</name>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation>Êtes-vous sur de vouloir revérifier le ou les torrent(s) sélectionné(s) ?</translation>
+        <translation>Êtes-vous sûr de vouloir revérifier le ou les torrent(s) sélectionné(s) ?</translation>
     </message>
     <message>
         <source>Recheck confirmation</source>
@@ -5281,7 +5277,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Server response:</source>
-        <translation>Réponse du serveur:</translation>
+        <translation>Réponse du serveur :</translation>
     </message>
     <message>
         <source>Unable to log in, server is probably unreachable.</source>
@@ -5332,7 +5328,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Status Icon</source>
-        <translation>Icône de status</translation>
+        <translation>Icône de statut</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
@@ -5340,7 +5336,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Failed</source>
-        <translation>Échouée</translation>
+        <translation>Échec</translation>
     </message>
     <message>
         <source>Comment</source>
@@ -5515,7 +5511,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation>Un lien par ligne (les liens HTTP, les liens magnet et les info-hashes sont supportés)</translation>
+        <translation>Un lien par ligne (les liens HTTP, les liens magnet et les info hashs sont supportés)</translation>
     </message>
     <message>
         <source>URLs</source>
@@ -5624,22 +5620,22 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <name>confirmRotateAPIKeyDialog</name>
     <message>
         <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
-        <translation>Générer une clé API ? Cette clé permet d'interagir avec l'API de qBittorrent.</translation>
+        <translation>Générer une clé API ? Cette clé permet d'interagir avec l'API de qBittorrent.</translation>
     </message>
     <message>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation>Supprimer cette clé API ? La clé actuelle cessera immédiatement de fonctionner.</translation>
+        <translation>Supprimer cette clé API ? La clé actuelle cessera immédiatement de fonctionner.</translation>
     </message>
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation>Renouvelez cette clé API ? La clé actuelle cessera immédiatement de fonctionner et une nouvelle clé sera générée.</translation>
+        <translation>Renouveler cette clé API ? La clé actuelle cessera immédiatement de fonctionner et une nouvelle clé sera générée.</translation>
     </message>
 </context>
 <context>
     <name>RSSCloneRule</name>
     <message>
         <source>Clone</source>
-        <translation>Clone</translation>
+        <translation>Cloner</translation>
     </message>
     <message>
         <source>Alert</source>
@@ -5663,7 +5659,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Unable to clone the selected rule.</source>
-        <translation>Incapable de cloner la règle sélectionnée.</translation>
+        <translation>Impossible de cloner la règle sélectionnée.</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -5702,11 +5698,11 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation>Retiré les torrent et son contenu</translation>
+        <translation>Retirer le torrent et son contenu</translation>
     </message>
     <message>
         <source>Share limit values cannot be empty or invalid.</source>
-        <translation>Les valeurs de limite de partage ne peuvent pas être vides ou invalides</translation>
+        <translation>Les valeurs de limite de partage ne peuvent pas être vides ou invalides.</translation>
     </message>
     <message>
         <source>Action when the limit is reached:</source>
@@ -5718,7 +5714,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Set to</source>
-        <translation>Définit à</translation>
+        <translation>Définir à</translation>
     </message>
     <message>
         <source>From category</source>

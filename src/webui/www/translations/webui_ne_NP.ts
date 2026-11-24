@@ -2481,23 +2481,23 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>माथिका मध्ये कुनै</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>माथिका सबै</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>जब थप्ने काम रद्द गरिन्छ</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>थप रद्द गरिएका .torrent फाइलहरू पनि मेटाउनुहोस्।</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>अपूर्ण टोरेन्टहरूको लागि अर्को मार्ग प्रयोग गर्नुहोस्:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3836,7 +3836,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>चयन गरिएका टोरेन्टहरूबाट सबै ट्यागहरू हटाउने हो?</translation>
     </message>
 </context>
 <context>
@@ -4370,7 +4370,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent निम्नानुसारका लाइब्रेरीहरूको प्रयोगद्वारा बनाइएको हो:</translation>
+        <translation type="vanished">qBittorrent निम्नानुसारका लाइब्रेरीहरूको प्रयोगद्वारा बनाइएको हो:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4398,6 +4398,10 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>

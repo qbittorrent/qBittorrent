@@ -975,10 +975,6 @@ L'hash del segmento verrà controllato quando verrà richiesto per la prima volt
         <translation>Aggiorna il mio nome dominio dinamico</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Salva torrent incompleti in:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Prealloca lo spazio su disco per tutti i file</translation>
     </message>
@@ -2373,10 +2369,6 @@ Per dividere voci multiple usa ';'. Si può usare il carattere jolly '*'.</trans
         <translation>Consenti più connessioni dallo stesso ID peer:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Tentativo di invio di un'email di prova.&lt;br&gt;Controlla la casella di posta per confermare l'arrivo della mail.&lt;br&gt;Controlla il registro esecuzione per eventuali errori.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Limite numero sessioni:</translation>
     </message>
@@ -2486,35 +2478,35 @@ Per dividere voci multiple usa ';'. Si può usare il carattere jolly '*'.</trans
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Conferma la rimozione dei tracker da tutti i torrent:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Una qualsiasi delle sopra elencate</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Tutte le sopra elencate</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Anche se l'aggiunta è annullata</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Elimina i file .torrent anche se l'aggiunta è stata annullata</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Usa un altro percorso per i torrent incompleti:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Conferma lrimozione di tutti i tag:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Tentativo di invio email di prova.\nControlla la casella di posta per confermare la ricezione della mail.\nControlla il registro di esecuzione per eventuali errori.</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ Per dividere voci multiple usa ';'. Si può usare il carattere jolly '*'.</trans
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Rimuovere tutte le etichette dai torrent selezionati?</translation>
     </message>
 </context>
 <context>
@@ -3904,19 +3896,19 @@ Per dividere voci multiple usa ';'. Si può usare il carattere jolly '*'.</trans
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Modo</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Predefinito (corrisponde a qualsiasi limite)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Corrisponde a tutti i limiti</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Corrisponde a qualsiasi limite</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ Per dividere voci multiple usa ';'. Si può usare il carattere jolly '*'.</trans
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent è stato costruito con le seguenti librerie:</translation>
+        <translation type="vanished">qBittorrent è stato costruito con le seguenti librerie:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Per dividere voci multiple usa ';'. Si può usare il carattere jolly '*'.</trans
     <message>
         <source>qBittorrent icon</source>
         <translation>Icona qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ Per dividere voci multiple usa ';'. Si può usare il carattere jolly '*'.</trans
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Aggiungi %1 torrent</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Apri finestra download condivisa</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Apri finestre download separate</translation>
     </message>
 </context>
 <context>

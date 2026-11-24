@@ -91,8 +91,12 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="336"/>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>Το qBittorrent φτιάχτηκε με τις ακόλουθες βιβλιοθήκες:</translation>
+        <translation type="vanished">Το qBittorrent φτιάχτηκε με τις ακόλουθες βιβλιοθήκες:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="356"/>
@@ -143,37 +147,6 @@
     </message>
 </context>
 <context>
-    <name>AbstractFileStorage</name>
-    <message>
-        <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">Η παλιά διαδρομή δεν είναι έγκυρη: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">Η νέα διαδρομή δεν είναι έγκυρη: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="vanished">Δεν επιτρέπεται απόλυτη διαδρομή: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">Το αρχείο υπάρχει ήδη: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>No such file: &apos;%1&apos;.</source>
-        <translation type="vanished">Το αρχείο δεν υπάρχει: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">Ο φάκελος υπάρχει ήδη: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="vanished">Ο φάκελος δεν υπάρχει: &apos;%1&apos;.</translation>
-    </message>
-</context>
-<context>
     <name>AddNewTorrentDialog</name>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="113"/>
@@ -204,10 +177,6 @@
         <location filename="../gui/addnewtorrentdialog.ui" line="381"/>
         <source>Torrent information</source>
         <translation>Πληροφορίες torrent</translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Παράλειψη ελέγχου hash</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="122"/>
@@ -627,10 +596,6 @@
         <location filename="../gui/addtorrentparamswidget.ui" line="349"/>
         <source>&lt;p&gt;If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.&lt;/p&gt;&lt;p&gt;The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Παράλειψη ελέγχου hash</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="357"/>
@@ -2188,72 +2153,69 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::BencodeResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="119"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="175"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation>Δεν είναι δυνατή η δημιουργία φακέλου συνέχισης torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="240"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="300"/>
         <source>Cannot parse resume data: invalid format</source>
         <translation>Δεν είναι δυνατή η ανάλυση των δεδομένων συνέχισης: μη έγκυρη μορφή</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="330"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="339"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="378"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="390"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="399"/>
         <source>Cannot parse torrent info: %1</source>
         <translation>Δεν είναι δυνατή η ανάλυση των πληροφοριών torrent: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="321"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="381"/>
         <source>Cannot parse torrent info: invalid format</source>
         <translation>Δεν είναι δυνατή η ανάλυση πληροφοριών torrent: μη έγκυρη μορφή</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="351"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="411"/>
         <source>Mismatching info-hash detected in resume data</source>
         <translation>Εντοπίστηκε αναντιστοιχία hash πληροφοριών στα δεδομένα συνέχισης</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>Corrupted resume data: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>save_path is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="449"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
-        <translation>Δεν ήταν δυνατή η αποθήκευση των μεταδεδομένων του torrent στο &apos;%1&apos;. Σφάλμα: %2</translation>
+        <translation type="vanished">Δεν ήταν δυνατή η αποθήκευση των μεταδεδομένων του torrent στο &apos;%1&apos;. Σφάλμα: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="487"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation>Δεν ήταν δυνατή η αποθήκευση των δεδομένων συνέχισης του torrent στο &apos;%1&apos;. Σφάλμα: %2</translation>
+        <translation type="vanished">Δεν ήταν δυνατή η αποθήκευση των δεδομένων συνέχισης του torrent στο &apos;%1&apos;. Σφάλμα: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="194"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="254"/>
         <source>Couldn&apos;t load torrents queue: %1</source>
         <translation>Δεν ήταν δυνατή η φόρτωση της ουράς torrent: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="237"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="311"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="297"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="371"/>
         <source>Cannot parse resume data: %1</source>
         <translation>Δεν είναι δυνατή η ανάλυση των δεδομένων συνέχισης: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="372"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="432"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
         <translation>Τα δεδομένα συνέχισης δεν είναι έγκυρα: δεν βρέθηκαν μεταδεδομένα ούτε info-hash</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="512"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
-        <translation>Δεν ήταν δυνατή η αποθήκευση των δεδομένων στο &apos;%1&apos;. Σφάλμα: %2</translation>
+        <translation type="vanished">Δεν ήταν δυνατή η αποθήκευση των δεδομένων στο &apos;%1&apos;. Σφάλμα: %2</translation>
     </message>
 </context>
 <context>
@@ -2313,36 +2275,47 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="774"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="777"/>
         <source>Save resume data transaction failed. Error: %1</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t begin transaction. Error: %1</source>
-        <translation type="vanished">Δεν ήταν δυνατή η έναρξη της συναλλαγής. Σφάλμα: %1</translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="906"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="908"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>Δεν ήταν δυνατή η αποθήκευση των μεταδεδομένων του torrent Σφάλμα: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="967"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="969"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation>Δεν ήταν δυνατή η αποθήκευση των δεδομένων συνέχισης για το torrent &apos;%1&apos;. Σφάλμα: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="995"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="997"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>Δεν ήταν δυνατή η διαγραφή των δεδομένων συνέχισης του torrent &apos;%1&apos;. Σφάλμα: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1029"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1031"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation>Δεν ήταν δυνατή η αποθήκευση των θέσεων των torrents στην ουρά. Σφάλμα: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="566"/>
+        <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">Δεν ήταν δυνατή η αποθήκευση των μεταδεδομένων του torrent στο &apos;%1&apos;. Σφάλμα: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="604"/>
+        <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">Δεν ήταν δυνατή η αποθήκευση των δεδομένων συνέχισης του torrent στο &apos;%1&apos;. Σφάλμα: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="639"/>
+        <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished">Δεν ήταν δυνατή η αποθήκευση των δεδομένων στο &apos;%1&apos;. Σφάλμα: %2</translation>
     </message>
 </context>
 <context>
@@ -2646,10 +2619,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="vanished">Αποτυχία εξαγωγής torrent. Torrent: &quot;%1&quot;. Προορισμός: &quot;%2&quot;. Αιτία: &quot;%3&quot;</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3401"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation>Ματαίωση αποθήκευσης των δεδομένων συνέχισης. Αριθμός torrent σε εκκρεμότητα: %1</translation>
@@ -2824,14 +2793,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Ειδοποίηση σφάλματος αρχείου. Torrent: &quot;%1&quot;. Αρχείο: &quot;%2&quot;. Αιτία: %3</translation>
     </message>
     <message>
-        <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
-        <translation type="vanished">UPnP/NAT-PMP: Αποτυχία αντιστοίχισης θυρών. Μήνυμα: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
-        <translation type="vanished">UPnP/NAT-PMP: Επιτυχία αντιστοίχισης θυρών. Μήνυμα: &quot;%1&quot;</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6451"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
@@ -2934,39 +2895,39 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="41"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="67"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">Η παλιά διαδρομή δεν είναι έγκυρη: &apos;%1&apos;.</translation>
+        <translation>Η παλιά διαδρομή δεν είναι έγκυρη: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="43"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="69"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">Η νέα διαδρομή δεν είναι έγκυρη: &apos;%1&apos;.</translation>
+        <translation>Η νέα διαδρομή δεν είναι έγκυρη: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="45"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="71"/>
         <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="unfinished">Δεν επιτρέπεται απόλυτη διαδρομή: &apos;%1&apos;.</translation>
+        <translation>Δεν επιτρέπεται απόλυτη διαδρομή: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="55"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">Το αρχείο υπάρχει ήδη: &apos;%1&apos;.</translation>
+        <translation>Το αρχείο υπάρχει ήδη: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="59"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished">Το αρχείο δεν υπάρχει: &apos;%1&apos;.</translation>
+        <translation>Το αρχείο δεν υπάρχει: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="80"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">Ο φάκελος υπάρχει ήδη: &apos;%1&apos;.</translation>
+        <translation>Ο φάκελος υπάρχει ήδη: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="87"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished">Ο φάκελος δεν υπάρχει: &apos;%1&apos;.</translation>
+        <translation>Ο φάκελος δεν υπάρχει: &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -3211,10 +3172,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../app/cmdoptions.cpp" line="400"/>
         <source>Add torrents as running or stopped</source>
         <translation>Προσθήκη torrents ως εκκινημένα ή σε διακοπή</translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Παράλειψη ελέγχου hash</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="403"/>
@@ -3875,32 +3832,32 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>KeyValueDataStorage</name>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="110"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="111"/>
         <source>Inserting (updating) database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="155"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="156"/>
         <source>Fetching database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="192"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="193"/>
         <source>Deleting database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="406"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="411"/>
         <source>Opening database failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="413"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="418"/>
         <source>Starting database transaction failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="424"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="429"/>
         <source>Creating database table failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6220,7 +6177,7 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="293"/>
         <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="unfinished">Η σύνδεση απέτυχε, μη αναγνωρισμένη απάντηση: %1</translation>
+        <translation>Η σύνδεση απέτυχε, μη αναγνωρισμένη απάντηση: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="319"/>
@@ -6230,7 +6187,7 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="345"/>
         <source>Authentication failed, msg: %1</source>
-        <translation type="unfinished">Ο έλεγχος ταυτότητας απέτυχε, μήνυμα: %1</translation>
+        <translation>Ο έλεγχος ταυτότητας απέτυχε, μήνυμα: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="364"/>
@@ -6241,22 +6198,22 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="366"/>
         <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">&lt;mail from&gt;απορρίφθηκε από τον διακομιστή, μήνυμα: %1</translation>
+        <translation>&lt;mail from&gt;απορρίφθηκε από τον διακομιστή, μήνυμα: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="392"/>
         <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">&lt;data&gt;απορρίφθηκε από τον διακομιστή, μήνυμα: %1</translation>
+        <translation>&lt;data&gt;απορρίφθηκε από τον διακομιστή, μήνυμα: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="406"/>
         <source>Message was rejected by the server, error: %1</source>
-        <translation type="unfinished">Το μήνυμα απορρίφθηκε από τον διακομιστή, σφάλμα: %1</translation>
+        <translation>Το μήνυμα απορρίφθηκε από τον διακομιστή, σφάλμα: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="450"/>
         <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="unfinished">Τόσο το EHLO όσο και το HELO απέτυχαν, μήνυμα: %1</translation>
+        <translation>Τόσο το EHLO όσο και το HELO απέτυχαν, μήνυμα: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="491"/>
@@ -6266,56 +6223,17 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="537"/>
         <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="unfinished">Ο διακομιστής SMTP δεν φαίνεται να υποστηρίζει καμία από τις λειτουργίες ελέγχου ταυτότητας που υποστηρίζουμε [CRAM-MD5|PLAIN|LOGIN], παράλειψη ελέγχου ταυτότητας, γνωρίζοντας ότι είναι πιθανό να αποτύχει... Λειτουργίες ελέγχου ταυτότητας διακομιστή: %1</translation>
+        <translation>Ο διακομιστής SMTP δεν φαίνεται να υποστηρίζει καμία από τις λειτουργίες ελέγχου ταυτότητας που υποστηρίζουμε [CRAM-MD5|PLAIN|LOGIN], παράλειψη ελέγχου ταυτότητας, γνωρίζοντας ότι είναι πιθανό να αποτύχει... Λειτουργίες ελέγχου ταυτότητας διακομιστή: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="622"/>
         <source>Email Notification Error: %1</source>
-        <translation type="unfinished">Σφάλμα ειδοποίησης email: %1</translation>
+        <translation>Σφάλμα ειδοποίησης email: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="634"/>
         <source>Check the email server supports SMTPS (SMTP over SSL) and you are using the correct port</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Net::Smtp</name>
-    <message>
-        <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="vanished">Η σύνδεση απέτυχε, μη αναγνωρισμένη απάντηση: %1</translation>
-    </message>
-    <message>
-        <source>Authentication failed, msg: %1</source>
-        <translation type="vanished">Ο έλεγχος ταυτότητας απέτυχε, μήνυμα: %1</translation>
-    </message>
-    <message>
-        <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;mail from&gt;απορρίφθηκε από τον διακομιστή, μήνυμα: %1</translation>
-    </message>
-    <message>
-        <source>&lt;Rcpt to&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;Rcpt to&gt;απορρίφθηκε από τον διακομιστή, μήνυμα: %1</translation>
-    </message>
-    <message>
-        <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">&lt;data&gt;απορρίφθηκε από τον διακομιστή, μήνυμα: %1</translation>
-    </message>
-    <message>
-        <source>Message was rejected by the server, error: %1</source>
-        <translation type="vanished">Το μήνυμα απορρίφθηκε από τον διακομιστή, σφάλμα: %1</translation>
-    </message>
-    <message>
-        <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="vanished">Τόσο το EHLO όσο και το HELO απέτυχαν, μήνυμα: %1</translation>
-    </message>
-    <message>
-        <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="vanished">Ο διακομιστής SMTP δεν φαίνεται να υποστηρίζει καμία από τις λειτουργίες ελέγχου ταυτότητας που υποστηρίζουμε [CRAM-MD5|PLAIN|LOGIN], παράλειψη ελέγχου ταυτότητας, γνωρίζοντας ότι είναι πιθανό να αποτύχει... Λειτουργίες ελέγχου ταυτότητας διακομιστή: %1</translation>
-    </message>
-    <message>
-        <source>Email Notification Error: %1</source>
-        <translation type="vanished">Σφάλμα ειδοποίησης email: %1</translation>
     </message>
 </context>
 <context>
@@ -6464,10 +6382,6 @@ Minimum requirement: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set qBittorrent as default program for .torrent files and/or Magnet links&lt;br/&gt;you can use &lt;span style=&quot; font-weight:600;&quot;&gt;Default Programs&lt;/span&gt; dialog from &lt;span style=&quot; font-weight:600;&quot;&gt;Control Panel&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Για να ορίσετε το qBittorrent ως προεπιλεγμένο πρόγραμμα για αρχεία .torrent ή/και συνδέσμους Magnet&lt;br/&gt;μπορείτε να αλλάξετε τα&lt;span style=&quot; font-weight:600;&quot;&gt;Προεπιλεγμένα προγράμματα&lt;/span&gt; από τον &lt;span style=&quot; font-weight:600;&quot;&gt;Πίνακα ελέγχου&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="756"/>
         <source>Show speed in Dock</source>
         <translation type="unfinished"></translation>
@@ -6536,7 +6450,7 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1183"/>
         <source>Remove backup when removing torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση αντιγράφων ασφαλείας κατά την αφαίρεση torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1196"/>
@@ -6795,7 +6709,7 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="494"/>
         <source>Status Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Γραμμή Κατάστασης</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="500"/>
@@ -6987,7 +6901,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
     <message>
         <location filename="../gui/optionsdialog.ui" line="4110"/>
         <source>Unlimited</source>
-        <translation type="unfinished">Απεριόριστο</translation>
+        <translation>Απεριόριστο</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4218"/>
@@ -7269,10 +7183,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Προεπιλεγμένη Διαδρομή Αποθήκευσης:</translation>
     </message>
     <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">Αντιγραφή αρχείων .torrent στο:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="594"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation>Εμφάνιση του &amp;qBittorrent στην περιοχή ειδοποιήσεων</translation>
@@ -7281,14 +7191,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.ui" line="994"/>
         <source>Display &amp;torrent content and some options</source>
         <translation>Εμφάνιση περιεχομένων torrent και επιλογών</translation>
-    </message>
-    <message>
-        <source>De&amp;lete .torrent files afterwards </source>
-        <translation type="vanished">Διαγραφή αρχείων .torrent μετά</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">Αντιγραφή αρχείων .torrent για ολοκληρωμένες λήψεις στο:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1251"/>
@@ -8102,7 +8004,7 @@ readme[0-9].txt: φίλτρο για «readme1.txt», «readme2.txt» αλλά �
         <location filename="../gui/optionsdialog.cpp" line="682"/>
         <location filename="../gui/optionsdialog.cpp" line="694"/>
         <source>Example:</source>
-        <translation type="unfinished">Παράδειγμα:</translation>
+        <translation>Παράδειγμα:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="684"/>
@@ -8373,10 +8275,6 @@ readme[0-9].txt: φίλτρο για «readme1.txt», «readme2.txt» αλλά �
         <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Location Error</source>
         <translation>Σφάλμα Τοποθεσίας</translation>
-    </message>
-    <message>
-        <source>Choose export directory</source>
-        <translation type="vanished">Επιλέξτε κατάλογο εξαγωγής</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="630"/>
@@ -8841,154 +8739,6 @@ Check the Execution Log for errors.</source>
     </message>
 </context>
 <context>
-    <name>PluginSelectDialog</name>
-    <message>
-        <source>Search plugins</source>
-        <translation type="vanished">Προσθήκες αναζήτησης</translation>
-    </message>
-    <message>
-        <source>Installed search plugins:</source>
-        <translation type="vanished">Εγκατεστημένες προσθήκες αναζήτησης:</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Όνομα</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="vanished">Έκδοση</translation>
-    </message>
-    <message>
-        <source>Url</source>
-        <translation type="vanished">URL</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="vanished">Ενεργοποιημένο</translation>
-    </message>
-    <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="vanished">Προειδοποίηση: Βεβαιωθείτε ότι συμμορφώνεστε με τους νόμους περί πνευματικής ιδιοκτησίας της χώρας σας κατά τη λήψη torrents από οποιαδήποτε από αυτές τις μηχανές αναζήτησης.</translation>
-    </message>
-    <message>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="vanished">Μπορείτε να αποκτήσετε νέα πρόσθετα μηχανών αναζήτησης εδώ: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Install a new one</source>
-        <translation type="vanished">Εγκατάσταση ενός νέου</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Έλεγχος για ενημερώσεις</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Κλείσιμο</translation>
-    </message>
-    <message>
-        <source>Uninstall</source>
-        <translation type="vanished">Απεγκατάσταση</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Ναι</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">Όχι</translation>
-    </message>
-    <message>
-        <source>Uninstall warning</source>
-        <translation type="vanished">Προειδοποίηση απεγκατάστασης</translation>
-    </message>
-    <message>
-        <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
-Those plugins were disabled.</source>
-        <translation type="vanished">Μερικές προσθήκες δεν μπόρεσαν να απεγκατασταθούν γιατί συμπεριλαμβάνονται στο qBittorrent. Μόνο αυτές που προσθέσατε μόνοι σας μπορούν να απεγκατασταθούν.
-Αυτές οι προσθήκες απενεργοποιήθηκαν.</translation>
-    </message>
-    <message>
-        <source>Uninstall success</source>
-        <translation type="vanished">Επιτυχής απεγκατάσταση</translation>
-    </message>
-    <message>
-        <source>All selected plugins were uninstalled successfully</source>
-        <translation type="vanished">Όλες οι επιλεγμένες προσθήκες απεγκαταστάθηκαν με επιτυχία</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="vanished">Ενημέρωση προσθήκης αναζήτησης</translation>
-    </message>
-    <message>
-        <source>Plugins installed or updated: %1</source>
-        <translation type="vanished">Προσθήκες που εγκαταστάθηκαν ή ενημερώθηκαν: %1</translation>
-    </message>
-    <message>
-        <source>New search engine plugin URL</source>
-        <translation type="vanished">URL νέας προσθήκης μηχανής αναζήτησης</translation>
-    </message>
-    <message>
-        <source>URL:</source>
-        <translation type="vanished">URL:</translation>
-    </message>
-    <message>
-        <source>Invalid link</source>
-        <translation type="vanished">Μη έγκυρος σύνδεσμος</translation>
-    </message>
-    <message>
-        <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="vanished">Ο σύνδεσμος δεν φαίνεται να οδηγεί σε προσθήκη μηχανής αναζήτησης.</translation>
-    </message>
-    <message>
-        <source>Select search plugins</source>
-        <translation type="vanished">Επιλέξτε προσθήκες αναζήτησης</translation>
-    </message>
-    <message>
-        <source>qBittorrent search plugin</source>
-        <translation type="vanished">Προσθήκη αναζήτησης του qBittorrent</translation>
-    </message>
-    <message>
-        <source>All your plugins are already up to date.</source>
-        <translation type="vanished">Όλες σας οι προσθήκες είναι ήδη ενημερωμένες.</translation>
-    </message>
-    <message>
-        <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="vanished">Δυστυχώς, δεν ήταν δυνατός ο έλεγχος για ενημερώσεις προσθηκών. %1</translation>
-    </message>
-    <message>
-        <source>Search plugin install</source>
-        <translation type="vanished">Εγκατάσταση προσθήκης αναζήτησης</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">Δεν ήταν δυνατή η εγκατάσταση της προσθήκης μηχανής αναζήτησης &quot;%1&quot;. %2</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">Δεν ήταν δυνατή η ενημέρωση της προσθήκης μηχανής αναζήτησης &quot;%1&quot;. %2</translation>
-    </message>
-</context>
-<context>
-    <name>PluginSourceDialog</name>
-    <message>
-        <source>Plugin source</source>
-        <translation type="vanished">Πηγή προσθήκης</translation>
-    </message>
-    <message>
-        <source>Search plugin source:</source>
-        <translation type="vanished">Πηγή προσθήκης αναζήτησης:</translation>
-    </message>
-    <message>
-        <source>Local file</source>
-        <translation type="vanished">Τοπικό αρχείο</translation>
-    </message>
-    <message>
-        <source>Web link</source>
-        <translation type="vanished">Σύνδεσμος στο web</translation>
-    </message>
-</context>
-<context>
     <name>PluginsDialog</name>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="17"/>
@@ -9003,17 +8753,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="52"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="57"/>
         <source>Name</source>
-        <translation type="unfinished">Όνομα</translation>
+        <translation>Όνομα</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="62"/>
         <source>Version</source>
-        <translation type="unfinished">Έκδοση</translation>
+        <translation>Έκδοση</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="67"/>
@@ -9029,7 +8779,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/plugins/pluginsdialog.ui" line="75"/>
         <location filename="../gui/plugins/pluginsdialog.ui" line="117"/>
         <source>Enabled</source>
-        <translation type="unfinished">Ενεργοποιημένο</translation>
+        <translation>Ενεργοποιημένο</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="98"/>
@@ -9039,12 +8789,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="105"/>
         <source>Close</source>
-        <translation type="unfinished">Κλείσιμο</translation>
+        <translation>Κλείσιμο</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="122"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Απεγκατάσταση</translation>
+        <translation>Απεγκατάσταση</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="143"/>
@@ -9063,7 +8813,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="391"/>
         <source>Yes</source>
-        <translation type="unfinished">Ναι</translation>
+        <translation>Ναι</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="218"/>
@@ -9072,7 +8822,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="396"/>
         <source>No</source>
-        <translation type="unfinished">Όχι</translation>
+        <translation>Όχι</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="314"/>
@@ -9930,10 +9680,6 @@ Those plugins were disabled.</source>
         <translation>Αναζήτηση</translation>
     </message>
     <message>
-        <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="vanished">Η ανάκτηση των ροών RSS είναι απενεργοποιημένη τώρα! Μπορείτε να την ενεργοποιήσετε στις ρυθμίσεις της εφαρμογής.</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.ui" line="28"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;&lt;span style=&quot; text-decoration: none; color:#ff0000;&quot;&gt;Fetching of RSS feeds is disabled now! You can enable it in application settings.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
@@ -10137,10 +9883,6 @@ Those plugins were disabled.</source>
         <translation>Η Python πρέπει να εγκατασταθεί για να χρησιμοποιήσετε τη Μηχανή Αναζήτησης.</translation>
     </message>
     <message>
-        <source>Unable to create more than %1 concurrent searches.</source>
-        <translation type="vanished">Δεν είναι δυνατή η δημιουργία περισσότερων από %1 ταυτόχρονων αναζητήσεων.</translation>
-    </message>
-    <message>
         <location filename="../webui/api/searchcontroller.cpp" line="185"/>
         <location filename="../webui/api/searchcontroller.cpp" line="191"/>
         <source>Offset is out of range</source>
@@ -10223,7 +9965,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../webui/searchjobmanager.cpp" line="135"/>
         <source>Unable to create more than %1 concurrent searches.</source>
-        <translation type="unfinished">Δεν είναι δυνατή η δημιουργία περισσότερων από %1 ταυτόχρονων αναζητήσεων.</translation>
+        <translation>Δεν είναι δυνατή η δημιουργία περισσότερων από %1 ταυτόχρονων αναζητήσεων.</translation>
     </message>
     <message>
         <location filename="../webui/searchjobmanager.cpp" line="250"/>
@@ -10490,26 +10232,14 @@ Those plugins were disabled.</source>
         <translation>Άγνωστη μορφή αρχείου προσθήκης μηχανής αναζήτησης.</translation>
     </message>
     <message>
-        <source>Plugin already at version %1, which is greater than %2</source>
-        <translation type="vanished">Η προσθήκη βρίσκεται ήδη στην έκδοση %1, η οποία είναι μεγαλύτερη από την %2</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="252"/>
         <source>A more recent version of this plugin is already installed.</source>
         <translation>Μια πιο πρόσφατη έκδοση αυτής της προσθήκης έχει ήδη εγκατασταθεί.</translation>
     </message>
     <message>
-        <source>Plugin %1 is not supported.</source>
-        <translation type="vanished">Η προσθήκη %1 δεν υποστηρίζεται.</translation>
-    </message>
-    <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="329"/>
         <source>Plugin is not supported.</source>
         <translation>Η προσθήκη δεν υποστηρίζεται.</translation>
-    </message>
-    <message>
-        <source>Plugin %1 has been successfully updated.</source>
-        <translation type="vanished">Η προσθήκη %1 έχει ενημερωθεί επιτυχώς.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="405"/>
@@ -10613,70 +10343,70 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="17"/>
         <source>Search plugins</source>
-        <translation type="unfinished">Προσθήκες αναζήτησης</translation>
+        <translation>Προσθήκες αναζήτησης</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="29"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished">Εγκατεστημένες προσθήκες αναζήτησης:</translation>
+        <translation>Εγκατεστημένες προσθήκες αναζήτησης:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="52"/>
         <source>Name</source>
-        <translation type="unfinished">Όνομα</translation>
+        <translation>Όνομα</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="57"/>
         <source>Version</source>
-        <translation type="unfinished">Έκδοση</translation>
+        <translation>Έκδοση</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="62"/>
         <source>Url</source>
-        <translation type="unfinished">URL</translation>
+        <translation>Url</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="67"/>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="133"/>
         <source>Enabled</source>
-        <translation type="unfinished">Ενεργοποιημένο</translation>
+        <translation>Ενεργοποιημένο</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="80"/>
         <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="unfinished">Προειδοποίηση: Βεβαιωθείτε ότι συμμορφώνεστε με τους νόμους περί πνευματικής ιδιοκτησίας της χώρας σας κατά τη λήψη torrents από οποιαδήποτε από αυτές τις μηχανές αναζήτησης.</translation>
+        <translation>Προειδοποίηση: Βεβαιωθείτε ότι συμμορφώνεστε με τους νόμους περί πνευματικής ιδιοκτησίας της χώρας σας κατά τη λήψη torrents από οποιαδήποτε από αυτές τις μηχανές αναζήτησης.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="95"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished">Μπορείτε να αποκτήσετε νέα πρόσθετα μηχανών αναζήτησης εδώ: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation>Μπορείτε να αποκτήσετε νέα πρόσθετα μηχανών αναζήτησης εδώ: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="107"/>
         <source>Install a new one</source>
-        <translation type="unfinished">Εγκατάσταση ενός νέου</translation>
+        <translation>Εγκατάσταση ενός νέου</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="114"/>
         <source>Check for updates</source>
-        <translation type="unfinished">Έλεγχος για ενημερώσεις</translation>
+        <translation>Έλεγχος για ενημερώσεις</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="121"/>
         <source>Close</source>
-        <translation type="unfinished">Κλείσιμο</translation>
+        <translation>Κλείσιμο</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="138"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Απεγκατάσταση</translation>
+        <translation>Απεγκατάσταση</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="160"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="231"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="296"/>
         <source>Yes</source>
-        <translation type="unfinished">Ναι</translation>
+        <translation>Ναι</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="165"/>
@@ -10684,29 +10414,29 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="236"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="301"/>
         <source>No</source>
-        <translation type="unfinished">Όχι</translation>
+        <translation>Όχι</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished">Προειδοποίηση απεγκατάστασης</translation>
+        <translation>Προειδοποίηση απεγκατάστασης</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished">Μερικές προσθήκες δεν μπόρεσαν να απεγκατασταθούν γιατί συμπεριλαμβάνονται στο qBittorrent. Μόνο αυτές που προσθέσατε μόνοι σας μπορούν να απεγκατασταθούν.
+        <translation>Μερικές προσθήκες δεν μπόρεσαν να απεγκατασταθούν γιατί συμπεριλαμβάνονται στο qBittorrent. Μόνο αυτές που προσθέσατε μόνοι σας μπορούν να απεγκατασταθούν.
 Αυτές οι προσθήκες απενεργοποιήθηκαν.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>Uninstall success</source>
-        <translation type="unfinished">Επιτυχής απεγκατάσταση</translation>
+        <translation>Επιτυχής απεγκατάσταση</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished">Όλες οι επιλεγμένες προσθήκες απεγκαταστάθηκαν με επιτυχία</translation>
+        <translation>Όλες οι επιλεγμένες προσθήκες απεγκαταστάθηκαν με επιτυχία</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
@@ -10714,69 +10444,69 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="495"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Ενημέρωση προσθήκης αναζήτησης</translation>
+        <translation>Ενημέρωση προσθήκης αναζήτησης</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
         <source>Plugins installed or updated: %1</source>
-        <translation type="unfinished">Προσθήκες που εγκαταστάθηκαν ή ενημερώθηκαν: %1</translation>
+        <translation>Προσθήκες που εγκαταστάθηκαν ή ενημερώθηκαν: %1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="363"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="371"/>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished">URL νέας προσθήκης μηχανής αναζήτησης</translation>
+        <translation>URL νέας προσθήκης μηχανής αναζήτησης</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="364"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="372"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
         <source>Invalid link</source>
-        <translation type="unfinished">Μη έγκυρος σύνδεσμος</translation>
+        <translation>Μη έγκυρος σύνδεσμος</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished">Ο σύνδεσμος δεν φαίνεται να οδηγεί σε προσθήκη μηχανής αναζήτησης.</translation>
+        <translation>Ο σύνδεσμος δεν φαίνεται να οδηγεί σε προσθήκη μηχανής αναζήτησης.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="386"/>
         <source>Select search plugins</source>
-        <translation type="unfinished">Επιλέξτε προσθήκες αναζήτησης</translation>
+        <translation>Επιλέξτε προσθήκες αναζήτησης</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="387"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished">Προσθήκη αναζήτησης του qBittorrent</translation>
+        <translation>Προσθήκη αναζήτησης του qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="448"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished">Όλες σας οι προσθήκες είναι ήδη ενημερωμένες.</translation>
+        <translation>Όλες σας οι προσθήκες είναι ήδη ενημερωμένες.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="unfinished">Δυστυχώς, δεν ήταν δυνατός ο έλεγχος για ενημερώσεις προσθηκών. %1</translation>
+        <translation>Δυστυχώς, δεν ήταν δυνατός ο έλεγχος για ενημερώσεις προσθηκών. %1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="477"/>
         <source>Search plugin install</source>
-        <translation type="unfinished">Εγκατάσταση προσθήκης αναζήτησης</translation>
+        <translation>Εγκατάσταση προσθήκης αναζήτησης</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="478"/>
         <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">Δεν ήταν δυνατή η εγκατάσταση της προσθήκης μηχανής αναζήτησης &quot;%1&quot;. %2</translation>
+        <translation>Δεν ήταν δυνατή η εγκατάσταση της προσθήκης μηχανής αναζήτησης &quot;%1&quot;. %2</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="496"/>
         <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">Δεν ήταν δυνατή η ενημέρωση της προσθήκης μηχανής αναζήτησης &quot;%1&quot;. %2</translation>
+        <translation>Δεν ήταν δυνατή η ενημέρωση της προσθήκης μηχανής αναζήτησης &quot;%1&quot;. %2</translation>
     </message>
 </context>
 <context>
@@ -10784,22 +10514,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="14"/>
         <source>Plugin source</source>
-        <translation type="unfinished">Πηγή προσθήκης</translation>
+        <translation>Πηγή προσθήκης</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="26"/>
         <source>Search plugin source:</source>
-        <translation type="unfinished">Πηγή προσθήκης αναζήτησης:</translation>
+        <translation>Πηγή προσθήκης αναζήτησης:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="35"/>
         <source>Local file</source>
-        <translation type="unfinished">Τοπικό αρχείο</translation>
+        <translation>Τοπικό αρχείο</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="42"/>
         <source>Web link</source>
-        <translation type="unfinished">Σύνδεσμος στο web</translation>
+        <translation>Σύνδεσμος στο web</translation>
     </message>
 </context>
 <context>
@@ -10867,12 +10597,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation>&lt;b&gt;foo bar&lt;/b&gt;: αναζήτηση για &lt;b&gt;foo&lt;/b&gt; και &lt;b&gt;bar&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="849"/>
+        <location filename="../gui/search/searchwidget.cpp" line="862"/>
         <source>Close tab</source>
         <translation>Κλείσιμο καρτέλας</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="850"/>
+        <location filename="../gui/search/searchwidget.cpp" line="863"/>
         <source>Close all tabs</source>
         <translation>Κλείσιμο όλων των καρτελών</translation>
     </message>
@@ -10882,34 +10612,34 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation>Επιλογή...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="841"/>
+        <location filename="../gui/search/searchwidget.cpp" line="854"/>
         <source>Refresh tab</source>
         <translation>Ανανέωση καρτέλας</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="845"/>
+        <location filename="../gui/search/searchwidget.cpp" line="858"/>
         <source>Stop search</source>
         <translation>Διακοπή αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Search Engine</source>
         <translation>Μηχανή Αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation>Παρακαλώ εγκαταστήστε το Python για να χρησιμοποιήσετε την Μηχανή Αναζήτησης.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Empty search pattern</source>
         <translation>Κενό πρότυπο αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Please type a search pattern first</source>
         <translation>Παρακαλώ πληκτρολογήστε ένα πρότυπο αναζήτησης πρώτα</translation>
     </message>
@@ -10922,32 +10652,32 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
 <context>
     <name>SearchWidget::DataStorage</name>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="984"/>
+        <location filename="../gui/search/searchwidget.cpp" line="997"/>
         <source>Failed to load Search UI saved state data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Αποτυχία φόρτωσης δεδομένων αποθηκευμένης κατάστασης διεπαφής αναζήτησης. Αρχείο: &quot;%1&quot;. Σφάλμα: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1004"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1018"/>
         <source>Failed to load saved search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Αποτυχία φόρτωσης αποθηκευμένων αποτελεσμάτων αναζήτησης. Καρτέλα: &quot;%1&quot;. Αρχείο: &quot;%2&quot;. Σφάλμα: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1036"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1050"/>
         <source>Failed to save Search UI state. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Αποτυχία αποθήκευσης της κατάστασης της διεπαφής αναζήτησης. Αρχείο: &quot;%1&quot;. Σφάλμα: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1068"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1082"/>
         <source>Failed to save search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Αποτυχία αποθήκευσης αποτελεσμάτων αναζήτησης. Καρτέλα: &quot;%1&quot;. Αρχείο: &quot;%2&quot;. Σφάλμα: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1084"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
         <source>Failed to load Search UI history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Αποτυχία φόρτωσης ιστορικού διεπαφής αναζήτησης. Αρχείο: &quot;%1&quot;. Σφάλμα: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1112"/>
         <source>Failed to save search history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Αποτυχία αποθήκευσης ιστορικού αναζήτησης. Αρχείο: &quot;%1&quot;. Σφάλμα: &quot;%2&quot;</translation>
     </message>
@@ -11372,13 +11102,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     </message>
     <message>
         <source>%1 ms</source>
-        <comment>18 milliseconds</comment>
         <translation type="vanished">%1 ms</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.cpp" line="111"/>
-        <source>%1 ms</source>
-        <translation type="unfinished">%1 ms</translation>
+        <source>%1 μs</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11860,17 +11589,17 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="126"/>
         <source>Rename error</source>
-        <translation type="unfinished">Σφάλμα μετονομασίας</translation>
+        <translation>Σφάλμα μετονομασίας</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="156"/>
         <source>Resize columns</source>
-        <translation type="unfinished">Αλλαγή μεγέθους στηλών</translation>
+        <translation>Αλλαγή μεγέθους στηλών</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="166"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished">Αλλαγή του μεγέθους όλων των μη κρυφών στηλών στο μέγεθος του περιεχομένου τους</translation>
+        <translation>Αλλαγή του μεγέθους όλων των μη κρυφών στηλών στο μέγεθος του περιεχομένου τους</translation>
     </message>
 </context>
 <context>
@@ -11883,7 +11612,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentlayoutmodel.cpp" line="62"/>
         <source>Path</source>
-        <translation type="unfinished">Διαδρομή</translation>
+        <translation>Διαδρομή</translation>
     </message>
 </context>
 <context>
@@ -12056,22 +11785,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentcontentwidget.cpp" line="471"/>
         <source>By shown file order</source>
         <translation>Οπως η σειρά των αρχείων που εμφανίζονται</translation>
-    </message>
-    <message>
-        <source>Normal priority</source>
-        <translation type="vanished">Κανονική προτεραιότητα</translation>
-    </message>
-    <message>
-        <source>High priority</source>
-        <translation type="vanished">Υψηλή προτεραιότητα</translation>
-    </message>
-    <message>
-        <source>Maximum priority</source>
-        <translation type="vanished">Μέγιστη προτεραιότητα</translation>
-    </message>
-    <message>
-        <source>Priority by shown file order</source>
-        <translation type="vanished">Προτεραιότητα όπως η σειρά των αρχείων που εμφανίζονται</translation>
     </message>
 </context>
 <context>
@@ -14396,86 +14109,86 @@ Please choose a different name and try again.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="59"/>
+        <location filename="../base/utils/misc.cpp" line="60"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="60"/>
+        <location filename="../base/utils/misc.cpp" line="61"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="61"/>
+        <location filename="../base/utils/misc.cpp" line="62"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="62"/>
+        <location filename="../base/utils/misc.cpp" line="63"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="63"/>
+        <location filename="../base/utils/misc.cpp" line="64"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="64"/>
+        <location filename="../base/utils/misc.cpp" line="65"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation>PiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="65"/>
+        <location filename="../base/utils/misc.cpp" line="66"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation>EiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="101"/>
+        <location filename="../base/utils/misc.cpp" line="102"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="239"/>
+        <location filename="../base/utils/misc.cpp" line="240"/>
         <source>%1s</source>
         <comment>e.g: 10 seconds</comment>
         <translation>%1s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="244"/>
+        <location filename="../base/utils/misc.cpp" line="245"/>
         <source>%1m</source>
         <comment>e.g: 10 minutes</comment>
         <translation>%1λ</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="250"/>
+        <location filename="../base/utils/misc.cpp" line="251"/>
         <source>%1h %2m</source>
         <comment>e.g: 3 hours 5 minutes</comment>
         <translation>%1ώ %2λ</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="257"/>
+        <location filename="../base/utils/misc.cpp" line="258"/>
         <source>%1d %2h</source>
         <comment>e.g: 2 days 10 hours</comment>
         <translation>%1ημ. %2ώ.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="262"/>
+        <location filename="../base/utils/misc.cpp" line="263"/>
         <source>%1y %2d</source>
         <comment>e.g: 2 years 10 days</comment>
         <translation>%1χρ. %2ημ.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="109"/>
-        <location filename="../base/utils/misc.cpp" line="121"/>
+        <location filename="../base/utils/misc.cpp" line="110"/>
+        <location filename="../base/utils/misc.cpp" line="122"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Άγνωστο</translation>
@@ -14491,7 +14204,7 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="237"/>
+        <location filename="../base/utils/misc.cpp" line="238"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1λεπτό</translation>

@@ -975,10 +975,6 @@ De hash van een deeltje wordt gecontroleerd wanneer deze voor het eerst door een
         <translation>Mijn dynamische domeinnaam bijwerken</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Onvoltooide torrents bewaren in:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Schijfruimte vooraf toewijzen voor alle bestanden</translation>
     </message>
@@ -2373,10 +2369,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Meerdere verbindingen van dezelfde peer-ID toestaan:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Er is geprobeerd een test-e-mail te versturen.&lt;br&gt;Kijk in uw inbox om te controleren of dit gelukt is.&lt;br&gt;Controleer het uitvoeringslogboek op fouten.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Maximaal aantal sessies:</translation>
     </message>
@@ -2486,35 +2478,35 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Verwijdering van tracker uit alle torrents bevestigen:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Een van bovenstaande</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Alle bovenstaande</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Ook wanneer toevoeging geannuleerd is</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Ook .torrent-bestanden verwijderen waarvan de toevoeging geannuleerd werd.</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Ander pad gebruiken voor onvolledige torrents:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Verwijderen van alle labels bevestigen:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Er is geprobeerd een test-e-mail te versturen.\nKijk in uw inbox om te controleren of dit gelukt is.\nControleer het uitvoeringslogboek op fouten.</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Alle labels van geselecteerde torrents verwijderen?</translation>
     </message>
 </context>
 <context>
@@ -3904,19 +3896,19 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Modus</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Standaard (Overeenkomen met om het even welke begrenzing)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Overeenkomen met alle begrenzingen</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Overeenkomen met om het even welke begrenzing</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent werd gebouwd met de volgende bibliotheken:</translation>
+        <translation type="vanished">qBittorrent werd gebouwd met de volgende bibliotheken:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent-pictogram</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>%1 torrents toevoegen</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Gedeeld downloadvenster openen</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Aparte downloadvensters openen</translation>
     </message>
 </context>
 <context>

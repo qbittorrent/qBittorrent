@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>تحديث اسم النطاق الديناميكي الخاص بي</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">إبقاء الملفات الغير مكتملة في:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>تخصيص مسبق لمساحة القرص لجميع الملفات</translation>
     </message>
@@ -2493,15 +2489,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>أيضا عندما يتم إلغاء الإضافة</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>احذف أيضًا ملفات .torrent التي تم إلغاء إضافتها</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>استخدم مسارًا آخر للتورنتات غير المكتملة:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3840,7 +3836,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>إزالة جميع الوسوم من التورنتات المُختارة؟</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>تم بناء كيوبت‎تورنت باستخدام المكتبات التالية:</translation>
+        <translation type="vanished">تم بناء كيوبت‎تورنت باستخدام المكتبات التالية:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>qBittorrent icon</source>
         <translation>رمز كيوبت‎تورنت</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

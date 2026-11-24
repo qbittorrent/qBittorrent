@@ -193,11 +193,12 @@
     <message>
         <source>If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.
 The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.</source>
-        <translation type="unfinished" />
+        <translation>Ak je tento režim zapnutý, qBittorrent bude predpokladať, že všetky súbory pre tento torrent sú dostupné a že sa všetky zhodujú s hashmi v súbore torrentu. Príkladom použitia tohto režimu je, ak torrent je vytvorený a seedovaný, alebo ak už používateľ vie, že všetky súbory sú dokončené, tak toto je spôsob ako vykonať iba základnú kontrolu súborov a preskočiť úvodnú kontrolu hashov.
+Hash istej časti bude skontrolovaný pri prvom vyžiadaní peerom. Ak kontrola hashu zlyhá, všetky súbory v tomto torrente budú opätovne skontrolované.</translation>
     </message>
     <message>
         <source>Seed mode</source>
-        <translation type="unfinished" />
+        <translation>Režim seedovania</translation>
     </message>
     <message>
         <source>Download</source>
@@ -263,7 +264,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Vynútiť spustenie torrentov</translation>
     </message>
 </context>
 <context>
@@ -668,7 +669,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation>Pridať torrentový súbor...</translation>
+        <translation>Pridať odkaz na torrent...</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -972,10 +973,6 @@ The piece hash will be checked when it is requested for the first time by a peer
     <message>
         <source>Update my dynamic domain name</source>
         <translation>Aktualizovať môj dynamický doménový názov</translation>
-    </message>
-    <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Ponechať neúplné torrenty v:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -2493,15 +2490,15 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Vymazať tiež ak bolo pridanie zrušené</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Vymazať tiež .torrent súbory, ktorých pridanie zlyhalo</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Pre nedokončené torrenty použiť inú cestu:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3189,7 +3186,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Vynútiť spustenie torrentov</translation>
     </message>
 </context>
 <context>
@@ -3840,7 +3837,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Odstrániť všetky štítky z vybratých torrentov?</translation>
     </message>
 </context>
 <context>
@@ -4304,7 +4301,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Vynútiť spustenie torrentov</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4371,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent bol vytvorený s následujúcimi knižnicami:</translation>
+        <translation type="vanished">qBittorrent bol vytvorený s následujúcimi knižnicami:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4386,7 +4383,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>Bezplatná databáza IP to Country Lite od DB-IP sa používa na riešenie krajín peerov. Databáza je licencovaná podľa medzinárodnej licencie Creative Commons Attribution 4.0</translation>
+        <translation>Bezplatná databáza IP to Country Lite od DB-IP sa používa na zisťovanie krajín peerov. Databáza je licencovaná podľa medzinárodnej licencie Creative Commons Attribution 4.0</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -4403,6 +4400,10 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     <message>
         <source>qBittorrent icon</source>
         <translation>Ikona qBittorrentu</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4974,7 +4975,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>Vynútiť spustenie torrentov</translation>
     </message>
 </context>
 <context>

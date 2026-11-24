@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pt_PT">
+<TS version="2.1" language="pt">
 <context>
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation type="vanished">Sobre</translation>
+        <translation type="vanished">Acerca</translation>
     </message>
 </context>
 <context>
@@ -972,10 +972,6 @@ The piece hash will be checked when it is requested for the first time by a peer
     <message>
         <source>Update my dynamic domain name</source>
         <translation>Atualizar o nome de domínio dinâmico</translation>
-    </message>
-    <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Guardar os torrents incompletos em:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -2405,7 +2401,7 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation type="unfinished" />
+        <translation>Exibir o conteúdo do torrent e algumas opções</translation>
     </message>
     <message>
         <source>Separate multiple email addresses within each email with a comma.</source>
@@ -2485,23 +2481,23 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Qualquer uma das opções acima</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Todas as opções acima</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Também quando a adição for cancelada</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Eliminar também os ficheiros .torrent cuja adição foi cancelada</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Usar outro caminho para os torrents incompletos:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3840,7 +3836,7 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Remover todas as etiquetas dos torrents selecionados?</translation>
     </message>
 </context>
 <context>
@@ -3907,11 +3903,11 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Corresponder a todos os limites</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Corresponder a qualquer limite</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>O qBittorrent foi criado com as seguintes bibliotecas:</translation>
+        <translation type="vanished">O qBittorrent foi criado com as seguintes bibliotecas:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ Utilize ';' para separar várias entradas. Pode utilizar o carácter universal '
     <message>
         <source>qBittorrent icon</source>
         <translation>Ícone do qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4931,7 +4931,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished" />
+        <translation>Importar</translation>
     </message>
 </context>
 <context>

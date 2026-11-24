@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Обнови име мог динамичког домена</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Задржи некомплетне торенте у:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Унапред додели простор на диску за све фајлове</translation>
     </message>
@@ -2493,15 +2489,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Такође када се додавање откаже</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Такође обришите .torrent датотеке чије је додавање отказано</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Користите другу путању за непотпуне торенте:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3840,7 +3836,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Уклонити све ознаке са изабраних торената?</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent је направљен са следећим библиотекама:</translation>
+        <translation type="vanished">qBittorrent је направљен са следећим библиотекама:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>qBittorrent icon</source>
         <translation>Икона qBittorrent-а</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

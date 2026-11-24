@@ -5,7 +5,7 @@
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation type="vanished">O aplikaci</translation>
+        <translation type="vanished">O</translation>
     </message>
 </context>
 <context>
@@ -550,7 +550,7 @@ Hash jednotlivých částí bude zkontrolován až při první žádosti peera. 
     </message>
     <message>
         <source>Unable to parse response.</source>
-        <translation>Nelze zpracovat odpověď.</translation>
+        <translation>Nelze analyzovat odpověď.</translation>
     </message>
     <message>
         <source>Unable to rotate API key.</source>
@@ -973,10 +973,6 @@ Hash jednotlivých částí bude zkontrolován až při první žádosti peera. 
     <message>
         <source>Update my dynamic domain name</source>
         <translation>Aktualizovat můj dynamický doménový název (DDNS)</translation>
-    </message>
-    <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Ponechat nedokončené torrenty v:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -2373,10 +2369,6 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
         <translation>Zapněte více spojení od stejného Peer ID:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Proveden pokus o odeslání testovacího e-mailu.&lt;br&gt;Zkontrolujte svou doručenou poštu pro potvrzení doručení.&lt;br&gt;Zkontrolujte Záznamy programu zda nedošlo k chybám.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Omezení počtu relací:</translation>
     </message>
@@ -2486,35 +2478,35 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Potvrďte odebrání trackeru ze všech torrentů:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Libovolné z výše uvedeného</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Vše z výše uvedeného</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Také pokud bylo přidání zrušeno</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Smazat i .torrent soubory, jejichž přidání bylo zrušeno</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Použij jiné umístění pro nedokončené torrenty:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Potvrďte odebrání štítků:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Bylo provedeno odeslání zkušebního e-mailu.\nZkontrolujte svou doručenou poštu, abyste ověřili, zda se odeslání podařilo.\nZkontrolujte Záznamy programu (Log), zda nenaleznete chyby.</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Odebrat všechny štítky z vybraných torrentů?</translation>
     </message>
 </context>
 <context>
@@ -3904,19 +3896,19 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Režim</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Výchozí (Odpovídá jakémukoli limitu)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Odpovídá všem limitům</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Odpovídá jakémukoli limitu</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent byl vytvořen s následujícími knihovnami:</translation>
+        <translation type="vanished">qBittorrent byl vytvořen s následujícími knihovnami:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     <message>
         <source>qBittorrent icon</source>
         <translation>ikona qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Přidat %1 torrentů</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Otevřít společné okno stahování</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Otevřít okna stahování odděleně</translation>
     </message>
 </context>
 <context>

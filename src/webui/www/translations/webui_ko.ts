@@ -193,11 +193,12 @@
     <message>
         <source>If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.
 The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.</source>
-        <translation type="unfinished" />
+        <translation>이 옵션을 설정하면 qBittorrent는 해당 토렌트의 모든 파일이 존재하며, 그 파일들이 토렌트 파일에 기록된 해시값과 일치한다고 간주합니다. 이 모드는 토렌트를 직접 생성하여 시딩을 시작하는 경우나, 사용자가 이미 모든 파일이 온전하게 갖춰져 있음을 알고 있는 경우에 유용합니다. 이 방식을 사용하면 초기 해시 검사 과정을 건너뛰고 기본적인 파일 확인만 수행하게 됩니다
+피어가 특정 조각을 처음으로 요청할 때 해당 조각의 해시값이 검사됩니다. 만약 해시 검사에 실패하면, 해당 토렌트에 포함된 모든 파일을 다시 검사하게 됩니다.</translation>
     </message>
     <message>
         <source>Seed mode</source>
-        <translation type="unfinished" />
+        <translation>시드 모드</translation>
     </message>
     <message>
         <source>Download</source>
@@ -205,11 +206,11 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>%1 free</source>
-        <translation type="unfinished" />
+        <translation>%1 남음</translation>
     </message>
     <message>
         <source>%1 needed · %2 free</source>
-        <translation type="unfinished" />
+        <translation>%1 필요 · %2 남음</translation>
     </message>
 </context>
 <context>
@@ -263,7 +264,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>토렌트 강제 시작</translation>
     </message>
 </context>
 <context>
@@ -429,7 +430,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation>이름을 꼭 입력해야 합니다.</translation>
+        <translation>이름이 비어 있을 수 없습니다</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
@@ -461,7 +462,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation>자바스크립트가 필요합니다! WebUI가 올바르게 작동하려면 자바스크립트를 활성화가 요구됨</translation>
+        <translation>JavaScript가 필요합니다! WebUI가 제대로 작동하려면 JavaScript를 활성화해야 합니다</translation>
     </message>
     <message>
         <source>External IP: N/A</source>
@@ -537,11 +538,11 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation>배포 시간 제한은 음수 값을 가질 수 없습니다.</translation>
+        <translation>시딩 시간 제한은 음수 값을 가질 수 없습니다.</translation>
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation>공유 비율 제한은 음수 값이 없어야 합니다.</translation>
+        <translation>공유 비율 제한은 음수 값을 가질 수 없습니다.</translation>
     </message>
     <message>
         <source>Peer turnover interval must be greater than or equal to 0.</source>
@@ -589,23 +590,23 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>BitTorrent session shutdown timeout must be between -1 and 2147483647.</source>
-        <translation type="unfinished" />
+        <translation>BitTorrent 세션 종료 타임아웃은 -1과 2147483647 사이여야 합니다.</translation>
     </message>
     <message>
         <source>Unable to resume the session.</source>
-        <translation type="unfinished" />
+        <translation>세션을 다시 시작할 수 없습니다.</translation>
     </message>
     <message>
         <source>Unable to force start torrents.</source>
-        <translation type="unfinished" />
+        <translation>토렌트를 강제로 시작할 수 없습니다.</translation>
     </message>
     <message>
         <source>Invalid path to Python executable. Path contains unnecessary leading and trailing quotes.</source>
-        <translation type="unfinished" />
+        <translation>Python 실행 파일의 올바르지 않은 경로입니다. 경로에 불필요한 앞뒤 따옴표가 포함되어 있습니다.</translation>
     </message>
     <message>
         <source>Unable to pause the session.</source>
-        <translation type="unfinished" />
+        <translation>세션을 일시 중지할 수 없습니다.</translation>
     </message>
 </context>
 <context>
@@ -676,7 +677,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>No</source>
-        <translation>아니오</translation>
+        <translation>아니요</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -884,11 +885,11 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Resume session</source>
-        <translation type="unfinished" />
+        <translation>세션 재개</translation>
     </message>
     <message>
         <source>[PAUSED]</source>
-        <translation type="unfinished" />
+        <translation>[일시 정지]</translation>
     </message>
     <message>
         <source>Global Speed Limits</source>
@@ -896,15 +897,15 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Pause session</source>
-        <translation type="unfinished" />
+        <translation>세션 일시 정지</translation>
     </message>
     <message>
         <source>Pause Session</source>
-        <translation type="unfinished" />
+        <translation>세션 일시 정지</translation>
     </message>
     <message>
         <source>Resume Session</source>
-        <translation type="unfinished" />
+        <translation>세션 재개</translation>
     </message>
 </context>
 <context>
@@ -972,10 +973,6 @@ The piece hash will be checked when it is requested for the first time by a peer
     <message>
         <source>Update my dynamic domain name</source>
         <translation>동적 도메인 이름 갱신</translation>
-    </message>
-    <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">완료못한  토렌트 보관 위치:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -1413,7 +1410,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation>모든 계층에 항상 알리기:</translation>
+        <translation>항상 모든 계층에 공지:</translation>
     </message>
     <message>
         <source>Embedded tracker port:</source>
@@ -1517,7 +1514,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation>계층 내 모든 트래커에 항상 알리기:</translation>
+        <translation>항상 동일 계층 내의 모든 트래커에게 공지:</translation>
     </message>
     <message>
         <source>Session timeout:</source>
@@ -1653,7 +1650,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>IP 또는 포트가 변경되면 모든 트래커에게 다시 알림:</translation>
+        <translation>IP 또는 포트가 변경되면 모든 트래커에게 다시 공지:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -2077,7 +2074,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
-        <translation>알림 포트는 0에서 65535 사이여야 합니다.</translation>
+        <translation>공지 포트는 0에서 65535 사이여야 합니다.</translation>
     </message>
     <message>
         <source>Light</source>
@@ -2345,19 +2342,19 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Provide the sending email address.</source>
-        <translation type="unfinished" />
+        <translation>발신 이메일 주소를 입력해 주세요.</translation>
     </message>
     <message>
         <source>Enable I2P Peer Exchange (I2P PeX) to find more peers (requires restart)</source>
-        <translation type="unfinished" />
+        <translation>더 많은 피어를 찾을 수 있도록 I2P 피어 교환 (I2P PeX)을 활성화합니다 (재시작 필요).</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished" />
+        <translation>상태 표시줄</translation>
     </message>
     <message>
         <source>Notification</source>
-        <translation type="unfinished" />
+        <translation>알림</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent.</source>
@@ -2365,19 +2362,19 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Separate multiple emails with a semicolon.</source>
-        <translation type="unfinished" />
+        <translation>여러 이메일은 세미콜론으로 구분하세요.</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same Peer ID:</source>
-        <translation type="unfinished" />
+        <translation>동일한 피어 ID로 여러 연결 허용:</translation>
     </message>
     <message>
         <source>Sessions count limit:</source>
-        <translation type="unfinished" />
+        <translation>세션 수 제한:</translation>
     </message>
     <message>
         <source>I2P outbound length variance:</source>
-        <translation type="unfinished" />
+        <translation>I2P 아웃바운드 길이 변동:</translation>
     </message>
     <message>
         <source>Transfer List</source>
@@ -2385,23 +2382,23 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Start BitTorrent session in paused state:</source>
-        <translation type="unfinished" />
+        <translation>일시 정지 상태로 BitTorrent 세션 시작:</translation>
     </message>
     <message>
         <source>Store backup in:</source>
-        <translation type="unfinished" />
+        <translation>백업을 다음에 저장:</translation>
     </message>
     <message>
         <source>Save search tabs</source>
-        <translation type="unfinished" />
+        <translation>검색 탭 저장</translation>
     </message>
     <message>
         <source>Store backup .torrent file</source>
-        <translation type="unfinished" />
+        <translation>백업 .torrent 파일 저장</translation>
     </message>
     <message>
         <source>Note: b@y.com &amp; c@z.com will both see each other's email addresses, whereas a@x.com will not see them nor be seen.</source>
-        <translation type="unfinished" />
+        <translation>참고: b@y.com과 c@z.com은 서로의 이메일 주소를 볼 수 있는 반면, a@x.com은 상대방의 이메일 주소를 볼 수 없을 뿐만 아니라 자신의 이메일 주소도 상대방에게 노출되지 않습니다.</translation>
     </message>
     <message>
         <source>Display torrent content and some options</source>
@@ -2409,15 +2406,15 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Separate multiple email addresses within each email with a comma.</source>
-        <translation type="unfinished" />
+        <translation>각 이메일 안의 여러 이메일 주소는 쉼표로 구분해 주세요.</translation>
     </message>
     <message>
         <source>Provide the recipient email address or addresses.</source>
-        <translation type="unfinished" />
+        <translation>수신자 이메일 주소 또는 여러 주소를 입력해 주세요.</translation>
     </message>
     <message>
         <source>Show external IP</source>
-        <translation type="unfinished" />
+        <translation>외부 IP 표시</translation>
     </message>
     <message>
         <source>Search</source>
@@ -2425,7 +2422,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>BitTorrent session shutdown timeout [-1: unlimited]:</source>
-        <translation type="unfinished" />
+        <translation>BitTorrent 세션 종료 타임아웃 [-1: 무제한]:</translation>
     </message>
     <message>
         <source>Example:</source>
@@ -2433,83 +2430,83 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Provide the SMTP server address for sending email notifications.</source>
-        <translation type="unfinished" />
+        <translation>이메일 알림을 전송하기 위한 SMTP 서버 주소를 제공합니다.</translation>
     </message>
     <message>
         <source>smtp.example.com:465 - connect to server smtp.example.com on port 465</source>
-        <translation type="unfinished" />
+        <translation>smtp.example.com:465 - 포트 465의 smtp.example.com 서버에 연결</translation>
     </message>
     <message>
         <source>Maximum outstanding block requests from a peer:</source>
-        <translation type="unfinished" />
+        <translation>피어의 최대 미처리 블록 요청 수:</translation>
     </message>
     <message>
         <source>Also save search results</source>
-        <translation type="unfinished" />
+        <translation>검색 결과도 저장</translation>
     </message>
     <message>
         <source>I2P inbound length variance:</source>
-        <translation type="unfinished" />
+        <translation>I2P 인바운드 길이 분산:</translation>
     </message>
     <message>
         <source>To manually specify the server port, add a colon and then the port number to the end.</source>
-        <translation type="unfinished" />
+        <translation>서버 포트를 수동으로 지정하려면 끝에 콜론을 추가한 다음 포트 번호를 붙이세요.</translation>
     </message>
     <message>
         <source>Remove backup when removing torrent</source>
-        <translation type="unfinished" />
+        <translation>토렌트를 제거할 때 백업 제거</translation>
     </message>
     <message>
         <source>When torrent finished move backup to:</source>
-        <translation type="unfinished" />
+        <translation>토렌트 다운로드가 완료되면 백업 파일을 다음으로 이동:</translation>
     </message>
     <message>
         <source>STUN server for WebTorrent NAT traversal:</source>
-        <translation type="unfinished" />
+        <translation>WebTorrent NAT 우회를 위한 STUN 서버:</translation>
     </message>
     <message>
         <source>The server address can be entered either as a DNS name or an IP address (DNS name recommended).</source>
-        <translation type="unfinished" />
+        <translation>서버 주소는 DNS 이름 또는 IP 주소로 입력할 수 있습니다 (DNS 이름 권장).</translation>
     </message>
     <message>
         <source>Allow outgoing connections when seeding:</source>
-        <translation type="unfinished" />
+        <translation>시딩 시 발신 연결 허용:</translation>
     </message>
     <message>
         <source>a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com</source>
-        <translation type="unfinished" />
+        <translation>a@x.com;b@y.com,c@z.com - 이메일 두 통을 보냅니다: 첫 번째는 a@x.com으로만, 두 번째는 b@y.com과 c@z.com 모두로 보냅니다</translation>
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>모든 토렌트에서 트래커 제거 확인:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>위의 어느 것이든</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>위의 모든 것들</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>또한 추가가 취소된 경우에도 삭제</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>또한 추가가 취소된 .torrent 파일을 삭제합니다</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>불완전한 토렌트에 다른 경로 사용:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>모든 태그 제거 확인:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>테스트 이메일을 보내려고 했습니다.\n받은 편지함을 확인하여 성공 여부를 확인하세요.\n실행 로그에 오류가 있는지 확인합니다.</translation>
     </message>
 </context>
 <context>
@@ -2596,7 +2593,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Contribution</source>
-        <translation type="unfinished" />
+        <translation>기여</translation>
     </message>
 </context>
 <context>
@@ -2717,7 +2714,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation>다시 알림 시간:</translation>
+        <translation>다시 공지 시간:</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
@@ -2937,7 +2934,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Copy download URL</source>
-        <translation type="unfinished" />
+        <translation>다운로드 URL 복사</translation>
     </message>
 </context>
 <context>
@@ -3042,15 +3039,15 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Queued tracker announces:</source>
-        <translation>대기 중인 트래커가 알림을 보냅니다:</translation>
+        <translation>대기 중인 트래커가 공지:</translation>
     </message>
     <message>
         <source>Request latency:</source>
-        <translation type="unfinished" />
+        <translation>요청 지연 시간:</translation>
     </message>
     <message>
         <source>The time it takes from receiving a request from a peer until we're sending the response back on the socket</source>
-        <translation type="unfinished" />
+        <translation>피어로부터 요청을 받은 시점부터 소켓으로 응답을 다시 전송하기까지 걸리는 시간</translation>
     </message>
 </context>
 <context>
@@ -3189,7 +3186,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>토렌트 강제 시작</translation>
     </message>
 </context>
 <context>
@@ -3330,7 +3327,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation>재공지</translation>
+        <translation>다시 공지</translation>
     </message>
     <message>
         <source>Private</source>
@@ -3485,7 +3482,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>URL/Announce Endpoint</source>
-        <translation>URL/Announce 엔드포인트</translation>
+        <translation>URL/공지 엔드포인트</translation>
     </message>
     <message>
         <source>BT Protocol</source>
@@ -3493,7 +3490,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Next Announce</source>
-        <translation>다음 갱신</translation>
+        <translation>다음 공지</translation>
     </message>
     <message>
         <source>Tier:</source>
@@ -3509,15 +3506,15 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Force reannounce to selected tracker(s)</source>
-        <translation>선택된 트래커에 다시 알림 강제 실행</translation>
+        <translation>선택된 트래커에 재공지 강제 실행</translation>
     </message>
     <message>
         <source>Min Announce</source>
-        <translation>최소 갱신</translation>
+        <translation>최소 공지</translation>
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
-        <translation>모든 트래커에 강제로 다시 알리기</translation>
+        <translation>모든 트래커에 강제로 다시 공지</translation>
     </message>
 </context>
 <context>
@@ -3736,7 +3733,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>다시 알림 강제 적용</translation>
+        <translation>강제 다시 공지</translation>
     </message>
     <message>
         <source>Edit Category</source>
@@ -3840,7 +3837,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>선택한 토렌트에서 모든 태그를 제거하시겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -3899,19 +3896,19 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>모드</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>기본값 (어떤 제한이든 일치)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>모든 제한에 맞추기</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>임의의 제한에 맞추기</translation>
     </message>
 </context>
 <context>
@@ -4304,7 +4301,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>토렌트 강제 시작</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4371,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent는 다음 라이브러리로 만들었습니다:</translation>
+        <translation type="vanished">qBittorrent는 다음 라이브러리로 만들었습니다:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4400,10 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent 아이콘</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4488,23 +4489,23 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Blocked opening search result description page URL. Only http:// and https:// links can be opened.</source>
-        <translation type="unfinished" />
+        <translation>검색 결과 설명 페이지 URL이 열려 있지 않습니다. http:// 및 https:// 링크만 열 수 있습니다.</translation>
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>%1 토렌트 추가</translation>
     </message>
     <message>
         <source>Search results are no longer available</source>
-        <translation type="unfinished" />
+        <translation>검색 결과를 더 이상 사용할 수 없습니다</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>별도의 다운로드 창 열기</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>공유 다운로드 창 열기</translation>
     </message>
 </context>
 <context>
@@ -4642,19 +4643,19 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Blocked opening RSS article URL. Only http:// and https:// links can be opened.</source>
-        <translation type="unfinished" />
+        <translation>열기 차단됨 RSS 문서 URL. http:// 및 https:// 링크만 열 수 있습니다.</translation>
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>%1 토렌트 추가</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>공유 다운로드 창 열기</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>별도의 다운로드 창 열기</translation>
     </message>
 </context>
 <context>
@@ -4927,7 +4928,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished" />
+        <translation>내보내기</translation>
     </message>
     <message>
         <source>Import</source>
@@ -4974,7 +4975,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Force start torrents</source>
-        <translation type="unfinished" />
+        <translation>토렌트 강제 시작</translation>
     </message>
 </context>
 <context>
@@ -5468,7 +5469,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Ignore dotfiles</source>
-        <translation type="unfinished" />
+        <translation>점 파일 무시</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger than:</source>
@@ -5480,7 +5481,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Ignore Dotfiles</source>
-        <translation type="unfinished" />
+        <translation>점 파일 무시</translation>
     </message>
     <message>
         <source>Start seeding immediately</source>
@@ -5496,7 +5497,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>If checked, filenames starting with a period punctuation mark `.` will not be added to the created torrent.</source>
-        <translation type="unfinished" />
+        <translation>선택하면 마침표 구두점 `.`로 시작하는 파일 이름이 생성된 토렌트에 추가되지 않습니다.</translation>
     </message>
 </context>
 <context>
@@ -5523,23 +5524,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>%1 토렌트 추가</translation>
     </message>
     <message>
         <source>Open separate dialog for each torrent</source>
-        <translation type="unfinished" />
+        <translation>각 토렌트마다 별도의 대화 상자 열기</translation>
     </message>
     <message>
         <source>Add Torrents</source>
-        <translation type="unfinished" />
+        <translation>토렌트 추가</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished" />
+        <translation>계속</translation>
     </message>
     <message>
         <source>All torrents will use a single options dialog. Check below to configure each one separately.</source>
-        <translation type="unfinished" />
+        <translation>모든 토렌트는 단일 옵션 대화상자를 사용합니다. 각 항목을 개별적으로 구성하려면 아래에서 확인해 주세요.</translation>
     </message>
 </context>
 <context>
@@ -5566,11 +5567,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Upload speed</source>
-        <translation type="unfinished" />
+        <translation>업로드 속도</translation>
     </message>
     <message>
         <source>Download speed</source>
-        <translation type="unfinished" />
+        <translation>다운로드 속도</translation>
     </message>
     <message>
         <source>Speed limits</source>
@@ -5578,11 +5579,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Alternative download speed</source>
-        <translation type="unfinished" />
+        <translation>대체 다운로드 속도</translation>
     </message>
     <message>
         <source>Alternative upload speed</source>
-        <translation type="unfinished" />
+        <translation>대체 업로드 속도</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -5602,7 +5603,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Failed to set speed limits</source>
-        <translation type="unfinished" />
+        <translation>속도 제한 설정에 실패했습니다</translation>
     </message>
 </context>
 <context>
@@ -5702,7 +5703,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Share limit values cannot be empty or invalid.</source>
-        <translation type="unfinished" />
+        <translation>공유 제한 값은 비어 있거나 유효하지 않을 수 없습니다.</translation>
     </message>
     <message>
         <source>Action when the limit is reached:</source>
@@ -5749,11 +5750,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TorrentContent</name>
     <message>
         <source>Unavailable until all selected files are downloaded</source>
-        <translation type="unfinished" />
+        <translation>선택한 모든 파일이 다운로드될 때까지 이용할 수 없습니다</translation>
     </message>
     <message>
         <source>Not available for folders</source>
-        <translation type="unfinished" />
+        <translation>폴더에는 사용할 수 없습니다</translation>
     </message>
 </context>
 </TS>

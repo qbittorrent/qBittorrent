@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Obnovi ime mog dinamičkog domena</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Zadrži nekompletne torente u:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Unapred dodeli prostor na disku za sve fajlove</translation>
     </message>
@@ -2493,15 +2489,15 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Takođe kada se dodavanje otkaže</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Takođe obrišite .torrent datoteke čije je dodavanje otkazano</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Koristite drugu putanju za nepotpune torente:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3840,7 +3836,7 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Ukloniti sve oznake sa izabranih torenata?</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent je napravljen sa sledećim bibliotekama:</translation>
+        <translation type="vanished">qBittorrent je napravljen sa sledećim bibliotekama:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
     <message>
         <source>qBittorrent icon</source>
         <translation>Ikona qBittorrent-a</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

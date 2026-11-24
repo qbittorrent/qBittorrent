@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">نگهداری تورنت‌های نا تمام در:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation type="unfinished" />
     </message>
@@ -2497,7 +2493,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>از مسیر دیگری برای تورنت های ناقص استفاده کنید:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -4370,7 +4366,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>کیوبیت‌تورنت با استفاده از کتابخانه های زیر ساخته شده است:</translation>
+        <translation type="vanished">کیوبیت‌تورنت با استفاده از کتابخانه های زیر ساخته شده است:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4398,6 +4394,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>

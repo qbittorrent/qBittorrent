@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Päivitä dynaamisen verkkotunnukseni nimi</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Säilytä keskeneräiset torrentit kohteeseen:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Varaa kaikille tiedostoille levytila ennakkoon</translation>
     </message>
@@ -2493,15 +2489,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Myös silloin, kun lisäys peruutetaan</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Poista myös torrent-tiedostot, joiden lisääminen peruutettiin</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Käytä keskeneräisille torrenteille eri sijaintia:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -2509,7 +2505,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</translation>
     </message>
 </context>
 <context>
@@ -3840,7 +3836,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Poistetaanko valituista torrenteista kaikki tunnisteet?</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent rakennettiin käyttäen seuraavia kirjastoja:</translation>
+        <translation type="vanished">qBittorrent rakennettiin käyttäen seuraavia kirjastoja:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent-kuvake</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Dinamik domen adını yeniləmək</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Tamamlanmamış torrentləri burada tutmaq:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Bütün fayllar üçün əvvəlcədən yer ayırmaq</translation>
     </message>
@@ -2493,15 +2489,15 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Həmçinin əlavə edilməsi ləğv edildikdə</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Həmçinin əlavə edilməsi ləğv olunan .torrent fayllarını silmək</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Tamamlanmamış torrentlər üçün başqa yoldan istifadə edin:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3840,7 +3836,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Seçilmiş torrentlərdən bütün etiketlər silinsin?</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent aşağıdakı kitabxanalar ilə hazılandı:</translation>
+        <translation type="vanished">qBittorrent aşağıdakı kitabxanalar ilə hazılandı:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent nişanı</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Atnaujinti mano dinaminį domeno vardą</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Nebaigtus siuntimus laikyti čia:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Iš anksto priskirti disko vietą visiems failams</translation>
     </message>
@@ -2495,15 +2491,15 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Taip pat, kai pridėjimas yra atšaukiamas</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Taip pat ištrinti .torrent failus, kurių pridėjimas buvo atšauktas</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Naudokite kitą kelią neužbaigtiems torentams:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3842,7 +3838,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Šalinti pasirinktiems torentams visas žymes?</translation>
     </message>
 </context>
 <context>
@@ -4376,7 +4372,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent buvo sukurta su šiomis bibliotekomis:</translation>
+        <translation type="vanished">qBittorrent buvo sukurta su šiomis bibliotekomis:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4405,6 +4401,10 @@ pakaitos simbolį "*".</translation>
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent piktograma</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

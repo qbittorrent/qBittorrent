@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>मेरा परिवर्तनशील डोमेन नाम अद्यतित करें</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">अपूर्ण टौरेंटों को यहाँ रखें:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>सभी फाइलों के लिए डिस्क में स्थान पूर्व-निर्धारित करें</translation>
     </message>
@@ -2489,15 +2485,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>जोड़ना रद्द करने पर भी</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>.torrent फाइलें भी मिटा दें जिनका जोड़ना रद्द हो गया</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>अपूर्ण टॉरेंट हेतु अन्य पथ का प्रयोग करें:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3836,7 +3832,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>चुनें हुए टाॅरेंटों से सभी उपनाम हटायें?</translation>
     </message>
 </context>
 <context>
@@ -4370,7 +4366,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>क्यूबिटटाॅरेंट निम्नलिखित लाइब्रेरी द्वारा निर्मित किया गया है:</translation>
+        <translation type="vanished">क्यूबिटटाॅरेंट निम्नलिखित लाइब्रेरी द्वारा निर्मित किया गया है:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4398,6 +4394,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>

@@ -6,12 +6,12 @@
     <message>
         <location filename="../webui/api/apicontroller.cpp" line="60"/>
         <source>Endpoint does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Finpunkto ne ekzistas</translation>
     </message>
     <message>
         <location filename="../webui/api/apicontroller.cpp" line="87"/>
         <source>Missing required parameters: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Manko de devigaj parametroj: %1</translation>
     </message>
 </context>
 <context>
@@ -91,8 +91,12 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="336"/>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent estis farita kun la jenaj bibliotekoj:</translation>
+        <translation type="vanished">qBittorrent estis farita kun la jenaj bibliotekoj:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="356"/>
@@ -107,7 +111,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="76"/>
         <source>Copyright %1 2006-2026 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Aŭtorrajto %1 2006-2026 The qBittorrent project</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="77"/>
@@ -128,49 +132,18 @@
         <location filename="../gui/aboutdialog.cpp" line="117"/>
         <location filename="../gui/aboutdialog.cpp" line="172"/>
         <source>Lua:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lua:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="129"/>
         <location filename="../gui/aboutdialog.cpp" line="173"/>
         <source>LuaBridge:</source>
-        <translation type="unfinished"></translation>
+        <translation>LuaBridge:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="143"/>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>La libera IP al la datumbazo de Country Light per DB-IP estas uzis por trovas la landon de samtavolanoj. La datumbazon permesas sub la Creative Commons Atribution 4.0 International License</translation>
-    </message>
-</context>
-<context>
-    <name>AbstractFileStorage</name>
-    <message>
-        <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">La malnova vojo nevalidas: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">La nova vojo nevalidas: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="vanished">Absoluta vojo ne estas permesata: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">La dosiero jam ekzistas: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>No such file: &apos;%1&apos;.</source>
-        <translation type="vanished">Tiu dosiero ne ekzistas: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">La dosierujo jam ekzistas: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="vanished">Tiu dosierujo ne ekzistas: &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -206,10 +179,6 @@
         <translation>Torenta informaro</translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Preterpasi haket-kontrolon</translation>
-    </message>
-    <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="122"/>
         <source>Use another path for incomplete torrent</source>
         <translation>Uzi alian vojon por nekompleta torento</translation>
@@ -217,7 +186,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="167"/>
         <source>Torrent options</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentaj opcioj</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="209"/>
@@ -275,7 +244,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="290"/>
         <source>Seed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Fontsenda reĝimo</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="293"/>
@@ -428,7 +397,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="197"/>
         <source>No stop condition is set.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neniu kondiĉo por halti estas agordita.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="198"/>
@@ -443,7 +412,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="201"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ĉi tio ankaŭ elŝutos metadatumojn, se ili ne ĉeestis komence.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="388"/>
@@ -480,12 +449,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
         <source>Invalid save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Nevalida konserva dosierindiko</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="693"/>
         <source>The &quot;Save at&quot; path contains invalid characters.</source>
-        <translation type="unfinished"></translation>
+        <translation>La &quot;Konservi ĉe&quot; dosierindiko enhavas nevalidajn signojn.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="774"/>
@@ -523,22 +492,22 @@
     <message>
         <location filename="../base/addtorrentmanager.cpp" line="191"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunfando de spuriloj estas malŝaltita</translation>
     </message>
     <message>
         <location filename="../base/addtorrentmanager.cpp" line="195"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Spuriloj ne povas esti kunfanditaj, ĉar ĝi estas privata torento</translation>
     </message>
     <message>
         <location filename="../base/addtorrentmanager.cpp" line="202"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished"></translation>
+        <translation>Spuriloj estas kunfanditaj de nova fonto</translation>
     </message>
     <message>
         <location filename="../base/addtorrentmanager.cpp" line="205"/>
         <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: &quot;%2&quot;. Torrent infohash: %3. Result: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>Detektis provon aldoni duoblan torenton. Fonto: %1. Ekzistanta torento: &quot;%2&quot;. Torenta infohaketaĵo: %3. Rezulto: %4</translation>
     </message>
 </context>
 <context>
@@ -566,7 +535,7 @@
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="62"/>
         <source>Note: the current defaults are displayed for reference.</source>
-        <translation type="unfinished"></translation>
+        <translation>Informo: la nunaj defaŭltoj estas montritaj kiel referenco.</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="74"/>
@@ -621,7 +590,7 @@
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="346"/>
         <source>Seed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Fontsenda reĝimo</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="349"/>
@@ -629,13 +598,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Preterpasi la haketan kontrolon</translation>
-    </message>
-    <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="357"/>
         <source>Torrent share limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Limigoj de torenta kunhavigo</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="78"/>
@@ -766,7 +731,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="514"/>
         <source>qBittorrent Section</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekcio qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="511"/>
@@ -787,7 +752,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="522"/>
         <source>libtorrent Section</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekcio libtorrent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="525"/>
@@ -797,7 +762,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="526"/>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLite-datumbazo (eksperimenta)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="528"/>
@@ -832,32 +797,32 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="541"/>
         <source>Physical memory (RAM) usage limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzolimo de fizika memoro (RAM)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="571"/>
         <source>Asynchronous I/O threads</source>
-        <translation type="unfinished"></translation>
+        <translation>Nesinkronaj eneligaj fadenoj</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="579"/>
         <source>Hashing threads</source>
-        <translation type="unfinished"></translation>
+        <translation>Haketadaj fadenoj</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="587"/>
         <source>File pool size</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosierara grando</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="601"/>
         <source>Outstanding memory when checking torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Elstara memoro dum torenta kontrolo</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="617"/>
         <source>Disk cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Diska kaŝmemoro</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="623"/>
@@ -877,7 +842,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="632"/>
         <source>Disk queue size</source>
-        <translation type="unfinished"></translation>
+        <translation>Diska vica grando</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="649"/>
@@ -888,7 +853,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="665"/>
         <source>Coalesce reads &amp; writes</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuniĝaj legoj kaj skriboj</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="670"/>
@@ -907,7 +872,7 @@
         <location filename="../gui/advancedsettings.cpp" line="758"/>
         <location filename="../gui/advancedsettings.cpp" line="886"/>
         <source>0 (disabled)</source>
-        <translation type="unfinished"></translation>
+        <translation>0 (malŝaltita)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="732"/>
@@ -918,22 +883,22 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="751"/>
         <source>Outgoing ports (Min) [0: disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliraj pordoj (Min) [0: malŝaltita]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="759"/>
         <source>Outgoing ports (Max) [0: disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliraj pordoj (Maks) [0: malŝaltita]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="767"/>
         <source>0 (permanent lease)</source>
-        <translation type="unfinished"></translation>
+        <translation>0 (porĉiama lukontrakto)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="768"/>
         <source>UPnP lease duration [0: permanent lease]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP-lukontrakta daŭro [0: porĉiama lukontrakto]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="774"/>
@@ -943,17 +908,17 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="826"/>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished"></translation>
+        <translation>Tio aldonas la tekston al la fenestra titolo por helpi distingi qBittorent-aperaĵojn</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="887"/>
         <source>Stop tracker timeout [0: disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempolimo por haltigi spurilon [0: malŝalti]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="903"/>
         <source>Notification timeout [0: infinite, -1: system default]</source>
-        <translation type="unfinished"></translation>
+        <translation>Sciiga tempolimo [0: senfina, -1: sistema defaŭlto]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="1028"/>
@@ -972,22 +937,22 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="440"/>
         <source> (infinite)</source>
-        <translation type="unfinished"></translation>
+        <translation>(senfine)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="442"/>
         <source> (system default)</source>
-        <translation type="unfinished"></translation>
+        <translation>(sistema defaŭlto)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="530"/>
         <source>Delete files permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi dosierojn porĉiame</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="531"/>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished"></translation>
+        <translation>Movi dosierojn rubujen (se eble)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="533"/>
@@ -1022,7 +987,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="638"/>
         <source>POSIX-compliant</source>
-        <translation type="unfinished"></translation>
+        <translation>POSIX-konformema</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="639"/>
@@ -2187,71 +2152,56 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::BencodeResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="119"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="175"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="240"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="300"/>
         <source>Cannot parse resume data: invalid format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="330"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="339"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="378"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="390"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="399"/>
         <source>Cannot parse torrent info: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="321"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="381"/>
         <source>Cannot parse torrent info: invalid format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="351"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="411"/>
         <source>Mismatching info-hash detected in resume data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>Corrupted resume data: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>save_path is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="449"/>
-        <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="487"/>
-        <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="194"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="254"/>
         <source>Couldn&apos;t load torrents queue: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="237"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="311"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="297"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="371"/>
         <source>Cannot parse resume data: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="372"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="432"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="512"/>
-        <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2312,7 +2262,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="774"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="777"/>
         <source>Save resume data transaction failed. Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2320,23 +2270,38 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="906"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="908"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="967"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="969"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="995"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="997"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1029"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1031"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="566"/>
+        <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="604"/>
+        <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="639"/>
+        <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2472,12 +2437,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2522"/>
         <source>Torrent reached the share ratio limit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torento atingis la limigitan kunhavan proporcion.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2540"/>
         <source>Torrent reached the share limit(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>Torento atingis la limigitan kunhavan proporcion.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2561"/>
@@ -2613,17 +2578,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2914"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunfando de spuriloj estas malŝaltita</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2924"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Spuriloj ne povas esti kunfanditaj, ĉar ĝi estas privata torento</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2935"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished"></translation>
+        <translation>Spuriloj estas kunfanditaj de nova fonto</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3157"/>
@@ -2917,39 +2882,39 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="41"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="67"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">La malnova vojo nevalidas: &quot;%1&quot;.</translation>
+        <translation>La malnova vojo nevalidas: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="43"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="69"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">La nova vojo nevalidas: &quot;%1&quot;.</translation>
+        <translation>La nova vojo nevalidas: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="45"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="71"/>
         <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="unfinished">Absoluta vojo ne estas permesata: &quot;%1&quot;.</translation>
+        <translation>Absoluta vojo ne estas permesata: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="55"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">La dosiero jam ekzistas: &quot;%1&quot;.</translation>
+        <translation>La dosiero jam ekzistas: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="59"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished">Tiu dosiero ne ekzistas: &quot;%1&quot;.</translation>
+        <translation>Tiu dosiero ne ekzistas: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="80"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">La dosierujo jam ekzistas: &quot;%1&quot;.</translation>
+        <translation>La dosierujo jam ekzistas: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="87"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished">Tiu dosierujo ne ekzistas: &quot;%1&quot;.</translation>
+        <translation>Tiu dosierujo ne ekzistas: &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -3068,7 +3033,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/cmdoptions.cpp" line="401"/>
         <source>Seed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Fontsenda reĝimo</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="474"/>
@@ -3194,10 +3159,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../app/cmdoptions.cpp" line="400"/>
         <source>Add torrents as running or stopped</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Preterpasi la haketan kontrolon</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="403"/>
@@ -3858,32 +3819,32 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>KeyValueDataStorage</name>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="110"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="111"/>
         <source>Inserting (updating) database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="155"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="156"/>
         <source>Fetching database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="192"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="193"/>
         <source>Deleting database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="406"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="411"/>
         <source>Opening database failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="413"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="418"/>
         <source>Starting database transaction failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="424"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="429"/>
         <source>Creating database table failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7199,10 +7160,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">Kopii &quot;.torrent&quot;-dosierojn al:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="594"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation type="unfinished"></translation>
@@ -7964,7 +7921,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="586"/>
         <source>No stop condition is set.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neniu kondiĉo por halti estas agordita.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="587"/>
@@ -7979,7 +7936,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="590"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ĉi tio ankaŭ elŝutos metadatumojn, se ili ne ĉeestis komence.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="608"/>
@@ -8282,10 +8239,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Location Error</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Choose export directory</source>
-        <translation type="vanished">Elektu la elportan dosierujon</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="630"/>
@@ -8750,110 +8703,6 @@ Check the Execution Log for errors.</source>
     </message>
 </context>
 <context>
-    <name>PluginSelectDialog</name>
-    <message>
-        <source>Search plugins</source>
-        <translation type="vanished">Serĉilaj kromprogramoj</translation>
-    </message>
-    <message>
-        <source>Installed search plugins:</source>
-        <translation type="vanished">Instalitaj serĉilaj kromprogramoj:</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nomo</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="vanished">Versio</translation>
-    </message>
-    <message>
-        <source>Url</source>
-        <translation type="vanished">URL-adreso</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="vanished">Ebligita</translation>
-    </message>
-    <message>
-        <source>Install a new one</source>
-        <translation type="vanished">Instali novan</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Kontroli ĝisdatigadon</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Fermi</translation>
-    </message>
-    <message>
-        <source>Uninstall</source>
-        <translation type="vanished">Malinstali</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Jes</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">Ne</translation>
-    </message>
-    <message>
-        <source>Uninstall warning</source>
-        <translation type="vanished">Averto de malinstalado</translation>
-    </message>
-    <message>
-        <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
-Those plugins were disabled.</source>
-        <translation type="vanished">Kelkaj kromprogramoj ne eblis malinstali, ĉar ili estas inkluzivitaj en qBittorrent. Nur malinstaleblas tiuj, kiuj vi aldonis.
-Tiuj kromprogramoj malebliĝis.</translation>
-    </message>
-    <message>
-        <source>Uninstall success</source>
-        <translation type="vanished">Malinstalo sukcesis</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="vanished">Serĉila kromprograma ĝisdatigado</translation>
-    </message>
-    <message>
-        <source>URL:</source>
-        <translation type="vanished">URL-adreso:</translation>
-    </message>
-    <message>
-        <source>Invalid link</source>
-        <translation type="vanished">Malvalida ligilo</translation>
-    </message>
-    <message>
-        <source>Select search plugins</source>
-        <translation type="vanished">Elektu serĉilajn kromprogramojn</translation>
-    </message>
-    <message>
-        <source>qBittorrent search plugin</source>
-        <translation type="vanished">serĉila kromprogramo de qBittorrent</translation>
-    </message>
-    <message>
-        <source>All your plugins are already up to date.</source>
-        <translation type="vanished">Ĉiuj viaj kromprogramoj jam estas ĝisdataj.</translation>
-    </message>
-    <message>
-        <source>Search plugin install</source>
-        <translation type="vanished">Serĉila kromprograma instalado</translation>
-    </message>
-</context>
-<context>
-    <name>PluginSourceDialog</name>
-    <message>
-        <source>Local file</source>
-        <translation type="vanished">Loka dosiero</translation>
-    </message>
-    <message>
-        <source>Web link</source>
-        <translation type="vanished">TTT-ligilo</translation>
-    </message>
-</context>
-<context>
     <name>PluginsDialog</name>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="17"/>
@@ -8873,12 +8722,12 @@ Tiuj kromprogramoj malebliĝis.</translation>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="57"/>
         <source>Name</source>
-        <translation type="unfinished">Nomo</translation>
+        <translation>Nomo</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="62"/>
         <source>Version</source>
-        <translation type="unfinished">Versio</translation>
+        <translation>Versio</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="67"/>
@@ -8894,7 +8743,7 @@ Tiuj kromprogramoj malebliĝis.</translation>
         <location filename="../gui/plugins/pluginsdialog.ui" line="75"/>
         <location filename="../gui/plugins/pluginsdialog.ui" line="117"/>
         <source>Enabled</source>
-        <translation type="unfinished">Ebligita</translation>
+        <translation>Ebligita</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="98"/>
@@ -8904,12 +8753,12 @@ Tiuj kromprogramoj malebliĝis.</translation>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="105"/>
         <source>Close</source>
-        <translation type="unfinished">Fermi</translation>
+        <translation>Fermi</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="122"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Malinstali</translation>
+        <translation>Malinstali</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="143"/>
@@ -8928,7 +8777,7 @@ Tiuj kromprogramoj malebliĝis.</translation>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="391"/>
         <source>Yes</source>
-        <translation type="unfinished">Jes</translation>
+        <translation>Jes</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="218"/>
@@ -8937,7 +8786,7 @@ Tiuj kromprogramoj malebliĝis.</translation>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="396"/>
         <source>No</source>
-        <translation type="unfinished">Ne</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="314"/>
@@ -10458,33 +10307,33 @@ Tiuj kromprogramoj malebliĝis.</translation>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="17"/>
         <source>Search plugins</source>
-        <translation type="unfinished">Serĉilaj kromprogramoj</translation>
+        <translation>Serĉilaj kromprogramoj</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="29"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished">Instalitaj serĉilaj kromprogramoj:</translation>
+        <translation>Instalitaj serĉilaj kromprogramoj:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="52"/>
         <source>Name</source>
-        <translation type="unfinished">Nomo</translation>
+        <translation>Nomo</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="57"/>
         <source>Version</source>
-        <translation type="unfinished">Versio</translation>
+        <translation>Versio</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="62"/>
         <source>Url</source>
-        <translation type="unfinished">URL-adreso</translation>
+        <translation>URL-adreso</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="67"/>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="133"/>
         <source>Enabled</source>
-        <translation type="unfinished">Ebligita</translation>
+        <translation>Ebligita</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="80"/>
@@ -10499,29 +10348,29 @@ Tiuj kromprogramoj malebliĝis.</translation>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="107"/>
         <source>Install a new one</source>
-        <translation type="unfinished">Instali novan</translation>
+        <translation>Instali novan</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="114"/>
         <source>Check for updates</source>
-        <translation type="unfinished">Kontroli ĝisdatigadon</translation>
+        <translation>Kontroli ĝisdatigadon</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="121"/>
         <source>Close</source>
-        <translation type="unfinished">Fermi</translation>
+        <translation>Fermi</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="138"/>
         <source>Uninstall</source>
-        <translation type="unfinished">Malinstali</translation>
+        <translation>Malinstali</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="160"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="231"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="296"/>
         <source>Yes</source>
-        <translation type="unfinished">Jes</translation>
+        <translation>Jes</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="165"/>
@@ -10529,24 +10378,24 @@ Tiuj kromprogramoj malebliĝis.</translation>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="236"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="301"/>
         <source>No</source>
-        <translation type="unfinished">Ne</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished">Averto de malinstalado</translation>
+        <translation>Averto de malinstalado</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished">Kelkaj kromprogramoj ne eblis malinstali, ĉar ili estas inkluzivitaj en qBittorrent. Nur malinstaleblas tiuj, kiuj vi aldonis.
+        <translation>Kelkaj kromprogramoj ne eblis malinstali, ĉar ili estas inkluzivitaj en qBittorrent. Nur malinstaleblas tiuj, kiuj vi aldonis.
 Tiuj kromprogramoj malebliĝis.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>Uninstall success</source>
-        <translation type="unfinished">Malinstalo sukcesis</translation>
+        <translation>Malinstalo sukcesis</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
@@ -10559,7 +10408,7 @@ Tiuj kromprogramoj malebliĝis.</translation>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="495"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">Serĉila kromprograma ĝisdatigado</translation>
+        <translation>Serĉila kromprograma ĝisdatigado</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
@@ -10576,12 +10425,12 @@ Tiuj kromprogramoj malebliĝis.</translation>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="364"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="372"/>
         <source>URL:</source>
-        <translation type="unfinished">URL-adreso:</translation>
+        <translation>URL-adreso:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
         <source>Invalid link</source>
-        <translation type="unfinished">Malvalida ligilo</translation>
+        <translation>Malvalida ligilo</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
@@ -10591,17 +10440,17 @@ Tiuj kromprogramoj malebliĝis.</translation>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="386"/>
         <source>Select search plugins</source>
-        <translation type="unfinished">Elektu serĉilajn kromprogramojn</translation>
+        <translation>Elektu serĉilajn kromprogramojn</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="387"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished">serĉila kromprogramo de qBittorrent</translation>
+        <translation>serĉila kromprogramo de qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="448"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished">Ĉiuj viaj kromprogramoj jam estas ĝisdataj.</translation>
+        <translation>Ĉiuj viaj kromprogramoj jam estas ĝisdataj.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
@@ -10611,7 +10460,7 @@ Tiuj kromprogramoj malebliĝis.</translation>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="477"/>
         <source>Search plugin install</source>
-        <translation type="unfinished">Serĉila kromprograma instalado</translation>
+        <translation>Serĉila kromprograma instalado</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="478"/>
@@ -10639,12 +10488,12 @@ Tiuj kromprogramoj malebliĝis.</translation>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="35"/>
         <source>Local file</source>
-        <translation type="unfinished">Loka dosiero</translation>
+        <translation>Loka dosiero</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="42"/>
         <source>Web link</source>
-        <translation type="unfinished">TTT-ligilo</translation>
+        <translation>TTT-ligilo</translation>
     </message>
 </context>
 <context>
@@ -10711,12 +10560,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="849"/>
+        <location filename="../gui/search/searchwidget.cpp" line="862"/>
         <source>Close tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="850"/>
+        <location filename="../gui/search/searchwidget.cpp" line="863"/>
         <source>Close all tabs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10726,34 +10575,34 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="841"/>
+        <location filename="../gui/search/searchwidget.cpp" line="854"/>
         <source>Refresh tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="845"/>
+        <location filename="../gui/search/searchwidget.cpp" line="858"/>
         <source>Stop search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Search Engine</source>
         <translation>Serĉilo</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation>Bonvolu instali Pitonon por uzi la Serĉilon.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Empty search pattern</source>
         <translation>Malplena serĉa ŝablono</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Please type a search pattern first</source>
         <translation>Bonvolu tajpi serĉan ŝablonon unue</translation>
     </message>
@@ -10766,32 +10615,32 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
 <context>
     <name>SearchWidget::DataStorage</name>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="984"/>
+        <location filename="../gui/search/searchwidget.cpp" line="997"/>
         <source>Failed to load Search UI saved state data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1004"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1018"/>
         <source>Failed to load saved search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1036"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1050"/>
         <source>Failed to save Search UI state. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1068"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1082"/>
         <source>Failed to save search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1084"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
         <source>Failed to load Search UI history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1112"/>
         <source>Failed to save search history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11167,7 +11016,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/statsdialog.ui" line="72"/>
         <source>All-time share ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ĉiama kunhigava proporcio:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="58"/>
@@ -11216,7 +11065,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     </message>
     <message>
         <location filename="../gui/statsdialog.cpp" line="111"/>
-        <source>%1 ms</source>
+        <source>%1 μs</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11593,7 +11442,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="146"/>
         <source>Torrent share limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Limigoj de torenta kunhavigo</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
@@ -11719,7 +11568,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentlayoutmodel.cpp" line="62"/>
         <source>Path</source>
-        <translation type="unfinished">Vojo</translation>
+        <translation>Vojo</translation>
     </message>
 </context>
 <context>
@@ -11922,7 +11771,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="56"/>
         <source>Select file/folder to share</source>
-        <translation type="unfinished"></translation>
+        <translation>Elektu dosieron/dosierujon por kunhavigi</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="64"/>
@@ -11999,7 +11848,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="261"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignori limigojn de kunhaviga proporcio por ĉi tiu torento</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="268"/>
@@ -12219,7 +12068,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="177"/>
         <source>Torrent Share Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentaj kunhavigaj limigoj</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="137"/>
@@ -14211,86 +14060,86 @@ Please choose a different name and try again.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="59"/>
+        <location filename="../base/utils/misc.cpp" line="60"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="60"/>
+        <location filename="../base/utils/misc.cpp" line="61"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="61"/>
+        <location filename="../base/utils/misc.cpp" line="62"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="62"/>
+        <location filename="../base/utils/misc.cpp" line="63"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="63"/>
+        <location filename="../base/utils/misc.cpp" line="64"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="64"/>
+        <location filename="../base/utils/misc.cpp" line="65"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation>PiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="65"/>
+        <location filename="../base/utils/misc.cpp" line="66"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation>EiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="101"/>
+        <location filename="../base/utils/misc.cpp" line="102"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="239"/>
+        <location filename="../base/utils/misc.cpp" line="240"/>
         <source>%1s</source>
         <comment>e.g: 10 seconds</comment>
         <translation>%1s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="244"/>
+        <location filename="../base/utils/misc.cpp" line="245"/>
         <source>%1m</source>
         <comment>e.g: 10 minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="250"/>
+        <location filename="../base/utils/misc.cpp" line="251"/>
         <source>%1h %2m</source>
         <comment>e.g: 3 hours 5 minutes</comment>
         <translation>%1h %2m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="257"/>
+        <location filename="../base/utils/misc.cpp" line="258"/>
         <source>%1d %2h</source>
         <comment>e.g: 2 days 10 hours</comment>
         <translation>%1t %2h</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="262"/>
+        <location filename="../base/utils/misc.cpp" line="263"/>
         <source>%1y %2d</source>
         <comment>e.g: 2 years 10 days</comment>
         <translation>%1j %2t</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="109"/>
-        <location filename="../base/utils/misc.cpp" line="121"/>
+        <location filename="../base/utils/misc.cpp" line="110"/>
+        <location filename="../base/utils/misc.cpp" line="122"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Nekonata</translation>
@@ -14306,7 +14155,7 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="237"/>
+        <location filename="../base/utils/misc.cpp" line="238"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>

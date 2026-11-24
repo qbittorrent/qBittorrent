@@ -975,10 +975,6 @@ Suma kontrolna fragmentu (piece hash) zostanie zweryfikowana w momencie, gdy inn
         <translation>Aktualizuj nazwę domeny dynamicznej</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Zachowaj niekompletne torrenty w:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Rezerwuj miejsce na dysku dla wszystkich plików</translation>
     </message>
@@ -2373,10 +2369,6 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Zezwalaj na wiele połączeń z tego samego identyfikatora partnera:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Podjęto próbę wysłania wiadomości testowej. &lt;br&gt;Sprawdź skrzynkę odbiorczą, aby potwierdzić powodzenie. &lt;br&gt;Sprawdź dziennik wykonania pod kątem błędów.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Limit liczby sesji:</translation>
     </message>
@@ -2486,35 +2478,35 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Potwierdź usunięcie trackera ze wszystkich torrentów:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Którykolwiek z powyższych</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Wszystkie powyższe</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Także gdy dodanie zostało anulowane</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Usuń także pliki .torrent, których dodanie zostało anulowane</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Użyj innej ścieżki do niekompletnych torrentów:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Potwierdź usunięcie wszystkich znaczników:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Próbowano wysłać wiadomość testową.\nSprawdź skrzynkę odbiorczą, aby potwierdzić powodzenie.\nSprawdź dziennik wykonania pod kątem błędów.</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Usunąć wszystkie znaczniki z wybranych torrentów?</translation>
     </message>
 </context>
 <context>
@@ -3904,19 +3896,19 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Tryb</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Domyślny (dopasuj dowolny limit)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Dopasuj wszystkie limity</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Dopasuj dowolny limit</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent został stworzony z wykorzystaniem następujących bibliotek:</translation>
+        <translation type="vanished">qBittorrent został stworzony z wykorzystaniem następujących bibliotek:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     <message>
         <source>qBittorrent icon</source>
         <translation>Ikona qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Dodaj torrenty: %1</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Otwórz wspólne okno pobierania</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Otwórz oddzielne okna pobierania</translation>
     </message>
 </context>
 <context>

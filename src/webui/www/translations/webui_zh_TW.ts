@@ -975,10 +975,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>更新我的動態網域名稱</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">保留未完成的 torrent 於：</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>為所有檔案預先分配磁碟空間</translation>
     </message>
@@ -2373,10 +2369,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>允許來自同一個 Peer ID 的多個連線：</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">已嘗試寄送測試電子郵件。&lt;br&gt;請檢查您的收件匣確認是否寄送成功。&lt;br&gt;請檢查執行紀錄檔以確認錯誤訊息。</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>工作階段計數限制：</translation>
     </message>
@@ -2486,35 +2478,35 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>請確認已從所有 torrent 中移除追蹤器：</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>以上任一項</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>以上全部</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>新增時被取消亦同</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>同時也刪除新增時被取消的 .torrent 檔案</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>使用其他路徑取得不完整的 torrents：</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>請確認是否要移除所有標籤：</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>已嘗試寄送測試電子郵件。\n請檢查您的收件匣確認是否寄送成功。\n請檢查執行紀錄檔以確認錯誤訊息。</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>從選取的 torrent 中移除所有標籤？</translation>
     </message>
 </context>
 <context>
@@ -3904,19 +3896,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>模式</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>預設（符合任何限制）</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>符合所有限制</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>符合任何限制</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent 是使用下列函式庫建構：</translation>
+        <translation type="vanished">qBittorrent 是使用下列函式庫建構：</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent 圖示</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>新增 %1 torrent</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>開啟共享下載視窗</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>開啟單獨的下載視窗</translation>
     </message>
 </context>
 <context>

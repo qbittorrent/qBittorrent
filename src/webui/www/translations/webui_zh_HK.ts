@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>更新動態域名</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">未完成Torrent存放於：</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>預先分配檔案的磁碟空間</translation>
     </message>
@@ -2493,15 +2489,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>也當「加入」被取消時</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>取消「加入」Torrent動作時，同時刪除相關Torrent檔</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>使用其他路徑取得不完整的 torrents：</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3840,7 +3836,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>從所選Torrent清除全部標籤？</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent使用下列函式庫建立：</translation>
+        <translation type="vanished">qBittorrent使用下列函式庫建立：</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4402,6 +4398,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>

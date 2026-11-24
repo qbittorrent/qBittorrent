@@ -5,7 +5,7 @@
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation type="vanished">Относно</translation>
+        <translation type="vanished">За</translation>
     </message>
 </context>
 <context>
@@ -972,10 +972,6 @@ The piece hash will be checked when it is requested for the first time by a peer
     <message>
         <source>Update my dynamic domain name</source>
         <translation>Обнови моето динамично име на домейн</translation>
-    </message>
-    <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Запазване на незавършени торенти в:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -2489,15 +2485,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Също, когато добавянето е отказано</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Също изтриване на .torrent файловете, чието добавяне е било отказано</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Използвай друг път за незавършени торенти:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3836,7 +3832,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Изтриване на всички етикети от избраните торенти?</translation>
     </message>
 </context>
 <context>
@@ -4370,7 +4366,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>За qBittorrent са ползвани следните библиотеки:</translation>
+        <translation type="vanished">За qBittorrent са ползвани следните библиотеки:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4399,6 +4395,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent икона</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

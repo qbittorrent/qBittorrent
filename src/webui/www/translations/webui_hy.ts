@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Թարմացնել ակտիվ տիրույթի անունը</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Պահել չավարտված torrent-ները այստեղ՝</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Նախօրոք տարածք հատկացնել սկավառակի վրա բոլոր նիշքերի համար</translation>
     </message>
@@ -3836,7 +3832,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Հեռացնե՞լ բոլոր պիտակները ընտրված torrent-ներից:</translation>
     </message>
 </context>
 <context>
@@ -4370,7 +4366,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent-ը ստեղծվել է հետևյալ գրադարանների կիրառմամբ՝</translation>
+        <translation type="vanished">qBittorrent-ը ստեղծվել է հետևյալ գրադարանների կիրառմամբ՝</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4398,6 +4394,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>

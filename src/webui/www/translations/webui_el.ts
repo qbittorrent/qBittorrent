@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Ενημέρωση του δυναμικού ονόματος τομέα μου</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Διατήρηση μη ολοκληρωμένων torrents σε:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Προ-εκχώρηση χώρου στο δίσκο για όλα τα αρχεία</translation>
     </message>
@@ -2457,7 +2453,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove backup when removing torrent</source>
-        <translation type="unfinished" />
+        <translation>Αφαίρεση αντιγράφων ασφαλείας κατά την αφαίρεση torrent</translation>
     </message>
     <message>
         <source>When torrent finished move backup to:</source>
@@ -2493,15 +2489,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Επίσης όταν ακυρώνεται η προσθήκη</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Επίσης διαγραφή αρχείων .torrent των οποίων η προσθήκη ακυρώθηκε</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Χρήση άλλης διαδρομής για ημιτελή torrents:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3840,7 +3836,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Αφαίρεση όλων των ετικετών από τα επιλεγμένα torrent;</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>Το qBittorrent φτιάχτηκε με τις ακόλουθες βιβλιοθήκες:</translation>
+        <translation type="vanished">Το qBittorrent φτιάχτηκε με τις ακόλουθες βιβλιοθήκες:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>qBittorrent icon</source>
         <translation>Εικονίδιο του qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -197,7 +197,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Seed mode</source>
-        <translation type="unfinished" />
+        <translation>Fontsenda reĝimo</translation>
     </message>
     <message>
         <source>Download</source>
@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Enmemorigi malfinitajn torentojn en:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation type="unfinished" />
     </message>
@@ -1429,7 +1425,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation type="unfinished" />
+        <translation>Sekcio qBittorrent</translation>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
@@ -1437,7 +1433,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>Sekcio libtorrent</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1709,7 +1705,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation>POSIX-konformema</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1809,7 +1805,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite-datumbazo (eksperimenta)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -2053,7 +2049,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>Forigi dosierojn porĉiame</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2129,7 +2125,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>Movi dosierojn rubujen (se eble)</translation>
     </message>
     <message>
         <source>Stop torrent</source>
@@ -2301,7 +2297,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Tio aldonas la tekston al la fenestra titolo por helpi distingi qBittorent-aperaĵojn</translation>
     </message>
     <message>
         <source>(last choice if no other option)</source>
@@ -2497,7 +2493,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Uzi alian indikon por nekompletaj torentoj:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -2994,7 +2990,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation type="unfinished" />
+        <translation>Ĉiama kunhigava proporcio:</translation>
     </message>
     <message>
         <source>All-time download:</source>
@@ -3836,7 +3832,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Forigi ĉiujn etikedojn per elektitaj torentoj?</translation>
     </message>
 </context>
 <context>
@@ -4370,7 +4366,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent konstruiĝis kun la sekvaj bibliotekoj:</translation>
+        <translation type="vanished">qBittorrent konstruiĝis kun la sekvaj bibliotekoj:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4398,6 +4394,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -5185,7 +5185,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent share limits</source>
-        <translation type="unfinished" />
+        <translation>Limigoj de torenta kunhavigo</translation>
     </message>
 </context>
 <context>

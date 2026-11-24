@@ -91,8 +91,12 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="336"/>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent निम्नानुसारका लाइब्रेरीहरूको प्रयोगद्वारा बनाइएको हो:</translation>
+        <translation type="vanished">qBittorrent निम्नानुसारका लाइब्रेरीहरूको प्रयोगद्वारा बनाइएको हो:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="356"/>
@@ -143,37 +147,6 @@
     </message>
 </context>
 <context>
-    <name>AbstractFileStorage</name>
-    <message>
-        <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">पुरानो मार्ग मान्य छैन:&apos;%1&apos;।</translation>
-    </message>
-    <message>
-        <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">नयाँ मार्ग मान्य छैन:&apos;%1&apos;।</translation>
-    </message>
-    <message>
-        <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="vanished">पूर्ण मार्गको अनुमति छैन: &apos;%1&apos;।</translation>
-    </message>
-    <message>
-        <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">फाइल पहिले नै अवस्थित छ: &apos;%1&apos;।</translation>
-    </message>
-    <message>
-        <source>No such file: &apos;%1&apos;.</source>
-        <translation type="vanished">त्यस्तो कुनै फाइल छैन: &apos;%1&apos;।</translation>
-    </message>
-    <message>
-        <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">फोल्डर पहिले नै अवस्थित छ: &apos;%1&apos;।</translation>
-    </message>
-    <message>
-        <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="vanished">त्यस्तो कुनै फोल्डर छैन: &apos;%1&apos;।</translation>
-    </message>
-</context>
-<context>
     <name>AddNewTorrentDialog</name>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="113"/>
@@ -204,10 +177,6 @@
         <location filename="../gui/addnewtorrentdialog.ui" line="381"/>
         <source>Torrent information</source>
         <translation>टोरेन्ट जानकारी</translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">ह्यास जाँच छोड्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="122"/>
@@ -627,10 +596,6 @@
         <location filename="../gui/addtorrentparamswidget.ui" line="349"/>
         <source>&lt;p&gt;If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.&lt;/p&gt;&lt;p&gt;The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">ह्यास जाँच छोड्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="357"/>
@@ -2188,72 +2153,69 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::BencodeResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="119"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="175"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation>टोरेन्ट रिजुम फोल्डर सिर्जना गर्न सकिँदैन: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="240"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="300"/>
         <source>Cannot parse resume data: invalid format</source>
         <translation>रिजुम डेटा पार्स गर्न सकिँदैन: अमान्य ढाँचा</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="330"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="339"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="378"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="390"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="399"/>
         <source>Cannot parse torrent info: %1</source>
         <translation>टोरेन्ट जानकारी पार्स गर्न सकिँदैन: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="321"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="381"/>
         <source>Cannot parse torrent info: invalid format</source>
         <translation>टोरेन्ट जानकारी पार्स गर्न सकिँदैन: अमान्य ढाँचा</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="351"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="411"/>
         <source>Mismatching info-hash detected in resume data</source>
         <translation>रिजुम डेटामा नमिल्ने जानकारी-ह्यास पत्ता लाग्यो</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>Corrupted resume data: %1</source>
         <translation>बिग्रिएको रिजुम डेटा: % 1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>save_path is invalid</source>
         <translation>save_path अमान्य छ।</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="449"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
-        <translation>&apos;%1&apos; मा टोरेन्ट मेटाडेटा सेभ गर्न सकिएन। त्रुटि: %2।</translation>
+        <translation type="vanished">&apos;%1&apos; मा टोरेन्ट मेटाडेटा सेभ गर्न सकिएन। त्रुटि: %2।</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="487"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation>&apos;%1&apos; मा टोरेन्ट रिजुम डेटा सेभ गर्न सकिएन। त्रुटि: %2।</translation>
+        <translation type="vanished">&apos;%1&apos; मा टोरेन्ट रिजुम डेटा सेभ गर्न सकिएन। त्रुटि: %2।</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="194"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="254"/>
         <source>Couldn&apos;t load torrents queue: %1</source>
         <translation>टोरेन्ट लाम लोड गर्न सकिएन: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="237"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="311"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="297"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="371"/>
         <source>Cannot parse resume data: %1</source>
         <translation>रिजुम डेटा पार्स गर्न सकिँदैन: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="372"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="432"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
         <translation>रिजुम डेटा अमान्य छ: न त मेटाडेटा न त जानकारी-ह्यास फेला पर्यो।</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="512"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
-        <translation>&apos;%1&apos; मा डेटा सेभ गर्न सकिएन। त्रुटि: %2</translation>
+        <translation type="vanished">&apos;%1&apos; मा डेटा सेभ गर्न सकिएन। त्रुटि: %2</translation>
     </message>
 </context>
 <context>
@@ -2313,36 +2275,47 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>save_path अमान्य छ।</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="774"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="777"/>
         <source>Save resume data transaction failed. Error: %1</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t begin transaction. Error: %1</source>
-        <translation type="vanished">कारोबार सुरु गर्न सकिएन। त्रुटि: %1</translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="906"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="908"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>टोरेन्ट मेटाडेटा सेभ गर्न सकिएन। त्रुटि: %1।</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="967"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="969"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation>टोरेन्ट &apos;%1&apos; को रिजुम डेटा भण्डारण गर्न सकिएन। त्रुटि: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="995"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="997"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>टोरेन्ट &apos;%1&apos; को रिजुम डेटा मेटाउन सकिएन। त्रुटि: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1029"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1031"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation>टोरेन्ट क्यु स्थितिहरू भण्डारण गर्न सकिएन। त्रुटि: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="566"/>
+        <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">&apos;%1&apos; मा टोरेन्ट मेटाडेटा सेभ गर्न सकिएन। त्रुटि: %2।</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="604"/>
+        <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">&apos;%1&apos; मा टोरेन्ट रिजुम डेटा सेभ गर्न सकिएन। त्रुटि: %2।</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="639"/>
+        <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished">&apos;%1&apos; मा डेटा सेभ गर्न सकिएन। त्रुटि: %2</translation>
     </message>
 </context>
 <context>
@@ -2646,10 +2619,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>टोरेन्ट मेटाडेटा डाउनलोड गर्न असफल भयो। कारण: &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="vanished">टोरेन्ट निर्यात गर्न असफल भयो। टोरेन्ट: &quot;%1&quot;। गन्तव्य: &quot;%2&quot;। कारण: &quot;%3&quot;</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3401"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation>रिजुम डेटा सेभ गर्ने कार्य रद्द गरियो। बाँकी रहेका टोरेन्टहरूको संख्या: %1</translation>
@@ -2824,14 +2793,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>फाइल त्रुटि अलर्ट। टोरेन्ट: &quot;%1&quot;। फाइल: &quot;%2&quot;। कारण: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
-        <translation type="vanished">UPnP/NAT-PMP पोर्ट म्यापिङ असफल भयो। सन्देश: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
-        <translation type="vanished">UPnP/NAT-PMP पोर्ट म्यापिङ सफल भयो। सन्देश: &quot;%1&quot;</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6451"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
@@ -2934,39 +2895,39 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="41"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="67"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">पुरानो मार्ग मान्य छैन:&apos;%1&apos;।</translation>
+        <translation>पुरानो मार्ग मान्य छैन:&apos;%1&apos;।</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="43"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="69"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">नयाँ मार्ग मान्य छैन:&apos;%1&apos;।</translation>
+        <translation>नयाँ मार्ग मान्य छैन:&apos;%1&apos;।</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="45"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="71"/>
         <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="unfinished">पूर्ण मार्गको अनुमति छैन: &apos;%1&apos;।</translation>
+        <translation>पूर्ण मार्गको अनुमति छैन: &apos;%1&apos;।</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="55"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">फाइल पहिले नै अवस्थित छ: &apos;%1&apos;।</translation>
+        <translation>फाइल पहिले नै अवस्थित छ: &apos;%1&apos;।</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="59"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished">त्यस्तो कुनै फाइल छैन: &apos;%1&apos;।</translation>
+        <translation>त्यस्तो कुनै फाइल छैन: &apos;%1&apos;।</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="80"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">फोल्डर पहिले नै अवस्थित छ: &apos;%1&apos;।</translation>
+        <translation>फोल्डर पहिले नै अवस्थित छ: &apos;%1&apos;।</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="87"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished">त्यस्तो कुनै फोल्डर छैन: &apos;%1&apos;।</translation>
+        <translation>त्यस्तो कुनै फोल्डर छैन: &apos;%1&apos;।</translation>
     </message>
 </context>
 <context>
@@ -3211,10 +3172,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../app/cmdoptions.cpp" line="400"/>
         <source>Add torrents as running or stopped</source>
         <translation>टोरेन्टहरूलाई चलिरहेको वा रोकिएको को रूपमा थप्नुहोस्</translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">ह्यास जाँच छोड्नुहोस्</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="403"/>
@@ -3875,32 +3832,32 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>KeyValueDataStorage</name>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="110"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="111"/>
         <source>Inserting (updating) database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="155"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="156"/>
         <source>Fetching database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="192"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="193"/>
         <source>Deleting database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="406"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="411"/>
         <source>Opening database failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="413"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="418"/>
         <source>Starting database transaction failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="424"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="429"/>
         <source>Creating database table failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4648,14 +4605,6 @@ Minimum requirement: %2.</source>
         <location filename="../gui/mainwindow.cpp" line="1974"/>
         <source>Failed to open Python installer. File: &quot;%1&quot;.</source>
         <translation>पाइथन इन्स्टलर खोल्न असफल भयो। फाइल: &quot;%1&quot;।</translation>
-    </message>
-    <message>
-        <source>Failed MD5 hash check for Python installer. File: &quot;%1&quot;. Result hash: &quot;%2&quot;. Expected hash: &quot;%3&quot;.</source>
-        <translation type="vanished">पाइथन इन्स्टलरको लागि MD5 ह्यास जाँच असफल भयो। फाइल: &quot;%1&quot;। नतिजा ह्यास: &quot;%2&quot;। अपेक्षित ह्यास: &quot;%3&quot;।</translation>
-    </message>
-    <message>
-        <source>Failed SHA3-512 hash check for Python installer. File: &quot;%1&quot;. Result hash: &quot;%2&quot;. Expected hash: &quot;%3&quot;.</source>
-        <translation type="vanished">पाइथन इन्स्टलरको लागि SHA3-512 ह्यास जाँच असफल भयो। फाइल: &quot;%1&quot;। नतिजा ह्यास: &quot;%2&quot;। अपेक्षित ह्यास: &quot;%3&quot;।</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="2003"/>
@@ -6229,17 +6178,17 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="293"/>
         <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="unfinished">जडान असफल भयो, अपरिचित जवाफ: %1</translation>
+        <translation>जडान असफल भयो, अपरिचित जवाफ: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="319"/>
         <source>STARTTLS is required but was not enabled by the server. Unable to send the email.</source>
-        <translation type="unfinished">STARTTLS आवश्यक छ तर सर्भरले सक्षम पारेको थिएन। इमेल पठाउन सकिएन।</translation>
+        <translation>STARTTLS आवश्यक छ तर सर्भरले सक्षम पारेको थिएन। इमेल पठाउन सकिएन।</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="345"/>
         <source>Authentication failed, msg: %1</source>
-        <translation type="unfinished">प्रमाणीकरण असफल भयो, सन्देश: %1</translation>
+        <translation>प्रमाणीकरण असफल भयो, सन्देश: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="364"/>
@@ -6250,93 +6199,42 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="366"/>
         <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">सर्भरद्वारा &lt;mail from&gt; अस्वीकार गरिएको थियो, सन्देश: %1</translation>
+        <translation>सर्भरद्वारा &lt;mail from&gt; अस्वीकार गरिएको थियो, सन्देश: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="392"/>
         <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished">सर्भरद्वारा &lt;data&gt; अस्वीकार गरिएको थियो, सन्देश: %1</translation>
+        <translation>सर्भरद्वारा &lt;data&gt; अस्वीकार गरिएको थियो, सन्देश: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="406"/>
         <source>Message was rejected by the server, error: %1</source>
-        <translation type="unfinished">सर्भरद्वारा सन्देश अस्वीकार गरियो, त्रुटि: %1</translation>
+        <translation>सर्भरद्वारा सन्देश अस्वीकार गरियो, त्रुटि: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="450"/>
         <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="unfinished">EHLO र HELO दुवै असफल भए, सन्देश: %1</translation>
+        <translation>EHLO र HELO दुवै असफल भए, सन्देश: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="491"/>
         <source>STARTTLS is required but was not offered by the server. Unable to send the email.</source>
-        <translation type="unfinished">STARTTLS आवश्यक छ तर सर्भरले प्रस्ताव गरेको थिएन। इमेल पठाउन सकिएन।</translation>
+        <translation>STARTTLS आवश्यक छ तर सर्भरले प्रस्ताव गरेको थिएन। इमेल पठाउन सकिएन।</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="537"/>
         <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="unfinished">SMTP सर्भरले हामीले समर्थन गर्ने कुनै पनि प्रमाणीकरण मोडहरूलाई समर्थन गरेको देखिँदैन [CRAM-MD5|PLAIN|LOGIN], प्रमाणीकरण छोड्दै, यो असफल हुने सम्भावना छ भन्ने थाहा पाउँदा... सर्भर प्रमाणीकरण मोडहरू: %1</translation>
+        <translation>SMTP सर्भरले हामीले समर्थन गर्ने कुनै पनि प्रमाणीकरण मोडहरूलाई समर्थन गरेको देखिँदैन [CRAM-MD5|PLAIN|LOGIN], प्रमाणीकरण छोड्दै, यो असफल हुने सम्भावना छ भन्ने थाहा पाउँदा... सर्भर प्रमाणीकरण मोडहरू: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="622"/>
         <source>Email Notification Error: %1</source>
-        <translation type="unfinished">इमेल सूचना त्रुटि: %1</translation>
+        <translation>इमेल सूचना त्रुटि: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtpclient.cpp" line="634"/>
         <source>Check the email server supports SMTPS (SMTP over SSL) and you are using the correct port</source>
-        <translation type="unfinished">जाँच गर्नुहोस् कि इमेल सर्भरले SMTPS (SSL माथि SMTP) समर्थन गर्छ कि गर्दैन र तपाईं सही पोर्ट प्रयोग गर्दै हुनुहुन्छ</translation>
-    </message>
-</context>
-<context>
-    <name>Net::Smtp</name>
-    <message>
-        <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="vanished">जडान असफल भयो, अपरिचित जवाफ: %1</translation>
-    </message>
-    <message>
-        <source>STARTTLS is required but was not enabled by the server. Unable to send the email.</source>
-        <translation type="vanished">STARTTLS आवश्यक छ तर सर्भरले सक्षम पारेको थिएन। इमेल पठाउन सकिएन।</translation>
-    </message>
-    <message>
-        <source>Authentication failed, msg: %1</source>
-        <translation type="vanished">प्रमाणीकरण असफल भयो, सन्देश: %1</translation>
-    </message>
-    <message>
-        <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">सर्भरद्वारा &lt;mail from&gt; अस्वीकार गरिएको थियो, सन्देश: %1</translation>
-    </message>
-    <message>
-        <source>&lt;Rcpt to&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">सर्भरद्वारा &lt;Rcpt to&gt; अस्वीकार गरिएको थियो, सन्देश: %1</translation>
-    </message>
-    <message>
-        <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="vanished">सर्भरद्वारा &lt;data&gt; अस्वीकार गरिएको थियो, सन्देश: %1</translation>
-    </message>
-    <message>
-        <source>Message was rejected by the server, error: %1</source>
-        <translation type="vanished">सर्भरद्वारा सन्देश अस्वीकार गरियो, त्रुटि: %1</translation>
-    </message>
-    <message>
-        <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="vanished">EHLO र HELO दुवै असफल भए, सन्देश: %1</translation>
-    </message>
-    <message>
-        <source>STARTTLS is required but was not offered by the server. Unable to send the email.</source>
-        <translation type="vanished">STARTTLS आवश्यक छ तर सर्भरले प्रस्ताव गरेको थिएन। इमेल पठाउन सकिएन।</translation>
-    </message>
-    <message>
-        <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="vanished">SMTP सर्भरले हामीले समर्थन गर्ने कुनै पनि प्रमाणीकरण मोडहरूलाई समर्थन गरेको देखिँदैन [CRAM-MD5|PLAIN|LOGIN], प्रमाणीकरण छोड्दै, यो असफल हुने सम्भावना छ भन्ने थाहा पाउँदा... सर्भर प्रमाणीकरण मोडहरू: %1</translation>
-    </message>
-    <message>
-        <source>Email Notification Error: %1</source>
-        <translation type="vanished">इमेल सूचना त्रुटि: %1</translation>
-    </message>
-    <message>
-        <source>Check the email server supports SMTPS (SMTP over SSL) and you are using the correct port</source>
-        <translation type="vanished">जाँच गर्नुहोस् कि इमेल सर्भरले SMTPS (SSL माथि SMTP) समर्थन गर्छ कि गर्दैन र तपाईं सही पोर्ट प्रयोग गर्दै हुनुहुन्छ</translation>
+        <translation>जाँच गर्नुहोस् कि इमेल सर्भरले SMTPS (SSL माथि SMTP) समर्थन गर्छ कि गर्दैन र तपाईं सही पोर्ट प्रयोग गर्दै हुनुहुन्छ</translation>
     </message>
 </context>
 <context>
@@ -6485,10 +6383,6 @@ Minimum requirement: %2.</source>
         <translation>मोनोक्रोम</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set qBittorrent as default program for .torrent files and/or Magnet links&lt;br/&gt;you can use &lt;span style=&quot; font-weight:600;&quot;&gt;Default Programs&lt;/span&gt; dialog from &lt;span style=&quot; font-weight:600;&quot;&gt;Control Panel&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head&gt;&lt;body&gt;&lt;p&gt;.torrent फाइलहरू र/वा म्याग्नेट लिङ्कहरू&lt;br/&gt;को लागि पूर्वनिर्धारित कार्यक्रमको रूपमा qBittorrent सेट गर्न तपाईंले &lt;span style=&quot; font-weight:600;&quot;&gt;कन्ट्रोल प्यानल&lt;/span&gt; बाट &lt;span style=&quot; font-weight:600;&quot;&gt;पूर्वनिर्धारित कार्यक्रम&lt;/span&gt; संवाद प्रयोग गर्न सक्नुहुन्छ।&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="756"/>
         <source>Show speed in Dock</source>
         <translation>डकमा गति देखाउनुहोस्</translation>
@@ -6502,10 +6396,6 @@ Minimum requirement: %2.</source>
         <location filename="../gui/optionsdialog.ui" line="840"/>
         <source> KiB</source>
         <translation>कि.बी.</translation>
-    </message>
-    <message>
-        <source>Show free disk space in status bar</source>
-        <translation type="vanished">स्थिति पट्टीमा खाली डिस्क ठाउँ देखाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1018"/>
@@ -7202,10 +7092,6 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <translation>भन्दा पुरानो ब्याकअप लगहरू मेटाउनुहोस्:</translation>
     </message>
     <message>
-        <source>Show external IP in status bar</source>
-        <translation type="vanished">स्थिति पट्टीमा बाह्य IP देखाउनुहोस्</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="988"/>
         <source>When adding a torrent</source>
         <translation>टोरेन्ट थप्दा</translation>
@@ -7298,10 +7184,6 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <translation>पूर्वनिर्धारित सञ्चय मार्ग:</translation>
     </message>
     <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">मा .torrent फाइलहरू प्रतिलिपि गर्नुहोस्:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="594"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation>सूचना क्षेत्रमा &amp;qBittorrent देखाउनुहोस्</translation>
@@ -7310,14 +7192,6 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <location filename="../gui/optionsdialog.ui" line="994"/>
         <source>Display &amp;torrent content and some options</source>
         <translation>टोरेन्ट सामग्री र केही विकल्पहरू प्रदर्शन गर्नुहोस् (&amp;T)</translation>
-    </message>
-    <message>
-        <source>De&amp;lete .torrent files afterwards </source>
-        <translation type="vanished">पछि .torrent फाइलहरू मेटाउनुहोस् (&amp;E)</translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">डाउनलोड सकिएपछि .torrent फाइलहरू यहाँ प्रतिलिपि गर्नुहोस्:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1251"/>
@@ -8404,10 +8278,6 @@ readme[0-9].txt: &apos;readme1.txt&apos;, &apos;readme2.txt&apos; फिल्�
         <translation>स्थान त्रुटि</translation>
     </message>
     <message>
-        <source>Choose export directory</source>
-        <translation type="vanished">निर्यात डाइरेक्टरी छनौट गर्नुहोस्</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="630"/>
         <source>When these options are enabled, qBittorrent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
         <translation>यी विकल्पहरू सक्षम पारिएपछि, qBittorrent ले .torrent फाइलहरू सफलतापूर्वक यसको डाउनलोड क्युमा थपिएको होस् (पहिलो विकल्प) वा नहोस् (दोस्रो विकल्प), &lt;strong&gt;मेटाउनेछ&lt;/strong&gt;। यो &amp;ldquo;टोरेन्ट थप्नुहोस्&amp;rdquo; मेनु कार्य मार्फत खोलिएका फाइलहरूमा &lt;strong&gt;मात्र लागू हुनेछैन&lt;/strong&gt; तर &lt;strong&gt;फाइल प्रकार सम्बद्धता&lt;/strong&gt; मार्फत खोलिएकाहरूमा पनि लागू हुनेछ</translation>
@@ -8526,12 +8396,12 @@ Check the Execution Log for errors.</source>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="314"/>
         <source>Interested (local) and choked (peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>इच्छुक (स्थानीय) र निसासिएको (पियर)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="319"/>
         <source>Interested (local) and unchoked (peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>इच्छुक (स्थानीय) र ननिसासिएको (पियर)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="328"/>
@@ -8872,25 +8742,6 @@ Check the Execution Log for errors.</source>
     </message>
 </context>
 <context>
-    <name>PluginSelectDialog</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">म</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">हो</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">होइन</translation>
-    </message>
-    <message>
-        <source>URL:</source>
-        <translation type="vanished">URL:</translation>
-    </message>
-</context>
-<context>
     <name>PluginsDialog</name>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="17"/>
@@ -8910,7 +8761,7 @@ Check the Execution Log for errors.</source>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="57"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>म</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="62"/>
@@ -8965,7 +8816,7 @@ Check the Execution Log for errors.</source>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="391"/>
         <source>Yes</source>
-        <translation type="unfinished">हो</translation>
+        <translation>हो</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="218"/>
@@ -8974,7 +8825,7 @@ Check the Execution Log for errors.</source>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="396"/>
         <source>No</source>
-        <translation type="unfinished">होइन</translation>
+        <translation>होइन</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="314"/>
@@ -10505,7 +10356,7 @@ Check the Execution Log for errors.</source>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="52"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>म</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="57"/>
@@ -10558,7 +10409,7 @@ Check the Execution Log for errors.</source>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="231"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="296"/>
         <source>Yes</source>
-        <translation type="unfinished">हो</translation>
+        <translation>हो</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="165"/>
@@ -10566,7 +10417,7 @@ Check the Execution Log for errors.</source>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="236"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="301"/>
         <source>No</source>
-        <translation type="unfinished">होइन</translation>
+        <translation>होइन</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
@@ -10612,7 +10463,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="364"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="372"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
@@ -10747,12 +10598,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="849"/>
+        <location filename="../gui/search/searchwidget.cpp" line="862"/>
         <source>Close tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="850"/>
+        <location filename="../gui/search/searchwidget.cpp" line="863"/>
         <source>Close all tabs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10762,34 +10613,34 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="841"/>
+        <location filename="../gui/search/searchwidget.cpp" line="854"/>
         <source>Refresh tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="845"/>
+        <location filename="../gui/search/searchwidget.cpp" line="858"/>
         <source>Stop search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Search Engine</source>
         <translation>खोज इन्जिन</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Empty search pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Please type a search pattern first</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10802,32 +10653,32 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
 <context>
     <name>SearchWidget::DataStorage</name>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="984"/>
+        <location filename="../gui/search/searchwidget.cpp" line="997"/>
         <source>Failed to load Search UI saved state data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1004"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1018"/>
         <source>Failed to load saved search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1036"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1050"/>
         <source>Failed to save Search UI state. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1068"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1082"/>
         <source>Failed to save search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1084"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
         <source>Failed to load Search UI history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1112"/>
         <source>Failed to save search history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11252,7 +11103,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     </message>
     <message>
         <location filename="../gui/statsdialog.cpp" line="111"/>
-        <source>%1 ms</source>
+        <source>%1 μs</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11732,17 +11583,17 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="126"/>
         <source>Rename error</source>
-        <translation type="unfinished">पुनर्नामाकरण गर्दा त्रुटी</translation>
+        <translation>पुनर्नामाकरण गर्दा त्रुटी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="156"/>
         <source>Resize columns</source>
-        <translation type="unfinished">स्तम्भहरूको आकार बदल्नुहोस्</translation>
+        <translation>स्तम्भहरूको आकार बदल्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="166"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished">सबै गैर-लुकेका स्तम्भहरूलाई तिनीहरूको सामग्रीको आकारमा रिसाइज गर्नुहोस्</translation>
+        <translation>सबै गैर-लुकेका स्तम्भहरूलाई तिनीहरूको सामग्रीको आकारमा रिसाइज गर्नुहोस्</translation>
     </message>
 </context>
 <context>
@@ -11755,7 +11606,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentlayoutmodel.cpp" line="62"/>
         <source>Path</source>
-        <translation type="unfinished">मार्ग</translation>
+        <translation>पथ</translation>
     </message>
 </context>
 <context>
@@ -11928,18 +11779,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentcontentwidget.cpp" line="471"/>
         <source>By shown file order</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Normal priority</source>
-        <translation type="vanished">साधारण प्राथमिकता</translation>
-    </message>
-    <message>
-        <source>High priority</source>
-        <translation type="vanished">उच्च प्राथमिकता</translation>
-    </message>
-    <message>
-        <source>Maximum priority</source>
-        <translation type="vanished">अति उच्च प्राथमिकता</translation>
     </message>
 </context>
 <context>
@@ -14259,86 +14098,86 @@ Please choose a different name and try again.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="59"/>
+        <location filename="../base/utils/misc.cpp" line="60"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>बा.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="60"/>
+        <location filename="../base/utils/misc.cpp" line="61"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>कि.बी.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="61"/>
+        <location filename="../base/utils/misc.cpp" line="62"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>एम.बी.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="62"/>
+        <location filename="../base/utils/misc.cpp" line="63"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>जि.बि.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="63"/>
+        <location filename="../base/utils/misc.cpp" line="64"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>टी.बी.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="64"/>
+        <location filename="../base/utils/misc.cpp" line="65"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation>पी.बी.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="65"/>
+        <location filename="../base/utils/misc.cpp" line="66"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation>इ.बी.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="101"/>
+        <location filename="../base/utils/misc.cpp" line="102"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/सेकेन्ड</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="239"/>
+        <location filename="../base/utils/misc.cpp" line="240"/>
         <source>%1s</source>
         <comment>e.g: 10 seconds</comment>
         <translation>%1 सेकेन्ड</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="244"/>
+        <location filename="../base/utils/misc.cpp" line="245"/>
         <source>%1m</source>
         <comment>e.g: 10 minutes</comment>
         <translation>%1 मिनेट</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="250"/>
+        <location filename="../base/utils/misc.cpp" line="251"/>
         <source>%1h %2m</source>
         <comment>e.g: 3 hours 5 minutes</comment>
         <translation>%1 घन्टा %2 मिनेट</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="257"/>
+        <location filename="../base/utils/misc.cpp" line="258"/>
         <source>%1d %2h</source>
         <comment>e.g: 2 days 10 hours</comment>
         <translation>%1 दिन %2 घण्टा</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="262"/>
+        <location filename="../base/utils/misc.cpp" line="263"/>
         <source>%1y %2d</source>
         <comment>e.g: 2 years 10 days</comment>
         <translation>%1 वर्ष %2 दिन</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="109"/>
-        <location filename="../base/utils/misc.cpp" line="121"/>
+        <location filename="../base/utils/misc.cpp" line="110"/>
+        <location filename="../base/utils/misc.cpp" line="122"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>अज्ञात</translation>
@@ -14354,7 +14193,7 @@ Please choose a different name and try again.</source>
         <translation>सबै डाउनलोडहरू पूरा भएकाले qBittorrent ले अब कम्प्युटर रिबुट गर्नेछ।</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="237"/>
+        <location filename="../base/utils/misc.cpp" line="238"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 मिनेट</translation>

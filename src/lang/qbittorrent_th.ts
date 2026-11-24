@@ -91,8 +91,12 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="336"/>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent สร้างมาจากไลบรารี่เหล่านี้</translation>
+        <translation type="vanished">qBittorrent สร้างมาจากไลบรารี่เหล่านี้</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="356"/>
@@ -143,37 +147,6 @@
     </message>
 </context>
 <context>
-    <name>AbstractFileStorage</name>
-    <message>
-        <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">เส้นทางเดิมไม่ถูกต้อง: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="vanished">เส้นทางใหม่ไม่ถูกต้อง: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="vanished">ไม่อนุญาตให้ใช้เส้นทางแบบสัมบูรณ์: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">ไฟล์นี้มีอยู่แล้ว: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>No such file: &apos;%1&apos;.</source>
-        <translation type="vanished">ไม่มีไฟล์ดังกล่าว: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="vanished">มีโฟลเดอร์นี้อยู่แล้ว: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="vanished">ไม่มีโฟลเดอร์: &apos;%1&apos;</translation>
-    </message>
-</context>
-<context>
     <name>AddNewTorrentDialog</name>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="113"/>
@@ -204,10 +177,6 @@
         <location filename="../gui/addnewtorrentdialog.ui" line="381"/>
         <source>Torrent information</source>
         <translation>ข้อมูลทอเรนต์</translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">ข้ามการตรวจสอบแฮช</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="122"/>
@@ -627,10 +596,6 @@
         <location filename="../gui/addtorrentparamswidget.ui" line="349"/>
         <source>&lt;p&gt;If set, qBittorrent will assume that all files are present for this torrent and that they all match the hashes in the torrent file. The use case for this mode is if a torrent is created and seeded, or if the user already knows that all the files are complete, this is a way to perform only basic file checks and skip initial hash checks.&lt;/p&gt;&lt;p&gt;The piece hash will be checked when it is requested for the first time by a peer. If a hash check fails, all files in this torrent will be rechecked.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">ข้ามตรวจสอบแฮช</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="357"/>
@@ -1558,7 +1523,7 @@
     <message>
         <location filename="../app/application.cpp" line="995"/>
         <source>Couldn&apos;t add torrent &apos;%1&apos;, reason: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>ไม่สามารถเพิ่มทอร์เรนต์ได้ &apos;%1&apos;, reason: %2</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1044"/>
@@ -1568,7 +1533,7 @@
     <message>
         <location filename="../app/application.cpp" line="1045"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ยังไม่ได้ตั้งรหัสผ่านผู้ดูแลระบบสำหรับ WebUI รหัสผ่านชั่วคราวจะถูกใช้งานในเซสชันนี้ : %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1046"/>
@@ -2188,72 +2153,69 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::BencodeResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="119"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="175"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation>ไม่สามารถสร้างโฟลเดอร์สำหรับดำเนินการต่อของไฟล์ทอร์เรนต์ได้: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="240"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="300"/>
         <source>Cannot parse resume data: invalid format</source>
         <translation>ไม่สามารถวิเคราะห์ข้อมูลประวัติย่อได้: รูปแบบไม่ถูกต้อง</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="330"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="339"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="378"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="390"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="399"/>
         <source>Cannot parse torrent info: %1</source>
         <translation>ไม่สามารถวิเคราะห์ข้อมูลทอร์เรนต์ได้: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="321"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="381"/>
         <source>Cannot parse torrent info: invalid format</source>
         <translation>ไม่สามารถวิเคราะห์ข้อมูลทอร์เรนต์ได้: รูปแบบไม่ถูกต้อง</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="351"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="411"/>
         <source>Mismatching info-hash detected in resume data</source>
         <translation>ตรวจพบความไม่ตรงกันของค่าแฮชข้อมูลในข้อมูลประวัติย่อ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>Corrupted resume data: %1</source>
         <translation>ข้อมูลประวัติเสียหาย: 1%</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="358"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="418"/>
         <source>save_path is invalid</source>
         <translation>save_path ไม่ถูกต้อง</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="449"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
-        <translation>ไม่สามารถบันทึกข้อมูลเมตาของทอร์เรนต์ไปที่ &apos;%1&apos;. ข้อผิดพลาด: %2</translation>
+        <translation type="vanished">ไม่สามารถบันทึกข้อมูลเมตาของทอร์เรนต์ไปที่ &apos;%1&apos;. ข้อผิดพลาด: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="487"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation>ไม่สามารถบันทึกข้อมูลการทำงานต่อของทอร์เรนต์ไปที่ &apos;%1&apos;. ข้อผิดพลาด: %2</translation>
+        <translation type="vanished">ไม่สามารถบันทึกข้อมูลการทำงานต่อของทอร์เรนต์ไปที่ &apos;%1&apos;. ข้อผิดพลาด: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="194"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="254"/>
         <source>Couldn&apos;t load torrents queue: %1</source>
         <translation>โหลดคิวทอร์เรนต์ไม่ได้: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="237"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="311"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="297"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="371"/>
         <source>Cannot parse resume data: %1</source>
         <translation>ไม่สามารถแยกวิเคราะห์ข้อมูลประวัติย่อได้: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="372"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="432"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
         <translation>ข้อมูลประวัติย่อไม่ถูกต้อง: ไม่พบทั้งเมตาเดต้าและอินโฟแฮช</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="512"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
-        <translation>ไม่สามารถบันทึกข้อมูลไปที่ &apos;%1&apos;. ข้อผิดพลาด: %2</translation>
+        <translation type="vanished">ไม่สามารถบันทึกข้อมูลไปที่ &apos;%1&apos;. ข้อผิดพลาด: %2</translation>
     </message>
 </context>
 <context>
@@ -2313,36 +2275,47 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>save_path ไม่ถูกต้อง</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="774"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="777"/>
         <source>Save resume data transaction failed. Error: %1</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t begin transaction. Error: %1</source>
-        <translation type="vanished">ไม่สามารถเริ่มต้นได้ ข้อผิดพลาด: %1</translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="906"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="908"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>ไม่สามารถบันทึกข้อมูลเมตาของทอร์เรนต์. ข้อผิดพลาด: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="967"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="969"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation>ไม่สามารถบันทึกข้อมูลการดาวน์โหลดต่อสำหรับทอร์เรนต์ &apos;%1&apos; ได้ ข้อผิดพลาด: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="995"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="997"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>ไม่สามารถลบข้อมูลดาวน์โหลดต่อของทอร์เรนต์ &apos;%1&apos; ได้ ข้อผิดพลาด: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1029"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="1031"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation>จัดเก็บตำแหน่งคิวไฟล์ torrent ไม่ได้ ข้อผิดพลาด: %1</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="566"/>
+        <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">ไม่สามารถบันทึกข้อมูลเมตาของทอร์เรนต์ไปที่ &apos;%1&apos;. ข้อผิดพลาด: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="604"/>
+        <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
+        <translation type="unfinished">ไม่สามารถบันทึกข้อมูลการทำงานต่อของทอร์เรนต์ไปที่ &apos;%1&apos;. ข้อผิดพลาด: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="639"/>
+        <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished">ไม่สามารถบันทึกข้อมูลไปที่ &apos;%1&apos;. ข้อผิดพลาด: %2</translation>
     </message>
 </context>
 <context>
@@ -2404,47 +2377,47 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1672"/>
         <source>Detected inconsistent data: category is missing from the configuration file. Category will be recovered but its settings will be reset to default. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>ตรวจพบข้อมูลที่ไม่สอดคล้องกัน: ข้อมูลหมวดหมู่หายไปจากไฟล์กำหนดค่า ระบบจะกู้คืนหมวดหมู่ดังกล่าวให้ แต่การตั้งค่าต่าง ๆ จะถูกรีเซ็ตกลับเป็นค่าเริ่มต้น ทอร์เรนต์: &quot;%1&quot; หมวดหมู่: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <source>Detected inconsistent data: invalid category. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>ตรวจพบข้อมูลที่ไม่สอดคล้องกัน: หมวดหมู่ไม่ถูกต้อง Torrent: &quot;%1&quot; หมวดหมู่: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1694"/>
         <source>Detected mismatch between the save paths of the recovered category and the current save path of the torrent. Torrent is now switched to Manual mode. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>ตรวจพบความไม่สอดคล้องกันระหว่างเส้นทางการบันทึกของหมวดหมู่ที่กู้คืนมา กับเส้นทางการบันทึกปัจจุบันของทอร์เรนต์ดังกล่าว ขณะนี้ทอร์เรนต์ได้ถูกเปลี่ยนเป็นโหมดกำหนดเอง (Manual mode) แล้ว ทอร์เรนต์: &quot;%1&quot; หมวดหมู่: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1708"/>
         <source>Detected inconsistent data: tag is missing from the configuration file. Tag will be recovered. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>ตรวจพบข้อมูลที่ไม่สอดคล้องกัน: แท็กหายไปจากไฟล์กำหนดค่า ระบบจะทำการกู้คืนแท็กดังกล่าวให้ ทอร์เรนต์: &quot;%1&quot; แท็ก: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1714"/>
         <source>Detected inconsistent data: invalid tag. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>ตรวจพบข้อมูลที่ไม่สอดคล้องกัน: แท็กไม่ถูกต้อง ทอร์เรนต์: &quot;%1&quot; แท็ก: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1792"/>
         <source>System wake-up event detected. Re-announcing to all the trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>ตรวจพบเหตุการณ์ระบบตื่นตัว กำลังประกาศซ้ำไปยังตัวติดตามทั้งหมด</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1866"/>
         <source>Peer ID: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>ไอดีเพียร์: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1867"/>
         <source>HTTP User-Agent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP ยูสเซอร์-เอเจนต์: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1870"/>
         <source>Peer Exchange (PeX) support: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>การรองรับ Peer Exchange (PeX): %1 </translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1871"/>
@@ -2456,7 +2429,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1872"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3939"/>
         <source>Encryption support: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>รองรับการเข้ารหัส: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1872"/>
@@ -2922,39 +2895,39 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="41"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="67"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">เส้นทางเดิมไม่ถูกต้อง: &apos;%1&apos;.</translation>
+        <translation>เส้นทางเดิมไม่ถูกต้อง: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="43"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="69"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished">เส้นทางใหม่ไม่ถูกต้อง: &apos;%1&apos;</translation>
+        <translation>เส้นทางใหม่ไม่ถูกต้อง: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="45"/>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="71"/>
         <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="unfinished">ไม่อนุญาตให้ใช้เส้นทางแบบสัมบูรณ์: &apos;%1&apos;</translation>
+        <translation>ไม่อนุญาตให้ใช้เส้นทางแบบสัมบูรณ์: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="55"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">ไฟล์นี้มีอยู่แล้ว: &apos;%1&apos;.</translation>
+        <translation>ไฟล์นี้มีอยู่แล้ว: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="59"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished">ไม่มีไฟล์ดังกล่าว: &apos;%1&apos;</translation>
+        <translation>ไม่พบไฟล์ดังกล่าว: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="80"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished">มีโฟลเดอร์นี้อยู่แล้ว: &apos;%1&apos;</translation>
+        <translation>มีโฟลเดอร์นี้อยู่แล้ว: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcontenthandler.cpp" line="87"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished">ไม่มีโฟลเดอร์: &apos;%1&apos;</translation>
+        <translation>ไม่พบโฟลเดอร์: &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -3199,10 +3172,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../app/cmdoptions.cpp" line="400"/>
         <source>Add torrents as running or stopped</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">ข้ามการตรวจสอบแฮช</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="403"/>
@@ -3863,32 +3832,32 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>KeyValueDataStorage</name>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="110"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="111"/>
         <source>Inserting (updating) database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="155"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="156"/>
         <source>Fetching database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="192"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="193"/>
         <source>Deleting database record failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="406"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="411"/>
         <source>Opening database failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="413"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="418"/>
         <source>Starting database transaction failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/keyvaluedatastorage.cpp" line="424"/>
+        <location filename="../base/keyvaluedatastorage.cpp" line="429"/>
         <source>Creating database table failed. Database: %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6737,7 +6706,7 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="494"/>
         <source>Status Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>แถบสถานะ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="500"/>
@@ -7205,10 +7174,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>ตำแหน่งที่บันทึกเริ่มต้น</translation>
     </message>
     <message>
-        <source>Copy .torrent files to:</source>
-        <translation type="vanished">คัดลอกไฟล์ .torrent ไปที่:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="594"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation type="unfinished"></translation>
@@ -7217,10 +7182,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.ui" line="994"/>
         <source>Display &amp;torrent content and some options</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="vanished">คัดลอกไฟล์ .torrent เพื่อดาวน์โหลดเสร็จแล้วไปที่:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1251"/>
@@ -8021,7 +7982,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="682"/>
         <location filename="../gui/optionsdialog.cpp" line="694"/>
         <source>Example:</source>
-        <translation type="unfinished">ตัวอย่าง:</translation>
+        <translation>ตัวอย่าง:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="684"/>
@@ -8292,10 +8253,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Location Error</source>
         <translation>ตำแหน่งล้มเหลว</translation>
-    </message>
-    <message>
-        <source>Choose export directory</source>
-        <translation type="vanished">เลือกหมวดหมู่การส่งออก</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="630"/>
@@ -8760,120 +8717,6 @@ Check the Execution Log for errors.</source>
     </message>
 </context>
 <context>
-    <name>PluginSelectDialog</name>
-    <message>
-        <source>Search plugins</source>
-        <translation type="vanished">ค้นหาปลักอิน</translation>
-    </message>
-    <message>
-        <source>Installed search plugins:</source>
-        <translation type="vanished">ปลั๊กอินสำหรับการค้นหาที่ติดตั้งแล้ว:</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">ชื่อ</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="vanished">เวอร์ชั่น</translation>
-    </message>
-    <message>
-        <source>Url</source>
-        <translation type="vanished">Url</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="vanished">เปิดใช้งาน</translation>
-    </message>
-    <message>
-        <source>Install a new one</source>
-        <translation type="vanished">ติดตั้งอันใหม่</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">ตรวจสอบอัพเดต</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">ปิด</translation>
-    </message>
-    <message>
-        <source>Uninstall</source>
-        <translation type="vanished">ถอนการติดตั้ง</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">ใช่</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">ไม่</translation>
-    </message>
-    <message>
-        <source>Uninstall warning</source>
-        <translation type="vanished">คำเตือนการถอนการติดตั้ง</translation>
-    </message>
-    <message>
-        <source>Uninstall success</source>
-        <translation type="vanished">ถอนการติดตั้งสำเร็จ</translation>
-    </message>
-    <message>
-        <source>All selected plugins were uninstalled successfully</source>
-        <translation type="vanished">ถอนการติดตั้งปลั๊กอินที่เลือกทั้งหมดสำเร็จแล้ว</translation>
-    </message>
-    <message>
-        <source>Search plugin update</source>
-        <translation type="vanished">ค้นหาปลั๊กอินที่อัพเดต</translation>
-    </message>
-    <message>
-        <source>Plugins installed or updated: %1</source>
-        <translation type="vanished">ติดตั้งหรืออัพเดต ปลั๊กอิน: %1</translation>
-    </message>
-    <message>
-        <source>New search engine plugin URL</source>
-        <translation type="vanished">ปลั๊กอินเครื่องมือค้นหา URL ใหม่</translation>
-    </message>
-    <message>
-        <source>URL:</source>
-        <translation type="vanished">URL:</translation>
-    </message>
-    <message>
-        <source>Select search plugins</source>
-        <translation type="vanished">เลือกปลั๊กอินสำหรับการค้นหา</translation>
-    </message>
-    <message>
-        <source>qBittorrent search plugin</source>
-        <translation type="vanished">ค้นหาปลั๊กอิน qBittorrent</translation>
-    </message>
-    <message>
-        <source>All your plugins are already up to date.</source>
-        <translation type="vanished">ปลั๊กอินทั้งหมดของท่านอยู่ในเวอร์ชั่นปัจจุบัน</translation>
-    </message>
-    <message>
-        <source>Search plugin install</source>
-        <translation type="vanished">ติดตั้งปลั๊กอินสำหรับการค้นหา</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">ไม่สามารถติดตั้ง &quot;%1&quot; ปลั๊กอินสำหรับการค้นหา %2</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="vanished">ไม่สามารถอัปเดต &quot;%1&quot; ปลั๊กอินสำหรับการค้นหา %2</translation>
-    </message>
-</context>
-<context>
-    <name>PluginSourceDialog</name>
-    <message>
-        <source>Local file</source>
-        <translation type="vanished">ไฟล์ในอุปกรณ์</translation>
-    </message>
-    <message>
-        <source>Web link</source>
-        <translation type="vanished">ลิงก์ของเว็บ</translation>
-    </message>
-</context>
-<context>
     <name>PluginsDialog</name>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="17"/>
@@ -8888,17 +8731,17 @@ Check the Execution Log for errors.</source>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="52"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ไอดี</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="57"/>
         <source>Name</source>
-        <translation type="unfinished">ชื่อ</translation>
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="62"/>
         <source>Version</source>
-        <translation type="unfinished">เวอร์ชั่น</translation>
+        <translation>เวอร์ชั่น</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="67"/>
@@ -8914,7 +8757,7 @@ Check the Execution Log for errors.</source>
         <location filename="../gui/plugins/pluginsdialog.ui" line="75"/>
         <location filename="../gui/plugins/pluginsdialog.ui" line="117"/>
         <source>Enabled</source>
-        <translation type="unfinished">เปิดใช้งาน</translation>
+        <translation>เปิดใช้งาน</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="98"/>
@@ -8924,12 +8767,12 @@ Check the Execution Log for errors.</source>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="105"/>
         <source>Close</source>
-        <translation type="unfinished">ปิด</translation>
+        <translation>ปิด</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.ui" line="122"/>
         <source>Uninstall</source>
-        <translation type="unfinished">ถอนการติดตั้ง</translation>
+        <translation>ถอนการติดตั้ง</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="143"/>
@@ -8948,7 +8791,7 @@ Check the Execution Log for errors.</source>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="391"/>
         <source>Yes</source>
-        <translation type="unfinished">ใช่</translation>
+        <translation>ใช่</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="218"/>
@@ -8957,7 +8800,7 @@ Check the Execution Log for errors.</source>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="281"/>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="396"/>
         <source>No</source>
-        <translation type="unfinished">ไม่</translation>
+        <translation>ไม่</translation>
     </message>
     <message>
         <location filename="../gui/plugins/pluginsdialog.cpp" line="314"/>
@@ -10478,33 +10321,33 @@ Check the Execution Log for errors.</source>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="17"/>
         <source>Search plugins</source>
-        <translation type="unfinished">ค้นหาปลักอิน</translation>
+        <translation>ค้นหาปลักอิน</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="29"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished">ปลั๊กอินสำหรับการค้นหาที่ติดตั้งแล้ว:</translation>
+        <translation>ปลั๊กอินสำหรับการค้นหาที่ติดตั้งแล้ว:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="52"/>
         <source>Name</source>
-        <translation type="unfinished">ชื่อ</translation>
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="57"/>
         <source>Version</source>
-        <translation type="unfinished">เวอร์ชั่น</translation>
+        <translation>เวอร์ชั่น</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="62"/>
         <source>Url</source>
-        <translation type="unfinished">Url</translation>
+        <translation>Url</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="67"/>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="133"/>
         <source>Enabled</source>
-        <translation type="unfinished">เปิดใช้งาน</translation>
+        <translation>เปิดใช้งาน</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="80"/>
@@ -10519,29 +10362,29 @@ Check the Execution Log for errors.</source>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="107"/>
         <source>Install a new one</source>
-        <translation type="unfinished">ติดตั้งอันใหม่</translation>
+        <translation>ติดตั้งอันใหม่</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="114"/>
         <source>Check for updates</source>
-        <translation type="unfinished">ตรวจสอบอัพเดต</translation>
+        <translation>ตรวจหาอัปเดต</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="121"/>
         <source>Close</source>
-        <translation type="unfinished">ปิด</translation>
+        <translation>ปิด</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.ui" line="138"/>
         <source>Uninstall</source>
-        <translation type="unfinished">ถอนการติดตั้ง</translation>
+        <translation>ถอนการติดตั้ง</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="160"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="231"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="296"/>
         <source>Yes</source>
-        <translation type="unfinished">ใช่</translation>
+        <translation>ใช่</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="165"/>
@@ -10549,12 +10392,12 @@ Check the Execution Log for errors.</source>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="236"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="301"/>
         <source>No</source>
-        <translation type="unfinished">ไม่</translation>
+        <translation>ไม่</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished">คำเตือนการถอนการติดตั้ง</translation>
+        <translation>คำเตือนการถอนการติดตั้ง</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="216"/>
@@ -10565,12 +10408,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>Uninstall success</source>
-        <translation type="unfinished">ถอนการติดตั้งสำเร็จ</translation>
+        <translation>ถอนการติดตั้งสำเร็จ</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="218"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished">ถอนการติดตั้งปลั๊กอินที่เลือกทั้งหมดสำเร็จแล้ว</translation>
+        <translation>ถอนการติดตั้งปลั๊กอินที่เลือกทั้งหมดสำเร็จแล้ว</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
@@ -10578,24 +10421,24 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="495"/>
         <source>Search plugin update</source>
-        <translation type="unfinished">ค้นหาปลั๊กอินที่อัพเดต</translation>
+        <translation>ค้นหาปลั๊กอินที่อัพเดต</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="341"/>
         <source>Plugins installed or updated: %1</source>
-        <translation type="unfinished">ติดตั้งหรืออัพเดต ปลั๊กอิน: %1</translation>
+        <translation>ติดตั้งหรืออัพเดต ปลั๊กอิน: %1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="363"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="371"/>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished">ปลั๊กอินเครื่องมือค้นหา URL ใหม่</translation>
+        <translation>ปลั๊กอินเครื่องมือค้นหา URL ใหม่</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="364"/>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="372"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="369"/>
@@ -10610,17 +10453,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="386"/>
         <source>Select search plugins</source>
-        <translation type="unfinished">เลือกปลั๊กอินสำหรับการค้นหา</translation>
+        <translation>เลือกปลั๊กอินสำหรับการค้นหา</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="387"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished">ค้นหาปลั๊กอิน qBittorrent</translation>
+        <translation>ค้นหาปลั๊กอิน qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="448"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished">ปลั๊กอินทั้งหมดของท่านอยู่ในเวอร์ชั่นปัจจุบัน</translation>
+        <translation>ปลั๊กอินทั้งหมดของท่านอยู่ในเวอร์ชั่นปัจจุบัน</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="463"/>
@@ -10630,17 +10473,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="477"/>
         <source>Search plugin install</source>
-        <translation type="unfinished">ติดตั้งปลั๊กอินสำหรับการค้นหา</translation>
+        <translation>ติดตั้งปลั๊กอินสำหรับการค้นหา</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="478"/>
         <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">ไม่สามารถติดตั้ง &quot;%1&quot; ปลั๊กอินสำหรับการค้นหา %2</translation>
+        <translation>ไม่สามารถติดตั้ง &quot;%1&quot; ปลั๊กอินสำหรับการค้นหา %2</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginselectdialog.cpp" line="496"/>
         <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished">ไม่สามารถอัปเดต &quot;%1&quot; ปลั๊กอินสำหรับการค้นหา %2</translation>
+        <translation>ไม่สามารถอัปเดต &quot;%1&quot; ปลั๊กอินสำหรับการค้นหา %2</translation>
     </message>
 </context>
 <context>
@@ -10658,12 +10501,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="35"/>
         <source>Local file</source>
-        <translation type="unfinished">ไฟล์ในอุปกรณ์</translation>
+        <translation>ไฟล์ในอุปกรณ์</translation>
     </message>
     <message>
         <location filename="../gui/search/searchpluginsourcedialog.ui" line="42"/>
         <source>Web link</source>
-        <translation type="unfinished">ลิงก์ของเว็บ</translation>
+        <translation>ลิงก์ของเว็บ</translation>
     </message>
 </context>
 <context>
@@ -10730,12 +10573,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="849"/>
+        <location filename="../gui/search/searchwidget.cpp" line="862"/>
         <source>Close tab</source>
         <translation>ปิดแท็บ</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="850"/>
+        <location filename="../gui/search/searchwidget.cpp" line="863"/>
         <source>Close all tabs</source>
         <translation>ปิดทุกแท็บ</translation>
     </message>
@@ -10745,34 +10588,34 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation>เลือก...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="841"/>
+        <location filename="../gui/search/searchwidget.cpp" line="854"/>
         <source>Refresh tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="845"/>
+        <location filename="../gui/search/searchwidget.cpp" line="858"/>
         <source>Stop search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Search Engine</source>
         <translation>เครื่องมือค้นหา</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="892"/>
-        <location filename="../gui/search/searchwidget.cpp" line="969"/>
+        <location filename="../gui/search/searchwidget.cpp" line="905"/>
+        <location filename="../gui/search/searchwidget.cpp" line="982"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation>โปรดติดตั้ง Python เพื่อใช้เครื่องมือค้นหา</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Empty search pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="886"/>
+        <location filename="../gui/search/searchwidget.cpp" line="899"/>
         <source>Please type a search pattern first</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10785,32 +10628,32 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
 <context>
     <name>SearchWidget::DataStorage</name>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="984"/>
+        <location filename="../gui/search/searchwidget.cpp" line="997"/>
         <source>Failed to load Search UI saved state data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1004"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1018"/>
         <source>Failed to load saved search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1036"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1050"/>
         <source>Failed to save Search UI state. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1068"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1082"/>
         <source>Failed to save search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1084"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
         <source>Failed to load Search UI history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="1098"/>
+        <location filename="../gui/search/searchwidget.cpp" line="1112"/>
         <source>Failed to save search history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11235,13 +11078,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     </message>
     <message>
         <source>%1 ms</source>
-        <comment>18 milliseconds</comment>
         <translation type="vanished">%1 ms</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.cpp" line="111"/>
-        <source>%1 ms</source>
-        <translation type="unfinished">%1 ms</translation>
+        <source>%1 μs</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11722,12 +11564,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="126"/>
         <source>Rename error</source>
-        <translation type="unfinished">การเปลี่ยนชื่อผิดพลาด</translation>
+        <translation>การเปลี่ยนชื่อผิดพลาด</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="156"/>
         <source>Resize columns</source>
-        <translation type="unfinished">ปรับขนาดคอลัมภ์</translation>
+        <translation>ปรับขนาดคอลัมภ์</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentlayoutdialog.cpp" line="166"/>
@@ -11745,7 +11587,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentlayoutmodel.cpp" line="62"/>
         <source>Path</source>
-        <translation type="unfinished">เส้นทาง</translation>
+        <translation>เส้นทาง</translation>
     </message>
 </context>
 <context>
@@ -11917,22 +11759,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentcontentwidget.cpp" line="471"/>
         <source>By shown file order</source>
         <translation>แสดงลำดับไฟล์โดย</translation>
-    </message>
-    <message>
-        <source>Normal priority</source>
-        <translation type="vanished">ลำดับความสำคัญปกติ</translation>
-    </message>
-    <message>
-        <source>High priority</source>
-        <translation type="vanished">ลำดับความสำคัญสูง</translation>
-    </message>
-    <message>
-        <source>Maximum priority</source>
-        <translation type="vanished">ลำดับความสำคัญสูงสุด</translation>
-    </message>
-    <message>
-        <source>Priority by shown file order</source>
-        <translation type="vanished">ลำดับความสำคัญตามลำดับไฟล์ที่แสดง</translation>
     </message>
 </context>
 <context>
@@ -14252,86 +14078,86 @@ Please choose a different name and try again.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="59"/>
+        <location filename="../base/utils/misc.cpp" line="60"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>ไบต์</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="60"/>
+        <location filename="../base/utils/misc.cpp" line="61"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>กิบิไบต์</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="61"/>
+        <location filename="../base/utils/misc.cpp" line="62"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>เมบิไบต์</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="62"/>
+        <location filename="../base/utils/misc.cpp" line="63"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>จิบิไบต์</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="63"/>
+        <location filename="../base/utils/misc.cpp" line="64"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>เทบิไบต์</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="64"/>
+        <location filename="../base/utils/misc.cpp" line="65"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation>เพบิไบต์</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="65"/>
+        <location filename="../base/utils/misc.cpp" line="66"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation>เอกซ์บิไบต์</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="101"/>
+        <location filename="../base/utils/misc.cpp" line="102"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/วินาที</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="239"/>
+        <location filename="../base/utils/misc.cpp" line="240"/>
         <source>%1s</source>
         <comment>e.g: 10 seconds</comment>
         <translation>%1s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="244"/>
+        <location filename="../base/utils/misc.cpp" line="245"/>
         <source>%1m</source>
         <comment>e.g: 10 minutes</comment>
         <translation>% 1 นาที</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="250"/>
+        <location filename="../base/utils/misc.cpp" line="251"/>
         <source>%1h %2m</source>
         <comment>e.g: 3 hours 5 minutes</comment>
         <translation>%1 ชั่วโมง %2 นาที</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="257"/>
+        <location filename="../base/utils/misc.cpp" line="258"/>
         <source>%1d %2h</source>
         <comment>e.g: 2 days 10 hours</comment>
         <translation>%1 วัน %2 ชั่วโมง</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="262"/>
+        <location filename="../base/utils/misc.cpp" line="263"/>
         <source>%1y %2d</source>
         <comment>e.g: 2 years 10 days</comment>
         <translation>%1 ปี %2 วัน</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="109"/>
-        <location filename="../base/utils/misc.cpp" line="121"/>
+        <location filename="../base/utils/misc.cpp" line="110"/>
+        <location filename="../base/utils/misc.cpp" line="122"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>ไม่ทราบ</translation>
@@ -14347,7 +14173,7 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="237"/>
+        <location filename="../base/utils/misc.cpp" line="238"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 นาที</translation>

@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Posodobi moje dinamično ime domene</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Hrani nedokončane torrente v:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Predhodno dodeli prostor na disku za vse datoteke</translation>
     </message>
@@ -2025,7 +2021,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
-        <translation type="unfinished" />
+        <translation>Uporabniško ime za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
     </message>
     <message>
         <source>Same host request delay:</source>
@@ -2053,7 +2049,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Tema</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
@@ -2081,7 +2077,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Svetloba</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
@@ -2333,7 +2329,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>Uporabniško ime spletnega vmesnika ne sme vsebovati dvopičja</translation>
     </message>
     <message>
         <source>Localization</source>
@@ -2493,15 +2489,15 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Tudi ko je dodajanje preklicano</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Izbriši tudi .torrent datoteke katerih dodajanje je bilo preklicano</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Za nedokončane torrente uporabi drugačno pot:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -2596,7 +2592,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Contribution</source>
-        <translation type="unfinished" />
+        <translation>Prispevek</translation>
     </message>
 </context>
 <context>
@@ -3840,7 +3836,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Odstrani vse oznake z izbranega torrenta?</translation>
     </message>
 </context>
 <context>
@@ -4141,7 +4137,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Select plugins</source>
-        <translation type="unfinished" />
+        <translation>Izberi dodatke</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorent je bil ustvarjen s sledečimi knjižnicami:</translation>
+        <translation type="vanished">qBittorent je bil ustvarjen s sledečimi knjižnicami:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent ikona</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

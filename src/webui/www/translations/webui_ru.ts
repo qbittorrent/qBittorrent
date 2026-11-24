@@ -975,10 +975,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Обновлять моё динамическое доменное имя</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Хранить неполные торренты в:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Предварительно выделять место на диске для всех файлов</translation>
     </message>
@@ -2373,10 +2369,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Разрешать несколько соединений с одним ИД пира:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Предпринята попытка отправки проверочного письма.&lt;br&gt;Проверьте входящие для подтверждения успеха.&lt;br&gt;Проверьте журнал работы на наличие ошибок.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Предел числа сеансов:</translation>
     </message>
@@ -2486,35 +2478,35 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Подтверждать удаление трекера из всех торрентов:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Любое из вышеуказанных</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Все из вышеуказанных</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Удалять торрент-файл при отмене добавления</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Удалять торрент-файл, добавление которого было отменено</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Отдельный путь для неполных торрентов:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Подтверждать удаление всех меток:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Попытка отправить электронное письмо.\nПроверьте свой почтовый ящик для подтверждения успешности.\nПроверьте журнал работы на наличие ошибок.</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Удалить все метки для выбранных торрентов?</translation>
     </message>
 </context>
 <context>
@@ -3904,19 +3896,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Режим</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Стандартный (соответствовать любому ограничению)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Соответствовать всем ограничениям</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Соответствовать любому ограничению</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>Эта сборка qBittorrent использует следующие библиотеки:</translation>
+        <translation type="vanished">Эта сборка qBittorrent использует следующие библиотеки:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>qBittorrent icon</source>
         <translation>Значок qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Добавить торренты: %1</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Открывать общее окно загрузки</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Открывать отдельные окна загрузки</translation>
     </message>
 </context>
 <context>

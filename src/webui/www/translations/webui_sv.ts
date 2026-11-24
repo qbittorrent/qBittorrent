@@ -975,10 +975,6 @@ Varje datadels hashvärde kontrolleras när en jämlike begär delen för först
         <translation>Uppdatera mitt dynamiska domännamn</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Behåll ofullständiga torrenter i:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Förallokera diskutrymme för alla filer</translation>
     </message>
@@ -2373,10 +2369,6 @@ Använd ”;” för att avgränsa flera poster. Jokertecknet ”*” kan använ
         <translation>Tillåt flera anslutningar från samma jämlike-ID:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Ett försök att skicka ett testmeddelande har gjorts.&lt;br&gt;Kontrollera inkorgen för att se om det kom fram.&lt;br&gt;Kontrollera körningsloggen efter fel.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Högsta antal sessioner:</translation>
     </message>
@@ -2486,35 +2478,35 @@ Använd ”;” för att avgränsa flera poster. Jokertecknet ”*” kan använ
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Bekräfta borttagning aBekräfta borttagning av spårare från alla torrenterv spårare från alla torrenter</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Något av ovanstående</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Allt ovanstående</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Även när tilläggning avbryts</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Ta också bort .torrentfiler vars tillägg avbröts</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Använd en annan sökväg för ofullständiga torrenter:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Bekräfta borttagning av alla taggar:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Försökte skicka test-e-post.\nKontrollera din inkorg för att bekräfta att det lyckades.\nKontrollera körningsloggen för fel.</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ Använd ”;” för att avgränsa flera poster. Jokertecknet ”*” kan använ
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Ta bort alla taggar från valda torrenter?</translation>
     </message>
 </context>
 <context>
@@ -3904,19 +3896,19 @@ Använd ”;” för att avgränsa flera poster. Jokertecknet ”*” kan använ
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Läge</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Standard (matcha valfri gräns)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Alla gränser måste uppnås</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Minst en gräns måste uppnås</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ Använd ”;” för att avgränsa flera poster. Jokertecknet ”*” kan använ
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent byggdes med följande bibliotek:</translation>
+        <translation type="vanished">qBittorrent byggdes med följande bibliotek:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Använd ”;” för att avgränsa flera poster. Jokertecknet ”*” kan använ
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent-ikon</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ Använd ”;” för att avgränsa flera poster. Jokertecknet ”*” kan använ
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Lägg till torrenter (%1)</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Öppna ett gemensamt hämtningsfönster</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Öppna separata hämtningsfönster</translation>
     </message>
 </context>
 <context>

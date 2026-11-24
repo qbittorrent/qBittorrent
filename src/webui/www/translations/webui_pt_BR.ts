@@ -975,10 +975,6 @@ O hash da parte será verificado quando for solicitado pela primeira vez por um 
         <translation>Atualizar meu nome de domínio dinâmico</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Manter torrents incompletos em:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Pré-alocar espaço em disco pra todos os arquivos</translation>
     </message>
@@ -2373,10 +2369,6 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Permitir múltiplas conexões do mesmo Peer ID:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Tentativa de enviar e-mail de teste.&lt;br&gt;Verifique sua caixa de entrada para confirmar o recebimento.&lt;br&gt;Verifique se há erros no registro de execução.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Limite de contagem de sessões:</translation>
     </message>
@@ -2490,23 +2482,23 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Qualquer um dos acima</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Todos os acima</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Também quando a adição for cancelada</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Também apagar arquivos .torrent cuja adição foi cancelada</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Usar outro caminho pros torrents incompletos:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -2514,7 +2506,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Tentativa de enviar e-mail de teste.\nVerifique sua caixa de entrada para confirmar o recebimento.\nVerifique se há erros no registro de execução.</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Remover todas as etiquetas dos torrents selecionados?</translation>
     </message>
 </context>
 <context>
@@ -3912,11 +3904,11 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Corresponder todos os limites</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Corresponder qualquer limite</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>O qBittorrent foi construído com as seguintes bibliotecas:</translation>
+        <translation type="vanished">O qBittorrent foi construído com as seguintes bibliotecas:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     <message>
         <source>qBittorrent icon</source>
         <translation>Ícone do qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Adicionar %1 torrents</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Abrir janela de download compartilhado</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Abrir janelas de download separadas</translation>
     </message>
 </context>
 <context>

@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Atjaunināt manu dinamiskā domēna nosaukumu</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Glabāt nepabeigtos failus šeit:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Rezervēt vietu uz diska jaunajiem failiem</translation>
     </message>
@@ -2493,15 +2489,15 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Arī atceļot pievienošanu</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>.torrent faili tiks izdzēsti arī pie pievienošanas atcelšanas.</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Izmantot citu vietu nepabeigtiem torrentiem:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3840,7 +3836,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Noņemt visas atzīmes no atlasītajiem torrentiem?</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>Šī qBittorrent versija tika uzbūvēta, izmantojot šīs bibliotēkas:</translation>
+        <translation type="vanished">Šī qBittorrent versija tika uzbūvēta, izmantojot šīs bibliotēkas:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent ikona</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

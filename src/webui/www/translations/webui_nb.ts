@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Oppdater mitt dynamiske domenenavn</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Behold ufullstendige torrenter i:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Forhåndstildel diskplass for alle filer</translation>
     </message>
@@ -2493,15 +2489,15 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Også når tillegging blir avbrutt</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Slett .torrent-filer som hvis tillegg i listen ble avbrutt samtidig</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Bruk en annen sti for ufullstendige torrenter:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3840,7 +3836,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Fjern alle etiketter fra valgte torrenter?</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent ble bygd med følgende biblioteker:</translation>
+        <translation type="vanished">qBittorrent ble bygd med følgende biblioteker:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4403,6 +4399,10 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent-ikon</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

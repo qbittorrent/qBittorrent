@@ -4365,10 +4365,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Nationality:</source>
         <translation type="unfinished" />
     </message>
@@ -4394,6 +4390,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>

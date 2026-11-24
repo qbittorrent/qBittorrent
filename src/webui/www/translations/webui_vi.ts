@@ -975,10 +975,6 @@ Mã băm của từng phần sẽ được kiểm tra khi nó được yêu cầ
         <translation>Cập nhật tên miền động của tôi</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Giữ các torrent chưa hoàn tất ở:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Phân bổ trước dung lượng đĩa cho tất cả các tệp</translation>
     </message>
@@ -2373,10 +2369,6 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <translation>Cho phép nhiều kết nối từ cùng một ID Ngang hàng:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Cố gắng gửi email kiểm tra. &lt;br&gt;Kiểm tra hộp thư đến của bạn để xác nhận thành công. &lt;br&gt;Kiểm tra Nhật ký Thực thi cho các lỗi.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Giới hạn số phiên:</translation>
     </message>
@@ -2486,35 +2478,35 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Xác nhận xóa máy theo dõi khỏi tất cả các torrent:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Bất kỳ điều trên</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>Tất cả điều trên</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Ngoài ra khi việc bổ sung bị hủy bỏ</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Đồng thời xóa các tệp .torrent có phần bổ sung đã bị hủy</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Dùng đường dẫn khác cho torrent chưa hoàn tất</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Xác nhận xóa tất cả các thẻ:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Đã thử gửi email thử nghiệm.\nKiểm tra hộp thư đến của bạn để xác nhận thành công.\nKiểm tra Nhật Ký Thực Thi để tìm lỗi.</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Xóa hết thẻ khỏi torrent đã chọn?</translation>
     </message>
 </context>
 <context>
@@ -3904,19 +3896,19 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Chế độ</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Mặc định (Phù hợp với bất kỳ giới hạn nào)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Phù hợp tất cả các giới hạn</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Phù hợp với bất kỳ giới hạn nào</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent được xây dựng với các thư viện sau:</translation>
+        <translation type="vanished">qBittorrent được xây dựng với các thư viện sau:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     <message>
         <source>qBittorrent icon</source>
         <translation>biểu tượng qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Thêm %1 torrents</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Mở cửa sổ tải xuống được chia sẻ</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Mở các cửa sổ tải xuống riêng biệt</translation>
     </message>
 </context>
 <context>

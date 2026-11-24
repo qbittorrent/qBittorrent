@@ -975,10 +975,6 @@ Hash vrijednost dijela provjerit će se kada je peer prvi put zatraži. Ako prov
         <translation>Ažuriraj naziv moje dinamičke domene</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Sačuvaj nepotpune torrente u:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Unaprijed dodijelite prostor na disku za sve datoteke</translation>
     </message>
@@ -2373,10 +2369,6 @@ Koristite ';' za razdvajanje više unosa. Možete koristiti džoker '*'.</transl
         <translation>Dozvoli više konekcija sa istim ID-om peera:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">Pokušano slanje e-pošte.&lt;br&gt;Provjerite pristiglu poštu da potvrdite uspjeh.&lt;br&gt;Provjerite dnevnik izvršavanja za greške.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Ograničenje broja sesija:</translation>
     </message>
@@ -2486,35 +2478,35 @@ Koristite ';' za razdvajanje više unosa. Možete koristiti džoker '*'.</transl
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Potvrdi uklanjanje trackera sa svih torrenta:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>Bilo koje od gore navedenih</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation> Sve gore navedeno</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Također kada se dodavanje otkaže</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Također izbrišite .torrent datoteke čije je dodavanje otkazano</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Koristite drugu putanju za nepotpune torrente:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Potvrdite uklanjanje svih oznaka:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Pokušano slanje e-pošte.\nProvjerite pristiglu poštu da potvrdite uspjeh.\nProvjerite dnevnik izvršavanja za greške.</translation>
     </message>
 </context>
 <context>
@@ -3845,7 +3837,7 @@ Koristite ';' za razdvajanje više unosa. Možete koristiti džoker '*'.</transl
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Ukloniti sve oznake sa odabranih torrenta?</translation>
     </message>
 </context>
 <context>
@@ -3904,19 +3896,19 @@ Koristite ';' za razdvajanje više unosa. Možete koristiti džoker '*'.</transl
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Način</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Zadano (Podudaranje s bilo kojim limitom)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation> Podudara se sa svim limitima</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Podudaranje s bilo kojim limitom</translation>
     </message>
 </context>
 <context>
@@ -4379,7 +4371,7 @@ Koristite ';' za razdvajanje više unosa. Možete koristiti džoker '*'.</transl
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorent je izgrađen sa sljedećim programskim jezicima:</translation>
+        <translation type="vanished">qBittorent je izgrađen sa sljedećim programskim jezicima:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Koristite ';' za razdvajanje više unosa. Možete koristiti džoker '*'.</transl
     <message>
         <source>qBittorrent icon</source>
         <translation>Ikona qBittorrenta</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4651,15 +4647,15 @@ Koristite ';' za razdvajanje više unosa. Možete koristiti džoker '*'.</transl
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>Dodajte %1 torrente</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Otvori zajednički prozor za preuzimanje</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Otvori zasebne prozore za preuzimanje</translation>
     </message>
 </context>
 <context>

@@ -2485,15 +2485,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Gjithashtu kur shtimi anulohet</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Fshi gjithashtu skedarët .torrent për të cilët shtimi u anulua</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Përdor një shteg tjetër për torrent-ët jo të plotë:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
@@ -3832,7 +3832,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Hiq të gjitha etiketat nga torrent-ët e zgjedhur?</translation>
     </message>
 </context>
 <context>
@@ -4366,7 +4366,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent është ndërtuar me këto librari:</translation>
+        <translation type="vanished">qBittorrent është ndërtuar me këto librari:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4394,6 +4394,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>

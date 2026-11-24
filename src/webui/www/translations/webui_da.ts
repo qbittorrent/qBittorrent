@@ -974,10 +974,6 @@ The piece hash will be checked when it is requested for the first time by a peer
         <translation>Opdater mit dynamiske domænenavn</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Behold ufærdige torrents i:</translation>
-    </message>
-    <message>
         <source>Pre-allocate disk space for all files</source>
         <translation>Præ-allokér alle filer</translation>
     </message>
@@ -2493,11 +2489,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Også når tilføjelse annulleres</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Slet også .torrent-filer som fik deres tilføjelse annulleret</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
@@ -3840,7 +3836,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Fjern alle mærkater fra valgte torrents?</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent blev bygget med følgende biblioteker:</translation>
+        <translation type="vanished">qBittorrent blev bygget med følgende biblioteker:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4402,6 +4398,10 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>

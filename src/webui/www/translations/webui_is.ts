@@ -4402,7 +4402,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent var búið til með eftirfarandi forritasöfnum:</translation>
+        <translation type="vanished">qBittorrent var búið til með eftirfarandi forritasöfnum:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4430,6 +4430,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>

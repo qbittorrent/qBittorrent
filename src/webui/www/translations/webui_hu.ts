@@ -168,7 +168,7 @@
     </message>
     <message>
         <source>Unable to download torrent file</source>
-        <translation>Torrent fájl letöltése sikertelen</translation>
+        <translation>Nem sikerült letölteni a torrentfájlt</translation>
     </message>
     <message>
         <source>Info hash v2:</source>
@@ -275,7 +275,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Globális feltöltési sebességkorlátnak 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation>A globális feltöltési sebességkorlátnak 0-nál nagyobbnak kell lennie, vagy ki kell kapcsolni.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
@@ -283,11 +283,11 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Alternatív feltöltési sebességkorlátnak 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation>Az alternatív feltöltési sebességkorlátnak 0-nál nagyobbnak kell lennie, vagy ki kell kapcsolni.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>Alternatív letöltési sebességkorlátnak 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation>Az alternatív letöltési sebességkorlátnak 0-nál nagyobbnak kell lennie, vagy ki kell kapcsolni.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
@@ -303,11 +303,11 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>Maximális kapcsolatok számának 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation>A kapcsolatok maximális számának 0-nál nagyobbnak kell lennie, vagy ki kell kapcsolni a korlátot.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Maximális kapcsolatok számának torrentenként 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation>A torrentenkénti kapcsolatok maximális számának 0-nál nagyobbnak kell lennie, vagy ki kell kapcsolni a korlátot.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
@@ -406,7 +406,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation>Torrent inaktivitás időzítőjének nagyobbnak kell lennie mint 0.</translation>
+        <translation>A torrent inaktivitási időzítőjének 0-nál nagyobbnak kell lennie.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -422,11 +422,11 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>Regisztrálja a magnet linkek kezeléséhez...</translation>
+        <translation>Regisztrálás a magnet linkek kezelőjeként...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>Nem sikerült peereket hozzáadni. Kérjük ellenőrizze, hogy megfelel-e az IP:port formátumnak</translation>
+        <translation>Nem sikerült peereket hozzáadni. Kérjük, ellenőrizze, hogy megfelel-e az IP:port formátumnak.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -454,7 +454,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>The port used for the WebUI must be between 1 and 65535.</source>
-        <translation>Web UI-hoz használt portnak 1 és 65535 közé kell esnie.</translation>
+        <translation>A WebUI-hoz használt portnak 1 és 65535 között kell lennie.</translation>
     </message>
     <message>
         <source>%1 has been shutdown</source>
@@ -498,19 +498,19 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Are you sure you want to remove %1 from the transfer list?</source>
-        <translation>Biztosan el szeretné távolítani a(z) %1 torrentet az átviteli listából?</translation>
+        <translation>Biztosan eltávolítja az átviteli listából a következő torrentet: %1?</translation>
     </message>
     <message>
         <source>Unable to set Auto Torrent Management for the selected torrents.</source>
-        <translation>Az automatikus torrent kezelés beállítása nem lehetséges a kiválasztott torrentekhez.</translation>
+        <translation>Az automatikus torrentkezelés beállítása nem lehetséges a kiválasztott torrentekhez.</translation>
     </message>
     <message>
         <source>Unable to stop torrents.</source>
-        <translation>Torrentek megállítása nem lehetséges.</translation>
+        <translation>A torrentek leállítása nem lehetséges.</translation>
     </message>
     <message>
         <source>Unable to download file</source>
-        <translation>A fájl letöltése nem lehetséges.</translation>
+        <translation>A fájl letöltése nem lehetséges</translation>
     </message>
     <message>
         <source>External IPs: %1, %2</source>
@@ -534,7 +534,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Unable to delete API key.</source>
-        <translation>API kulcs törlése sikertelen.</translation>
+        <translation>Nem sikerült törölni az API-kulcsot.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
@@ -542,11 +542,11 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation>A megosztási arány nem lehet negatív érték.</translation>
+        <translation>A megosztási arány korlátja nem lehet negatív érték.</translation>
     </message>
     <message>
         <source>Peer turnover interval must be greater than or equal to 0.</source>
-        <translation>Peer cserélődési időköznek 0-nál nagyobbnak vagy azzal egyenlőnek kell lennie.</translation>
+        <translation>A peerek lecserélésének időköze nem lehet kisebb 0-nál.</translation>
     </message>
     <message>
         <source>Unable to parse response.</source>
@@ -554,11 +554,11 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Unable to rotate API key.</source>
-        <translation>Nem sikerült forgatni az API kulcsot.</translation>
+        <translation>Nem sikerült lecserélni az API-kulcsot.</translation>
     </message>
     <message>
         <source>Peer turnover must be between 0 and 100.</source>
-        <translation>Peer cserélődési értéknek 0 és 100 közé kell esnie.</translation>
+        <translation>A peerek lecserélésekor bontott kapcsolatok arányának 0 és 100 között kell lennie.</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents must be greater than 0 and less than 1024.</source>
@@ -570,11 +570,11 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
-        <translation>Peer cserélődési küszöbnek 0 és 100 között kell lennie.</translation>
+        <translation>A peerek lecserélésénél használt küszöbértéknek 0 és 100 között kell lennie.</translation>
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
-        <translation>Peer DSCP-nek 0 és 255 közé kell esnie.</translation>
+        <translation>A peer DSCP-értékének 0 és 255 között kell lennie.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
@@ -582,7 +582,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation>Nem sikerült menteni a beállításokat, qBittorrent valószínűleg nem elérhető.</translation>
+        <translation>Nem sikerült menteni a beállításokat, a qBittorrent valószínűleg nem elérhető.</translation>
     </message>
     <message>
         <source>Error:</source>
@@ -598,11 +598,11 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Unable to force start torrents.</source>
-        <translation>Nem sikerült kényszerítetten elindítani a torrenteket.</translation>
+        <translation>Nem sikerült a torrentek kényszerített indítása.</translation>
     </message>
     <message>
         <source>Invalid path to Python executable. Path contains unnecessary leading and trailing quotes.</source>
-        <translation>Érvénytelen a Python futtatható állomány elérési útja. Az elérési út felesleges kezdő és záró idézőjeleket tartalmaz.</translation>
+        <translation>Érvénytelen a Python futtatható fájljának elérési útja. Az elérési út felesleges kezdő és záró idézőjeleket tartalmaz.</translation>
     </message>
     <message>
         <source>Unable to pause the session.</source>
@@ -649,7 +649,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Donate!</source>
-        <translation>Adományozz!</translation>
+        <translation>Adományozzon!</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -661,7 +661,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Add Torrent File...</source>
-        <translation>Torrent fájl hozzáadása...</translation>
+        <translation>Torrentfájl hozzáadása...</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -669,7 +669,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation>Torrent link hozzáadása...</translation>
+        <translation>Torrentlink hozzáadása...</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -693,7 +693,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation>Torrent lista szűrése...</translation>
+        <translation>Torrentlista szűrése...</translation>
     </message>
     <message>
         <source>Search</source>
@@ -781,7 +781,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Szűrők oldalsáv</translation>
+        <translation>Szűrők oldalsávja</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -805,7 +805,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Filter by:</source>
-        <translation>Szűrés erre:</translation>
+        <translation>Szűrés eszerint:</translation>
     </message>
     <message>
         <source>Save Path</source>
@@ -833,7 +833,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation>Nem sikerült a torrent fájl exportálása</translation>
+        <translation>Nem sikerült exportálni a torrentfájlt</translation>
     </message>
     <message>
         <source>Name</source>
@@ -853,7 +853,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation>Torrent készítő</translation>
+        <translation>Torrentkészítő</translation>
     </message>
     <message>
         <source>Filter feed items...</source>
@@ -948,7 +948,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
-        <translation>Webes felhasználói felület (Távoli vezérlés)</translation>
+        <translation>Webes felhasználói felület (távvezérlés)</translation>
     </message>
     <message>
         <source>IP address:</source>
@@ -968,15 +968,11 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation>Hitelesítés mellőzése a fehérlistára tett IP alhálózatokban lévő klienseknél</translation>
+        <translation>Hitelesítés mellőzése a fehérlistára tett IP-alhálózatokban lévő klienseknél</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
         <translation>Dinamikus domain név frissítése</translation>
-    </message>
-    <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Befejezetlen torrentek tárolási helye:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -1064,7 +1060,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Host:</source>
-        <translation>Kiszolgáló:</translation>
+        <translation>Hoszt:</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -1154,7 +1150,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Helyi peerek felkutatásának (LPD) engedélyezése, hogy több peert találjon</translation>
+        <translation>Helyi peerfelfedezés engedélyezése, hogy több peert találjon</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -1170,7 +1166,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Enable anonymous mode</source>
-        <translation>Anonymous mód engedélyezése</translation>
+        <translation>Névtelen mód engedélyezése</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
@@ -1210,7 +1206,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Domain name:</source>
-        <translation>Domain név:</translation>
+        <translation>Domainnév:</translation>
     </message>
     <message>
         <source>Supported parameters (case sensitive):</source>
@@ -1234,7 +1230,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>%D: Save path</source>
-        <translation>%D: Mentés útvonala</translation>
+        <translation>%D: Mentési útvonal</translation>
     </message>
     <message>
         <source>%C: Number of files</source>
@@ -1242,7 +1238,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
-        <translation>%Z: Torrent mérete (bájtok)</translation>
+        <translation>%Z: Torrent mérete (bájtban)</translation>
     </message>
     <message>
         <source>%T: Current tracker</source>
@@ -1250,7 +1246,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tipp: Tegye a paramétert idézőjelek közé, hogy a szöveg ne csonkolódjon whitespace karakternél (például "%N")</translation>
+        <translation>Tipp: Tegye a paramétert idézőjelek közé, hogy a szöveg ne vágódjon le a szóközöknél (például "%N")</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1302,7 +1298,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation>Amikor a torrent kategória megváltozik:</translation>
+        <translation>Amikor a torrent kategóriája megváltozik:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -1382,7 +1378,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>Super seed engedélyezése a torrentnél</translation>
+        <translation>Szuper seed engedélyezése a torrentnél</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1398,7 +1394,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation>Amikor az arányt eléri</translation>
+        <translation>Amikor az arány eléri</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1470,7 +1466,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation>Peer arányos (TCP-t visszafogja)</translation>
+        <translation>Peerarányos (visszafogja a TCP-t)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1522,7 +1518,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation>Munkamenet időtúllépés:</translation>
+        <translation>Munkamenet időtúllépése:</translation>
     </message>
     <message>
         <source>Resolve peer countries:</source>
@@ -1550,11 +1546,11 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
-        <translation>RSS csatornák lekérdezésének engedélyezése</translation>
+        <translation>RSS-csatornák lekérdezésének engedélyezése</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation>Peer cserélődési küszöb százalék:</translation>
+        <translation>Peerek lecserélésének küszöbértéke (%):</translation>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1586,7 +1582,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation>Peer cserélődési lekapcsolási százalék:</translation>
+        <translation>Peerek lecserélésekor bontott kapcsolatok aránya (%):</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1594,11 +1590,11 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source> min</source>
-        <translation>perc</translation>
+        <translation> perc</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation>Peer cserélődési lekapcsolási intervallum:</translation>
+        <translation>Peerek lecserélésének időköze:</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1614,7 +1610,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
-        <translation>RSS okos epizód szűrő</translation>
+        <translation>Okos RSS-epizódszűrő</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1654,7 +1650,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Újrajelentés az összes tracker felé ha változik az IP vagy port:</translation>
+        <translation>Újrajelentés az összes tracker felé, ha változik az IP-cím vagy a port:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1682,7 +1678,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation>Védekezés a szerver-oldali kéréshamisítás (SSRF) ellen:</translation>
+        <translation>Védekezés a szerveroldali kéréshamisítás (SSRF) ellen:</translation>
     </message>
     <message>
         <source>Disk queue size:</source>
@@ -1690,7 +1686,7 @@ A szelet hash-e akkor lesz ellenőrizve, amikor azt egy peer első alkalommal k�
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>Teljesítmény figyelmeztetések naplózása</translation>
+        <translation>Teljesítményfigyelmeztetések naplózása</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
@@ -1766,7 +1762,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 A DNS rebinding támadások elleni védelemhez
 adja meg a WebUI-szerverhez használt domainneveket.
 
-Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter is használható.</translation>
+Több bejegyzést ';' karakterrel válasszon el. A '*' helyettesítő karakter is használható.</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
@@ -1774,7 +1770,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Adja meg a reverse proxyk IP-címeit (vagy alhálózatait, pl. 0.0.0.0/24) a továbbított klienscím használatához (X-Forwarded-For fejléc). Több bejegyzést ";" karakterrel válasszon el.</translation>
+        <translation>Adja meg a reverse proxyk IP-címeit (vagy alhálózatait, pl. 0.0.0.0/24) a továbbított klienscím használatához (X-Forwarded-For fejléc). Több bejegyzést ';' karakterrel válasszon el.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1794,7 +1790,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
-        <translation>Ha be van jelölve, a kiszolgáló nevek proxyn keresztül lesznek feloldva.</translation>
+        <translation>Ha be van jelölve, a hosztnevek feloldása a proxyn keresztül történik.</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1822,7 +1818,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation>Gyors-folytatás fájlok</translation>
+        <translation>Gyorsfolytatási fájlok</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
@@ -1906,7 +1902,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation>Amikor a teljes seed időt eléri</translation>
+        <translation>Amikor a teljes seedelési idő eléri</translation>
     </message>
     <message>
         <source>(None)</source>
@@ -1918,11 +1914,11 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation>Alapértelmezettre visszaáll ha üres</translation>
+        <translation>Ha üres, visszaáll az alapértelmezettre</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation>Kiszolgálónév lekérdezése proxyn keresztül</translation>
+        <translation>Hosztnév-feloldás proxyn keresztül</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1934,7 +1930,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation>Amikor az inaktív seed időt eléri</translation>
+        <translation>Amikor az inaktív seedelési idő eléri</translation>
     </message>
     <message>
         <source>Mixed mode</source>
@@ -1946,11 +1942,11 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>(Auto detect if empty)</source>
-        <translation>(Auto felismerés ha üres)</translation>
+        <translation>(Automatikus felismerés, ha üres)</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation>Tartsa a nem kiválasztott fájlokat a ".unwanted" mappában</translation>
+        <translation>A nem kijelölt fájlok tárolása a ".unwanted" mappában</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
@@ -1958,7 +1954,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source> sec</source>
-        <translation>mp</translation>
+        <translation> mp</translation>
     </message>
     <message>
         <source>I2P outbound quantity:</source>
@@ -2030,7 +2026,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Same host request delay:</source>
-        <translation>Kérések késleltetése azonos kiszolgálóhoz:</translation>
+        <translation>Azonos hosztnak küldött kérések késleltetése:</translation>
     </message>
     <message>
         <source>Customize application instance name:</source>
@@ -2098,7 +2094,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Send test email</source>
-        <translation>Teszt email küldése</translation>
+        <translation>Teszt e-mail küldése</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
@@ -2110,7 +2106,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation>Művelet dupla-kattintás esetén</translation>
+        <translation>Művelet dupla kattintás esetén</translation>
     </message>
     <message>
         <source>Save statistics interval:</source>
@@ -2182,7 +2178,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation>Oldja fel a relatív mentési útvonalat a megfelelő kategória elérési útjával az alapértelmezett helyett</translation>
+        <translation>A relatív mentési útvonal feloldása a megfelelő kategória útvonalához képest az alapértelmezett helyett</translation>
     </message>
     <message>
         <source>No action</source>
@@ -2198,7 +2194,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Log Files</source>
-        <translation>Napló Fájlok</translation>
+        <translation>Naplófájlok</translation>
     </message>
     <message>
         <source>Note: The password is saved unencrypted</source>
@@ -2206,7 +2202,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation>Belső hosztnév-feloldó gyorsítótárának lejárati intervalluma</translation>
+        <translation>Belső hosztnévfeloldó gyorsítótárának lejárati intervalluma</translation>
     </message>
     <message>
         <source>sec</source>
@@ -2226,7 +2222,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Delete API key</source>
-        <translation>API Kulcs törlése</translation>
+        <translation>API-kulcs törlése</translation>
     </message>
     <message>
         <source>%M: Comment</source>
@@ -2234,7 +2230,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Generate API key</source>
-        <translation>API kulcs generálása</translation>
+        <translation>API-kulcs generálása</translation>
     </message>
     <message>
         <source>Copied</source>
@@ -2250,11 +2246,11 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>API Key</source>
-        <translation>API Kulcs</translation>
+        <translation>API-kulcs</translation>
     </message>
     <message>
         <source>Copy API key</source>
-        <translation>API kulcs másolása</translation>
+        <translation>API-kulcs másolása</translation>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
@@ -2262,7 +2258,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>no encryption used when sending emails</source>
-        <translation>nincs titkosítás használatban emailek küldésekor</translation>
+        <translation>nincs titkosítás az e-mailek küldésekor</translation>
     </message>
     <message>
         <source>SMTPS</source>
@@ -2274,7 +2270,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>use SMTPS encryption when sending emails</source>
-        <translation>SMTPS titkosítás használata emailek küldésekor</translation>
+        <translation>SMTPS titkosítás használata e-mailek küldésekor</translation>
     </message>
     <message>
         <source>Compact</source>
@@ -2302,7 +2298,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Select the encryption type used when sending SMTP emails</source>
-        <translation>Válassza ki az SMTP emailek küldésekor használt titkosítás típusát</translation>
+        <translation>Válassza ki az SMTP-vel küldött e-mailek titkosításának típusát</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
@@ -2314,7 +2310,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Date format:</source>
-        <translation>Dátum formátum:</translation>
+        <translation>Dátumformátum:</translation>
     </message>
     <message>
         <source>Browser default</source>
@@ -2322,7 +2318,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Resolve peer host names:</source>
-        <translation>Peer kiszolgálónevek feloldása:</translation>
+        <translation>Peerek hosztneveinek feloldása:</translation>
     </message>
     <message>
         <source>Pread/pwrite</source>
@@ -2330,7 +2326,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>use STARTTLS encryption when sending emails</source>
-        <translation>STARTTLS titkosítás használata emailek küldésekor</translation>
+        <translation>STARTTLS titkosítás használata e-mailek küldésekor</translation>
     </message>
     <message>
         <source>The WebUI username must not contain a colon.</source>
@@ -2373,10 +2369,6 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
         <translation>Több kapcsolat engedélyezése ugyanazzal a peer ID-val:</translation>
     </message>
     <message>
-        <source>Attempted to send test email.&lt;br&gt;Check your inbox to confirm success.&lt;br&gt;Check the Execution Log for errors.</source>
-        <translation type="vanished">A program megkísérelte elküldeni a teszt e-mailt.&lt;br&gt;A sikeres kézbesítést a beérkező levelek között ellenőrizheti.&lt;br&gt;Az esetleges hibákat a naplóban ellenőrizheti.</translation>
-    </message>
-    <message>
         <source>Sessions count limit:</source>
         <translation>Munkamenetek számának korlátja:</translation>
     </message>
@@ -2410,7 +2402,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation>Torrent részleteinek és néhány beállításának megjelenítése</translation>
+        <translation>A torrent tartalmának és néhány beállításának megjelenítése</translation>
     </message>
     <message>
         <source>Separate multiple email addresses within each email with a comma.</source>
@@ -2486,35 +2478,35 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Confirm removal of tracker from all torrents:</source>
-        <translation type="unfinished" />
+        <translation>Tracker összes torrentből való eltávolításának megerősítése:</translation>
     </message>
     <message>
         <source>Any of the above</source>
-        <translation type="unfinished" />
+        <translation>A fentiek bármelyike</translation>
     </message>
     <message>
         <source>All the above</source>
-        <translation type="unfinished" />
+        <translation>A fentiek mindegyike</translation>
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Akkor is, ha meg lett szakítva a hozzáadás</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Azon .torrent fájlok is törlődjenek, amelyek hozzáadása meg lett szakítva</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Használjon másik elérési utat a befejezetlen torrentekhez:</translation>
     </message>
     <message>
         <source>Confirm removal of all tags:</source>
-        <translation type="unfinished" />
+        <translation>Összes címke eltávolításának megerősítése:</translation>
     </message>
     <message>
         <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
-        <translation type="unfinished" />
+        <translation>Tesztlevél küldése megkísérelve.\nA sikeres küldés megerősítéséhez ellenőrizze a beérkező leveleit.\nHibák esetén ellenőrizze a Végrehajtási naplót.</translation>
     </message>
 </context>
 <context>
@@ -2573,7 +2565,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation>Peer kitiltása végleg</translation>
+        <translation>Peer végleges kitiltása</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
@@ -2593,11 +2585,11 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation>Peer ID Kliens</translation>
+        <translation>Peer ID kliens</translation>
     </message>
     <message>
         <source>IP/Address</source>
-        <translation>IP/Cím</translation>
+        <translation>IP/cím</translation>
     </message>
     <message>
         <source>Contribution</source>
@@ -2646,7 +2638,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>HTTP Sources</source>
-        <translation>HTTP Források</translation>
+        <translation>HTTP-források</translation>
     </message>
     <message>
         <source>Content</source>
@@ -2754,7 +2746,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Save Path:</source>
-        <translation>Mentés útvonala:</translation>
+        <translation>Mentési útvonal:</translation>
     </message>
     <message>
         <source>Never</source>
@@ -2763,7 +2755,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     <message>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
-        <translation>%1 x %2 (van %3)</translation>
+        <translation>%1 x %2 (megvan %3)</translation>
     </message>
     <message>
         <source>%1 (%2 this session)</source>
@@ -2826,7 +2818,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation>Fájlnév + Kiterjesztés</translation>
+        <translation>Fájlnév + kiterjesztés</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
@@ -2949,7 +2941,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     <name>ScanFoldersModel</name>
     <message>
         <source>Monitored Folder</source>
-        <translation>Megfigyelt mappa</translation>
+        <translation>Figyelt mappa</translation>
     </message>
     <message>
         <source>Override Save Location</source>
@@ -2957,7 +2949,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Monitored folder</source>
-        <translation>Megfigyelt mappa</translation>
+        <translation>Figyelt mappa</translation>
     </message>
     <message>
         <source>Default save location</source>
@@ -3272,12 +3264,12 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Letöltés korlát</translation>
+        <translation>Letöltési korlát</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Feltöltés korlát</translation>
+        <translation>Feltöltési korlát</translation>
     </message>
     <message>
         <source>Downloaded</source>
@@ -3302,7 +3294,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     <message>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation>Mentés útvonala</translation>
+        <translation>Mentési útvonal</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -3312,7 +3304,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>Arány korlát</translation>
+        <translation>Aránykorlát</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
@@ -3363,7 +3355,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Status Icon</source>
-        <translation>Állapot ikon</translation>
+        <translation>Állapotikon</translation>
     </message>
     <message>
         <source>Session Uploaded</source>
@@ -3490,15 +3482,15 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>URL/Announce Endpoint</source>
-        <translation>URL/Bejelentés végpont</translation>
+        <translation>URL/bejelentési végpont</translation>
     </message>
     <message>
         <source>BT Protocol</source>
-        <translation>BT Protokoll</translation>
+        <translation>BT-protokoll</translation>
     </message>
     <message>
         <source>Next Announce</source>
-        <translation>Következő Bejelentés</translation>
+        <translation>Következő bejelentés</translation>
     </message>
     <message>
         <source>Tier:</source>
@@ -3518,7 +3510,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Min Announce</source>
-        <translation>Min Bejelentés</translation>
+        <translation>Min. bejelentés</translation>
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
@@ -3565,7 +3557,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Errored</source>
-        <translation>Hiba</translation>
+        <translation>Hibás</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
@@ -3636,7 +3628,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation>Összecsuk/kinyit</translation>
+        <translation>Összecsukás/kinyitás</translation>
     </message>
     <message>
         <source>Collapse/expand category</source>
@@ -3647,11 +3639,11 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     <name>TransferListWidget</name>
     <message>
         <source>Torrent Download Speed Limiting</source>
-        <translation>Torrent letöltés sebességkorlátozás</translation>
+        <translation>Torrent letöltési sebességének korlátozása</translation>
     </message>
     <message>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>Torrent feltöltés sebességkorlátozás</translation>
+        <translation>Torrent feltöltési sebességének korlátozása</translation>
     </message>
     <message>
         <source>Rename</source>
@@ -3659,7 +3651,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation>Megosztási arány korlát...</translation>
+        <translation>Megosztási arány korlátozása...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
@@ -3721,7 +3713,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Super seeding mode</source>
-        <translation>Szuper seed üzemmód</translation>
+        <translation>Szuper seed mód</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -3789,7 +3781,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation>Torrent azonosító</translation>
+        <translation>Torrentazonosító</translation>
     </message>
     <message>
         <source>Export .torrent</source>
@@ -3845,14 +3837,14 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Eltávolítja az összes címkét a kiválasztott torrentekről?</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Torrent fel/letöltés arány korlátozás</translation>
+        <translation>Torrent feltöltési/letöltési arányának korlátozása</translation>
     </message>
     <message>
         <source>Use global share limit</source>
@@ -3896,27 +3888,27 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>Super seed engedélyezése a torrentnél</translation>
+        <translation>Szuper seed engedélyezése a torrentnél</translation>
     </message>
     <message>
         <source>Action when the limit is reached</source>
-        <translation>Művelet ha a korlát elérésre kerül</translation>
+        <translation>Művelet a korlát elérésekor</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation type="unfinished" />
+        <translation>Mód</translation>
     </message>
     <message>
         <source>Default (Match any limit)</source>
-        <translation type="unfinished" />
+        <translation>Alapértelmezett (bármely korlát elérésekor)</translation>
     </message>
     <message>
         <source>Match all the limits</source>
-        <translation type="unfinished" />
+        <translation>Összes korlát elérésekor</translation>
     </message>
     <message>
         <source>Match any limit</source>
-        <translation type="unfinished" />
+        <translation>Bármelyik korlát elérésekor</translation>
     </message>
 </context>
 <context>
@@ -3930,7 +3922,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation>Tartalom fájlokat is távolítsa el</translation>
+        <translation>A tartalomfájlokat is távolítsa el</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -4004,12 +3996,12 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     <message>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation>&lt; 1perc</translation>
+        <translation>&lt; 1 perc</translation>
     </message>
     <message>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation>%1perc</translation>
+        <translation>%1 perc</translation>
     </message>
     <message>
         <source>%1y %2d</source>
@@ -4020,7 +4012,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation>Mentési útvonal üres</translation>
+        <translation>A mentési útvonal üres</translation>
     </message>
 </context>
 <context>
@@ -4118,7 +4110,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>showing</source>
-        <translation>megjelenítése</translation>
+        <translation>megjelenítve</translation>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
@@ -4134,7 +4126,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Min size prefix</source>
-        <translation>Min méret prefix</translation>
+        <translation>Minimális méret előtagja</translation>
     </message>
     <message>
         <source>Start a search above.</source>
@@ -4142,7 +4134,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Max size prefix</source>
-        <translation>Max méret prefix</translation>
+        <translation>Maximális méret előtagja</translation>
     </message>
     <message>
         <source>Select plugins</source>
@@ -4177,7 +4169,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>Figyelmeztetés: Győződjön meg róla, hogy a keresőmotorok bármelyikéből származó torrentek letöltésekor betartja az ország szerzői jogi törvényeit.</translation>
+        <translation>Figyelmeztetés: Győződjön meg róla, hogy a keresőmotorok bármelyikéből származó torrentek letöltésekor betartja országa szerzői jogi törvényeit.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -4258,7 +4250,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation>Hozzáadandó peerek listája (soronként egy):</translation>
+        <translation>Hozzáadandó peerek listája (soronként egy IP-cím):</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -4379,7 +4371,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>A qBittorrent a következő programkönyvtárakkal készült:</translation>
+        <translation type="vanished">A qBittorrent a következő programkönyvtárakkal készült:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4408,6 +4400,10 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     <message>
         <source>qBittorrent icon</source>
         <translation>qBittorrent ikon</translation>
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4535,7 +4531,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation>Kérem válasszon egy mappanevet</translation>
+        <translation>Válasszon egy mappanevet</translation>
     </message>
     <message>
         <source>New feed name:</source>
@@ -4551,7 +4547,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation>RSS letöltő...</translation>
+        <translation>RSS-letöltő...</translation>
     </message>
     <message>
         <source>Mark items read</source>
@@ -4571,7 +4567,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Open news URL</source>
-        <translation>Hírek URL megnyitása</translation>
+        <translation>Hír URL-jének megnyitása</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -4579,7 +4575,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Feed URL:</source>
-        <translation>Csatorna URL:</translation>
+        <translation>Csatorna URL-je:</translation>
     </message>
     <message>
         <source>New folder...</source>
@@ -4599,7 +4595,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
-        <translation>Kérem írjon be egy RSS csatorna URL-t</translation>
+        <translation>Adja meg egy RSS-csatorna URL-jét</translation>
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
@@ -4611,7 +4607,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation>Biztos, hogy törli a kiválasztott RSS-csatornákat?</translation>
+        <translation>Biztosan törli a kiválasztott RSS-csatornákat?</translation>
     </message>
     <message>
         <source>New subscription...</source>
@@ -4623,7 +4619,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Edit feed URL...</source>
-        <translation>Csatorna URL szerkesztése...</translation>
+        <translation>Csatorna URL-jének szerkesztése...</translation>
     </message>
     <message>
         <source>Unable to update URL</source>
@@ -4631,11 +4627,11 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>URL is unchanged</source>
-        <translation>URL változatlan</translation>
+        <translation>Az URL nem változott</translation>
     </message>
     <message>
         <source>URL cannot be empty</source>
-        <translation>URL nem lehet üres</translation>
+        <translation>Az URL nem lehet üres</translation>
     </message>
     <message>
         <source>Open link</source>
@@ -4651,15 +4647,15 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Add %1 torrents</source>
-        <translation type="unfinished" />
+        <translation>%1 torrent hozzáadása</translation>
     </message>
     <message>
         <source>Open shared download window</source>
-        <translation type="unfinished" />
+        <translation>Közös letöltési ablak megnyitása</translation>
     </message>
     <message>
         <source>Open separate download windows</source>
-        <translation type="unfinished" />
+        <translation>Külön letöltési ablakok megnyitása</translation>
     </message>
 </context>
 <context>
@@ -4682,11 +4678,11 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation>Epizód szűrő szabályok: </translation>
+        <translation>Epizódszűrő-szabályok: </translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>Az RSS torrentek automata letöltése jelenleg tiltott. A beállításokban engedélyezheti ezt a funkciót.</translation>
+        <translation>Az RSS-torrentek automatikus letöltése jelenleg le van tiltva! Az alkalmazás beállításaiban engedélyezheti.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -4706,7 +4702,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation>Szűrőnek pontosvesszővel kell végződnie</translation>
+        <translation>A szűrőnek pontosvesszővel kell végződnie</translation>
     </message>
     <message>
         <source>? to match any single character</source>
@@ -4714,7 +4710,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation>Epizód szűrő alapján társítja a találatokat.</translation>
+        <translation>Az epizódszűrő alapján keresi meg az egyező elemeket.</translation>
     </message>
     <message>
         <source>Assign Category:</source>
@@ -4726,7 +4722,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation>| a VAGY operátorként működik</translation>
+        <translation>| VAGY operátorként működik</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
@@ -4774,7 +4770,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation>Epizódok esetén három tartomány típus támogatott: </translation>
+        <translation>Az epizódokhoz háromféle tartomány támogatott: </translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
@@ -4810,7 +4806,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation>Szabály törlés megerősítése</translation>
+        <translation>Szabály törlésének megerősítése</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
@@ -4818,15 +4814,15 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation>Epizód szűrő:</translation>
+        <translation>Epizódszűrő:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation>RSS Letöltő</translation>
+        <translation>RSS-letöltő</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Évad szám egy kötelező nem-nulla érték</translation>
+        <translation>Az évadszám kötelező, nullától eltérő érték</translation>
     </message>
     <message>
         <source>Never</source>
@@ -4866,7 +4862,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation>Ezt követő egyezések figyelmen kívül hagyása (0 a letiltáshoz)</translation>
+        <translation>Későbbi egyezések figyelmen kívül hagyása ennyi ideig (0 a letiltáshoz)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
@@ -4874,7 +4870,7 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     </message>
     <message>
         <source>Last Match: Unknown</source>
-        <translation>Utolsó egyezés: Ismeretlen</translation>
+        <translation>Utolsó egyezés: ismeretlen</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
@@ -4883,8 +4879,8 @@ Több bejegyzést ";" karakterrel válasszon el. A "*" helyettesítő karakter i
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>Az intelligens epizódszűrő ellenőrzi az epizódszámot, hogy megakadályozza a másolatok letöltését.
-Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumformátumok is támogatják - elválasztóként)</translation>
+        <translation>Az okos epizódszűrő ellenőrzi az epizódszámot, hogy megakadályozza a duplikátumok letöltését.
+Támogatott formátumok: S01E01, 1x1, 2017.12.31 és 31.12.2017 (a dátumformátumokban a - is használható elválasztóként)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -4916,11 +4912,11 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation>Hozzáad megállítva:</translation>
+        <translation>Hozzáadás leállítva:</translation>
     </message>
     <message>
         <source>Rule cloning</source>
-        <translation>Szabály klónozás</translation>
+        <translation>Szabály klónozása</translation>
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
@@ -4936,7 +4932,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Import</source>
-        <translation>Import</translation>
+        <translation>Importálás</translation>
     </message>
 </context>
 <context>
@@ -4986,7 +4982,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation>RSS csatornák</translation>
+        <translation>RSS-csatornák</translation>
     </message>
     <message>
         <source>Unread</source>
@@ -5053,7 +5049,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Tiltott IP címek</translation>
+        <translation>Tiltott IP-címek</translation>
     </message>
     <message>
         <source>out of</source>
@@ -5132,7 +5128,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     <name>TrackersFilterWidget</name>
     <message>
         <source>Are you sure you want to remove tracker %1 from all torrents?</source>
-        <translation>Biztos, hogy el akarja távolítani a "%1" trackert az összes torrentről?</translation>
+        <translation>Biztosan eltávolítja az összes torrentből a következő trackert: "%1"?</translation>
     </message>
 </context>
 <context>
@@ -5210,7 +5206,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Add Cookie</source>
-        <translation>Cookie hozzáadása</translation>
+        <translation>Süti hozzáadása</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -5286,7 +5282,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Unable to log in, server is probably unreachable.</source>
-        <translation>Nem sikerült bejelentkezni, a szerver talán elérhetetlen.</translation>
+        <translation>Nem sikerült bejelentkezni, a szerver valószínűleg nem elérhető.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -5294,7 +5290,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Érvénytelen felhasználónév vagy Jelszó.</translation>
+        <translation>Érvénytelen felhasználónév vagy jelszó.</translation>
     </message>
 </context>
 <context>
@@ -5317,7 +5313,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation>Nem sikerült a torrent fájl exportálása</translation>
+        <translation>Nem sikerült exportálni a torrentfájlt</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
@@ -5333,7 +5329,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Status Icon</source>
-        <translation>Állapot ikon</translation>
+        <translation>Állapotikon</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
@@ -5397,7 +5393,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
-        <translation>Biztos, hogy törli a kiválasztott feladatokat?</translation>
+        <translation>Biztosan törli a kiválasztott feladatokat?</translation>
     </message>
     <message>
         <source>Path:</source>
@@ -5413,7 +5409,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Started On</source>
-        <translation>Elindítva ekkor</translation>
+        <translation>Indítás ideje</translation>
     </message>
     <message>
         <source>Web Seeds</source>
@@ -5429,7 +5425,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Source Path</source>
-        <translation>Forrás útvonal</translation>
+        <translation>Forrásútvonal</translation>
     </message>
     <message>
         <source>Added On</source>
@@ -5441,7 +5437,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation>Torrent készítő</translation>
+        <translation>Torrentkészítő</translation>
     </message>
     <message>
         <source>Source:</source>
@@ -5477,11 +5473,11 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Align to piece boundary for files larger than:</source>
-        <translation>Szelet határokhoz elrendezés nagyobb fájlok esetén mint:</translation>
+        <translation>Szelethatárhoz igazítás az ennél nagyobb fájloknál:</translation>
     </message>
     <message>
         <source>Private torrent (Won't distribute on DHT network)</source>
-        <translation>Privát torrent (nem jelenik meg DHT hálózaton)</translation>
+        <translation>Privát torrent (nem jelenik meg a DHT-hálózaton)</translation>
     </message>
     <message>
         <source>Ignore Dotfiles</source>
@@ -5489,11 +5485,11 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Start seeding immediately</source>
-        <translation>Seedelés megkezdése azonnal</translation>
+        <translation>Seedelés azonnali megkezdése</translation>
     </message>
     <message>
         <source>Optimize alignment</source>
-        <translation>Elrendezés optimalizálása</translation>
+        <translation>Igazítás optimalizálása</translation>
     </message>
     <message>
         <source>No</source>
@@ -5524,7 +5520,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation>Torrent Linkek Hozzáadása</translation>
+        <translation>Torrentlinkek hozzáadása</translation>
     </message>
     <message>
         <source>Add %1 torrents</source>
@@ -5625,15 +5621,15 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     <name>confirmRotateAPIKeyDialog</name>
     <message>
         <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
-        <translation>Generál egy API kulcsot? Ez a kulcs a qBittorrent API-val történő kommunikációra használható.</translation>
+        <translation>Generál egy API-kulcsot? Ez a kulcs a qBittorrent API-val történő kommunikációra használható.</translation>
     </message>
     <message>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation>Törli ezt az API kulcsot? A jelenlegi kulcs azonnal megszűnik működni.</translation>
+        <translation>Törli ezt az API-kulcsot? A jelenlegi kulcs azonnal megszűnik működni.</translation>
     </message>
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation>Forgatja ezt az API-kulcsot? A jelenlegi kulcs azonnal megszűnik működni, és egy új kulcs lesz generálva.</translation>
+        <translation>Lecseréli ezt az API-kulcsot? A jelenlegi kulcs azonnal érvénytelenné válik, és új kulcs jön létre.</translation>
     </message>
 </context>
 <context>
@@ -5683,7 +5679,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>Super seed engedélyezése a torrentnél</translation>
+        <translation>Szuper seed engedélyezése a torrentnél</translation>
     </message>
     <message>
         <source>Inactive seeding time:</source>
@@ -5711,7 +5707,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Action when the limit is reached:</source>
-        <translation>Művelet ha a korlát elérésre kerül:</translation>
+        <translation>Művelet a korlát elérésekor:</translation>
     </message>
     <message>
         <source>From category (%1)</source>

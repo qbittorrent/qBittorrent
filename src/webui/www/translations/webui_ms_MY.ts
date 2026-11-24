@@ -48,19 +48,19 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Metadata diterima</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Fail diperiksa</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Keadaan henti:</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Tiada</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -84,7 +84,7 @@
     </message>
     <message>
         <source>Info hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Cincangan maklumat v1:</translation>
     </message>
     <message>
         <source>Rename torrent</source>
@@ -132,7 +132,7 @@
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished" />
+        <translation>Guna laluan lain untuk torrent tidak lengkap</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -172,11 +172,11 @@
     </message>
     <message>
         <source>Info hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Cincangan maklumat v2:</translation>
     </message>
     <message>
         <source>Tags:</source>
-        <translation type="unfinished" />
+        <translation>Tag:</translation>
     </message>
     <message>
         <source>Files</source>
@@ -197,7 +197,7 @@ The piece hash will be checked when it is requested for the first time by a peer
     </message>
     <message>
         <source>Seed mode</source>
-        <translation type="unfinished" />
+        <translation>Mod semai</translation>
     </message>
     <message>
         <source>Download</source>
@@ -972,10 +972,6 @@ The piece hash will be checked when it is requested for the first time by a peer
     <message>
         <source>Update my dynamic domain name</source>
         <translation>Kemaskini nama domain dinamik saya</translation>
-    </message>
-    <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Kekalkan torrent tidak selesai dalam:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -1785,7 +1781,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Fail diperiksa</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1797,7 +1793,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Metadata diterima</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
@@ -1805,7 +1801,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Tiada</translation>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
@@ -2493,11 +2489,11 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Also when addition is cancelled</source>
-        <translation type="unfinished" />
+        <translation>Juga bila penambahan dibatalkan</translation>
     </message>
     <message>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished" />
+        <translation>Juga pada fail .torrent yang mana penambahannya telah dibatalkan</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
@@ -3840,7 +3836,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished" />
+        <translation>Buang semua tag dari torrent terpilih?</translation>
     </message>
 </context>
 <context>
@@ -4374,7 +4370,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>qBittorrent telah dibina dengan pustaka berikut:</translation>
+        <translation type="vanished">qBittorrent telah dibina dengan pustaka berikut:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -4390,7 +4386,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Pengarang</translation>
     </message>
     <message>
         <source>France</source>
@@ -4402,6 +4398,10 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent is using the following libraries:</source>
         <translation type="unfinished" />
     </message>
 </context>
