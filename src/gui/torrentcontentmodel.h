@@ -32,6 +32,7 @@
 #include <QtContainerFwd>
 #include <QAbstractItemModel>
 #include <QList>
+#include <QPointer>
 
 #include "base/indexrange.h"
 #include "base/pathfwd.h"
@@ -116,7 +117,7 @@ private:
     bool setItemPriority(const QModelIndex &index, BitTorrent::DownloadPriority priority);
     void notifySubtreeUpdated(const QModelIndex &index, const QList<ColumnInterval> &columns);
 
-    BitTorrent::TorrentContentHandler *m_contentHandler = nullptr;
+    QPointer<BitTorrent::TorrentContentHandler> m_contentHandler = nullptr;
     TorrentContentModelFolder *m_rootItem = nullptr;
     QList<TorrentContentModelFile *> m_filesIndex;
     QHash<Path, TorrentContentModelItem *> m_itemByPath;
