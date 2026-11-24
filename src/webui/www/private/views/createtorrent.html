@@ -208,11 +208,11 @@
                 comments: document.getElementById("comments").value,
                 source: document.getElementById("source").value,
             };
-            window.parent.qBittorrent.ClientData.set({ torrent_creator: preference }).catch(console.error);
+            window.qBittorrent.ClientData.set({ torrent_creator: preference }).catch(console.error);
         };
 
         const loadPreference = () => {
-            const preference = window.parent.qBittorrent.ClientData.get("torrent_creator") ?? {};
+            const preference = window.qBittorrent.ClientData.get("torrent_creator") ?? {};
 
             document.getElementById("sourcePath").value = preference.sourcePath ?? "";
             document.getElementById("torrentFormat").value = preference.torrentFormat ?? "hybrid";

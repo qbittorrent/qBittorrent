@@ -59,8 +59,8 @@
                     if (!response.ok)
                         alert("QBT_TR(Failed to set speed limits)QBT_TR[CONTEXT=SpeedLimit]");
 
-                    window.parent.updateMainData();
-                    window.parent.qBittorrent.Client.closeWindow(document.getElementById("globalSpeedLimitsPage"));
+                    window.updateMainData();
+                    window.qBittorrent.Client.closeWindow(document.getElementById("globalSpeedLimitsPage"));
                 });
             });
 

@@ -2536,9 +2536,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const loadPreferences = () => {
-            window.parent.qBittorrent.Cache.preferences.init()
+            window.qBittorrent.Cache.preferences.init()
                 .then((pref) => {
-                    const clientData = window.parent.qBittorrent.ClientData;
+                    const clientData = window.qBittorrent.ClientData;
                     const dateFormat = clientData.get("date_format");
                     const colorScheme = clientData.get("color_scheme");
                     const displayDensity = clientData.get("display_density") ?? "default";
@@ -3580,12 +3580,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // Send data to qBT
             Promise.allSettled([
-                window.parent.qBittorrent.ClientData.set(clientData),
-                window.parent.qBittorrent.Cache.preferences.set(settings)
+                window.qBittorrent.ClientData.set(clientData),
+                window.qBittorrent.Cache.preferences.set(settings)
             ]).then((results) => {
                 if (results.every((result) => result.status === "fulfilled")) {
-                    window.parent.location.reload();
-                    window.parent.qBittorrent.Client.closeWindow(document.getElementById("preferencesPage"));
+                    window.location.reload();
+                    window.qBittorrent.Client.closeWindow(document.getElementById("preferencesPage"));
                 }
                 else {
                     // keep window open so user can reattempt saving
