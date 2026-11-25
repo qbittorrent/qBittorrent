@@ -33,6 +33,37 @@ AddNewTorrentDialog FileSystemPathEdit QComboBox, AddNewTorrentDialog QComboBox#
     qproperty-sizeAdjustPolicy: AdjustToMinimumContentsLengthWithIcon; qproperty-minimumContentsLength: 12; }
 QComboBox QAbstractItemView { background: palette(base); color: palette(text); border: 1px solid palette(mid); outline: 0; }
 QCheckBox, QRadioButton { spacing: 6px; }
+QComboBox::drop-down { width: 21px; background: transparent; border: 0; subcontrol-position: right center; }
+QComboBox::down-arrow { image: url(:/desktopstyle/chevron-down.svg); width: 13px; height: 13px; }
+QComboBox::down-arrow:disabled { image: url(:/desktopstyle/chevron-down-muted.svg); }
+QAbstractSpinBox::up-button, QAbstractSpinBox::down-button { subcontrol-origin: border; width: 19px;
+    border: 0; margin: 1px 2px; background: transparent; border-radius: 3px; }
+QAbstractSpinBox::up-button { subcontrol-position: top right; }
+QAbstractSpinBox::down-button { subcontrol-position: bottom right; }
+QAbstractSpinBox::up-button:hover, QAbstractSpinBox::down-button:hover { background: @hover@; }
+QAbstractSpinBox::up-button:pressed, QAbstractSpinBox::down-button:pressed { background: palette(midlight); }
+QAbstractSpinBox::up-arrow { image: url(:/desktopstyle/chevron-up.svg); width: 13px; height: 12px; }
+QAbstractSpinBox::down-arrow { image: url(:/desktopstyle/chevron-down.svg); width: 13px; height: 12px; }
+QAbstractSpinBox::up-arrow:off, QAbstractSpinBox::up-arrow:disabled { image: url(:/desktopstyle/chevron-up-muted.svg); }
+QAbstractSpinBox::down-arrow:off, QAbstractSpinBox::down-arrow:disabled { image: url(:/desktopstyle/chevron-down-muted.svg); }
+QCheckBox::indicator, QGroupBox::indicator, QAbstractItemView::indicator, QRadioButton::indicator {
+    width: 14px; height: 14px; border: 1px solid palette(placeholder-text); border-radius: 4px; background: palette(base); }
+QCheckBox::indicator:checked, QGroupBox::indicator:checked, QAbstractItemView::indicator:checked {
+    image: url(:/desktopstyle/control-check@inkSuffix@.svg); border-color: palette(placeholder-text); background: @selection@; }
+QCheckBox::indicator:indeterminate, QAbstractItemView::indicator:indeterminate {
+    image: url(:/desktopstyle/control-partial@inkSuffix@.svg); border-color: palette(placeholder-text); background: @selection@; }
+QRadioButton::indicator { border-radius: 8px; }
+QGroupBox::indicator, QAbstractItemView::indicator { width: 12px; height: 12px; border-radius: 3px; }
+QRadioButton::indicator:checked { width: 8px; height: 8px; border: 4px solid palette(text); }
+QCheckBox::indicator:hover, QGroupBox::indicator:hover, QAbstractItemView::indicator:hover, QRadioButton::indicator:hover {
+    background: @hover@; }
+QCheckBox::indicator:focus, QGroupBox::indicator:focus, QRadioButton::indicator:focus { border-color: palette(text); }
+QCheckBox::indicator:disabled, QGroupBox::indicator:disabled, QAbstractItemView::indicator:disabled, QRadioButton::indicator:disabled {
+    background: palette(window); border-color: palette(mid); }
+QCheckBox::indicator:checked:disabled, QGroupBox::indicator:checked:disabled, QAbstractItemView::indicator:checked:disabled {
+    image: url(:/desktopstyle/control-check-muted.svg); }
+QCheckBox::indicator:indeterminate:disabled, QAbstractItemView::indicator:indeterminate:disabled {
+    image: url(:/desktopstyle/control-partial-muted.svg); }
 QMainWindow::separator, QSplitter::handle { background: palette(window); }
 QTabWidget::pane { border: 0; }
 QTabBar { background: palette(window); }

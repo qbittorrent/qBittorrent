@@ -16,13 +16,6 @@ void DesktopStyle::apply()
         return;
 
     QString rules = QString::fromUtf8(sheet.readAll());
-    // Use native indicators when the optional desktop glyphs are unavailable.
-    if (QFile::exists(u":/icons/control-check.svg"_s))
-    {
-        QFile indicators(u":/desktopstyle/indicators.qss"_s);
-        if (indicators.open(QIODevice::ReadOnly))
-            rules += QString::fromUtf8(indicators.readAll());
-    }
 
     const QFont font = qApp->font();
     const QString sectionSize = (font.pixelSize() > 0)
