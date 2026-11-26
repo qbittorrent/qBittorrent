@@ -62,6 +62,7 @@ window.qBittorrent.FileTree ??= (() => {
 
         setRoot(root) {
             this.#root = root;
+            this.#nodeMap = {};
             this.#generateNodeMap(root);
 
             if (this.#root.isFolder)
