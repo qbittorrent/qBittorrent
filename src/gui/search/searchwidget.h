@@ -78,6 +78,7 @@ private:
     void closeTab(int index);
     void closeAllTabs();
     void refreshTab(SearchJobWidget *searchJobWidget);
+    void refreshAllTabs();
     void showTabMenu(int index);
 
     void selectMultipleBox(int index);
