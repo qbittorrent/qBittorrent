@@ -14,6 +14,7 @@ set(testFiles
     testconceptsstringable.cpp
     testglobal.cpp
     testhttprequestparser.cpp
+    testhttputils.cpp
     testorderedset.cpp
     testpath.cpp
     testrssautodownloadrule.cpp

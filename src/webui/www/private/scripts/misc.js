@@ -368,6 +368,35 @@ window.qBittorrent.Misc ??= (() => {
         });
     };
 
+    const getDownloadFilename = (header, defaultFileName) => {
+        if (!header || !/^attachment\s*(?:;|$)/i.test(header))
+            return defaultFileName;
+
+        let fileName = defaultFileName;
+        let utf8FileName = "";
+        // Match complete parameters so semicolons inside quoted filenames stay intact.
+        const parameters = /;\s*([^=;\s]+)\s*=\s*(?:"((?:[^"\\]|\\.)*)"|([^;\s]+))\s*(?=;|$)/g;
+        for (const match of header.matchAll(parameters)) {
+            const name = match[1].toLowerCase();
+            const value = (match[2] !== undefined) ? match[2].replace(/\\(.)/g, "$1") : match[3];
+            if (name === "filename") {
+                fileName = value || defaultFileName;
+            }
+            else if (name === "filename*") {
+                const encoded = /^UTF-8'[^']*'(.*)$/i.exec(value);
+                if (encoded) {
+                    try {
+                        utf8FileName = decodeURIComponent(encoded[1]);
+                    }
+                    catch {
+                        // Keep the fallback for malformed percent escapes or UTF-8.
+                    }
+                }
+            }
+        }
+        return utf8FileName || fileName;
+    };
+
     const downloadFile = async (url, defaultFileName, errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]") => {
         try {
             const response = await fetch(url, { method: "GET" });
@@ -377,14 +406,7 @@ window.qBittorrent.Misc ??= (() => {
             }
 
             const blob = await response.blob();
-            const fileNamePrefix = "attachment; filename=";
-            const fileNameHeader = response.headers.get("content-disposition");
-            let fileName = defaultFileName;
-            if (fileNameHeader.startsWith(fileNamePrefix)) {
-                fileName = fileNameHeader.substring(fileNamePrefix.length);
-                if (fileName.startsWith("\"") && fileName.endsWith("\""))
-                    fileName = fileName.slice(1, -1);
-            }
+            const fileName = getDownloadFilename(response.headers.get("content-disposition"), defaultFileName);
 
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);

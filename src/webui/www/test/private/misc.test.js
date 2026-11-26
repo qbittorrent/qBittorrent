@@ -243,3 +243,44 @@ test("Test formatDate() - Fallback Behavior", () => {
     // Restore original window.parent
     window.parent = originalParent;
 });
+
+test.each([
+    [null, "default.torrent"],
+    ["attachment", "default.torrent"],
+    ['attachment; filename="file.torrent"', "file.torrent"],
+    ['attachment; filename=""', "default.torrent"],
+    ["attachment; filename=file.torrent", "file.torrent"],
+    [String.raw`attachment; filename="a\"b\\c.torrent"`, 'a"b\\c.torrent'],
+    ['attachment; filename="a;b.torrent"; size=123', "a;b.torrent"],
+    ["attachment; filename=\"____.torrent\"; filename*=UTF-8''%D1%82%D0%B5%D1%81%D1%82.torrent", "тест.torrent"],
+    ["attachment; filename*=UTF-8'en'%E2%82%AC+%25.torrent; filename=\"fallback.torrent\"", "€+%.torrent"],
+    ["Attachment; FILENAME=\"fallback.torrent\"; FILENAME*=utf-8''%C3%A9.torrent", "é.torrent"],
+    ["attachment; filename=\"fallback.torrent\"; filename*=UTF-8''%ZZ", "fallback.torrent"],
+    ["attachment; filename=\"fallback.torrent\"; filename*=UTF-8''%FF", "fallback.torrent"],
+    ["attachment; filename*=UTF-8''%ZZ", "default.torrent"],
+    ["attachment; filename=\"fallback.torrent\"; filename*=ISO-8859-1''%E9", "fallback.torrent"],
+    ["attachment; filename=\"a; filename*=UTF-8''fake.torrent\"", "a; filename*=UTF-8''fake.torrent"],
+])("Test downloadFile() filename: %s", async (header, expected) => {
+    const link = document.createElement("a");
+    const click = vi.spyOn(link, "click").mockImplementation(() => {});
+    vi.spyOn(document, "createElement").mockReturnValue(link);
+    vi.spyOn(window.URL, "createObjectURL").mockReturnValue("blob:test");
+    const alert = vi.fn();
+    vi.stubGlobal("alert", alert);
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+        ok: true,
+        blob: () => Promise.resolve(new Blob(["torrent"])),
+        headers: { get: () => header }
+    }));
+
+    try {
+        await window.qBittorrent.Misc.downloadFile("/download", "default.torrent");
+        expect(alert).not.toHaveBeenCalled();
+        expect(click).toHaveBeenCalledOnce();
+        expect(link.download).toBe(expected);
+    }
+    finally {
+        vi.restoreAllMocks();
+        vi.unstubAllGlobals();
+    }
+});
