@@ -596,6 +596,9 @@ void RSS::Private::Parser::parse(const QByteArray &feedData)
         m_result.error = tr("Invalid RSS feed.");
     }
 
+        // articles were appended; reverse to restore original feed order
+    std::reverse(m_result.articles.begin(), m_result.articles.end());
+
     emit finished(m_result);
     m_result.articles.clear();
     m_result.error.clear();
@@ -850,5 +853,5 @@ void RSS::Private::Parser::addArticle(QVariantHash article)
     }
 
     m_articleIDs.insert(localId.toString());
-    m_result.articles.prepend(article);
+    m_result.articles.append(article);
 }
