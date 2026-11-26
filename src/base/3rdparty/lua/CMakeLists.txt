@@ -78,8 +78,7 @@ target_sources(qbt_lua PRIVATE
 )
 
 target_include_directories(qbt_lua
-    PUBLIC "include"
-    PRIVATE "include/lua"
+    PUBLIC "include/lua"
 )
 
 target_compile_definitions(qbt_lua
