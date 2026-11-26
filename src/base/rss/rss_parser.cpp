@@ -29,6 +29,8 @@
 
 #include "rss_parser.h"
 
+#include <algorithm>
+
 #include <QDebug>
 #include <QHash>
 #include <QRegularExpression>
