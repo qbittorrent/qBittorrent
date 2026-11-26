@@ -81,8 +81,8 @@ LUALIB_API int (luaL_checkoption) (lua_State *L, int arg, const char *def,
 LUALIB_API int (luaL_fileresult) (lua_State *L, int stat, const char *fname);
 LUALIB_API int (luaL_execresult) (lua_State *L, int stat);
 
-LUALIB_API void *luaL_alloc (void *ud, void *ptr, size_t osize,
-                                                  size_t nsize);
+LUALIB_API void *(luaL_alloc) (void *ud, void *ptr, size_t osize,
+                                                    size_t nsize);
 
 
 /* predefined references */
@@ -103,7 +103,7 @@ LUALIB_API int (luaL_loadstring) (lua_State *L, const char *s);
 
 LUALIB_API lua_State *(luaL_newstate) (void);
 
-LUALIB_API unsigned luaL_makeseed (lua_State *L);
+LUALIB_API unsigned (luaL_makeseed) (lua_State *L);
 
 LUALIB_API lua_Integer (luaL_len) (lua_State *L, int idx);
 

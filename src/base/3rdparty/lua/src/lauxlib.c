@@ -513,12 +513,25 @@ static const luaL_Reg boxmt[] = {  /* box metamethods */
 };
 
 
+/*
+** Get/create metatable (MT) for boxes
+*/
+static void getBoxMT (lua_State *L) {
+  const char *BOXMT = "_UBOX*"; /* key for the metatable */
+  if (luaL_getmetatable(L, BOXMT) == LUA_TNIL) {  /* MT not created yet? */
+    luaL_newlibtable(L, boxmt);  /* create it */
+    luaL_setfuncs(L, boxmt, 0);  /* initialize it */
+    lua_copy(L, -1, -2);  /* change stack from nil,MT to MT,MT */
+    lua_setfield(L, LUA_REGISTRYINDEX, BOXMT);  /* store MT in the registry */
+  }
+}
+
+
 static void newbox (lua_State *L) {
   UBox *box = (UBox *)lua_newuserdatauv(L, sizeof(UBox), 0);
   box->box = NULL;
   box->bsize = 0;
-  if (luaL_newmetatable(L, "_UBOX*"))  /* creating metatable? */
-    luaL_setfuncs(L, boxmt, 0);  /* set its metamethods */
+  getBoxMT(L);
   lua_setmetatable(L, -2);
 }
 
@@ -874,7 +887,7 @@ LUALIB_API int luaL_loadbufferx (lua_State *L, const char *buff, size_t size,
 
 
 LUALIB_API int luaL_loadstring (lua_State *L, const char *s) {
-  return luaL_loadbuffer(L, s, strlen(s), s);
+  return luaL_loadbufferx(L, s, strlen(s), s, "t");
 }
 
 /* }====================================================== */
