@@ -73,24 +73,9 @@ void WebUI::configure()
 
     if (m_isEnabled && !m_isErrored)
     {
-        const quint16 port = pref->getWebUIPort();
-
-        // Port forwarding
-        auto *portForwarder = Net::PortForwarder::instance();
-        if (pref->useUPnPForWebUIPort())
-        {
-            portForwarder->setPorts(portForwardingProfile, {port});
-        }
-        else
-        {
-            portForwarder->removePorts(portForwardingProfile);
-        }
+        const bool useUnixSocket = pref->isWebUIUnixSocketEnabled();
 
         // http server
-        const QString serverAddressString = pref->getWebUIAddress();
-        const auto serverAddress = ((serverAddressString == u"*") || serverAddressString.isEmpty())
-            ? QHostAddress::Any : QHostAddress(serverAddressString);
-
         if (!m_httpServer)
         {
             m_webapp = new WebApplication(app(), this);
@@ -98,65 +83,129 @@ void WebUI::configure()
         }
         else
         {
-            if ((m_httpServer->serverAddress() != serverAddress) || (m_httpServer->serverPort() != port))
+            const QString serverAddressString = pref->getWebUIAddress();
+            const auto serverAddress = ((serverAddressString == u"*") || serverAddressString.isEmpty())
+                ? QHostAddress::Any : QHostAddress(serverAddressString);
+
+            const bool needsRestart = useUnixSocket
+                ? (!m_httpServer->isUnixSocket() || (m_httpServer->unixSocketPath() != pref->getWebUIUnixSocketPath()))
+                : (m_httpServer->isUnixSocket() || (m_httpServer->serverPort() != pref->getWebUIPort())
+                    || (m_httpServer->serverAddress() != serverAddress));
+
+            if (needsRestart)
+            {
                 m_httpServer->close();
+                m_httpServer->closeUnixSocket();
+            }
         }
 
         m_webapp->setUsername(username);
         m_webapp->setPasswordHash(passwordHash);
 
-        if (pref->isWebUIHttpsEnabled())
+        if (useUnixSocket)
         {
-            const auto readData = [](const Path &path) -> QByteArray
-            {
-                const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-                return readResult.value_or(QByteArray());
-            };
-            const QByteArray cert = readData(pref->getWebUIHttpsCertificatePath());
-            const QByteArray key = readData(pref->getWebUIHttpsKeyPath());
-
-            const bool success = m_httpServer->setupHttps(cert, key);
-            if (success)
-                LogMsg(tr("WebUI: HTTPS setup successful"));
-            else
-                LogMsg(tr("WebUI: HTTPS setup failed, fallback to HTTP"), Log::CRITICAL);
-        }
-        else
-        {
+            // UPnP and HTTPS are not applicable for Unix domain sockets
+            Net::PortForwarder::instance()->removePorts(portForwardingProfile);
             m_httpServer->disableHttps();
-        }
 
-        if (!m_httpServer->isListening())
-        {
-            const bool success = m_httpServer->listen(serverAddress, port);
-            if (success)
+            if (!m_httpServer->isListening() && !m_httpServer->isUnixSocket())
             {
-                LogMsg(tr("WebUI: Now listening on IP: %1, port: %2").arg(serverAddressString).arg(port));
+                const QString socketPath = pref->getWebUIUnixSocketPath();
+                if (socketPath.isEmpty())
+                {
+                    setError(tr("Unix socket path is not set"));
+                }
+                else
+                {
+                    const int permissions = pref->getWebUIUnixSocketPermissions();
+                    const bool success = m_httpServer->listenUnixSocket(socketPath, permissions);
+                    if (success)
+                    {
+                        LogMsg(tr("WebUI: Now listening on Unix socket: %1").arg(socketPath));
+                    }
+                    else
+                    {
+                        setError(tr("Unable to bind to Unix socket: %1. Reason: %2")
+                                .arg(socketPath).arg(m_httpServer->unixErrorString()));
+                    }
+                }
             }
-            else
-            {
-                setError(tr("Unable to bind to IP: %1, port: %2. Reason: %3")
-                        .arg(serverAddressString).arg(port).arg(m_httpServer->errorString()));
-            }
-        }
-
-        // DynDNS
-        if (pref->isDynDNSEnabled())
-        {
-            if (!m_dnsUpdater)
-                m_dnsUpdater = new Net::DNSUpdater(this);
-            else
-                m_dnsUpdater->updateCredentials();
         }
         else
         {
-            delete m_dnsUpdater;
+            // Port forwarding
+            const quint16 port = pref->getWebUIPort();
+            auto *portForwarder = Net::PortForwarder::instance();
+            if (pref->useUPnPForWebUIPort())
+            {
+                portForwarder->setPorts(portForwardingProfile, {port});
+            }
+            else
+            {
+                portForwarder->removePorts(portForwardingProfile);
+            }
+
+            // http server address
+            const QString serverAddressString = pref->getWebUIAddress();
+            const auto serverAddress = ((serverAddressString == u"*") || serverAddressString.isEmpty())
+                ? QHostAddress::Any : QHostAddress(serverAddressString);
+
+            // HTTPS
+            if (pref->isWebUIHttpsEnabled())
+            {
+                const auto readData = [](const Path &path) -> QByteArray
+                {
+                    const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
+                    return readResult.value_or(QByteArray());
+                };
+                const QByteArray cert = readData(pref->getWebUIHttpsCertificatePath());
+                const QByteArray key = readData(pref->getWebUIHttpsKeyPath());
+
+                const bool success = m_httpServer->setupHttps(cert, key);
+                if (success)
+                    LogMsg(tr("WebUI: HTTPS setup successful"));
+                else
+                    LogMsg(tr("WebUI: HTTPS setup failed, fallback to HTTP"), Log::CRITICAL);
+            }
+            else
+            {
+                m_httpServer->disableHttps();
+            }
+
+            if (!m_httpServer->isListening() && !m_httpServer->isUnixSocket())
+            {
+                const bool success = m_httpServer->listen(serverAddress, port);
+                if (success)
+                {
+                    LogMsg(tr("WebUI: Now listening on IP: %1, port: %2").arg(serverAddressString).arg(port));
+                }
+                else
+                {
+                    setError(tr("Unable to bind to IP: %1, port: %2. Reason: %3")
+                            .arg(serverAddressString).arg(port).arg(m_httpServer->errorString()));
+                }
+            }
+
+            // DynDNS
+            if (pref->isDynDNSEnabled())
+            {
+                if (!m_dnsUpdater)
+                    m_dnsUpdater = new Net::DNSUpdater(this);
+                else
+                    m_dnsUpdater->updateCredentials();
+            }
+            else
+            {
+                delete m_dnsUpdater;
+            }
         }
     }
     else
     {
         Net::PortForwarder::instance()->removePorts(portForwardingProfile);
 
+        if (m_httpServer)
+            m_httpServer->closeUnixSocket();
         delete m_httpServer;
         delete m_webapp;
         delete m_dnsUpdater;
@@ -206,4 +255,10 @@ quint16 WebUI::port() const
 {
     if (!m_httpServer) return 0;
     return m_httpServer->serverPort();
+}
+
+QString WebUI::unixSocketPath() const
+{
+    if (!m_httpServer) return {};
+    return m_httpServer->unixSocketPath();
 }
