@@ -35,6 +35,7 @@
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrentannouncestatus.h"
+#include "base/hostnameextractor.h"
 #include "base/tag.h"
 
 namespace BitTorrent
@@ -109,6 +110,6 @@ private:
     std::optional<bool> m_private;
     std::optional<QString> m_trackerHost;
     std::optional<BitTorrent::TorrentAnnounceStatus> m_announceStatus;
-};
 
-QString getTrackerHost(const QString &url);
+    HostnameExtractor m_hostnameExtractor;
+};

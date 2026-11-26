@@ -56,6 +56,7 @@ add_library(qbt_base STATIC
     exceptions.h
     freediskspacechecker.h
     global.h
+    hostnameextractor.h
     http/asyncfilesender.h
     http/connection.h
     http/constants.h
@@ -174,6 +175,7 @@ add_library(qbt_base STATIC
     bittorrent/trackerentrystatus.cpp
     exceptions.cpp
     freediskspacechecker.cpp
+    hostnameextractor.cpp
     http/asyncfilesender.cpp
     http/connection.cpp
     http/httperror.cpp
