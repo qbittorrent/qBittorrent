@@ -167,7 +167,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.dynamicTableDiv.addEventListener("contextmenu", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr)
+                // the header row is no row to select
+                if ((tr === null) || (tr.rowId === undefined))
                     return;
 
                 if (!this.isRowSelected(tr.rowId)) {
@@ -178,7 +179,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.dynamicTableDiv.addEventListener("touchstart", (e) => {
                 const tr = e.target.closest("tr");
-                if (!tr)
+                if ((tr === null) || (tr.rowId === undefined))
                     return;
 
                 if (!this.isRowSelected(tr.rowId)) {
@@ -491,13 +492,11 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             const menuId = `${this.dynamicTableDivId}_headerMenu`;
 
-            // reuse menu if already exists
-            let ul = document.getElementById(menuId);
-            if (ul === null) {
-                ul = document.createElement("ul");
-                ul.id = menuId;
-                ul.className = "contextMenu scrollableMenu";
-            }
+            // replace the menu of an earlier table, whose listeners would keep that table alive
+            document.getElementById(menuId)?.remove();
+            const ul = document.createElement("ul");
+            ul.id = menuId;
+            ul.className = "contextMenu scrollableMenu";
 
             const createLi = (columnName, text) => {
                 const anchor = document.createElement("a");
@@ -528,9 +527,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             const onMenuItemClicked = function(element, ref, action) {
                 this.showColumn(action, this.columns[action].visible === "0");
             }.bind(this);
-
-            // recreate child elements when reusing (enables the context menu to work correctly)
-            ul.replaceChildren();
 
             for (let i = 0; i < this.columns.length; ++i) {
                 const text = this.columns[i].caption;
@@ -2117,7 +2113,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         initColumns() {
             this.newColumn("fullName", "", "QBT_TR(Name)QBT_TR[CONTEXT=SearchPluginsTable]", 175, true);
             this.newColumn("version", "", "QBT_TR(Version)QBT_TR[CONTEXT=SearchPluginsTable]", 100, true);
-            this.newColumn("url", "", "QBT_TR(Url)QBT_TR[CONTEXT=SearchPluginsTable]", 175, true);
+            this.newColumn("url", "", "QBT_TR(URL)QBT_TR[CONTEXT=SearchPluginsTable]", 175, true);
             this.newColumn("enabled", "", "QBT_TR(Enabled)QBT_TR[CONTEXT=SearchPluginsTable]", 100, true);
 
             this.initColumnsFunctions();
@@ -2298,6 +2294,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const status = this.getRowValue(row);
                 switch (status) {
                     case "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]":
+                    case "QBT_TR(Disabled for this torrent)QBT_TR[CONTEXT=TrackerListWidget]":
                         statusClass = "trackerDisabled";
                         break;
                     case "QBT_TR(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]":
@@ -2444,7 +2441,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.id = this.headerCheckboxId;
-            checkbox.addEventListener("click", this.headerCheckboxClickHandler);
+            checkbox.addEventListener("click", (event) => this.headerCheckboxClickHandler(event));
             checkboxTH.appendChild(checkbox);
 
             this.updateHeaderCheckbox();

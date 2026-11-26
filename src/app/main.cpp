@@ -276,7 +276,7 @@ int main(int argc, char *argv[])
         // Since Apple made difficult for users to set PATH, we set here for convenience.
         // Users are supposed to install Homebrew Python for search function.
         // For more info see issue #5571.
-        const QByteArray path = "/usr/local/bin:" + qgetenv("PATH");
+        const QByteArray path = "/opt/homebrew/bin:/usr/local/bin:" + qgetenv("PATH");
         qputenv("PATH", path.constData());
 
         // On OS X the standard is to not show icons in the menus

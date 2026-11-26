@@ -66,6 +66,7 @@ namespace Utils::Misc
     QString boostVersionString();
     QString libtorrentVersionString();
     QString opensslVersionString();
+    QString qtVersionString();
     QString zlibVersionString();
 
     QString unitString(SizeUnit unit, bool isSpeed = false);
@@ -78,7 +79,7 @@ namespace Utils::Misc
     qint64 sizeInBytes(qreal size, SizeUnit unit);
 
     bool isPreviewable(const Path &filePath);
-    bool isTorrentLink(const QString &str);
+    bool isTorrentLink(QStringView str);
 
     // Take a number of seconds and return a user-friendly
     // time duration like "1d 2h 10m".

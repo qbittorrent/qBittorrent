@@ -83,6 +83,7 @@ window.qBittorrent.Client ??= (() => {
             "show_top_toolbar",
             "speed_in_browser_title_bar",
             "torrent_creator",
+            "torrents_filter_regex",
             "use_alt_row_colors",
             "use_virtual_list",
         ]);
@@ -221,6 +222,17 @@ window.qBittorrent.Client ??= (() => {
                         type,
                         metadata,
                     }, window.origin);
+                }
+            },
+            onClose: () => {
+                // a lookup that is still running would otherwise go on after the window is gone
+                if (shouldFetchMetadata) {
+                    fetch("api/v2/torrents/cancelFetchMetadata", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            source: source
+                        })
+                    });
                 }
             }
         });
@@ -1900,6 +1912,12 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             torrentsFilterInputTimer = -1;
             torrentsTable.updateTable();
         }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
+    });
+
+    const torrentsFilterRegexBox = document.getElementById("torrentsFilterRegexBox");
+    torrentsFilterRegexBox.checked = clientData.get("torrents_filter_regex") === true;
+    torrentsFilterRegexBox.addEventListener("change", (e) => {
+        clientData.set({ torrents_filter_regex: torrentsFilterRegexBox.checked }).catch(console.error);
     });
 
     document.getElementById("torrentsFilterToolbar").addEventListener("change", (e) => { torrentsTable.updateTable(); });

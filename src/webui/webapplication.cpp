@@ -71,10 +71,13 @@
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
 #include "clientdatastorage.h"
+#include "requestorigin.h"
 #include "searchjobmanager.h"
+#include "translationutils.h"
 #include "websession.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
+const int MAX_LOGGED_CLIENT_DIAGNOSTICS = 128;  // distinct client addresses reported per diagnostic before further reports are suppressed
 const QString SESSION_COOKIE_NAME_PREFIX = u"QBT_SID_"_s;
 
 const QString WWW_FOLDER = u":/www"_s;
@@ -84,6 +87,7 @@ const QString INDEX_HTML = u"/index.html"_s;
 
 const QString BASIC_AUTH = u"Basic"_s;
 const QString BEARER_AUTH = u"Bearer"_s;
+const QString BEARER_AUTH_CHALLENGE = u"Bearer realm=\"qBittorrent\", error=\"invalid_token\""_s;
 
 const QString API_PATH = u"/api/v2/"_s;
 
@@ -126,13 +130,6 @@ namespace
         return {};
     }
 
-    QUrl urlFromHostHeader(const QString &hostHeader)
-    {
-        if (!hostHeader.contains(u"://"))
-            return {u"http://"_s + hostHeader};
-        return hostHeader;
-    }
-
     QString getCachingInterval(QString contentType)
     {
         contentType = contentType.toLower();
@@ -168,12 +165,27 @@ namespace
 
         return languages.join(u'\n');
     }
+
+    bool canLogClientDiagnostic(const QSet<QHostAddress> &loggedAddresses, const QHostAddress &clientAddress)
+    {
+        return (loggedAddresses.size() < MAX_LOGGED_CLIENT_DIAGNOSTICS) && !loggedAddresses.contains(clientAddress);
+    }
+
+    void markClientDiagnosticLogged(QSet<QHostAddress> &loggedAddresses, const QHostAddress &clientAddress)
+    {
+        loggedAddresses.insert(clientAddress);
+        if (loggedAddresses.size() == MAX_LOGGED_CLIENT_DIAGNOSTICS)
+        {
+            LogMsg(WebApplication::tr("WebUI: Further reports of this kind are suppressed until settings are next applied, because too many distinct client addresses have been reported.")
+                    , Log::WARNING);
+        }
+    }
 }
 
 WebApplication::WebApplication(IApplication *app, QObject *parent)
     : ApplicationComponent(app, parent)
     , m_cacheID {QString::number(Utils::Random::rand(), 36)}
-    , m_trRegex {u"QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s}
+    , m_trRegex {u"QBT_TR(?:_(HTML|JS))?\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s}
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
     , m_searchJobManager {new SearchJobManager(this)}
@@ -268,8 +280,9 @@ void WebApplication::translateDocument(QString &data) const
         i = data.indexOf(m_trRegex, i, &regexMatch);
         if (i >= 0)
         {
-            const QStringView sourceText = regexMatch.capturedView(1);
-            const QStringView context = regexMatch.capturedView(3);
+            const QStringView mode = regexMatch.capturedView(1);
+            const QStringView sourceText = regexMatch.capturedView(2);
+            const QStringView context = regexMatch.capturedView(4);
 
             const QString loadedText = m_translationFileLoaded
                 ? m_translator.translate(context.toUtf8().constData(), sourceText.toUtf8().constData())
@@ -278,11 +291,22 @@ void WebApplication::translateDocument(QString &data) const
             // it should fallback to `sourceText`
             QString translation = loadedText.isEmpty() ? sourceText.toString() : loadedText;
 
-            // Escape quotes to workaround issues with HTML attributes
-            // FIXME: this is a dirty workaround to deal with broken translation strings:
-            // 1. Translation strings is the culprit of the issue, they should be fixed instead
-            // 2. The escaped quote/string is wrong for JS. JS use backslash to escape the quote: "\""
-            translation.replace(u'"', u"&#34;"_s);
+            if (mode == u"HTML")
+            {
+                translation = TranslationUtils::escapeHTML(translation);
+            }
+            else if (mode == u"JS")
+            {
+                translation = TranslationUtils::escapeJSString(translation);
+            }
+            else
+            {
+                // Escape quotes to workaround issues with HTML attributes
+                // FIXME: this is a dirty workaround to deal with broken translation strings:
+                // 1. Translation strings is the culprit of the issue, they should be fixed instead
+                // 2. The escaped quote/string is wrong for JS. JS use backslash to escape the quote: "\""
+                translation.replace(u'"', u"&#34;"_s);
+            }
 
             data.replace(i, regexMatch.capturedLength(), translation);
             i += translation.length();
@@ -373,13 +397,9 @@ void WebApplication::processAPIRequest(const QString &endpoint, const Http::Head
         params = m_request.posts;
     }
 
-    DataMap data;
-    for (const Http::UploadedFile &torrent : request().files)
-        data[torrent.filename] = torrent.data;
-
     try
     {
-        const APIResult apiResult = controller->run(action, params, data);
+        const APIResult apiResult = controller->run(action, params, request().files);
         if (std::holds_alternative<StreamFileAPIResult>(apiResult))
         {
             const auto result = std::get<StreamFileAPIResult>(apiResult);
@@ -502,6 +522,8 @@ void WebApplication::configure()
     m_isLocalAuthEnabled = pref->isWebUILocalAuthEnabled();
     m_isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
     m_authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
+    m_loggedAuthBypassMisses.clear();
+    m_loggedUntrustedReverseProxies.clear();
     m_sessionTimeout = std::chrono::seconds(pref->getWebUISessionTimeout());
     m_sessionsCountLimit = std::max(0, pref->getWebUISessionsCountLimit());
     m_sessionCookieName = SESSION_COOKIE_NAME_PREFIX + QString::number(pref->getWebUIPort());
@@ -598,10 +620,15 @@ void WebApplication::configure()
             const std::optional<Utils::Net::Subnet> subnet = Utils::Net::parseSubnet(proxy);
             if (subnet)
                 m_trustedReverseProxyList.push_back(subnet.value());
+            else
+                LogMsg(tr("WebUI: Invalid trusted reverse proxy: \"%1\"").arg(proxy), Log::WARNING);
         }
 
         if (m_trustedReverseProxyList.isEmpty())
+        {
             m_isReverseProxySupportEnabled = false;
+            LogMsg(tr("WebUI: Reverse proxy support is disabled because the trusted proxy list has no valid entries."), Log::WARNING);
+        }
     }
 
     if (const QString apiKey = pref->getWebUIApiKey(); apiKey.isEmpty() || Utils::APIKey::isValid(apiKey))
@@ -708,10 +735,22 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
 
         // reverse proxy resolve client address
         m_clientAddress = resolveClientAddress();
+        if (m_isReverseProxySupportEnabled)
+        {
+            const bool isUntrustedReverseProxy = !m_request.headers.value(Http::HEADER_X_FORWARDED_FOR).isEmpty()
+                && !Utils::Net::isIPInSubnets(m_env.clientAddress, m_trustedReverseProxyList);
+            if (isUntrustedReverseProxy)
+                logUntrustedReverseProxy();
+        }
 
         if (isUsingApiKey)
         {
             apiKeySessionInitialize(!apiKeyHeader.isEmpty() ? apiKeyHeader : authData);
+            if (!m_currentSession)
+            {
+                commonHeaders.insert(Http::HEADER_WWW_AUTHENTICATE, BEARER_AUTH_CHALLENGE);
+                throw UnauthorizedHTTPError();
+            }
         }
         else
         {
@@ -779,6 +818,7 @@ void WebApplication::cookieSessionInitialize(const QString &authScheme, const QS
 {
     Q_ASSERT(!m_currentSession);
 
+    bool hasStaleSessionCookie = false;
     if (const QString sessionId = parseCookie(m_request.headers.value(Http::HEADER_COOKIE)).value(m_sessionCookieName);
         !sessionId.isEmpty())
     {
@@ -799,6 +839,8 @@ void WebApplication::cookieSessionInitialize(const QString &authScheme, const QS
                 delete m_sessions.take(sessionId);
             }
         }
+
+        hasStaleSessionCookie = !m_currentSession;
     }
 
     if (!m_currentSession)
@@ -809,6 +851,10 @@ void WebApplication::cookieSessionInitialize(const QString &authScheme, const QS
         }
         else if (authScheme.compare(BASIC_AUTH, Qt::CaseInsensitive) == 0)
         {
+            // clients that ignore 'Set-Cookie' must log in again, or they start a new session on every request
+            if (hasStaleSessionCookie && !canRestartSessionViaBasicAuth())
+                return;
+
             if (!validateBasicAuth(authData))
                 throw UnauthorizedHTTPError();
 
@@ -861,9 +907,37 @@ bool WebApplication::isAuthNeeded()
 {
     if (!m_isLocalAuthEnabled && m_clientAddress.isLoopback())
         return false;
-    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInSubnets(m_clientAddress, m_authSubnetWhitelist))
-        return false;
+    if (m_isAuthSubnetWhitelistEnabled)
+    {
+        if (Utils::Net::isIPInSubnets(m_clientAddress, m_authSubnetWhitelist))
+            return false;
+
+        logAuthBypassMiss();
+    }
     return true;
+}
+
+void WebApplication::logUntrustedReverseProxy()
+{
+    if (!canLogClientDiagnostic(m_loggedUntrustedReverseProxies, m_clientAddress))
+        return;
+
+    LogMsg(tr("WebUI: The forwarded client address was ignored. Request source IP: '%1'. Reason: Request source IP is not in the trusted reverse proxy list.")
+            .arg(m_env.clientAddress.toString()), Log::WARNING);
+    markClientDiagnosticLogged(m_loggedUntrustedReverseProxies, m_clientAddress);
+}
+
+void WebApplication::logAuthBypassMiss()
+{
+    if (!canLogClientDiagnostic(m_loggedAuthBypassMisses, m_clientAddress))
+        return;
+
+    const QString msg = (m_clientAddress == m_env.clientAddress)
+        ? tr("WebUI: Authentication is required. Client address: '%1'. Reason: Client address does not match any whitelisted IP subnet.").arg(clientId())
+        : tr("WebUI: Authentication is required. Client address: '%1'. Reverse proxy: '%2'. Reason: Client address does not match any whitelisted IP subnet.")
+            .arg(clientId(), m_env.clientAddress.toString());
+    LogMsg(msg);
+    markClientDiagnosticLogged(m_loggedAuthBypassMisses, m_clientAddress);
 }
 
 bool WebApplication::isPublicAPI(const QString &scope, const QString &action) const
@@ -968,75 +1042,64 @@ bool WebApplication::isOriginTrustworthy() const
     return false;
 }
 
+QString WebApplication::requestTargetOrigin(const Http::Request &request) const
+{
+    return m_isReverseProxySupportEnabled
+        ? request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST))
+        : request.headers.value(Http::HEADER_HOST);
+}
+
 bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
 {
     // https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#Verifying_Same_Origin_with_Standard_Headers
 
-    const auto isSameOrigin = [](const QUrl &left, const QUrl &right) -> bool
-    {
-        // [rfc6454] 5. Comparing Origins
-        return ((left.port() == right.port())
-                // && (left.scheme() == right.scheme())  // not present in this context
-                && (left.host() == right.host()));
-    };
+    const QString targetOrigin = requestTargetOrigin(request);
 
-    const QString targetOrigin = m_isReverseProxySupportEnabled
-        ? request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST))
-        : request.headers.value(Http::HEADER_HOST);
+    // owasp.org recommends to block requests without any of these headers, but doing so will inevitably lead Web API users
+    // to spoof headers so let's be permissive here (Web API clients don't send any of these headers)
+    const RequestOrigin::Result origin = RequestOrigin::classify(request, targetOrigin);
+    if (origin.type != RequestOrigin::Type::CrossOrigin)
+        return false;
 
-    // Prefer 'Sec-Fetch-Site' when present: it is set by the browser itself, cannot be suppressed or tampered with
-    // by the requesting page, and doesn't rely on the 'Host' header (e.g. behind a reverse proxy).
-    // Browsers only send it to potentially trustworthy origins (HTTPS or localhost).
-    if (const QString secFetchSiteValue = request.headers.value(Http::HEADER_SEC_FETCH_SITE); !secFetchSiteValue.isEmpty())
+    switch (origin.header)
     {
-        // "none" means the request wasn't initiated by a page (typed URL, bookmark, etc.)
-        const bool isValid = (secFetchSiteValue.compare(u"same-origin", Qt::CaseInsensitive) == 0)
-                || (secFetchSiteValue.compare(u"none", Qt::CaseInsensitive) == 0);
-        if (!isValid)
-        {
-            LogMsg(tr("WebUI: Cross-site request blocked. Source IP: '%1'. Sec-Fetch-Site header: '%2'. Target origin: '%3'")
-                   .arg(m_env.clientAddress.toString(), secFetchSiteValue, targetOrigin)
-                   , Log::WARNING);
-        }
-        return !isValid;
+    case RequestOrigin::Header::SecFetchSite:
+        LogMsg(tr("WebUI: Cross-site request blocked. Source IP: '%1'. Sec-Fetch-Site header: '%2'. Target origin: '%3'")
+               .arg(m_env.clientAddress.toString(), origin.headerValue, targetOrigin)
+               , Log::WARNING);
+        break;
+    case RequestOrigin::Header::Origin:
+        LogMsg(tr("WebUI: Origin header & Target origin mismatch! Source IP: '%1'. Origin header: '%2'. Target origin: '%3'")
+               .arg(m_env.clientAddress.toString(), origin.headerValue, targetOrigin)
+               , Log::WARNING);
+        break;
+    case RequestOrigin::Header::Referer:
+        LogMsg(tr("WebUI: Referer header & Target origin mismatch! Source IP: '%1'. Referer header: '%2'. Target origin: '%3'")
+               .arg(m_env.clientAddress.toString(), origin.headerValue, targetOrigin)
+               , Log::WARNING);
+        break;
+    case RequestOrigin::Header::None:
+        break;
     }
 
-    const QString originValue = request.headers.value(Http::HEADER_ORIGIN);
-    const QString refererValue = request.headers.value(Http::HEADER_REFERER);
+    return true;
+}
 
-    // sent with CORS requests, as well as with POST requests
-    if (!originValue.isEmpty())
-    {
-        const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), originValue);
-        if (isInvalid)
-        {
-            LogMsg(tr("WebUI: Origin header & Target origin mismatch! Source IP: '%1'. Origin header: '%2'. Target origin: '%3'")
-                   .arg(m_env.clientAddress.toString(), originValue, targetOrigin)
-                   , Log::WARNING);
-        }
-        return isInvalid;
-    }
+bool WebApplication::canRestartSessionViaBasicAuth() const
+{
+    if (!m_request.path.startsWith(API_PATH))
+        return true;
 
-    if (!refererValue.isEmpty())
-    {
-        const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), refererValue);
-        if (isInvalid)
-        {
-            LogMsg(tr("WebUI: Referer header & Target origin mismatch! Source IP: '%1'. Referer header: '%2'. Target origin: '%3'")
-                   .arg(m_env.clientAddress.toString(), refererValue, targetOrigin)
-                   , Log::WARNING);
-        }
-        return isInvalid;
-    }
+    if (m_request.path.sliced(API_PATH.size()) == u"auth/login")
+        return true;
 
-    // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
-    // so let's be permissive here (Web API clients don't send any of these headers)
-    return false;
+    // browsers always store the renewed session cookie
+    return (RequestOrigin::classify(m_request, requestTargetOrigin(m_request)).type == RequestOrigin::Type::SameOrigin);
 }
 
 bool WebApplication::validateHostHeader() const
 {
-    const QUrl hostHeader = urlFromHostHeader(m_request.headers[Http::HEADER_HOST]);
+    const QUrl hostHeader = RequestOrigin::urlFromHostHeader(m_request.headers[Http::HEADER_HOST]);
     const QString requestHost = hostHeader.host();
 
     // (if present) try matching host header's port with local port

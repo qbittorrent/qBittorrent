@@ -31,7 +31,6 @@
 
 #include <QDialog>
 
-#include "base/path.h"
 #include "base/settingvalue.h"
 
 namespace BitTorrent
@@ -64,7 +63,7 @@ public:
     ~PreviewSelectDialog();
 
 signals:
-    void readyToPreviewFile(const Path &filePath) const;
+    void fileSelected(int fileIndex);
 
 private slots:
     void previewButtonClicked();
@@ -77,7 +76,6 @@ private:
     void saveWindowState();
 
     Ui::PreviewSelectDialog *m_ui = nullptr;
-    const BitTorrent::Torrent *m_torrent = nullptr;
     bool m_headerStateInitialized = false;
 
     // Settings

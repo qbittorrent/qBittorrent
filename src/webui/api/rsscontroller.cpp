@@ -202,7 +202,7 @@ void RSSController::importRulesAction()
 
     try
     {
-        RSS::AutoDownloader::instance()->importRules(data().cbegin().value()
+        RSS::AutoDownloader::instance()->importRules(data().first().data
             , RSS::AutoDownloader::RulesFileFormat::JSON);
     }
     catch (const RSS::ParsingError &error)

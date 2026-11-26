@@ -69,8 +69,6 @@
 
         let table;
         let contextMenu;
-        let prevOffsetLeft;
-        let prevOffsetTop;
         let timer = -1;
 
         const init = () => {
@@ -101,7 +99,6 @@
                     },
                     exportTorrent: exportTorrents,
                 },
-                offsets: calculateContextMenuOffsets(),
             });
             contextMenu.updateMenuItems = () => {
                 const selectedRows = table.selectedRowsIds();
@@ -127,31 +124,11 @@
 
             table.setup("torrentCreationTasksTableDiv", "torrentCreationTasksTableFixedHeaderDiv", contextMenu);
 
-            table.dynamicTableDiv.addEventListener("contextmenu", (e) => {
-                updateContextMenuOffset();
-            }, true);
-
             document.getElementById("addTaskButton").addEventListener("click", (event) => {
                 showCreateTorrentPage();
             });
 
             load();
-        };
-
-        const calculateContextMenuOffsets = () => {
-            prevOffsetLeft = document.getElementById("torrentCreatorPage").getBoundingClientRect().left;
-            prevOffsetTop = document.getElementById("torrentCreatorPage").getBoundingClientRect().top;
-
-            return {
-                x: -prevOffsetLeft,
-                y: -prevOffsetTop
-            };
-        };
-
-        const updateContextMenuOffset = () => {
-            // only re-calculate if window has moved
-            if ((prevOffsetLeft !== document.getElementById("torrentCreatorPage").getBoundingClientRect().left) || (prevOffsetTop !== document.getElementById("torrentCreatorPage").getBoundingClientRect().top))
-                contextMenu.options.offsets = calculateContextMenuOffsets();
         };
 
         const showCreateTorrentPage = () => {
@@ -219,13 +196,23 @@
         };
 
         const syncTaskData = () => {
+            // the window was closed meanwhile
+            if (table === null)
+                return;
+
+            const requestTable = table;
             fetch("api/v2/torrentcreator/status", {
                 method: "GET",
                 cache: "no-store"
             }).then(async (response) => {
                 if (!response.ok) {
-                    let error = "QBT_TR(Unable to load torrent creation tasks)QBT_TR[CONTEXT=TorrentCreator]";
                     const responseText = await response.text();
+
+                    // the window was closed or reopened meanwhile
+                    if (table !== requestTable)
+                        return;
+
+                    let error = "QBT_TR(Unable to load torrent creation tasks)QBT_TR[CONTEXT=TorrentCreator]";
                     if (responseText.length > 0)
                         error += `: ${responseText}`;
                     alert(error);
@@ -234,6 +221,10 @@
 
                 // Awaiting the json before clearing the table to prevent flickering
                 const responseJSON = await response.json();
+
+                // the window was closed or reopened meanwhile
+                if (table !== requestTable)
+                    return;
 
                 const selectedTasks = table.selectedRowsIds();
                 table.clear();
@@ -268,7 +259,8 @@
                         table.reselectRows(selectedTasks);
                 }
             }).finally(() => {
-                syncTaskWithInterval(serverSyncMainDataInterval);
+                if (table === requestTable)
+                    syncTaskWithInterval(serverSyncMainDataInterval);
             });
         };
 

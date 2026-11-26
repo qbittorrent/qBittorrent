@@ -1429,11 +1429,30 @@ void TransferListWidget::dragMoveEvent(QDragMoveEvent *event)
 void TransferListWidget::dropEvent(QDropEvent *event)
 {
     event->acceptProposedAction();
-    // remove scheme
+
     QStringList files;
-    if (const QMimeData *data = event->mimeData(); data->hasUrls())
+
+    const QMimeData *mimeData = event->mimeData();
+    if (mimeData->hasText())
     {
-        const QList<QUrl> urls = data->urls();
+        const QString text = mimeData->text();
+        const QList<QStringView> parts = QStringView(text).split(u'\n', Qt::SkipEmptyParts);
+        files.reserve(parts.size());
+
+        for (const QStringView part : parts)
+        {
+            const QStringView partTrimmed = part.trimmed();
+            if (partTrimmed.isEmpty())
+                continue;
+
+            const QString file = partTrimmed.toString();
+            const QUrl url {file};
+            files.append(url.isLocalFile() ? url.toLocalFile() : file);
+        }
+    }
+    else if (mimeData->hasUrls())
+    {
+        const QList<QUrl> urls = mimeData->urls();
         files.reserve(urls.size());
 
         for (const QUrl &url : urls)
@@ -1443,12 +1462,8 @@ void TransferListWidget::dropEvent(QDropEvent *event)
 
             files.append(url.isLocalFile()
                 ? url.toLocalFile()
-                : url.toString());
+                : url.toString(QUrl::EncodeSpaces));  // otherwise it will decode spaces
         }
-    }
-    else
-    {
-        files = data->text().split(u'\n', Qt::SkipEmptyParts);
     }
 
     // differentiate ".torrent" files/links & magnet links from others
@@ -1501,12 +1516,65 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
     QTreeView::wheelEvent(event);  // event delegated to base class
 }
 
-void TransferListWidget::openPreviewSelectDialog(const BitTorrent::Torrent *torrent)
+bool TransferListWidget::previewTorrentFile(const BitTorrent::Torrent *torrent, const int fileIndex, QWidget *errorParent)
 {
-    auto *dialog = new PreviewSelectDialog(this, torrent);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    // Flush data
+    torrent->flushCache();
+
+    const Path path = torrent->actualStorageLocation() / torrent->actualFilePath(fileIndex);
+    if (!path.exists())
+    {
+        QMessageBox::critical(errorParent, tr("Preview impossible")
+            , tr("Sorry, we can't preview this file: \"%1\".").arg(path.toString()));
+        return false;
+    }
+
     // Qt::QueuedConnection is required to prevent a bug on wayland compositors where the preview won't open.
     // It occurs when the window focus shifts immediately after TransferListWidget::previewFile has been called.
-    connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile, Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, [this, path] { previewFile(path); }, Qt::QueuedConnection);
+    return true;
+}
+
+void TransferListWidget::openPreviewSelectDialog(const BitTorrent::Torrent *torrent)
+{
+    int previewableFileIndex = -1;
+    bool hasMultiplePreviewableFiles = false;
+    for (int i = 0; i < torrent->filesCount(); ++i)
+    {
+        if (!Utils::Misc::isPreviewable(torrent->filePath(i)))
+            continue;
+
+        if (previewableFileIndex >= 0)
+        {
+            hasMultiplePreviewableFiles = true;
+            break;
+        }
+
+        previewableFileIndex = i;
+    }
+
+    if (previewableFileIndex < 0)
+        return;
+
+    if (!hasMultiplePreviewableFiles)
+    {
+        previewTorrentFile(torrent, previewableFileIndex, this);
+        return;
+    }
+
+    auto *dialog = new PreviewSelectDialog(this, torrent);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(dialog, &PreviewSelectDialog::fileSelected, this, [this, dialog, torrentID = torrent->id()](const int fileIndex)
+    {
+        const BitTorrent::Torrent *selectedTorrent = BitTorrent::Session::instance()->getTorrent(torrentID);
+        if (!selectedTorrent)
+        {
+            dialog->reject();
+            return;
+        }
+
+        if (previewTorrentFile(selectedTorrent, fileIndex, dialog))
+            dialog->accept();
+    });
     dialog->show();
 }

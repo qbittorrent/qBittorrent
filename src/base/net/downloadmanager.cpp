@@ -42,6 +42,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSslError>
+#include <QStringView>
 #include <QTimer>
 #include <QUrl>
 
@@ -65,11 +66,11 @@ namespace
         static QByteArray ret;
         if (ret.isEmpty())
         {
-            const std::chrono::time_point baseDate = std::chrono::sys_days(2024y / 04 / 16);
-            const int baseVersion = 125;
+            const std::chrono::time_point baseDate = std::chrono::sys_days(2026y / 10 / 13);
+            const int baseVersion = 158;
 
             const std::chrono::time_point nowDate = std::chrono::system_clock::now();
-            const int nowVersion = baseVersion + std::chrono::duration_cast<std::chrono::months>(nowDate - baseDate).count();
+            const int nowVersion = baseVersion + (std::chrono::duration_cast<std::chrono::days>(nowDate - baseDate).count() / 15);
 
             QByteArray userAgentTemplate = QByteArrayLiteral("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:%1.0) Gecko/20100101 Firefox/%1.0");
             ret = userAgentTemplate.replace("%1", QByteArray::number(nowVersion));
@@ -251,12 +252,12 @@ bool Net::DownloadManager::deleteCookie(const QNetworkCookie &cookie)
     return m_networkCookieJar->deleteCookie(cookie);
 }
 
-bool Net::DownloadManager::hasSupportedScheme(const QString &url)
+bool Net::DownloadManager::hasSupportedScheme(const QStringView url)
 {
     static const QStringList schemes = QNetworkAccessManager().supportedSchemes();
-    return std::ranges::any_of(schemes, [&url](const QString &scheme)
+    return std::ranges::any_of(schemes, [url](const QString &scheme)
     {
-        return url.startsWith((scheme + u':'), Qt::CaseInsensitive);
+        return (url.size() > scheme.size()) && url.startsWith(scheme, Qt::CaseInsensitive) && (url.at(scheme.size()) == u':');
     });
 }
 

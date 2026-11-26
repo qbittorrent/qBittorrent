@@ -35,15 +35,26 @@
 ;End of user configurable options
 ;==============================================================================
 
+; Official headers
+!include "FileFunc.nsh"
+!include "LogicLib.nsh"
+!include "MUI2.nsh"
+!include "WinVer.nsh"
+!include "x64.nsh"
+
+; 3rd-party headers
+!include "3rdparty\UAC.nsh"
+!include "3rdparty\VersionCompleteXXXX.nsi"
+
 ; QBT_CPU_ARCH (x64 or arm64)
 !define /ifndef QBT_CPU_ARCH "x64"
 
 !ifndef QBT_INSTALLER_WINDOWNAME | QBT_INSTALLER_FILENAME
-  ; The name of the installer
-  !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION} ${QBT_CPU_ARCH}"
+    ; The name of the installer
+    !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION} ${QBT_CPU_ARCH}"
 
-  ; The file to write
-  !define QBT_INSTALLER_FILENAME "${QBT_VERSION}_${QBT_CPU_ARCH}"
+    ; The file to write
+    !define QBT_INSTALLER_FILENAME "${QBT_VERSION}_${QBT_CPU_ARCH}"
 !endif
 
 !define /ifndef QBT_DIST_DIR "qBittorrent"
@@ -55,19 +66,12 @@ ManifestDPIAware true
 ManifestDPIAwareness "PerMonitorV2,System"
 
 !ifdef USE_UPX
-!packhdr "$%TEMP%\exehead.tmp" 'upx.exe -9 --best --ultra-brute "$%TEMP%\exehead.tmp"'
+    !packhdr "$%TEMP%\exehead.tmp" 'upx.exe -9 --best --ultra-brute "$%TEMP%\exehead.tmp"'
 !endif
 
 ;Setting the compression
 SetCompressor /SOLID LZMA
 SetCompressorDictSize 64
-
-!include "3rdparty\UAC.nsh"
-!include "3rdparty\VersionCompleteXXXX.nsi"
-!include "FileFunc.nsh"
-!include "MUI2.nsh"
-!include "WinVer.nsh"
-!include "x64.nsh"
 
 ;For the file association
 !define SHCNE_ASSOCCHANGED 0x8000000
@@ -148,31 +152,40 @@ RequestExecutionLevel user
 ReserveFile /plugin FindProcDLL.dll
 ReserveFile /plugin UAC.dll
 
-!macro Init thing
-uac_tryagain:
-!insertmacro UAC_RunElevated
-${Switch} $0
-${Case} 0
-  ${IfThen} $1 = 1 ${|} Quit ${|} ;we are the outer process, the inner process has done its work, we are done
-  ${IfThen} $3 <> 0 ${|} ${Break} ${|} ;we are admin, let the show go on
-  ${If} $1 = 3 ;RunAs completed successfully, but with a non-admin user
-    MessageBox mb_YesNo|mb_IconExclamation|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, try again" /SD IDNO IDYES uac_tryagain IDNO 0
-    SetErrorLevel 1314 # WinError.h: `ERROR_PRIVILEGE_NOT_HELD`
-  ${EndIf}
-  ;fall-through and die
-${Case} 1223
-  MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, aborting!"
-  SetErrorLevel 1223 # WinError.h: `ERROR_CANCELLED`
-  Quit
-${Case} 1062
-  MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Logon service not running, aborting!"
-  SetErrorLevel 1062 # WinError.h: `ERROR_SERVICE_NOT_ACTIVE`
-  Quit
-${Default}
-  MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Unable to elevate , error $0"
-  SetErrorLevel 1603 # WinError.h: `ERROR_INSTALL_FAILURE`
-  Quit
-${EndSwitch}
+!macro ElevateUAC thing
+    uac_tryagain:
+    !insertmacro UAC_RunElevated
+    ${Switch} $0
+    ${Case} 0
+        ${IfThen} $1 = 1 ${|} Quit ${|} ;we are the outer process, the inner process has done its work, we are done
+        ${IfThen} $3 <> 0 ${|} ${Break} ${|} ;we are admin, let the show go on
+        ${If} $1 = 3 ;RunAs completed successfully, but with a non-admin user
+            MessageBox mb_YesNo|mb_IconExclamation|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, try again" /SD IDNO IDYES uac_tryagain IDNO 0
+            SetErrorLevel 1314 # WinError.h: `ERROR_PRIVILEGE_NOT_HELD`
+        ${EndIf}
+        ;fall-through and die
+    ${Case} 1223
+        MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, aborting!"
+        SetErrorLevel 1223 # WinError.h: `ERROR_CANCELLED`
+        Quit
+    ${Case} 1062
+        MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Logon service not running, aborting!"
+        SetErrorLevel 1062 # WinError.h: `ERROR_SERVICE_NOT_ACTIVE`
+        Quit
+    ${Default}
+        MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Unable to elevate , error $0"
+        SetErrorLevel 1603 # WinError.h: `ERROR_INSTALL_FAILURE`
+        Quit
+    ${EndSwitch}
 
-SetShellVarContext all
+    SetShellVarContext all
+!macroend
+
+!macro AdjustRegistryView
+    ${If} "${QBT_CPU_ARCH}" == "arm64"
+    ${OrIf} "${QBT_CPU_ARCH}" == "x64"
+        SetRegView 64
+    ${Else}
+        SetRegView 32
+    ${EndIf}
 !macroend

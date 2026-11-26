@@ -33,12 +33,12 @@
 #include <QDir>
 #include <QHeaderView>
 #include <QMenu>
-#include <QMessageBox>
 #include <QPushButton>
 #include <QShowEvent>
 #include <QStandardItemModel>
 
 #include "base/bittorrent/torrent.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -56,14 +56,13 @@ enum Roles
 PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torrent *torrent)
     : QDialog(parent)
     , m_ui {new Ui::PreviewSelectDialog}
-    , m_torrent {torrent}
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
     , m_storeTreeHeaderState {u"GUI/Qt6/" SETTINGS_KEY(u"HeaderState"_s)}
 {
     m_ui->setupUi(this);
 
     m_ui->label->setText(tr("The following files from torrent \"%1\" support previewing, please select one of them:")
-        .arg(m_torrent->name()));
+        .arg(torrent->name()));
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Preview"));
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &PreviewSelectDialog::previewButtonClicked);
@@ -131,26 +130,9 @@ void PreviewSelectDialog::previewButtonClicked()
     const QModelIndexList selectedIndexes = m_ui->previewList->selectionModel()->selectedRows(FILE_INDEX);
     if (selectedIndexes.isEmpty()) return;
 
-    // Flush data
-    m_torrent->flushCache();
-
     // Only one file should be selected
     const int fileIndex = selectedIndexes.at(0).data().toInt();
-    const Path path = m_torrent->actualStorageLocation() / m_torrent->actualFilePath(fileIndex);
-    // File
-    if (!path.exists())
-    {
-        const bool isSingleFile = (m_ui->previewList->model()->rowCount() == 1);
-        QWidget *parent = isSingleFile ? this->parentWidget() : this;
-        QMessageBox::critical(parent, tr("Preview impossible")
-            , tr("Sorry, we can't preview this file: \"%1\".").arg(path.toString()));
-        if (isSingleFile)
-            reject();
-        return;
-    }
-
-    emit readyToPreviewFile(path);
-    accept();
+    emit fileSelected(fileIndex);
 }
 
 void PreviewSelectDialog::displayColumnHeaderMenu()
@@ -208,8 +190,4 @@ void PreviewSelectDialog::showEvent(QShowEvent *event)
         m_ui->previewList->header()->resizeSection(0, nameSize);
         m_headerStateInitialized = true;
     }
-
-    // Only one file, no choice
-    if (m_ui->previewList->model()->rowCount() <= 1)
-        previewButtonClicked();
 }

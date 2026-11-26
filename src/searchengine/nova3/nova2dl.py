@@ -1,4 +1,4 @@
-# VERSION: 1.27
+# VERSION: 1.28
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -30,6 +30,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import importlib
+import logging
 import pathlib
 import sys
 
@@ -37,6 +38,12 @@ import sys
 current_path = str(pathlib.Path(__file__).parent.resolve())
 if current_path not in sys.path:
     sys.path.append(current_path)
+
+logging.basicConfig(
+    format="{levelname} | {message} | {pathname}:{lineno}",
+    style="{",
+    stream=sys.stderr
+)
 
 import helpers
 
@@ -54,11 +61,11 @@ if __name__ == '__main__':
 
     try:
         module = importlib.import_module(f"engines.{engine_name}")
-        engine_class = getattr(module, engine_name)
-        engine = engine_class()
-    except Exception as e:  # noqa: BLE001
-        print(repr(e), file=sys.stderr)
-        raise SystemExit(f'{prog_name}: `engine_name` was not recognized: {engine_name}')
+    except ModuleNotFoundError:
+        raise SystemExit(f"{prog_name}: Unrecognized search engine: '{engine_name}'.")
+
+    engine_class = getattr(module, engine_name)
+    engine = engine_class()
 
     if hasattr(engine, 'download_torrent'):
         engine.download_torrent(download_param)

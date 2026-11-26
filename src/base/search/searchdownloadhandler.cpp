@@ -49,8 +49,7 @@ SearchDownloadHandler::SearchDownloadHandler(const QString &pluginName, const QS
 #ifdef Q_OS_UNIX
     m_downloadProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
 #endif
-    connect(m_downloadProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished)
-            , this, &SearchDownloadHandler::downloadProcessFinished);
+    connect(m_downloadProcess, &QProcess::finished, this, &SearchDownloadHandler::downloadProcessFinished);
     const QStringList params
     {
         Utils::ForeignApps::PYTHON_ISOLATE_MODE_FLAG,

@@ -1,4 +1,4 @@
-# VERSION: 1.54
+# VERSION: 1.55
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -32,10 +32,10 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import importlib
+import logging
 import multiprocessing as MP
 import pathlib
 import sys
-import traceback
 import urllib.parse
 import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
@@ -49,6 +49,13 @@ from typing import Optional
 current_path = str(pathlib.Path(__file__).parent.resolve())
 if current_path not in sys.path:
     sys.path.append(current_path)
+
+logging.basicConfig(
+    format="{levelname} | {message} | {pathname}:{lineno}",
+    style="{",
+    stream=sys.stderr
+)
+_logger = logging.getLogger(__name__)
 
 import helpers
 
@@ -137,8 +144,8 @@ def import_engine(engine_module_name: EngineModuleName) -> Optional[type[Engine]
         # import engines.[engine_module_name]
         engine_module = importlib.import_module(f"engines.{engine_module_name}")
         engine_class = getattr(engine_module, engine_module_name)
-    except Exception:  # noqa: BLE001, S110
-        pass
+    except Exception:
+        _logger.exception(f"Import engine error. Engine name: '{engine_module_name}'.")
 
     engine_dict[engine_module_name] = engine_class
     return engine_class
@@ -180,7 +187,7 @@ def get_capabilities(engines: Iterable[EngineModuleName]) -> str:
                     if cat != Category.all.name:
                         supported_categories.add(cat)
                 else:
-                    print(f"Search engine has invalid category. Search engine: '{engine_class.name}'. Invalid category: '{cat}'", file=sys.stderr)
+                    _logger.error(f"Search engine has invalid category. Search engine: '{engine_class.name}'. Invalid category: '{cat}'.")
         ET.SubElement(engine_module_element, 'categories').text = " ".join(sorted(supported_categories))
 
     ET.indent(capabilities_element)
@@ -205,8 +212,8 @@ def run_search(search_params: tuple[type[Engine], str, Category]) -> bool:
         else:
             engine.search(what)
         return True
-    except Exception:  # noqa: BLE001
-        traceback.print_exc()
+    except Exception:
+        _logger.exception("Search error.")
         return False
 
 
@@ -244,7 +251,7 @@ if __name__ == "__main__":
         try:
             category = Category[cat]
         except KeyError:
-            print(f"Invalid category: {cat}", file=sys.stderr)
+            _logger.error(f"Invalid category: '{cat}'.")
             return ExitCode.ArgError.value
 
         what = urllib.parse.quote(' '.join(sys.argv[3:]))

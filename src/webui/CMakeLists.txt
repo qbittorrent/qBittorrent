@@ -16,7 +16,9 @@ add_library(qbt_webui STATIC
     api/transfercontroller.h
     api/serialize/serialize_torrent.h
     clientdatastorage.h
+    requestorigin.h
     searchjobmanager.h
+    translationutils.h
     webapplication.h
     websession.h
     webui.h
@@ -36,7 +38,9 @@ add_library(qbt_webui STATIC
     api/transfercontroller.cpp
     api/serialize/serialize_torrent.cpp
     clientdatastorage.cpp
+    requestorigin.cpp
     searchjobmanager.cpp
+    translationutils.cpp
     webapplication.cpp
     websession.cpp
     webui.cpp

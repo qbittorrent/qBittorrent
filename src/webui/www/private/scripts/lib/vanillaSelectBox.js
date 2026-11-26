@@ -502,7 +502,7 @@ function vanillaSelectBox(domSelector, options) {
             }
         }
         if (self.isMultiple) {
-            self.title.innerHTML = selectedTexts;
+            self.title.textContent = selectedTexts;
         }
         if (self.userOptions.placeHolder != "" && self.title.textContent == "") {
             self.title.textContent = self.userOptions.placeHolder;

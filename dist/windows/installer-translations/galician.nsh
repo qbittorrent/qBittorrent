@@ -34,6 +34,9 @@ LangString inst_requires_win10 ${LANG_GALICIAN}  "This installer requires at lea
 LangString inst_uninstall_link_description ${LANG_GALICIAN} "Uninstall qBittorrent"
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 LangString inst_arch_mismatch_arm64_on_x64 ${LANG_GALICIAN} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
+;LangString inst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString inst_findproc_other_error ${LANG_GALICIAN} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+
 
 ;------------------------------------
 ;Uninstaller strings
@@ -60,3 +63,5 @@ LangString uninst_warning ${LANG_GALICIAN} "qBittorrent está en execución. Pec
 LangString uninst_tor_warn ${LANG_GALICIAN} "Non se retirou a asociación .torrent. Está asociado a:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"
 LangString uninst_mag_warn ${LANG_GALICIAN} "Non se retirou a asociación magnet. Está asociada a:"
+;LangString uninst_findproc_other_error ${LANG_ENGLISH} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"
+LangString uninst_findproc_other_error ${LANG_GALICIAN} "Unexpected error occurred when finding `qbittorrent.exe` process. Code:"

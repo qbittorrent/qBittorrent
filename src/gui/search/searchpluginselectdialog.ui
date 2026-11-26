@@ -59,7 +59,7 @@
      </column>
      <column>
       <property name="text">
-       <string>Url</string>
+       <string>URL</string>
       </property>
      </column>
      <column>

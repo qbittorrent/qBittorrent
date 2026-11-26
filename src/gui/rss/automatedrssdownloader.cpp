@@ -147,8 +147,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     connect(m_ui->checkRegex, &QCheckBox::stateChanged, this, &AutomatedRssDownloader::updateMustNotLineValidity);
     connect(m_ui->checkSmart, &QCheckBox::stateChanged, this, &AutomatedRssDownloader::handleRuleDefinitionChanged);
 #endif
-    connect(m_ui->spinIgnorePeriod, qOverload<int>(&QSpinBox::valueChanged)
-            , this, &AutomatedRssDownloader::handleRuleDefinitionChanged);
+    connect(m_ui->spinIgnorePeriod, &QSpinBox::valueChanged, this, &AutomatedRssDownloader::handleRuleDefinitionChanged);
 
     connect(m_ui->listFeeds, &QListWidget::itemChanged, this, &AutomatedRssDownloader::handleFeedCheckStateChange);
 

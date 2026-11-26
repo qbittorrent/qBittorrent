@@ -458,6 +458,8 @@ namespace BitTorrent
         virtual void setExcludedFileNamesEnabled(bool enabled) = 0;
         virtual QStringList excludedFileNames() const = 0;
         virtual void setExcludedFileNames(const QStringList &newList) = 0;
+        virtual bool isExcludeFilesWithoutExtensionEnabled() const = 0;
+        virtual void setExcludeFilesWithoutExtensionEnabled(bool enabled) = 0;
         virtual void applyFilenameFilter(const PathList &files, QList<BitTorrent::DownloadPriority> &priorities) = 0;
         virtual QStringList bannedIPs() const = 0;
         virtual void setBannedIPs(const QStringList &newList) = 0;
@@ -542,6 +544,7 @@ namespace BitTorrent
         void torrentContentFolderRenamingFailed(Torrent *torrent, const Path &newFolderPath, const Path &oldFolderPath
                 , const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes);
         void torrentIOError(Torrent *torrent, const QString &message);
+        void torrentInfoHashChanged(Torrent *torrent, const InfoHash &prevInfoHash);
         void trackersAdded(Torrent *torrent, const QList<TrackerEntry> &trackers);
         void trackersReset(Torrent *torrent, const QList<TrackerEntryStatus> &oldEntries, const QList<TrackerEntry> &newEntries);
         void trackersRemoved(Torrent *torrent, const QStringList &trackers);

@@ -45,6 +45,7 @@ class QNetworkAccessManager;
 class QNetworkCookie;
 class QNetworkReply;
 class QSslError;
+class QStringView;
 class QUrl;
 
 namespace Net
@@ -156,7 +157,7 @@ namespace Net
         void setAllCookies(const QList<QNetworkCookie> &cookieList);
         bool deleteCookie(const QNetworkCookie &cookie);
 
-        static bool hasSupportedScheme(const QString &url);
+        static bool hasSupportedScheme(QStringView url);
 
     private:
         class NetworkCookieJar;

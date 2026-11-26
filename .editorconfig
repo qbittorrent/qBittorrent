@@ -10,14 +10,23 @@ indent_size = unset  # set it specifically for each language
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+[{**.cmake,CMakeLists.txt}]
+indent_size = 4
+
 [**.css]
 indent_size = 4
 
 [**.json]
 indent_size = 2
 
+[**.{nsi,nsh}]
+indent_size = 4
+
 [**.plist]
 indent_style = tab
+
+[**.qrc]
+indent_size = 4
 
 [**.{yaml,yml}]
 indent_size = 2

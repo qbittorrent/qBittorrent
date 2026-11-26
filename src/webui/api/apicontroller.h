@@ -36,10 +36,11 @@
 #include <QVariant>
 
 #include "base/applicationcomponent.h"
+#include "base/http/request.h"
 #include "base/path.h"
 #include "apistatus.h"
 
-using DataMap = QHash<QString, QByteArray>;
+using DataList = QList<Http::UploadedFile>;
 using StringMap = QHash<QString, QString>;
 
 struct RegularAPIResult
@@ -65,11 +66,11 @@ class APIController : public ApplicationComponent<QObject>
 public:
     explicit APIController(IApplication *app, QObject *parent = nullptr);
 
-    APIResult run(const QString &action, const StringMap &params, const DataMap &data = {});
+    APIResult run(const QString &action, const StringMap &params, const DataList &data = {});
 
 protected:
     const StringMap &params() const;
-    const DataMap &data() const;
+    const DataList &data() const;
     void requireParams(const QList<QString> &requiredParams) const;
 
     void setResult(const QString &result);
@@ -82,6 +83,6 @@ protected:
 
 private:
     StringMap m_params;
-    DataMap m_data;
+    DataList m_data;
     APIResult m_result;
 };

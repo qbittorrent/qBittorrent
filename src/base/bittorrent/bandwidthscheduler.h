@@ -40,6 +40,7 @@ class BandwidthScheduler : public QObject
 public:
     explicit BandwidthScheduler(QObject *parent = nullptr);
     void start();
+    bool isAlternativeRequested() const;
 
 signals:
     void bandwidthLimitRequested(bool alternative);

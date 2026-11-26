@@ -33,6 +33,7 @@
 #include <concepts>
 #include <cstdint>
 #include <ctime>
+#include <memory>
 #include <ranges>
 #include <string>
 
@@ -513,9 +514,9 @@ SessionImpl::SessionImpl(QObject *parent)
 #endif
     , m_usePieceExtentAffinity(BITTORRENT_SESSION_KEY(u"PieceExtentAffinity"_s), false)
     , m_isSuggestMode(BITTORRENT_SESSION_KEY(u"SuggestMode"_s), false)
-    , m_sendBufferWatermark(BITTORRENT_SESSION_KEY(u"SendBufferWatermark"_s), 500)
-    , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY(u"SendBufferLowWatermark"_s), 10)
-    , m_sendBufferWatermarkFactor(BITTORRENT_SESSION_KEY(u"SendBufferWatermarkFactor"_s), 50)
+    , m_sendBufferWatermark(BITTORRENT_SESSION_KEY(u"SendBufferWatermark"_s), 4096)
+    , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY(u"SendBufferLowWatermark"_s), 128)
+    , m_sendBufferWatermarkFactor(BITTORRENT_SESSION_KEY(u"SendBufferWatermarkFactor"_s), 100)
     , m_connectionSpeed(BITTORRENT_SESSION_KEY(u"ConnectionSpeed"_s), 30)
     , m_isSeedingOutgoingConnectionsEnabled(BITTORRENT_SESSION_KEY(u"SeedingOutgoingConnectionsEnabled"_s), true)
     , m_socketSendBufferSize(BITTORRENT_SESSION_KEY(u"SocketSendBufferSize"_s), 0)
@@ -619,10 +620,15 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_peerTurnover(BITTORRENT_SESSION_KEY(u"PeerTurnover"_s), 4)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY(u"PeerTurnoverCutOff"_s), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY(u"PeerTurnoverInterval"_s), 300)
+#if LIBTORRENT_VERSION_NUM >= 20103
+    , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_s), 1500)
+#else
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_s), 500)
+#endif
     , m_maxOutstandingBlockRequests(BITTORRENT_SESSION_KEY(u"MaxOutstandingBlockRequests"_s), 2000)
     , m_isExcludedFileNamesEnabled(BITTORRENT_KEY(u"ExcludedFileNamesEnabled"_s), false)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_s))
+    , m_isExcludeFilesWithoutExtensionEnabled(BITTORRENT_SESSION_KEY(u"ExcludeFilesWithoutExtension"_s), false)
     , m_bannedIPs(u"State/BannedIPs"_s, QStringList(), Algorithm::sorted<QStringList>)
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_s), ResumeDataStorageType::Legacy)
     , m_isMergeTrackersEnabled(BITTORRENT_KEY(u"MergeTrackersEnabled"_s), false)
@@ -798,18 +804,25 @@ SessionImpl::~SessionImpl()
     delete m_resumeDataStorage;
     LogMsg(tr("Saving resume data completed."));
 
-    auto *sessionTerminateThread = QThread::create([nativeSessionProxy]()
+    // Do not use `QObject::deleteLater` as the event loop might shut down very soon
+    std::unique_ptr<QThread> sessionTerminateThread {QThread::create([nativeSessionProxy]()
     {
         qDebug("Deleting libtorrent session...");
         delete nativeSessionProxy;
-    });
+    })};
     sessionTerminateThread->setObjectName("~SessionImpl sessionTerminateThread");
-    connect(sessionTerminateThread, &QThread::finished, sessionTerminateThread, &QObject::deleteLater);
     sessionTerminateThread->start();
     if (sessionTerminateThread->wait(shutdownDeadlineTimer))
+    {
         LogMsg(tr("BitTorrent session successfully finished."));
+    }
     else
-        LogMsg(tr("Session shutdown timed out."));
+    {
+        LogMsg(tr("Session shutdown timed out."), Log::WARNING);
+        // Leave the thread untracked and let it run till app exit.
+        // Don't bother with `QThread::terminate(); QThread::wait();` as it cannot really stop the thread and will block indefinitely.
+        sessionTerminateThread.release();
+    }
 }
 
 QString SessionImpl::getDHTBootstrapNodes() const
@@ -3237,7 +3250,18 @@ void SessionImpl::addMappedPorts(const QSet<quint16> &ports)
         for (const quint16 port : ports)
         {
             if (!m_mappedPorts.contains(port))
-                m_mappedPorts.insert(port, m_nativeSession->add_port_mapping(lt::session::tcp, port, port));
+            {
+                std::vector<lt::port_mapping_t> handles = m_nativeSession->add_port_mapping(lt::session::tcp, port, port);
+                const bool hasInvalid = std::erase_if(handles, [](const lt::port_mapping_t handle)
+                {
+                    return (handle < lt::port_mapping_t {0});
+                }) > 0;
+                if (hasInvalid)
+                    LogMsg(tr("Failed to add port mapping. Port: %1").arg(QString::number(port)), Log::WARNING);
+
+                if (!handles.empty())
+                    m_mappedPorts.insert(port, handles);
+            }
         }
     });
 }
@@ -3778,9 +3802,15 @@ void SessionImpl::setBandwidthSchedulerEnabled(const bool enabled)
     {
         m_isBandwidthSchedulerEnabled = enabled;
         if (enabled)
+        {
             enableBandwidthScheduler();
+        }
         else
+        {
+            if (m_bwScheduler && m_bwScheduler->isAlternativeRequested())
+                setAltGlobalSpeedLimitEnabled(false);
             delete m_bwScheduler;
+        }
     }
 }
 
@@ -4314,6 +4344,16 @@ void SessionImpl::setExcludedFileNames(const QStringList &excludedFileNames)
     }
 }
 
+bool SessionImpl::isExcludeFilesWithoutExtensionEnabled() const
+{
+    return m_isExcludeFilesWithoutExtensionEnabled;
+}
+
+void SessionImpl::setExcludeFilesWithoutExtensionEnabled(const bool enabled)
+{
+    m_isExcludeFilesWithoutExtensionEnabled = enabled;
+}
+
 void SessionImpl::populateExcludedFileNamesRegExpList()
 {
     const QStringList excludedNames = excludedFileNames();
@@ -4334,8 +4374,13 @@ void SessionImpl::applyFilenameFilter(const PathList &files, QList<DownloadPrior
     if (!isExcludedFileNamesEnabled())
         return;
 
-    const auto isFilenameExcluded = [patterns = m_excludedFileNamesRegExpList](const Path &fileName)
+    const auto isFilenameExcluded = [patterns = m_excludedFileNamesRegExpList
+        , excludeFilesWithoutExtension = isExcludeFilesWithoutExtensionEnabled()](const Path &fileName)
     {
+        // Only the file itself is checked for an extension; its parent folders never have one
+        if (excludeFilesWithoutExtension && fileName.extension().isEmpty())
+            return true;
+
         return std::ranges::any_of(patterns, [&fileName](const QRegularExpression &re)
         {
             Path path = fileName;
@@ -5709,6 +5754,8 @@ void SessionImpl::handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoH
         m_torrents[torrent->id()] = m_torrents.take(prevID);
         m_changedTorrentIDs[torrent->id()] = prevID;
     }
+
+    emit torrentInfoHashChanged(torrent, prevInfoHash);
 }
 
 void SessionImpl::handleTorrentContentFileRenamed(TorrentImpl *torrent, const int index, const Path &oldFilePath)
@@ -5957,7 +6004,7 @@ void SessionImpl::configureDeferred()
         return;
 
     m_deferredConfigureScheduled = true;
-    QMetaObject::invokeMethod(this, qOverload<>(&SessionImpl::configure), Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, &SessionImpl::configure, Qt::QueuedConnection);
 }
 
 // Enable IP Filtering

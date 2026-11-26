@@ -70,8 +70,11 @@ SearchPluginSelectDialog::SearchPluginSelectDialog(SearchPluginManager *pluginMa
 
     m_ui->pluginsTree->setRootIsDecorated(false);
     m_ui->pluginsTree->hideColumn(PLUGIN_ID);
+
+    m_ui->pluginsTree->header()->setContextMenuPolicy(Qt::CustomContextMenu);
     m_ui->pluginsTree->header()->setFirstSectionMovable(true);
     m_ui->pluginsTree->header()->setSortIndicator(0, Qt::AscendingOrder);
+    connect(m_ui->pluginsTree->header(), &QWidget::customContextMenuRequested, this, &SearchPluginSelectDialog::displayColumnHeaderMenu);
 
     m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
 
@@ -183,6 +186,25 @@ void SearchPluginSelectDialog::displayContextMenu()
     myContextMenu->addAction(m_ui->actionUninstall);
 
     myContextMenu->popup(QCursor::pos());
+}
+
+void SearchPluginSelectDialog::displayColumnHeaderMenu()
+{
+    auto *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->setToolTipsVisible(true);
+
+    QAction *resizeAction = menu->addAction(tr("Resize columns"), this, [this]()
+    {
+        for (int i = 0, count = m_ui->pluginsTree->header()->count(); i < count; ++i)
+        {
+            if (!m_ui->pluginsTree->isColumnHidden(i))
+                m_ui->pluginsTree->resizeColumnToContents(i);
+        }
+    });
+    resizeAction->setToolTip(tr("Resize all non-hidden columns to the size of their contents"));
+
+    menu->popup(QCursor::pos());
 }
 
 void SearchPluginSelectDialog::on_closeButton_clicked()

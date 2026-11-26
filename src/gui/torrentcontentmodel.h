@@ -103,6 +103,7 @@ private:
     void populate();
     TorrentContentModelFolder *populateFolder(const Path &folderPath, PopulateFolderFlags flags = None);
     void removeEmptyBranch(const Path &folderPath);
+    void updateItemByPathMapping(const Path &oldFolderPath, const Path &newFolderPath);
 
     void onMetadataReceived();
     void onFileRenamed(int index, const Path &oldFilePath);

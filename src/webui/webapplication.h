@@ -58,7 +58,7 @@
 using namespace std::chrono_literals;
 using namespace Qt::Literals::StringLiterals;
 
-inline const Utils::Version<3, 2> API_VERSION {2, 16, 2};
+inline const Utils::Version<3, 2> API_VERSION {2, 17, 0};
 
 class QNetworkCookie;
 
@@ -116,10 +116,14 @@ private:
     void cookieSessionInitialize(const QString &authScheme, const QString &authData);
     void apiKeySessionInitialize(const QString &apiKey);
     bool isAuthNeeded();
+    void logUntrustedReverseProxy();
+    void logAuthBypassMiss();
     bool isPublicAPI(const QString &scope, const QString &action) const;
 
     bool isOriginTrustworthy() const;
+    QString requestTargetOrigin(const Http::Request &request) const;
     bool isCrossSiteRequest(const Http::Request &request) const;
+    bool canRestartSessionViaBasicAuth() const;
     bool validateHostHeader() const;
 
     bool validateCredentials(QStringView username, QStringView password) const override;
@@ -191,6 +195,7 @@ private:
         {{u"torrents"_s, u"addTrackers"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"addWebSeeds"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"bottomPrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"cancelFetchMetadata"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"createCategory"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"createTags"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"decreasePrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
@@ -258,6 +263,8 @@ private:
     bool m_isLocalAuthEnabled = false;
     bool m_isAuthSubnetWhitelistEnabled = false;
     QList<Utils::Net::Subnet> m_authSubnetWhitelist;
+    QSet<QHostAddress> m_loggedAuthBypassMisses;
+    QSet<QHostAddress> m_loggedUntrustedReverseProxies;
     std::chrono::seconds m_sessionTimeout = 0s;
     int m_sessionsCountLimit = 0;
     QString m_sessionCookieName;

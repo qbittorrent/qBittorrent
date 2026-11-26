@@ -75,8 +75,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_periodCombobox->addItem(tr("12 Hours"));
     m_periodCombobox->addItem(tr("24 Hours"));
 
-    connect(m_periodCombobox, qOverload<int>(&QComboBox::currentIndexChanged)
-        , this, &SpeedWidget::onPeriodChange);
+    connect(m_periodCombobox, &QComboBox::currentIndexChanged, this, &SpeedWidget::onPeriodChange);
 
     m_graphsMenu = new QMenu(this);
     m_graphsMenu->addAction(tr("Total Upload"));
