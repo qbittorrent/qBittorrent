@@ -47,6 +47,7 @@
 #include <QMutex>
 #include <QMutexLocker>
 #include <QRegularExpression>
+#include <QSet>
 #include <QThread>
 #include <QWaitCondition>
 
@@ -262,6 +263,8 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
 
     const QRegularExpression hashPattern {u"^([A-Fa-f0-9]{40})$"_s};
     qsizetype queuePos = 0;
+    QList<TorrentID> reordered;
+    reordered.reserve(m_registeredTorrents.length());
     while (true)
     {
         const auto line = QString::fromLatin1(queueFile.readLine(lineMaxLength).trimmed());
@@ -275,15 +278,19 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
             const qsizetype pos = registeredTorrentsIndexes.value(torrentID, -1);
             if (pos != -1)
             {
-                if (pos != queuePos)
-                {
-                    m_registeredTorrents.swapItemsAt(pos, queuePos);
-                    registeredTorrentsIndexes.insert(m_registeredTorrents.at(pos), pos);
-                }
+                reordered.append(m_registeredTorrents.at(pos));
                 ++queuePos;
             }
         }
     }
+
+    // Append remaining torrents not in the queue, preserving relative order
+    QSet<TorrentID> inQueue(reordered.begin(), reordered.end());
+    for (const TorrentID &id : m_registeredTorrents)
+        if (!inQueue.contains(id))
+            reordered.append(id);
+
+    m_registeredTorrents = reordered;
 }
 
 BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorrentResumeData(const QByteArray &data, const QByteArray &metadata) const
