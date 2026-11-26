@@ -31,6 +31,9 @@
      <property name="tabChangesFocus">
       <bool>true</bool>
      </property>
+     <property name="accessibleName">
+      <string>Tracker URLs</string>
+     </property>
     </widget>
    </item>
    <item>
