@@ -136,8 +136,8 @@ namespace
         auto cls = qBittorrentNS.beginClass<TrackerEntry>("TrackerEntry");
 
         cls.addConstructor<void ()>();
-        cls.addProperty("url", &TrackerEntry::url);
-        cls.addProperty("tier", &TrackerEntry::tier);
+        cls.addPropertyReadWrite("url", &TrackerEntry::url);
+        cls.addPropertyReadWrite("tier", &TrackerEntry::tier);
     }
 
     void registerLuaEnumTrackerEndpointState(lua_State *luaState)
@@ -233,13 +233,12 @@ namespace
         auto cls = qBittorrentNS.beginClass<ShareLimits>("ShareLimits");
 
         cls.addConstructor<void ()>();
-        cls.addProperty("ratioLimit", &ShareLimits::ratioLimit);
-        cls.addProperty("seedingTimeLimit", &ShareLimits::seedingTimeLimit);
-        cls.addProperty("inactiveSeedingTimeLimit", &ShareLimits::inactiveSeedingTimeLimit);
-        cls.addProperty("mode", &ShareLimits::mode);
-        cls.addProperty("action", &ShareLimits::action);
+        cls.addPropertyReadWrite("ratioLimit", &ShareLimits::ratioLimit);
+        cls.addPropertyReadWrite("seedingTimeLimit", &ShareLimits::seedingTimeLimit);
+        cls.addPropertyReadWrite("inactiveSeedingTimeLimit", &ShareLimits::inactiveSeedingTimeLimit);
+        cls.addPropertyReadWrite("mode", &ShareLimits::mode);
+        cls.addPropertyReadWrite("action", &ShareLimits::action);
     }
-
 }
 
 void registerLuaClasses(lua_State *luaState)
@@ -255,5 +254,4 @@ void registerLuaClasses(lua_State *luaState)
     registerLuaEnumShareLimitAction(luaState);
     registerLuaEnumShareLimitsMode(luaState);
     registerLuaClassShareLimits(luaState);
-
 }
