@@ -36,6 +36,7 @@ class QMenu;
 class QPixmap;
 class QSize;
 class QString;
+class QWidget;
 
 namespace MacUtils
 {
@@ -43,7 +44,10 @@ namespace MacUtils
     void overrideDockClickHandler(bool (*dockClickHandler)(id, SEL, ...));
     void askForNotificationPermission();
     void displayNotification(const QString &title, const QString &message);
+    void openFile(const Path &path);
     void openFiles(const PathList &pathList);
+    void configureModernTitlebar(QWidget *window);
+    void startWindowDrag(QWidget *window);
 
     bool isMagnetLinkAssocSet();
     void setMagnetLinkAssoc();

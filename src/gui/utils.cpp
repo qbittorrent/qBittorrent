@@ -66,6 +66,10 @@
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
 
+#ifdef Q_OS_MACOS
+#include "macutilities.h"
+#endif
+
 namespace
 {
     QUrl toURL(const Path &path)
@@ -209,8 +213,6 @@ QPoint Utils::Gui::screenCenter(const QWidget *w)
 // Open the given path with an appropriate application
 void Utils::Gui::openPath(const Path &path)
 {
-    const QUrl url = toURL(path);
-
 #ifdef Q_OS_WIN
     auto *thread = QThread::create([path]()
     {
@@ -226,7 +228,10 @@ void Utils::Gui::openPath(const Path &path)
     thread->setObjectName("Utils::Gui::openPath thread");
     QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
     thread->start();
+#elif defined(Q_OS_MACOS)
+    MacUtils::openFile(path);
 #else
+    const QUrl url = toURL(path);
     QDesktopServices::openUrl(url);
 #endif
 }

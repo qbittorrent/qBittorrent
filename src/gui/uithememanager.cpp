@@ -53,10 +53,206 @@ namespace
 {
     bool isDarkTheme()
     {
+        if (const auto scheme = qApp->styleHints()->colorScheme(); scheme != Qt::ColorScheme::Unknown)
+            return (scheme == Qt::ColorScheme::Dark);
         const QPalette palette = qApp->palette();
         const QColor &color = palette.color(QPalette::Active, QPalette::Base);
         return (color.lightness() < 127);
     }
+
+#ifdef Q_OS_MACOS
+    QString modernMacStyleSheet(const bool dark)
+    {
+        const QString canvas = dark ? u"#1C1C1E"_s : u"#F5F5F7"_s;
+        const QString card = dark ? u"#2C2C2E"_s : u"#FFFFFF"_s;
+        const QString headerBg = dark ? u"#242426"_s : u"#FAFAFC"_s;
+        const QString border = dark ? u"#3A3A3C"_s : u"#E5E5EA"_s;
+        const QString inputBorder = dark ? u"#48484A"_s : u"#D1D1D6"_s;
+        const QString text = dark ? u"#F5F5F7"_s : u"#1D1D1F"_s;
+        const QString muted = dark ? u"#98989D"_s : u"#6E6E73"_s;
+        const QString accent = dark ? u"#6366F1"_s : u"#5856D6"_s;
+        const QString selBg = dark ? u"#313052"_s : u"#ECEEFF"_s;
+        const QString selText = dark ? u"#E0E7FF"_s : u"#3B38C8"_s;
+        const QString hoverBg = dark ? u"#38383A"_s : u"#F0F0F5"_s;
+
+        return uR"(
+            QMainWindow, QDialog {
+                background-color: %1;
+                color: %6;
+            }
+            QToolBar {
+                background-color: %3;
+                border: none;
+                border-bottom: 1px solid %4;
+                spacing: 6px;
+                padding: 6px 18px 6px 8px;
+                min-height: 46px;
+            }
+            QToolBar #macNavPill {
+                background-color: %2;
+                border: 1px solid %4;
+                border-radius: 10px;
+                min-height: 28px;
+            }
+            QToolBar #macNavPill QToolButton {
+                border: none;
+                border-radius: 7px;
+                padding: 4px 6px;
+                min-width: 22px;
+                min-height: 22px;
+            }
+            QToolBar #macTitleLabel {
+                color: %6;
+                font-weight: 600;
+                font-size: 13px;
+                padding: 0 10px;
+            }
+            QToolButton {
+                border: none;
+                border-radius: 8px;
+                padding: 5px;
+                min-width: 24px;
+                min-height: 24px;
+                color: %6;
+            }
+            QToolButton:hover {
+                background-color: %11;
+            }
+            QToolButton:checked {
+                background-color: %9;
+                color: %10;
+            }
+            QSplitter::handle {
+                background-color: transparent;
+            }
+            QTreeView, QTableView, QListView {
+                background-color: %2;
+                alternate-background-color: %3;
+                color: %6;
+                border: 1px solid %4;
+                border-radius: 10px;
+                padding: 4px;
+                outline: none;
+            }
+            QTreeView::item, QListView::item {
+                border-radius: 6px;
+                padding: 3px 6px;
+            }
+            QTreeView::item:hover, QListView::item:hover {
+                background-color: %11;
+            }
+            QTreeView::item:selected, QListView::item:selected {
+                background-color: %9;
+                color: %10;
+            }
+            QHeaderView {
+                background-color: transparent;
+            }
+            QHeaderView::section {
+                background-color: %3;
+                color: %7;
+                border: none;
+                border-bottom: 1px solid %4;
+                border-right: 1px solid %4;
+                padding: 6px 8px;
+                font-weight: 600;
+            }
+            QHeaderView::section:last {
+                border-right: none;
+            }
+            QTabWidget::pane {
+                border: none;
+                background-color: transparent;
+            }
+            QTabBar::tab {
+                background-color: transparent;
+                color: %7;
+                border: 1px solid transparent;
+                border-radius: 8px;
+                padding: 6px 14px;
+                margin: 2px 4px;
+            }
+            QTabBar::tab:hover:!selected {
+                background-color: %11;
+                color: %6;
+            }
+            QTabBar::tab:selected {
+                background-color: %2;
+                color: %6;
+                border: 1px solid %4;
+                font-weight: 600;
+            }
+            QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox {
+                background-color: %2;
+                color: %6;
+                border: 1px solid %5;
+                border-radius: 8px;
+                padding: 4px 8px;
+                selection-background-color: %8;
+                selection-color: #FFFFFF;
+            }
+            QLineEdit:focus, QComboBox:focus, QSpinBox:focus, QDoubleSpinBox:focus {
+                border: 1.5px solid %8;
+            }
+            QPushButton {
+                background-color: %2;
+                color: %6;
+                border: 1px solid %5;
+                border-radius: 8px;
+                padding: 5px 14px;
+            }
+            QPushButton:hover {
+                background-color: %11;
+            }
+            QPushButton:default {
+                background-color: %8;
+                color: #FFFFFF;
+                border: 1px solid %8;
+            }
+            QStatusBar {
+                background-color: %1;
+                color: %7;
+                border-top: 1px solid %4;
+            }
+            QScrollBar:vertical {
+                background: transparent;
+                width: 8px;
+                margin: 4px 1px;
+            }
+            QScrollBar::handle:vertical {
+                background: rgba(142, 142, 147, 0.45);
+                border-radius: 4px;
+                min-height: 28px;
+            }
+            QScrollBar::handle:vertical:hover {
+                background: rgba(142, 142, 147, 0.75);
+            }
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical,
+            QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+                background: none;
+                height: 0px;
+            }
+            QScrollBar:horizontal {
+                background: transparent;
+                height: 8px;
+                margin: 1px 4px;
+            }
+            QScrollBar::handle:horizontal {
+                background: rgba(142, 142, 147, 0.45);
+                border-radius: 4px;
+                min-width: 28px;
+            }
+            QScrollBar::handle:horizontal:hover {
+                background: rgba(142, 142, 147, 0.75);
+            }
+            QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal,
+            QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+                background: none;
+                width: 0px;
+            }
+        )"_s.arg(canvas, card, headerBg, border, inputBorder, text, muted, accent, selBg, selText, hoverBg);
+    }
+#endif
 
     Path resolveThemePath(const Path &themePath)
     {
@@ -129,6 +325,12 @@ UIThemeManager::UIThemeManager()
         applyPalette();
         applyStyleSheet();
     }
+#ifdef Q_OS_MACOS
+    else
+    {
+        qApp->setStyleSheet(modernMacStyleSheet(isDarkTheme()));
+    }
+#endif
 }
 
 UIThemeManager *UIThemeManager::instance()
@@ -192,6 +394,10 @@ void UIThemeManager::onColorSchemeChanged()
 
     // workaround to refresh styled controls once color scheme is changed
     QApplication::setStyle(QApplication::style()->name());
+#ifdef Q_OS_MACOS
+    if (!m_useCustomTheme)
+        qApp->setStyleSheet(modernMacStyleSheet(isDarkTheme()));
+#endif
 }
 
 QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QString &fallback, const ColorMode colorMode) const

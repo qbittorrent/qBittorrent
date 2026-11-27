@@ -493,10 +493,17 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_IPFilterFile(BITTORRENT_SESSION_KEY(u"IPFilter"_s))
     , m_announceToAllTrackers(BITTORRENT_SESSION_KEY(u"AnnounceToAllTrackers"_s), false)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY(u"AnnounceToAllTiers"_s), true)
+#ifdef Q_OS_MACOS
+    , m_asyncIOThreads(BITTORRENT_SESSION_KEY(u"AsyncIOThreadsCount"_s), 12)
+    , m_hashingThreads(BITTORRENT_SESSION_KEY(u"HashingThreadsCount"_s), 6)
+    , m_filePoolSize(BITTORRENT_SESSION_KEY(u"FilePoolSize"_s), 100)
+    , m_checkingMemUsage(BITTORRENT_SESSION_KEY(u"CheckingMemUsageSize"_s), 128)
+#else
     , m_asyncIOThreads(BITTORRENT_SESSION_KEY(u"AsyncIOThreadsCount"_s), 10)
     , m_hashingThreads(BITTORRENT_SESSION_KEY(u"HashingThreadsCount"_s), 1)
     , m_filePoolSize(BITTORRENT_SESSION_KEY(u"FilePoolSize"_s), 100)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY(u"CheckingMemUsageSize"_s), 32)
+#endif
     , m_diskCacheSize(BITTORRENT_SESSION_KEY(u"DiskCacheSize"_s), -1)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY(u"DiskCacheTTL"_s), 60)
 #if LIBTORRENT_VERSION_NUM >= 20100
@@ -2306,6 +2313,16 @@ lt::settings_pack SessionImpl::loadLTSettings() const
         settingsPack.set_int(lt::settings_pack::seed_choking_algorithm, lt::settings_pack::anti_leech);
         break;
     }
+
+    // Tuned hidden libtorrent defaults for multi-chunking, low latency, and verification
+    settingsPack.set_int(lt::settings_pack::request_queue_time, 6);
+    settingsPack.set_int(lt::settings_pack::whole_pieces_threshold, 25);
+    settingsPack.set_int(lt::settings_pack::tick_interval, 100);
+    settingsPack.set_int(lt::settings_pack::request_timeout, 20);
+    settingsPack.set_int(lt::settings_pack::utp_target_delay, 60);
+    settingsPack.set_int(lt::settings_pack::utp_min_timeout, 250);
+    settingsPack.set_int(lt::settings_pack::predictive_piece_announce, 100);
+    settingsPack.set_bool(lt::settings_pack::strict_end_game_mode, true);
 
     return settingsPack;
 }

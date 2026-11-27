@@ -41,6 +41,7 @@
 class QCloseEvent;
 class QComboBox;
 class QFileSystemWatcher;
+class QLabel;
 class QSplitter;
 class QString;
 class QTabWidget;
@@ -199,6 +200,10 @@ private:
     void showEvent(QShowEvent *) override;
     void keyPressEvent(QKeyEvent *event) override;
     bool event(QEvent *e) override;
+#ifdef Q_OS_MACOS
+    void mousePressEvent(QMouseEvent *event) override;
+    bool eventFilter(QObject *obj, QEvent *event) override;
+#endif
     void displayRSSTab(bool enable);
     void displaySearchTab(bool enable);
     void createTorrentTriggered(const Path &path);
@@ -273,6 +278,7 @@ private:
     QTimer *m_programUpdateTimer = nullptr;
 #endif
 #ifdef Q_OS_MACOS
+    QLabel *m_macTitleLabel = nullptr;
     std::unique_ptr<MacUtils::Badger> m_badger;
     std::unique_ptr<MacUtils::StatusItem> m_statusItem;
 #endif

@@ -30,6 +30,7 @@
 #include "progressbarpainter.h"
 
 #include <QPainter>
+#include <QPainterPath>
 #include <QPalette>
 #include <QStyleOptionProgressBar>
 #include <QStyleOptionViewItem>
@@ -84,7 +85,52 @@ void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &op
     painter->save();
     const QStyle *style = m_dummyProgressBar.style();
     style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, option.widget);
+
+#ifdef Q_OS_MACOS
+    painter->setRenderHint(QPainter::Antialiasing, true);
+
+    const QRect barRect = styleOption.rect.adjusted(2, 3, -2, -3);
+    const qreal radius = std::min<qreal>(6.0, barRect.height() * 0.5);
+
+    const bool darkMode = option.palette.color(QPalette::Window).lightness() < 128;
+    const QColor trackColor = darkMode ? QColor(255, 255, 255, 28) : QColor(0, 0, 0, 20);
+    const QColor borderColor = darkMode ? QColor(255, 255, 255, 36) : QColor(0, 0, 0, 28);
+
+    QColor fillColor;
+    if (!isEnabled)
+        fillColor = darkMode ? QColor(120, 120, 128, 160) : QColor(142, 142, 147, 170);
+    else if (color.isValid())
+        fillColor = color;
+    else if (m_chunkColor.isValid())
+        fillColor = m_chunkColor;
+    else
+        fillColor = option.palette.color(QPalette::Highlight);
+
+    painter->setPen(QPen(borderColor, 1.0));
+    painter->setBrush(trackColor);
+    painter->drawRoundedRect(QRectF(barRect).adjusted(0.5, 0.5, -0.5, -0.5), radius, radius);
+
+    const qreal clamped = std::clamp(progress, 0, 100) / 100.0;
+    if (clamped > 0.0)
+    {
+        painter->save();
+        QPainterPath clipPath;
+        clipPath.addRoundedRect(QRectF(barRect), radius, radius);
+        painter->setClipPath(clipPath);
+        painter->setPen(Qt::NoPen);
+        painter->setBrush(fillColor);
+        painter->drawRect(QRectF(barRect.x(), barRect.y(), barRect.width() * clamped, barRect.height()));
+        painter->restore();
+    }
+
+    const QColor textColor = (clamped > 0.52 && fillColor.lightness() < 155)
+        ? Qt::white
+        : option.palette.color(QPalette::Text);
+    painter->setPen(textColor);
+    painter->drawText(barRect, Qt::AlignCenter, text);
+#else
     style->drawControl(QStyle::CE_ProgressBar, &styleOption, painter, &m_dummyProgressBar);
+#endif
     painter->restore();
 }
 

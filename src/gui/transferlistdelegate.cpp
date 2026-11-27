@@ -53,7 +53,7 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem &option, const Q
     }
 
     QSize size = QStyledItemDelegate::sizeHint(option, index);
-    size.setHeight(std::max(m_nameColHeight, size.height()));
+    size.setHeight(std::max({m_nameColHeight, size.height(), 26}));
     return size;
 }
 

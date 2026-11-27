@@ -29,10 +29,12 @@
 
 #include "torrentcontentitemdelegate.h"
 
+#include <QApplication>
 #include <QComboBox>
 #include <QModelIndex>
 #include <QPainter>
 #include <QProgressBar>
+#include <QStyle>
 
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/torrent.h"
@@ -149,6 +151,58 @@ void TorrentContentItemDelegate::paint(QPainter *painter, const QStyleOptionView
         break;
     default:
         QStyledItemDelegate::paint(painter, option, index);
+#ifdef Q_OS_MACOS
+        if (index.column() == TorrentContentModelItem::COL_NAME)
+        {
+            QStyleOptionViewItem opt {option};
+            initStyleOption(&opt, index);
+            if (opt.features.testFlag(QStyleOptionViewItem::HasCheckIndicator))
+            {
+                const QStyle *style = opt.widget ? opt.widget->style() : QApplication::style();
+                QRect checkRect = style->subElementRect(QStyle::SE_ItemViewItemCheckIndicator, &opt, opt.widget);
+                if (checkRect.isValid())
+                {
+                    const int boxSize = std::min({checkRect.width(), checkRect.height(), 14});
+                    const QRectF box(checkRect.center().x() - boxSize * 0.5 + 0.5,
+                                     checkRect.center().y() - boxSize * 0.5 + 0.5,
+                                     boxSize - 1.0, boxSize - 1.0);
+                    const bool darkMode = opt.palette.color(QPalette::Window).lightness() < 128;
+                    const QColor accent = opt.palette.color(QPalette::Highlight);
+
+                    painter->save();
+                    painter->setRenderHint(QPainter::Antialiasing, true);
+                    if (opt.checkState == Qt::Unchecked)
+                    {
+                        painter->setPen(QPen(darkMode ? QColor(142, 142, 147) : QColor(174, 174, 178), 1.25));
+                        painter->setBrush(opt.palette.color(QPalette::Base));
+                        painter->drawRoundedRect(box, 3.5, 3.5);
+                    }
+                    else
+                    {
+                        painter->setPen(Qt::NoPen);
+                        painter->setBrush(accent);
+                        painter->drawRoundedRect(box, 3.5, 3.5);
+                        painter->setPen(QPen(Qt::white, 1.6, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+                        if (opt.checkState == Qt::Checked)
+                        {
+                            const QPointF p1(box.left() + box.width() * 0.24, box.top() + box.height() * 0.52);
+                            const QPointF p2(box.left() + box.width() * 0.43, box.top() + box.height() * 0.72);
+                            const QPointF p3(box.left() + box.width() * 0.77, box.top() + box.height() * 0.30);
+                            painter->drawLine(p1, p2);
+                            painter->drawLine(p2, p3);
+                        }
+                        else
+                        {
+                            const qreal midY = box.center().y();
+                            painter->drawLine(QPointF(box.left() + box.width() * 0.25, midY),
+                                              QPointF(box.right() - box.width() * 0.25, midY));
+                        }
+                    }
+                    painter->restore();
+                }
+            }
+        }
+#endif
         break;
     }
 }
