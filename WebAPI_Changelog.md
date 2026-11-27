@@ -78,10 +78,10 @@
 * [#24684](https://github.com/qbittorrent/qBittorrent/pull/24684)
   * `app/preferences` endpoint includes `enable_multi_connections_from_same_peer_id` option
   * `app/setPreferences` endpoint allows to set `enable_multi_connections_from_same_peer_id` option
-* [#24388](https://github.com/qbittorrent/qBittorrent/pull/24388)
-  * `torrents/trackers` endpoint now includes `num_fails` field for tracker entries and their endpoints, reporting the number of consecutive failed announce attempts
 * [#23989](https://github.com/qbittorrent/qBittorrent/pull/23989)
   * `sync/torrentPeers` endpoint now includes calculated `contribution` to a peer's progress
+* [#24388](https://github.com/qbittorrent/qBittorrent/pull/24388)
+  * `torrents/trackers` endpoint now includes `num_fails` field for tracker entries and their endpoints, reporting the number of consecutive failed announce attempts
 * [#24346](https://github.com/qbittorrent/qBittorrent/pull/24346)
   * `torrentcreator/addTask` endpoint accepts a new bool option `ignoreDotfiles` to control whether dotfiles are ignored
   * `torrentcreator/status` endpoint returns a new bool field `ignoreDotfiles` for reporting whether dotfiles were ignored
