@@ -2314,6 +2314,16 @@ lt::settings_pack SessionImpl::loadLTSettings() const
         break;
     }
 
+    // Tuned hidden libtorrent defaults for multi-chunking, low latency, and verification
+    settingsPack.set_int(lt::settings_pack::request_queue_time, 6);
+    settingsPack.set_int(lt::settings_pack::whole_pieces_threshold, 25);
+    settingsPack.set_int(lt::settings_pack::tick_interval, 100);
+    settingsPack.set_int(lt::settings_pack::request_timeout, 20);
+    settingsPack.set_int(lt::settings_pack::utp_target_delay, 60);
+    settingsPack.set_int(lt::settings_pack::utp_min_timeout, 250);
+    settingsPack.set_int(lt::settings_pack::predictive_piece_announce, 100);
+    settingsPack.set_bool(lt::settings_pack::strict_end_game_mode, true);
+
     return settingsPack;
 }
 
