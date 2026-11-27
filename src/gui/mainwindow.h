@@ -65,6 +65,8 @@ class TransferListWidget;
 struct PluginInfo;
 
 #ifdef Q_OS_MACOS
+class QLabel;
+class QMouseEvent;
 namespace MacUtils
 {
     class Badger;
@@ -199,6 +201,10 @@ private:
     void showEvent(QShowEvent *) override;
     void keyPressEvent(QKeyEvent *event) override;
     bool event(QEvent *e) override;
+#ifdef Q_OS_MACOS
+    void mousePressEvent(QMouseEvent *event) override;
+    bool eventFilter(QObject *obj, QEvent *event) override;
+#endif
     void displayRSSTab(bool enable);
     void displaySearchTab(bool enable);
     void createTorrentTriggered(const Path &path);
@@ -275,6 +281,7 @@ private:
 #ifdef Q_OS_MACOS
     std::unique_ptr<MacUtils::Badger> m_badger;
     std::unique_ptr<MacUtils::StatusItem> m_statusItem;
+    QLabel *m_macTitleLabel = nullptr;
 #endif
 
     QHash<QString, QAction *> m_pluginActions;

@@ -57,6 +57,12 @@
 #include <QStatusBar>
 #include <QString>
 #include <QTimer>
+#ifdef Q_OS_MACOS
+#include <QFrame>
+#include <QMouseEvent>
+#include <QToolButton>
+#include <QWindow>
+#endif
 
 #ifdef Q_OS_WIN
 #include <QCryptographicHash>
@@ -232,10 +238,16 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(m_tabs.data(), &QTabWidget::currentChanged, this, &MainWindow::tabChanged);
 
     m_splitter = new QSplitter(Qt::Horizontal, this);
+#ifdef Q_OS_MACOS
+    m_splitter->setHandleWidth(8);
+#endif
 
     auto *hSplitter = new QSplitter(Qt::Vertical, this);
     hSplitter->setChildrenCollapsible(false);
     hSplitter->setFrameShape(QFrame::NoFrame);
+#ifdef Q_OS_MACOS
+    hSplitter->setHandleWidth(8);
+#endif
 
     // Torrent filter
     auto *columnFilterSpacer = new QWidget;
@@ -243,7 +255,12 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     m_columnFilterEdit = new LineEdit;
     m_columnFilterEdit->setContextMenuPolicy(Qt::CustomContextMenu);
-    m_columnFilterEdit->setFixedWidth(200);
+#ifdef Q_OS_MACOS
+    m_columnFilterEdit->setFixedWidth(210);
+#else
+    m_columnFilterEdit->setFixedWidth(220);
+#endif
+    m_columnFilterEdit->setClearButtonEnabled(true);
     m_columnFilterEdit->setPlaceholderText(tr("Filter torrents..."));
     m_columnFilterEdit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     connect(m_columnFilterEdit, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
@@ -264,6 +281,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     auto *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     m_ui->toolBar->insertWidget(m_columnFilterAction, spacer);
+#ifdef Q_OS_MACOS
+    columnFilterSpacer->installEventFilter(this);
+    m_columnFilterWidget->installEventFilter(this);
+    spacer->installEventFilter(this);
+#endif
 
     // Transfer List tab
     m_transferListWidget = new TransferListWidget(app, this);
@@ -300,8 +322,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(m_splitter, &QSplitter::splitterMoved, this, &MainWindow::saveSplitterSettings);
 
 #ifdef Q_OS_MACOS
-    // Increase top spacing to avoid tab overlapping
-    m_ui->centralWidgetLayout->addSpacing(8);
+    m_ui->centralWidgetLayout->setContentsMargins(10, 8, 10, 8);
 #endif
 
     m_ui->centralWidgetLayout->addWidget(m_tabs);
@@ -391,7 +412,52 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     createKeyboardShortcuts();
 
 #ifdef Q_OS_MACOS
-    setUnifiedTitleAndToolBarOnMac(true);
+    m_ui->toolBar->setMovable(false);
+    m_ui->toolBar->setFloatable(false);
+    m_ui->toolBar->setIconSize(QSize(20, 20));
+    m_ui->toolBar->installEventFilter(this);
+
+    QAction *firstToolbarAction = m_ui->toolBar->actions().isEmpty() ? nullptr : m_ui->toolBar->actions().constFirst();
+
+    auto *trafficLightSpacer = new QWidget(m_ui->toolBar);
+    trafficLightSpacer->setFixedWidth(74);
+    trafficLightSpacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+    trafficLightSpacer->installEventFilter(this);
+    m_ui->toolBar->insertWidget(firstToolbarAction, trafficLightSpacer);
+
+    auto *navPill = new QFrame(m_ui->toolBar);
+    navPill->setObjectName(u"macNavPill"_s);
+    auto *navPillLayout = new QHBoxLayout(navPill);
+    navPillLayout->setContentsMargins(4, 2, 4, 2);
+    navPillLayout->setSpacing(2);
+
+    m_ui->actionShowFiltersSidebar->setIcon(UIThemeManager::instance()->getIcon(u"view-categories"_s));
+    auto *sidebarBtn = new QToolButton(navPill);
+    sidebarBtn->setDefaultAction(m_ui->actionShowFiltersSidebar);
+    sidebarBtn->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    sidebarBtn->setAutoRaise(true);
+    navPillLayout->addWidget(sidebarBtn);
+
+    m_ui->actionExecutionLogs->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_s));
+    auto *logsBtn = new QToolButton(navPill);
+    logsBtn->setDefaultAction(m_ui->actionExecutionLogs);
+    logsBtn->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    logsBtn->setAutoRaise(true);
+    navPillLayout->addWidget(logsBtn);
+
+    m_ui->toolBar->insertWidget(firstToolbarAction, navPill);
+
+    m_macTitleLabel = new QLabel(windowTitle(), m_ui->toolBar);
+    m_macTitleLabel->setObjectName(u"macTitleLabel"_s);
+    m_macTitleLabel->installEventFilter(this);
+    m_ui->toolBar->insertWidget(firstToolbarAction, m_macTitleLabel);
+
+    auto *leftCenterSpacer = new QWidget(m_ui->toolBar);
+    leftCenterSpacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    leftCenterSpacer->installEventFilter(this);
+    m_ui->toolBar->insertWidget(firstToolbarAction, leftCenterSpacer);
+
+    MacUtils::configureModernTitlebar(this);
 #endif
 
     // View settings
@@ -627,8 +693,15 @@ void MainWindow::addToolbarContextMenu()
     followSystemStyle->setCheckable(true);
 
     const auto buttonStyle = static_cast<Qt::ToolButtonStyle>(pref->getToolbarTextPosition());
+#ifdef Q_OS_MACOS
+    if (buttonStyle == Qt::ToolButtonFollowStyle)
+        m_ui->toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    else if ((buttonStyle >= Qt::ToolButtonIconOnly) && (buttonStyle <= Qt::ToolButtonFollowStyle))
+        m_ui->toolBar->setToolButtonStyle(buttonStyle);
+#else
     if ((buttonStyle >= Qt::ToolButtonIconOnly) && (buttonStyle <= Qt::ToolButtonFollowStyle))
         m_ui->toolBar->setToolButtonStyle(buttonStyle);
+#endif
     switch (buttonStyle)
     {
     case Qt::ToolButtonIconOnly:
@@ -1163,6 +1236,9 @@ void MainWindow::showEvent(QShowEvent *e)
 
         if (m_neverShown)
         {
+#ifdef Q_OS_MACOS
+            MacUtils::configureModernTitlebar(this);
+#endif
             m_propertiesWidget->readSettings();
             m_neverShown = false;
         }
@@ -1914,7 +1990,42 @@ void MainWindow::refreshWindowTitle()
             setWindowTitle(m_windowTitle);
         }
     }
+#ifdef Q_OS_MACOS
+    if (m_macTitleLabel)
+        m_macTitleLabel->setText(windowTitle());
+#endif
 }
+
+#ifdef Q_OS_MACOS
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    if ((event->button() == Qt::LeftButton) && (event->position().y() <= 72))
+    {
+        MacUtils::startWindowDrag(this);
+        event->accept();
+        return;
+    }
+    GUIApplicationComponent<QMainWindow>::mousePressEvent(event);
+}
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if (event->type() == QEvent::MouseButtonPress)
+    {
+        const auto *mouseEvent = static_cast<QMouseEvent *>(event);
+        if (mouseEvent->button() == Qt::LeftButton)
+        {
+            const bool allowDrag = (obj != m_ui->toolBar) || !m_ui->toolBar->actionAt(mouseEvent->pos());
+            if (allowDrag)
+            {
+                MacUtils::startWindowDrag(this);
+                return true;
+            }
+        }
+    }
+    return GUIApplicationComponent<QMainWindow>::eventFilter(obj, event);
+}
+#endif
 
 void MainWindow::refreshTrayIconTooltip()
 {
