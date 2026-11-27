@@ -47,6 +47,7 @@ add_library(qbt_base STATIC
     bittorrent/torrentdescriptor.h
     bittorrent/torrentimpl.h
     bittorrent/torrentinfo.h
+    bittorrent/torrentoperatingmode.h
     bittorrent/tracker.h
     bittorrent/trackerentry.h
     bittorrent/trackerentrystatus.h
