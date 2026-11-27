@@ -94,16 +94,26 @@ namespace MacUtils
     {
         @autoreleasepool
         {
-            [UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:
-                    (UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
-                            completionHandler:^([[maybe_unused]] BOOL granted, NSError * _Nullable error)
-                            {
-                                if (error)
+            if (![[NSBundle mainBundle] bundleIdentifier])
+                return;
+
+            @try
+            {
+                [UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:
+                        (UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
+                                completionHandler:^([[maybe_unused]] BOOL granted, NSError * _Nullable error)
                                 {
-                                    LogMsg(QCoreApplication::translate("MacUtils", "Permission for notifications not granted. Error: \"%1\"").arg
-                                                                               (QString::fromNSString(error.localizedDescription)), Log::WARNING);
-                                }
-                            }];
+                                    if (error)
+                                    {
+                                        LogMsg(QCoreApplication::translate("MacUtils", "Permission for notifications not granted. Error: \"%1\"").arg
+                                                                                   (QString::fromNSString(error.localizedDescription)), Log::WARNING);
+                                    }
+                                }];
+            }
+            @catch (NSException *exception)
+            {
+                qWarning("askForNotificationPermission failed: %s", exception.reason.UTF8String);
+            }
         }
     }
 
@@ -111,15 +121,40 @@ namespace MacUtils
     {
         @autoreleasepool
         {
-            UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-            content.title = title.toNSString();
-            content.body = message.toNSString();
-            content.sound = [UNNotificationSound defaultSound];
-            UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:
-                                              [[NSUUID UUID] UUIDString] content:content
-                                                                                trigger:nil];
-            [UNUserNotificationCenter.currentNotificationCenter
-                addNotificationRequest:request withCompletionHandler:nil];
+            if (![[NSBundle mainBundle] bundleIdentifier])
+                return;
+
+            @try
+            {
+                UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+                content.title = title.toNSString();
+                content.body = message.toNSString();
+                content.sound = [UNNotificationSound defaultSound];
+                UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:
+                                                  [[NSUUID UUID] UUIDString] content:content
+                                                                                    trigger:nil];
+                [UNUserNotificationCenter.currentNotificationCenter
+                    addNotificationRequest:request withCompletionHandler:nil];
+            }
+            @catch (NSException *exception)
+            {
+                qWarning("displayNotification failed: %s", exception.reason.UTF8String);
+            }
+        }
+    }
+
+    void openFile(const Path &path)
+    {
+        @autoreleasepool
+        {
+            NSURL *fileURL = [NSURL fileURLWithPath:path.toString().toNSString()];
+            if (!fileURL)
+                return;
+
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
+            {
+                [[NSWorkspace sharedWorkspace] openURL:fileURL];
+            });
         }
     }
 
