@@ -545,6 +545,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_SUPER_SEEDING:
+        return (torrent->hasMetadata() ? torrent->superSeeding() : QVariant());
     }
 
     return {};
