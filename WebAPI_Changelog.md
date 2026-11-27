@@ -1,7 +1,83 @@
 # WebAPI Changelog
 
+## 2.17.0
+
+* [#24955](https://github.com/qbittorrent/qBittorrent/pull/24955)
+  * `search/results` endpoint includes `engineFullName` (string) data as the display name of the engine
+* [#25093](https://github.com/qbittorrent/qBittorrent/pull/25093)
+  * `torrents/info` and `sync/maindata` endpoints include `error` (string) data, the reason why the torrent is in `error` state (empty otherwise)
+* [#25092](https://github.com/qbittorrent/qBittorrent/pull/25092)
+  * Add `torrents/cancelFetchMetadata` endpoint with `source` (string) as parameter for cancelling a metadata lookup started by `torrents/fetchMetadata` (accepts `POST` requests only)
+* [#25210](https://github.com/qbittorrent/qBittorrent/pull/25210)
+  * Requests with an invalid API key (via `Authorization: Bearer` or `X-API-Key`), or with any API key when none is configured, respond with `401` and a `WWW-Authenticate: Bearer` challenge, instead of `403` on API endpoints and `404` elsewhere
+* [#25231](https://github.com/qbittorrent/qBittorrent/pull/25231)
+  * `app/preferences` endpoint includes `load_torrent_max_directory_depth` (int) option
+  * `app/setPreferences` endpoint allows to set `load_torrent_max_directory_depth` (int) option
+* [#25213](https://github.com/qbittorrent/qBittorrent/pull/25213)
+  * `app/preferences` endpoint includes `exclude_files_without_extension` (bool) option
+  * `app/setPreferences` endpoint allows to set `exclude_files_without_extension` (bool) option
+* [#25207](https://github.com/qbittorrent/qBittorrent/pull/25207)
+  * A request with Basic auth and an expired or unknown session cookie no longer starts a new session, except for `auth/login` and same-origin browser requests; it is rejected with `403` so the client logs in again
+
+## 2.16.2
+
+* [#24920](https://github.com/qbittorrent/qBittorrent/pull/24920)
+  * `app/preferences` endpoint includes `confirm_remove_all_tags` (bool) option
+  * `app/preferences` endpoint includes `confirm_remove_tracker_from_all_torrents` (bool) option
+  * `app/setPreferences` endpoint allows to set all of the above
+* [#24918](https://github.com/qbittorrent/qBittorrent/pull/24918)
+  * `torrents/createCategory` and `torrents/editCategory` endpoints accept the following new parameters:
+    * `ratioLimit` (float) - the category share ratio limit; `-2` means use the global limit, `-1` means unlimited
+    * `seedingTimeLimit` (int) - the category seeding time limit in minutes; `-2` means use the global limit, `-1` means unlimited
+    * `inactiveSeedingTimeLimit` (int) - the category inactive seeding time limit in minutes; `-2` means use the global limit, `-1` means unlimited
+    * `shareLimitsMode` (string) - how the limits combine: `Default`, `MatchAny` or `MatchAll`
+    * `shareLimitAction` (string) - the action taken when a limit is reached: `Default`, `Stop`, `Remove`, `RemoveWithContent` or `EnableSuperSeeding`
+  * `torrents/editCategory` endpoint no longer requires the `savePath` parameter
+* [#24891](https://github.com/qbittorrent/qBittorrent/pull/24891)
+  * `app/preferences` endpoint includes `i2p_inbound_length_variance` (int) option
+  * `app/preferences` endpoint includes `i2p_outbound_length_variance` (int) option
+  * `app/setPreferences` endpoint allows to set `i2p_inbound_length_variance` (int) option
+  * `app/setPreferences` endpoint allows to set `i2p_outbound_length_variance` (int) option
+* [#24870](https://github.com/qbittorrent/qBittorrent/pull/24870)
+  * `app/preferences` endpoint includes `i2p_pex_enabled` (bool) option
+  * `app/setPreferences` endpoint allows to set `i2p_pex_enabled` (bool) option
+* [#24842](https://github.com/qbittorrent/qBittorrent/pull/24842)
+  * Add JSON `rss/exportRules` and `rss/importRules` endpoints for RSS auto-download rules (`rss/importRules` accepts `POST` requests only)
+* [#24269](https://github.com/qbittorrent/qBittorrent/pull/24269)
+  * Add `transfer/pauseSession` endpoint for pausing the session
+  * Add `transfer/resumeSession` endpoint for resuming the session
+  * `sync/maindata` endpoint includes `session_state` (bool) in `server_state`
+
+## 2.16.1
+
+* [#24837](https://github.com/qbittorrent/qBittorrent/pull/24837)
+  * `app/preferences` endpoint includes `webtorrent_stun_server` (string) option
+  * `app/setPreferences` endpoint allows to set `webtorrent_stun_server` (string) option
+* [#23784](https://github.com/qbittorrent/qBittorrent/pull/23784)
+  * `search/status` endpoint now includes `pattern`, `category`, and `plugins` fields for each search job
+  * `app/preferences` endpoint now supports `store_search_jobs` and `store_search_job_results` preference keys
+
 ## 2.16.0
 
+* [#24791](https://github.com/qbittorrent/qBittorrent/pull/24791)
+  * `search/downloadTorrent` and `rss/setFeedRefreshInterval` endpoints now only accept `POST` requests
+* [#24724](https://github.com/qbittorrent/qBittorrent/pull/24724)
+  * `torrents/add` endpoint accepts `seedMode` (bool) parameter
+  * `torrents/add` endpoint no longer accepts `skip_checking` parameter
+* [#24720](https://github.com/qbittorrent/qBittorrent/pull/24720)
+  * `app/preferences` endpoint includes `web_ui_sessions_count_limit` (int) option
+  * `app/setPreferences` endpoint allows to set `web_ui_sessions_count_limit` (int) option
+* [#24641](https://github.com/qbittorrent/qBittorrent/pull/24641)
+  * `app/preferences` and `app/setPreferences` endpoints no longer include `export_dir` and `export_dir_fin` options as they are no longer supported by the core
+  * `app/preferences` and `app/setPreferences` endpoints include the following new options:
+    * `torrent_files_backup_enabled` (bool) - enable/disable saving backup copies of .torrent files
+    * `torrent_files_backup_dir` (string) - the folder path for saving backup copies of .torrent files
+    * `torrent_files_finished_backup_dir_enabled` (bool) - enable/disable moving backup copies of .torrent files to another folder when torrent is finished
+    * `torrent_files_finished_backup_dir` (string) - the folder path for moving backup copies of .torrent files when torrent is finished
+    * `remove_torrent_file_backup` (bool) - whether .torrent file backup should be removed when removing the torrent
+* [#24684](https://github.com/qbittorrent/qBittorrent/pull/24684)
+  * `app/preferences` endpoint includes `enable_multi_connections_from_same_peer_id` option
+  * `app/setPreferences` endpoint allows to set `enable_multi_connections_from_same_peer_id` option
 * [#24388](https://github.com/qbittorrent/qBittorrent/pull/24388)
   * `torrents/trackers` endpoint now includes `num_fails` field for tracker entries and their endpoints, reporting the number of consecutive failed announce attempts
 * [#23989](https://github.com/qbittorrent/qBittorrent/pull/23989)
@@ -28,6 +104,9 @@
 * [#24134](https://github.com/qbittorrent/qBittorrent/pull/24134)
   * `transfer/getSpeedLimits` endpoint was added to retrieve global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
   * `transfer/setSpeedLimits` endpoint was added to set global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
+* [#24253](https://github.com/qbittorrent/qBittorrent/pull/24253)
+  * `app/preferences` endpoint includes `max_outstanding_block_requests` option
+  * `app/setPreferences` endpoint allows to set `max_outstanding_block_requests` option
 * [#24135](https://github.com/qbittorrent/qBittorrent/pull/24135)
   * Add `torrents/downloadFile` endpoint with `hash` and `file` as parameters allowing to download a completed file from torrent content
     * `file` accepts either file index or path relative to content root
@@ -43,6 +122,8 @@
   * `sync/maindata` endpoint includes `share_limits_mode` for torrents
   * `app/preferences` endpoint includes `share_limits_mode` option
   * `app/setPreferences` endpoint allows to set `share_limits_mode` option
+  * `torrents/setShareLimits` endpoint now requires `shareLimitsMode` (string) param that sets a torrent's shareLimitsMode property.
+    * possible values `Default`, `MatchAny`, `MatchAll`
 
 ## 2.15.2
 
