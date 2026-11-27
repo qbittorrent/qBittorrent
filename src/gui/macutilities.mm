@@ -39,6 +39,7 @@
 #include <QPixmap>
 #include <QSize>
 #include <QString>
+#include <QWidget>
 
 #include "base/logger.h"
 #include "base/path.h"
@@ -141,6 +142,46 @@ namespace MacUtils
             {
                 [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:pathURLs];
             });
+        }
+    }
+
+    void configureModernTitlebar(QWidget *window)
+    {
+        if (!window)
+            return;
+
+        @autoreleasepool
+        {
+            NSView *nsView = reinterpret_cast<NSView *>(window->winId());
+            if (!nsView)
+                return;
+
+            NSWindow *nsWindow = [nsView window];
+            if (!nsWindow)
+                return;
+
+            [nsWindow setTitleVisibility:NSWindowTitleHidden];
+            [nsWindow setTitlebarAppearsTransparent:YES];
+            [nsWindow setStyleMask:([nsWindow styleMask] | NSWindowStyleMaskFullSizeContentView)];
+            [nsWindow setMovableByWindowBackground:YES];
+        }
+    }
+
+    void startWindowDrag(QWidget *window)
+    {
+        if (!window)
+            return;
+
+        @autoreleasepool
+        {
+            NSView *nsView = reinterpret_cast<NSView *>(window->winId());
+            if (!nsView)
+                return;
+
+            NSWindow *nsWindow = [nsView window];
+            NSEvent *event = [NSApp currentEvent];
+            if (nsWindow && event)
+                [nsWindow performWindowDragWithEvent:event];
         }
     }
 

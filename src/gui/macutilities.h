@@ -36,6 +36,7 @@ class QMenu;
 class QPixmap;
 class QSize;
 class QString;
+class QWidget;
 
 namespace MacUtils
 {
@@ -44,6 +45,8 @@ namespace MacUtils
     void askForNotificationPermission();
     void displayNotification(const QString &title, const QString &message);
     void openFiles(const PathList &pathList);
+    void configureModernTitlebar(QWidget *window);
+    void startWindowDrag(QWidget *window);
 
     bool isMagnetLinkAssocSet();
     void setMagnetLinkAssoc();
