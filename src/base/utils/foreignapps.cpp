@@ -251,6 +251,24 @@ PythonInfo Utils::ForeignApps::pythonInfo()
                         , pyInfo.version.toString(), PythonInfo::MINIMUM_SUPPORTED_VERSION.toString()), Log::INFO);
                 }
             }
+#elif defined(Q_OS_MACOS)
+            const Path macPythonPaths[] = {
+                Path(u"/opt/homebrew/bin/python3"_s),
+                Path(u"/usr/local/bin/python3"_s),
+                Path(u"/Library/Frameworks/Python.framework/Versions/Current/bin/python3"_s),
+                Path(u"/opt/local/bin/python3"_s)
+            };
+            for (const Path &path : macPythonPaths)
+            {
+                if (path.exists() && testPythonInstallation(path, pyInfo))
+                {
+                    if (pyInfo.isSupportedVersion())
+                        return pyInfo;
+
+                    LogMsg(invalidVersionMessage.arg(pyInfo.executablePath.toString()
+                        , pyInfo.version.toString(), PythonInfo::MINIMUM_SUPPORTED_VERSION.toString()), Log::INFO);
+                }
+            }
 #endif
 
             LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find Python executable"), Log::WARNING);
