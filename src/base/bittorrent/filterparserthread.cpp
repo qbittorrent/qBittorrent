@@ -62,8 +62,9 @@ namespace
 
                     if (endptr != str)
                         return false;
+                    // A fourth dot means trailing data, e.g. "1.2.3.4.in-addr.arpa"
                     if (octetIndex == 4)
-                        return true;
+                        return false;
 
                     octetStart = str + 1;
                 }
