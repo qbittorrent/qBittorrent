@@ -28,6 +28,8 @@
 
 #include "statusitem.h"
 
+#include <QMenu>
+
 #import "itemview.h"
 
 namespace MacUtils
@@ -53,5 +55,26 @@ namespace MacUtils
     void StatusItem::setVisible(const bool visible)
     {
         [m_impl->itemView setVisible:visible];
+    }
+
+    void StatusItem::setMenu(QMenu *menu)
+    {
+        [m_impl->itemView setStatusMenu:(menu ? menu->toNSMenu() : nil)];
+    }
+
+    void StatusItem::setOpensWindowOnClick(const bool enabled)
+    {
+        [m_impl->itemView setOpensWindowOnClick:enabled];
+    }
+
+    void StatusItem::setClickHandler(std::function<void ()> handler)
+    {
+        if (!handler)
+        {
+            [m_impl->itemView setClickHandler:nil];
+            return;
+        }
+
+        [m_impl->itemView setClickHandler:^{ handler(); }];
     }
 }

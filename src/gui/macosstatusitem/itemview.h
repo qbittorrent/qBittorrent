@@ -31,5 +31,8 @@
 @interface ItemView: NSView
 - (BOOL)setRatesWithDownload: (int64_t)downloadRate upload: (int64_t)uploadRate;
 - (void)setVisible: (BOOL)visible;
+- (void)setStatusMenu: (NSMenu *)menu;
+- (void)setOpensWindowOnClick: (BOOL)enabled;
+- (void)setClickHandler: (void (^)(void))handler;
 
 @end

@@ -185,15 +185,21 @@ private slots:
     void toolbarFollowSystem();
 #ifdef Q_OS_MACOS
     void on_actionCloseWindow_triggered();
-#else
-    void toggleVisibility();
 #endif
+    void toggleVisibility();
 #ifdef Q_OS_WIN
     void pythonDownloadFinished(const Net::DownloadResult &result);
 #endif
 
 private:
     void populateDesktopIntegrationMenu();
+#ifdef Q_OS_MACOS
+    void createMenuBarIconMenu();
+    void updateMenuBarIconMenu();
+    void applyMacOSDesktopIntegration();
+    bool isMacOSDockIconNeeded() const;
+    void hideEvent(QHideEvent *e) override;
+#endif
 
     void closeEvent(QCloseEvent *) override;
     void showEvent(QShowEvent *) override;
@@ -275,6 +281,14 @@ private:
 #ifdef Q_OS_MACOS
     std::unique_ptr<MacUtils::Badger> m_badger;
     std::unique_ptr<MacUtils::StatusItem> m_statusItem;
+    // The menu bar icon has its own menu made of dedicated actions: the actions used by
+    // the main menus carry macOS specific menu roles and keyboard shortcuts that either
+    // hide them from, or clutter, a status item menu.
+    QAction *m_menuBarIconStatsAction = nullptr;
+    QAction *m_menuBarIconToggleVisibilityAction = nullptr;
+    QAction *m_menuBarIconAltSpeedLimitsAction = nullptr;
+    QAction *m_menuBarIconPauseSessionAction = nullptr;
+    QAction *m_menuBarIconResumeSessionAction = nullptr;
 #endif
 
     QHash<QString, QAction *> m_pluginActions;

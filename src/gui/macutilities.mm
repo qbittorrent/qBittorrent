@@ -194,6 +194,33 @@ namespace MacUtils
         NSApp.dockTile.badgeLabel = text.toNSString();
     }
 
+    void setDockIconVisible(const bool visible)
+    {
+        const NSApplicationActivationPolicy policy = visible
+            ? NSApplicationActivationPolicyRegular : NSApplicationActivationPolicyAccessory;
+        if (NSApp.activationPolicy == policy)
+            return;
+
+        if (![NSApp setActivationPolicy:policy])
+        {
+            qWarning("Failed to change the application activation policy");
+            return;
+        }
+
+        // Switching back to a regular application doesn't restore the main menu bar
+        // until the application is activated again.
+        if (visible)
+            activateApplication();
+    }
+
+    void activateApplication()
+    {
+        if (@available(macOS 14.0, *))
+            [NSApp activate];
+        else
+            [NSApp activateIgnoringOtherApps:YES];
+    }
+
     void setupWindowMenu(QMenu *windowMenu)
     {
         Q_ASSERT(windowMenu);
