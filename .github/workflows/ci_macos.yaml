@@ -38,7 +38,7 @@ jobs:
             boost_sha256: "2575e74ffc3ef1cd0babac2c1ee8bdb5782a0ee672b1912da40e5b4b591ca01f"
             libt_build_flags: ""
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["6.10.3"]
+        qt_version: ["6.12.1"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
