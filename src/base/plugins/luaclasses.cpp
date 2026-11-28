@@ -240,6 +240,14 @@ namespace
         cls.addProperty("action", &ShareLimits::action);
     }
 
+    void registerLuaEnumTorrentOperatingMode(lua_State *luaState)
+    {
+        auto qBittorrentNS = luabridge::getGlobalNamespace(luaState).beginNamespace(QBT_NAMESPACE);
+        qBittorrentNS.beginNamespace("TorrentOperatingMode")
+            .addProperty("AutoManaged", +[] { return BitTorrent::TorrentOperatingMode::AutoManaged; })
+            .addProperty("Forced", +[] { return BitTorrent::TorrentOperatingMode::Forced; })
+            .endNamespace();
+    }
 }
 
 void registerLuaClasses(lua_State *luaState)
@@ -256,4 +264,5 @@ void registerLuaClasses(lua_State *luaState)
     registerLuaEnumShareLimitsMode(luaState);
     registerLuaClassShareLimits(luaState);
 
+    registerLuaEnumTorrentOperatingMode(luaState);
 }

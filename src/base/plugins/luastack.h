@@ -37,6 +37,7 @@
 #include <QUrl>
 
 #include "base/bittorrent/sharelimits.h"
+#include "base/bittorrent/torrentoperatingmode.h"
 #include "base/bittorrent/trackerentrystatus.h"
 #include "base/path.h"
 
@@ -303,4 +304,11 @@ namespace luabridge
     {
     };
 
+    template <>
+    struct Stack<BitTorrent::TorrentOperatingMode>
+        : Enum<BitTorrent::TorrentOperatingMode
+               , BitTorrent::TorrentOperatingMode::AutoManaged
+               , BitTorrent::TorrentOperatingMode::Forced>
+    {
+    };
 }
