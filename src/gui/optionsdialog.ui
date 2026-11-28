@@ -495,6 +495,25 @@
               </property>
               <layout class="QVBoxLayout" name="statusBarGroupLayout">
                <item>
+                <widget class="QGroupBox" name="checkBoxTorrentsCountStatusBar">
+                 <property name="title">
+                  <string extracomment="Selected torrents, or filtered ones if none are selected.">Show torrent count</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="torrentsCountStatusBarLayout">
+                  <item>
+                   <widget class="QCheckBox" name="checkBoxTorrentsSizeStatusBar">
+                    <property name="text">
+                     <string>Include total size</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkBoxFreeDiskSpaceStatusBar">
                  <property name="text">
                   <string>Show free disk space</string>

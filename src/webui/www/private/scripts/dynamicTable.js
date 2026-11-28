@@ -1185,6 +1185,8 @@ window.qBittorrent.DynamicTable ??= (() => {
     }
 
     class TorrentsTable extends DynamicTable {
+        filteredRows = [];
+
         setupVirtualList() {
             super.setupVirtualList();
             this.rowHeight = (clientData.get("display_density") === "compact") ? 18 : 22;
@@ -1829,6 +1831,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     : null;
             }
             catch (e) { // SyntaxError: Invalid regex pattern
+                this.filteredRows = filteredRows;
                 return filteredRows;
             }
 
@@ -1840,6 +1843,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             filteredRows.sort(this.rowComparator());
+            this.filteredRows = filteredRows;
             return filteredRows;
         }
 
@@ -1881,6 +1885,16 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         onSelectedRowChanged() {
             updatePropertiesPanel();
+        }
+
+        setRowClass() {
+            super.setRowClass();
+            updateTorrentsStatus();
+        }
+
+        updateTable(fullUpdate = false) {
+            super.updateTable(fullUpdate);
+            updateTorrentsStatus();
         }
 
         isStopped(hash) {

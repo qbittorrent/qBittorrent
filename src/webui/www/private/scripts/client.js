@@ -365,6 +365,42 @@ this.torrentsTable = new window.qBittorrent.DynamicTable.TorrentsTable();
 
 let updatePropertiesPanel = () => {};
 
+// Debounced, as removing many rows updates the table once per row
+const updateTorrentsStatus = window.qBittorrent.Misc.createDebounceHandler(0, () => {
+    const element = document.getElementById("torrentsCount");
+    if (element === null)
+        return;
+
+    // count the selected torrents, or the filtered ones if none are selected
+    const preferences = window.qBittorrent.Cache.preferences.get();
+    const selectedRowIds = torrentsTable.selectedRowsIds();
+    const areSelected = selectedRowIds.length > 0;
+    const count = areSelected ? selectedRowIds.length : torrentsTable.filteredRows.length;
+    const isVisible = (preferences.status_bar_torrents_count === true) && (count > 0);
+    if (isVisible) {
+        if (preferences.status_bar_torrents_size === true) {
+            let size = 0;
+            const rows = areSelected ? selectedRowIds.map(rowId => torrentsTable.getRow(rowId)) : torrentsTable.filteredRows;
+            for (const row of rows)
+                size += row?.full_data.size ?? 0;
+            const text = areSelected
+                ? "QBT_TR(Selected: %1 torrents (%2))QBT_TR[CONTEXT=StatusBar]"
+                : "QBT_TR(Filtered: %1 torrents (%2))QBT_TR[CONTEXT=StatusBar]";
+            element.textContent = text
+                .replace("%1", count)
+                .replace("%2", window.qBittorrent.Misc.friendlyUnit(size));
+        }
+        else {
+            const text = areSelected
+                ? "QBT_TR(Selected: %1 torrents)QBT_TR[CONTEXT=StatusBar]"
+                : "QBT_TR(Filtered: %1 torrents)QBT_TR[CONTEXT=StatusBar]";
+            element.textContent = text.replace("%1", count);
+        }
+    }
+    element.classList.toggle("invisible", !isVisible);
+    element.nextElementSibling.classList.toggle("invisible", !isVisible);
+});
+
 this.updateMainData = () => {};
 let alternativeSpeedLimits = false;
 let queueing_enabled = true;
@@ -1266,6 +1302,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         }
 
         document.title = titlePrefix + window.qBittorrent.Client.mainTitle();
+
+        updateTorrentsStatus();
 
         document.getElementById("freeSpaceOnDisk").textContent = "QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk));
 

@@ -93,6 +93,10 @@ StatusBar::StatusBar(QWidget *parent)
     m_upSpeedLbl = createSpeedButton(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s), this);
     connect(m_upSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capSpeed);
 
+    m_torrentsLbl = new QLabel(this);
+    m_torrentsLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    m_torrentsSeparator = createSeparator(this);
+
     m_freeDiskSpaceLbl = new QLabel(tr("Free space: N/A"));
     m_freeDiskSpaceLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     m_freeDiskSpaceSeparator = createSeparator(this);
@@ -125,6 +129,8 @@ StatusBar::StatusBar(QWidget *parent)
     m_upSpeedLbl->setIconSize(smallIconSize);
     m_altSpeedsBtn->setIconSize({midIconSize.width(), smallIconSize.height()});
 
+    addPermanentWidget(m_torrentsLbl);
+    addPermanentWidget(m_torrentsSeparator);
     addPermanentWidget(m_freeDiskSpaceLbl);
     addPermanentWidget(m_freeDiskSpaceSeparator);
     addPermanentWidget(m_lastExternalIPsLbl);
@@ -140,6 +146,7 @@ StatusBar::StatusBar(QWidget *parent)
     addPermanentWidget(m_upSpeedLbl);
 
     updateExternalAddressesVisibility();
+    updateTorrentsLabel();
 
     refresh();
     connect(session, &BitTorrent::Session::statsUpdated, this, &StatusBar::refresh);
@@ -165,6 +172,17 @@ void StatusBar::showRestartRequired()
     auto *restartLbl = new QLabel(this);
     restartLbl->setText(restartText);
     insertWidget(1, restartLbl);
+}
+
+void StatusBar::setTorrents(const qsizetype count, const qint64 size, const bool areSelected)
+{
+    if ((count == m_torrentsCount) && (size == m_torrentsSize) && (areSelected == m_areTorrentsSelected))
+        return;
+
+    m_torrentsCount = count;
+    m_torrentsSize = size;
+    m_areTorrentsSelected = areSelected;
+    updateTorrentsLabel();
 }
 
 void StatusBar::updateConnectionStatus()
@@ -246,6 +264,31 @@ void StatusBar::updateExternalAddressesVisibility()
     m_lastExternalIPsSeparator->setVisible(isVisible);
 }
 
+void StatusBar::updateTorrentsLabel()
+{
+    const auto *pref = Preferences::instance();
+    const bool isVisible = pref->isStatusbarTorrentsCountDisplayed() && (m_torrentsCount > 0);
+    m_torrentsLbl->setVisible(isVisible);
+    m_torrentsSeparator->setVisible(isVisible);
+    if (!isVisible)
+        return;
+
+    if (pref->isStatusbarTorrentsSizeDisplayed())
+    {
+        const QString text = m_areTorrentsSelected
+            ? tr("Selected: %1 torrents (%2)", "e.g. Selected: 12 torrents (24.68 GiB)")
+            : tr("Filtered: %1 torrents (%2)", "Torrents shown by the filters, e.g. Filtered: 1234 torrents (2.31 TiB)");
+        m_torrentsLbl->setText(text.arg(QString::number(m_torrentsCount), Utils::Misc::friendlyUnit(m_torrentsSize)));
+    }
+    else
+    {
+        const QString text = m_areTorrentsSelected
+            ? tr("Selected: %1 torrents", "e.g. Selected: 12 torrents")
+            : tr("Filtered: %1 torrents", "Torrents shown by the filters, e.g. Filtered: 1234 torrents");
+        m_torrentsLbl->setText(text.arg(m_torrentsCount));
+    }
+}
+
 void StatusBar::updateSpeedLabels()
 {
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
@@ -301,4 +344,5 @@ void StatusBar::optionsSaved()
 {
     updateFreeDiskSpaceVisibility();
     updateExternalAddressesVisibility();
+    updateTorrentsLabel();
 }
