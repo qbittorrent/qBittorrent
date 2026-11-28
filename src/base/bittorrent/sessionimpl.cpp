@@ -6228,6 +6228,8 @@ void SessionImpl::handleAlert(lt::alert *alert)
         case lt::tracker_error_alert::alert_type:
         case lt::tracker_reply_alert::alert_type:
         case lt::tracker_warning_alert::alert_type:
+        case lt::scrape_reply_alert::alert_type:
+        case lt::scrape_failed_alert::alert_type:
             handleTrackerAlert(static_cast<const lt::tracker_alert *>(alert));
             break;
         case lt::add_torrent_alert::alert_type:
