@@ -28,6 +28,9 @@
 
 #include "torrentinfo.h"
 
+#include <algorithm>
+#include <iterator>
+
 #include <libtorrent/version.hpp>
 
 #include <QByteArray>
@@ -68,6 +71,9 @@ TorrentInfo::TorrentInfo(const lt::torrent_info &nativeInfo)
         if (!fileStorage.pad_file_at(nativeIndex))
             m_nativeIndexes.append(nativeIndex);
     }
+
+    // `fileIndicesForPiece()` relies on this to use binary search
+    Q_ASSERT(std::ranges::is_sorted(m_nativeIndexes));
 }
 
 TorrentInfo &TorrentInfo::operator=(const TorrentInfo &other)
@@ -225,11 +231,18 @@ QList<int> TorrentInfo::fileIndicesForPiece(const int pieceIndex) const
                 lt::piece_index_t {pieceIndex}, 0, m_nativeInfo->piece_size(lt::piece_index_t {pieceIndex}));
     QList<int> res;
     res.reserve(static_cast<decltype(res)::size_type>(files.size()));
+    // Both `m_nativeIndexes` and the file slices returned by `map_block()` are sorted in ascending order,
+    // so each search can start from where the previous one ended
+    auto searchBegin = m_nativeIndexes.cbegin();
     for (const lt::file_slice &fileSlice : files)
     {
-        const qsizetype index = m_nativeIndexes.indexOf(fileSlice.file_index);
-        if (index >= 0)
-            res.append(index);
+        const auto iter = std::ranges::lower_bound(searchBegin, m_nativeIndexes.cend(), fileSlice.file_index);
+        if (iter == m_nativeIndexes.cend())
+            break;
+
+        if (*iter == fileSlice.file_index)
+            res.append(std::distance(m_nativeIndexes.cbegin(), iter));
+        searchBegin = iter;
     }
 
     return res;
