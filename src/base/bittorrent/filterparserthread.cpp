@@ -30,6 +30,8 @@
 
 #include <cctype>
 
+#include <cstring>
+
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/version.hpp>
 
@@ -162,17 +164,14 @@ int FilterParserThread::parseDATFilterFile()
             // The file might have ended without the last line having a newline
             if (!((bytesRead == 0) && (dataSize > 0)))
             {
-                for (int i = start; i < dataSize; ++i)
+                char *newline = static_cast<char *>(std::memchr(buffer.data() + start, '\n', dataSize - start));
+                if (newline)
                 {
-                    if (buffer[i] == '\n')
-                    {
-                        endOfLine = i;
-                        // We need to NULL the newline in case the line has only an IP range.
-                        // In that case the parser won't work for the end IP, because it ends
-                        // with the newline and not with a number.
-                        buffer[i] = '\0';
-                        break;
-                    }
+                    endOfLine = static_cast<int>(newline - buffer.data());
+                    // We need to NULL the newline in case the line has only an IP range.
+                    // In that case the parser won't work for the end IP, because it ends
+                    // with the newline and not with a number.
+                    buffer[endOfLine] = '\0';
                 }
             }
             else
@@ -338,17 +337,14 @@ int FilterParserThread::parseP2PFilterFile()
             // The file might have ended without the last line having a newline
             if (!((bytesRead == 0) && (dataSize > 0)))
             {
-                for (int i = start; i < dataSize; ++i)
+                char *newline = static_cast<char *>(std::memchr(buffer.data() + start, '\n', dataSize - start));
+                if (newline)
                 {
-                    if (buffer[i] == '\n')
-                    {
-                        endOfLine = i;
-                        // We need to NULL the newline in case the line has only an IP range.
-                        // In that case the parser won't work for the end IP, because it ends
-                        // with the newline and not with a number.
-                        buffer[i] = '\0';
-                        break;
-                    }
+                    endOfLine = static_cast<int>(newline - buffer.data());
+                    // We need to NULL the newline in case the line has only an IP range.
+                    // In that case the parser won't work for the end IP, because it ends
+                    // with the newline and not with a number.
+                    buffer[endOfLine] = '\0';
                 }
             }
             else
