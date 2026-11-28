@@ -653,6 +653,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_freeDiskSpaceChecker {new FreeDiskSpaceChecker(savePath())}
     , m_freeDiskSpaceCheckingTimer {new QTimer(this)}
     , m_backupTorrentFilesRegistry {new KeyValueDataStorage(u"BackupTorrentFiles"_s, this)}
+    , m_statisticsStorage {new KeyValueDataStorage(u"BitTorrentSessionStatistics"_s, this)}
 {
     m_shareLimits = {
         .ratioLimit = m_globalMaxRatio,
@@ -6669,8 +6670,8 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
         m_isStatisticsDirty = true;
     }
 
-    m_status.allTimeDownload = m_previouslyDownloaded + m_status.totalDownload;
-    m_status.allTimeUpload = m_previouslyUploaded + m_status.totalUpload;
+    m_status.allTimeDownload = (m_previouslyDownloaded >= 0) ? (m_previouslyDownloaded + m_status.totalDownload) : -1;
+    m_status.allTimeUpload = (m_previouslyUploaded >= 0) ? (m_previouslyUploaded + m_status.totalUpload) : -1;
 
     if (m_saveStatisticsInterval > 0)
     {
@@ -7002,11 +7003,11 @@ void SessionImpl::saveStatistics() const
     if (!m_isStatisticsDirty)
         return;
 
-    const QVariantHash stats {
-        {u"AlltimeDL"_s, m_status.allTimeDownload},
-        {u"AlltimeUL"_s, m_status.allTimeUpload}};
-    std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-data"_s);
-    settings->setValue(u"Stats/AllStats"_s, stats);
+    if ((m_status.allTimeDownload >= 0) && (m_status.allTimeUpload >= 0))
+    {
+        m_statisticsStorage->storeValue(u"allTimeDownload"_s, m_status.allTimeDownload);
+        m_statisticsStorage->storeValue(u"allTimeUpload"_s, m_status.allTimeUpload);
+    }
 
     m_statisticsLastUpdateTimer.start();
     m_isStatisticsDirty = false;
@@ -7014,11 +7015,31 @@ void SessionImpl::saveStatistics() const
 
 void SessionImpl::loadStatistics()
 {
-    const std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-data"_s);
-    const QVariantHash value = settings->value(u"Stats/AllStats"_s).toHash();
+    const QVariant previouslyDownloaded = m_statisticsStorage->fetchValue(u"allTimeDownload"_s).takeResult();
+    const QVariant previouslyUploaded = m_statisticsStorage->fetchValue(u"allTimeUpload"_s).takeResult();
+    if (previouslyDownloaded.isValid() && previouslyUploaded.isValid())
+    {
+        m_previouslyDownloaded = previouslyDownloaded.toLongLong();
+        m_previouslyUploaded = previouslyUploaded.toLongLong();
+    }
 
-    m_previouslyDownloaded = value[u"AlltimeDL"_s].toLongLong();
-    m_previouslyUploaded = value[u"AlltimeUL"_s].toLongLong();
+    if ((m_previouslyDownloaded < 0) && (m_previouslyUploaded < 0))
+    {
+        // Fall back to the outdated method of storing statistics.
+        // TODO: Delete it 3 years after the release of v5.4.
+        const std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-data"_s);
+        const QVariantHash value = settings->value(u"Stats/AllStats"_s).toHash();
+
+        m_previouslyDownloaded = value[u"AlltimeDL"_s].toLongLong();
+        m_previouslyUploaded = value[u"AlltimeUL"_s].toLongLong();
+
+        if ((m_previouslyDownloaded > 0) || (m_previouslyUploaded > 0))
+        {
+            m_status.allTimeDownload = m_previouslyDownloaded;
+            m_status.allTimeUpload = m_previouslyUploaded;
+            m_isStatisticsDirty = true;
+        }
+    }
 }
 
 void SessionImpl::updateTrackerEntryStatuses(lt::torrent_handle torrentHandle)
