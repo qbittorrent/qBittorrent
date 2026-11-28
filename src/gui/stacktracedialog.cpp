@@ -30,6 +30,7 @@
 #include "stacktracedialog.h"
 
 #include <QString>
+#include <QSysInfo>
 
 #include "base/utils/misc.h"
 #include "base/version.h"
@@ -62,7 +63,7 @@ void StacktraceDialog::setText(const QString &signalName, const QString &stacktr
         "</p></font>"
         "<br/><hr><br/>"
         "<p align=center><font size=4>"
-        "qBittorrent version: " QBT_VERSION " (%1-bit)<br/>"
+        "qBittorrent version: " QBT_VERSION " %1<br/>"
         "Libtorrent version: %2<br/>"
         "Qt version: %3<br/>"
         "Boost version: %4<br/>"
@@ -73,7 +74,7 @@ void StacktraceDialog::setText(const QString &signalName, const QString &stacktr
         "</font></p>"
         "<pre><code>```\n%9\n```</code></pre>"
         "<br/><hr><br/><br/>")
-            .arg(QString::number(QT_POINTER_SIZE * 8)
+            .arg(QSysInfo::buildCpuArchitecture()
                  , Utils::Misc::libtorrentVersionString()
                  , Utils::Misc::qtVersionString()
                  , Utils::Misc::boostVersionString()
