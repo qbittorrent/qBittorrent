@@ -1478,17 +1478,6 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return compareNumbers(row1_val, row2_val);
             };
 
-            const compareNames = function(row1, row2) {
-                const row1Val = this.getRowValue(row1);
-                const row2Val = this.getRowValue(row2);
-                return row1Val.localeCompare(row2Val, undefined, { numeric: true, sensitivity: "base" });
-            };
-
-            // name, category, tags
-            this.columns["name"].compareRows = compareNames;
-            this.columns["category"].compareRows = compareNames;
-            this.columns["tags"].compareRows = compareNames;
-
             // size, total_size
             this.columns["size"].updateTd = displaySize;
             this.columns["total_size"].updateTd = displaySize;
@@ -1958,12 +1947,6 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const displayValue = (hostname?.length > 0) ? hostname : ip;
                 td.textContent = displayValue;
                 td.title = displayValue;
-            };
-            this.columns["ip"].compareRows = function(row1, row2) {
-                const ip1 = this.getRowValue(row1);
-                const ip2 = this.getRowValue(row2);
-
-                return window.qBittorrent.Misc.naturalSortCollator.compare(ip1, ip2);
             };
 
             // flags
