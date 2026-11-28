@@ -36,7 +36,6 @@
 #include <QMutex>
 #include <QMutexLocker>
 #include <QPromise>
-#include <QReadWriteLock>
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
@@ -44,7 +43,6 @@
 #include <QWaitCondition>
 
 #include "exceptions.h"
-#include "logger.h"
 #include "path.h"
 #include "profile.h"
 
@@ -72,7 +70,9 @@ namespace
         }
 
         virtual ~Job() = default;
-        virtual void perform(QSqlDatabase db) = 0;
+
+        virtual bool perform(QSqlDatabase db) = 0;
+        virtual void fail(const QString &errorMessage) = 0;
 
     protected:
         QString m_storageName;
@@ -82,14 +82,16 @@ namespace
     class StoreValueJob final : public Job
     {
     public:
-        StoreValueJob(const QString &storageName, const QString &tableName, const QString &key, QVariant value)
+        StoreValueJob(const QString &storageName, const QString &tableName, const QString &key
+                , QVariant value, QPromise<KeyValueDataStorage::StoreValueResult> &&promise)
             : Job(storageName, tableName)
             , m_key {key}
             , m_value {std::move(value)}
+            , m_promise {std::move(promise)}
         {
         }
 
-        void perform(QSqlDatabase db) override
+        bool perform(QSqlDatabase db) override
         {
             const QString insertStatement = u"INSERT INTO `%1` (%2, %3) VALUES (:%2, :%3) ON CONFLICT (%2) DO UPDATE SET (%2, %3) = (:%2, :%3)"_s
                     .arg(m_tableName, DB_COLUMN_KEY, DB_COLUMN_VALUE);
@@ -108,27 +110,45 @@ namespace
             }
             catch (const RuntimeError &err)
             {
-                LogMsg(KeyValueDataStorage::tr("Inserting (updating) database record failed. Database: %1. Error: %2")
-                        .arg(m_storageName, err.message()), Log::WARNING);
+                fail(KeyValueDataStorage::tr("Inserting (updating) database record failed. Database: %1. Error: %2")
+                        .arg(m_storageName, err.message()));
+                return false;
             }
+
+            m_promise.addResult({});
+            m_promise.finish();
+            return true;
+        }
+
+        void fail(const QString &errorMessage) override
+        {
+            m_promise.addResult(nonstd::unexpected(KeyValueDataStorage::Error {.message = errorMessage}));
+            m_promise.finish();
         }
 
     private:
         QString m_key;
         QVariant m_value;
+        QPromise<KeyValueDataStorage::StoreValueResult> m_promise;
     };
 
     class FetchValueJob final : public Job
     {
     public:
-        explicit FetchValueJob(const QString &storageName, const QString &tableName, const QString &key, QPromise<QVariant> &&promise)
+        explicit FetchValueJob(const QString &storageName, const QString &tableName
+                , const QString &key, QPromise<KeyValueDataStorage::FetchValueResult> &&promise)
             : Job(storageName, tableName)
             , m_key {key}
             , m_promise {std::move(promise)}
         {
         }
 
-        void perform(QSqlDatabase db) override
+        ~FetchValueJob() override
+        {
+            Q_ASSERT(m_promise.future().isFinished());
+        }
+
+        bool perform(QSqlDatabase db) override
         {
             const QString selectStatement = u"SELECT `%1` FROM `%2` WHERE `%3` = :%3;"_s
                     .arg(DB_COLUMN_VALUE, m_tableName, DB_COLUMN_KEY);
@@ -144,35 +164,44 @@ namespace
                     throw RuntimeError(query.lastError().text());
 
                 if (query.next())
-                    m_promise.addResult(query.value(DB_COLUMN_VALUE));
-                else
-                    m_promise.addResult({});
-
-                m_promise.finish();
+                    m_value = query.value(DB_COLUMN_VALUE);
             }
             catch (const RuntimeError &err)
             {
-                m_promise.addResult({});
-                LogMsg(KeyValueDataStorage::tr("Fetching database record failed. Database: %1. Error: %2")
-                        .arg(m_storageName, err.message()), Log::WARNING);
+                fail(KeyValueDataStorage::tr("Fetching database record failed. Database: %1. Error: %2")
+                        .arg(m_storageName, err.message()));
+                return false;
             }
+
+            m_promise.addResult(m_value);
+            m_promise.finish();
+            return true;
+        }
+
+        void fail(const QString &errorMessage) override
+        {
+            m_promise.addResult(nonstd::unexpected(KeyValueDataStorage::Error {.message = errorMessage}));
+            m_promise.finish();
         }
 
     private:
         QString m_key;
-        QPromise<QVariant> m_promise;
+        QVariant m_value;
+        QPromise<KeyValueDataStorage::FetchValueResult> m_promise;
     };
 
     class RemoveValueJob final : public Job
     {
     public:
-        explicit RemoveValueJob(const QString &storageName, const QString &tableName, const QString &key)
+        explicit RemoveValueJob(const QString &storageName, const QString &tableName
+                , const QString &key, QPromise<KeyValueDataStorage::RemoveValueResult> &&promise)
             : Job(storageName, tableName)
             , m_key {key}
+            , m_promise {std::move(promise)}
         {
         }
 
-        void perform(QSqlDatabase db) override
+        bool perform(QSqlDatabase db) override
         {
             const auto deleteStatement = u"DELETE FROM `%1` WHERE `%2` = :%2;"_s
                     .arg(m_tableName, DB_COLUMN_KEY);
@@ -190,13 +219,25 @@ namespace
             }
             catch (const RuntimeError &err)
             {
-                LogMsg(KeyValueDataStorage::tr("Deleting database record failed. Database: %1. Error: %2")
-                        .arg(m_storageName, err.message()), Log::WARNING);
+                fail(KeyValueDataStorage::tr("Deleting database record failed. Database: %1. Error: %2")
+                        .arg(m_storageName, err.message()));
+                return false;
             }
+
+            m_promise.addResult({});
+            m_promise.finish();
+            return true;
+        }
+
+        void fail(const QString &errorMessage) override
+        {
+            m_promise.addResult(nonstd::unexpected(KeyValueDataStorage::Error {.message = errorMessage}));
+            m_promise.finish();
         }
 
     private:
         QString m_key;
+        QPromise<KeyValueDataStorage::RemoveValueResult> m_promise;
     };
 
     template <std::integral T>
@@ -216,19 +257,17 @@ public:
     void run() override;
     void requestInterruption();
 
-    void storeValue(const QString &key, QVariant &&value);
-    void fetchValue(const QString &key, QPromise<QVariant> &&promise);
-    void removeValue(const QString &key);
+    void storeValue(const QString &key, QVariant &&value, QPromise<StoreValueResult> &&promise);
+    void fetchValue(const QString &key, QPromise<FetchValueResult> &&promise);
+    void removeValue(const QString &key, QPromise<RemoveValueResult> &&promise);
 
 private:
-    bool initDB(QSqlDatabase &db);
+    nonstd::expected<void, QString> initDB(QSqlDatabase &db);
     void addJob(std::unique_ptr<Job> job);
 
     Path m_dbPath;
     QString m_storageName;
     QString m_tableName;
-
-    QReadWriteLock m_dbLock;
 
     std::queue<std::unique_ptr<Job>> m_jobs;
     QMutex m_jobsMutex;
@@ -250,7 +289,7 @@ KeyValueDataStorage::~KeyValueDataStorage()
     }
 }
 
-QFuture<QVariant> KeyValueDataStorage::fetchValue(const QString &key) const
+QFuture<KeyValueDataStorage::FetchValueResult> KeyValueDataStorage::fetchValue(const QString &key) const
 {
     if (!m_asyncWorker)
     {
@@ -263,21 +302,21 @@ QFuture<QVariant> KeyValueDataStorage::fetchValue(const QString &key) const
     }
 
     if (!m_asyncWorker)
-        return QtFuture::makeReadyValueFuture<QVariant>({});
+        return QtFuture::makeReadyValueFuture<FetchValueResult>({});
 
-    QPromise<QVariant> promise;
+    QPromise<FetchValueResult> promise;
     const auto future = promise.future();
     promise.start();
     m_asyncWorker->fetchValue(key, std::move(promise));
     return future;
 }
 
-void KeyValueDataStorage::storeValue(const QString &key, const QVariant &value)
+QFuture<KeyValueDataStorage::StoreValueResult> KeyValueDataStorage::storeValue(const QString &key, const QVariant &value)
 {
-    storeValue(key, QVariant(value));
+    return storeValue(key, QVariant(value));
 }
 
-void KeyValueDataStorage::storeValue(const QString &key, QVariant &&value)
+QFuture<KeyValueDataStorage::StoreValueResult> KeyValueDataStorage::storeValue(const QString &key, QVariant &&value)
 {
     if (!m_asyncWorker)
     {
@@ -285,10 +324,14 @@ void KeyValueDataStorage::storeValue(const QString &key, QVariant &&value)
         m_asyncWorker->start();
     }
 
-    m_asyncWorker->storeValue(key, std::move(value));
+    QPromise<StoreValueResult> promise;
+    const auto future = promise.future();
+    promise.start();
+    m_asyncWorker->storeValue(key, std::move(value), std::move(promise));
+    return future;
 }
 
-void KeyValueDataStorage::removeValue(const QString &key)
+QFuture<KeyValueDataStorage::RemoveValueResult> KeyValueDataStorage::removeValue(const QString &key)
 {
     if (!m_asyncWorker)
     {
@@ -300,8 +343,14 @@ void KeyValueDataStorage::removeValue(const QString &key)
         }
     }
 
-    if (m_asyncWorker)
-        m_asyncWorker->removeValue(key);
+    if (!m_asyncWorker)
+        return QtFuture::makeReadyValueFuture<RemoveValueResult>({});
+
+    QPromise<RemoveValueResult> promise;
+    const auto future = promise.future();
+    promise.start();
+    m_asyncWorker->removeValue(key, std::move(promise));
+    return future;
 }
 
 KeyValueDataStorage::Worker::Worker(const Path &dbPath, const QString &storageName, QObject *parent)
@@ -325,33 +374,14 @@ void KeyValueDataStorage::Worker::run()
     {
         auto db = QSqlDatabase::database(connectionName, false);
 
-        {
-            const QMutexLocker jobsMutexLocker {&m_jobsMutex};
-            if (!m_jobs.empty())
-            {
-                m_dbLock.lockForWrite();
-                if (!initDB(db))
-                {
-                    m_dbLock.unlock();
-                    return;
-                }
-            }
-        }
-
-        int64_t transactedJobsCount = 0;
         while (true)
         {
             QMutexLocker jobsMutexLocker {&m_jobsMutex};
+
             if (m_jobs.empty())
             {
-                if (transactedJobsCount > 0)
-                {
-                    db.commit();
+                if (db.isOpen())
                     db.close();
-                    m_dbLock.unlock();
-
-                    transactedJobsCount = 0;
-                }
 
                 if (isInterruptionRequested())
                     break;
@@ -362,20 +392,23 @@ void KeyValueDataStorage::Worker::run()
                     Q_ASSERT(isInterruptionRequested());
                     break;
                 }
-
-                m_dbLock.lockForWrite();
-                if (!initDB(db))
-                {
-                    m_dbLock.unlock();
-                    break;
-                }
             }
+
             std::unique_ptr<Job> job = std::move(m_jobs.front());
             m_jobs.pop();
             jobsMutexLocker.unlock();
 
-            job->perform(db);
-            ++transactedJobsCount;
+            if (!db.isOpen())
+            {
+                if (const auto result = initDB(db); !result)
+                {
+                    job->fail(result.error());
+                    continue;
+                }
+            }
+
+            if (!job->perform(db))
+                db.close();
         }
     }
 
@@ -389,35 +422,27 @@ void KeyValueDataStorage::Worker::requestInterruption()
     m_waitCondition.wakeAll();
 }
 
-void KeyValueDataStorage::Worker::storeValue(const QString &key, QVariant &&value)
+void KeyValueDataStorage::Worker::storeValue(const QString &key, QVariant &&value, QPromise<StoreValueResult> &&promise)
 {
-    addJob(std::make_unique<StoreValueJob>(m_storageName, m_tableName, key, std::move(value)));
+    addJob(std::make_unique<StoreValueJob>(m_storageName, m_tableName, key, std::move(value), std::move(promise)));
 }
 
-void KeyValueDataStorage::Worker::fetchValue(const QString &key, QPromise<QVariant> &&promise)
+void KeyValueDataStorage::Worker::fetchValue(const QString &key, QPromise<FetchValueResult> &&promise)
 {
     addJob(std::make_unique<FetchValueJob>(m_storageName, m_tableName, key, std::move(promise)));
 }
 
-void KeyValueDataStorage::Worker::removeValue(const QString &key)
+void KeyValueDataStorage::Worker::removeValue(const QString &key, QPromise<RemoveValueResult> &&promise)
 {
-    addJob(std::make_unique<RemoveValueJob>(m_storageName, m_tableName, key));
+    addJob(std::make_unique<RemoveValueJob>(m_storageName, m_tableName, key, std::move(promise)));
 }
 
-bool KeyValueDataStorage::Worker::initDB(QSqlDatabase &db)
+nonstd::expected<void, QString> KeyValueDataStorage::Worker::initDB(QSqlDatabase &db)
 {
     if (!db.open())
     {
-        LogMsg(tr("Opening database failed. Database: %1. Error: %2")
-                .arg(m_storageName, db.lastError().text()), Log::WARNING);
-        return false;
-    }
-
-    if (!db.transaction())
-    {
-        LogMsg(tr("Starting database transaction failed. Database: %1. Error: %2")
-                .arg(m_storageName, db.lastError().text()), Log::WARNING);
-        return false;
+        return nonstd::unexpected(tr("Opening database failed. Database: %1. Error: %2")
+                .arg(m_storageName, db.lastError().text()));
     }
 
     QSqlQuery query {db};
@@ -426,12 +451,12 @@ bool KeyValueDataStorage::Worker::initDB(QSqlDatabase &db)
             .arg(m_tableName, DB_COLUMN_ID, DB_COLUMN_KEY, DB_COLUMN_VALUE);
     if (!query.exec(createTableQuery))
     {
-        LogMsg(tr("Creating database table failed. Database: %1. Error: %2")
-                .arg(m_storageName, db.lastError().text()), Log::WARNING);
-        return false;
+        db.close();
+        return nonstd::unexpected(tr("Creating database table failed. Database: %1. Error: %2")
+                .arg(m_storageName, query.lastError().text()));
     }
 
-    return true;
+    return {};
 }
 
 void KeyValueDataStorage::Worker::addJob(std::unique_ptr<Job> job)

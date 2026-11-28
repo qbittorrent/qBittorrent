@@ -32,19 +32,31 @@
 #include <QObject>
 #include <QVariant>
 
+#include "base/3rdparty/expected.hpp"
+
 class KeyValueDataStorage final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(KeyValueDataStorage)
 
 public:
+    struct Error
+    {
+        QString message;
+    };
+
     explicit KeyValueDataStorage(const QString &storageName, QObject *parent = nullptr);
     ~KeyValueDataStorage() override;
 
-    QFuture<QVariant> fetchValue(const QString &key) const;
-    void storeValue(const QString &key, const QVariant &value);
-    void storeValue(const QString &key, QVariant &&value);
-    void removeValue(const QString &key);
+    using FetchValueResult = nonstd::expected<QVariant, Error>;
+    QFuture<FetchValueResult> fetchValue(const QString &key) const;
+
+    using StoreValueResult = nonstd::expected<void, Error>;
+    QFuture<StoreValueResult> storeValue(const QString &key, const QVariant &value);
+    QFuture<StoreValueResult> storeValue(const QString &key, QVariant &&value);
+
+    using RemoveValueResult = nonstd::expected<void, Error>;
+    QFuture<RemoveValueResult> removeValue(const QString &key);
 
 private:
     QString m_storageName;
