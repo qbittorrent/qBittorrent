@@ -137,7 +137,7 @@ void TorrentContentItemDelegate::paint(QPainter *painter, const QStyleOptionView
     {
     case TorrentContentModelItem::COL_PROGRESS:
         {
-            const int progress = static_cast<int>(index.data(TorrentContentModel::UnderlyingDataRole).toReal());
+            const qreal progress = index.data(TorrentContentModel::UnderlyingDataRole).toReal();
             const int priority = index.sibling(index.row(), TorrentContentModelItem::COL_PRIO).data(TorrentContentModel::UnderlyingDataRole).toInt();
             const bool isEnabled = static_cast<BitTorrent::DownloadPriority>(priority) != BitTorrent::DownloadPriority::Ignored;
 

@@ -35,6 +35,7 @@
 #include <QSpacerItem>
 
 #include "base/global.h"
+#include "base/preferences.h"
 #include "gui/uithememanager.h"
 
 namespace
@@ -69,7 +70,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     : QHBoxLayout(parent)
 {
     setAlignment(Qt::AlignLeft | Qt::AlignCenter);
-    setSpacing(3);
+    setSpacing(Preferences::instance()->useCustomUITheme() ? 3 : 0);
     m_btnGroup = new QButtonGroup(this);
     // General tab
     QPushButton *mainInfosButton = new PropTabButton(

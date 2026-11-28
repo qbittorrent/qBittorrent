@@ -29,6 +29,9 @@
 
 #include "progressbarpainter.h"
 
+#include <QApplication>
+#include <QColorSpace>
+#include <QColorTransform>
 #include <QPainter>
 #include <QPalette>
 #include <QStyleOptionProgressBar>
@@ -39,10 +42,12 @@
 #endif
 
 #include "base/global.h"
+#include "base/preferences.h"
 #include "gui/uithememanager.h"
 
 ProgressBarPainter::ProgressBarPainter(QObject *parent)
     : QObject(parent)
+    , m_useCustomTheme {Preferences::instance()->useCustomUITheme()}
 {
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     auto *fusionStyle = new QProxyStyle(u"fusion"_s);
@@ -54,14 +59,63 @@ ProgressBarPainter::ProgressBarPainter(QObject *parent)
     connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &ProgressBarPainter::applyUITheme);
 }
 
-void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, const int progress, const QColor &color) const
+void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, const qreal progress, const QColor &color) const
 {
+    if (!m_useCustomTheme)
+    {
+        painter->save();
+        if (option.state.testFlag(QStyle::State_Selected))
+            painter->fillRect(option.rect, option.palette.highlight());
+        else
+            m_dummyProgressBar.style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, option.widget);
+        const QRect cell = option.rect.adjusted(3, 1, -3, -1);
+        if (cell.isEmpty())
+        {
+            painter->restore();
+            return;
+        }
+        const int height = qMin(cell.height(), option.fontMetrics.height());
+        const QRectF track(cell.x(), cell.y() + (cell.height() - height) / 2, cell.width(), height);
+        QPalette palette = option.palette;
+        palette.setCurrentColorGroup(option.state.testFlag(QStyle::State_Enabled) ? QPalette::Active : QPalette::Disabled);
+        QColor fill = color.isValid() ? color : m_chunkColor;
+        if (!fill.isValid())
+            fill = QApplication::palette().color(QPalette::Active, QPalette::Highlight);
+        painter->fillRect(track, palette.base());
+        QColor trackTint = palette.text().color();
+        trackTint.setAlphaF(0.12);
+        painter->fillRect(track, trackTint);
+        const qreal width = track.width() * qBound(0.0, progress, 100.0) / 100.0;
+        const QRectF filled((option.direction == Qt::RightToLeft) ? track.right() - width : track.left(),
+            track.top(), width, track.height());
+        painter->fillRect(filled, fill);
+        painter->setFont(option.font);
+        const QRectF remaining((option.direction == Qt::RightToLeft) ? track.left() : filled.right(),
+            track.top(), track.width() - width, track.height());
+        painter->save();
+        painter->setClipRect(remaining, Qt::IntersectClip);
+        painter->setPen(palette.text().color());
+        painter->drawText(track, Qt::AlignCenter, text);
+        painter->restore();
+        painter->save();
+        painter->setClipRect(filled, Qt::IntersectClip);
+        // Status-coloured fills can be very light even when the theme uses white text.
+        static const auto toLinear = QColorSpace(QColorSpace::SRgb).transformationToColorSpace(QColorSpace::SRgbLinear);
+        const QColor linearFill = toLinear.map(fill);
+        const qreal luminance = 0.2126 * linearFill.redF() + 0.7152 * linearFill.greenF() + 0.0722 * linearFill.blueF();
+        painter->setPen((luminance > 0.179) ? Qt::black : Qt::white);
+        painter->drawText(track, Qt::AlignCenter, text);
+        painter->restore();
+        painter->restore();
+        return;
+    }
+
     QStyleOptionProgressBar styleOption;
     styleOption.initFrom(&m_dummyProgressBar);
     // QStyleOptionProgressBar fields
     styleOption.maximum = 100;
     styleOption.minimum = 0;
-    styleOption.progress = progress;
+    styleOption.progress = static_cast<int>(progress);
     styleOption.text = text;
     styleOption.textVisible = true;
     // QStyleOption fields

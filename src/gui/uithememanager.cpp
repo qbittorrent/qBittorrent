@@ -30,18 +30,23 @@
 
 #include "uithememanager.h"
 
+#include <QAbstractSpinBox>
 #include <QApplication>
+#include <QEvent>
+#include <QLineEdit>
 #include <QPalette>
 #include <QPixmapCache>
 #include <QResource>
 #include <QStyle>
 #include <QStyleHints>
+#include <QTreeView>
 
 #include "base/logger.h"
 #include "base/path.h"
 #include "base/profile.h"
 #include "base/preferences.h"
 #include "uithemecommon.h"
+#include "desktopstyle/desktopstyle.h"
 
 #ifdef Q_OS_WIN
 #include "base/utils/reg.h"
@@ -102,7 +107,8 @@ UIThemeManager::UIThemeManager()
     applyColorScheme();
 #endif
 
-    connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, &UIThemeManager::onColorSchemeChanged);
+    // Qt emits colorSchemeChanged before updating the application palette.
+    connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, &UIThemeManager::onColorSchemeChanged, Qt::QueuedConnection);
 
     if (m_useCustomTheme)
     {
@@ -129,6 +135,35 @@ UIThemeManager::UIThemeManager()
         applyPalette();
         applyStyleSheet();
     }
+    else
+    {
+        DesktopStyle::apply();
+        qApp->installEventFilter(this);
+    }
+}
+
+bool UIThemeManager::eventFilter(QObject *watched, QEvent *event)
+{
+    if (event->type() == QEvent::Show)
+    {
+        // Qt paints full-row focus without the view, bypassing its stylesheet outline.
+        if (auto *tree = qobject_cast<QTreeView *>(watched); tree && tree->allColumnsShowFocus())
+            tree->setAllColumnsShowFocus(false);
+
+        auto *edit = qobject_cast<QLineEdit *>(watched);
+        if (edit && qobject_cast<QAbstractSpinBox *>(edit->parentWidget()))
+        {
+            // Some Qt styles place the editor against the frame, dropping the stylesheet inset.
+            QMargins margins = edit->textMargins();
+            constexpr int inset = 7; // 1px frame + 6px horizontal padding
+            if (edit->geometry().left() == 0)
+                margins.setLeft(qMax(margins.left(), inset));
+            if (edit->geometry().right() == edit->parentWidget()->rect().right())
+                margins.setRight(qMax(margins.right(), inset));
+            edit->setTextMargins(margins);
+        }
+    }
+    return QObject::eventFilter(watched, event);
 }
 
 UIThemeManager *UIThemeManager::instance()
@@ -188,10 +223,11 @@ void UIThemeManager::applyStyleSheet() const
 
 void UIThemeManager::onColorSchemeChanged()
 {
-    emit themeChanged();
-
     // workaround to refresh styled controls once color scheme is changed
     QApplication::setStyle(QApplication::style()->name());
+    if (m_themeSource && !m_useCustomTheme)
+        DesktopStyle::apply();
+    emit themeChanged();
 }
 
 QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QString &fallback, const ColorMode colorMode) const
@@ -269,7 +305,7 @@ QPixmap UIThemeManager::getScaledPixmap(const QString &iconId, const int height)
 
     Q_ASSERT(height > 0);
 
-    const QString cacheKey = iconId + u'@' + QString::number(height);
+    const QString cacheKey = iconId + (isDarkTheme() ? u"@dark"_s : u"@light"_s) + QString::number(height);
 
     QPixmap pixmap;
     if (!QPixmapCache::find(cacheKey, &pixmap))

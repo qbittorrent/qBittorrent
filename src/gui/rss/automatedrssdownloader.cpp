@@ -35,9 +35,11 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QRegularExpression>
+#include <QScreen>
 #include <QShortcut>
 #include <QSignalBlocker>
 #include <QString>
+#include <QStyle>
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
@@ -122,8 +124,6 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
         + u"<li>" + tr("Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one, and all episodes of later seasons") + u"</li>" + u"</ul></li></ul>";
     m_ui->lineEFilter->setToolTip(tip);
 
-    loadSettings();
-
     connect(RSS::AutoDownloader::instance(), &RSS::AutoDownloader::ruleAdded, this, &AutomatedRssDownloader::handleRuleAdded);
     connect(RSS::AutoDownloader::instance(), &RSS::AutoDownloader::ruleRenamed, this, &AutomatedRssDownloader::handleRuleRenamed);
     connect(RSS::AutoDownloader::instance(), &RSS::AutoDownloader::ruleChanged, this, &AutomatedRssDownloader::handleRuleChanged);
@@ -175,6 +175,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
 
     connect(RSS::AutoDownloader::instance(), &RSS::AutoDownloader::processingStateChanged
             , this, &AutomatedRssDownloader::handleProcessingStateChanged);
+    loadSettings();
 }
 
 AutomatedRssDownloader::~AutomatedRssDownloader()
@@ -189,11 +190,36 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 
 void AutomatedRssDownloader::loadSettings()
 {
-    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
-        resize(dialogSize);
+    const QSize savedSize = m_storeDialogSize;
+    if (savedSize.isValid())
+        resize(savedSize);
 
     if (const QByteArray mainSplitterSize = m_storeMainSplitterState; !mainSplitterSize.isEmpty())
         m_ui->mainSplitter->restoreState(mainSplitterSize);
+    else
+    {
+        ensurePolished();
+        const int listWidth = m_ui->ruleListLayoutWidget->minimumSizeHint().width();
+        const int scrollExtent = style()->pixelMetric(QStyle::PM_ScrollBarExtent);
+        const int editorWidth = m_ui->scrollAreaWidgetContents->sizeHint().width() + scrollExtent;
+        const int previewWidth = qMax(m_ui->matchingArticlesLabel->sizeHint().width(),
+                m_ui->matchingArticlesTree->sizeHint().width());
+        if (!savedSize.isValid())
+        {
+            const QMargins margins = layout()->contentsMargins();
+            const int preferredWidth = listWidth + editorWidth + previewWidth
+                    + 2 * m_ui->mainSplitter->handleWidth() + margins.left() + margins.right();
+            resize(qMin(screen()->availableGeometry().width(), qMax(width(), preferredWidth)), height());
+        }
+        layout()->activate();
+        // The empty rule's size hint excludes controls populated by the first selection.
+        // Keep the preview heading and the two levels of indentation visible, then
+        // give the editor the remaining width.
+        const int articleColumnWidth = qMax(previewWidth * 3 / 4,
+                m_ui->matchingArticlesLabel->sizeHint().width() + 2 * m_ui->matchingArticlesTree->indentation());
+        m_ui->mainSplitter->setSizes({listWidth, editorWidth + previewWidth - articleColumnWidth, articleColumnWidth});
+        m_ui->mainSplitter->setStretchFactor(1, 1);
+    }
 
     if (const QByteArray ruleDefSplitterSize = m_storeRuleDefSplitterState; !ruleDefSplitterSize.isEmpty())
         m_ui->ruleDefSplitter->restoreState(ruleDefSplitterSize);

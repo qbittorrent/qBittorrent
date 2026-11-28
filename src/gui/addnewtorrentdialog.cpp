@@ -220,8 +220,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
 
     loadState();
 
-    if (const QByteArray state = m_storeTreeHeaderState; !state.isEmpty())
-        m_ui->contentTreeView->header()->restoreState(state);
+    if (const QByteArray state = m_storeTreeHeaderState; state.isEmpty() || !m_ui->contentTreeView->header()->restoreState(state))
+        m_sizeInitialColumns = !Preferences::instance()->useCustomUITheme();
     // Hide useless columns after loading the header state
     m_ui->contentTreeView->hideColumn(TorrentContentWidget::Progress);
     m_ui->contentTreeView->hideColumn(TorrentContentWidget::Remaining);
@@ -302,6 +302,21 @@ void AddNewTorrentDialog::saveState()
 void AddNewTorrentDialog::showEvent(QShowEvent *event)
 {
     QDialog::showEvent(event);
+    if (m_sizeInitialColumns)
+    {
+        m_sizeInitialColumns = false;
+        auto *tree = m_ui->contentTreeView;
+        auto *header = tree->header();
+        header->setStretchLastSection(false);
+        tree->resizeColumnToContents(TorrentContentWidget::Size);
+        tree->resizeColumnToContents(TorrentContentWidget::Priority);
+        const int available = header->width() - tree->columnWidth(TorrentContentWidget::Size)
+                - tree->columnWidth(TorrentContentWidget::Priority);
+        const int nameMinimum = (2 * tree->indentation()) + (16 * tree->fontMetrics().averageCharWidth());
+        tree->setColumnWidth(TorrentContentWidget::Name, std::max(nameMinimum, available));
+        header->setStretchLastSection(true);
+    }
+
     if (!Preferences::instance()->isAddNewTorrentDialogTopLevel())
         return;
 

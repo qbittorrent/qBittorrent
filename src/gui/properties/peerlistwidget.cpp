@@ -60,6 +60,7 @@
 #include "base/utils/string.h"
 #include "gui/uithememanager.h"
 #include "gui/utils/keysequence.h"
+#include "gui/desktopstyle/desktopstyle.h"
 #include "peerlistsortmodel.h"
 #include "peersadditiondialog.h"
 #include "propertieswidget.h"
@@ -96,6 +97,8 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     : QTreeView(parent)
     , m_properties(parent)
 {
+    DesktopStyle::installSortHeader(this);
+
     // Load settings
     const bool columnLoaded = loadSettings();
     // Visual settings

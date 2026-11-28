@@ -85,6 +85,7 @@ signals:
 private:
     UIThemeManager(); // singleton class
 
+    bool eventFilter(QObject *watched, QEvent *event) override;
     void applyPalette() const;
     void applyStyleSheet() const;
     void onColorSchemeChanged();

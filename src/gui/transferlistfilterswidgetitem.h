@@ -30,6 +30,8 @@
 
 #include <QWidget>
 
+class QAbstractItemDelegate;
+class QAbstractItemView;
 class QCheckBox;
 class QString;
 
@@ -39,8 +41,11 @@ class TransferListFiltersWidgetItem final : public QWidget
     Q_DISABLE_COPY_MOVE(TransferListFiltersWidgetItem)
 
 public:
-    TransferListFiltersWidgetItem(const QString &caption, QWidget *filterWidget, QWidget *parent = nullptr);
+    TransferListFiltersWidgetItem(const QString &caption, QAbstractItemView *filterWidget, QWidget *parent = nullptr);
 
+    void setCompact(bool compact);
+    QAbstractItemView *view() const { return m_filterWidget; }
+    QCheckBox *caption() const { return m_caption; }
     bool isChecked() const;
     void setChecked(bool value);
 
@@ -49,5 +54,7 @@ signals:
 
 private:
     QCheckBox *m_caption = nullptr;
-    QWidget *m_filterWidget = nullptr;
+    QAbstractItemView *m_filterWidget = nullptr;
+    QAbstractItemDelegate *m_originalDelegate = nullptr;
+    QAbstractItemDelegate *m_iconDelegate = nullptr;
 };

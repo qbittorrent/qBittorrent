@@ -54,6 +54,7 @@
 #include "gui/trackersadditiondialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils/keysequence.h"
+#include "gui/desktopstyle/desktopstyle.h"
 #include "trackerlistitemdelegate.h"
 #include "trackerlistmodel.h"
 #include "trackerlistsortmodel.h"
@@ -61,6 +62,8 @@
 TrackerListWidget::TrackerListWidget(QWidget *parent)
     : QTreeView(parent)
 {
+    DesktopStyle::installSortHeader(this);
+
 #ifdef QBT_USES_LIBTORRENT2
     setColumnHidden(TrackerListModel::COL_PROTOCOL, true); // Must be set before calling loadSettings()
 #endif

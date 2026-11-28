@@ -78,7 +78,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
                 }
             };
 
-            const int progress = static_cast<int>(index.data(TransferListModel::UnderlyingDataRole).toReal());
+            const qreal progress = index.data(TransferListModel::UnderlyingDataRole).toReal();
 
             const QModelIndex statusIndex = index.siblingAtColumn(TransferListModel::TR_STATUS);
             const auto torrentState = statusIndex.data(TransferListModel::UnderlyingDataRole).value<TorrentState>();

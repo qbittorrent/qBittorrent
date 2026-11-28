@@ -153,8 +153,8 @@ namespace
 
     // Shortcuts for frequently used signals that have more than one overload. They would require
     // type casts and that is why we declare required member pointer here instead.
-    void (QComboBox::*qComboBoxCurrentIndexChanged)(int) = &QComboBox::currentIndexChanged;
-    void (QSpinBox::*qSpinBoxValueChanged)(int) = &QSpinBox::valueChanged;
+    constexpr auto qComboBoxCurrentIndexChanged = qOverload<int>(&QComboBox::currentIndexChanged);
+    constexpr auto qSpinBoxValueChanged = qOverload<int>(&QSpinBox::valueChanged);
 }
 
 // Constructor
@@ -190,14 +190,30 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
 #endif
     m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_s, u"preferences-other"_s));
 
-    // set uniform size for all icons
-    int maxHeight = -1;
-    for (int i = 0; i < m_ui->tabSelection->count(); ++i)
-        maxHeight = std::max(maxHeight, m_ui->tabSelection->visualItemRect(m_ui->tabSelection->item(i)).size().height());
-    for (int i = 0; i < m_ui->tabSelection->count(); ++i)
+    if (Preferences::instance()->useCustomUITheme())
     {
-        const QSize size(std::numeric_limits<int>::max(), static_cast<int>(maxHeight * 1.2));
-        m_ui->tabSelection->item(i)->setSizeHint(size);
+        int maxHeight = -1;
+        for (int i = 0; i < m_ui->tabSelection->count(); ++i)
+            maxHeight = std::max(maxHeight, m_ui->tabSelection->visualItemRect(m_ui->tabSelection->item(i)).size().height());
+        for (int i = 0; i < m_ui->tabSelection->count(); ++i)
+        {
+            const QSize size(std::numeric_limits<int>::max(), static_cast<int>(maxHeight * 1.2));
+            m_ui->tabSelection->item(i)->setSizeHint(size);
+        }
+    }
+    else
+    {
+        m_ui->tabSelection->setViewMode(QListView::ListMode);
+        const int extent = std::max(fontMetrics().height(), style()->pixelMetric(QStyle::PM_SmallIconSize));
+        m_ui->tabSelection->setIconSize({extent, extent});
+
+        // Flat sections share a leading edge with the rows outside a group.
+        const int gap = std::max(4, fontMetrics().height() / 3);
+        for (QGroupBox *section : asConst(findChildren<QGroupBox *>()))
+        {
+            if (auto *layout = section->layout())
+                layout->setContentsMargins(0, gap, 0, gap);
+        }
     }
 
     connect(m_ui->tabSelection, &QListWidget::currentItemChanged, this, &ThisType::changePage);
@@ -1495,6 +1511,9 @@ void OptionsDialog::loadWebUITabOptions()
 
     connect(m_ui->textWebUIUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    m_ui->btnWebUIAPIKeyCopy->setIcon(UIThemeManager::instance()->getIcon(u"edit-copy"_s));
+    m_ui->btnWebUIAPIKeyRotate->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+    m_ui->btnWebUIAPIKeyDelete->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
     connect(m_ui->btnWebUIAPIKeyCopy, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyCopyClicked);
     connect(m_ui->btnWebUIAPIKeyRotate, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyRotateClicked);
     connect(m_ui->btnWebUIAPIKeyDelete, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyDeleteClicked);
@@ -1664,8 +1683,10 @@ void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previo
 
 void OptionsDialog::loadSplitterState()
 {
-    // width has been modified, use height as width reference instead
-    const int width = m_ui->tabSelection->item(TAB_UI)->sizeHint().height() * 2;
+    // Icon-mode items span the entire viewport and have no useful width hint.
+    const int width = (m_ui->tabSelection->viewMode() == QListView::ListMode)
+        ? (m_ui->tabSelection->sizeHintForColumn(0) + style()->pixelMetric(QStyle::PM_ScrollBarExtent))
+        : (m_ui->tabSelection->item(TAB_UI)->sizeHint().height() * 2);
     const QStringList defaultSizes = {QString::number(width), QString::number(m_ui->hsplitter->width() - width)};
 
     QList<int> splitterSizes;

@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/desktopstyle">
+        <file>widgets.qss</file>
+        <file>chevron-down-muted.svg</file>
+        <file>chevron-down.svg</file>
+        <file>chevron-up-muted.svg</file>
+        <file>chevron-up.svg</file>
+        <file>control-check-inverse.svg</file>
+        <file>control-check-muted.svg</file>
+        <file>control-check.svg</file>
+        <file>control-partial-inverse.svg</file>
+        <file>control-partial-muted.svg</file>
+        <file>control-partial.svg</file>
+    </qresource>
+</RCC>

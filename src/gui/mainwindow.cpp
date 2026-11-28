@@ -869,7 +869,7 @@ void MainWindow::saveSettings() const
 
 void MainWindow::saveSplitterSettings() const
 {
-    if (!m_transferListFiltersWidget)
+    if (!m_transferListFiltersWidget || m_transferListFiltersWidget->isCompact())
         return;
 
     auto *pref = Preferences::instance();
@@ -1413,7 +1413,14 @@ void MainWindow::showFiltersSidebar(const bool show)
         // according to the relative weight of the sizes.
         m_splitter->setStretchFactor(0, 0);
         m_splitter->setStretchFactor(1, 1);
-        m_splitter->setSizes({Preferences::instance()->getFiltersSidebarWidth()});
+        const auto restoreWidth = [this](const bool compact)
+        {
+            const int width = compact ? m_transferListFiltersWidget->minimumWidth() : Preferences::instance()->getFiltersSidebarWidth();
+            m_splitter->setCollapsible(0, !compact);
+            m_splitter->setSizes({width, qMax(1, m_splitter->width() - width)});
+        };
+        connect(m_transferListFiltersWidget, &TransferListFiltersWidget::compactChanged, this, restoreWidth);
+        restoreWidth(m_transferListFiltersWidget->isCompact());
     }
     else if (!show && m_transferListFiltersWidget)
     {

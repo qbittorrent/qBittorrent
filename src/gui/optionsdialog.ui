@@ -3951,10 +3951,6 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                          <property name="toolTip">
                           <string>Copy API key</string>
                          </property>
-                         <property name="icon">
-                          <iconset>
-                           <normaloff>:/icons/edit-copy.svg</normaloff>:/icons/edit-copy.svg</iconset>
-                         </property>
                         </widget>
                        </item>
                        <item>
@@ -3962,20 +3958,12 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                          <property name="toolTip">
                           <string>Generate API key</string>
                          </property>
-                         <property name="icon">
-                          <iconset>
-                           <normaloff>:/icons/view-refresh.svg</normaloff>:/icons/view-refresh.svg</iconset>
-                         </property>
                         </widget>
                        </item>
                        <item>
                         <widget class="QPushButton" name="btnWebUIAPIKeyDelete">
                          <property name="toolTip">
                           <string>Delete API key</string>
-                         </property>
-                         <property name="icon">
-                          <iconset>
-                           <normaloff>:/icons/list-remove.svg</normaloff>:/icons/list-remove.svg</iconset>
                          </property>
                         </widget>
                        </item>

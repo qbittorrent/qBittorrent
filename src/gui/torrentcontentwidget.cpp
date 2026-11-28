@@ -55,6 +55,7 @@
 #include "torrentcontentmodelitem.h"
 #include "uithememanager.h"
 #include "utils.h"
+#include "desktopstyle/desktopstyle.h"
 
 #ifdef Q_OS_MACOS
 #include "gui/macutilities.h"
@@ -76,6 +77,8 @@ namespace
 TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     : QTreeView(parent)
 {
+    DesktopStyle::installSortHeader(this);
+
     setDragDropMode(QAbstractItemView::DragOnly);
     setDragEnabled(false);
     setSelectionMode(QAbstractItemView::MultiSelection);
