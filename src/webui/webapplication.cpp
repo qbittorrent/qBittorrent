@@ -85,10 +85,12 @@ const QString PRIVATE_FOLDER = u"/private"_s;
 const QString INDEX_HTML = u"/index.html"_s;
 
 const QString BASIC_AUTH = u"Basic"_s;
+const QString BASIC_AUTH_CHALLENGE = u"Basic realm=\"qBittorrent\""_s;
 const QString BEARER_AUTH = u"Bearer"_s;
 const QString BEARER_AUTH_CHALLENGE = u"Bearer realm=\"qBittorrent\", error=\"invalid_token\""_s;
 
 const QString API_PATH = u"/api/v2/"_s;
+const QString DOWNLOAD_FILE_PATH = API_PATH + u"torrents/downloadFile";
 
 namespace
 {
@@ -719,6 +721,7 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
     const bool isUsingApiKey = !apiKeyHeader.isEmpty() || (authScheme.compare(BEARER_AUTH, Qt::CaseInsensitive) == 0);
 
     Http::HeaderMap commonHeaders = m_prebuiltHeaders;
+    bool canChallengeWithBasicAuth = false;
 
     try
     {
@@ -753,9 +756,12 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
         }
         else
         {
+            canChallengeWithBasicAuth = (request.path == DOWNLOAD_FILE_PATH);
             cookieSessionInitialize(authScheme, authData);
             if (m_currentSession)
                 setSessionCookie(commonHeaders);
+            else if (canChallengeWithBasicAuth)
+                throw UnauthorizedHTTPError();
         }
 
         if (request.path.startsWith(API_PATH))
@@ -778,6 +784,9 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
     catch (const HTTPError &error)
     {
         const Http::ResponseStatus &errorStatus = error.status();
+        if (canChallengeWithBasicAuth && !m_currentSession && (errorStatus.code == 401))
+            commonHeaders.insert(Http::HEADER_WWW_AUTHENTICATE, BASIC_AUTH_CHALLENGE);
+
         Http::Response response {.status = errorStatus, .headers = commonHeaders};
         response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_TXT);
         response.content = (!error.message().isEmpty() ? error.message() : errorStatus.text).toUtf8();
