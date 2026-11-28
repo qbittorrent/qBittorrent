@@ -197,6 +197,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
             case TR_REANNOUNCE: return tr("Reannounce In", "Indicates the time until next trackers reannounce");
             case TR_PRIVATE: return tr("Private", "Flags private torrents");
+            case TR_SUPER_SEEDING: return tr("Super Seeding", "Indicates whether the torrent is super seeding");
             default: return {};
             }
         }
@@ -370,6 +371,15 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return tr("N/A");
     };
 
+    const auto superSeedingString = [hideValues](const bool superSeeding, const bool hasMetadata) -> QString
+    {
+        if (hideValues && !superSeeding)
+            return {};
+        if (hasMetadata)
+            return superSeeding ? tr("Yes") : tr("No");
+        return tr("N/A");
+    };
+
     switch (column)
     {
     case TR_NAME:
@@ -448,6 +458,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return reannounceString(torrent->nextAnnounce());
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
+    case TR_SUPER_SEEDING:
+        return superSeedingString(torrent->superSeeding(), torrent->hasMetadata());
     }
 
     return {};
@@ -533,6 +545,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_SUPER_SEEDING:
+        return (torrent->hasMetadata() ? torrent->superSeeding() : QVariant());
     }
 
     return {};

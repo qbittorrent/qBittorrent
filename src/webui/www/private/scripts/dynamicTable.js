@@ -1230,6 +1230,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("infohash_v2", "", "QBT_TR(Info Hash v2)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("reannounce", "", "QBT_TR(Reannounce In)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("private", "", "QBT_TR(Private)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("super_seeding", "", "QBT_TR(Super Seeding)QBT_TR[CONTEXT=TransferListModel]", 100, false);
 
             this.columns["state_icon"].dataProperties[0] = "state";
             this.columns["name"].dataProperties.push("state");
@@ -1622,6 +1623,19 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const isPrivate = this.getRowValue(row);
                 const string = hasMetadata
                     ? (isPrivate
+                        ? "QBT_TR(Yes)QBT_TR[CONTEXT=PropertiesWidget]"
+                        : "QBT_TR(No)QBT_TR[CONTEXT=PropertiesWidget]")
+                    : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
+                td.textContent = string;
+                td.title = string;
+            };
+
+            // super seeding
+            this.columns["super_seeding"].updateTd = function(td, row) {
+                const hasMetadata = row["full_data"].has_metadata;
+                const superSeeding = this.getRowValue(row);
+                const string = hasMetadata
+                    ? (superSeeding
                         ? "QBT_TR(Yes)QBT_TR[CONTEXT=PropertiesWidget]"
                         : "QBT_TR(No)QBT_TR[CONTEXT=PropertiesWidget]")
                     : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
