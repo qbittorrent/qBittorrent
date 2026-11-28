@@ -41,6 +41,7 @@ window.qBittorrent.MonkeyPatch ??= (() => {
         patchMootoolsDocumentId();
         patchMochaGetAsset();
         patchMochaWindowOptions();
+        patchMochaWindowUnderlay();
     };
 
     const patchMootoolsDocumentId = () => {
@@ -133,6 +134,24 @@ window.qBittorrent.MonkeyPatch ??= (() => {
         options.shadowOffset = { x: 0, y: 0 };
         options.useCanvas = false;
         options.useCanvasControls = false;
+    };
+
+    /**
+     * Size the window underlay from the current window instead of `parent`,
+     * which is inaccessible when the WebUI is embedded in a cross-origin iframe
+     */
+    const patchMochaWindowUnderlay = () => {
+        MUI.underlayInitialize = () => {
+            const underlay = document.createElement("div");
+            underlay.id = "windowUnderlay";
+            underlay.style.height = `${document.documentElement.clientHeight}px`;
+            underlay.style.opacity = "0.01";
+            underlay.style.display = "none";
+            document.body.append(underlay);
+        };
+        MUI.setUnderlaySize = () => {
+            document.getElementById("windowUnderlay").style.height = `${document.documentElement.clientHeight}px`;
+        };
     };
 
     return exports();

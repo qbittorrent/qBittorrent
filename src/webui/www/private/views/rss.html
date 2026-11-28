@@ -239,7 +239,7 @@
         const rssArticleTable = new window.qBittorrent.DynamicTable.RssArticleTable();
 
         const init = () => {
-            const pref = window.parent.qBittorrent.Cache.preferences.get();
+            const pref = window.qBittorrent.Cache.preferences.get();
 
             if (!pref.rss_processing_enabled)
                 document.getElementById("rssFetchingDisabled").classList.remove("invisible");

@@ -852,8 +852,8 @@
     "use strict";
 
     (() => {
-        const qbtVersion = window.parent.qBittorrent.Cache.qbtVersion.get();
-        const buildInfo = window.parent.qBittorrent.Cache.buildInfo.get();
+        const qbtVersion = window.qBittorrent.Cache.qbtVersion.get();
+        const buildInfo = window.qBittorrent.Cache.buildInfo.get();
 
         document.getElementById("qbittorrentVersion").textContent = `qBittorrent ${qbtVersion} QBT_TR(WebUI)QBT_TR[CONTEXT=OptionsDialog]`;
         document.getElementById("qtVersion").textContent = buildInfo.qt;

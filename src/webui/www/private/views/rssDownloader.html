@@ -406,7 +406,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         });
 
         const setup = () => {
-            const pref = window.parent.qBittorrent.Cache.preferences.get();
+            const pref = window.qBittorrent.Cache.preferences.get();
 
             if (!pref.rss_auto_downloading_enabled)
                 document.getElementById("rssDownloaderDisabled").classList.remove("invisible");
