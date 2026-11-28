@@ -578,6 +578,15 @@ fieldset.settings + div.formRow {
     margin-top: 10px;
 }
 
+/* the same label column in both sections, so their fields line up */
+#AdvancedTab fieldset.settings > table {
+    width: 100%;
+}
+
+#AdvancedTab fieldset.settings > table > tbody > tr > td:first-child {
+    width: 65%;
+}
+
 div.formRow {
     clear: left;
     display: block;
@@ -736,6 +745,11 @@ td.noWrap {
     text-align: right;
 }
 
+/* keep the content from shifting sideways between tabs that scroll and tabs that don't */
+#preferencesPage .mochaContentWrapper {
+    scrollbar-gutter: stable;
+}
+
 #watched_folders_tab {
     border-collapse: collapse;
 }
@@ -770,6 +784,11 @@ td.noWrap {
     position: absolute;
     top: 0;
     width: 140px;
+}
+
+/* the padding beside the image, not inside its width */
+.select-watched-folder-editable img {
+    box-sizing: content-box;
 }
 
 .select-watched-folder-editable select:focus,
