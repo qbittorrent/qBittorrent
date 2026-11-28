@@ -124,13 +124,19 @@ window.qBittorrent.PropFiles ??= (() => {
 
     const singleFileRename = (hash, node) => {
         const path = node.path;
+        // The path can be stale when a parent folder was renamed just before, so the
+        // dialog resolves the current one from a file index when submitting.
+        let fileNode = node;
+        while (fileNode.isFolder && (fileNode.children.length > 0))
+            fileNode = fileNode.children[0];
+        const fileIndex = fileNode.isFolder ? -1 : fileNode.fileId;
 
         new MochaUI.Window({
             id: "renamePage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
             loadMethod: "iframe",
-            contentURL: `rename_file.html?v=${CACHEID}&hash=${hash}&isFolder=${node.isFolder}&path=${encodeURIComponent(path)}`,
+            contentURL: `rename_file.html?v=${CACHEID}&hash=${hash}&isFolder=${node.isFolder}&path=${encodeURIComponent(path)}&fileIndex=${fileIndex}`,
             scrollbars: false,
             resizable: true,
             maximizable: false,
