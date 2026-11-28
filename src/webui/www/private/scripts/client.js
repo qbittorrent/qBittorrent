@@ -869,7 +869,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             tagFilterItem.classList.toggle("selectedFilter", (tag === selectedTag));
 
             const span = tagFilterItem.firstElementChild;
-            span.lastChild.textContent = `${text} (${count})`;
+            span.lastElementChild.textContent = `${text} (${count})`;
 
             return tagFilterItem;
         };
@@ -923,18 +923,18 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             trackerFilterItem.classList.toggle("selectedFilter", (host === selectedTracker));
 
             const span = trackerFilterItem.firstElementChild;
-            span.lastChild.textContent = `${text} (${count})`;
+            span.lastElementChild.textContent = `${text} (${count})`;
 
             switch (host) {
                 case TRACKERS_ANNOUNCE_ERROR:
                 case TRACKERS_ERROR:
-                    span.lastElementChild.src = "images/tracker-error.svg";
+                    span.firstElementChild.src = "images/tracker-error.svg";
                     break;
                 case TRACKERS_TRACKERLESS:
-                    span.lastElementChild.src = "images/trackerless.svg";
+                    span.firstElementChild.src = "images/trackerless.svg";
                     break;
                 case TRACKERS_WARNING:
-                    span.lastElementChild.src = "images/tracker-warning.svg";
+                    span.firstElementChild.src = "images/tracker-warning.svg";
                     break;
             }
 
@@ -1031,6 +1031,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
                         const responseJSON = await response.json();
 
+                        // apply a filter typed since, even if no torrent changed
+                        const filterChanged = (torrentsFilterInputTimer !== -1);
                         clearTimeout(torrentsFilterInputTimer);
                         torrentsFilterInputTimer = -1;
 
@@ -1179,7 +1181,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                         }
 
                         // don't update the table unnecessarily
-                        if (updateTorrents)
+                        if (updateTorrents || filterChanged)
                             torrentsTable.updateTable(fullUpdate);
 
                         if (responseJSON["server_state"]) {
