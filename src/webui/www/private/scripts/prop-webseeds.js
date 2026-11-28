@@ -149,7 +149,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
 
         new MochaUI.Window({
             id: "webseedsPage",
-            title: "QBT_TR(Add web seeds)QBT_TR[CONTEXT=HttpServer]",
+            title: "QBT_TR_JS(Add web seeds)QBT_TR[CONTEXT=HttpServer]",
             loadMethod: "iframe",
             contentURL: `addwebseeds.html?v=${CACHEID}&hash=${current_hash}`,
             scrollbars: true,
@@ -178,7 +178,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
 
         new MochaUI.Window({
             id: "webseedsPage",
-            title: "QBT_TR(Web seed editing)QBT_TR[CONTEXT=PropertiesWidget]",
+            title: "QBT_TR_JS(Web seed editing)QBT_TR[CONTEXT=PropertiesWidget]",
             loadMethod: "iframe",
             contentURL: `editwebseed.html?v=${CACHEID}&hash=${current_hash}&url=${encodeURIComponent(webseedUrl)}`,
             scrollbars: true,

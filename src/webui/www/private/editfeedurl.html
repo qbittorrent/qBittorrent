@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]</title>
+    <title>QBT_TR_HTML(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
@@ -38,12 +38,12 @@
                 // check field
                 const newUrl = document.getElementById("url").value.trim();
                 if (newUrl === "") {
-                    alert("QBT_TR(URL cannot be empty)QBT_TR[CONTEXT=RSSWidget]");
+                    alert("QBT_TR_JS(URL cannot be empty)QBT_TR[CONTEXT=RSSWidget]");
                     return;
                 }
 
                 if (newUrl === currentUrl) {
-                    alert("QBT_TR(URL is unchanged)QBT_TR[CONTEXT=RSSWidget]");
+                    alert("QBT_TR_JS(URL is unchanged)QBT_TR[CONTEXT=RSSWidget]");
                     return;
                 }
 
@@ -60,7 +60,7 @@
                         if (!response.ok) {
                             alert((response.status === 409)
                                 ? await response.text()
-                                : "QBT_TR(Unable to update URL)QBT_TR[CONTEXT=RSSWidget]");
+                                : "QBT_TR_JS(Unable to update URL)QBT_TR[CONTEXT=RSSWidget]");
                             document.getElementById("submitButton").disabled = false;
                             return;
                         }
@@ -75,10 +75,10 @@
 
 <body>
     <div style="padding: 10px 10px 0px 10px;">
-        <label for="url" style="font-weight: bold;">QBT_TR(Feed URL:)QBT_TR[CONTEXT=RSSWidget]</label>
+        <label for="url" style="font-weight: bold;">QBT_TR_HTML(Feed URL:)QBT_TR[CONTEXT=RSSWidget]</label>
         <input type="text" id="url" style="width: 320px;">
         <div style="text-align: center; padding-top: 10px;">
-            <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="submitButton">
+            <input type="button" value="QBT_TR_HTML(Save)QBT_TR[CONTEXT=HttpServer]" id="submitButton">
         </div>
     </div>
 </body>
