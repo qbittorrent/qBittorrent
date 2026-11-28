@@ -6,8 +6,18 @@
         <file>browser-cookies.svg</file>
         <file>chart-line.svg</file>
         <file>checked-completed.svg</file>
+        <file>chevron-down-muted.svg</file>
+        <file>chevron-down.svg</file>
+        <file>chevron-up-muted.svg</file>
+        <file>chevron-up.svg</file>
         <file>configure.svg</file>
         <file>connected.svg</file>
+        <file>control-check-inverse.svg</file>
+        <file>control-check-muted.svg</file>
+        <file>control-check.svg</file>
+        <file>control-partial-inverse.svg</file>
+        <file>control-partial-muted.svg</file>
+        <file>control-partial.svg</file>
         <file>dialog-warning.svg</file>
         <file>directory.svg</file>
         <file>disconnected.svg</file>
@@ -337,6 +347,8 @@
         <file>security-high.svg</file>
         <file>security-low.svg</file>
         <file>set-location.svg</file>
+        <file>sidebar-collapse.svg</file>
+        <file>sidebar-expand.svg</file>
         <file>slow.svg</file>
         <file>slow_off.svg</file>
         <file>speedometer.svg</file>
