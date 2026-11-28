@@ -120,6 +120,7 @@ struct TrackerListModel::Item final
     int numSeeds = -1;
     int numLeeches = -1;
     int numDownloaded = -1;
+    int numFails = -1;
 
     BitTorrent::AnnounceTimePoint nextAnnounceTime;
     BitTorrent::AnnounceTimePoint minAnnounceTime;
@@ -186,6 +187,7 @@ void TrackerListModel::Item::fillFrom(const BitTorrent::TrackerEntryStatus &trac
     numSeeds = trackerEntryStatus.numSeeds;
     numLeeches = trackerEntryStatus.numLeeches;
     numDownloaded = trackerEntryStatus.numDownloaded;
+    numFails = trackerEntryStatus.numFails;
     nextAnnounceTime = trackerEntryStatus.nextAnnounceTime;
     minAnnounceTime = trackerEntryStatus.minAnnounceTime;
     secsToNextAnnounce = 0;
@@ -206,6 +208,7 @@ void TrackerListModel::Item::fillFrom(const BitTorrent::TrackerEndpointStatus &e
     numSeeds = endpointStatus.numSeeds;
     numLeeches = endpointStatus.numLeeches;
     numDownloaded = endpointStatus.numDownloaded;
+    numFails = endpointStatus.numFails;
     nextAnnounceTime = endpointStatus.nextAnnounceTime;
     minAnnounceTime = endpointStatus.minAnnounceTime;
     secsToNextAnnounce = 0;
@@ -511,6 +514,8 @@ QVariant TrackerListModel::headerData(const int section, const Qt::Orientation o
             return tr("Leeches");
         case COL_TIMES_DOWNLOADED:
             return tr("Times Downloaded");
+        case COL_RETRIES:
+            return tr("Retries");
         case COL_MSG:
             return tr("Message");
         case COL_NEXT_ANNOUNCE:
@@ -529,6 +534,7 @@ QVariant TrackerListModel::headerData(const int section, const Qt::Orientation o
         case COL_SEEDS:
         case COL_LEECHES:
         case COL_TIMES_DOWNLOADED:
+        case COL_RETRIES:
         case COL_NEXT_ANNOUNCE:
         case COL_MIN_ANNOUNCE:
             return QVariant {Qt::AlignRight | Qt::AlignVCenter};
@@ -575,6 +581,7 @@ QVariant TrackerListModel::data(const QModelIndex &index, const int role) const
         case COL_SEEDS:
         case COL_LEECHES:
         case COL_TIMES_DOWNLOADED:
+        case COL_RETRIES:
         case COL_NEXT_ANNOUNCE:
         case COL_MIN_ANNOUNCE:
             return QVariant {Qt::AlignRight | Qt::AlignVCenter};
@@ -616,6 +623,8 @@ QVariant TrackerListModel::data(const QModelIndex &index, const int role) const
             return prettyCount(itemPtr->numLeeches);
         case COL_TIMES_DOWNLOADED:
             return prettyCount(itemPtr->numDownloaded);
+        case COL_RETRIES:
+            return prettyCount(itemPtr->numFails);
         case COL_MSG:
             return itemPtr->message;
         case COL_NEXT_ANNOUNCE:
@@ -645,6 +654,8 @@ QVariant TrackerListModel::data(const QModelIndex &index, const int role) const
             return itemPtr->numLeeches;
         case COL_TIMES_DOWNLOADED:
             return itemPtr->numDownloaded;
+        case COL_RETRIES:
+            return itemPtr->numFails;
         case COL_MSG:
             return itemPtr->message;
         case COL_NEXT_ANNOUNCE:

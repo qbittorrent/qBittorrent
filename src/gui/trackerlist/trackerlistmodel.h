@@ -65,6 +65,7 @@ public:
         COL_MSG,
         COL_NEXT_ANNOUNCE,
         COL_MIN_ANNOUNCE,
+        COL_RETRIES,
 
         COL_COUNT
     };

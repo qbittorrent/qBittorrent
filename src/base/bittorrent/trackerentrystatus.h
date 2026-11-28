@@ -59,6 +59,7 @@ namespace BitTorrent
         int numSeeds = -1;
         int numLeeches = -1;
         int numDownloaded = -1;
+        int numFails = -1;
 
         AnnounceTimePoint nextAnnounceTime {};
         AnnounceTimePoint minAnnounceTime {};
@@ -77,6 +78,7 @@ namespace BitTorrent
         int numSeeds = -1;
         int numLeeches = -1;
         int numDownloaded = -1;
+        int numFails = -1;
 
         AnnounceTimePoint nextAnnounceTime {};
         AnnounceTimePoint minAnnounceTime {};
