@@ -37,7 +37,15 @@ void BitTorrent::TorrentContentRemover::performJob(const QString &torrentName, c
 {
     QString errorMessage;
 
-    if (!fileNames.isEmpty())
+    if (basePath.isEmpty())
+    {
+        errorMessage = tr("Storage path is empty, nothing to delete.");
+    }
+    else if (fileNames.isEmpty())
+    {
+        errorMessage = tr("File list is empty, nothing to delete.");
+    }
+    else
     {
         const auto removeFileFn = [&option](const Path &filePath) -> nonstd::expected<void, QString>
         {

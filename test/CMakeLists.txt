@@ -17,6 +17,7 @@ set(testFiles
     testorderedset.cpp
     testpath.cpp
     testrssautodownloadrule.cpp
+    testtorrentcontentremover.cpp
     testutilsbytearray.cpp
     testutilscompare.cpp
     testutilsdatetime.cpp
