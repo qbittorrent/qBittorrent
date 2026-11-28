@@ -72,7 +72,6 @@ namespace
         virtual ~Job() = default;
 
         virtual bool perform(QSqlDatabase db) = 0;
-        virtual void commit() = 0;
         virtual void fail(const QString &errorMessage) = 0;
 
     protected:
@@ -116,13 +115,9 @@ namespace
                 return false;
             }
 
-            return true;
-        }
-
-        void commit() override
-        {
             m_promise.addResult({});
             m_promise.finish();
+            return true;
         }
 
         void fail(const QString &errorMessage) override
@@ -178,13 +173,9 @@ namespace
                 return false;
             }
 
-            return true;
-        }
-
-        void commit() override
-        {
             m_promise.addResult(m_value);
             m_promise.finish();
+            return true;
         }
 
         void fail(const QString &errorMessage) override
@@ -233,13 +224,9 @@ namespace
                 return false;
             }
 
-            return true;
-        }
-
-        void commit() override
-        {
             m_promise.addResult({});
             m_promise.finish();
+            return true;
         }
 
         void fail(const QString &errorMessage) override
@@ -387,14 +374,15 @@ void KeyValueDataStorage::Worker::run()
     {
         auto db = QSqlDatabase::database(connectionName, false);
 
-        bool isTransactionActive = false;
-        std::vector<std::unique_ptr<Job>> transactedJobs;
         while (true)
         {
             QMutexLocker jobsMutexLocker {&m_jobsMutex};
 
             if (m_jobs.empty())
             {
+                if (db.isOpen())
+                    db.close();
+
                 if (isInterruptionRequested())
                     break;
 
@@ -417,40 +405,10 @@ void KeyValueDataStorage::Worker::run()
                     job->fail(result.error());
                     continue;
                 }
-
-                isTransactionActive = true; // `initDB()` begins transaction
             }
 
-            if (job->perform(db))
-                transactedJobs.emplace_back(std::move(job));
-
-            jobsMutexLocker.relock();
-            if (m_jobs.empty())
-            {
-                jobsMutexLocker.unlock();
-
-                if (isTransactionActive)
-                {
-                    if (db.commit())
-                    {
-                        for (const std::unique_ptr<Job> &transactedJob : transactedJobs)
-                            transactedJob->commit();
-                    }
-                    else
-                    {
-                        for (const std::unique_ptr<Job> &transactedJob : transactedJobs)
-                        {
-                            transactedJob->fail(tr("Committing database transaction failed. Database: %1. Error: %2")
-                                    .arg(m_storageName, db.lastError().text()));
-                        }
-                    }
-
-                    isTransactionActive = false;
-                    transactedJobs.clear();
-                }
-
+            if (!job->perform(db))
                 db.close();
-            }
         }
     }
 
@@ -487,20 +445,12 @@ nonstd::expected<void, QString> KeyValueDataStorage::Worker::initDB(QSqlDatabase
                 .arg(m_storageName, db.lastError().text()));
     }
 
-    if (!db.transaction())
-    {
-        db.close();
-        return nonstd::unexpected(tr("Starting database transaction failed. Database: %1. Error: %2")
-                .arg(m_storageName, db.lastError().text()));
-    }
-
     QSqlQuery query {db};
 
     const QString createTableQuery = u"CREATE TABLE IF NOT EXISTS `%1` (%2 INTEGER PRIMARY KEY, %3 TEXT NOT NULL UNIQUE, %4 BLOB)"_s
             .arg(m_tableName, DB_COLUMN_ID, DB_COLUMN_KEY, DB_COLUMN_VALUE);
     if (!query.exec(createTableQuery))
     {
-        db.rollback();
         db.close();
         return nonstd::unexpected(tr("Creating database table failed. Database: %1. Error: %2")
                 .arg(m_storageName, query.lastError().text()));
